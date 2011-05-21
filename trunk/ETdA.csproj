@@ -46,13 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camada de Dados\Classes\CheckList.cs" />
+    <Compile Include="Camada de Dados\Classes\Analise.cs" />
+    <Compile Include="Camada de Dados\Classes\Analista.cs" />
+    <Compile Include="Camada de Dados\Classes\EscalaResposta.cs" />
+    <Compile Include="Camada de Dados\Classes\Items.cs" />
+    <Compile Include="Camada de Dados\Classes\Questao.cs" />
+    <Compile Include="Camada de Dados\Classes\Ficha de Avaliação.cs" />
+    <Compile Include="Camada de Dados\Classes\Questionario.cs" />
+    <Compile Include="Camada de Dados\Classes\Formulario.cs" />
+    <Compile Include="Camada de Dados\Classes\Projecto.cs" />
+    <Compile Include="Camada de Dados\Classes\Relatorio.cs" />
+    <Compile Include="Camada de Dados\Classes\Respostas.cs" />
+    <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
+    <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Projecto\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -75,6 +88,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Camada de Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
