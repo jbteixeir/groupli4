@@ -72,6 +72,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
 
         void insert(List<String> values, List<int> tableNumber);
-
+        void remove(List<String> colunasRestricoes, List<String> itemsRestricoes, int tableNumber);
+        void edit(List<String> colunaItem, List<String> items, List<String> colunasRestricoes, List<String> itemsRestricoes, int tableNumber);
+        SqlCommand search(List<String> dadosProcura, List<String> dadosRestricoes1, List<String> dadosRestricoes2, List<String> modoRestricao, List<String> dadosGroupBy, List<String> dadosOrderBy, String order, List<int> tableNumber);
     }
 }

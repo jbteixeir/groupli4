@@ -60,7 +60,13 @@
     <Compile Include="Camada de Dados\Classes\Relatorio.cs" />
     <Compile Include="Camada de Dados\Classes\Respostas.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
+    <Compile Include="Camada de Interface\InterfaceLogin.cs" />
+    <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
+    <Compile Include="Camada de Negócio\GestaodeProjectos.cs" />
+    <Compile Include="Camada de Negócio\GestaodeRelatorios.cs" />
+    <Compile Include="Camada de Negócio\GetstoDatabase.cs" />
+    <Compile Include="Camada de Negócio\ImporterExporter.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,9 +96,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Camada de Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
