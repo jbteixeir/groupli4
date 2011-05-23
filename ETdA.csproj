@@ -60,7 +60,14 @@
     <Compile Include="Camada de Dados\Classes\Relatorio.cs" />
     <Compile Include="Camada de Dados\Classes\Respostas.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
+    <Compile Include="Camada de Interface\InterfaceCheckList.cs" />
+    <Compile Include="Camada de Interface\InterfaceFichaAvaliacao.cs" />
+    <Compile Include="Camada de Interface\InterfaceFormulario.cs" />
     <Compile Include="Camada de Interface\InterfaceLogin.cs" />
+    <Compile Include="Camada de Interface\InterfaceQuestionario.cs" />
+    <Compile Include="Camada de Interface\InterfaceRelatorio.cs" />
+    <Compile Include="Camada de Interface\MainPage.cs" />
+    <Compile Include="Camada de Interface\Workspace.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
     <Compile Include="Camada de Negócio\GestaodeProjectos.cs" />
