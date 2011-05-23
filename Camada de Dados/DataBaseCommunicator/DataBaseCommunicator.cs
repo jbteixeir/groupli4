@@ -22,6 +22,24 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         //Métodos
 
+        public String Server
+        {
+            get { return server; }
+            set { server = value; }
+        }
+
+        public SqlConnection Connection
+        {
+            get { return connection; }
+            set { connection = value; }
+        }
+
+        public String DataBase
+        {
+            get { return database; }
+            set { database = value; }
+        }
+
         /*
          * Abre uma ligação com a base de dados
          */

@@ -25,7 +25,18 @@ namespace ETdA
             nomeEstabelecimento = "";
         }
 
-        
+        //Métodos
+
+        public String Codigo
+        {
+            get { return codProjecto; }
+            set { codProjecto = value; }
+        }
+        public String Nome
+        {
+            get { return nomeEstabelecimento; }
+            set { nomeEstabelecimento = value; }
+        }
 
 
     }

@@ -26,5 +26,25 @@ namespace ETdA.Camada_de_Dados
             OpcoesResposta = new List<string> ();
             valorResposta = new List<short> ();
         }
+
+        //Métodos
+
+        public String Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
+        }
+
+        public List<String> Opcoes
+        {
+            get { return OpcoesResposta; }
+            set { OpcoesResposta = value; }
+        }
+
+        public List<short> Valor
+        {
+            get { return valorResposta; }
+            set { valorResposta = value; }
+        }
     }
 }
