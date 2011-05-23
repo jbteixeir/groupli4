@@ -15,6 +15,19 @@ namespace ETdA.Camada_de_Dados
         //Constructores
 
         //Métodos
+
+        public List<String> Cores
+        {
+            get { return cores; }
+            set { cores = value; }
+        }
+
+        public List<String> Obs
+        {
+            get { return observacoes; }
+            set { observacoes = value; }
+        }
+
         void adicionarObservacao(String codParametro, String obs);
         
     }

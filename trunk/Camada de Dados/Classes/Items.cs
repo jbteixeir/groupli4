@@ -27,5 +27,22 @@ namespace ETdA.Camada_de_Dados
             nomeParametro = "";
             descricaoParametro = "";
         }
+
+        //Métodos
+        public String Codigo
+        {
+            get { return codParametro; }
+            set { codParametro = value; }
+        }
+        public String Nome
+        {
+            get { return nomeParametro; }
+            set { nomeParametro = value; }
+        }
+        public String Descricao
+        {
+            get { return descricaoParametro; }
+            set { descricaoParametro = value; }
+        }
     }
 }

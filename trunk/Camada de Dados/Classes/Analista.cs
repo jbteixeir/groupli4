@@ -27,6 +27,28 @@ namespace ETdA.Camada_de_Dados
             password = "";
             username = "";
         }
+
+        //Métodos
+
+        public String Nome
+        {
+            get { return nome; }
+            set { nome = value; }
+        }
+
+        public String Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+        public String Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        
     }
 
 }

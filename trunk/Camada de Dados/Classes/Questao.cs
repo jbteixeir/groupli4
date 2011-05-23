@@ -24,5 +24,18 @@ namespace ETdA.Camada_de_Dados
             descricaoPergunta = "";
         }
 
+        //Métodos
+
+        public short Numero
+        {
+            get { return numeroPergunta; }
+            set { numeroPergunta = value; }
+        }
+
+        public String Descricao
+        {
+            get { return descricaoPergunta; }
+            set { descricaoPergunta = value; }
+        }
     }
 }

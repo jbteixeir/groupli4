@@ -34,6 +34,42 @@ namespace ETdA.Camada_de_Dados
             estadoWebsite = true;
             nomeAnalise = "";
         }
-       
+
+        //Métodos
+
+        public String Codigo
+        {
+            get { return codAnalise; }
+            set { codAnalise = value; }
         }
+        
+        public DateTime Data
+	    {
+		    get { return dataAnalise;}
+		    set { dataAnalise = value;}
+	    }
+	
+        
+        public String Tipo
+	    {
+		    get { return tipoAnalise;}
+		    set { tipoAnalise = value;}
+	    }
+
+        public Boolean Estado
+        {
+            get { return estadoWebsite;}
+            set { estadoWebsite = value;}
+        }
+
+        public String Nome
+        {
+            get { return nomeAnalise;}
+            set { nomeAnalise = value;}
+        }
+
+        }
+        
 }
+
+

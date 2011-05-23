@@ -23,5 +23,19 @@ namespace ETdA
             tipo = type;
             codFormulario = codForm;
         }
+
+        //Métodos
+
+        public String Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
+        }
+
+        public String Codigo
+        {
+            get { return codFormulario; }
+            set { codFormulario = value; }
+        }
     }
 }
