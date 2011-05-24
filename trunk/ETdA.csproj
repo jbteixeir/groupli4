@@ -78,6 +78,7 @@
     <Compile Include="Camada de Dados\Classes\Relatorio.cs" />
     <Compile Include="Camada de Dados\Classes\Respostas.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
+    <Compile Include="Camada de Dados\ETdA\ETdA.cs" />
     <Compile Include="Camada de Interface\InterfaceLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +154,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
