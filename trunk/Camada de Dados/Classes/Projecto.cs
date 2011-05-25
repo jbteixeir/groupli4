@@ -11,18 +11,28 @@ namespace ETdA
         //Variaveis de instância
         private String codProjecto;
         private String nomeEstabelecimento;
+        private DateTime ultimaActualizacao;
 
         //Constructores
-        public Projecto(String codProj, String nomeEst)
+        public Projecto(String codProj, String nomeEst, DateTime ultimaAct)
         {
             codProjecto = codProj;
             nomeEstabelecimento = nomeEst;
+            ultimaActualizacao = ultimaAct;
         }
 
         public Projecto ()
         {
             codProjecto = "";
             nomeEstabelecimento = "";
+            ultimaActualizacao = new DateTime();
+        }
+
+        public Projecto(Projecto p)
+        {
+            codProjecto = p.Codigo;
+            nomeEstabelecimento = p.Nome;
+            ultimaActualizacao = p.Data;
         }
 
         //Métodos
@@ -38,6 +48,15 @@ namespace ETdA
             set { nomeEstabelecimento = value; }
         }
 
+        public DateTime Data
+        {
+            get { return ultimaActualizacao; }
+            set { ultimaActualizacao = value; }
+        }
 
+        public Projecto clone()
+        {
+            return new Projecto(this);
+        }
     }
 }
