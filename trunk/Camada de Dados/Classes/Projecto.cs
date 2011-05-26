@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using ETdA.Camada_de_Dados;
 
-namespace ETdA
+namespace ETdA.Camada_de_Dados.Classes
 {
     class Projecto
     {
@@ -13,16 +13,16 @@ namespace ETdA
         private String codProjecto;
         private String nomeEstabelecimento;
         private DateTime ultimaActualizacao;
-        private List<Analise> analises;
+        private List<String> codAnalises;
 
         //Constructores
         public Projecto(String codProj, String nomeEst, 
-            DateTime ultimaAct, List<Analise> analises)
+            DateTime ultimaAct, List<String> analises)
         {
             codProjecto = codProj;
             nomeEstabelecimento = nomeEst;
             ultimaActualizacao = ultimaAct;
-            this.analises = analises;
+            codAnalises = analises;
         }
 
         public Projecto ()
@@ -30,7 +30,7 @@ namespace ETdA
             codProjecto = "";
             nomeEstabelecimento = "";
             ultimaActualizacao = new DateTime();
-            analises = new List<Analise>();
+            codAnalises = new List<String>();
         }
 
         public Projecto(Projecto p)
@@ -38,7 +38,7 @@ namespace ETdA
             codProjecto = p.Codigo;
             nomeEstabelecimento = p.Nome;
             ultimaActualizacao = p.Data;
-            analises = p.Analises;
+            codAnalises = p.Analises;
         }
 
         //Métodos
@@ -53,14 +53,12 @@ namespace ETdA
             get { return nomeEstabelecimento; }
             set { nomeEstabelecimento = value; }
         }
-
         public DateTime Data
         {
             get { return ultimaActualizacao; }
             set { ultimaActualizacao = value; }
         }
-
-        public List<Analise> Analises
+        public List<String> Analises
         {
             get { return analises; }
             set { analises = value; }
@@ -80,21 +78,29 @@ namespace ETdA
         /*
          * Adiciona uma nova Analise
          */
-        public void adicionaNovaAnalise(String tipoAnalise, String nomeAnalise)
+        public void adicionaNovaAnalise(String tipoAnalise, 
+            String nomeAnalise, List<Zona> zonas, List<Item> itens)
         {
             Analise a = new Analise();
             a.Tipo = tipoAnalise;
             a.Nome = nomeAnalise;
+            a.Zonas = zonas;
+            a.Itens = itens;
 
-            analises.Add(a);
+            Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.insertAnalise(codProjecto,a);
+            a.Codigo = Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.selectCodigoAnalise(a.Data);
+
+            codAnalises.Add(a.Codigo);
         }
 
         /*
          * Adiciona uma Analise
          */
-        public void adicionaAnalise(Analise a)
+        public void adicionaAnalise(String cod)
         {
-            analises.Add(a);
+            codAnalises.Add(cod);
         }
 
         /*
@@ -109,6 +115,23 @@ namespace ETdA
                     analises.RemoveAt(i);
                     found = true;
                 }
+
+            Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.deleteAnalise(codigo);
+        }
+
+        public void modificaAnalise(Analise a)
+        {
+            Boolean found = false;
+            for (int i = 0; i < codAnalises.Count && !found; i++)
+                if (codAnalises[i].Equals(codigo))
+                {
+                    analises.RemoveAt(i);
+                    found = true;
+                }
+
+            Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.deleteAnalise(codigo);
         }
 
         /*
