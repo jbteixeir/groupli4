@@ -45,14 +45,23 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /*
          * Abre uma ligação com a base de dados
          */
-        public static void connect(String server, String username, String password, String database)
+        public static bool connect(String server, String username, String password, String database)
         {
-            connection = new SqlConnection( "Data Source=" + server + ";" +
-                                            "Initial Catalog=" + database + 
-                                            "_" + username + ";" +
-                                            "User ID=" + username + ";" +
-                                            "Password=" + password + ";" + 
-                                            "MultipleActiveResultSets = True");
+			try
+			{
+				connection = new SqlConnection("Data Source=" + server + ";" +
+												"Initial Catalog=" + database +
+												"_" + username + ";" +
+												"User ID=" + username + ";" +
+												"Password=" + password + ";" +
+												"MultipleActiveResultSets = True");
+				connection.Open();
+				return true;
+			}
+			catch (SqlException ex)
+			{
+				return false;
+			}
         }
 
         /*
@@ -77,6 +86,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             SqlCommand command = new SqlCommand(query, connection);
             command.ExecuteNonQuery();
+			command.Dispose();
         }
 
         /*
@@ -85,8 +95,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         public static SqlDataReader readData(string query)
         {
             SqlDataReader reader = null;
-            SqlCommand command = new SqlCommand("select * from table",
-                                                     connection);
+            SqlCommand command = new SqlCommand(query, connection);
             reader = command.ExecuteReader();
             return reader;
         }
