@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ETdA.Camada_de_Dados;
+using ETdA.Camada_de_Dados.Classes.Estruturas;
 
 namespace ETdA.Camada_de_Dados.Classes
 {
@@ -13,16 +14,17 @@ namespace ETdA.Camada_de_Dados.Classes
         private String codProjecto;
         private String nomeEstabelecimento;
         private DateTime ultimaActualizacao;
-        private List<String> codAnalises;
+        private List<Tuplo<String,String>> cod_name_analise;
+        private Analise analise_Aberta;
 
         //Constructores
         public Projecto(String codProj, String nomeEst, 
-            DateTime ultimaAct, List<String> analises)
+            DateTime ultimaAct, List<Tuplo<String,String>> analises)
         {
             codProjecto = codProj;
             nomeEstabelecimento = nomeEst;
             ultimaActualizacao = ultimaAct;
-            codAnalises = analises;
+            cod_name_analise = analises;
         }
 
         public Projecto ()
@@ -30,7 +32,7 @@ namespace ETdA.Camada_de_Dados.Classes
             codProjecto = "";
             nomeEstabelecimento = "";
             ultimaActualizacao = new DateTime();
-            codAnalises = new List<String>();
+            cod_name_analise = new List<Tuplo<String,String>>();
         }
 
         public Projecto(Projecto p)
@@ -38,7 +40,7 @@ namespace ETdA.Camada_de_Dados.Classes
             codProjecto = p.Codigo;
             nomeEstabelecimento = p.Nome;
             ultimaActualizacao = p.Data;
-            codAnalises = p.Analises;
+            cod_name_analise = p.Cod_Name_Analise;
         }
 
         //Métodos
@@ -60,8 +62,23 @@ namespace ETdA.Camada_de_Dados.Classes
         }
         public List<String> Analises
         {
-            get { return analises; }
-            set { analises = value; }
+            get 
+            {
+                List<String> nomes = new List<string>();
+                foreach (Tuplo<String, String> t in cod_name_analise)
+                    nomes.Add(t.Snd);
+                return nomes;
+            }
+        }
+        public List<Tuplo<String,String>> Cod_Name_Analise
+        {
+            get { return cod_name_analise; }
+            set { cod_name_analise = value; }
+        }
+        public Analise Analise_Aberta
+        {
+            get { return analise_Aberta; }
+            set { analise_Aberta = value; }
         }
 
         public Projecto clone()
@@ -74,6 +91,19 @@ namespace ETdA.Camada_de_Dados.Classes
         /* ------------------------------------------------------ */
 
         /* Gestao de Analises */
+
+        /*
+         * Verifica se Ja tem Projecto com esse nome na Base de dados
+         */
+        public Boolean podeAdicionarAnalise(String nomeAnalise)
+        {
+            Boolean found = false;
+            for (int i = 0; i < cod_name_analise.Count && !found; i++)
+                if (cod_name_analise[i].Snd == nomeAnalise)
+                    found = true;
+
+            return found;
+        }
 
         /*
          * Adiciona uma nova Analise
@@ -92,58 +122,66 @@ namespace ETdA.Camada_de_Dados.Classes
             a.Codigo = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectCodigoAnalise(a.Data);
 
-            codAnalises.Add(a.Codigo);
+            for (int i = 0 ; i < zonas.Count ; i++)
+                Camada_de_Dados.DataBaseCommunicator.
+                    FuncsToDataBase.insertZonaAnalise(zonas[i].Codigo,
+                    a.Codigo);
+
+            for (int i = 0; i < itens.Count; i++)
+                Camada_de_Dados.DataBaseCommunicator.
+                    FuncsToDataBase.insertZonaAnalise(itens[i].Codigo,
+                    a.Codigo);
+
+            Tuplo<String, String> t = new Tuplo<String, String>(a.Codigo,a.Nome);
+            cod_name_analise.Add(t);
+            analise_Aberta = a;
         }
 
         /*
-         * Adiciona uma Analise
+         * 
          */
-        public void adicionaAnalise(String cod)
+        public void abreAnalise(String nomeAnalise)
         {
-            codAnalises.Add(cod);
+            String cod = null;
+            Boolean found = false;
+            for (int i = 0; i < cod_name_analise.Count && !found; i++)
+                if (cod_name_analise[i].Snd == nomeAnalise)
+                {
+                    cod = cod_name_analise[i].Fst;
+                    found = true;
+                }
+
+            analise_Aberta = Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.selectAnalise(cod);
+            analise_Aberta.Zonas = Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.selectZonasAnalise(cod);
+            analise_Aberta.Itens = Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.selectItensAnalise(cod);
         }
 
         /*
          * Remove Analise
          */
-        public void removeAnalise(String codigo)
+        public void removeAnalise(String nomeAnalise)
         {
+            String cod = null;
             Boolean found = false;
-            for (int i = 0; i < analises.Count && !found; i++)
-                if (analises[i].Codigo == codigo)
+            for (int i = 0; i < cod_name_analise.Count && !found; i++)
+                if (cod_name_analise[i].Snd == nomeAnalise)
                 {
-                    analises.RemoveAt(i);
+                    cod = cod_name_analise[i].Fst;
+                    cod_name_analise.RemoveAt(i);
                     found = true;
                 }
 
             Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.deleteAnalise(codigo);
+                FuncsToDataBase.deleteAnalise(cod);
         }
 
-        public void modificaAnalise(Analise a)
+        public void modificaAnalise()
         {
-            Boolean found = false;
-            for (int i = 0; i < codAnalises.Count && !found; i++)
-                if (codAnalises[i].Equals(codigo))
-                {
-                    analises.RemoveAt(i);
-                    found = true;
-                }
-
             Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.deleteAnalise(codigo);
-        }
-
-        /*
-         * Devolve uma Analise com o codigo recebido
-         */
-        public Analise getAnaliseByCode(String codigo)
-        {
-            Analise a = null;
-            for (int i = 0; i < analises.Count; i++)
-                if (analises[i].Codigo == codigo)
-                    a = analises[i].clone();
-            return a;
+                FuncsToDataBase.updateAnalise(codProjecto, analise_Aberta);
         }
 
         /* Fim de Gestao de Analises */

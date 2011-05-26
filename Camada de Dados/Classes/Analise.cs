@@ -17,9 +17,9 @@ namespace ETdA.Camada_de_Dados.Classes
         private Boolean estadoWebsiteCheckList;
         private Boolean estadoWebsiteFichaAvaliacao;
         private Boolean estadoWebsiteQuestionario;
-        private Formulario checkList;
-        private Formulario fichaAvaliacao;
-        private Formulario questionario;
+        private String codCheckList;
+        private String codFichaAvaliacao;
+        private String codQuestionario;
 
         //Constructores
 
@@ -50,9 +50,9 @@ namespace ETdA.Camada_de_Dados.Classes
             estadoWebsiteCheckList = false;
             estadoWebsiteFichaAvaliacao = false;
             estadoWebsiteQuestionario = false;
-            checkList = new Formulario();
-            fichaAvaliacao = new Formulario();
-            questionario = new Formulario();
+            checkList = "";
+            fichaAvaliacao = "";
+            questionario = "";
         }
 
         public Analise(Analise a)
