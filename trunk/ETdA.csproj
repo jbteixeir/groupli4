@@ -91,7 +91,6 @@
     <Compile Include="Camada de Negócio\GestaodeRelatorios.cs" />
     <Compile Include="Camada de Negócio\GetstoDatabase.cs" />
     <Compile Include="Camada de Negócio\ImporterExporter.cs" />
-    <Compile Include="Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Camada de Interface\InterfaceLogin.resx">
       <DependentUpon>InterfaceLogin.cs</DependentUpon>

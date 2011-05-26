@@ -1,23 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETdA", "ETdA.csproj", "{3069B5E0-74BC-4675-9BCB-D48E87DE7DF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamadaNegocio", "..\ConsoleApplication1\CamadaNegocio.csproj", "{3D7D6214-1489-434C-895D-02224694633D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08866D05-DC55-467A-A686-8CEEAEF27AC4}"
-	ProjectSection(SolutionItems) = preProject
-		ETdA.vsmdi = ETdA.vsmdi
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamadaInterface", "..\WindowsFormsApplication1\CamadaInterface.csproj", "{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}"
-EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = ETdA.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -37,31 +23,14 @@ Global
 		{3069B5E0-74BC-4675-9BCB-D48E87DE7DF1}.Release|Mixed Platforms.Build.0 = Release|x86
 		{3069B5E0-74BC-4675-9BCB-D48E87DE7DF1}.Release|x86.ActiveCfg = Release|x86
 		{3069B5E0-74BC-4675-9BCB-D48E87DE7DF1}.Release|x86.Build.0 = Release|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Debug|x86.ActiveCfg = Debug|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Debug|x86.Build.0 = Debug|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Release|Any CPU.ActiveCfg = Release|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Release|Mixed Platforms.Build.0 = Release|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Release|x86.ActiveCfg = Release|x86
-		{3D7D6214-1489-434C-895D-02224694633D}.Release|x86.Build.0 = Release|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Debug|x86.ActiveCfg = Debug|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Debug|x86.Build.0 = Debug|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Release|Any CPU.ActiveCfg = Release|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Release|Mixed Platforms.Build.0 = Release|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Release|x86.ActiveCfg = Release|x86
-		{6C9A4E8A-745C-441B-B1CF-8668F4FB1145}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ETdA.vsmdi
 	EndGlobalSection
 EndGlobal
