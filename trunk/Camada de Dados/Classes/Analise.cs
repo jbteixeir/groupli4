@@ -20,6 +20,7 @@ namespace ETdA.Camada_de_Dados.Classes
         private String codCheckList;
         private String codFichaAvaliacao;
         private String codQuestionario;
+        private Relatrio;
 
         //Constructores
 
