@@ -3,53 +3,72 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdA.Camada_de_Dados
+namespace ETdA.Camada_de_Dados.Classes
 {
     public class Analise
     {
         //Variáveis de Instância
         private String codAnalise;
         private DateTime dataAnalise;
-        private String tipoAnalise;
-        private Boolean estadoWebsite;
         private String nomeAnalise;
+        private String tipoAnalise;
+        private List<Zona> zonas;
+        private List<Item> itens;
+        private Boolean estadoWebsiteCheckList;
+        private Boolean estadoWebsiteFichaAvaliacao;
+        private Boolean estadoWebsiteQuestionario;
         private Formulario checkList;
         private Formulario fichaAvaliacao;
         private Formulario questionario;
-        private List<Item> itens;
-    
+
         //Constructores
 
-        public Analise(String cod, DateTime data, String tipo, Boolean estado, String nome)
+        public Analise(String cod, DateTime data, String nome,
+            String tipo, List<Zona> zonas, List<Item> itens, 
+            Boolean estadoWebCL, Boolean estadoWebFA, Boolean estadoWebQ)
         {
             codAnalise = cod;
             dataAnalise = data;
-            tipoAnalise = tipo;
-            estadoWebsite = estado;
             nomeAnalise = nome;
+            tipoAnalise = tipo;
+            this.zonas = zonas;
+            this.itens = itens;
+            estadoWebsiteCheckList = estadoWebCL;
+            estadoWebsiteFichaAvaliacao = estadoWebFA;
+            estadoWebsiteQuestionario = estadoWebQ;            
         }
 
         public Analise()
         {
             codAnalise = "";
             dataAnalise = new DateTime();
-            tipoAnalise = "";
-            estadoWebsite = true;
+            dataAnalise = DateTime.Now;
             nomeAnalise = "";
+            tipoAnalise = "";
+            zonas = new List<Zona>();
+            itens = new List<Item>();
+            estadoWebsiteCheckList = false;
+            estadoWebsiteFichaAvaliacao = false;
+            estadoWebsiteQuestionario = false;
             checkList = new Formulario();
             fichaAvaliacao = new Formulario();
             questionario = new Formulario();
-            itens = new List<Item>();
         }
 
         public Analise(Analise a)
         {
             codAnalise = a.Codigo;
             dataAnalise = a.Data;
-            tipoAnalise = a.Tipo;
-            estadoWebsite = a.Estado;
             nomeAnalise = a.Nome;
-
+            tipoAnalise = a.Tipo;
+            zonas = a.Zonas;
+            itens = a.Itens;
+            estadoWebsiteCheckList = a.EstadoWebCL;
+            estadoWebsiteFichaAvaliacao = a.EstadoWebFA;
+            estadoWebsiteQuestionario = a.EstadoWebQ;
+            checkList = a.CheckList;
+            fichaAvaliacao = a.FichaAvaliacao;
+            questionario = a.Questionario;
         }
 
         //Métodos
@@ -58,58 +77,62 @@ namespace ETdA.Camada_de_Dados
         {
             get { return codAnalise; }
             set { codAnalise = value; }
-        }
-        
+        }    
         public DateTime Data
 	    {
 		    get { return dataAnalise;}
 		    set { dataAnalise = value;}
 	    }
-	
-        
+        public String Nome
+        {
+            get { return nomeAnalise;}
+            set { nomeAnalise = value;}
+        }       
         public String Tipo
 	    {
 		    get { return tipoAnalise;}
 		    set { tipoAnalise = value;}
 	    }
-
-        public Boolean Estado
+        public List<Zona> Zonas
+	    {
+		    get { return zonas;}
+		    set { zonas = value;}
+	    }
+        public List<Item> Itens
+	    {
+		    get { return itens;}
+		    set { itens = value;}
+	    }
+        public Boolean EstadoWebCL
         {
-            get { return estadoWebsite;}
-            set { estadoWebsite = value;}
+            get { return estadoWebsiteCheckList; }
+            set { estadoWebsiteCheckList = value; }
         }
-
-        public String Nome
+        public Boolean EstadoWebFA
         {
-            get { return nomeAnalise;}
-            set { nomeAnalise = value;}
+            get { return estadoWebsiteFichaAvaliacao; }
+            set { estadoWebsiteFichaAvaliacao = value; }
         }
-
+        public Boolean EstadoWebQ
+        {
+            get { return estadoWebsiteQuestionario; }
+            set { estadoWebsiteQuestionario = value; }
+        }
         public Formulario CheckList
         {
             get { return checkList; }
             set { checkList = value; }
         }
-
         public Formulario FichaAvaliacao
         {
             get { return fichaAvaliacao; }
             set { fichaAvaliacao = value; }
         }
-
         public Formulario Questionario
         {
             get { return questionario; }
             set { questionario = value; }
         }
-
-        public List<Item> Itens
-        {
-            get { return itens; }
-            set { itens = value; }
-        }
-
-
         public Analise clone()
         {
             return new Analise(this);

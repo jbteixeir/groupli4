@@ -3,22 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using ETdA.Camada_de_Dados.Classes;
+using ETdA.Camada_de_Dados.Classes.Estruturas;
 
 namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 {
     class FuncsToDataBase
     {
-        /* Tabelas */
-        /*
-        public static String PROJECTOS = "Projectos";
-        public static String ANALISE = "Analise";
-        public static String FORMULARIOS = "Formulario";
-        public static String PERGUNTAS = "Perguntas";
-        public static String RESPOSTAS = "Respostas";
-        public static String ITENS = "Itens";
-        public static String ESCALA_RESPOSTA = "EscalaResposta";
-        */
-
         /* ----------------------------------------------*/
         /* Analistas */
 
@@ -27,7 +18,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param username Username do analista
          * @param password Password do analista
          */
-        public static void selectAnalista(String username, String password);
+        public static Boolean selectAnalista(String username, String password);
 
         /**
          * Liga o analista à sua base de dados
@@ -62,53 +53,49 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* Projectos */
 
         /**
-         * Devolve todos os projectos do analista
-         * @return List<Projecto> Projectos do analista 
+         * Retorna os nomes de todos os Projectos por ordem de data
+         * @return List<String> Nome dos estabecimentos dos projectos
          */
-        /*
-        public static List<Projecto> selectProjectos()
+        public static List<Tuplo<String,String>> selectNomeProjectos()
         {
-            List<Projecto> projectos = new List<Projecto>();
+            String query = "select cod_projecto,estabelecimento from projectos orderby data DESC";
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            List<String> dadosProcura = new List<String>();
-            dadosProcura.Add("*");
-            List<String> tabelas = new List<String>();
-            tabelas.Add(PROJECTOS);
-            String orderby = "data";
-            String order = "desc";
-
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.search(
-                dadosProcura, null, null, null, null, orderby, order, tabelas);
+            List<Tuplo<String,String>> cod_nome = new List<Tuplo<String,String>>();
 
             while (r.Read())
             {
-                Projecto p = new Projecto((string)r["codProjecto"],
-                    (string)r["estabelecimento"], (DateTime)r["data"],
-                    new List<Analise>());
-
-                projectos.Add(p);
+                String cod = (string)r["cod_projecto"];
+                String nome = (string)r["estabelecimento"];
+                Tuplo<String, String> t = new Tuplo<String,String>(cod, nome);
+                cod_nome.Add(t);
             }
 
-            return projectos;
-        }*/
-        public static List<Projecto> selectProjectos()
+            return cod_nome;
+        }
+
+        /**
+         * Devolve um Projecto do analisa com o nome recebido
+         * @param nomeEstabelecimeto Nome do estabeldecimento do projecto que é requerido 
+         * @return Projecto Projecto requerido
+         */
+        public static Projecto selectProjecto(String nomeEstabelecimeto)
         {
-            String query = "select * form projectos orderby data desc";
+            String query = "select * form projectos where estabelecimento = " 
+                + nomeEstabelecimeto;
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
                 DataBaseCommunicator.readData(query);
 
-            List<Projecto> projectos = new List<Projecto>();
+            Projecto p = null;
 
             while (r.Read())
             {
-                Projecto p = new Projecto((string)r["codProjecto"],
+                p = new Projecto((string)r["codProjecto"],
                     (string)r["estabelecimento"], (DateTime)r["data"],
-                    new List<Analise>());
-
-                projectos.Add(p);
+                    new List<String>());
             }
 
-            return projectos;
+            return p;
         }
 
         /**
@@ -130,18 +117,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * Insere um novo projecto na base de dados
          * @param p Novo projecto que irá ser inserido (não contém código)
          */
-        /*
-        public static void insertProjecto(Projecto p)
-        {
-            List<String> values = new List<string>();
-            values.Add(p.Nome);
-            values.Add("CAST('" + p.Data.ToString("yyyymmdd hh:mm:ss") + "' AS datetime");
-            String tabela = PROJECTOS;
-
-            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.insert(
-                values, tabela);
-        }
-        */
         public static void insertProjecto(Projecto p)
         {
             String query = "insert into projectos values(" +
@@ -152,7 +127,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
 
         /**
-         * Eliminao projecto da base de dados com o código inserido
+         * Elimina o projecto da base de dados com o código inserido
+         * Elimina as análises do projecto
          * @param codProjecto Código do projecto que irá ser eliminado
          */
         public static void deleteProjecto(String codProjecto);
@@ -163,58 +139,50 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static void updateProjecto(Projecto p);
 
-        /**
-         * Retorna os nomes de todos os Projectos
-         * @return List<String> Nome dos estabecimentos dos projectos
-         */
-        /*
-        public static List<String> selectNomeProjectos()
-        {
-            List<String> nomes = new List<String>();
-
-            List<String> dadosProcura = new List<String>();
-            dadosProcura.Add("estabelecimento");
-            List<String> tabelas = new List<String>();
-            tabelas.Add(PROJECTOS);
-
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.search(
-                dadosProcura, null, null, null, null, null, null, tabelas);
-
-            while (r.Read())
-            {
-                String s = (string)r["estabelecimento"];
-                nomes.Add(s);
-            }
-
-            return nomes;
-        }*/
-        public static List<String> selectNomeProjectos()
-        {
-            String query = "select estabelecimento from projectos";
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
-
-             List<String> nomes = new List<String>();
-
-            while (r.Read())
-            {
-                String s = (string)r["estabelecimento"];
-                nomes.Add(s);
-            }
-
-            return nomes;
-        }
-
         /* ----------------------------------------------*/
 
         /* Analises */
 
-        public static List<Analise> selectAnalises();
+        /**
+         * Retorna os nomes de todas as análises por ordem de criacao
+         * @param codProjecto O Codigo do projecto em que faz parte a analise
+         * @return List<String> nomes das analises
+         */
+        public static List<String> selectNomesAnalises(String codProjecto);
 
-        public static void insertAnalise();
+        /**
+         * Retorna a analise com o codigo recebido
+         * @param codAnalise O Codigo da analise
+         * @return Analise A analise requerida
+         */
+        public static Analise selectAnalise(String codAnalise);
 
-        public static void deleteAnalise();
+        /**
+         * Retorna os nomes de todas as análises por ordem de criacao
+         * @param codProjecto O Codigo do projecto em que faz parte a analise
+         * @return List<String> nomes das analises
+         */
+        public static String selectCodigoAnalise(DateTime data);
 
-        public static void updateAnalise();
+        /**
+         * Insere uma nova analise na base de dados
+         * Insere os itens da analise na tabela dos item_analise
+         * Insere as zonas da analise na tabela dos zona_analise
+         * @param codProjecto O Codigo do projecto em que faz parte a analise
+         * @param a Analise que será inserida
+         */
+        public static void insertAnalise(String codProjecto, Analise a);
+
+        /**
+         * Elimina uma analise da base de dados
+         * Elimina os itens da analise na tabela dos item_analise
+         * Elimina as zonas da analise na tabela dos zona_analise
+         * Elimina as Perguntas e Respostas dos Formularios desta Analise (se existirem)
+         * @param codAnalise O codigo da analise que sera eliminada
+         */
+        public static void deleteAnalise(String codAnalise);
+
+        public static void updateAnalise(Analise a);
 
         /* Itens */
 
