@@ -5,10 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-//The csv reader
-using LumenWorks.Framework.IO.Csv;
-
-
 namespace CamadaNegocio
 {
     class ImporterExporter
