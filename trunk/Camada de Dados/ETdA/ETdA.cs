@@ -109,9 +109,9 @@ namespace ETdA.Camada_de_Dados.ETdA
 
             projectoAberto = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectProjecto(cod);
-            projectoAberto.Cod_Name_Analise = Camada_de_Dados.
+            /*projectoAberto.Cod_Name_Analise = Camada_de_Dados.
                 DataBaseCommunicator.FuncsToDataBase.selectNomesAnalises(
-                projectoAberto.Codigo);
+                projectoAberto.Codigo);*/
         }
 
         /*
@@ -129,28 +129,28 @@ namespace ETdA.Camada_de_Dados.ETdA
                     found = true;
                 }
 
-            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
-                deleteProjecto(cod);
+            /*Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+                deleteProjecto(cod);*/
         }
 
         public static void modificaProjecto(String nomeEstabelecimentoNovo)
         {
             projectoAberto.Nome = nomeEstabelecimentoNovo;
-            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
-               updateProjecto(projectoAberto);
+            /*Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+               updateProjecto(projectoAberto);*/
         }
 
         public static void ultimaAlteracao(DateTime novaData)
         {
             projectoAberto.Data = novaData;
-            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
-               updateProjecto(projectoAberto);
+            /*Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+               updateProjecto(projectoAberto);*/
         }
 
         /* Fim Gestao Projectos */
 
         /* Gestao de Analistas */
-
+        /*
         public static void adicionaAnalista(String username, String password)
         {
             Camada_de_Dados.DataBaseCommunicator.
@@ -182,7 +182,7 @@ namespace ETdA.Camada_de_Dados.ETdA
 
             init();
         }
-
+        */
         /* Fim de Gestao de Analistas */
     }
 }

@@ -18,34 +18,34 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param username Username do analista
          * @param password Password do analista
          */
-        public static Boolean selectAnalista(String username, String password);
+        //public static Boolean selectAnalista(String username, String password);
 
         /**
          * Liga o analista à sua base de dados
          * @param username Usernmae do analista
          * @param password Password do analista
          */
-        public static void ligaAnalista(String username, String password);
+        //public static void ligaAnalista(String username, String password);
 
         /**
          * Insere um novo analista na base de dados (e cria as tabelas?)
          * @param username Username do analista
          * @param password Password do analista
          */
-        public static void insertAnalista(String username, String password);
+        //public static void insertAnalista(String username, String password);
 
         /**
          * Remove um analista e as suas tabelas na base de dados
          * @param username Username do analista
          */
-        public static void deleteAnalista(String username);
+        //public static void deleteAnalista(String username);
 
         /**
          * Altera a password de um analista
          * @param username Username do analista
          * @param password Nova password do analista
          */
-        public static void updateAnalista(String username, String password);
+        //public static void updateAnalista(String username, String password);
 
         /* ----------------------------------------------*/
 
@@ -81,8 +81,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static Projecto selectProjecto(String cod)
         {
-            String query = "select * form projectos where estabelecimento = " 
-                + nomeEstabelecimeto;
+            String query = "select * form projectos where cod_projecto = " 
+                + cod;
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
                 DataBaseCommunicator.readData(query);
 
@@ -92,7 +92,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             {
                 p = new Projecto((string)r["codProjecto"],
                     (string)r["estabelecimento"], (DateTime)r["data"],
-                    new List<String>());
+                    new List<Tuplo<String,String>>());
             }
 
             return p;
@@ -131,27 +131,27 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * Elimina as análises do projecto
          * @param codProjecto Código do projecto que irá ser eliminado
          */
-        public static void deleteProjecto(String codProjecto);
+        //public static void deleteProjecto(String codProjecto);
 
         /**
          * Modifica o projecto na base de dados com o código do projecto recebido
          * @param p Projecto que irá ser editado
          */
-        public static void updateProjecto(Projecto p);
+        //public static void updateProjecto(Projecto p);
 
         /* ----------------------------------------------*/
         /* Analises */
 
-        public static List<Tuplo<String, String>> selectNomesAnalises(String codProjecto);
+        //public static List<Tuplo<String, String>> selectNomesAnalises(String codProjecto);
 
         /**
          * Retorna a analise com o codigo recebido
          * @param codAnalise O Codigo da analise
          * @return Analise A analise requerida
          */
-        public static Analise selectAnalise(String codAnalise);
+        //public static Analise selectAnalise(String codAnalise);
 
-        public static String selectCodigoAnalise(DateTime data);
+        //public static String selectCodigoAnalise(DateTime data);
 
         /**
          * Insere uma nova analise na base de dados
@@ -160,7 +160,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param codProjecto O Codigo do projecto em que faz parte a analise
          * @param a Analise que será inserida
          */
-        public static void insertAnalise(String codProjecto, Analise a);
+        //public static void insertAnalise(String codProjecto, Analise a);
 
         /**
          * Elimina uma analise da base de dados
@@ -169,64 +169,64 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * Elimina as Perguntas e Respostas dos Formularios desta Analise (se existirem)
          * @param codAnalise O codigo da analise que sera eliminada
          */
-        public static void deleteAnalise(String codAnalise);
+        //public static void deleteAnalise(String codAnalise);
 
         /**
          * Modifica a informacao da analise passafa como argumento
          * @param codProjecto codProjecto ao qual a analise faz parte
          * @param a A analise que ira ser modificada
          */
-        public static void updateAnalise(String codProjecto, Analise a);
+        //public static void updateAnalise(String codProjecto, Analise a);
 
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Zonas */
 
-        public static List<Zona> selectZonas();
+        //public static List<Zona> selectZonas();
 
-        public static void insertZona(Zona z);
+        //public static void insertZona(Zona z);
 
-        public static void deleteZona(String codZona);
+        //public static void deleteZona(String codZona);
 
-        public static void updateZona(Zona z);
+        //public static void updateZona(Zona z);
 
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Zonas - Analise */
 
-        public static List<Zona> selectZonasAnalise(String codAnalise);
+        //public static List<Zona> selectZonasAnalise(String codAnalise);
 
-        public static void insertZonaAnalise(String codZona, String codAnalise);
+        //public static void insertZonaAnalise(String codZona, String codAnalise);
 
-        public static void deleteZonaAnalise(String codZona, String codAnalise);
+        //public static void deleteZonaAnalise(String codZona, String codAnalise);
 
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Itens */
 
-        public static List<Item> selectItensDefault();
+        //public static List<Item> selectItensDefault();
 
-        public static List<Item> selectItens();
+        //public static List<Item> selectItens();
 
-        public static void insertItem(Item i);
+        //public static void insertItem(Item i);
 
-        public static void deleteItem(String codItem);
+        //public static void deleteItem(String codItem);
 
-        public static void updateItem(Item i);
+        //public static void updateItem(Item i);
 
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Itens - Analise */
 
-        public static List<Item> selectItensAnalise(String codAnalise);
+        //public static List<Item> selectItensAnalise(String codAnalise);
 
-        public static void insertItemAnalise(String codItem, String codAnalise);
+        //public static void insertItemAnalise(String codItem, String codAnalise);
 
-        public static void deleteItemAnalise(String codItem, String codAnalise);
+        //public static void deleteItemAnalise(String codItem, String codAnalise);
 
         /* ----------------------------------------------*/
 

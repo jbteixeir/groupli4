@@ -116,7 +116,7 @@ namespace ETdA.Camada_de_Dados.Classes
             a.Nome = nomeAnalise;
             a.Zonas = zonas;
             a.Itens = itens;
-
+            /*
             Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.insertAnalise(codProjecto,a);
             a.Codigo = Camada_de_Dados.DataBaseCommunicator.
@@ -131,7 +131,7 @@ namespace ETdA.Camada_de_Dados.Classes
                 Camada_de_Dados.DataBaseCommunicator.
                     FuncsToDataBase.insertZonaAnalise(itens[i].Codigo,
                     a.Codigo);
-
+            */
             Tuplo<String, String> t = new Tuplo<String, String>(a.Codigo,a.Nome);
             cod_name_analise.Add(t);
             analise_Aberta = a;
@@ -150,13 +150,13 @@ namespace ETdA.Camada_de_Dados.Classes
                     cod = cod_name_analise[i].Fst;
                     found = true;
                 }
-
+            /*
             analise_Aberta = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectAnalise(cod);
             analise_Aberta.Zonas = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectZonasAnalise(cod);
             analise_Aberta.Itens = Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.selectItensAnalise(cod);
+                FuncsToDataBase.selectItensAnalise(cod);*/
         }
 
         /*
@@ -173,15 +173,16 @@ namespace ETdA.Camada_de_Dados.Classes
                     cod_name_analise.RemoveAt(i);
                     found = true;
                 }
-
+            /*
             Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.deleteAnalise(cod);
+                FuncsToDataBase.deleteAnalise(cod);*/
         }
 
         public void modificaAnalise()
         {
+            /*
             Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.updateAnalise(codProjecto, analise_Aberta);
+                FuncsToDataBase.updateAnalise(codProjecto, analise_Aberta);*/
         }
 
         /* Fim de Gestao de Analises */

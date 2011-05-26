@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System;
 
-namespace ETdA
+namespace ETdA.Camada_de_Dados.Classes
 {
     class Formulario
     {
         //Variaveis de Instancia
         private String tipo;
         private String codFormulario;
-        private List<Pergunta> perguntas;
+        private List<Questao> perguntas;
         private List<EscalaResposta> opcoesResposta;
-        private List<Reposta> respostas;
+        private List<Resposta> respostas;
 
         //Constructores
         public Formulario()
