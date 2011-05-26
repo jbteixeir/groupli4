@@ -68,18 +68,15 @@
     <Compile Include="Camada de Dados\Classes\Estruturas\Tuplo.cs" />
     <Compile Include="Camada de Dados\Classes\Zona.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\FuncsToDataBase.cs" />
-    <Compile Include="Trash\CheckList.cs" />
     <Compile Include="Camada de Dados\Classes\Analise.cs" />
     <Compile Include="Camada de Dados\Classes\Analista.cs" />
     <Compile Include="Camada de Dados\Classes\EscalaResposta.cs" />
     <Compile Include="Camada de Dados\Classes\Item.cs" />
     <Compile Include="Camada de Dados\Classes\Questao.cs" />
-    <Compile Include="Trash\Ficha de Avaliação.cs" />
-    <Compile Include="Trash\Questionario.cs" />
     <Compile Include="Camada de Dados\Classes\Formulario.cs" />
     <Compile Include="Camada de Dados\Classes\Projecto.cs" />
     <Compile Include="Camada de Dados\Classes\Relatorio.cs" />
-    <Compile Include="Camada de Dados\Classes\Respostas.cs" />
+    <Compile Include="Camada de Dados\Classes\Resposta.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
     <Compile Include="Camada de Dados\ETdA\ETdA.cs" />
     <Compile Include="Camada de Interface\InterfaceLogin.cs">
@@ -88,13 +85,6 @@
     <Compile Include="Camada de Interface\InterfaceLogin.Designer.cs">
       <DependentUpon>InterfaceLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Trash\InterfaceCheckList.cs" />
-    <Compile Include="Trash\InterfaceFichaAvaliacao.cs" />
-    <Compile Include="Trash\InterfaceFormulario.cs" />
-    <Compile Include="Trash\InterfaceQuestionario.cs" />
-    <Compile Include="Trash\InterfaceRelatorio.cs" />
-    <Compile Include="Trash\MainPage.cs" />
-    <Compile Include="Trash\Workspace.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
     <Compile Include="Camada de Negócio\GestaodeProjectos.cs" />
