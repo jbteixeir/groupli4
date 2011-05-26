@@ -15,10 +15,5 @@ namespace ETdA.Camada_de_Interface
         {
             InitializeComponent();
         }
-
-        public static void Main()
-        {
-            InterfaceLogin login = new InterfaceLogin();
-        }
     }
 }
