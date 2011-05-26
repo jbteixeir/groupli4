@@ -16,7 +16,7 @@ namespace ETdA.Camada_de_Negócio
 		 * Faz login na base de dados
 		 * @return se nao conseguir fazer login retorna false
 		 */
-		public bool login(String username, String password)
+		public static bool login(String username, String password)
 		{
 			return DataBaseCommunicator.connect("rocket-pc", username, password, "ETdA_" + username);
 
