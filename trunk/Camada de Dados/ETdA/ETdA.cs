@@ -109,6 +109,9 @@ namespace ETdA.Camada_de_Dados.ETdA
 
             projectoAberto = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectProjecto(cod);
+            projectoAberto.Cod_Name_Analise = Camada_de_Dados.
+                DataBaseCommunicator.FuncsToDataBase.selectNomesAnalises(
+                projectoAberto.Codigo);
         }
 
         /*

@@ -53,8 +53,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* Projectos */
 
         /**
-         * Retorna os nomes de todos os Projectos por ordem de data
-         * @return List<String> Nome dos estabecimentos dos projectos
+         * Retorna os codigos e nomes de todos os Projectos por ordem de data
+         * @return List<Tuplo<String,String>> Codigo e Nomes dos estabecimentos dos projectos
          */
         public static List<Tuplo<String,String>> selectNomeProjectos()
         {
@@ -79,7 +79,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param nomeEstabelecimeto Nome do estabeldecimento do projecto que é requerido 
          * @return Projecto Projecto requerido
          */
-        public static Projecto selectProjecto(String nomeEstabelecimeto)
+        public static Projecto selectProjecto(String cod)
         {
             String query = "select * form projectos where estabelecimento = " 
                 + nomeEstabelecimeto;
@@ -140,15 +140,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         public static void updateProjecto(Projecto p);
 
         /* ----------------------------------------------*/
-
         /* Analises */
 
-        /**
-         * Retorna os nomes de todas as análises por ordem de criacao
-         * @param codProjecto O Codigo do projecto em que faz parte a analise
-         * @return List<String> nomes das analises
-         */
-        public static List<String> selectNomesAnalises(String codProjecto);
+        public static List<Tuplo<String, String>> selectNomesAnalises(String codProjecto);
 
         /**
          * Retorna a analise com o codigo recebido
@@ -157,11 +151,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static Analise selectAnalise(String codAnalise);
 
-        /**
-         * Retorna os nomes de todas as análises por ordem de criacao
-         * @param codProjecto O Codigo do projecto em que faz parte a analise
-         * @return List<String> nomes das analises
-         */
         public static String selectCodigoAnalise(DateTime data);
 
         /**
@@ -182,47 +171,100 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static void deleteAnalise(String codAnalise);
 
-        public static void updateAnalise(Analise a);
+        /**
+         * Modifica a informacao da analise passafa como argumento
+         * @param codProjecto codProjecto ao qual a analise faz parte
+         * @param a A analise que ira ser modificada
+         */
+        public static void updateAnalise(String codProjecto, Analise a);
 
+        /* ----------------------------------------------*/
+
+        /* ----------------------------------------------*/
+        /* Zonas */
+
+        public static List<Zona> selectZonas();
+
+        public static void insertZona(Zona z);
+
+        public static void deleteZona(String codZona);
+
+        public static void updateZona(Zona z);
+
+        /* ----------------------------------------------*/
+
+        /* ----------------------------------------------*/
+        /* Zonas - Analise */
+
+        public static List<Zona> selectZonasAnalise(String codAnalise);
+
+        public static void insertZonaAnalise(String codZona, String codAnalise);
+
+        public static void deleteZonaAnalise(String codZona, String codAnalise);
+
+        /* ----------------------------------------------*/
+
+        /* ----------------------------------------------*/
         /* Itens */
+
+        public static List<Item> selectItensDefault();
 
         public static List<Item> selectItens();
 
-        public static void insertItem();
+        public static void insertItem(Item i);
 
-        public static void deleteItem();
+        public static void deleteItem(String codItem);
 
-        public static void updateItem();
+        public static void updateItem(Item i);
 
-        /* Questoes */
+        /* ----------------------------------------------*/
 
-        public static List<Item> selectQuestoes();
+        /* ----------------------------------------------*/
+        /* Itens - Analise */
 
-        public static void insertQuestao();
+        public static List<Item> selectItensAnalise(String codAnalise);
 
-        public static void deleteQuestao();
+        public static void insertItemAnalise(String codItem, String codAnalise);
 
-        public static void updateQuestao();
+        public static void deleteItemAnalise(String codItem, String codAnalise);
 
-        /* Escala Resposta */
+        /* ----------------------------------------------*/
 
-        public static List<Item> selectEscalaRespostas();
 
-        public static void insertEscalaResposta();
-
-        public static void deleteEscalaResposta();
-
-        public static void updateEscalaResposta();
-
+        /* ----------------------------------------------*/
         /* Respostas */
 
-        public static List<Item> selectRespostas();
+        /* -----------------------------*/
+        /* Respostas CheckList */
 
-        public static void insertResposta();
+        /* -----------------------------*/
 
-        public static void deleteResposta();
+        /* -----------------------------*/
+        /* Respostas Formulario numero */
 
-        public static void updateResposta();
+        /* ---------------------------- */
+
+        /* -----------------------------*/
+        /* Respostas Formulario string */
+
+        /* -----------------------------*/
+
+        /* -----------------------------*/
+        /* Respostas Questinario numero */
+
+        /* ------------------------------*/
+
+        /* ------------------------------*/
+        /* Respostas Questionario String */
+
+        /* ------------------------------*/
+
+        /* ------------------------------*/
+        /* Respostas Questionario Memo */
+
+        /* ------------------------------*/
+
+        /* ----------------------------------------------*/
 
     }
 }
