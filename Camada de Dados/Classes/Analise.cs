@@ -13,8 +13,11 @@ namespace ETdA.Camada_de_Dados
         private String tipoAnalise;
         private Boolean estadoWebsite;
         private String nomeAnalise;
+        private Formulario checkList;
+        private Formulario fichaAvaliacao;
+        private Formulario questionario;
+        private List<Item> itens;
     
-
         //Constructores
 
         public Analise(String cod, DateTime data, String tipo, Boolean estado, String nome)
@@ -33,6 +36,20 @@ namespace ETdA.Camada_de_Dados
             tipoAnalise = "";
             estadoWebsite = true;
             nomeAnalise = "";
+            checkList = new Formulario();
+            fichaAvaliacao = new Formulario();
+            questionario = new Formulario();
+            itens = new List<Item>();
+        }
+
+        public Analise(Analise a)
+        {
+            codAnalise = a.Codigo;
+            dataAnalise = a.Data;
+            tipoAnalise = a.Tipo;
+            estadoWebsite = a.Estado;
+            nomeAnalise = a.Nome;
+
         }
 
         //Métodos
@@ -68,8 +85,61 @@ namespace ETdA.Camada_de_Dados
             set { nomeAnalise = value;}
         }
 
+        public Formulario CheckList
+        {
+            get { return checkList; }
+            set { checkList = value; }
         }
-        
+
+        public Formulario FichaAvaliacao
+        {
+            get { return fichaAvaliacao; }
+            set { fichaAvaliacao = value; }
+        }
+
+        public Formulario Questionario
+        {
+            get { return questionario; }
+            set { questionario = value; }
+        }
+
+        public List<Item> Itens
+        {
+            get { return itens; }
+            set { itens = value; }
+        }
+
+
+        public Analise clone()
+        {
+            return new Analise(this);
+        }
+
+        /* ------------------------------------------------------ */
+        /* Metodos de Gestao */
+        /* ------------------------------------------------------ */
+
+        /* Gestao Itens */
+
+        public void adicionaNovoItem(String nome)
+        {
+            Item i = new Item();
+            i.Nome = nome;
+
+            itens.Add(i);
+        }
+
+        public void adicionaItem(Item i)
+        {
+            itens.Add(i);
+        }
+
+        public void
+
+        /* Fim Gestao Itens */
+
+
+    }
 }
 
 

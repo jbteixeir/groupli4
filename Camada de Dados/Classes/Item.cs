@@ -5,27 +5,30 @@ using System.Text;
 
 namespace ETdA.Camada_de_Dados
 {
-    class Items
+    class Item
     {
         //Variaveis de Instancia
         private String codParametro;
         private String nomeParametro;
-        private String descricaoParametro;
 
         //Constructores
 
-        public Items(String cod, String nome, String descricao)
+        public Item(String cod, String nome)
         {
             codParametro = cod;
             nomeParametro = nome;
-            descricaoParametro = descricao;
         }
 
-        public Items()
+        public Item()
         {
             codParametro = "";
             nomeParametro = "";
-            descricaoParametro = "";
+        }
+
+        public Item(Item i)
+        {
+            codParametro = i.Codigo;
+            nomeParametro = i.Nome;
         }
 
         //Métodos
@@ -38,11 +41,6 @@ namespace ETdA.Camada_de_Dados
         {
             get { return nomeParametro; }
             set { nomeParametro = value; }
-        }
-        public String Descricao
-        {
-            get { return descricaoParametro; }
-            set { descricaoParametro = value; }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ETdA.Camada_de_Dados.ETdA
     {
         private static Analista analista;
         private static List<Projecto> projectos;
-        private static List<Projecto> projectos_recentes;
+        private static List<String> projectos_recentes;
 
         public static Analista Analista
         {
@@ -24,7 +24,7 @@ namespace ETdA.Camada_de_Dados.ETdA
             set { projectos = value; }
         }
 
-        public static List<Projecto> Projectos_Recentes
+        public static List<String> Projectos_Recentes
         {
             get { return projectos_recentes; }
             set { projectos_recentes = value; }
@@ -34,48 +34,129 @@ namespace ETdA.Camada_de_Dados.ETdA
         /* Metodos */
         /* ------------------------------------------------------ */
 
-        public static void init()
+        private static void init()
         {
-            List<String> dadosProcura = new List<String>();
-            dadosProcura.Add("*");
-            List<int> tabelas = new List<int>();
-            tabelas.Add(DataBaseCommunicator.DataBaseCommunicator.PROJECTOS);
-            String orderby = "data";
-            String order = "desc";
-
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.search(
-                dadosProcura, null, null, null, null, orderby, order, tabelas);
-
-            projectos = new List<Projecto>();
-
-            while (r.Read())
-            {
-                Projecto p = new Projecto((string)r["codProjecto"],
-                    (string)r["estabelecimento"], (DateTime)r["data"]);
-
-                projectos.Add(p);
-            }
+            projectos = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectProjectos();
 
             projectosRecentes();
         }
 
         private static void projectosRecentes()
         {
-            projectos_recentes = new List<Projecto>();
+            projectos_recentes = new List<String>();
 
             for (int i = 0; i < 5 && i < projectos.Count; i++)
-                projectos_recentes.Add(projectos[i].clone());
+                projectos_recentes.Add(projectos[i].Codigo);
         }
 
-        public static void adicionaProjecto(String nomeProjecto)
+        /* Gestao dos Projectos */
+
+        /*
+         * Verifica se Ja tem Projecto com esse nome na Base de dados
+         */
+        public static Boolean podeAdicionarProjecto(String nomeEstabelecimento)
+        {
+            List<String> nomes = Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.selectNomeProjectos();
+
+            return !nomes.Contains(nomeEstabelecimento);
+        }
+
+        /*
+         * Adiciona Novo Projecto na aplicação
+         */
+        public static void adicionaNovoProjecto(String nomeEstabelecimento)
         {
             Projecto p = new Projecto();
-            p.Nome = nomeProjecto;
+            p.Nome = nomeEstabelecimento;
             p.Data = DateTime.Now;
+
+            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.insertProjecto(p);
+            String cod = Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.selectCodigoProjecto(nomeEstabelecimento);
+            p.Codigo = cod;
 
             projectos.Add(p);
         }
 
+        /*
+         * Adiciona Projecto na aplicação
+         */
+        public static void adicionaProjecto(Projecto p)
+        {
+            projectos.Add(p);
+        }
 
+        /*
+         * Remove Projecto da aplicação
+         */
+        public static void removeProjecto(String codigo)
+        {
+            Boolean found = false;
+            for (int i = 0; i < projectos.Count && !found; i++)
+                if (projectos[i].Codigo == codigo)
+                {
+                    if (projectos_recentes.Contains(projectos[i].Codigo))
+                        projectos_recentes.Remove(projectos[i].Codigo);
+                    projectos.RemoveAt(i);
+                    found = true;
+                }
+
+            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+                deleteProjecto(codigo);
+        }
+
+        /*
+         * Devolve um projecto com o codigo recevido
+         */
+        public static Projecto getProjectoByCode(String codigo)
+        {
+            Projecto p = null;
+            for (int i = 0; i < projectos.Count; i++)
+                if (projectos[i].Codigo == codigo)
+                    p = projectos[i].clone();
+            return p;
+        }
+
+        /*
+         * Devolve um projecto com o nome de estabelecimento Recebido
+         */
+        public static Projecto getProjectoByName(String nomeEstaelecimento)
+        {
+            Projecto p = null;
+            for (int i = 0; i < projectos.Count; i++)
+                if (projectos[i].Nome == nomeEstaelecimento)
+                    p = projectos[i].clone();
+            return p;
+        }
+
+        /* End Gestao Projectos */
+
+        /* Gestao de Analistas */
+
+        public static void adicionaAnalista(String username, String password)
+        {
+            Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.insertAnalista(username, password);
+        }
+
+        public static void removeAnalista(String username, String password)
+        {
+            Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.deleteAnalista(username, password);
+        }
+
+        public static void editAnalista(String username, String password)
+        {
+            Camada_de_Dados.DataBaseCommunicator.
+                FuncsToDataBase.deleteAnalista(username, password);
+        }
+
+        public static void getAnalista(String username, String password)
+        {
+
+        }
+
+        /* Fim de Gestao de Analistas */
     }
 }
