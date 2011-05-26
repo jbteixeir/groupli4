@@ -8,7 +8,7 @@ namespace ETdA.Camada_de_Negócio
     class GestaodeAnalises
     {
         //Métodos
-        void criaAnalise(String nomeAnalise);
+        /*void criaAnalise(String nomeAnalise);
         void editaAnalise(String codAnalise, string nomeAnalise);
         void removeAnalise(String codAnalise);
         void adicionaItemAnalise(String codParametro);
@@ -19,6 +19,6 @@ namespace ETdA.Camada_de_Negócio
         void editaFormulario(String codAnalise, String codFormulario, Formulario form);
         void removeFormulario(String codAnalise, String codFormulario);
         void geraWebsite();
-        void geraFormularioOnline();
+        void geraFormularioOnline();*/
     }
 }
