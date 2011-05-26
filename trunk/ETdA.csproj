@@ -65,6 +65,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camada de Dados\Classes\Estruturas\Tuplo.cs" />
+    <Compile Include="Camada de Dados\Classes\Zona.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\FuncsToDataBase.cs" />
     <Compile Include="Trash\CheckList.cs" />
     <Compile Include="Camada de Dados\Classes\Analise.cs" />
