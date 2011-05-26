@@ -489,8 +489,7 @@
             this.Controls.Add(this.toolStripContainer1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "InterfaceGuestaoProjectos";
-            this.Text = "Gestão Projectos";
-            this.Load += new System.EventHandler(this.InterfaceGuestaoProjectos_Load);
+            this.Text = "Gestão Projectos"; 
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
