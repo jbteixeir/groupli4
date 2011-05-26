@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdA.Camada_de_Dados
+namespace ETdA.Camada_de_Dados.Classes
 {
     class Relatorio
     {
@@ -28,7 +28,7 @@ namespace ETdA.Camada_de_Dados
             set { observacoes = value; }
         }
 
-        void adicionarObservacao(String codParametro, String obs);
+        //void adicionarObservacao(String codParametro, String obs);
         
     }
 }

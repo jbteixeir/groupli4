@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ETdA.Camada_de_Dados.Classes
 {
-    public class Analise
+    class Analise
     {
         //Variáveis de Instância
         private String codAnalise;
@@ -17,10 +17,10 @@ namespace ETdA.Camada_de_Dados.Classes
         private Boolean estadoWebsiteCheckList;
         private Boolean estadoWebsiteFichaAvaliacao;
         private Boolean estadoWebsiteQuestionario;
-        private String codCheckList;
-        private String codFichaAvaliacao;
-        private String codQuestionario;
-        private Relatrio;
+        private Formulario checkList;
+        private List<Formulario> fichasAvaliacao;
+        private List<Formulario> questionarios;
+        private Relatorio relatorio;
 
         //Constructores
 
@@ -38,7 +38,7 @@ namespace ETdA.Camada_de_Dados.Classes
             estadoWebsiteFichaAvaliacao = estadoWebFA;
             estadoWebsiteQuestionario = estadoWebQ;            
         }
-
+          
         public Analise()
         {
             codAnalise = "";
@@ -51,9 +51,9 @@ namespace ETdA.Camada_de_Dados.Classes
             estadoWebsiteCheckList = false;
             estadoWebsiteFichaAvaliacao = false;
             estadoWebsiteQuestionario = false;
-            checkList = "";
-            fichaAvaliacao = "";
-            questionario = "";
+            checkList = new Formulario();
+            fichasAvaliacao = new List<Formulario>();
+            questionarios = new List<Formulario>();
         }
 
         public Analise(Analise a)
@@ -68,8 +68,8 @@ namespace ETdA.Camada_de_Dados.Classes
             estadoWebsiteFichaAvaliacao = a.EstadoWebFA;
             estadoWebsiteQuestionario = a.EstadoWebQ;
             checkList = a.CheckList;
-            fichaAvaliacao = a.FichaAvaliacao;
-            questionario = a.Questionario;
+            fichasAvaliacao = a.FichasAvaliacao;
+            questionarios = a.Questionarios;
         }
 
         //Métodos
@@ -124,16 +124,17 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return checkList; }
             set { checkList = value; }
         }
-        public Formulario FichaAvaliacao
+        public List<Formulario> FichasAvaliacao
         {
-            get { return fichaAvaliacao; }
-            set { fichaAvaliacao = value; }
+            get { return fichasAvaliacao; }
+            set { fichasAvaliacao = value; }
         }
-        public Formulario Questionario
+        public List<Formulario> Questionarios
         {
-            get { return questionario; }
-            set { questionario = value; }
+            get { return questionarios; }
+            set { questionarios = value; }
         }
+
         public Analise clone()
         {
             return new Analise(this);
@@ -143,26 +144,22 @@ namespace ETdA.Camada_de_Dados.Classes
         /* Metodos de Gestao */
         /* ------------------------------------------------------ */
 
-        /* Gestao Itens */
+        /* Introduzir Formularios Manualmente */
 
-        public void adicionaNovoItem(String nome)
+        public void insereQuestionario(Formulario q)
         {
-            Item i = new Item();
-            i.Nome = nome;
-
-            itens.Add(i);
+            questionarios.Add(q);
         }
 
-        public void adicionaItem(Item i)
+        public void insereFichaAvaliaca(Formulario fa)
         {
-            itens.Add(i);
+            
         }
 
-        public void
-
-        /* Fim Gestao Itens */
-
-
+        public void insereCheckList(Formulario cl)
+        {
+            checkList = cl;
+        }
     }
 }
 

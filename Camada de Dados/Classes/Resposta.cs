@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdA.Camada_de_Dados
+namespace ETdA.Camada_de_Dados.Classes
 {
-    class Respostas
+    class Resposta
     {
         //Variaveis de Instancia
         private String numeroPergunta;
         private String descricaoItem;
 
         //Constructores
-        public Respostas(String numero, String descricao)
+        public Resposta(String numero, String descricao)
         {
             numeroPergunta = numero;
             descricaoItem = descricao;
         }
 
-        public Respostas()
+        public Resposta()
         {
             numeroPergunta = "";
             descricaoItem = "";
