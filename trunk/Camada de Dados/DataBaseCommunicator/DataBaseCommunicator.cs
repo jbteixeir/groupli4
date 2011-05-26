@@ -13,16 +13,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         private static SqlConnection connection;
         private static String database;
 
-        /* Tabelas */
-
-        public static int PROJECTOS         = 1;
-        public static int ANALISE           = 2;
-        public static int FORMULARIOS       = 3;
-        public static int PERGUNTAS         = 4;
-        public static int RESPOSTAS         = 5;
-        public static int ITENS             = 6;
-        public static int ESCALA_RESPOSTA   = 7;
-
         //Construtores
         /*public DataBaseCommunicator(String server, SqlConnection connection)
         {
@@ -53,24 +43,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* ----------------------------------------------*/
 
         /*
-         * Retorna o nome da tabela da base de dados
-         */
-        private static String getNomeTabela( int number)
-        {
-            switch (number)
-            {
-                case 1 : return "Projectos"; 
-                case 2 : return "Analise"; 
-                case 3 : return "Formulario";
-                case 4 : return "Perguntas";
-                case 5 : return "Respostas";
-                case 6 : return "Itens";
-                case 7 : return "EscalaResposta";
-                default: return null;   
-            }
-        }
-
-        /*
          * Abre uma ligação com a base de dados
          */
         public static void connect(String server, String username, String password, String database)
@@ -79,7 +51,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                             "Initial Catalog=" + database + 
                                             "_" + username + ";" +
                                             "User ID=" + username + ";" +
-                                            "Password=" + password);
+                                            "Password=" + password + ";" + 
+                                            "MultipleActiveResultSets = True");
         }
 
         /*
@@ -100,7 +73,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /*
          * Executa query's sem ser de leitura à base de dados
          */
-        private static void query(string query)
+        public static void query(string query)
         {
             SqlCommand command = new SqlCommand(query, connection);
             command.ExecuteNonQuery();
@@ -109,7 +82,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /*
          * Executa query's de leitura à base de dados
          */
-        private static SqlDataReader readData(string query)
+        public static SqlDataReader readData(string query)
         {
             SqlDataReader reader = null;
             SqlCommand command = new SqlCommand("select * from table",
@@ -121,12 +94,10 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /*
          * Insere dados na Base de Dados
          */
-        public static void insert(List<String> values, int tableNumber)
+        /*
+        public static void insert(List<String> values, String table)
         {
-            /* nome da tabela na base de dados */ 
-            String table = getNomeTabela(tableNumber);
-
-            /* colocar parâmetros que irão ser submetidos na base de dados */
+            /* colocar parâmetros que irão ser submetidos na base de dados * /
             int max = values.Count;
             String objects = values[0];
             for ( int i = 1 ; i < max ; i++ )
@@ -134,19 +105,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             String s_query = "insert into "+ table + " values (" + objects + ")";
             query( s_query );
-        }
+        }*/
 
         /*
          * Remove dados na Base de Dados
          */
+        /*
         public static void remove(List<String> colunasRestricoes,
             List<String> itensRestricoes, List<String> operadores, 
-            int tableNumber)
+            String table)
         {
-            /* Nome da tabela na base de dados */
-            String table = getNomeTabela(tableNumber);
-
-            /* colocar os campos que irão ser alterados */
+            /* colocar os campos que irão ser alterados * /
             int max1 = colunasRestricoes.Count;
             String objects1 = colunasRestricoes[0] + " = " + itensRestricoes[0];
             for (int i = 1; i < max1; i++)
@@ -154,25 +123,23 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             String s_query = "delete from " + table + "where" + objects1;
             query( s_query );
-        }
+        }*/
 
         /*
          * Edita dados na base de dados
          */
+        /*
         public static void edit(List<String> colunaItem, List<String> itens,
             List<String> colunasRestricoes, List<String> itensRestricoes,
-            int tableNumber)
+            String table)
         {
-            /* Nome da tabela na base de dados */
-            String table = getNomeTabela(tableNumber);
-
-            /* colocar os campos que irão ser alterados */
+            /* colocar os campos que irão ser alterados * /
             int i, max1 = colunaItem.Count;
             String objects1 = colunaItem[0] + " = " + itens[0];
             for ( i = 1 ; i < max1 ; i++ )
                 objects1 = objects1 + "," + colunaItem[i] + " = " + itens[i];
 
-            /* colocar os campos das restrições */ 
+            /* colocar os campos das restrições * / 
             String objects2 = colunasRestricoes[0] + " = " + itensRestricoes[0];
             if (!objects2.Equals("")) 
             {
@@ -184,29 +151,30 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             String s_query = "UPDATE " + table + " SET " + objects1 + objects2;
             query(s_query);
-        }
+        }*/
 
         /*
          * Pesquisa na base de dados
          */
+        /*
         public static SqlDataReader search(List<String> dadosProcura,
             List<String> dadosRestricoes1, List<String> dadosRestricoes2,
             List<String> modoRestricao, List<String> dadosGroupBy,
-            String dadosOrderBy, String order, List<int> tableNumber)
+            String dadosOrderBy, String order, List<String> tables)
         {
-            /* colocar nome das tabelas separadas por ',' */
-            String table = getNomeTabela(tableNumber[0]);
-            int max = tableNumber.Count;
+            /* colocar nome das tabelas separadas por ',' * /
+            String table = tables[0];
+            int max = tables.Count;
             for ( int i = 1 ; i < max ; i++ )
-                table = table + "," + getNomeTabela(tableNumber[i]);
+                table = table + "," + tables[i];
 
-            /* colocar nome dos campos de procura separadas por ',' */
+            /* colocar nome dos campos de procura separadas por ',' * /
             String objectosProcura = dadosProcura[0];
             max = dadosProcura.Count;
             for ( int i = 1 ; i < max ; i++ )
                 objectosProcura = objectosProcura + "," + dadosProcura[i];
 
-            /* colocar nome dos campos das restricoes separadas por 'AND' */
+            /* colocar nome dos campos das restricoes separadas por 'AND' * /
             String objectosResticoes = (dadosRestricoes1 == null) ? 
                 "" : dadosRestricoes1[0];
             if (!objectosResticoes.Equals("")){
@@ -219,7 +187,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                         + dadosRestricoes2[i];
             }
 
-            /* colocar nome dos campos dos groupby separadas por ',' */
+            /* colocar nome dos campos dos groupby separadas por ',' * /
             String objectosGroupBy = (dadosGroupBy == null) ? "" : dadosGroupBy[0];
             if (!objectosGroupBy.Equals("")){
                 objectosGroupBy = " group by " + objectosGroupBy;
@@ -228,13 +196,13 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     objectosGroupBy = objectosGroupBy + "," + dadosGroupBy[i];
             }
 
-            /* colocar nome do campo do orderby */
+            /* colocar nome do campo do orderby * /
             String objectos_orderBy = (dadosOrderBy == null) ? "" : dadosOrderBy;
             if (!objectos_orderBy.Equals(""))
                 objectos_orderBy = " order by " + objectos_orderBy + " " + order;
 
             String query = "select " + objectosProcura + " FROM " + table + objectosResticoes + objectosGroupBy + objectos_orderBy;
             return readData ( query );
-        }
+        }*/
     }
 }

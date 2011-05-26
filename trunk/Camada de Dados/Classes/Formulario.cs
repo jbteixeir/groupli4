@@ -10,6 +10,9 @@ namespace ETdA
         //Variaveis de Instancia
         private String tipo;
         private String codFormulario;
+        private List<Pergunta> perguntas;
+        private List<EscalaResposta> opcoesResposta;
+        private List<Reposta> respostas;
 
         //Constructores
         public Formulario()
