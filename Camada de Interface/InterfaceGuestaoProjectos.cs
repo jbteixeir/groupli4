@@ -14,8 +14,6 @@ namespace InterfaceETdA
         public InterfaceGuestaoProjectos()
         {
             InitializeComponent();
-
-            InitializationEventAttribute()
         }
     }
 }
