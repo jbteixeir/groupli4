@@ -34,9 +34,9 @@ namespace ETdA.Camada_de_Interface
 			else
 			{	//  Se nao tem connectividade a internet, ou o username ou a pass
 				// estao mal
-				label1.Enabled = true;
-				label2.Enabled = true;
-				label3.Enabled = true;
+				label1.Visible = true;
+				label2.Visible = true;
+				label3.Visible = true;
 			}
 
 		}
@@ -56,7 +56,7 @@ namespace ETdA.Camada_de_Interface
         {
             Dispose();
             Close();
-            InterfaceGuestaoProjectos.main();
+            InterfaceGuestaoProjectos.main(false);
         }
 
         public static void main()

@@ -21,7 +21,7 @@ namespace ETdA.Camada_de_Interface
             String cont = "abcdefghijklmnopqrstuvwxyz" + 
                           "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + 
                           "0123456789" + 
-                          "_-";
+                          "_";
 
             string username = textBox1.Text;
             String pw1 = textBox2.Text;

@@ -43,18 +43,45 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* ----------------------------------------------*/
 
         /*
+         * Abre uma ligação com a base de dados Para Registar Analista
+         */
+        public static bool connectToSuper(String server, String username, String password, String database)
+        {
+            try
+            {
+                string con = "Data Source=" + server + ";" +
+                             "Initial Catalog=" + database + ";" +
+                             "User ID=" + username + ";" +
+                             "Password=" + password + ";" +
+                             "MultipleActiveResultSets = True";
+
+                Console.WriteLine(con);
+
+                connection = new SqlConnection(con);
+                connection.Open();
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+        /*
          * Abre uma ligação com a base de dados
          */
         public static bool connect(String server, String username, String password, String database)
         {
 			try
 			{
-				connection = new SqlConnection("Data Source=" + server + ";" +
-												"Initial Catalog=" + database +
-												"_" + username + ";" +
-												"User ID=" + username + ";" +
-												"Password=" + password + ";" +
-												"MultipleActiveResultSets = True");
+                string con = "Data Source=" + server + ";" +
+                             "Initial Catalog=" + database +
+                             "_" + username + ";" +
+                             "User ID=" + username + ";" +
+                             "Password=" + password + ";" +
+                             "MultipleActiveResultSets = True";
+
+				connection = new SqlConnection(con);
 				connection.Open();
 				return true;
 			}

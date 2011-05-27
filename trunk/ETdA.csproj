@@ -79,12 +79,6 @@
     <Compile Include="Camada de Dados\Classes\Resposta.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
     <Compile Include="Camada de Dados\ETdA\ETdA_main.cs" />
-    <Compile Include="Camada de Interface\InicialFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Camada de Interface\InicialFrame.Designer.cs">
-      <DependentUpon>InicialFrame.cs</DependentUpon>
-    </Compile>
     <Compile Include="Camada de Interface\InterfaceGuestaoProjectos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,7 +97,6 @@
     <Compile Include="Camada de Interface\InterfaceRegisto.Designer.cs">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Negócio\GestaodeInicio.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
     <Compile Include="Camada de Negócio\GestaodeProjectos.cs" />
@@ -111,9 +104,6 @@
     <Compile Include="Camada de Negócio\ImporterExporter.cs" />
     <Compile Include="ETdA_stater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Camada de Interface\InicialFrame.resx">
-      <DependentUpon>InicialFrame.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\InterfaceGuestaoProjectos.resx">
       <DependentUpon>InterfaceGuestaoProjectos.cs</DependentUpon>
     </EmbeddedResource>
