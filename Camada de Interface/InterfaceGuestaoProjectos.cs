@@ -41,9 +41,13 @@ namespace ETdA.Camada_de_Interface
             this.Dispose();
         }
 
-        public static void main()
+        public static void main(Boolean start)
         {
             InterfaceGuestaoProjectos igp = new InterfaceGuestaoProjectos();
+            if (start)
+                Application.Run(igp);
+            else
+                igp.Visible = true;
         }
     }
 }

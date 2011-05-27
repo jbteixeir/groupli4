@@ -139,16 +139,17 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(73, 178);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(34, 17);
+            this.checkBox1.Size = new System.Drawing.Size(115, 17);
             this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "G";
+            this.checkBox1.Text = "Manter-me Logado";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // InterfaceLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(279, 285);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(277, 285);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.Registar);
             this.Controls.Add(this.label3);
@@ -160,7 +161,9 @@
             this.Controls.Add(this.Sair);
             this.Controls.Add(this.Username);
             this.Controls.Add(this.textBox1);
+            this.MinimumSize = new System.Drawing.Size(285, 319);
             this.Name = "InterfaceLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
