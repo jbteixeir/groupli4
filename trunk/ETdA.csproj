@@ -97,7 +97,7 @@
     <Compile Include="Camada de Negócio\GestaodeRelatorios.cs" />
     <Compile Include="Camada de Negócio\GetstoDatabase.cs" />
     <Compile Include="Camada de Negócio\ImporterExporter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ETdA_stater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Camada de Interface\InterfaceGuestaoProjectos.resx">
       <DependentUpon>InterfaceGuestaoProjectos.cs</DependentUpon>
