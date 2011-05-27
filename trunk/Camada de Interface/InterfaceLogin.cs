@@ -41,6 +41,17 @@ namespace ETdA.Camada_de_Interface
 
 		}
 
+        private void SairActionPerformed(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void RegistarActionPerformed(object sender, EventArgs e)
+        {
+            //InterfaceRegisto ir = new InterfaceRegisto();
+            InterfaceRegisto.main();
+        }
+
         private void closeFrame()
         {
             Dispose();

@@ -15,22 +15,8 @@ namespace ETdA_starter
         [STAThread]
         static void Main()
         {
-            ReadConfig("Config.ini");
-            InterfaceLogin.main(); 
-        }
-
-        protected static void ReadConfig(string filepath)
-        {
-            System.IO.StreamReader sr = new System.IO.StreamReader(filepath);
-
-            string server = sr.ReadLine();
-            string database = sr.ReadLine();
-            string username = sr.ReadLine();
-            string password = sr.ReadLine();
-
-            DataBaseCommunicator.connect(server, username, password, database);
-
-            sr.Close();
+            //InicialFrame.main();
+            InterfaceLogin.main();
         }
     }
 }
