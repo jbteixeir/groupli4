@@ -19,8 +19,6 @@ namespace ETdA.Camada_de_Negócio
 		public static bool login(String username, String password)
 		{
 			return DataBaseCommunicator.connect("rocket-pc", username, password, "ETdA_" + username);
-
-
 		}
 		//void removeAnalisa(String codAnalista);
 		//void logout();

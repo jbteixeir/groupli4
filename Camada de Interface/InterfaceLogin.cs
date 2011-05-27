@@ -11,14 +11,14 @@ using ETdA.Camada_de_Negócio;
 
 namespace ETdA.Camada_de_Interface
 {
-    public partial class InterfaceLogin : Form
+    public partial class InterfaceLogin : Form 
     {
         public InterfaceLogin()
         {
             InitializeComponent();
-			label1.Enabled = false;
-			label2.Enabled = false;
-			label3.Enabled = false;
+			label1.Visible = false;
+			label2.Visible = false;
+			label3.Visible = false;
         }
 
 		private void Login_Click(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace ETdA.Camada_de_Interface
 
 			if (GestaodeAnalistas.login(user, pass))
 			{	//  Se consegue ligar a base de dados
-				this.Close();
+				closeFrame();
 				//umaClassePorreira.Main();
 			}
 			else
@@ -41,10 +41,17 @@ namespace ETdA.Camada_de_Interface
 
 		}
 
+        private void closeFrame()
+        {
+            Dispose();
+            Close();
+            InterfaceGuestaoProjectos.main();
+        }
 
-		//private void InterfaceLogin_Load(object sender, EventArgs e)
-		//{
-
-		//}
+        public static void main()
+        {
+            InterfaceLogin il = new InterfaceLogin();
+            Application.Run(il);
+        }
     }
 }

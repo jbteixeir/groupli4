@@ -8,14 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using ETdA.Camada_de_Negócio;
 
-namespace InterfaceETdA
+namespace ETdA.Camada_de_Interface
 {
-    partial class InterfaceGuestaoProjectos : Form
+    public partial class InterfaceGuestaoProjectos : Form
     {
-        private GestaodeProjectos gp;
-        public InterfaceGuestaoProjectos(GestaodeProjectos gp)
+        public InterfaceGuestaoProjectos()
         {
-            this.gp = gp;
             InitializeComponent();
         }
 
@@ -34,13 +32,18 @@ namespace InterfaceETdA
         private void OpenProjectClick(object sender, EventArgs e)
         {
             Label l = (Label) sender;
-            gp.abreProjecto(l.Text);
+            //gp.abreProjecto(l.Text);
             endFrame();
         }
 
         private void endFrame()
         {
             this.Dispose();
+        }
+
+        public static void main()
+        {
+            InterfaceGuestaoProjectos igp = new InterfaceGuestaoProjectos();
         }
     }
 }
