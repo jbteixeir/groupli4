@@ -408,6 +408,9 @@
             this.Projecto5.Size = new System.Drawing.Size(52, 13);
             this.Projecto5.TabIndex = 18;
             this.Projecto5.Text = "Projecto5";
+            this.Projecto5.Click += new System.EventHandler(this.OpenProjectClick);
+            this.Projecto5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+            this.Projecto5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
             // 
             // Projecto4
             // 
@@ -418,6 +421,9 @@
             this.Projecto4.Size = new System.Drawing.Size(52, 13);
             this.Projecto4.TabIndex = 17;
             this.Projecto4.Text = "Projecto4";
+            this.Projecto4.Click += new System.EventHandler(this.OpenProjectClick);
+            this.Projecto4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+            this.Projecto4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
             // 
             // Projecto3
             // 
@@ -428,6 +434,9 @@
             this.Projecto3.Size = new System.Drawing.Size(52, 13);
             this.Projecto3.TabIndex = 16;
             this.Projecto3.Text = "Projecto3";
+            this.Projecto3.Click += new System.EventHandler(this.OpenProjectClick);
+            this.Projecto3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+            this.Projecto3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
             // 
             // Projeco2
             // 
@@ -438,6 +447,9 @@
             this.Projeco2.Size = new System.Drawing.Size(52, 13);
             this.Projeco2.TabIndex = 15;
             this.Projeco2.Text = "Projecto2";
+            this.Projeco2.Click += new System.EventHandler(this.OpenProjectClick);
+            this.Projeco2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+            this.Projeco2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
             // 
             // Projecto1
             // 
@@ -448,7 +460,9 @@
             this.Projecto1.Size = new System.Drawing.Size(52, 13);
             this.Projecto1.TabIndex = 14;
             this.Projecto1.Text = "Projecto1";
+            this.Projecto1.Click += new System.EventHandler(this.OpenProjectClick);
             this.Projecto1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+            this.Projecto1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
             // 
             // label4
             // 

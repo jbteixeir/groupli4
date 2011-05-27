@@ -29,7 +29,7 @@ namespace ETdA.Camada_de_Interface
 			if (GestaodeAnalistas.login(user, pass))
 			{	//  Se consegue ligar a base de dados
 				this.Close();
-				umaClassePorreira.Main();
+				//umaClassePorreira.Main();
 			}
 			else
 			{	//  Se nao tem connectividade a internet, ou o username ou a pass
