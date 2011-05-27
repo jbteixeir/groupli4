@@ -1,4 +1,4 @@
-﻿namespace InterfaceETdA
+﻿namespace ETdA.Camada_de_Interface
 {
     partial class InterfaceGuestaoProjectos
     {

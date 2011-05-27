@@ -2,28 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using InterfaceETdA;
 using System.Windows.Forms;
 using ETdA.Camada_de_Negócio;
 using ETdA.Camada_de_Dados.ETdA;
+using ETdA.Camada_de_Interface;
+using ETdA.Camada_de_Dados.DataBaseCommunicator;
 
 namespace ETdA_starter
 {
     static class ETdA_stater
     {
-        private static ETdA_main etda;
-
-        private static InterfaceGuestaoProjectos igp;
-        private static GestaodeProjectos gp;
-
         [STAThread]
         static void Main()
         {
-            etda = new ETdA_main();
+            ReadConfig("Config.ini");
+            InterfaceLogin.main(); 
+        }
 
-            gp = new GestaodeProjectos(etda);
-            igp = new InterfaceGuestaoProjectos(gp);
-            Application.Run(igp);
+        protected static void ReadConfig(string filepath)
+        {
+            System.IO.StreamReader sr = new System.IO.StreamReader(filepath);
+
+            string server = sr.ReadLine();
+            string database = sr.ReadLine();
+            string username = sr.ReadLine();
+            string password = sr.ReadLine();
+
+            DataBaseCommunicator.connect(server, username, password, database);
+
+            sr.Close();
         }
     }
 }

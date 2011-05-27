@@ -8,18 +8,13 @@ namespace ETdA.Camada_de_Negócio
 {
     class GestaodeProjectos
     {
-        private ETdA_main etda;
-        public GestaodeProjectos(ETdA_main etda)
-        {
-            this.etda = etda;
-        }
 
         //void criaProjecto(String nomeEstabelecimento);
         //void editaProjecto(String nomeEstabelecimento);
         //void removeProjecto(String nomeEstabelecimento);
-        public void abreProjecto(String nomeEstabelecimento)
+        public static void abreProjecto(String nomeEstabelecimento)
         {
-            etda.abreProjecto(nomeEstabelecimento);
+            
         }
     }
 }
