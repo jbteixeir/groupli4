@@ -15,5 +15,11 @@ namespace InterfaceETdA
         {
             InitializeComponent();
         }
+
+        private void MouseEnterAction(object sender, EventArgs e)
+        {
+            TextBox t = (TextBox)sender;
+            t.Font = new Font(t.Font,FontStyle.Underline);
+        }
     }
 }

@@ -448,6 +448,7 @@
             this.Projecto1.Size = new System.Drawing.Size(52, 13);
             this.Projecto1.TabIndex = 14;
             this.Projecto1.Text = "Projecto1";
+            this.Projecto1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
             // 
             // label4
             // 
@@ -489,7 +490,7 @@
             this.Controls.Add(this.toolStripContainer1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "InterfaceGuestaoProjectos";
-            this.Text = "Gestão Projectos"; 
+            this.Text = "Gestão Projectos";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
