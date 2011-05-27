@@ -78,7 +78,7 @@
     <Compile Include="Camada de Dados\Classes\Relatorio.cs" />
     <Compile Include="Camada de Dados\Classes\Resposta.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
-    <Compile Include="Camada de Dados\ETdA\ETdA.cs" />
+    <Compile Include="Camada de Dados\ETdA\ETdA_main.cs" />
     <Compile Include="Camada de Interface\InterfaceGuestaoProjectos.cs">
       <SubType>Form</SubType>
     </Compile>
