@@ -347,7 +347,7 @@
             this.treeView_Projectos.Name = "treeView_Projectos";
             this.treeView_Projectos.Size = new System.Drawing.Size(218, 363);
             this.treeView_Projectos.TabIndex = 1;
-            this.treeView_Projectos.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.ProjectoSelectedAction);
+            this.treeView_Projectos.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.ProjectoSelectedAction);
             // 
             // menuStrip2
             // 

@@ -12,12 +12,15 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class InterfaceGuestaoProjectos : Form
     {
+        List<int> indexes;
+
         public InterfaceGuestaoProjectos()
         {
             InitializeComponent();
 
             GestaodeProjectos.init();
 
+            indexes = new List<int>();
             initTree();
         }
 
@@ -27,22 +30,37 @@ namespace ETdA.Camada_de_Interface
 
             for (int i = 0; i < nomes.Count; i++)
             {
-                TreeNode nodos = new TreeNode();
-                nodos.Text = nomes[i];
-                nodos.Nodes.Add("");
-                this.treeView_Projectos.Nodes.Add(nodos);
+                TreeNode nodo = new TreeNode();
+                nodo.Text = nomes[i];
+                nodo.Nodes.Add("");
+                this.treeView_Projectos.Nodes.Add(nodo);
             }
         }
 
-        private void ProjectoSelectedAction(object sender, TreeNodeMouseHoverEventArgs e)
+        private void ProjectoSelectedAction(object sender, TreeViewEventArgs e)
         {
-            TreeNode t = (TreeNode) sender;
+            int index = 0;
+            for (int i = 0; i < treeView_Projectos.Nodes.Count ; i++ )
+            {
+                if (treeView_Projectos.Nodes[i] != e.Node)
+                {
+                    if (treeView_Projectos.Nodes[i].IsExpanded)
+                        treeView_Projectos.Nodes[i].Collapse(); 
+                }
+                else
+                    index = i;
+            }
 
-            MessageBox.Show(t.Name);
+            GestaodeProjectos.abreProjecto(e.Node.Text);
 
-            //GestaodeProjectos.abreProjecto(
-
-            //List<string> nomes = 
+            if (!indexes.Contains(index))
+            {
+                treeView_Projectos.Nodes[index].Nodes.RemoveAt(0);
+                List<string> nomes = GestaodeAnalises.getNomeAnalises();
+                foreach (string s in nomes)
+                    treeView_Projectos.Nodes[index].Nodes.Add(new TreeNode(s));
+                indexes.Add(index);
+            }
         }
 
         private void MouseEnterAction(object sender, EventArgs e)

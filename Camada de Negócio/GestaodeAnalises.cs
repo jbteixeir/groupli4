@@ -8,9 +8,9 @@ namespace ETdA.Camada_de_Negócio
     class GestaodeAnalises
     {
 //        //Métodos
-        //public static List<string> getNomeAnalises(){
-        //    return Etda
-        //}
+        public static List<string> getNomeAnalises(){
+            return Camada_de_Dados.ETdA.ETdA.Projecto.Analises;
+        }
 //        void criaAnalise(String nomeAnalise);
 //        void editaAnalise(String codAnalise, string nomeAnalise);
 //        void removeAnalise(String codAnalise);
