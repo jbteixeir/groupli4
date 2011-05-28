@@ -45,7 +45,7 @@ namespace ETdA.Camada_de_Dados.Classes
             this.cod_item = -1;
             this.cod_zona = -1;
             this.valor = -1;
-            this.valor = "";
+            this.valor_string = "";
             this.tipo = -1;
         }
 
