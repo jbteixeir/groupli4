@@ -8,8 +8,8 @@ namespace ETdA.Camada_de_Dados.Classes
     class Item
     {
         //Variaveis de Instancia
-        private String codParametro;
-        private String nomeParametro;
+        private int cod_item;
+        private String nome_item;
         private int defaultItem;
         private float ponderacao_analista;
         private float ponderacao_profissional;
@@ -22,10 +22,10 @@ namespace ETdA.Camada_de_Dados.Classes
 
         //Constructores
 
-        public Item(String cod, String nome, int def, float ponderacao_analista, float ponderacao_profissional, float ponderacao_cliente, float inter_vemelho, float inter_laranja, float inter_amarelo, float inter_verdelima, float inter_verde)
+        public Item(int cod, String nome, int def, float ponderacao_analista, float ponderacao_profissional, float ponderacao_cliente, float inter_vemelho, float inter_laranja, float inter_amarelo, float inter_verdelima, float inter_verde)
         {
-            codParametro = cod;
-            nomeParametro = nome;
+            cod_item = cod;
+            nome_item = nome;
             defaultItem = def;
             this.ponderacao_analista = ponderacao_analista;
             this.ponderacao_profissional=ponderacao_profissional;
@@ -39,8 +39,8 @@ namespace ETdA.Camada_de_Dados.Classes
 
         public Item()
         {
-            codParametro = "";
-            nomeParametro = "";
+            cod_item = -1;
+            nome_item = "";
             defaultItem = 0;
             ponderacao_analista = 0.33f;
             ponderacao_profissional = 0.33f;
@@ -53,15 +53,15 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
         //Métodos
-        public String Codigo
+        public int CodigoItem
         {
-            get { return codParametro; }
-            set { codParametro = value; }
+            get { return cod_item; }
+            set { cod_item = value; }
         }
-        public String Nome
+        public String NomeItem
         {
-            get { return nomeParametro; }
-            set { nomeParametro = value; }
+            get { return nome_item; }
+            set { nome_item = value; }
         }
         public int Default
         {

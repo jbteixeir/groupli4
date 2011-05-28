@@ -10,14 +10,13 @@ namespace ETdA.Camada_de_Dados
     class Relatorio
     {
         //Variaveis de Instancia
-       // private List<JFreeChart>;
+        // private List<JFreeChart>;
 
         private List<String> cores;
         private List<String> observacoes;
         //Constructores
 
         //Métodos
-
         public List<String> Cores
         {
             get { return cores; }
@@ -31,6 +30,14 @@ namespace ETdA.Camada_de_Dados
         }
 
         //void adicionarObservacao(String codParametro, String obs);
-        
+
+        public void gerarResultadosRelatorio(int codigoAnalise, List<Classes.Resposta> respostas)
+        {
+            DataBaseCommunicator.FuncsToDataBase.selectRespostaCheckList(codigoAnalise, respostas);
+            DataBaseCommunicator.FuncsToDataBase.selectRespostaFichaAvaliacao(codigoAnalise, respostas);
+            DataBaseCommunicator.FuncsToDataBase.selectRespostaQuestionario(codigoAnalise, respostas);
+
+
+        }
     }
 }
