@@ -594,6 +594,88 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
              }
         }
 
+        /* ----------------------------------------------*/
+
+        /* ----------------------------------------------*/
+        /* Escala Resposta */
+
+        public static EscalaResposta selectEscalaResposta(String codEscala)
+        {
+            String query = "select * from EscalaResposta where " + "cod_EscalaResposta = "
+                + codEscala + ";";
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            EscalaResposta e = null;
+
+            while (r.Read())
+            {
+                e = new EscalaResposta((String)r["cod_EscalaResposta"],
+                    (String)r["cod_TipoEscala"],
+                    (String)r["descricaoEscalaResposta"],
+                    (int)r["valorEscalaResposta"]);
+            }
+
+            return e;
+        }
+
+        public static void insertEscalaResposta(EscalaResposta e)
+        {
+            String query = "insert into EscalaResposta values (" + e.CodEscala + "," +
+                e.CodTipo + "," + e.Descricao + "," + e.Valor + ";";
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+
+        }
+
+        public static void deleteEscalaResposta(String codEscala)
+        {
+            String query = "delete * from EscalaResposta where " + "cod_EscalaResposta = " +
+                codEscala + ";";
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
+        public static void updateEscalaResposta(EscalaResposta e)
+        {
+            String query = "update EscalaResposta set " + "cod_TipoEscala = " + e.CodTipo + ","
+                + "descricaoEscalaResposta" + e.Descricao + ";" + "valorEscalaResposta" + e.Valor +
+                ";" + "where cod_EscalaResposta = " + e.CodEscala + ";";
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
+        /* ----------------------------------------------*/
+
+        /* ----------------------------------------------*/
+        /* Tipo Escala */
+
+        public static TipoEscala selectTipoEscala(String codTipo)
+        {
+            String query = "select * from TipoEscala where " + "cod_tipoEscala = "
+                + codTipo + ";";
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            TipoEscala t = null;
+
+            while (r.Read())
+            {
+                t = new TipoEscala((String)r["cod_TipoEscala"],
+                    (String)r["tipoEscalaResposta"],
+                    (int)r["numeroEscalaResposta"],
+                    (int)r["default_tipoEscala"]);
+            }
+
+            return t;
+        }
+
+        public static void insertTipoEscala(TipoEscala t)
+        {
+            String query = "insert into TipoEscala values (" + t.Codigo + "," +
+                t.Descricao + "," + t.Numero + "," + t.Default + ";";
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+
+        }
     }
 
 }
