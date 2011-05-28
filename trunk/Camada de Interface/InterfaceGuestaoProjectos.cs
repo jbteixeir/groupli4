@@ -13,14 +13,17 @@ namespace ETdA.Camada_de_Interface
     public partial class InterfaceGuestaoProjectos : Form
     {
         List<int> indexes;
+        List<TabPage> tabPages;
 
         public InterfaceGuestaoProjectos()
         {
             InitializeComponent();
 
             GestaodeProjectos.init();
+            initTabPage();
 
             indexes = new List<int>();
+            tabPages = new List<TabPage>();
             initTree();
         }
 
@@ -35,6 +38,22 @@ namespace ETdA.Camada_de_Interface
                 nodo.Nodes.Add("");
                 this.treeView_Projectos.Nodes.Add(nodo);
             }
+        }
+
+        private void initTabPage()
+        {
+            System.Windows.Forms.TabPage p =
+                new System.Windows.Forms.TabPage();
+
+            this.tabControl1.Controls.Add(p);
+
+            p.Name = "Analises";
+            p.Size = new System.Drawing.Size(218, 385);
+
+            System.Windows.Forms.Label Projecto1 = 
+                new System.Windows.Forms.Label();
+
+            p.Controls.Add(Projecto1);
         }
 
         private void ProjectoSelectedAction(object sender, TreeViewEventArgs e)
@@ -94,6 +113,14 @@ namespace ETdA.Camada_de_Interface
                 Application.Run(igp);
             else
                 igp.Visible = true;
+        }
+
+        private void OpenAnaliseAction(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Level == 1)
+                MessageBox.Show("Analise : " + e.Node.Text);
+            else
+                MessageBox.Show("Projecto : " + e.Node.Text);
         }
     }
 }

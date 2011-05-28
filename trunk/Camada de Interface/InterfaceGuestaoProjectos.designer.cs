@@ -348,6 +348,7 @@
             this.treeView_Projectos.Size = new System.Drawing.Size(218, 363);
             this.treeView_Projectos.TabIndex = 1;
             this.treeView_Projectos.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.ProjectoSelectedAction);
+            this.treeView_Projectos.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OpenAnaliseAction);
             // 
             // menuStrip2
             // 
