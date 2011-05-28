@@ -60,8 +60,8 @@
             this.treeView_Projectos = new System.Windows.Forms.TreeView();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -353,11 +353,6 @@
             this.projectosToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.projectosToolStripMenuItem.Text = "Projectos";
             // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            // 
             // tabControl1
             // 
             this.tabControl1.Location = new System.Drawing.Point(227, 7);
@@ -365,6 +360,11 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(479, 385);
             this.tabControl1.TabIndex = 2;
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
             // 
             // InterfaceGuestaoProjectos
             // 
