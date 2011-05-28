@@ -8,40 +8,56 @@ namespace ETdA.Camada_de_Dados.Classes
     class EscalaResposta
     {
         //Variáveis de Instância
-        private String tipo;
-        private List<String> OpcoesResposta;
-        private List<short> valorResposta;
+        private String cod_escala;
+        private String cod_tipo;
+        private String descricao;
+        private int valorResposta;
  
         //Constructores
-        public EscalaResposta(String tipoE, List<String> opcoes, List<short> valor)
+        public EscalaResposta(String cod, String tipoE, String desc, int valor)
         {
-            tipo = tipoE;
-            OpcoesResposta = opcoes;
+            cod_escala = cod;
+            cod_tipo = tipoE;
+            descricao = desc;
             valorResposta = valor;
         }
 
         public EscalaResposta()
         {
-            tipo = "";
-            OpcoesResposta = new List<string> ();
-            valorResposta = new List<short> ();
+            cod_escala = "";
+            cod_tipo = "";
+            descricao = "";
+            valorResposta = 0;
+        }
+
+        public EscalaResposta(EscalaResposta e)
+        {
+            cod_escala = e.CodEscala;
+            cod_tipo = e.CodTipo;
+            descricao = e.Descricao;
+            valorResposta = e.Valor;
         }
 
         //Métodos
-
-        public String Tipo
+        public String CodEscala
         {
-            get { return tipo; }
-            set { tipo = value; }
+            get { return cod_escala; }
+            set { cod_escala = value; }
         }
 
-        public List<String> Opcoes
+        public String CodTipo
         {
-            get { return OpcoesResposta; }
-            set { OpcoesResposta = value; }
+            get { return cod_tipo; }
+            set { cod_tipo = value; }
         }
 
-        public List<short> Valor
+        public String Descricao
+        {
+            get { return descricao; }
+            set { descricao = value; }
+        }
+
+        public int Valor
         {
             get { return valorResposta; }
             set { valorResposta = value; }
