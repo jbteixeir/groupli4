@@ -39,6 +39,17 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        private int getTabNumber(string name)
+        {
+            int index = 0;
+            bool found = false;
+            for (int i = 0; i < tabPages.Count && !found; i++)
+                if (tabPages[i] == name)
+                    index = i;
+
+            return index;
+        }
+
         private void initStartPage()
         {
             if (!tabPages.Contains("StartPage"))
@@ -115,11 +126,11 @@ namespace ETdA.Camada_de_Interface
                     }
                 }
             }
+            tabControl1.SelectedIndex = getTabNumber("StartPage");
         }
 
         private void initProgetPage(string nome_projecto)
         {
-
             if (!tabPages.Contains(nome_projecto))
             {
                 tabPages.Add(nome_projecto);
@@ -171,7 +182,80 @@ namespace ETdA.Camada_de_Interface
                     }
                 }
             }
-            tabControl1.SelectedIndex = 1;
+            tabControl1.SelectedIndex = getTabNumber(nome_projecto);
+        }
+
+        private void initAnalisePage(string nome_projecto, string nome_analise)
+        {
+            if (!tabPages.Contains(nome_projecto + "." + nome_analise))
+            {
+                tabPages.Add(nome_projecto + "." + nome_analise);
+                System.Windows.Forms.TabPage p =
+                    new System.Windows.Forms.TabPage();
+
+                this.tabControl1.Controls.Add(p);
+
+                p.Text = nome_analise;
+                p.Size = new System.Drawing.Size(218, 385);
+
+                System.Windows.Forms.Label l1 =
+                    new System.Windows.Forms.Label();
+                l1.Text = "Ver Itens";
+                l1.Location = new System.Drawing.Point(7, 7);
+                l1.Cursor = System.Windows.Forms.Cursors.Hand;
+                //l1.Click += new System.EventHandler(this.OpenProjectClick);
+                l1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                p.Controls.Add(l1);
+
+                System.Windows.Forms.Label l2 =
+                    new System.Windows.Forms.Label();
+                l2.Text = "Ver Zonas";
+                l2.Location = new System.Drawing.Point(7, 30);
+                l2.Cursor = System.Windows.Forms.Cursors.Hand;
+                //l2.Click += new System.EventHandler(this.OpenProjectClick);
+                l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                p.Controls.Add(l2);
+
+                System.Windows.Forms.Label l3 =
+                    new System.Windows.Forms.Label();
+                l3.Text = "Gerar Relatorio";
+                l3.Location = new System.Drawing.Point(7, 80);
+                l3.Cursor = System.Windows.Forms.Cursors.Hand;
+                //l3.Click += new System.EventHandler(this.OpenProjectClick);
+                l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                p.Controls.Add(l3);
+
+                System.Windows.Forms.Label l4 =
+                    new System.Windows.Forms.Label();
+                l4.Width = 200;
+                l4.Text = "Importar Dados de Ficheiro";
+                l4.Location = new System.Drawing.Point(7, 110);
+                l4.Cursor = System.Windows.Forms.Cursors.Hand;
+                //l4.Click += new System.EventHandler(this.OpenProjectClick);
+                l4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                p.Controls.Add(l4);
+
+                System.Windows.Forms.Label l5 =
+                    new System.Windows.Forms.Label();
+                l5.Width = 200;
+                l5.Text = "Importar Dados Manualmente";
+                l5.Location = new System.Drawing.Point(217, 110);
+                l5.Cursor = System.Windows.Forms.Cursors.Hand;
+                //l5.Click += new System.EventHandler(this.OpenProjectClick);
+                l5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                p.Controls.Add(l5);
+            }
+            tabControl1.SelectedIndex = getTabNumber(nome_projecto + "." + nome_analise);
         }
 
         private void MouseEnterAction(object sender, EventArgs e)
@@ -229,9 +313,15 @@ namespace ETdA.Camada_de_Interface
         private void OpenAnaliseAction(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Level == 1)
-                MessageBox.Show("Analise : " + e.Node.Text);
+            {
+                initAnalisePage(e.Node.Parent.Text ,e.Node.Text);
+            }
             else
-                MessageBox.Show("Projecto : " + e.Node.Text);
+            {
+                GestaodeProjectos.abreProjecto(e.Node.Text);
+
+                initProgetPage(e.Node.Text);
+            }
         }
 
         private void OpenProjectClick(object sender, EventArgs e)
@@ -246,7 +336,7 @@ namespace ETdA.Camada_de_Interface
         {
             Label l = (Label) sender;
 
-            MessageBox.Show("Analise : " + l.Text);
+            initAnalisePage(tabControl1.SelectedTab.Text ,l.Text);
         }
     }
 }
