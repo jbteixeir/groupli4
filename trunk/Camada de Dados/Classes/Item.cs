@@ -19,7 +19,7 @@ namespace ETdA.Camada_de_Dados.Classes
         private float inter_amarelo;
         private float inter_verdelima;
         private float inter_verde;
-
+        
         //Constructores
 
         public Item(int cod, String nome, int def, float ponderacao_analista, float ponderacao_profissional, float ponderacao_cliente, float inter_vemelho, float inter_laranja, float inter_amarelo, float inter_verdelima, float inter_verde)
