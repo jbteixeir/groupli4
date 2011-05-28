@@ -1,13 +1,16 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-//namespace ETdA.Camada_de_Negócio
-//{
-//    class GestaodeAnalises
-//    {
+namespace ETdA.Camada_de_Negócio
+{
+    class GestaodeAnalises
+    {
 //        //Métodos
+        //public static List<string> getNomeAnalises(){
+        //    return Etda
+        //}
 //        void criaAnalise(String nomeAnalise);
 //        void editaAnalise(String codAnalise, string nomeAnalise);
 //        void removeAnalise(String codAnalise);
@@ -20,5 +23,5 @@
 //        void removeFormulario(String codAnalise, String codFormulario);
 //        void geraWebsite();
 //        void geraFormularioOnline();
-//    }
-//}
+    }
+}

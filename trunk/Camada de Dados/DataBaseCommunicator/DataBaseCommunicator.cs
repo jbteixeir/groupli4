@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 {
@@ -121,10 +122,18 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static SqlDataReader readData(string query)
         {
-            SqlDataReader reader = null;
-            SqlCommand command = new SqlCommand(query, connection);
-            reader = command.ExecuteReader();
-            return reader;
+            try
+            {
+                SqlDataReader reader = null;
+                SqlCommand command = new SqlCommand(query, connection);
+                reader = command.ExecuteReader();
+                return reader;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return null;
+            }
         }
 
         /*

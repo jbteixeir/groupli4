@@ -99,7 +99,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(3, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(247, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(155, 24);
             this.menuStrip1.Stretch = false;
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.TabStop = true;
@@ -347,6 +347,7 @@
             this.treeView_Projectos.Name = "treeView_Projectos";
             this.treeView_Projectos.Size = new System.Drawing.Size(218, 363);
             this.treeView_Projectos.TabIndex = 1;
+            this.treeView_Projectos.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.ProjectoSelectedAction);
             // 
             // menuStrip2
             // 

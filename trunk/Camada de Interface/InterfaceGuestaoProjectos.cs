@@ -24,13 +24,25 @@ namespace ETdA.Camada_de_Interface
         private void initTree()
         {
             List<string> nomes = GestaodeProjectos.nomesProjectos();
-            TreeNode nodos = new TreeNode();
-            this.treeView_Projectos.Nodes.Add(nodos);
 
             for (int i = 0; i < nomes.Count; i++)
             {
-                nodos.Nodes.Add(nomes[i]);
+                TreeNode nodos = new TreeNode();
+                nodos.Text = nomes[i];
+                nodos.Nodes.Add("");
+                this.treeView_Projectos.Nodes.Add(nodos);
             }
+        }
+
+        private void ProjectoSelectedAction(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            TreeNode t = (TreeNode) sender;
+
+            MessageBox.Show(t.Name);
+
+            //GestaodeProjectos.abreProjecto(
+
+            //List<string> nomes = 
         }
 
         private void MouseEnterAction(object sender, EventArgs e)
