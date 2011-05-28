@@ -9,6 +9,7 @@ namespace ETdA.Camada_de_Dados.Classes
     {
         //Variáveis de Instância
         private String codAnalise;
+        private String codProjecto;
         private DateTime dataAnalise;
         private String nomeAnalise;
         private String tipoAnalise;
@@ -24,11 +25,12 @@ namespace ETdA.Camada_de_Dados.Classes
 
         //Constructores
 
-        public Analise(String cod, DateTime data, String nome,
+        public Analise(String cod, String codProj, DateTime data, String nome,
             String tipo, List<Zona> zonas, List<Item> itens, 
             Boolean estadoWebCL, Boolean estadoWebFA, Boolean estadoWebQ)
         {
             codAnalise = cod;
+            codProjecto = codProj;
             dataAnalise = data;
             nomeAnalise = nome;
             tipoAnalise = tipo;
@@ -42,6 +44,7 @@ namespace ETdA.Camada_de_Dados.Classes
         public Analise()
         {
             codAnalise = "";
+            codProjecto = "";
             dataAnalise = new DateTime();
             dataAnalise = DateTime.Now;
             nomeAnalise = "";
@@ -59,6 +62,7 @@ namespace ETdA.Camada_de_Dados.Classes
         public Analise(Analise a)
         {
             codAnalise = a.Codigo;
+            codProjecto = a.CodigoProj;
             dataAnalise = a.Data;
             nomeAnalise = a.Nome;
             tipoAnalise = a.Tipo;
@@ -78,6 +82,11 @@ namespace ETdA.Camada_de_Dados.Classes
         {
             get { return codAnalise; }
             set { codAnalise = value; }
+        }
+        public String CodigoProj
+        {
+            get { return codProjecto; }
+            set { codProjecto = value; }
         }    
         public DateTime Data
 	    {
