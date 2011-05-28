@@ -10,25 +10,29 @@ namespace ETdA.Camada_de_Dados.Classes
         //Variaveis de Instancia
         private String codParametro;
         private String nomeParametro;
+        private int defaultItem;
 
         //Constructores
 
-        public Item(String cod, String nome)
+        public Item(String cod, String nome, int def)
         {
             codParametro = cod;
             nomeParametro = nome;
+            defaultItem = def;
         }
 
         public Item()
         {
             codParametro = "";
             nomeParametro = "";
+            defaultItem = 0;
         }
 
         public Item(Item i)
         {
             codParametro = i.Codigo;
             nomeParametro = i.Nome;
+            defaultItem = i.Default;
         }
 
         //Métodos
@@ -41,6 +45,11 @@ namespace ETdA.Camada_de_Dados.Classes
         {
             get { return nomeParametro; }
             set { nomeParametro = value; }
+        }
+        public int Default
+        {
+            get { return defaultItem; }
+            set { defaultItem = value; }
         }
     }
 }

@@ -277,15 +277,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
 
-        public static void insertZonaAnalise(List<Zona> codZona, List<Analise> codAnalise)
-        {
+        //public static void insertZonaAnalise(List<Zona> codZona, List<Analise> codAnalise);
 
-        }
-
-        public static void insertItemsAnalise(List<Item> codItem, List<Analise> codAnalise)
-        {
-            
-        }
+        //public static void insertItemsAnalise(List<Item> codItem, List<Analise> codAnalise);
 
 
         /**
@@ -316,11 +310,35 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* ----------------------------------------------*/
         /* Zonas */
 
-        //public static List<Zona> selectZonas();
+        public static List<Zona> selectZonas()
+        {
+            String query = "select * from zona";
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-        //public static void insertZona(Zona z);
+            List<Zona> zonas = new List<Zona>();
 
-        //public static void deleteZona(String codZona);
+            while (r.Read())
+            {
+               Zona zona = new Zona ((String)r["cod_zona"], (String)r["nome_zona"]);
+               zonas.Add(zona);
+
+            }
+            return zonas;
+        }
+
+        public static void insertZona(Zona z)
+        {
+            String query = "insert into zona values(" + z.Codigo + "," + z.Nome ;
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
+        public static void deleteZona(String codZona)
+        {
+            String query = "delete * from zona where" + "cod_zona = " + codZona;
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
 
         //public static void updateZona(Zona z);
 
@@ -329,7 +347,21 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* ----------------------------------------------*/
         /* Zonas - Analise */
 
-        //public static List<Zona> selectZonasAnalise(String codAnalise);
+        public static List<Zona> selectZonasAnalise(String codAnalise)
+        {
+            String query = "select * from zona_analise where " + "cod_analise = " + codAnalise;
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            List<Zona> zonas = new List<Zona>();
+
+            while (r.Read())
+            {
+                Zona zona = new Zona((String)r["cod_zona"], (String)r["nome_zona"]);
+                zonas.Add(zona);
+
+            }
+            return zonas;
+        }
 
         //public static void insertZonaAnalise(String codZona, String codAnalise);
 
@@ -342,11 +374,36 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         //public static List<Item> selectItensDefault();
 
-        //public static List<Item> selectItens();
+        public static List<Item> selectItens()
+        {
+            String query = "select * from item";
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-        //public static void insertItem(Item i);
+            List<Item> items = new List<Item>();
 
-        //public static void deleteItem(String codItem);
+            while (r.Read())
+            {
+                Item item = new Item((String)r["cod_item"], (String)r["nome_item"], (int)r["default_item"]);
+                items.Add(item);
+
+            }
+            return items;
+        }
+
+        public static void insertItem(Item i)
+        {
+            String query = "insert into item values(" + i.Codigo + "," + i.Nome + "," + i.Default;
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
+        public static void deleteItem(String codItem)
+        {
+            String query = "delete * from item where" + "cod_item = " + codItem;
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
 
         //public static void updateItem(Item i);
 
