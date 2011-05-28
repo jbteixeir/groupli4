@@ -266,7 +266,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             foreach (Item i in items)
             {
-                String query = "insert into item_analise values(" + i.Codigo + "," + codAnalise + ";";
+                String query = "insert into item_analise values(" + i.CodigoItem + "," + i.NomeItem + "," + i.Default
+                + "," + i.PonderacaoAnalista + "," + i.PonderacaoProfissional + "," + i.PonderacaoCliente + ";";
 
                 Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
             }
@@ -397,14 +398,26 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static List<Item> selectItensDefault()
         {
-            String query = "select * from item where item_default = 1;";
+            String query = "select cod_item, nome_item, default_item, ponderacao_analista, ponderacao_profissional, "
+            + "ponderacao_cliente, inter_vermelho, inter_laranja, inter_amarelo, inter_verdelima, inter_verde"
+            + "from item, item_analise where item_default = 1;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             List<Item> items = new List<Item>();
 
             while (r.Read())
             {
-                Item item = new Item((String)r["cod_item"], (String)r["nome_item"], (int)r["default_item"]);
+                Item item = new Item((int)r["cod_item"], 
+                    (String)r["nome_item"], 
+                    (int)r["default_item"],
+                    (float)r["ponderacao_analista"],
+                    (float)r["ponderacao_profissional"],
+                    (float)r["ponderacao_cliente"],
+                    (float)r["inter_vermelho"],
+                    (float)r["inter_laranja"],
+                    (float)r["inter_amarelo"],
+                    (float)r["inter_verdelima"],
+                    (float)r["inter_verde"]);
                 items.Add(item);
 
             }
@@ -420,7 +433,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                Item item = new Item((String)r["cod_item"], (String)r["nome_item"], (int)r["default_item"]);
+                Item item = new Item((int)r["cod_item"],
+                    (String)r["nome_item"],
+                    (int)r["default_item"],
+                    (float)r["ponderacao_analista"],
+                    (float)r["ponderacao_profissional"],
+                    (float)r["ponderacao_cliente"],
+                    (float)r["inter_vermelho"],
+                    (float)r["inter_laranja"],
+                    (float)r["inter_amarelo"],
+                    (float)r["inter_verdelima"],
+                    (float)r["inter_verde"]);
                 items.Add(item);
 
             }
@@ -429,7 +452,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static void insertItem(Item i)
         {
-            String query = "insert into item values(" + i.Codigo + "," + i.Nome + "," + i.Default + ";";
+            String query = "insert into item values(" + i.CodigoItem + "," + i.NomeItem + "," + i.Default 
+                + "," + i.PonderacaoAnalista + "," + i.PonderacaoProfissional + "," + i.PonderacaoCliente + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
@@ -444,8 +468,13 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static void updateItem(Item i)
         {
-            String query = "update item set " + "nome_item = " + i.Nome + ","
-                + "where cod_item = " + i.Codigo + ";";
+            String query = "update item, item_analise set "
+                + "nome_item = " + i.NomeItem + ","
+                + "default_item" + i.Default + ","
+                + "ponderacao_analista = " + i.PonderacaoAnalista + ","
+                + "ponderacao_profissional = " + i.PonderacaoProfissional + ","
+                + "ponderacao_cliente = " + i.PonderacaoCliente
+                + "where cod_item = " + i.CodigoItem + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
@@ -464,7 +493,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                Item item = new Item((String)r["cod_item"], (String)r["nome_item"], (int)r["default_item"]);
+                Item item = new Item((int)r["cod_item"],
+                    (String)r["nome_item"],
+                    (int)r["default_item"],
+                    (float)r["ponderacao_analista"],
+                    (float)r["ponderacao_profissional"],
+                    (float)r["ponderacao_cliente"],
+                    (float)r["inter_vermelho"],
+                    (float)r["inter_laranja"],
+                    (float)r["inter_amarelo"],
+                    (float)r["inter_verdelima"],
+                    (float)r["inter_verde"]);
                 items.Add(item);
 
             }
