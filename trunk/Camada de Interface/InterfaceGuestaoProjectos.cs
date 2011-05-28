@@ -20,11 +20,10 @@ namespace ETdA.Camada_de_Interface
             InitializeComponent();
 
             GestaodeProjectos.init();
-            initTabPage();
-
             indexes = new List<int>();
             tabPages = new List<TabPage>();
             initTree();
+            initStartPage();
         }
 
         private void initTree()
@@ -40,20 +39,55 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        private void initTabPage()
+        private void initStartPage()
         {
             System.Windows.Forms.TabPage p =
                 new System.Windows.Forms.TabPage();
 
             this.tabControl1.Controls.Add(p);
 
-            p.Name = "Analises";
+            p.Text = "StartPage";
             p.Size = new System.Drawing.Size(218, 385);
 
-            System.Windows.Forms.Label Projecto1 = 
+            System.Windows.Forms.Label l1 = 
                 new System.Windows.Forms.Label();
+            l1.Text = "Bem Vindo";
+            l1.Location = new System.Drawing.Point(7, 7);
 
-            p.Controls.Add(Projecto1);
+            p.Controls.Add(l1);
+
+            System.Windows.Forms.Label l2 = 
+                new System.Windows.Forms.Label();
+            l2.Text = "Projectos";
+            l2.Location = new System.Drawing.Point(7, 70);
+
+            p.Controls.Add(l2);
+
+            List<string> rs = GestaodeProjectos.projectosRecentes();
+
+            int x = 7, y = 60;
+            foreach (string s in rs)
+            {
+                if (x + 10 < Size.Width)
+                {
+                    if (y + 10 >= this.Size.Height)
+                        x=50;
+                    else
+                    {
+                        y += 30;
+                        System.Windows.Forms.Label p1 =
+                            new System.Windows.Forms.Label();
+
+                        p1.Text = s;
+                        p1.Location = new System.Drawing.Point(x, y);
+                        p1.Cursor = System.Windows.Forms.Cursors.Hand;
+                        p1.Click += new System.EventHandler(this.OpenProjectClick);
+                        p1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                        p1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                        p.Controls.Add(p1);
+                    }
+                }
+            }
         }
 
         private void ProjectoSelectedAction(object sender, TreeViewEventArgs e)

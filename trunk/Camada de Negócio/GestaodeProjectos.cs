@@ -16,6 +16,7 @@ namespace ETdA.Camada_de_Negócio
         //void criaProjecto(String nomeEstabelecimento);
         //void editaProjecto(String nomeEstabelecimento);
         //void removeProjecto(String nomeEstabelecimento);
+
         public static void abreProjecto(String nomeEstabelecimento)
         {
             Camada_de_Dados.ETdA.ETdA.abreProjecto(nomeEstabelecimento);
@@ -24,6 +25,17 @@ namespace ETdA.Camada_de_Negócio
         public static List<string> nomesProjectos()
         {
             return Camada_de_Dados.ETdA.ETdA.Nomes_Estabelecimentos;
+        }
+
+        public static List<string> projectosRecentes()
+        {
+            List<string> ps = Camada_de_Dados.ETdA.ETdA.Nomes_Estabelecimentos;
+            List<string> rs = new List<string>();
+
+            for (int i = 0; i < 5 && i < ps.Count ; i++)
+                rs.Add(ps[i]);
+
+            return rs;
         }
     }
 }
