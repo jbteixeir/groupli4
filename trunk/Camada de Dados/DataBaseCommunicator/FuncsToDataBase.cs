@@ -196,18 +196,16 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                a = new Analise((string)r["cod_analise"],
-                    (string)r["cod_projecto"], 
-                    (DateTime)r["dataCriacao"],
-                    (string)r["nomeAnalise"],
-                    (string)r["tipoAnalise"],
-                    (List<Zona>)r["zonas"],
-                    (List<Item>)r["items"],
-                    (int)r["estadoWebCheckList"],
-                    (int)r["estadoWebFichaAvaliacao"],
-                    (int)r["estadoWebQuestionario"],
-                    new List<Tuple<String,String,DateTime,String,String,List<Zona>, List<Item>,int,int,int>>());
-                
+                a = a = new Analise((string)r["cod_analise"],
+                    (string)r["codProjecto"],
+                   (DateTime)r["dataCriacao"],
+                   (string)r["nomeAnalise"],
+                   (string)r["tipoAnalise"],
+                   new List<Zona>(),
+                   new List<Item>(),
+                   (int)r["estadoWebCheckList"] == 0 ? false : true,
+                   (int)r["estadoWebFichaAvaliacao"] == 0 ? false : true,
+                   (int)r["estadoWebQuestionario"] == 0 ? false : true);
             }
 
             return a;
