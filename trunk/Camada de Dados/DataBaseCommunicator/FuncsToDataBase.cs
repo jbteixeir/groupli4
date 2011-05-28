@@ -152,7 +152,13 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * Modifica o projecto na base de dados com o código do projecto recebido
          * @param p Projecto que irá ser editado
          */
-        //public static void updateProjecto(Projecto p);
+        public static void updateProjecto(Projecto p)
+        {
+            String query = "update projecto set " + "estabelecimento = " + p.Nome + "," 
+                + "ultimaActualizacao = " + p.Data + "where cod_projecto = " + p.Codigo + ";";
+            
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
         #endregion
         /* ----------------------------------------------*/
 
@@ -199,6 +205,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             while (r.Read())
             {
                 a = new Analise((string)r["cod_analise"],
+                   (string)r["codProjecto"],
                    (DateTime)r["dataCriacao"],
                    (string)r["nomeAnalise"],
                    (string)r["tipoAnalise"],
@@ -305,8 +312,16 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param codProjecto codProjecto ao qual a analise faz parte
          * @param a A analise que ira ser modificada
          */
-        //public static void updateAnalise(String codProjecto, Analise a);
+        public static void updateAnalise(Analise a)
+        {
+            String query = "update analise set " + "dataAnalise = " + a.Data + "," + "nomeAnalise = " 
+                + a.Nome + "," + "tipoAnalise = " + a.Tipo + "," + "estadoWebCheckList = " 
+                + a.EstadoWebCL + "," + "estadoWebFichaAvaliacao = " + a.EstadoWebFA + "," + "estadoWebQuestionario = " 
+                + a.EstadoWebQ + "where cod_analise = " + a.Codigo + ";";
         #endregion
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
@@ -343,9 +358,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
 
-        //public static void updateZona(Zona z);
+        public static void updateZona(Zona z)
+        {
+            String query = "update zona set " + "nome_zona = " + z.Nome + ","
+                + "where cod_zona = " + z.Codigo + ";";
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
 
         #endregion
+
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
@@ -419,7 +442,13 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
 
 
-        //public static void updateItem(Item i);
+        public static void updateItem(Item i)
+        {
+            String query = "update item set " + "nome_item = " + i.Nome + ","
+                + "where cod_item = " + i.Codigo + ";";
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
 
         /* ----------------------------------------------*/
 
