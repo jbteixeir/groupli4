@@ -8,33 +8,67 @@ namespace ETdA.Camada_de_Dados.Classes
     class Resposta
     {
         //Variaveis de Instancia
-        private String numeroPergunta;
-        private String descricaoItem;
+        private float numero_pergunta;
+        private int cod_item;
+        private int cod_zona;
+        private int valor;
+        /*
+         * Variável tipo
+         * 1 - checklist
+         * 2 - ficha de avaliacao
+         * 3 - questionario
+         */
+        private int tipo;
+
 
         //Constructores
-        public Resposta(String numero, String descricao)
+        public Resposta(float numero_pergunta, int cod_item, int cod_zona, int valor, int tipo)
         {
-            numeroPergunta = numero;
-            descricaoItem = descricao;
+            this.numero_pergunta = numero_pergunta;
+            this.cod_item = cod_item;
+            this.cod_zona = cod_zona;
+            this.valor = valor;
+            this.tipo = tipo;
         }
 
         public Resposta()
         {
-            numeroPergunta = "";
-            descricaoItem = "";
+            this.numero_pergunta = -1;
+            this.cod_item = -1;
+            this.cod_zona = -1;
+            this.valor = -1;
+            this.tipo = -1;
         }
 
         //Métodos
-        public String Numero
+        public float NumeroPergunta
         {
-            get { return numeroPergunta; }
-            set { numeroPergunta = value; }
+            get { return numero_pergunta; }
+            set { numero_pergunta = value; }
         }
 
-        public String Descricao
+        public int CodigoItem
         {
-            get { return descricaoItem; }
-            set { descricaoItem = value; }
+            get { return cod_item; }
+            set { cod_item = value; }
+        }
+
+        public int CodigoZona
+        {
+            get { return cod_zona; }
+            set { cod_zona = value; }
+        }
+
+        public int Valor
+        {
+            get { return valor; }
+            set { valor = value; }
+        }
+
+        public int Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
         }
 
     }
