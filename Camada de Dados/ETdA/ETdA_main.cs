@@ -65,7 +65,7 @@ namespace ETdA.Camada_de_Dados.ETdA
         {
             List<string> p = new List<string>(cod_nome.Values);
 
-            return p.Contains(nomeEstabelecimento);
+            return !p.Contains(nomeEstabelecimento);
         }
 
         /*

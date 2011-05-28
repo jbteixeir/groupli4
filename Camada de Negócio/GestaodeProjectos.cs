@@ -13,7 +13,16 @@ namespace ETdA.Camada_de_Negócio
             Camada_de_Dados.ETdA.ETdA.init();
         }
 
-        //void criaProjecto(String nomeEstabelecimento);
+        public static Boolean podeCriarProjecto(String nomeEst)
+        {
+            return Camada_de_Dados.ETdA.ETdA.podeAdicionarProjecto(nomeEst);
+        }
+
+        public static void criaProjecto(String nomeEstabelecimento)
+        {
+            Camada_de_Dados.ETdA.ETdA.adicionaNovoProjecto(nomeEstabelecimento);
+        }
+
         //void editaProjecto(String nomeEstabelecimento);
         //void removeProjecto(String nomeEstabelecimento);
 

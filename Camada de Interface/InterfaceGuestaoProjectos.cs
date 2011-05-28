@@ -76,7 +76,7 @@ namespace ETdA.Camada_de_Interface
                 l2.Text = "Criar Novo Projecto";
                 l2.Location = new System.Drawing.Point(7, 30);
                 l2.Cursor = System.Windows.Forms.Cursors.Hand;
-                //l2.Click += new System.EventHandler(this.OpenProjectClick);
+                l2.Click += new System.EventHandler(CriarProjectoClick);
                 l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
@@ -147,7 +147,7 @@ namespace ETdA.Camada_de_Interface
                 l1.Text = "Nova Analise";
                 l1.Location = new System.Drawing.Point(20, 20);
                 l1.Cursor = System.Windows.Forms.Cursors.Hand;
-                //l1.Click += new System.EventHandler(this.OpenProjectClick);
+                l1.Click += new System.EventHandler(CriarAnaliseClick);
                 l1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
@@ -401,6 +401,16 @@ namespace ETdA.Camada_de_Interface
             Label l = (Label) sender;
 
             initAnalisePage(tabControl1.SelectedTab.Text ,l.Text);
+        }
+
+        private void CriarProjectoClick(object sender, EventArgs e)
+        {
+            Interface_CriarProjecto.main();
+        }
+
+        private void CriarAnaliseClick(object sender, EventArgs e)
+        {
+            Interface_CriarAnalise.main();
         }
     }
 }
