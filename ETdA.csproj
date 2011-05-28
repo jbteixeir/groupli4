@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camada de Dados\Classes\Estruturas\Tuplo.cs" />
+    <Compile Include="Camada de Dados\Classes\ResultadoItem.cs" />
     <Compile Include="Camada de Dados\Classes\TipoEscala.cs" />
     <Compile Include="Camada de Dados\Classes\Zona.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\ParserCreateAnalista.cs" />
