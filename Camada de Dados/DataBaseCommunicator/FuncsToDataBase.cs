@@ -65,15 +65,15 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static Dictionary<string, string> selectNomeProjectos()
         {
-            String query = "select cod_projecto,estabelecimento from projecto orderby data DESC";
+            String query = "select cod_projecto,estabelecimento from projecto order by ultimaActualizacao DESC";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             Dictionary<string, string> cod_nome = new Dictionary<string, string>();
 
             while (r.Read())
             {
-                String cod = (string)r["cod_projecto"];
-                String nome = (string)r["estabelecimento"];
+                string cod = ""+(long)r["cod_projecto"];
+                string nome = (string)r["estabelecimento"];
                 cod_nome.Add(cod, nome);
             }
 
