@@ -18,11 +18,11 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param username Usernmae do analista
          * @param password Password do analista
          */
-        public static bool ligaAnalista(String server, 
+        public static bool ligaAnalista(String server,
             String database, String username, String password)
         {
             return Camada_de_Dados.DataBaseCommunicator.
-                DataBaseCommunicator.connect(server,username,password,database);
+                DataBaseCommunicator.connect(server, username, password, database);
         }
 
         /**
@@ -41,12 +41,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
         }
-        
+
 
         /**
          * Remove um analista e as suas tabelas na base de dados
@@ -72,7 +72,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                string cod = ""+(long)r["cod_projecto"];
+                string cod = "" + (long)r["cod_projecto"];
                 string nome = (string)r["estabelecimento"];
                 cod_nome.Add(cod, nome);
             }
@@ -87,7 +87,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static Projecto selectProjecto(String cod)
         {
-            String query = "select * from projecto where cod_projecto = " 
+            String query = "select * from projecto where cod_projecto = "
                 + cod + ";";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
@@ -97,9 +97,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                p = new Projecto(""+(long)r["cod_projecto"],
+                p = new Projecto("" + (long)r["cod_projecto"],
                     (string)r["estabelecimento"], (DateTime)r["ultimaActualizacao"],
-                    new Dictionary<string,string>());
+                    new Dictionary<string, string>());
             }
 
             return p;
@@ -127,7 +127,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         public static void insertProjecto(Projecto p)
         {
             String query = "insert into projecto values(" +
-            p.Nome + "," + "CAST('" + p.Data.ToString("yyyymmdd hh:mm:ss") 
+            p.Nome + "," + "CAST('" + p.Data.ToString("yyyymmdd hh:mm:ss")
             + "' AS datetime);";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
@@ -141,11 +141,11 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static void deleteProjecto(String codProjecto)
         {
-            String query = "delete * from projecto where" + "cod_projecto = " + codProjecto + ";"; 
+            String query = "delete * from projecto where" + "cod_projecto = " + codProjecto + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
 
-                
+
         }
 
         /**
@@ -154,9 +154,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static void updateProjecto(Projecto p)
         {
-            String query = "update projecto set " + "estabelecimento = " + p.Nome + "," 
+            String query = "update projecto set " + "estabelecimento = " + p.Nome + ","
                 + "ultimaActualizacao = " + p.Data + "where cod_projecto = " + p.Codigo + ";";
-            
+
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
@@ -179,9 +179,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                String cod = ""+(long)r["cod_analise"];
+                String cod = "" + (long)r["cod_analise"];
                 String nome = (string)r["nomeAnalise"];
-                cod_nome.Add(cod,nome);
+                cod_nome.Add(cod, nome);
             }
 
             return cod_nome;
@@ -192,9 +192,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param codAnalise O Codigo da analise
          * @return Analise A analise requerida
          */
-       public static Analise selectAnalise(String codAnalise)
+        public static Analise selectAnalise(String codAnalise)
         {
-            String query = "select * from analise where cod_analise = " 
+            String query = "select * from analise where cod_analise = "
                 + codAnalise + ";";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
@@ -219,9 +219,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return a;
         }
 
-      // public static Analise selectZonasAnalise(String codAnalise);
+        // public static Analise selectZonasAnalise(String codAnalise);
 
-     //  public static Analise selectItemsAnalise(String codAnalise):
+        //  public static Analise selectItemsAnalise(String codAnalise):
 
 
         public static String selectCodigoAnalise(DateTime data)
@@ -243,8 +243,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static void insertAnalise(String codProjecto, Analise a)
         {
-            String query = "insert into analise values(" + codProjecto + "," 
-            + "CAST('" + a.Data.ToString("yyyymmdd hh:mm:ss") + "' AS datetime)" 
+            String query = "insert into analise values(" + codProjecto + ","
+            + "CAST('" + a.Data.ToString("yyyymmdd hh:mm:ss") + "' AS datetime)"
             + "," + a.Nome + "," + a.Tipo + "," + a.EstadoWebCL + "," + a.EstadoWebFA
             + "," + a.EstadoWebQ + ";";
 
@@ -298,7 +298,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
         }
 
-        public static void deleteItemsAnalise (List<Item> items, String codAnalise)
+        public static void deleteItemsAnalise(List<Item> items, String codAnalise)
         {
             foreach (Item i in items)
             {
@@ -314,9 +314,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static void updateAnalise(Analise a)
         {
-            String query = "update analise set " + "dataAnalise = " + a.Data + "," + "nomeAnalise = " 
-                + a.Nome + "," + "tipoAnalise = " + a.Tipo + "," + "estadoWebCheckList = " 
-                + a.EstadoWebCL + "," + "estadoWebFichaAvaliacao = " + a.EstadoWebFA + "," + "estadoWebQuestionario = " 
+            String query = "update analise set " + "dataAnalise = " + a.Data + "," + "nomeAnalise = "
+                + a.Nome + "," + "tipoAnalise = " + a.Tipo + "," + "estadoWebCheckList = "
+                + a.EstadoWebCL + "," + "estadoWebFichaAvaliacao = " + a.EstadoWebFA + "," + "estadoWebQuestionario = "
                 + a.EstadoWebQ + "where cod_analise = " + a.Codigo + ";";
         #endregion
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
@@ -337,8 +337,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-               Zona zona = new Zona ((String)r["cod_zona"], (String)r["nome_zona"]);
-               zonas.Add(zona);
+                Zona zona = new Zona((String)r["cod_zona"], (String)r["nome_zona"]);
+                zonas.Add(zona);
 
             }
             return zonas;
@@ -477,7 +477,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         /* ----------------------------------------------*/
         /* Respostas */
-        static public void selectRespostaQuestionario(int codigoAnalise, List<Resposta> respostas){
+        static public void selectRespostaQuestionario(int codigoAnalise, List<Resposta> respostas)
+        {
             SqlDataReader reader, readerResposta;
 
             reader = DataBaseCommunicator.readData("SELECT cod_pergunta_questionario, numero_pergunta, TipoEscala.numeroEscalaResposta, cod_zona " +
@@ -485,50 +486,50 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                 "WHERE pergunta_questionario.cod_tipoEscala=TipoEscala.cod_tipoEscala " +
                                                 "AND pergunta_questionario.cod_analise=" + codigoAnalise);
 
-         while (reader.Read())
-           {
+            while (reader.Read())
+            {
                 //String
-            if (int.Parse(reader["numeroEscalaResposta"].ToString()) == 0)
-            {
-                readerResposta = DataBaseCommunicator.readData("SELECT cod_questionario, valor, resposta_questionario_numero.cod_zona, resposta_questionario_string.cod_zona,resposta_questionario_string.numero_pergunta " +
-                                                                   "FROM resposta_questionario_string, pergunta_questionario " +
-                                                                   "WHERE resposta_questionario_string.numero_pergunta=" + reader["numero_pergunta"].ToString() +
-                                                                   "AND resposta_questionario_string.numero_pergunta=pergunta_questionario.numero_pergunta" +
-                                                                   "AND respostas_questionario.cod_analise="+codigoAnalise);
-                while(readerResposta.Read())
+                if (int.Parse(reader["numeroEscalaResposta"].ToString()) == 0)
                 {
-                    respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()),int.Parse(reader["cod_item"].ToString()),int.Parse(readerResposta["cod_zona"].ToString()),int.Parse(readerResposta["valor"].ToString()),3));
-                }
+                    readerResposta = DataBaseCommunicator.readData("SELECT cod_questionario, valor, resposta_questionario_numero.cod_zona, resposta_questionario_string.cod_zona,resposta_questionario_string.numero_pergunta " +
+                                                                       "FROM resposta_questionario_string, pergunta_questionario " +
+                                                                       "WHERE resposta_questionario_string.numero_pergunta=" + reader["numero_pergunta"].ToString() +
+                                                                       "AND resposta_questionario_string.numero_pergunta=pergunta_questionario.numero_pergunta" +
+                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
+                    while (readerResposta.Read())
+                    {
+                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), 3));
+                    }
 
-            }
+                }
                 //memo
-            else if (int.Parse(reader["numeroEscalaResposta"].ToString()) == -1)
-            {
-                readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_memo.cod_questionario, resposta_questionario_memo.valor, resposta_questionario_memo.cod_zona,resposta_questionario_memo.numero_pergunta " +
-                                                                   "FROM resposta_questionario_memo, pergunta_questionario " +
-                                                                   "WHERE resposta_questionario_memo.numero_pergunta=" + reader["numero_pergunta"].ToString() +
-                                                                   "AND resposta_questionario_memo.numero_pergunta=pergunta_questionario.numero_pergunta" +
-                                                                   "AND respostas_questionario.cod_analise="+codigoAnalise);
-                while(readerResposta.Read())
+                else if (int.Parse(reader["numeroEscalaResposta"].ToString()) == -1)
                 {
-                    respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()),int.Parse(reader["cod_item"].ToString()),int.Parse(readerResposta["cod_zona"].ToString()),int.Parse(readerResposta["valor"].ToString()),3));
+                    readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_memo.cod_questionario, resposta_questionario_memo.valor, resposta_questionario_memo.cod_zona,resposta_questionario_memo.numero_pergunta " +
+                                                                       "FROM resposta_questionario_memo, pergunta_questionario " +
+                                                                       "WHERE resposta_questionario_memo.numero_pergunta=" + reader["numero_pergunta"].ToString() +
+                                                                       "AND resposta_questionario_memo.numero_pergunta=pergunta_questionario.numero_pergunta" +
+                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
+                    while (readerResposta.Read())
+                    {
+                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), 3));
+                    }
                 }
-            }
                 //numero
-            else
-            {
-                readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_numero.cod_questionario, resposta_questionario_numero.valor, resposta_questionario_numero.cod_zona, resposta_questionario_numero.numero_pergunta " +
-                                                                   "FROM resposta_questionario_numero, pergunta_questionario " +
-                                                                   "WHERE resposta_questionario_numero.numero_pergunta=" + reader["numero_pergunta"].ToString() +
-                                                                   "AND resposta_questionario_numero.numero_pergunta=pergunta_questionario.numero_pergunta" +
-                                                                   "AND respostas_questionario.cod_analise="+codigoAnalise);
-                while(readerResposta.Read())
+                else
                 {
-                    respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()),int.Parse(reader["cod_item"].ToString()),int.Parse(readerResposta["cod_zona"].ToString()),int.Parse(readerResposta["valor"].ToString()),3));
+                    readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_numero.cod_questionario, resposta_questionario_numero.valor, resposta_questionario_numero.cod_zona, resposta_questionario_numero.numero_pergunta " +
+                                                                       "FROM resposta_questionario_numero, pergunta_questionario " +
+                                                                       "WHERE resposta_questionario_numero.numero_pergunta=" + reader["numero_pergunta"].ToString() +
+                                                                       "AND resposta_questionario_numero.numero_pergunta=pergunta_questionario.numero_pergunta" +
+                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
+                    while (readerResposta.Read())
+                    {
+                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), 3));
+                    }
                 }
-            }
                 readerResposta.Close();
-        }
+            }
             reader.Close();
         }
 
@@ -536,35 +537,36 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* -----------------------------*/
         /* Respostas CheckList */
 
-        /* -----------------------------*/
+        static public void selectRespostaCheckList(int codigoAnalise, List<Resposta> respostas)
+        {
+            SqlDataReader readerZona, readerItem, readerResposta;
 
-        /* -----------------------------*/
-        /* Respostas Formulario numero */
+            readerZona = DataBaseCommunicator.readData("SELECT Zona_analise.cod_zona FROM Zona_Analise WHERE Zona_Analise.cod_analise=" + codigoAnalise);
+                
 
-        /* ---------------------------- */
+            while (readerZona.Read())
+            {
+                readerItem = DataBaseCommunicator.readData("SELECT Item.cod_item " +
+                                                               "FROM Item, Item_Analise " +
+                                                               "WHERE Item.cod_item = Item_Analise.cod_item " +
+                                                                    "AND Item_Analise.cod_analise=" + codigoAnalise);
+                while (readerItem.Read())
+                {
+                    readerResposta = DataBaseCommunicator.readData("SELECT cod_analise, cod_zona, cod_item, valor " +
+                                                                        "FROM resposta_checkList " +
+                                                                        "WHERE cod_analise=" + codigoAnalise +
+                                                                            " AND cod_zona= " + readerZona["cod_zona"] +
+                                                                            " AND cod_item= " + readerItem["cod_item"]);
+                    readerResposta.Read();
+                    respostas.Add(new Resposta(-1, -1, -1, int.Parse(readerItem["cod_item"].ToString()), int.Parse(readerZona["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()),1));
+                    readerResposta.Close();
+                }
+                readerItem.Close();
+            }
+            readerZona.Close();
+        }
 
-        /* -----------------------------*/
-        /* Respostas Formulario string */
-
-        /* -----------------------------*/
-
-        /* -----------------------------*/
-        /* Respostas Questinario numero */
-
-        /* ------------------------------*/
-
-        /* ------------------------------*/
-        /* Respostas Questionario String */
-
-        /* ------------------------------*/
-
-        /* ------------------------------*/
-        /* Respostas Questionario Memo */
-
-        /* ------------------------------*/
-
-        /* ----------------------------------------------*/
-}
+    }
 
 }
 
