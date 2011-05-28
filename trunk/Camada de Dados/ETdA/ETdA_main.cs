@@ -11,7 +11,7 @@ namespace ETdA.Camada_de_Dados.ETdA
     class ETdA
     {
         private static Analista analista;
-        private static IList<Tuplo<String,String>> cod_nome;
+        private static Dictionary<string, string> cod_nome;
         private static Projecto projectoAberto;
 
         public static Analista Analista
@@ -24,10 +24,7 @@ namespace ETdA.Camada_de_Dados.ETdA
         {
             get 
             {
-                List<String> nomes = new List<string>();
-                foreach (Tuplo<String, String> t in cod_nome)
-                    nomes.Add(t.Snd);
-                return nomes;
+                return new List<string>(cod_nome.Values);
             }
         }
 
@@ -41,7 +38,7 @@ namespace ETdA.Camada_de_Dados.ETdA
         /* Metodos */
         /* ------------------------------------------------------ */
 
-        private static void init()
+        public static void init()
         {
             cod_nome = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
 
@@ -50,10 +47,11 @@ namespace ETdA.Camada_de_Dados.ETdA
 
         private static List<String> projectosRecentes()
         {
+            List<String> proj = new List<string>(cod_nome.Values);
             List<String> projectos_recentes = new List<String>();
 
-            for (int i = 0; i < 5 && i < cod_nome.Count; i++)
-                projectos_recentes.Add(cod_nome[i].Snd);
+            for (int i = 0; i < 5 && i < proj.Count; i++)
+                projectos_recentes.Add(proj[i]);
 
             return projectos_recentes;
         }
@@ -65,12 +63,9 @@ namespace ETdA.Camada_de_Dados.ETdA
          */
         public static Boolean podeAdicionarProjecto(String nomeEstabelecimento)
         {
-            Boolean found = false;
-            for (int i = 0; i < cod_nome.Count && !found; i++)
-                if (cod_nome[i].Snd == nomeEstabelecimento)
-                    found = true;
+            List<string> p = new List<string>(cod_nome.Values);
 
-            return found;
+            return p.Contains(nomeEstabelecimento);
         }
 
         /*
@@ -87,25 +82,26 @@ namespace ETdA.Camada_de_Dados.ETdA
                 FuncsToDataBase.selectCodigoProjecto(nomeEstabelecimento);
             p.Codigo = cod;
 
-            Tuplo<String, String> t = new Tuplo<String, String>(p.Codigo, p.Nome);
-
-            cod_nome.Add(t);
+            cod_nome.Add(p.Codigo,nomeEstabelecimento);
             projectoAberto = p;
         }
 
         /*
          * Abre um projecto com o nome de estabelecimento Recebido
          */
-        public static void abreProjecto(String nomeEstabelecimento)
+        public static void abreProjecto(string nomeEstabelecimento)
         {
             String cod = null;
             Boolean found = false;
             for (int i = 0; i < cod_nome.Count && !found; i++)
-                if (cod_nome[i].Snd == nomeEstabelecimento)
+            {
+                KeyValuePair<string, string> p = cod_nome.ElementAt(i);
+                if (p.Value == nomeEstabelecimento)
                 {
-                    cod = cod_nome[i].Fst;
+                    cod = p.Key;
                     found = true;
                 }
+            }
 
             projectoAberto = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectProjecto(cod);
@@ -122,15 +118,18 @@ namespace ETdA.Camada_de_Dados.ETdA
             String cod = null;
             Boolean found = false;
             for (int i = 0; i < cod_nome.Count && !found; i++)
-                if (cod_nome[i].Snd == nomeEstabelecimento)
+            {
+                KeyValuePair<string, string> p = cod_nome.ElementAt(i);
+                if (p.Value == nomeEstabelecimento)
                 {
-                    cod = cod_nome[i].Fst; 
-                    cod_nome.RemoveAt(i);
+                    cod = p.Key;
+                    cod_nome.Remove(cod);
                     found = true;
                 }
+            }
 
-            /*Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
-                deleteProjecto(cod);*/
+            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+                deleteProjecto(cod);
         }
 
         public static void modificaProjecto(String nomeEstabelecimentoNovo)
@@ -150,39 +149,25 @@ namespace ETdA.Camada_de_Dados.ETdA
         /* Fim Gestao Projectos */
 
         /* Gestao de Analistas */
-        /*
-        public static void adicionaAnalista(String username, String password)
+        
+        public static bool adicionaAnalista(String username, String password)
         {
-            Camada_de_Dados.DataBaseCommunicator.
+            return Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.insertAnalista(username, password);
         }
-
+        /*
         public static void removeAnalista(String username, String password)
         {
             Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.deleteAnalista(username);
         }
-
-        public static void editAnalista(String username, String password)
-        {
-            Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.updateAnalista(username, password);
-        }
-
-        public static Boolean isAnalista(String username, String password)
+        */
+        public static bool loginAnalista(String server, String database, 
+            String username, String password)
         {
             return Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.selectAnalista(username, password);
+                FuncsToDataBase.ligaAnalista(server, database, username, password);
         }
-
-        public static void loginAnalista(String username, String password)
-        {
-            Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.ligaAnalista(username, password);
-
-            init();
-        }
-        */
         /* Fim de Gestao de Analistas */
     }
 }

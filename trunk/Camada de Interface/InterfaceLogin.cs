@@ -28,6 +28,11 @@ namespace ETdA.Camada_de_Interface
 
 			if (GestaodeAnalistas.login(user, pass))
 			{	//  Se consegue ligar a base de dados
+                if (checkBox1.Checked)
+                    GestaodeAnalistas.guarda_dados(user, pass);
+                else
+                    GestaodeAnalistas.remove_dados();
+
 				closeFrame();
 				//umaClassePorreira.Main();
 			}
@@ -48,14 +53,12 @@ namespace ETdA.Camada_de_Interface
 
         private void RegistarActionPerformed(object sender, EventArgs e)
         {
-            //InterfaceRegisto ir = new InterfaceRegisto();
             InterfaceRegisto.main();
         }
 
         private void closeFrame()
         {
-            Dispose();
-            Close();
+            Visible = false;
             InterfaceGuestaoProjectos.main(false);
         }
 

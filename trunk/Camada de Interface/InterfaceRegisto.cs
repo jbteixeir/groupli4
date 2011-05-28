@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ETdA.Camada_de_Negócio;
 
 namespace ETdA.Camada_de_Interface
 {
@@ -66,7 +67,16 @@ namespace ETdA.Camada_de_Interface
 
         private void regista_analista(String usr, String pw)
         {
-            //TODO
+            bool b = GestaodeAnalistas.registaAnalista(usr,pw);
+
+            if (!b)
+                MessageBox.Show("Não foi possível efectuar registo", "Connection Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            if (checkBox1.Checked)
+                GestaodeAnalistas.guarda_dados(usr, pw);
+
+            endFrame();
         }
 
         private void endFrame()

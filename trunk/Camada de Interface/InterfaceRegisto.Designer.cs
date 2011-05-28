@@ -40,6 +40,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
@@ -74,7 +75,7 @@
             // 
             // Registar
             // 
-            this.Registar.Location = new System.Drawing.Point(205, 88);
+            this.Registar.Location = new System.Drawing.Point(205, 112);
             this.Registar.Name = "Registar";
             this.Registar.Size = new System.Drawing.Size(75, 23);
             this.Registar.TabIndex = 3;
@@ -84,7 +85,7 @@
             // 
             // Cancelar
             // 
-            this.Cancelar.Location = new System.Drawing.Point(115, 88);
+            this.Cancelar.Location = new System.Drawing.Point(115, 112);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(75, 23);
             this.Cancelar.TabIndex = 4;
@@ -130,11 +131,22 @@
             // 
             this.errorProvider3.ContainerControl = this;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(115, 89);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(115, 17);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "Manter-me Logado";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // InterfaceRegisto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 119);
+            this.ClientSize = new System.Drawing.Size(307, 142);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -167,5 +179,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

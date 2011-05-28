@@ -15,6 +15,22 @@ namespace ETdA.Camada_de_Interface
         public InterfaceGuestaoProjectos()
         {
             InitializeComponent();
+
+            GestaodeProjectos.init();
+
+            initTree();
+        }
+
+        private void initTree()
+        {
+            List<string> nomes = GestaodeProjectos.nomesProjectos();
+            TreeNode nodos = new TreeNode();
+            this.treeView_Projectos.Nodes.Add(nodos);
+
+            for (int i = 0; i < nomes.Count; i++)
+            {
+                nodos.Nodes.Add(nomes[i]);
+            }
         }
 
         private void MouseEnterAction(object sender, EventArgs e)
