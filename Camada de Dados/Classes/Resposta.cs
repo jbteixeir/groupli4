@@ -14,6 +14,7 @@ namespace ETdA.Camada_de_Dados.Classes
         private int cod_item;
         private int cod_zona;
         private int valor;
+        private string valor_string;
         /*
          * Variável tipo
          * 1 - checklist
@@ -24,7 +25,7 @@ namespace ETdA.Camada_de_Dados.Classes
 
 
         //Constructores
-        public Resposta(int cod_questionario, int cod_fichaAvaliacao, float numero_pergunta, int cod_item, int cod_zona, int valor, int tipo)
+        public Resposta(int cod_questionario, int cod_fichaAvaliacao, float numero_pergunta, int cod_item, int cod_zona, int valor, string valor_string, int tipo)
         {
             this.cod_questionario = cod_questionario;
             this.cod_fichaAvaliacao = cod_fichaAvaliacao;
@@ -32,6 +33,7 @@ namespace ETdA.Camada_de_Dados.Classes
             this.cod_item = cod_item;
             this.cod_zona = cod_zona;
             this.valor = valor;
+            this.valor_string = valor_string;
             this.tipo = tipo;
         }
 
@@ -43,6 +45,7 @@ namespace ETdA.Camada_de_Dados.Classes
             this.cod_item = -1;
             this.cod_zona = -1;
             this.valor = -1;
+            this.valor = "";
             this.tipo = -1;
         }
 
@@ -82,6 +85,12 @@ namespace ETdA.Camada_de_Dados.Classes
         {
             get { return valor; }
             set { valor = value; }
+        }
+
+         public String ValorString
+        {
+            get { return valor_string; }
+            set { valor_string = value; }
         }
 
         public int Tipo
