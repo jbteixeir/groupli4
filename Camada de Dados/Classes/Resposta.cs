@@ -8,6 +8,8 @@ namespace ETdA.Camada_de_Dados.Classes
     class Resposta
     {
         //Variaveis de Instancia
+        private int cod_questionario;
+        private int cod_fichaAvaliacao;
         private float numero_pergunta;
         private int cod_item;
         private int cod_zona;
@@ -22,8 +24,10 @@ namespace ETdA.Camada_de_Dados.Classes
 
 
         //Constructores
-        public Resposta(float numero_pergunta, int cod_item, int cod_zona, int valor, int tipo)
+        public Resposta(int cod_questionario, int cod_fichaAvaliacao, float numero_pergunta, int cod_item, int cod_zona, int valor, int tipo)
         {
+            this.cod_questionario = cod_questionario;
+            this.cod_fichaAvaliacao = cod_fichaAvaliacao;
             this.numero_pergunta = numero_pergunta;
             this.cod_item = cod_item;
             this.cod_zona = cod_zona;
@@ -33,6 +37,8 @@ namespace ETdA.Camada_de_Dados.Classes
 
         public Resposta()
         {
+            this.cod_questionario = -1;
+            this.cod_fichaAvaliacao = -1;
             this.numero_pergunta = -1;
             this.cod_item = -1;
             this.cod_zona = -1;
@@ -41,6 +47,19 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
         //Métodos
+
+        public int CodigoQuestionario
+        {
+            get { return cod_questionario; }
+            set { cod_questionario = value; }
+        }
+
+        public int CodigoFichaAvaliacao
+        {
+            get { return cod_fichaAvaliacao; }
+            set { cod_fichaAvaliacao = value; }
+        }
+
         public float NumeroPergunta
         {
             get { return numero_pergunta; }
@@ -70,6 +89,6 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return tipo; }
             set { tipo = value; }
         }
-
+        
     }
 }
