@@ -90,6 +90,21 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        private void initAnalysisPage(string nome_projecto)
+        {
+            System.Windows.Forms.TabPage p =
+                new System.Windows.Forms.TabPage();
+
+            this.tabControl1.Controls.Add(p);
+
+            p.Text = nome_projecto;
+            p.Size = new System.Drawing.Size(218, 385);
+
+
+
+
+        }
+
         private void ProjectoSelectedAction(object sender, TreeViewEventArgs e)
         {
             int index = 0;
@@ -131,8 +146,9 @@ namespace ETdA.Camada_de_Interface
         private void OpenProjectClick(object sender, EventArgs e)
         {
             Label l = (Label) sender;
-            //gp.abreProjecto(l.Text);
-            endFrame();
+            GestaodeProjectos.abreProjecto(l.Text);
+
+            initAnalysisPage(l.Text);
         }
 
         private void endFrame()
