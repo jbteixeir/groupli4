@@ -233,7 +233,7 @@ namespace ETdA.Camada_de_Interface
 
                 System.Windows.Forms.Label l4 =
                     new System.Windows.Forms.Label();
-                l4.Width = 200;
+                l4.Width = 150;
                 l4.Text = "Importar Dados de Ficheiro";
                 l4.Location = new System.Drawing.Point(7, 110);
                 l4.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -254,6 +254,70 @@ namespace ETdA.Camada_de_Interface
                 l5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
                 p.Controls.Add(l5);
+
+                System.Windows.Forms.Label l6 =
+                    new System.Windows.Forms.Label();
+                l6.Width = 150;
+                l6.Text = "Gerar Formulários Online";
+                l6.Location = new System.Drawing.Point(7, 150);
+                l6.Cursor = System.Windows.Forms.Cursors.Hand;
+                //l6.Click += new System.EventHandler(this.OpenProjectClick);
+                l6.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l6.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                p.Controls.Add(l6);
+
+                System.Windows.Forms.Label l7 =
+                    new System.Windows.Forms.Label();
+                l7.Width = 150;
+                l7.Text = "Website CheckList";
+                l7.Location = new System.Drawing.Point(190, 150);
+
+                p.Controls.Add(l7);
+
+                CheckBox checkBox1 = new System.Windows.Forms.CheckBox();
+                checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
+
+                checkBox1.Text = "Activar";
+                checkBox1.Location = new System.Drawing.Point(350, 150);
+                //l8.Click += new System.EventHandler(this.OpenProjectClick);
+
+                p.Controls.Add(checkBox1);
+
+                System.Windows.Forms.Label l8 =
+                    new System.Windows.Forms.Label();
+                l8.Width = 150;
+                l8.Text = "Website Ficha de Avaliação";
+                l8.Location = new System.Drawing.Point(190, 180);
+
+                p.Controls.Add(l8);
+
+                CheckBox checkBox2 = new System.Windows.Forms.CheckBox();
+                checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
+
+                checkBox2.Text = "Activar";
+                checkBox2.Location = new System.Drawing.Point(350, 180);
+                //l8.Click += new System.EventHandler(this.OpenProjectClick);
+
+                p.Controls.Add(checkBox2);
+
+                System.Windows.Forms.Label l9 =
+                    new System.Windows.Forms.Label();
+                l9.Width = 150;
+                l9.Text = "Website Ficha de Avaliação";
+                l9.Location = new System.Drawing.Point(190, 210);
+
+                p.Controls.Add(l9);
+
+                CheckBox checkBox3 = new System.Windows.Forms.CheckBox();
+                checkBox3.Appearance = System.Windows.Forms.Appearance.Button;
+
+                checkBox3.Text = "Activar";
+                checkBox3.Location = new System.Drawing.Point(350, 210);
+                //l8.Click += new System.EventHandler(this.OpenProjectClick);
+
+                p.Controls.Add(checkBox3);
+
             }
             tabControl1.SelectedIndex = getTabNumber(nome_projecto + "." + nome_analise);
         }
