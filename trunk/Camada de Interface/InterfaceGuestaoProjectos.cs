@@ -61,14 +61,37 @@ namespace ETdA.Camada_de_Interface
 
                 System.Windows.Forms.Label l2 =
                     new System.Windows.Forms.Label();
-                l2.Text = "Projectos";
-                l2.Location = new System.Drawing.Point(7, 70);
+                l2.Width = 200;
+                l2.Text = "Criar Novo Projecto";
+                l2.Location = new System.Drawing.Point(7, 30);
+                l2.Cursor = System.Windows.Forms.Cursors.Hand;
+                //l2.Click += new System.EventHandler(this.OpenProjectClick);
+                l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
                 p.Controls.Add(l2);
 
+                System.Windows.Forms.Label l3 =
+                    new System.Windows.Forms.Label();
+                l3.Text = "Abrir Projecto";
+                l3.Location = new System.Drawing.Point(7, 55);
+                l3.Cursor = System.Windows.Forms.Cursors.Hand;
+                //l3.Click += new System.EventHandler(this.OpenProjectClick);
+                l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                p.Controls.Add(l3);
+
+                System.Windows.Forms.Label l4 =
+                    new System.Windows.Forms.Label();
+                l4.Text = "Projectos";
+                l4.Location = new System.Drawing.Point(7, 120);
+
+                p.Controls.Add(l4);
+
                 List<string> rs = GestaodeProjectos.projectosRecentes();
 
-                int x = 7, y = 60;
+                int x = 7, y = 110;
                 foreach (string s in rs)
                 {
                     if (x + 10 < Size.Width)
@@ -148,6 +171,7 @@ namespace ETdA.Camada_de_Interface
                     }
                 }
             }
+            tabControl1.SelectedIndex = 1;
         }
 
         private void MouseEnterAction(object sender, EventArgs e)
