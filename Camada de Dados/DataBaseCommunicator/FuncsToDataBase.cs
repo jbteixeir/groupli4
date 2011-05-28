@@ -14,25 +14,38 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* Analistas */
 
         /**
-         * Verifica se um existe um analista na base de dados
-         * @param username Username do analista
-         * @param password Password do analista
-         */
-        //public static Boolean selectAnalista(String username, String password);
-
-        /**
          * Liga o analista à sua base de dados
          * @param username Usernmae do analista
          * @param password Password do analista
          */
-        //public static void ligaAnalista(String username, String password);
+        public static bool ligaAnalista(String server, 
+            String database, String username, String password)
+        {
+            return Camada_de_Dados.DataBaseCommunicator.
+                DataBaseCommunicator.connect(server,username,password,database);
+        }
 
         /**
          * Insere um novo analista na base de dados (e cria as tabelas?)
          * @param username Username do analista
          * @param password Password do analista
          */
-        //public static void insertAnalista(String username, String password);
+        public static bool insertAnalista(String username, String password)
+        {
+            try
+            {
+                List<string> querys = ParserCreateAnalista.devolveQuery(username, password);
+
+                foreach (string s in querys)
+                    Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(s);
+
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
         
 
         /**
@@ -41,13 +54,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         //public static void deleteAnalista(String username);
 
-        /**
-         * Altera a password de um analista
-         * @param username Username do analista
-         * @param password Nova password do analista
-         */
-        //public static void updateAnalista(String username, String password);
-
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
@@ -55,29 +61,28 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         /**
          * Retorna os codigos e nomes de todos os Projectos por ordem de data
-         * @return List<Tuplo<String,String>> Codigo e Nomes dos estabecimentos dos projectos
+         * @return Dictionary<string, string> Codigo e Nomes dos estabecimentos dos projectos
          */
-        public static List<Tuplo<String,String>> selectNomeProjectos()
+        public static Dictionary<string, string> selectNomeProjectos()
         {
             String query = "select cod_projecto,estabelecimento from projecto orderby data DESC";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            List<Tuplo<String,String>> cod_nome = new List<Tuplo<String,String>>();
+            Dictionary<string, string> cod_nome = new Dictionary<string, string>();
 
             while (r.Read())
             {
                 String cod = (string)r["cod_projecto"];
                 String nome = (string)r["estabelecimento"];
-                Tuplo<String, String> t = new Tuplo<String,String>(cod, nome);
-                cod_nome.Add(t);
+                cod_nome.Add(cod, nome);
             }
 
             return cod_nome;
         }
 
         /**
-         * Devolve um Projecto do analista com o nome recebido
-         * @param nomeEstabelecimeto Nome do estabeldecimento do projecto que é requerido 
+         * Devolve um Projecto do analista com o codigo recebido
+         * @param cod Codigo do projecto que é requerido 
          * @return Projecto Projecto requerido
          */
         public static Projecto selectProjecto(String cod)
@@ -139,6 +144,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             String query = "delete * from projecto where" + "cod_projecto = " + codProjecto; 
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+
                 
         }
 
@@ -151,19 +157,23 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* ----------------------------------------------*/
         /* Analises */
 
-        public static List<Tuplo<String, String>> selectNomesAnalises(String codProjecto)
+        /**
+         * Retorna os codigos e nomes das analises
+         * @param codProjecto O Codigo do projecto à qual as analises fazem parte
+         * @return Dictionary<string, string> Os codigos e os nomes das analises
+         */
+        public static Dictionary<string, string> selectNomesAnalises(String codProjecto)
         {
             String query = "select cod_projecto,cod_analise,nomeAnalise from analise where" + "cod_projecto = " + codProjecto + "orderby data DESC";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            List<Tuplo<String,String>> cod_nome = new List<Tuplo<String,String>>();
+            Dictionary<string, string> cod_nome = new Dictionary<string, string>();
 
             while (r.Read())
             {
                 String cod = (string)r["cod_analise"];
                 String nome = (string)r["nomeAnalise"];
-                Tuplo<String, String> t = new Tuplo<String,String>(cod, nome);
-                cod_nome.Add(t);
+                cod_nome.Add(cod,nome);
             }
 
             return cod_nome;

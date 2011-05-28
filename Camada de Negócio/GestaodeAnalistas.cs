@@ -10,7 +10,10 @@ namespace ETdA.Camada_de_Negócio
 	class GestaodeAnalistas
 	{
 		//Métodos
-		//void registaAnalista(String nome, String username, String password);
+        public static bool registaAnalista(String username, String password)
+        {
+            return Camada_de_Dados.ETdA.ETdA.adicionaAnalista(username,password);
+        }
 
 		//void removeAnalisa(String codAnalista);
 		//void logout();
@@ -50,7 +53,7 @@ namespace ETdA.Camada_de_Negócio
                 string password = sr.ReadLine();
                 sr.Close();
 
-                return DataBaseCommunicator.connect(server, username, password, database);
+                return Camada_de_Dados.ETdA.ETdA.loginAnalista(server, database, username, password);
             }
             catch
             {
@@ -72,7 +75,7 @@ namespace ETdA.Camada_de_Negócio
                 string database = sr.ReadLine();
                 sr.Close();
 
-                return DataBaseCommunicator.connect(server, username, password, database);
+                return Camada_de_Dados.ETdA.ETdA.loginAnalista(server, database, username, password);
             }
             catch
             {
@@ -80,5 +83,19 @@ namespace ETdA.Camada_de_Negócio
             }
         }
 
+        public static void guarda_dados(string username, string password)
+        {
+            System.IO.StreamWriter sr = new System.IO.StreamWriter("Utilizador.cfg");
+
+            sr.WriteLine(username);
+            sr.WriteLine(password);
+            sr.Close();
+        }
+
+        public static void remove_dados()
+        {
+            System.IO.StreamWriter sr = new System.IO.StreamWriter("Utilizador.cfg");
+            sr.Close();
+        }
 	}
 }
