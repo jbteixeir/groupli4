@@ -60,18 +60,8 @@
             this.treeView_Projectos = new System.Windows.Forms.TreeView();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.Projecto5 = new System.Windows.Forms.Label();
-            this.Projecto4 = new System.Windows.Forms.Label();
-            this.Projecto3 = new System.Windows.Forms.Label();
-            this.Projeco2 = new System.Windows.Forms.Label();
-            this.Projecto1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -81,9 +71,6 @@
             this.toolStripContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip2.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -366,137 +353,18 @@
             this.projectosToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.projectosToolStripMenuItem.Text = "Projectos";
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(227, 7);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(479, 385);
             this.tabControl1.TabIndex = 2;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.panel1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(471, 359);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.Projecto5);
-            this.panel1.Controls.Add(this.Projecto4);
-            this.panel1.Controls.Add(this.Projecto3);
-            this.panel1.Controls.Add(this.Projeco2);
-            this.panel1.Controls.Add(this.Projecto1);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-4, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(475, 359);
-            this.panel1.TabIndex = 1;
-            // 
-            // Projecto5
-            // 
-            this.Projecto5.AutoSize = true;
-            this.Projecto5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Projecto5.Location = new System.Drawing.Point(10, 239);
-            this.Projecto5.Name = "Projecto5";
-            this.Projecto5.Size = new System.Drawing.Size(52, 13);
-            this.Projecto5.TabIndex = 18;
-            this.Projecto5.Text = "Projecto5";
-            this.Projecto5.Click += new System.EventHandler(this.OpenProjectClick);
-            this.Projecto5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-            this.Projecto5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-            // 
-            // Projecto4
-            // 
-            this.Projecto4.AutoSize = true;
-            this.Projecto4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Projecto4.Location = new System.Drawing.Point(10, 210);
-            this.Projecto4.Name = "Projecto4";
-            this.Projecto4.Size = new System.Drawing.Size(52, 13);
-            this.Projecto4.TabIndex = 17;
-            this.Projecto4.Text = "Projecto4";
-            this.Projecto4.Click += new System.EventHandler(this.OpenProjectClick);
-            this.Projecto4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-            this.Projecto4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-            // 
-            // Projecto3
-            // 
-            this.Projecto3.AutoSize = true;
-            this.Projecto3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Projecto3.Location = new System.Drawing.Point(10, 181);
-            this.Projecto3.Name = "Projecto3";
-            this.Projecto3.Size = new System.Drawing.Size(52, 13);
-            this.Projecto3.TabIndex = 16;
-            this.Projecto3.Text = "Projecto3";
-            this.Projecto3.Click += new System.EventHandler(this.OpenProjectClick);
-            this.Projecto3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-            this.Projecto3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-            // 
-            // Projeco2
-            // 
-            this.Projeco2.AutoSize = true;
-            this.Projeco2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Projeco2.Location = new System.Drawing.Point(10, 152);
-            this.Projeco2.Name = "Projeco2";
-            this.Projeco2.Size = new System.Drawing.Size(52, 13);
-            this.Projeco2.TabIndex = 15;
-            this.Projeco2.Text = "Projecto2";
-            this.Projeco2.Click += new System.EventHandler(this.OpenProjectClick);
-            this.Projeco2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-            this.Projeco2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-            // 
-            // Projecto1
-            // 
-            this.Projecto1.AutoSize = true;
-            this.Projecto1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Projecto1.Location = new System.Drawing.Point(10, 123);
-            this.Projecto1.Name = "Projecto1";
-            this.Projecto1.Size = new System.Drawing.Size(52, 13);
-            this.Projecto1.TabIndex = 14;
-            this.Projecto1.Text = "Projecto1";
-            this.Projecto1.Click += new System.EventHandler(this.OpenProjectClick);
-            this.Projecto1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-            this.Projecto1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 100);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Projectos Recentes";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(75, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Analisador";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bem-Vindo, ";
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
             // 
             // InterfaceGuestaoProjectos
             // 
@@ -524,10 +392,6 @@
             this.panel2.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -558,11 +422,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         protected System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TreeView treeView_Projectos;
@@ -570,11 +429,6 @@
         private System.Windows.Forms.ToolStripMenuItem projectosToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.Label Projecto5;
-        private System.Windows.Forms.Label Projecto4;
-        private System.Windows.Forms.Label Projecto3;
-        private System.Windows.Forms.Label Projeco2;
-        private System.Windows.Forms.Label Projecto1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TabControl tabControl1;
     }
 }
