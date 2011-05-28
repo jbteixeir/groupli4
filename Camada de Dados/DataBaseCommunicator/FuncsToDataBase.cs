@@ -12,7 +12,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
     {
         /* ----------------------------------------------*/
         /* Analistas */
-
+        #region Analistas
         /**
          * Liga o analista à sua base de dados
          * @param username Usernmae do analista
@@ -53,12 +53,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param username Username do analista
          */
         //public static void deleteAnalista(String username);
-
+        #endregion
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Projectos */
-
+        #region Projectos
         /**
          * Retorna os codigos e nomes de todos os Projectos por ordem de data
          * @return Dictionary<string, string> Codigo e Nomes dos estabecimentos dos projectos
@@ -153,10 +153,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param p Projecto que irá ser editado
          */
         //public static void updateProjecto(Projecto p);
+        #endregion
+        /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Analises */
-
+        #region Analises
         /**
          * Retorna os codigos e nomes das analises
          * @param codProjecto O Codigo do projecto à qual as analises fazem parte
@@ -196,8 +198,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                a = a = new Analise((string)r["cod_analise"],
-                    (string)r["codProjecto"],
+                a = new Analise((string)r["cod_analise"],
                    (DateTime)r["dataCriacao"],
                    (string)r["nomeAnalise"],
                    (string)r["tipoAnalise"],
@@ -305,11 +306,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param a A analise que ira ser modificada
          */
         //public static void updateAnalise(String codProjecto, Analise a);
-
+        #endregion
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Zonas */
+        #region Zonas
 
         public static List<Zona> selectZonas()
         {
@@ -343,11 +345,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         //public static void updateZona(Zona z);
 
+        #endregion
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Zonas - Analise */
-
+        #region Zonas-Analise
         public static List<Zona> selectZonasAnalise(String codAnalise)
         {
             String query = "select cod zona, nome_zona from zona_analise, zona where " + "cod_analise = " + codAnalise + "and zona_analise.cod_zona = zona.cod_zona" + ";";
@@ -363,9 +366,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
             return zonas;
         }
-
-
-
+        #endregion
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
