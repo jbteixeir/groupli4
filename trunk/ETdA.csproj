@@ -53,6 +53,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -100,6 +101,18 @@
     <Compile Include="Camada de Interface\InterfaceRegisto.Designer.cs">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\Interface_CriarAnalise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_CriarAnalise.Designer.cs">
+      <DependentUpon>Interface_CriarAnalise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_CriarProjecto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_CriarProjecto.Designer.cs">
+      <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
     <Compile Include="Camada de Negócio\GestaodeProjectos.cs" />
@@ -115,6 +128,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\InterfaceRegisto.resx">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_CriarAnalise.resx">
+      <DependentUpon>Interface_CriarAnalise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_CriarProjecto.resx">
+      <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
