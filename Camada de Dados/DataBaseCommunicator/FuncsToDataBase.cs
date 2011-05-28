@@ -65,7 +65,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static Dictionary<string, string> selectNomeProjectos()
         {
-            String query = "select cod_projecto,estabelecimento from projecto order by ultimaActualizacao DESC";
+            String query = "select cod_projecto,estabelecimento from projecto order by ultimaActualizacao DESC;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             Dictionary<string, string> cod_nome = new Dictionary<string, string>();
@@ -88,7 +88,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         public static Projecto selectProjecto(String cod)
         {
             String query = "select * from projecto where cod_projecto = " 
-                + cod;
+                + cod + ";";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
                 DataBaseCommunicator.readData(query);
@@ -113,7 +113,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         public static String selectCodigoProjecto(String nomeEstabelecimento)
         {
             String query = "select cod_projecto from projecto where" +
-                "estabelecimento = " + nomeEstabelecimento;
+                "estabelecimento = " + nomeEstabelecimento + ";";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
                 DataBaseCommunicator.readData(query);
 
@@ -128,7 +128,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             String query = "insert into projecto values(" +
             p.Nome + "," + "CAST('" + p.Data.ToString("yyyymmdd hh:mm:ss") 
-            + "' AS datetime)";
+            + "' AS datetime);";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
@@ -141,7 +141,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static void deleteProjecto(String codProjecto)
         {
-            String query = "delete * from projecto where" + "cod_projecto = " + codProjecto; 
+            String query = "delete * from projecto where" + "cod_projecto = " + codProjecto + ";"; 
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
 
@@ -164,7 +164,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static Dictionary<string, string> selectNomesAnalises(String codProjecto)
         {
-            String query = "select cod_analise,nomeAnalise from analise where cod_projecto = " + codProjecto ;
+            String query = "select cod_analise,nomeAnalise from analise where cod_projecto = " + codProjecto + ";";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             Dictionary<string, string> cod_nome = new Dictionary<string, string>();
@@ -187,7 +187,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
        public static Analise selectAnalise(String codAnalise)
         {
             String query = "select * from analise where cod_analise = " 
-                + codAnalise;
+                + codAnalise + ";";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
                 DataBaseCommunicator.readData(query);
@@ -196,64 +196,32 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-               /* a = new Analise((string)r["cod_analise"],
+                a = new Analise((string)r["cod_analise"],
                     (string)r["cod_projecto"], 
                     (DateTime)r["dataCriacao"],
                     (string)r["nomeAnalise"],
                     (string)r["tipoAnalise"],
+                    (List<Zona>)r["zonas"],
+                    (List<Item>)r["items"],
                     (int)r["estadoWebCheckList"],
                     (int)r["estadoWebFichaAvaliacao"],
                     (int)r["estadoWebQuestionario"],
-                    new List<Tuple<String,String, DateTime,String,String,int,int,int>>());
-                */
-            }
-
-            return a;
-        }
-
-        public static Analise selectZonasAnalise(String codAnalise)
-        {
-            String query = "select cod_zona,cod_analise,nome_zona from zona_analise, zona where"
-                + "cod_analise = " + codAnalise + "and zona_analise.cod_zona = zona.cod_zona group by nome_zona";
-
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
-                DataBaseCommunicator.readData(query);
-
-            Analise a = null;
-
-            while (r.Read())
-            {
+                    new List<Tuple<String,String,DateTime,String,String,List<Zona>, List<Item>,int,int,int>>());
                 
             }
 
             return a;
-
         }
 
-        public static Analise selectItemsAnalise(String codAnalise)
-        {
-            String query = "select cod_item,cod_analise,nome_item from item_analise, item where"
-                + "cod_analise = " + codAnalise + "and item_analise.cod_item = item.cod_item group by nome_item";
+      // public static Analise selectZonasAnalise(String codAnalise);
 
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
-                DataBaseCommunicator.readData(query);
-
-            Analise a = null;
-
-            while (r.Read())
-            {
-
-            }
-
-            return a;
-
-        }
+     //  public static Analise selectItemsAnalise(String codAnalise):
 
 
         public static String selectCodigoAnalise(DateTime data)
         {
             String query = "select cod_analise from analise where" +
-                "dataCriacao = " + data;
+                "dataCriacao = " + data + ";";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
                 DataBaseCommunicator.readData(query);
 
@@ -272,14 +240,32 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             String query = "insert into analise values(" + codProjecto + "," 
             + "CAST('" + a.Data.ToString("yyyymmdd hh:mm:ss") + "' AS datetime)" 
             + "," + a.Nome + "," + a.Tipo + "," + a.EstadoWebCL + "," + a.EstadoWebFA
-            + "," + a.EstadoWebQ;
+            + "," + a.EstadoWebQ + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
 
-        //public static void insertZonaAnalise(List<Zona> codZona, List<Analise> codAnalise);
+        public static void insertZonasAnalise(List<Zona> zonas, String codAnalise)
+        {
+            foreach (Zona z in zonas)
+            {
+                String query = "insert into zona_analise values(" + z.Codigo + "," + codAnalise + ";";
 
-        //public static void insertItemsAnalise(List<Item> codItem, List<Analise> codAnalise);
+                Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+            }
+
+        }
+
+        public static void insertItemsAnalise(List<Item> items, String codAnalise)
+        {
+            foreach (Item i in items)
+            {
+                String query = "insert into item_analise values(" + i.Codigo + "," + codAnalise + ";";
+
+                Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+            }
+
+        }
 
 
         /**
@@ -291,12 +277,29 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static void deleteAnalise(String codAnalise)
         {
-            String query = "delete * from analise where" + "cod_analise = " + codAnalise;
+            String query = "delete * from analise where" + "cod_analise = " + codAnalise + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
 
         }
 
+        public static void deleteZonasAnalise(List<Zona> zonas, String codAnalise)
+        {
+            foreach (Zona z in zonas)
+            {
+                String query = "delete * from zona_analise where " + "cod_analise = " + codAnalise + ";";
+                Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+            }
+        }
+
+        public static void deleteItemsAnalise (List<Item> items, String codAnalise)
+        {
+            foreach (Item i in items)
+            {
+                String query = "delete * from item_analise where " + "cod_analise = " + codAnalise + ";";
+                Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+            }
+        }
 
         /**
          * Modifica a informacao da analise passada como argumento
@@ -312,7 +315,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static List<Zona> selectZonas()
         {
-            String query = "select * from zona";
+            String query = "select * from zona;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             List<Zona> zonas = new List<Zona>();
@@ -328,14 +331,14 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static void insertZona(Zona z)
         {
-            String query = "insert into zona values(" + z.Codigo + "," + z.Nome ;
+            String query = "insert into zona values(" + z.Codigo + "," + z.Nome + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
 
         public static void deleteZona(String codZona)
         {
-            String query = "delete * from zona where" + "cod_zona = " + codZona;
+            String query = "delete * from zona where" + "cod_zona = " + codZona + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
@@ -349,7 +352,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static List<Zona> selectZonasAnalise(String codAnalise)
         {
-            String query = "select * from zona_analise where " + "cod_analise = " + codAnalise;
+            String query = "select cod zona, nome_zona from zona_analise, zona where " + "cod_analise = " + codAnalise + "and zona_analise.cod_zona = zona.cod_zona" + ";";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             List<Zona> zonas = new List<Zona>();
@@ -363,20 +366,32 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return zonas;
         }
 
-        //public static void insertZonaAnalise(String codZona, String codAnalise);
 
-        //public static void deleteZonaAnalise(String codZona, String codAnalise);
 
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Itens */
 
-        //public static List<Item> selectItensDefault();
+        public static List<Item> selectItensDefault()
+        {
+            String query = "select * from item where item_default = 1;";
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            List<Item> items = new List<Item>();
+
+            while (r.Read())
+            {
+                Item item = new Item((String)r["cod_item"], (String)r["nome_item"], (int)r["default_item"]);
+                items.Add(item);
+
+            }
+            return items;
+        }
 
         public static List<Item> selectItens()
         {
-            String query = "select * from item";
+            String query = "select * from item;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             List<Item> items = new List<Item>();
@@ -392,14 +407,14 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static void insertItem(Item i)
         {
-            String query = "insert into item values(" + i.Codigo + "," + i.Nome + "," + i.Default;
+            String query = "insert into item values(" + i.Codigo + "," + i.Nome + "," + i.Default + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
 
         public static void deleteItem(String codItem)
         {
-            String query = "delete * from item where" + "cod_item = " + codItem;
+            String query = "delete * from item where" + "cod_item = " + codItem + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
@@ -412,11 +427,22 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* ----------------------------------------------*/
         /* Itens - Analise */
 
-        //public static List<Item> selectItensAnalise(String codAnalise);
+        public static List<Item> selectItensAnalise(String codAnalise)
+        {
+            String query = "select cod_item, nome_item from item_analise, item where " + "cod_analise = " + codAnalise + "and item_analise.cod_item = item.cod_item" + ";";
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-        //public static void insertItemAnalise(String codItem, String codAnalise);
+            List<Item> items = new List<Item>();
 
-        //public static void deleteItemAnalise(String codItem, String codAnalise);
+            while (r.Read())
+            {
+                Item item = new Item((String)r["cod_item"], (String)r["nome_item"], (int)r["default_item"]);
+                items.Add(item);
+
+            }
+            return items;
+        }
+
 
         /* ----------------------------------------------*/
 
