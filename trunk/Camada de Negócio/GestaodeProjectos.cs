@@ -18,7 +18,7 @@ namespace ETdA.Camada_de_Negócio
         //void removeProjecto(String nomeEstabelecimento);
         public static void abreProjecto(String nomeEstabelecimento)
         {
-
+            Camada_de_Dados.ETdA.ETdA.abreProjecto(nomeEstabelecimento);
         }
 
         public static List<string> nomesProjectos()

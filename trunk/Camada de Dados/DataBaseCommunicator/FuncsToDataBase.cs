@@ -97,9 +97,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                p = new Projecto((string)r["cod_projecto"],
+                p = new Projecto(""+(long)r["cod_projecto"],
                     (string)r["estabelecimento"], (DateTime)r["ultimaActualizacao"],
-                    new List<Tuplo<String,String>>());
+                    new Dictionary<string,string>());
             }
 
             return p;
@@ -164,14 +164,14 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static Dictionary<string, string> selectNomesAnalises(String codProjecto)
         {
-            String query = "select cod_projecto,cod_analise,nomeAnalise from analise where" + "cod_projecto = " + codProjecto + "orderby data DESC";
+            String query = "select cod_analise,nomeAnalise from analise where cod_projecto = " + codProjecto ;
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             Dictionary<string, string> cod_nome = new Dictionary<string, string>();
 
             while (r.Read())
             {
-                String cod = (string)r["cod_analise"];
+                String cod = ""+(long)r["cod_analise"];
                 String nome = (string)r["nomeAnalise"];
                 cod_nome.Add(cod,nome);
             }

@@ -14,12 +14,12 @@ namespace ETdA.Camada_de_Dados.Classes
         private String codProjecto;
         private String nomeEstabelecimento;
         private DateTime ultimaActualizacao;
-        private List<Tuplo<String,String>> cod_name_analise;
+        private Dictionary<string,string> cod_name_analise;
         private Analise analise_Aberta;
 
         //Constructores
         public Projecto(String codProj, String nomeEst, 
-            DateTime ultimaAct, List<Tuplo<String,String>> analises)
+            DateTime ultimaAct, Dictionary<string,string> analises)
         {
             codProjecto = codProj;
             nomeEstabelecimento = nomeEst;
@@ -32,7 +32,7 @@ namespace ETdA.Camada_de_Dados.Classes
             codProjecto = "";
             nomeEstabelecimento = "";
             ultimaActualizacao = new DateTime();
-            cod_name_analise = new List<Tuplo<String,String>>();
+            cod_name_analise = new Dictionary<string, string>();
         }
 
         public Projecto(Projecto p)
@@ -64,13 +64,10 @@ namespace ETdA.Camada_de_Dados.Classes
         {
             get 
             {
-                List<String> nomes = new List<string>();
-                foreach (Tuplo<String, String> t in cod_name_analise)
-                    nomes.Add(t.Snd);
-                return nomes;
+                return new List<string>(cod_name_analise.Values);
             }
         }
-        public List<Tuplo<String,String>> Cod_Name_Analise
+        public Dictionary<string, string> Cod_Name_Analise
         {
             get { return cod_name_analise; }
             set { cod_name_analise = value; }
@@ -97,12 +94,9 @@ namespace ETdA.Camada_de_Dados.Classes
          */
         public Boolean podeAdicionarAnalise(String nomeAnalise)
         {
-            Boolean found = false;
-            for (int i = 0; i < cod_name_analise.Count && !found; i++)
-                if (cod_name_analise[i].Snd == nomeAnalise)
-                    found = true;
+            List<string> l = new List<string>(cod_name_analise.Values);
 
-            return found;
+            return l.Contains(nomeAnalise);
         }
 
         /*
@@ -132,8 +126,7 @@ namespace ETdA.Camada_de_Dados.Classes
                     FuncsToDataBase.insertZonaAnalise(itens[i].Codigo,
                     a.Codigo);
             */
-            Tuplo<String, String> t = new Tuplo<String, String>(a.Codigo,a.Nome);
-            cod_name_analise.Add(t);
+            cod_name_analise.Add(a.Codigo,a.Nome);
             analise_Aberta = a;
         }
 
@@ -145,11 +138,15 @@ namespace ETdA.Camada_de_Dados.Classes
             String cod = null;
             Boolean found = false;
             for (int i = 0; i < cod_name_analise.Count && !found; i++)
-                if (cod_name_analise[i].Snd == nomeAnalise)
+            {
+                KeyValuePair<string, string> p = cod_name_analise.ElementAt(i);
+                if (p.Value == nomeEstabelecimento)
                 {
-                    cod = cod_name_analise[i].Fst;
+                    cod = p.Key;
                     found = true;
                 }
+            }
+
             /*
             analise_Aberta = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectAnalise(cod);
@@ -167,12 +164,16 @@ namespace ETdA.Camada_de_Dados.Classes
             String cod = null;
             Boolean found = false;
             for (int i = 0; i < cod_name_analise.Count && !found; i++)
-                if (cod_name_analise[i].Snd == nomeAnalise)
+            {
+                KeyValuePair<string, string> p = cod_name_analise.ElementAt(i);
+                if (p.Value == nomeEstabelecimento)
                 {
-                    cod = cod_name_analise[i].Fst;
-                    cod_name_analise.RemoveAt(i);
+                    cod = p.Key;
+                    cod_name_analise.Remove(cod) ;
                     found = true;
                 }
+            }
+
             /*
             Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.deleteAnalise(cod);*/
