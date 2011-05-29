@@ -12,8 +12,9 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class InterfaceGuestaoProjectos : Form
     {
-        List<int> indexes;
-        List<string> tabPages;
+        private static InterfaceGuestaoProjectos igp;
+        private List<int> indexes;
+        private List<string> tabPages;
 
         public InterfaceGuestaoProjectos()
         {
@@ -39,6 +40,41 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        public static void addProjectoReenc(object sender, EventArgs e)
+        {
+            igp.addProjecto(sender, e);
+        }
+        private void addProjecto(object sender, EventArgs e)
+        {
+            TreeNode nodo = new TreeNode();
+            nodo.Text = (string) sender;
+            this.treeView_Projectos.Nodes.Add(nodo);
+        }
+        /*
+        public static void remProjectoReenc(object sender, EventArgs e)
+        {
+            igp.remProjecto(sender, e);
+        }
+        private void remProjecto(object sender, EventArgs e)
+        {
+        }
+
+        public static void addAnaliseReenc(object sender, EventArgs e)
+        {
+            igp.addAnalise(sender, e);
+        }
+        private void addAnalise(object sender, EventArgs e)
+        {
+        }
+
+        public static void remAnaliseReenc(object sender, EventArgs e)
+        {
+            igp.remAnalise(sender, e);
+        }
+        private void remAnalise(object sender, EventArgs e)
+        {
+        }
+        */
         private int getTabNumber(string name)
         {
             int index = 0;
@@ -336,7 +372,7 @@ namespace ETdA.Camada_de_Interface
 
         public static void main(Boolean start)
         {
-            InterfaceGuestaoProjectos igp = new InterfaceGuestaoProjectos();
+            igp = new InterfaceGuestaoProjectos();
             if (start)
                 Application.Run(igp);
             else
