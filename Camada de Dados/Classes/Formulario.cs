@@ -8,9 +8,9 @@ namespace ETdA.Camada_de_Dados.Classes
         //Variaveis de Instancia
         private String tipo;
         private String codFormulario;
-        private List<Questao> perguntas;
-        private List<EscalaResposta> opcoesResposta;
-        private List<Resposta> respostas;
+		//private List<Questao> perguntas;
+		//private List<EscalaResposta> opcoesResposta;
+		//private List<Resposta> respostas;
 
         //Constructores
         public Formulario()
