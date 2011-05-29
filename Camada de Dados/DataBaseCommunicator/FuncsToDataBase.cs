@@ -515,61 +515,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         /* ----------------------------------------------*/
         /* Respostas */
-        static public void selectRespostaQuestionario(int codigoAnalise, List<Resposta> respostas)
-        {
-            SqlDataReader reader, readerResposta;
 
-            reader = DataBaseCommunicator.readData("SELECT cod_pergunta_questionario, numero_pergunta, TipoEscala.numeroEscalaResposta, cod_zona " +
-                                                "FROM pergunta_questionario, TipoEscala " +
-                                                "WHERE pergunta_questionario.cod_tipoEscala=TipoEscala.cod_tipoEscala " +
-                                                "AND pergunta_questionario.cod_analise=" + codigoAnalise);
-
-            while (reader.Read())
-            {
-                //String
-                if (int.Parse(reader["numeroEscalaResposta"].ToString()) == 0)
-                {
-                    readerResposta = DataBaseCommunicator.readData("SELECT cod_questionario, valor, resposta_questionario_numero.cod_zona, resposta_questionario_string.cod_zona,resposta_questionario_string.numero_pergunta " +
-                                                                       "FROM resposta_questionario_string, pergunta_questionario " +
-                                                                       "WHERE resposta_questionario_string.numero_pergunta=" + reader["numero_pergunta"].ToString() +
-                                                                       "AND resposta_questionario_string.numero_pergunta=pergunta_questionario.numero_pergunta" +
-                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
-                    while (readerResposta.Read())
-                    {
-                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 3));
-                    }
-
-                }
-                //memo
-                else if (int.Parse(reader["numeroEscalaResposta"].ToString()) == -1)
-                {
-                    readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_memo.cod_questionario, resposta_questionario_memo.valor, resposta_questionario_memo.cod_zona,resposta_questionario_memo.numero_pergunta " +
-                                                                       "FROM resposta_questionario_memo, pergunta_questionario " +
-                                                                       "WHERE resposta_questionario_memo.numero_pergunta=" + reader["numero_pergunta"].ToString() +
-                                                                       "AND resposta_questionario_memo.numero_pergunta=pergunta_questionario.numero_pergunta" +
-                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
-                    while (readerResposta.Read())
-                    {
-                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1 ,readerResposta["valor"].ToString(), 3));
-                    }
-                }
-                //numero
-                else
-                {
-                    readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_numero.cod_questionario, resposta_questionario_numero.valor, resposta_questionario_numero.cod_zona, resposta_questionario_numero.numero_pergunta " +
-                                                                       "FROM resposta_questionario_numero, pergunta_questionario " +
-                                                                       "WHERE resposta_questionario_numero.numero_pergunta=" + reader["numero_pergunta"].ToString() +
-                                                                       "AND resposta_questionario_numero.numero_pergunta=pergunta_questionario.numero_pergunta" +
-                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
-                    while (readerResposta.Read())
-                    {
-                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), "", 3));
-                    }
-                }
-                readerResposta.Close();
-            }
-            reader.Close();
-        }
         /* -----------------------------*/
         /* Respostas CheckList */
         #region Respostas CheckList
@@ -628,6 +574,62 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                  respostas.Add(new Resposta(-1, int.Parse(readerResposta["cod_fichaAvaliacao"].ToString()), int.Parse(readerResposta["numero_pergunta"].ToString()), int.Parse(readerResposta["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 2));
                  readerResposta.Close();
              }
+        }
+
+        static public void selectRespostaQuestionario(int codigoAnalise, List<Resposta> respostas)
+        {
+            SqlDataReader reader, readerResposta;
+
+            reader = DataBaseCommunicator.readData("SELECT cod_pergunta_questionario, numero_pergunta, TipoEscala.numeroEscalaResposta, cod_zona " +
+                                                "FROM pergunta_questionario, TipoEscala " +
+                                                "WHERE pergunta_questionario.cod_tipoEscala=TipoEscala.cod_tipoEscala " +
+                                                "AND pergunta_questionario.cod_analise=" + codigoAnalise);
+
+            while (reader.Read())
+            {
+                //String
+                if (int.Parse(reader["numeroEscalaResposta"].ToString()) == 0)
+                {
+                    readerResposta = DataBaseCommunicator.readData("SELECT cod_questionario, valor, resposta_questionario_numero.cod_zona, resposta_questionario_string.cod_zona,resposta_questionario_string.numero_pergunta " +
+                                                                       "FROM resposta_questionario_string, pergunta_questionario " +
+                                                                       "WHERE resposta_questionario_string.numero_pergunta=" + reader["numero_pergunta"].ToString() +
+                                                                       "AND resposta_questionario_string.numero_pergunta=pergunta_questionario.numero_pergunta" +
+                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
+                    while (readerResposta.Read())
+                    {
+                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 3));
+                    }
+
+                }
+                //memo
+                else if (int.Parse(reader["numeroEscalaResposta"].ToString()) == -1)
+                {
+                    readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_memo.cod_questionario, resposta_questionario_memo.valor, resposta_questionario_memo.cod_zona,resposta_questionario_memo.numero_pergunta " +
+                                                                       "FROM resposta_questionario_memo, pergunta_questionario " +
+                                                                       "WHERE resposta_questionario_memo.numero_pergunta=" + reader["numero_pergunta"].ToString() +
+                                                                       "AND resposta_questionario_memo.numero_pergunta=pergunta_questionario.numero_pergunta" +
+                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
+                    while (readerResposta.Read())
+                    {
+                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 3));
+                    }
+                }
+                //numero
+                else
+                {
+                    readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_numero.cod_questionario, resposta_questionario_numero.valor, resposta_questionario_numero.cod_zona, resposta_questionario_numero.numero_pergunta " +
+                                                                       "FROM resposta_questionario_numero, pergunta_questionario " +
+                                                                       "WHERE resposta_questionario_numero.numero_pergunta=" + reader["numero_pergunta"].ToString() +
+                                                                       "AND resposta_questionario_numero.numero_pergunta=pergunta_questionario.numero_pergunta" +
+                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
+                    while (readerResposta.Read())
+                    {
+                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), "", 3));
+                    }
+                }
+                readerResposta.Close();
+            }
+            reader.Close();
         }
         #endregion
         /* ----------------------------------------------*/

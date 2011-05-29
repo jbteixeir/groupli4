@@ -43,6 +43,7 @@ namespace ETdA.Camada_de_Interface
                 {
                     y = 7;
                     Panel p = new System.Windows.Forms.Panel();
+                    p.Name = checkedListBox1.CheckedItems[i].ToString();
                     p.Height = 355;
                     p.Width = 320;
                     p.BorderStyle = BorderStyle.FixedSingle;
@@ -278,16 +279,17 @@ namespace ETdA.Camada_de_Interface
                     i.Default = 0;
                 }
 
-                //i.NomeItem = s;
-                //i.PonderacaoAnalista = ;
-                //i.PonderacaoProfissional = ;
-                //i.PonderacaoCliente = ;
-                //i.Inter_Vermelho= ;
-                //i.Inter_Laranja= ;
-                //i.Inter_Amarelo= ;
-                //i.Inter_Verde_Lima= ;
-                //i.Inter_Verde= ;
-                //i.LimiteInferiorAnalista= ;
+                i.NomeItem = s;
+                MessageBox.Show(panel1.Container.Components.GetEnumerator().Current.ToString());
+                i.PonderacaoAnalista = panel1.Container.Components.GetEnumerator().Current.ToString();
+                i.PonderacaoProfissional = ;
+                i.PonderacaoCliente = ;
+                i.Inter_Vermelho= ;
+                i.Inter_Laranja= ;
+                i.Inter_Amarelo= ;
+                i.Inter_Verde_Lima= ;
+                i.Inter_Verde= ;
+                i.LimiteInferiorAnalista= ;
             }
         }
 
