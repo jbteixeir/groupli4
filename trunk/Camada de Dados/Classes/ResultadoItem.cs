@@ -18,7 +18,9 @@ namespace ETdA.Camada_de_Dados.Classes
 
         private string observacao;
 
-        public ResultadoItem(float resultado_questionario_geral, Dictionary<int, float> resultado_questionario_parcial, float resultado_fichaAvaliacao_geral, Dictionary<int, float> resultado_fichaAvaliacao_parcial, float resultado_checklist_geral, Dictionary<int, float> resultado_checklist_parcial, string observacao)
+        private float resultado_final;
+
+        public ResultadoItem(float resultado_questionario_geral, Dictionary<int, float> resultado_questionario_parcial, float resultado_fichaAvaliacao_geral, Dictionary<int, float> resultado_fichaAvaliacao_parcial, float resultado_checklist_geral, Dictionary<int, float> resultado_checklist_parcial, string observacao, float resultado_final)
         {
             this.resultado_questionario_geral = resultado_questionario_geral;
             this.resultado_questionario_parcial=resultado_questionario_parcial;
@@ -30,6 +32,8 @@ namespace ETdA.Camada_de_Dados.Classes
             this.resultado_checklist_parcial=resultado_checklist_parcial;
 
             this.observacao = observacao;
+
+            this.resultado_final = resultado_final;
         }
 
         public ResultadoItem()
@@ -44,6 +48,8 @@ namespace ETdA.Camada_de_Dados.Classes
             this.resultado_checklist_parcial = new Dictionary<int,float>();
 
             observacao = "";
+
+            resultado_final = -1;
         }
 
         //Métodos
@@ -88,5 +94,10 @@ namespace ETdA.Camada_de_Dados.Classes
             set { observacao = value; }
         }
 
+        public float ResultadoFinal
+        {
+            get { return resultado_final; }
+            set { resultado_final = value; }
+        }
     }
 }
