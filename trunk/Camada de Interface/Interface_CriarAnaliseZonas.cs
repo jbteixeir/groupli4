@@ -16,12 +16,14 @@ namespace ETdA.Camada_de_Interface
         //[Category(""), Description("Ocorre sempre ...")]
         private static event eventoEventHandler done_action;
 
-        public Interface_CriarAnaliseZonas(List<string> zonas)
+        public Interface_CriarAnaliseZonas(List<string> zonas, string tipo)
         {
             done_action += new eventoEventHandler(
                 Camada_de_Interface.Interface_CriarAnalise.ZonasOkReenc);
 
             InitializeComponent();
+
+            label1.Text = (tipo.Split(' ')[1]);
 
             foreach (string s in zonas)
                 listBox1.Items.Add(s);
@@ -37,6 +39,7 @@ namespace ETdA.Camada_de_Interface
             string s = textBox1.Text;
 
             listBox1.Items.Add(s);
+            textBox1.Text = "";
         }
 
         private void OK_ActionPerformed(object sender, EventArgs e)
@@ -56,9 +59,9 @@ namespace ETdA.Camada_de_Interface
             Close();
         }
 
-        public static void main(List<string> zonas)
+        public static void main(List<string> zonas, string tipo)
         {
-            Interface_CriarAnaliseZonas icaz = new Interface_CriarAnaliseZonas(zonas);
+            Interface_CriarAnaliseZonas icaz = new Interface_CriarAnaliseZonas(zonas,tipo);
             icaz.Visible = true;
         }
     }

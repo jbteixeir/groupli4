@@ -13,12 +13,31 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class Interface_CriarAnaliseItens : Form
     {
-        Dictionary<int, string> defaults;
-        Dictionary<int, string> alls;
+        private delegate void eventoEventHandler(object sender, EventArgs e);
+
+        //[Category(""), Description("Ocorre sempre ...")]
+        private static event eventoEventHandler done_action;
+
+        private string s1 = "Ponderacao Analista";
+        private string s2 = "Ponderacao do Profissional";
+        private string s3 = "Ponderacao do Cliente";
+        private string s4 = "Vermelho";
+        private string s5 = "Laranja";
+        private string s6 = "Amarelo";
+        private string s7 = "Verde Lima";
+        private string s8 = "Verde";
+        private string s9 = "Limite Inferior Analista";
+
+        private Dictionary<int, string> defaults;
+        private Dictionary<int, string> alls;
+        private Dictionary<string, Dictionary<string,object>> panels;
 
         public Interface_CriarAnaliseItens()
         {
             InitializeComponent();
+
+            done_action += new eventoEventHandler(
+               Camada_de_Interface.Interface_CriarAnalise.ItensOkReenc);
 
             defaults = GestaodeAnalises.getItensDefault();
             int i = 0;
@@ -35,12 +54,14 @@ namespace ETdA.Camada_de_Interface
         {
             panel1.AutoScroll = true;
             panel1.Controls.Clear();
+            panels = new Dictionary<string, Dictionary<string, object>>();
 
             int yy = 7,y;
             for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
             {
                 if (index < 0 ||  checkedListBox1.Items[index] != checkedListBox1.CheckedItems[i])
                 {
+                    Dictionary<string, object> controls = new Dictionary<string, object>();
                     y = 7;
                     Panel p = new System.Windows.Forms.Panel();
                     p.Name = checkedListBox1.CheckedItems[i].ToString();
@@ -68,6 +89,7 @@ namespace ETdA.Camada_de_Interface
                     n.Value = new decimal(0.333);
                     n.Location = new System.Drawing.Point(167, y);
                     y += 30;
+                    controls.Add(s1, n);
                     p.Controls.Add(n);
 
                     Label l3 = new System.Windows.Forms.Label();
@@ -83,6 +105,7 @@ namespace ETdA.Camada_de_Interface
                     n2.Value = new decimal(0.333);
                     n2.Location = new System.Drawing.Point(167, y);
                     y += 30;
+                    controls.Add(s2,n2);
                     p.Controls.Add(n2);
 
                     Label l4 = new System.Windows.Forms.Label();
@@ -98,6 +121,7 @@ namespace ETdA.Camada_de_Interface
                     n3.Value = new decimal(0.333);
                     n3.Location = new System.Drawing.Point(167, y);
                     y += 40;
+                    controls.Add(s3,n3);
                     p.Controls.Add(n3);
 
                     Label l5 = new System.Windows.Forms.Label();
@@ -119,6 +143,7 @@ namespace ETdA.Camada_de_Interface
                     b1.Text = "1";
                     b1.Location = new System.Drawing.Point(107, y);
                     y += 25;
+                    controls.Add(s4,b1);
                     p.Controls.Add(b1);
 
                     Label l8 = new System.Windows.Forms.Label();
@@ -133,6 +158,7 @@ namespace ETdA.Camada_de_Interface
                     b3.Text = "2";
                     b3.Location = new System.Drawing.Point(107, y);
                     y += 25;
+                    controls.Add(s5,b3);
                     p.Controls.Add(b3);
 
                     Label l10 = new System.Windows.Forms.Label();
@@ -147,6 +173,7 @@ namespace ETdA.Camada_de_Interface
                     b5.Text = "3";
                     b5.Location = new System.Drawing.Point(107, y);
                     y += 25;
+                    controls.Add(s6,b5);
                     p.Controls.Add(b5);
 
                     Label l12 = new System.Windows.Forms.Label();
@@ -161,6 +188,7 @@ namespace ETdA.Camada_de_Interface
                     b7.Text = "4";
                     b7.Location = new System.Drawing.Point(107, y);
                     y += 25;
+                    controls.Add(s7,b7);
                     p.Controls.Add(b7);
 
                     Label l14 = new System.Windows.Forms.Label();
@@ -176,6 +204,7 @@ namespace ETdA.Camada_de_Interface
                     b9.Enabled = false;
                     b9.Location = new System.Drawing.Point(107, y);
                     y +=40;
+                    controls.Add(s8,b9);
                     p.Controls.Add(b9);
 
                     Label l15 = new System.Windows.Forms.Label();
@@ -190,10 +219,12 @@ namespace ETdA.Camada_de_Interface
                     n4.DecimalPlaces = 3;
                     n4.Value = new decimal(0);
                     n4.Location = new System.Drawing.Point(157, y);
+                    controls.Add(s9,n4);
                     p.Controls.Add(n4);
 
                     p.Location = new System.Drawing.Point(7, yy);
                     yy += 355;
+                    panels.Add(p.Name, controls);
                     panel1.Controls.Add(p);
                 }
 
@@ -256,6 +287,7 @@ namespace ETdA.Camada_de_Interface
         private void OK_ActionPerformed(object sender, EventArgs e)
         {
             List<string> nome_novos = new List<string>();
+            List<Item> itens = new List<Item>();
             foreach (string s in checkedListBox1.CheckedItems)
             {
                 Item i = new Item();
@@ -280,17 +312,35 @@ namespace ETdA.Camada_de_Interface
                 }
 
                 i.NomeItem = s;
-                MessageBox.Show(panel1.Container.Components.GetEnumerator().Current.ToString());
-                i.PonderacaoAnalista = panel1.Container.Components.GetEnumerator().Current.ToString();
-                i.PonderacaoProfissional = ;
-                i.PonderacaoCliente = ;
-                i.Inter_Vermelho= ;
-                i.Inter_Laranja= ;
-                i.Inter_Amarelo= ;
-                i.Inter_Verde_Lima= ;
-                i.Inter_Verde= ;
-                i.LimiteInferiorAnalista= ;
+                Dictionary<string, object> bs = panels[s];
+                NumericUpDown n1 = (NumericUpDown)bs[s1];
+                NumericUpDown n2 = (NumericUpDown)bs[s2];
+                NumericUpDown n3 = (NumericUpDown)bs[s3];
+                TextBox b1 = (TextBox)bs[s4];
+                TextBox b2 = (TextBox)bs[s5];
+                TextBox b3 = (TextBox)bs[s6];
+                TextBox b4 = (TextBox)bs[s7];
+                TextBox b5 = (TextBox)bs[s8];
+                NumericUpDown n4 = (NumericUpDown)bs[s9];
+
+                i.PonderacaoAnalista = float.Parse(n1.Value.ToString());
+                i.PonderacaoProfissional = float.Parse(n2.Value.ToString());
+                i.PonderacaoCliente = float.Parse(n3.Value.ToString());
+                i.Inter_Vermelho= float.Parse(b1.Text);
+                i.Inter_Laranja= float.Parse(b2.Text);
+                i.Inter_Amarelo= float.Parse(b3.Text);
+                i.Inter_Verde_Lima= float.Parse(b4.Text);
+                i.Inter_Verde= float.Parse(b5.Text);
+                i.LimiteInferiorAnalista= float.Parse(n4.Value.ToString());
+
+                itens.Add(i);
             }
+            List<object> obs = new List<object>();
+            obs.Add(itens);
+            obs.Add(nome_novos);
+
+            done_action(obs,new EventArgs());
+            end_Frame();
         }
 
         private void end_Frame()
