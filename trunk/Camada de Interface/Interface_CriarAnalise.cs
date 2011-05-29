@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ETdA.Camada_de_Negócio;
 
 namespace ETdA.Camada_de_Interface
 {
@@ -22,6 +23,18 @@ namespace ETdA.Camada_de_Interface
             ica.Visible = true;
         }
 
+        private void MouseEnterAction(object sender, EventArgs e)
+        {
+            Label t = (Label)sender;
+            t.Font = new Font(t.Font, FontStyle.Underline);
+        }
+
+        private void MouseLeaveAction(object sender, EventArgs e)
+        {
+            Label t = (Label)sender;
+            t.Font = new Font(t.Font, FontStyle.Regular);
+        }
+
         private void endFrame()
         {
             Dispose();
@@ -33,28 +46,19 @@ namespace ETdA.Camada_de_Interface
             endFrame();
         }
 
-        private void NovoZonaActionPerformed(object sender, EventArgs e)
-        {
-            string zona = textBox2.Text;
-
-            listBox1.Items.Add(zona);
-        }
-
-        private void NovoItemActionPerformed(object sender, EventArgs e)
-        {
-            string item = textBox3.Text;
-
-            checkedListBox1.Items.Add(item);
-        }
-
-        private void MostrarTodosActionPerformed(object sender, EventArgs e)
-        {
-
-        }
-
         private void AdicionarActionPerfermed(object sender, EventArgs e)
         {
 
+        }
+
+        private void ZonasActionPerformed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ItensActionPerformed(object sender, EventArgs e)
+        {
+            Interface_CriarAnaliseItens.main();
         }
     }
 }
