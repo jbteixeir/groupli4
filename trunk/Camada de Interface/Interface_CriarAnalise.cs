@@ -7,19 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ETdA.Camada_de_Negócio;
+using ETdA.Camada_de_Dados.Classes;
 
 namespace ETdA.Camada_de_Interface
 {
     public partial class Interface_CriarAnalise : Form
     {
+        List<string> zonas;
+        List<Item> itens;
+        private static Interface_CriarAnalise ica;
+
         public Interface_CriarAnalise()
         {
             InitializeComponent();
+            zonas = new List<string>();
+            itens = new List<Item>();
         }
 
         public static void main()
         {
-            Interface_CriarAnalise ica = new Interface_CriarAnalise();
+            ica = new Interface_CriarAnalise();
             ica.Visible = true;
         }
 
@@ -53,12 +60,21 @@ namespace ETdA.Camada_de_Interface
 
         private void ZonasActionPerformed(object sender, EventArgs e)
         {
-
+            Interface_CriarAnaliseZonas.main(zonas);
         }
 
         private void ItensActionPerformed(object sender, EventArgs e)
         {
             Interface_CriarAnaliseItens.main();
+        }
+
+        public static void ZonasOkReenc(object sender, EventArgs e)
+        {
+            ica.ZonasOk(sender, e);
+        }
+        private void ZonasOk(object sender, EventArgs e)
+        {
+            zonas = (List<string>)sender;
         }
     }
 }

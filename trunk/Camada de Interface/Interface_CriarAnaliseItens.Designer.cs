@@ -34,8 +34,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -82,20 +80,11 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(182, 57);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(348, 292);
             this.panel1.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
             // 
             // Interface_CriarAnaliseItens
             // 
@@ -110,8 +99,6 @@
             this.Controls.Add(this.label1);
             this.Name = "Interface_CriarAnaliseItens";
             this.Text = "Interface_CriarAnaliseItens";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,6 +112,5 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
     }
 }
