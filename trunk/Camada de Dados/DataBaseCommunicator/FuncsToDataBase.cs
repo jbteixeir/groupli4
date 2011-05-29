@@ -397,28 +397,28 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /* ----------------------------------------------*/
         /* Itens */
         #region Itens
-        public static Dictionary<string,string> selectItensDefault()
+        public static Dictionary<long,string> selectItensDefault()
         {
             String query = "select cod_item, nome_item from item where default_item = 1;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            Dictionary<string, string> itens_default = new Dictionary<string, string>();
+            Dictionary<long, string> itens_default = new Dictionary<long, string>();
 
             while (r.Read())
-                itens_default.Add("" + (long)r["cod_item"], (string)r["nome_item"]);
+                itens_default.Add((long)r["cod_item"], (string)r["nome_item"]);
 
             return itens_default;
         }
 
-        public static Dictionary<string, string> selectAllItens()
+        public static Dictionary<long, string> selectAllItens()
         {
             String query = "select cod_item, nome_item from item order by default_item DESC;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            Dictionary<string, string> itens_default = new Dictionary<string, string>();
+            Dictionary<long, string> itens_default = new Dictionary<long, string>();
 
             while (r.Read())
-                itens_default.Add("" + (long)r["cod_item"], (string)r["nome_item"]);
+                itens_default.Add((long)r["cod_item"], (string)r["nome_item"]);
 
             return itens_default;
         }
