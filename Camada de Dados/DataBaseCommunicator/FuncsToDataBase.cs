@@ -425,7 +425,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static List<Item> selectItens()
         {
-            String query = "select * from item;";
+            String query = "select item.* from item;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             List<Item> items = new List<Item>();
