@@ -21,7 +21,7 @@ namespace ETdA.Camada_de_Dados.Classes
         private Formulario checkList;
         private List<Formulario> fichasAvaliacao;
         private List<Formulario> questionarios;
-        private Relatorio relatorio;
+		//private Relatorio relatorio;
 
         //Constructores
 
