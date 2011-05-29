@@ -101,12 +101,6 @@
     <Compile Include="Camada de Interface\InterfaceRegisto.Designer.cs">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CheckList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Camada de Interface\Interface_CheckList.Designer.cs">
-      <DependentUpon>Interface_CheckList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Camada de Interface\Interface_CriarAnalise.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,29 +113,17 @@
     <Compile Include="Camada de Interface\Interface_CriarAnaliseItens.Designer.cs">
       <DependentUpon>Interface_CriarAnaliseItens.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\Interface_CriarAnaliseZonas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_CriarAnaliseZonas.Designer.cs">
+      <DependentUpon>Interface_CriarAnaliseZonas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\Interface_CriarProjecto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Camada de Interface\Interface_CriarProjecto.Designer.cs">
       <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Camada de Interface\Interface_FichaAvaliacao.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Camada de Interface\Interface_FichaAvaliacao.Designer.cs">
-      <DependentUpon>Interface_FichaAvaliacao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Camada de Interface\Interface_IntroduzirManualmente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Camada de Interface\Interface_IntroduzirManualmente.Designer.cs">
-      <DependentUpon>Interface_IntroduzirManualmente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Camada de Interface\Interface_Questionario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Camada de Interface\Interface_Questionario.Designer.cs">
-      <DependentUpon>Interface_Questionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
@@ -159,26 +141,17 @@
     <EmbeddedResource Include="Camada de Interface\InterfaceRegisto.resx">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_CheckList.resx">
-      <DependentUpon>Interface_CheckList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_CriarAnalise.resx">
       <DependentUpon>Interface_CriarAnalise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_CriarAnaliseItens.resx">
       <DependentUpon>Interface_CriarAnaliseItens.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_CriarAnaliseZonas.resx">
+      <DependentUpon>Interface_CriarAnaliseZonas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_CriarProjecto.resx">
       <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_FichaAvaliacao.resx">
-      <DependentUpon>Interface_FichaAvaliacao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_IntroduzirManualmente.resx">
-      <DependentUpon>Interface_IntroduzirManualmente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Questionario.resx">
-      <DependentUpon>Interface_Questionario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
