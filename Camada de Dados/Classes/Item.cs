@@ -19,10 +19,11 @@ namespace ETdA.Camada_de_Dados.Classes
         private float inter_amarelo;
         private float inter_verdelima;
         private float inter_verde;
+        private float limite_inferior_analista
         
         //Constructores
 
-        public Item(int cod, String nome, int def, float ponderacao_analista, float ponderacao_profissional, float ponderacao_cliente, float inter_vemelho, float inter_laranja, float inter_amarelo, float inter_verdelima, float inter_verde)
+        public Item(int cod, String nome, int def, float ponderacao_analista, float ponderacao_profissional, float ponderacao_cliente, float inter_vemelho, float inter_laranja, float inter_amarelo, float inter_verdelima, float inter_verde, float limite_inferior_analista)
         {
             cod_item = cod;
             nome_item = nome;
@@ -35,6 +36,7 @@ namespace ETdA.Camada_de_Dados.Classes
             this.inter_amarelo = inter_amarelo;
             this.inter_verdelima = inter_verdelima;
             this.inter_verde = inter_verde;
+            this.limite_inferior_analista = limite_inferior_analista;
         }
 
         public Item()
@@ -50,6 +52,7 @@ namespace ETdA.Camada_de_Dados.Classes
             inter_amarelo = 3;
             inter_verdelima = 4;
             inter_verde = 5;
+            limite_inferior_analista = -1;
         }
 
         //Métodos
@@ -84,6 +87,11 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return ponderacao_cliente; }
             set { ponderacao_cliente = value; }
         }
-
+        public float LimiteInferiorAnalista
+        {
+            get { return limite_inferior_analista; }
+            set { limite_inferior_analista = value; }
+        }
+        
     }
 }
