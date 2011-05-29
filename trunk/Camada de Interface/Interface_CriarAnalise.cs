@@ -55,10 +55,7 @@ namespace ETdA.Camada_de_Interface
 
         private void AdicionarActionPerfermed(object sender, EventArgs e)
         {
-			if(nomeAnaliseValido(textBox1.Text))	{
 
-				GestaodeAnalises.criaAnalise(codProjecto,textBox1.Text,);
-			}
         }
 
 		private bool nomeAnaliseValido(string p)

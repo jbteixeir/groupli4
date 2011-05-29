@@ -43,7 +43,7 @@ namespace ETdA.Camada_de_Interface
                 {
                     y = 7;
                     Panel p = new System.Windows.Forms.Panel();
-                    p.Height = 315;
+                    p.Height = 355;
                     p.Width = 320;
                     p.BorderStyle = BorderStyle.FixedSingle;
 
@@ -192,7 +192,7 @@ namespace ETdA.Camada_de_Interface
                     p.Controls.Add(n4);
 
                     p.Location = new System.Drawing.Point(7, yy);
-                    yy += 315;
+                    yy += 355;
                     panel1.Controls.Add(p);
                 }
 
@@ -278,16 +278,16 @@ namespace ETdA.Camada_de_Interface
                     i.Default = 0;
                 }
 
-                i.NomeItem = s;
-                i.PonderacaoAnalista = ;
-                i.PonderacaoProfissional = ;
-                i.PonderacaoCliente = ;
-                i.Inter_Vermelho= ;
-                i.Inter_Laranja= ;
-                i.Inter_Amarelo= ;
-                i.Inter_Verde_Lima= ;
-                i.Inter_Verde= ;
-                i.LimiteInferiorAnalista= ;
+                //i.NomeItem = s;
+                //i.PonderacaoAnalista = ;
+                //i.PonderacaoProfissional = ;
+                //i.PonderacaoCliente = ;
+                //i.Inter_Vermelho= ;
+                //i.Inter_Laranja= ;
+                //i.Inter_Amarelo= ;
+                //i.Inter_Verde_Lima= ;
+                //i.Inter_Verde= ;
+                //i.LimiteInferiorAnalista= ;
             }
         }
 
