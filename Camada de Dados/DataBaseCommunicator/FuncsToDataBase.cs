@@ -435,15 +435,15 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 Item item = new Item((int)r["cod_item"],
                     (String)r["nome_item"],
                     (int)r["default_item"],
-                    (float)r["ponderacao_analista"],
-                    (float)r["ponderacao_profissional"],
-                    (float)r["ponderacao_cliente"],
-                    (float)r["inter_vermelho"],
-                    (float)r["inter_laranja"],
-                    (float)r["inter_amarelo"],
-                    (float)r["inter_verdelima"],
-                    (float)r["inter_verde"],
-                    (float)r[""]);
+                    0.33f,
+                    0.33f,
+                    0.33f,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    1);
                 items.Add(item);
 
             }
