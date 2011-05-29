@@ -52,7 +52,7 @@ namespace ETdA.Camada_de_Dados.Classes
             inter_amarelo = 3;
             inter_verdelima = 4;
             inter_verde = 5;
-            limite_inferior_analista = 1;
+            limite_inferior_analista = 0;
         }
 
         //Métodos

@@ -174,7 +174,22 @@ namespace ETdA.Camada_de_Interface
                     b9.Text = "5";
                     b9.Enabled = false;
                     b9.Location = new System.Drawing.Point(107, y);
+                    y +=40;
                     p.Controls.Add(b9);
+
+                    Label l15 = new System.Windows.Forms.Label();
+                    l14.Width = 150;
+                    l14.Text = "Limite Inferior Analista:";
+                    l14.Location = new System.Drawing.Point(7, y);
+                    p.Controls.Add(l14);
+
+                    NumericUpDown n4 = new System.Windows.Forms.NumericUpDown();
+                    n4.Increment = new Decimal(0.1);
+                    n4.Maximum = 5;
+                    n4.DecimalPlaces = 3;
+                    n4.Value = new decimal(0);
+                    n4.Location = new System.Drawing.Point(157, y);
+                    p.Controls.Add(n4);
 
                     p.Location = new System.Drawing.Point(7, yy);
                     yy += 315;
@@ -239,6 +254,7 @@ namespace ETdA.Camada_de_Interface
 
         private void OK_ActionPerformed(object sender, EventArgs e)
         {
+            List<string> nome_novos = new List<string>();
             foreach (string s in checkedListBox1.CheckedItems)
             {
                 Item i = new Item();
@@ -256,12 +272,22 @@ namespace ETdA.Camada_de_Interface
                     i.CodigoItem = cod;
                     i.Default = 1;
                 }
+                else
+                {
+                    nome_novos.Add(s);
+                    i.Default = 0;
+                }
 
                 i.NomeItem = s;
                 i.PonderacaoAnalista = ;
                 i.PonderacaoProfissional = ;
                 i.PonderacaoCliente = ;
-                i.
+                i.Inter_Vermelho= ;
+                i.Inter_Laranja= ;
+                i.Inter_Amarelo= ;
+                i.Inter_Verde_Lima= ;
+                i.Inter_Verde= ;
+                i.LimiteInferiorAnalista= ;
             }
         }
 
