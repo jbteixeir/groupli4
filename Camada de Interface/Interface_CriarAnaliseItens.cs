@@ -30,9 +30,14 @@ namespace ETdA.Camada_de_Interface
 
         private void ponderacao()
         {
-            for ( int i = 0 ; i < checkedListBox1.Items ; i++ )
-                if ()
-            List<string> ss = new List<string>();
+            for ( int i = 0 ; i < checkedListBox1.Items.Count ; i++ )
+                if (checkedListBox1.GetItemChecked(i))
+                {
+                    Label l = new System.Windows.Forms.Label();
+
+                    MessageBox.Show(checkedListBox1.Items[i].ToString());
+                    //l.Text = checkedListBox1.Items[i].T
+                }
         }
 
         public static void main()
