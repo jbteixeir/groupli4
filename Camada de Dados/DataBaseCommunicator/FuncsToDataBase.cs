@@ -385,7 +385,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                Zona zona = new Zona((String)r["cod_zona"], (String)r["nome_zona"]);
+                Zona zona = new Zona((int)r["cod_zona"], (String)r["nome_zona"]);
                 zonas.Add(zona);
 
             }
@@ -425,7 +425,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static List<Item> selectItens()
         {
-            String query = "select item.* from item;";
+            String query = "select * from item;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             List<Item> items = new List<Item>();
@@ -502,7 +502,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     (float)r["inter_laranja"],
                     (float)r["inter_amarelo"],
                     (float)r["inter_verdelima"],
-                    (float)r["inter_verde"]);
+                    (float)r["inter_verde"],
+                    (float)r[""]);
                 items.Add(item);
 
             }

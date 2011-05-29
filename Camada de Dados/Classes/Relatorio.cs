@@ -117,9 +117,9 @@ namespace ETdA.Camada_de_Dados
                         resultadoItem_checklist_total += i * (resultado_checklist_parcial[i] / numero_total_checklist);
                     }
                     //caso a nota do analista seja inferior ao limite imposto por este o resultado é a nota do analista, caso contrario é a ponderacao de todas as dimensoes
-                    if(resultadoItem_checklist_total <= item.)
+                    //if(resultadoItem_checklist_total)
                         resultadoItem_geral = (resultadoItem_questionario_total * item.PonderacaoCliente) + (resultadoItem_fichaAvaliacao_total * item.PonderacaoProfissional) + (resultadoItem_checklist_total*item.PonderacaoAnalista);
-                    else
+                    //else
                         
                     resultadoItem = new Classes.ResultadoItem();
                     listaItens.Add(item.CodigoItem, resultadoItem);
