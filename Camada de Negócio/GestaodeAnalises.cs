@@ -48,6 +48,17 @@ namespace ETdA.Camada_de_Negócio
 //        void removeFormulario(String codAnalise, String codFormulario);
 //        void geraWebsite();
 //        void geraFormularioOnline();
+
+        public static List<Item> getListaItens()
+        {
+            return new List<Item>();
+        }
+
+        public static List<Zona> getListaZona()
+        {
+            return new List<Zona>();
+        }
+
         public static Dictionary<string, string> getItensDefault()
         {
             return Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectItensDefault();
