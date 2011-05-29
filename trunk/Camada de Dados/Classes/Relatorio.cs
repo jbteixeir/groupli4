@@ -116,12 +116,16 @@ namespace ETdA.Camada_de_Dados
                         resultadoItem_checklist_parcial.Add(i, resultado_checklist_parcial[i] / numero_total_checklist);
                         resultadoItem_checklist_total += i * (resultado_checklist_parcial[i] / numero_total_checklist);
                     }
-                    //caso a nota do analista seja inferior ao limite imposto por este o resultado é a nota do analista, caso contrario é a ponderacao de todas as dimensoes
-                    //if(resultadoItem_checklist_total)
-                        resultadoItem_geral = (resultadoItem_questionario_total * item.PonderacaoCliente) + (resultadoItem_fichaAvaliacao_total * item.PonderacaoProfissional) + (resultadoItem_checklist_total*item.PonderacaoAnalista);
-                    //else
-                        
-                    resultadoItem = new Classes.ResultadoItem();
+
+                    //caso a nota do analista seja inferior ao limite imposto por este o resultado é a nota do analista
+                    if(resultadoItem_checklist_total <= item.LimiteInferiorAnalista)
+                        resultadoItem_geral =(resultadoItem_checklist_total*item.PonderacaoAnalista);
+                    // caso contrario é a ponderacao de todas as dimensoes
+                    else
+                        resultadoItem_geral = (resultadoItem_questionario_total * item.PonderacaoCliente) + (resultadoItem_fichaAvaliacao_total * item.PonderacaoProfissional) + (resultadoItem_checklist_total * item.PonderacaoAnalista);
+
+
+                    resultadoItem = new Classes.ResultadoItem(resultadoItem_questionario_total,resultadoItem_questionario_parcial,resultadoItem_questionario_total,resultadoItem_questionario_parcial,resultadoItem_checklist_total,resultadoItem_checklist_parcial,"",resultadoItem_geral);
                     listaItens.Add(item.CodigoItem, resultadoItem);
                     listaResultados.Add(zona.Codigo, listaItens);
                 }
