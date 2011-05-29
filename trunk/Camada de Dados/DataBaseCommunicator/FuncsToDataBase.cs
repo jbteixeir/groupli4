@@ -405,7 +405,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Dictionary<int, string> itens_default = new Dictionary<int, string>();
 
             while (r.Read())
-                itens_default.Add((int)r["cod_item"], (string)r["nome_item"]);
+                itens_default.Add( int.Parse(r["cod_item"].ToString()), (string)r["nome_item"]);
 
             return itens_default;
         }
