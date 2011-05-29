@@ -19,7 +19,7 @@ namespace ETdA.Camada_de_Dados.Classes
         private float inter_amarelo;
         private float inter_verdelima;
         private float inter_verde;
-        private float limite_inferior_analista
+        private float limite_inferior_analista;
         
         //Constructores
 
