@@ -89,7 +89,7 @@ namespace ETdA.Camada_de_Interface
 
         private void ItensActionPerformed(object sender, EventArgs e)
         {
-            //Interface_CriarAnaliseItens.main();
+            Interface_CriarAnaliseItens.main();
         }
 
         public static void ZonasOkReenc(object sender, EventArgs e)
