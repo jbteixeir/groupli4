@@ -22,10 +22,12 @@ namespace ETdA.Camada_de_Dados.Classes
          * 3 - questionario
          */
         private int tipo;
+		private TipoResposta tipo_Resposta;
 
+		public enum TipoResposta {RespostaNum,RespostaStr, RespostaMemo};
 
         //Constructores
-        public Resposta(int cod_questionario, int cod_fichaAvaliacao, float numero_pergunta, int cod_item, int cod_zona, int valor, string valor_string, int tipo)
+        public Resposta(int cod_questionario, int cod_fichaAvaliacao, float numero_pergunta, int cod_item, int cod_zona, int valor, string valor_string, int tipo, TipoResposta tipo_Resposta)
         {
             this.cod_questionario = cod_questionario;
             this.cod_fichaAvaliacao = cod_fichaAvaliacao;
@@ -35,6 +37,7 @@ namespace ETdA.Camada_de_Dados.Classes
             this.valor = valor;
             this.valor_string = valor_string;
             this.tipo = tipo;
+			this.tipo_Resposta = tipo_Resposta;
         }
 
         public Resposta()
@@ -47,10 +50,15 @@ namespace ETdA.Camada_de_Dados.Classes
             this.valor = -1;
             this.valor_string = "";
             this.tipo = -1;
+			this.tipo_Resposta = TipoResposta.RespostaNum;
         }
 
         //Métodos
-
+		public TipoResposta tipoResposta
+		{
+			get { return tipo_Resposta; }
+			set { }
+		}
         public int CodigoQuestionario
         {
             get { return cod_questionario; }
