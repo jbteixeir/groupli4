@@ -55,8 +55,32 @@ namespace ETdA.Camada_de_Interface
 
         private void AdicionarActionPerfermed(object sender, EventArgs e)
         {
+			if(nomeAnaliseValido(textBox1.Text))	{
 
+				GestaodeAnalises.criaAnalise(codProjecto,textBox1.Text,);
+			}
         }
+
+		private bool nomeAnaliseValido(string p)
+		{
+			string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_";
+			bool valid;
+			foreach(char c in p)	{
+
+				valid = false;
+				for (int i = 0; i < possiveis.Length; i++)
+				{
+					if (c == possiveis[i])
+					{
+						valid = true;
+						break;
+					}
+				}
+				if (valid == false)
+					return false;
+			}
+			return true;
+		}
 
         private void ZonasActionPerformed(object sender, EventArgs e)
         {
