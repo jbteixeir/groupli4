@@ -59,6 +59,7 @@ namespace ETdA.Camada_de_Interface
                 n.Increment = new Decimal(0.1);
                 n.Maximum = 1;
                 n.DecimalPlaces = 3;
+                n.Value = new decimal(0.333);
                 n.Location = new System.Drawing.Point(167, y);
                 y += 30;
                 p.Controls.Add(n);
@@ -73,6 +74,7 @@ namespace ETdA.Camada_de_Interface
                 n2.Increment = new Decimal(0.1);
                 n2.Maximum = 1;
                 n2.DecimalPlaces = 3;
+                n2.Value = new decimal(0.333);
                 n2.Location = new System.Drawing.Point(167, y);
                 y += 30;
                 p.Controls.Add(n2);
@@ -87,8 +89,157 @@ namespace ETdA.Camada_de_Interface
                 n3.Increment = new Decimal(0.1);
                 n3.Maximum = 1;
                 n3.DecimalPlaces = 3;
+                n3.Value = new decimal(0.333);
                 n3.Location = new System.Drawing.Point(167, y);
+                y += 40;
                 p.Controls.Add(n3);
+
+                Label l5 = new System.Windows.Forms.Label();
+                l5.Width = 150;
+                l5.Text = "Escalas";
+                l5.Location = new System.Drawing.Point(7, y);
+                y += 25;
+                p.Controls.Add(l5);
+
+                Label l6 = new System.Windows.Forms.Label();
+                l6.Width = 70;
+                l6.Text = "Vermelho";
+                l6.Location = new System.Drawing.Point(7, y);
+                y += 25;
+                p.Controls.Add(l6);
+
+                TextBox b1 = new System.Windows.Forms.TextBox();
+                b1.Height = 20;
+                b1.Width = 40;
+                b1.Text = "0";
+                b1.Location = new System.Drawing.Point(75, y);
+                p.Controls.Add(b1);
+
+                Label l7 = new System.Windows.Forms.Label();
+                l7.Width = 150;
+                l7.Text = "to";
+                l7.Location = new System.Drawing.Point(120, y);
+                p.Controls.Add(l7);
+
+                TextBox b2 = new System.Windows.Forms.TextBox();
+                b2.Height = 20;
+                b2.Width = 40;
+                b2.Text = "1";
+                b2.Location = new System.Drawing.Point(140, y);
+                y += 25;
+                p.Controls.Add(b2);
+
+                Label l8 = new System.Windows.Forms.Label();
+                l8.Width = 70;
+                l8.Text = "Laranja";
+                l8.Location = new System.Drawing.Point(7, y);
+                y += 25;
+                p.Controls.Add(l8);
+
+                TextBox b3 = new System.Windows.Forms.TextBox();
+                b3.Height = 20;
+                b3.Width = 40;
+                b3.Text = "1";
+                b3.Location = new System.Drawing.Point(75, y);
+                p.Controls.Add(b3);
+
+                Label l9 = new System.Windows.Forms.Label();
+                l9.Width = 150;
+                l9.Text = "to";
+                l9.Location = new System.Drawing.Point(120, y);
+                p.Controls.Add(l9);
+
+                TextBox b4 = new System.Windows.Forms.TextBox();
+                b4.Height = 20;
+                b4.Width = 40;
+                b4.Text = "2";
+                b4.Location = new System.Drawing.Point(140, y);
+                y += 25;
+                p.Controls.Add(b4);
+
+                Label l10 = new System.Windows.Forms.Label();
+                l10.Width = 70;
+                l10.Text = "Amarelo";
+                l10.Location = new System.Drawing.Point(7, y);
+                y += 25;
+                p.Controls.Add(l10);
+
+                TextBox b5 = new System.Windows.Forms.TextBox();
+                b5.Height = 20;
+                b5.Width = 40;
+                b5.Text = "2";
+                b5.Location = new System.Drawing.Point(75, y);
+                p.Controls.Add(b5);
+
+                Label l11 = new System.Windows.Forms.Label();
+                l11.Width = 150;
+                l11.Text = "to";
+                l11.Location = new System.Drawing.Point(120, y);
+                p.Controls.Add(l11);
+
+                TextBox b6 = new System.Windows.Forms.TextBox();
+                b6.Height = 20;
+                b6.Width = 40;
+                b6.Text = "3";
+                b6.Location = new System.Drawing.Point(140, y);
+                y += 25;
+                p.Controls.Add(b6);
+
+                Label l12 = new System.Windows.Forms.Label();
+                l12.Width = 70;
+                l12.Text = "Verde Lima";
+                l12.Location = new System.Drawing.Point(7, y);
+                y += 25;
+                p.Controls.Add(l12);
+
+                TextBox b7 = new System.Windows.Forms.TextBox();
+                b7.Height = 20;
+                b7.Width = 40;
+                b7.Text = "3";
+                b7.Location = new System.Drawing.Point(75, y);
+                p.Controls.Add(b7);
+
+                Label l13 = new System.Windows.Forms.Label();
+                l13.Width = 150;
+                l13.Text = "to";
+                l13.Location = new System.Drawing.Point(120, y);
+                p.Controls.Add(l13);
+
+                TextBox b8 = new System.Windows.Forms.TextBox();
+                b8.Height = 20;
+                b8.Width = 40;
+                b8.Text = "4";
+                b8.Location = new System.Drawing.Point(140, y);
+                y += 25;
+                p.Controls.Add(b8);
+
+                Label l14 = new System.Windows.Forms.Label();
+                l14.Width = 70;
+                l14.Text = "Verde";
+                l14.Location = new System.Drawing.Point(7, y);
+                y += 25;
+                p.Controls.Add(l14);
+
+                TextBox b9 = new System.Windows.Forms.TextBox();
+                b9.Height = 20;
+                b9.Width = 40;
+                b9.Text = "4";
+                b9.Location = new System.Drawing.Point(75, y);
+                p.Controls.Add(b7);
+
+                Label l15 = new System.Windows.Forms.Label();
+                l15.Width = 150;
+                l15.Text = "to";
+                l15.Location = new System.Drawing.Point(120, y);
+                p.Controls.Add(l15);
+
+                TextBox b10 = new System.Windows.Forms.TextBox();
+                b10.Height = 20;
+                b10.Width = 40;
+                b10.Text = "5";
+                b10.Location = new System.Drawing.Point(140, y);
+                y += 25;
+                p.Controls.Add(b10);
 
                 p.Location = new System.Drawing.Point(7, yy);
                 yy += 150;
