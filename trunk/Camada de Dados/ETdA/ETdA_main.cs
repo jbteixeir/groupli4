@@ -5,11 +5,28 @@ using System.Text;
 using System.Data.SqlClient;
 using ETdA.Camada_de_Dados.Classes;
 using ETdA.Camada_de_Dados.Classes.Estruturas;
+using System.Windows;
 
 namespace ETdA.Camada_de_Dados.ETdA
 {
     class ETdA
     {
+        private delegate void eventoEventHandler(object sender, EventArgs e);
+
+        //[Category(""), Description("Ocorre sempre ...")]
+        private static event eventoEventHandler evento_analista_registado;
+        private static event eventoEventHandler evento_projecto_adicionado;
+        private static event eventoEventHandler evento_projecto_removido;
+        private static event eventoEventHandler evento_analise_adicionada;
+        private static event eventoEventHandler evento_analise_removida;
+
+        private static void initEventos()
+        {
+            //evento_analista_registado += Camada_de_Interface.InterfaceLogin.
+            evento_projecto_adicionado +=new eventoEventHandler(
+                Camada_de_Interface.InterfaceGuestaoProjectos.addProjectoReenc);
+        }
+
         private static Analista analista;
         private static Dictionary<string, string> cod_nome;
         private static Projecto projectoAberto;
@@ -40,6 +57,8 @@ namespace ETdA.Camada_de_Dados.ETdA
 
         public static void init()
         {
+            initEventos();
+
             cod_nome = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
 
             projectosRecentes();
@@ -77,6 +96,8 @@ namespace ETdA.Camada_de_Dados.ETdA
             p.Nome = nomeEstabelecimento;
             p.Data = DateTime.Now;
 
+            MessageBox.Show(p.Data.ToString("yyyymmdd hh:mm:ss"));
+
             Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.insertProjecto(p);
             String cod = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectCodigoProjecto(nomeEstabelecimento);
@@ -84,6 +105,8 @@ namespace ETdA.Camada_de_Dados.ETdA
 
             cod_nome.Add(p.Codigo,nomeEstabelecimento);
             projectoAberto = p;
+
+            evento_projecto_adicionado(p.Nome, new EventArgs());
         }
 
         /*

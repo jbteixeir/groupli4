@@ -113,11 +113,13 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         public static String selectCodigoProjecto(String nomeEstabelecimento)
         {
             String query = "select cod_projecto from projecto where" +
-                "estabelecimento = " + nomeEstabelecimento + ";";
+                " estabelecimento = '" + nomeEstabelecimento + "';";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.
                 DataBaseCommunicator.readData(query);
 
-            return (string)r["cod_projecto"];
+            r.Read();
+
+            return "" + (long)r["cod_projecto"];
         }
 
         /**
@@ -126,9 +128,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static void insertProjecto(Projecto p)
         {
-            String query = "insert into projecto values(" +
-            p.Nome + "," + "CAST('" + p.Data.ToString("yyyymmdd hh:mm:ss")
-            + "' AS datetime);";
+            String query = "insert into projecto values('" +
+            p.Nome + "'," + "CAST('" + p.Data.ToString("yyyyMMdd HH:mm:ss")
+            + "' AS datetime));";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
@@ -319,10 +321,10 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 + a.Nome + "," + "tipoAnalise = " + a.Tipo + "," + "estadoWebCheckList = "
                 + a.EstadoWebCL + "," + "estadoWebFichaAvaliacao = " + a.EstadoWebFA + "," + "estadoWebQuestionario = "
                 + a.EstadoWebQ + "where cod_analise = " + a.Codigo + ";";
-        #endregion
+
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
-
+        #endregion
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
@@ -369,7 +371,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
 
         #endregion
-
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
@@ -395,33 +396,31 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         /* ----------------------------------------------*/
         /* Itens */
-
-        public static List<Item> selectItensDefault()
+        #region Itens
+        public static Dictionary<string,string> selectItensDefault()
         {
-            String query = "select cod_item, nome_item, default_item, ponderacao_analista, ponderacao_profissional, "
-            + "ponderacao_cliente, inter_vermelho, inter_laranja, inter_amarelo, inter_verdelima, inter_verde"
-            + "from item, item_analise where item_default = 1;";
+            String query = "select cod_item, nome_item from item where default_item = 1;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            List<Item> items = new List<Item>();
+            Dictionary<string, string> itens_default = new Dictionary<string, string>();
 
             while (r.Read())
-            {
-                Item item = new Item((int)r["cod_item"], 
-                    (String)r["nome_item"], 
-                    (int)r["default_item"],
-                    (float)r["ponderacao_analista"],
-                    (float)r["ponderacao_profissional"],
-                    (float)r["ponderacao_cliente"],
-                    (float)r["inter_vermelho"],
-                    (float)r["inter_laranja"],
-                    (float)r["inter_amarelo"],
-                    (float)r["inter_verdelima"],
-                    (float)r["inter_verde"]);
-                items.Add(item);
+                itens_default.Add("" + (long)r["cod_item"], (string)r["nome_item"]);
 
-            }
-            return items;
+            return itens_default;
+        }
+
+        public static Dictionary<string, string> selectAllItens()
+        {
+            String query = "select cod_item, nome_item from item;";
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            Dictionary<string, string> itens_default = new Dictionary<string, string>();
+
+            while (r.Read())
+                itens_default.Add("" + (long)r["cod_item"], (string)r["nome_item"]);
+
+            return itens_default;
         }
 
         public static List<Item> selectItens()
@@ -465,7 +464,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
 
-
         public static void updateItem(Item i)
         {
             String query = "update item, item_analise set "
@@ -478,12 +476,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
-
+        #endregion
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/
         /* Itens - Analise */
-
+        #region Itens-Analise
         public static List<Item> selectItensAnalise(String codAnalise)
         {
             String query = "select cod_item, nome_item from item_analise, item where " + "cod_analise = " + codAnalise + "and item_analise.cod_item = item.cod_item" + ";";
@@ -509,8 +507,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
             return items;
         }
-
-
+        #endregion
         /* ----------------------------------------------*/
 
 
@@ -571,11 +568,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
             reader.Close();
         }
-
-
         /* -----------------------------*/
         /* Respostas CheckList */
-
+        #region Respostas CheckList
         static public void selectRespostaCheckList(int codigoAnalise, List<Resposta> respostas)
         {
             SqlDataReader readerZona, readerItem, readerResposta;
@@ -632,7 +627,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                  readerResposta.Close();
              }
         }
-
+        #endregion
         /* ----------------------------------------------*/
 
         /* ----------------------------------------------*/

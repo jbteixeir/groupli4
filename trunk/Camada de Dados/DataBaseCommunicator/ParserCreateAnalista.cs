@@ -147,7 +147,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                         "(cod_tipoEscala BIGINT IDENTITY PRIMARY KEY,\n" +
                         "tipoEscalaResposta VARCHAR(30),\n" +
 	                    "numeroEscalaResposta INT,\n" +
-	                    "default_tipoEscala BIT\n" +
+	                    "default_tipoEscala bit\n" +
                         ");\n";
             return c9;
         }
