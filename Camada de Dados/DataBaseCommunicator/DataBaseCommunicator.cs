@@ -88,6 +88,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 			}
 			catch (SqlException ex)
 			{
+				ex = null;
 				return false;
 			}
         }
