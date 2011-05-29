@@ -31,18 +31,17 @@
             this.painelHeaderZonas = new System.Windows.Forms.Panel();
             this.TituloZonas = new System.Windows.Forms.Label();
             this.painelGeralZonas = new System.Windows.Forms.Panel();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.painelHeaderZonas.SuspendLayout();
-            this.painelGeralZonas.SuspendLayout();
             this.SuspendLayout();
             // 
             // painelHeaderZonas
             // 
+            this.painelHeaderZonas.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.painelHeaderZonas.Controls.Add(this.TituloZonas);
             this.painelHeaderZonas.Dock = System.Windows.Forms.DockStyle.Top;
             this.painelHeaderZonas.Location = new System.Drawing.Point(0, 0);
             this.painelHeaderZonas.Name = "painelHeaderZonas";
-            this.painelHeaderZonas.Size = new System.Drawing.Size(943, 45);
+            this.painelHeaderZonas.Size = new System.Drawing.Size(925, 45);
             this.painelHeaderZonas.TabIndex = 0;
             // 
             // TituloZonas
@@ -58,19 +57,11 @@
             // painelGeralZonas
             // 
             this.painelGeralZonas.AutoScroll = true;
-            this.painelGeralZonas.Controls.Add(this.treeView1);
             this.painelGeralZonas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelGeralZonas.Location = new System.Drawing.Point(0, 45);
             this.painelGeralZonas.Name = "painelGeralZonas";
-            this.painelGeralZonas.Size = new System.Drawing.Size(943, 311);
+            this.painelGeralZonas.Size = new System.Drawing.Size(925, 340);
             this.painelGeralZonas.TabIndex = 1;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Location = new System.Drawing.Point(111, 47);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(233, 135);
-            this.treeView1.TabIndex = 0;
             // 
             // Interface_Relatorio
             // 
@@ -78,7 +69,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(943, 356);
+            this.ClientSize = new System.Drawing.Size(925, 385);
             this.Controls.Add(this.painelGeralZonas);
             this.Controls.Add(this.painelHeaderZonas);
             this.Name = "Interface_Relatorio";
@@ -86,7 +77,6 @@
             this.Text = "Interface_Relatorio";
             this.painelHeaderZonas.ResumeLayout(false);
             this.painelHeaderZonas.PerformLayout();
-            this.painelGeralZonas.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -103,7 +93,6 @@
          */
         private System.Windows.Forms.Label TituloZonas;
         private System.Windows.Forms.Panel painelGeralZonas;
-        private System.Windows.Forms.TreeView treeView1;
 
     }
 }
