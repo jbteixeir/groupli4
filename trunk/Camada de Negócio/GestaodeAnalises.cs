@@ -30,13 +30,13 @@ namespace ETdA.Camada_de_Negócio
         public static List<string> getNomeAnalises(){
             return Camada_de_Dados.ETdA.ETdA.Projecto.Analises;
         }
-		public void criaAnalise(long codProjecto, String nomeAnalise, TipoAnalise tipo)
+		/*public void criaAnalise(long codProjecto, String nomeAnalise, TipoAnalise tipo)
 		{
 			DateTime now = DateTime.Now;
 			DataBaseCommunicator.query("INSERT INTO analise VALUES ("+codProjecto+","
 				+ "CAST('"+now.Year+now.Month+now.Day+" 00:00:00' AS datetime), '"+
 				nomeAnalise+"', "+getDescricao(tipo)+",0,0,0);");
-		}
+		}*/
 //        void editaAnalise(String codAnalise, string nomeAnalise);
 //        void removeAnalise(String codAnalise);
 //        void adicionaItemAnalise(String codParametro);
@@ -59,12 +59,12 @@ namespace ETdA.Camada_de_Negócio
             return new List<Zona>();
         }
 
-        public static Dictionary<string, string> getItensDefault()
+        public static Dictionary<int, string> getItensDefault()
         {
             return Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectItensDefault();
         }
 
-        public static Dictionary<string, string> getTodosItens()
+        public static Dictionary<int, string> getTodosItens()
         {
             return Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectAllItens();
         }
