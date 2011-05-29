@@ -540,7 +540,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                             " AND cod_zona= " + readerZona["cod_zona"] +
                                                                             " AND cod_item= " + readerItem["cod_item"]);
                     readerResposta.Read();
-                    respostas.Add(new Resposta(-1, -1, -1, int.Parse(readerItem["cod_item"].ToString()), int.Parse(readerZona["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()),"",1));
+                    respostas.Add(new Resposta(-1, -1, -1, int.Parse(readerItem["cod_item"].ToString()), int.Parse(readerZona["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), "", 1, Classes.Resposta.TipoResposta.RespostaNum));
                     readerResposta.Close();
                 }
                 readerItem.Close();
@@ -562,7 +562,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                     "WHERE resposta_ficha_avaliacao_numero.cod_fichaAvaliacao="+ readerPergunta["cod_fichaAvaliacao"]);
                  while (readerResposta.Read())
                  {
-                     respostas.Add(new Resposta(-1, int.Parse(readerResposta["cod_fichaAvaliacao"].ToString()), int.Parse(readerResposta["numero_pergunta"].ToString()), int.Parse(readerResposta["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()),"",2));
+                     respostas.Add(new Resposta(-1, int.Parse(readerResposta["cod_fichaAvaliacao"].ToString()), int.Parse(readerResposta["numero_pergunta"].ToString()), int.Parse(readerResposta["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), "", 2, Classes.Resposta.TipoResposta.RespostaNum));
                  }
                  readerResposta.Close();
 
@@ -571,7 +571,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                     "WHERE resposta_ficha_avaliacao_string.cod_fichaAvaliacao=" + readerPergunta["cod_fichaAvaliacao"]);
 
                  readerResposta.Read();
-                 respostas.Add(new Resposta(-1, int.Parse(readerResposta["cod_fichaAvaliacao"].ToString()), int.Parse(readerResposta["numero_pergunta"].ToString()), int.Parse(readerResposta["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 2));
+                 respostas.Add(new Resposta(-1, int.Parse(readerResposta["cod_fichaAvaliacao"].ToString()), int.Parse(readerResposta["numero_pergunta"].ToString()), int.Parse(readerResposta["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 2, Classes.Resposta.TipoResposta.RespostaMemo));
                  readerResposta.Close();
              }
         }
@@ -597,7 +597,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                        "AND respostas_questionario.cod_analise=" + codigoAnalise);
                     while (readerResposta.Read())
                     {
-                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 3));
+                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 3, Classes.Resposta.TipoResposta.RespostaStr));
                     }
 
                 }
@@ -611,7 +611,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                        "AND respostas_questionario.cod_analise=" + codigoAnalise);
                     while (readerResposta.Read())
                     {
-                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 3));
+                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 3, Classes.Resposta.TipoResposta.RespostaMemo));
                     }
                 }
                 //numero
@@ -624,7 +624,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                        "AND respostas_questionario.cod_analise=" + codigoAnalise);
                     while (readerResposta.Read())
                     {
-                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), "", 3));
+                        respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), int.Parse(reader["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), "", 3, Classes.Resposta.TipoResposta.RespostaNum));
                     }
                 }
                 readerResposta.Close();
