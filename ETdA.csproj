@@ -137,6 +137,30 @@
     <Compile Include="Camada de Negócio\GestaodeRelatorios.cs" />
     <Compile Include="Camada de Negócio\ImporterExporter.cs" />
     <Compile Include="ETdA_stater.cs" />
+    <Compile Include="Camada de Interface\Interface_CheckList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_CheckList.designer.cs">
+      <DependentUpon>Interface_CheckList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_FichaAvaliacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_FichaAvaliacao.designer.cs">
+      <DependentUpon>Interface_FichaAvaliacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_IntroduzirManualmente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_IntroduzirManualmente.designer.cs">
+      <DependentUpon>Interface_IntroduzirManualmente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Questionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Questionario.designer.cs">
+      <DependentUpon>Interface_Questionario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Camada de Interface\InterfaceGuestaoProjectos.resx">
       <DependentUpon>InterfaceGuestaoProjectos.cs</DependentUpon>
@@ -162,6 +186,18 @@
     <EmbeddedResource Include="Camada de Interface\Interface_Relatorio.resx">
       <DependentUpon>Interface_Relatorio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_CheckList.resx">
+      <DependentUpon>Interface_CheckList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_FichaAvaliacao.resx">
+      <DependentUpon>Interface_FichaAvaliacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_IntroduzirManualmente.resx">
+      <DependentUpon>Interface_IntroduzirManualmente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_Questionario.resx">
+      <DependentUpon>Interface_Questionario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -170,6 +206,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -213,7 +250,21 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="colors\amarelo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="colors\laranja.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="colors\lima.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="colors\verde.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="colors\vermelho.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
