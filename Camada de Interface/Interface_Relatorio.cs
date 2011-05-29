@@ -20,6 +20,5 @@ namespace ETdA.Camada_de_Interface
         {
             InitializeComponent();
         }
-
     }
 }

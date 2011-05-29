@@ -64,7 +64,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
             catch (SqlException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
                 return false;
             }
         }
@@ -88,7 +88,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 			}
 			catch (SqlException ex)
 			{
-				ex = null;
+                MessageBox.Show(ex.Message);
 				return false;
 			}
         }
