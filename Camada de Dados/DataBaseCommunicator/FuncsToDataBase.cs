@@ -518,7 +518,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         /* -----------------------------*/
         /* Respostas CheckList */
-        #region Respostas CheckList
+        #region Respostas
         static public void selectRespostaCheckList(int codigoAnalise, List<Resposta> respostas)
         {
             SqlDataReader readerZona, readerItem, readerResposta;
