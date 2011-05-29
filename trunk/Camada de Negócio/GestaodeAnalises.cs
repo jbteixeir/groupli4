@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ETdA.Camada_de_Dados.Classes;
 
 namespace ETdA.Camada_de_Negócio
 {
@@ -23,5 +24,14 @@ namespace ETdA.Camada_de_Negócio
 //        void removeFormulario(String codAnalise, String codFormulario);
 //        void geraWebsite();
 //        void geraFormularioOnline();
+        public static Dictionary<string, string> getItensDefault()
+        {
+            return Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectItensDefault();
+        }
+
+        public static Dictionary<string, string> getTodosItens()
+        {
+            return Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectAllItens();
+        }
     }
 }
