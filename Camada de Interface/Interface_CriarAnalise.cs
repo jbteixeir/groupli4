@@ -15,6 +15,7 @@ namespace ETdA.Camada_de_Interface
     {
         List<string> zonas;
         List<Item> itens;
+        List<string> itens_novos;
         private static Interface_CriarAnalise ica;
 
         public Interface_CriarAnalise()
@@ -22,6 +23,8 @@ namespace ETdA.Camada_de_Interface
             InitializeComponent();
             zonas = new List<string>();
             itens = new List<Item>();
+
+            label3.Enabled = false;
         }
 
         public static void main()
@@ -55,7 +58,10 @@ namespace ETdA.Camada_de_Interface
 
         private void AdicionarActionPerfermed(object sender, EventArgs e)
         {
+            string nome = textBox1.Text;
+            string tipo = comboBox1.SelectedItem.ToString();
 
+            MessageBox.Show(tipo);
         }
 
 		private bool nomeAnaliseValido(string p)
@@ -81,7 +87,7 @@ namespace ETdA.Camada_de_Interface
 
         private void ZonasActionPerformed(object sender, EventArgs e)
         {
-            Interface_CriarAnaliseZonas.main(zonas);
+            Interface_CriarAnaliseZonas.main(zonas, comboBox1.SelectedItem.ToString());
         }
 
         private void ItensActionPerformed(object sender, EventArgs e)
@@ -96,6 +102,30 @@ namespace ETdA.Camada_de_Interface
         private void ZonasOk(object sender, EventArgs e)
         {
             zonas = (List<string>)sender;
+            errorProvider1.SetError(label3, "Zonas OK");
+        }
+
+        public static void ItensOkReenc(object sender, EventArgs e)
+        {
+            ica.ItensOk(sender, e);
+        }
+        private void ItensOk(object sender, EventArgs e)
+        {
+            List<object> l = (List<object>)sender;
+
+            itens = (List<Item>) l[0];
+            itens_novos = (List<string>)l[1];
+
+            errorProvider2.SetError(label4, "Itens OK");
+        }
+
+        private void ComboBoxClick(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex >= 0 &&
+                comboBox1.SelectedIndex <= 2)
+                label3.Enabled = true;
+            else
+                label3.Enabled = false;
         }
     }
 }
