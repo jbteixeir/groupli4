@@ -412,7 +412,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static Dictionary<string, string> selectAllItens()
         {
-            String query = "select cod_item, nome_item from item;";
+            String query = "select cod_item, nome_item from item order by default_item DESC;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             Dictionary<string, string> itens_default = new Dictionary<string, string>();

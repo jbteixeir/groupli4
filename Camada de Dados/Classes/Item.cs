@@ -92,6 +92,30 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return limite_inferior_analista; }
             set { limite_inferior_analista = value; }
         }
-        
+        public float Inter_Vermelho
+        {
+            get { return inter_vemelho; }
+            set { inter_vemelho = value; }
+        }
+        public float Inter_Laranja
+        {
+            get { return inter_laranja; }
+            set { inter_laranja = value; }
+        }
+        public float Inter_Amarelo
+        {
+            get { return inter_amarelo; }
+            set { inter_amarelo = value; }
+        }
+        public float Inter_Verde_Lima
+        {
+            get { return inter_verdelima; }
+            set { inter_verdelima = value; }
+        }
+        public float Inter_Verde
+        {
+            get { return inter_verde; }
+            set { inter_verde = value; }
+        }
     }
 }
