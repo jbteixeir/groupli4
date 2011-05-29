@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections.Generic;
 using System;
 
-namespace ETdA.Camada_de_Dados
+namespace ETdA.Camada_de_Dados.Classes
 {
     class Relatorio
     {
