@@ -113,6 +113,12 @@
     <Compile Include="Camada de Interface\Interface_CriarAnalise.Designer.cs">
       <DependentUpon>Interface_CriarAnalise.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\Interface_CriarAnaliseItens.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_CriarAnaliseItens.Designer.cs">
+      <DependentUpon>Interface_CriarAnaliseItens.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\Interface_CriarProjecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_CriarAnalise.resx">
       <DependentUpon>Interface_CriarAnalise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_CriarAnaliseItens.resx">
+      <DependentUpon>Interface_CriarAnaliseItens.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_CriarProjecto.resx">
       <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
