@@ -145,7 +145,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Name = "Interface_CriarAnalise";
-            this.Text = "Interface_CriarAnalise";
+            this.Text = "Criar Análise";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);

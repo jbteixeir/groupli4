@@ -126,7 +126,7 @@
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label1);
             this.Name = "Interface_CriarAnaliseItens";
-            this.Text = "Interface_CriarAnaliseItens";
+            this.Text = "Criar Análise - Itens";
             this.ResumeLayout(false);
             this.PerformLayout();
 

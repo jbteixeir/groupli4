@@ -72,7 +72,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Interface_IntroduzirManualmente";
-            this.Text = "Interface_IntroduzirManualmente";
+            this.Text = "Introduzir Dados Manualmente";
             this.ResumeLayout(false);
 
         }

@@ -102,7 +102,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Name = "Interface_CriarAnaliseZonas";
-            this.Text = "Interface_CriarAnaliseZonas";
+            this.Text = "Criar Análise - Zonas";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -87,7 +87,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "Interface_CriarProjecto";
-            this.Text = "Interface_CriarProjecto";
+            this.Text = "Criar Projecto";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

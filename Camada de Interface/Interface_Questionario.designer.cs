@@ -49,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(601, 366);
             this.Controls.Add(this.Questionario);
             this.Name = "Interface_Questionario";
-            this.Text = "Interface_Questionario";
+            this.Text = "Ver Questionário";
             this.ResumeLayout(false);
 
         }
