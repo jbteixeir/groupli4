@@ -701,6 +701,28 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
             reader.Close();
         }
+
+		static public void insertRespostaQuestionario(Resposta r)
+		{
+			switch (r.Tipo_Resposta)
+			{
+				case Resposta.TipoResposta.RespostaNum:
+					DataBaseCommunicator.query("INSERT INTO resposta_questionario_numero VALUES (" +
+						r.NumeroPergunta + ", " + r.Valor + ", " + r.Cod_questionario + ", " +
+						r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
+					break;
+				case Resposta.TipoResposta.RespostaStr:
+					DataBaseCommunicator.query("INSERT INTO resposta_questionario_string VALUES (" +
+						r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
+						r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
+					break;
+				case Resposta.TipoResposta.RespostaMemo:
+					DataBaseCommunicator.query("INSERT INTO resposta_questionario_memo VALUES (" +
+						r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
+						r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
+					break;
+			}
+		}
         #endregion
 
 		#region Escala Resposta
