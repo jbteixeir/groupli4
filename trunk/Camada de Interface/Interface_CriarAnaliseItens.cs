@@ -324,7 +324,10 @@ namespace ETdA.Camada_de_Interface
                 TextBox b5 = (TextBox)bs[s8];
                 NumericUpDown n4 = (NumericUpDown)bs[s9];
 
-                i.PonderacaoAnalista = double.Parse(n1.Value.ToString());
+                
+                double f = Decimal.ToDouble(n1.Value);
+                MessageBox.Show(""+Double.Parse(n1.Value.ToString()));
+                i.PonderacaoAnalista = (double)n1.Value;
                 i.PonderacaoProfissional = double.Parse(n2.Value.ToString());
                 i.PonderacaoCliente = double.Parse(n3.Value.ToString());
                 i.Inter_Vermelho= double.Parse(b1.Text);

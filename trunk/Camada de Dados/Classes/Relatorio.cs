@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 using System;
-using Word = Microsoft.Office.Interop.Word;
-using System.Reflection;
+
 
 namespace ETdA.Camada_de_Dados.Classes
 {
@@ -106,14 +105,14 @@ namespace ETdA.Camada_de_Dados.Classes
                         }
 
                     }
-                    Dictionary<int, float> resultadoItem_questionario_parcial = new Dictionary<int, float>();
-                    float resultadoItem_questionario_total = -1;
-                    Dictionary<int, float> resultadoItem_fichaAvaliacao_parcial = new Dictionary<int, float>();
-                    float resultadoItem_fichaAvaliacao_total = -1;
-                    Dictionary<int, float> resultadoItem_checklist_parcial = new Dictionary<int, float>();
-                    float resultadoItem_checklist_total = -1;
+                    Dictionary<int, double> resultadoItem_questionario_parcial = new Dictionary<int, double>();
+                    double resultadoItem_questionario_total = -1;
+                    Dictionary<int, double> resultadoItem_fichaAvaliacao_parcial = new Dictionary<int, double>();
+                    double resultadoItem_fichaAvaliacao_total = -1;
+                    Dictionary<int, double> resultadoItem_checklist_parcial = new Dictionary<int, double>();
+                    double resultadoItem_checklist_total = -1;
 
-                    float resultadoItem_geral = -1;
+                    double resultadoItem_geral = -1;
 
                     //atribuição das percentagens das respostas a cada um dos valores da escala em cada um dos tipos de formulário
                     for (int i = 0; i < 5; i++)

@@ -465,7 +465,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             foreach (Item i in itens)
             {
                 double b = i.PonderacaoAnalista;
-                MessageBox.Show("Float: " + i.PonderacaoAnalista + "\nDouble: " + b);
                 String query = "insert into item_analise values(" + i.CodigoItem + "," + codAnalise + ","
                     + i.PonderacaoAnalista + "," + i.PonderacaoProfissional + "," + i.PonderacaoCliente +
                     "," + i.Inter_Vermelho + "," + i.Inter_Laranja + "," + i.Inter_Amarelo + "," +

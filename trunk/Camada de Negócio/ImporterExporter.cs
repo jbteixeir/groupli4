@@ -99,7 +99,7 @@ namespace CamadaNegocio
 								resposta.CodigoZona = perguntaReferente.Cod_zona;
 								// Aqui tem q se colocar a zona especial(reservada) que diz q a zona esta 
 								// na resposta do cliente, e no caso do ficheiro, vem no campo seguinte
-								if (perguntaReferente.Cod_zona == null)
+								if (perguntaReferente.Cod_zona == -1)
 								{
 									resposta.CodigoZona = Convert.ToInt32(linhaD[i + 1]);
 									jump = true;
