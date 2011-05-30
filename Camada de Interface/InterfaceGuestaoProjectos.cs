@@ -261,7 +261,7 @@ namespace ETdA.Camada_de_Interface
                 l3.Text = "Gerar Relatorio";
                 l3.Location = new System.Drawing.Point(7, 80);
                 l3.Cursor = System.Windows.Forms.Cursors.Hand;
-                //l3.Click += new System.EventHandler(this.OpenProjectClick);
+                l3.Click += new System.EventHandler(this.GerarRelatorio);
                 l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
@@ -447,6 +447,12 @@ namespace ETdA.Camada_de_Interface
         private void CriarAnaliseClick(object sender, EventArgs e)
         {
             Interface_CriarAnalise.main();
+        }
+
+        private void GerarRelatorio(object sender, EventArgs e)
+        {
+            //é preciso por por o projecto e a analise actuais
+            Interface_Relatorio.main(1, 1, new ETdA.Camada_de_Dados.Classes.Relatorio());
         }
     }
 }

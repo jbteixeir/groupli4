@@ -31,7 +31,9 @@
             this.painelHeaderZonas = new System.Windows.Forms.Panel();
             this.TituloZonas = new System.Windows.Forms.Label();
             this.painelGeralZonas = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.painelHeaderZonas.SuspendLayout();
+            this.painelGeralZonas.SuspendLayout();
             this.SuspendLayout();
             // 
             // painelHeaderZonas
@@ -57,11 +59,24 @@
             // painelGeralZonas
             // 
             this.painelGeralZonas.AutoScroll = true;
+            this.painelGeralZonas.Controls.Add(this.checkBox1);
             this.painelGeralZonas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelGeralZonas.Location = new System.Drawing.Point(0, 45);
             this.painelGeralZonas.Name = "painelGeralZonas";
             this.painelGeralZonas.Size = new System.Drawing.Size(925, 340);
             this.painelGeralZonas.TabIndex = 1;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(310, 109);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.TabIndex = 0;
+            
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Checked = true;
+                this.checkBox1.Text = "checkado!";
             // 
             // Interface_Relatorio
             // 
@@ -77,6 +92,8 @@
             this.Text = "Interface_Relatorio";
             this.painelHeaderZonas.ResumeLayout(false);
             this.painelHeaderZonas.PerformLayout();
+            this.painelGeralZonas.ResumeLayout(false);
+            this.painelGeralZonas.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -93,6 +110,7 @@
          */
         private System.Windows.Forms.Label TituloZonas;
         private System.Windows.Forms.Panel painelGeralZonas;
+        private System.Windows.Forms.CheckBox checkBox1;
 
     }
 }
