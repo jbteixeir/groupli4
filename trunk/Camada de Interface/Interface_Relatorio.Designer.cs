@@ -32,9 +32,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TituloZonas = new System.Windows.Forms.Label();
             this.painelGeralZonas = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.painelHeaderZonas.SuspendLayout();
+            this.painelGeralZonas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // painelHeaderZonas
@@ -72,11 +76,31 @@
             // painelGeralZonas
             // 
             this.painelGeralZonas.AutoScroll = true;
+            this.painelGeralZonas.Controls.Add(this.pictureBox1);
+            this.painelGeralZonas.Controls.Add(this.label2);
             this.painelGeralZonas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelGeralZonas.Location = new System.Drawing.Point(0, 0);
             this.painelGeralZonas.Name = "painelGeralZonas";
             this.painelGeralZonas.Size = new System.Drawing.Size(742, 373);
             this.painelGeralZonas.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ETdA.Properties.Resources.openproj;
+            this.pictureBox1.Location = new System.Drawing.Point(329, 189);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(33, 33);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(368, 199);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "label2";
             // 
             // checkBox1
             // 
@@ -114,6 +138,9 @@
             this.Text = "Interface_Relatorio";
             this.painelHeaderZonas.ResumeLayout(false);
             this.painelHeaderZonas.PerformLayout();
+            this.painelGeralZonas.ResumeLayout(false);
+            this.painelGeralZonas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,6 +154,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label2;
 
     }
 }
