@@ -33,6 +33,8 @@ namespace ETdA.Camada_de_Dados.Classes
             nomeEstabelecimento = nomeEst;
             ultimaActualizacao = ultimaAct;
             cod_name_analise = analises;
+            this.analises = new Dictionary<long, Analise>();
+            init_Eventos();
         }
 
         public Projecto ()
@@ -43,6 +45,7 @@ namespace ETdA.Camada_de_Dados.Classes
             ultimaActualizacao = DateTime.Now;
             cod_name_analise = new Dictionary<long, string>();
             analises = new Dictionary<long, Analise>();
+            init_Eventos();
         }
 
         public Projecto(Projecto p)
@@ -52,6 +55,7 @@ namespace ETdA.Camada_de_Dados.Classes
             ultimaActualizacao = p.Data;
             cod_name_analise = p.Cod_Name_Analise;
             analises = p.Analises;
+            init_Eventos();
         }
 
         //Métodos
@@ -154,7 +158,7 @@ namespace ETdA.Camada_de_Dados.Classes
             for (int i = 0; i < cod_name_analise.Count && !found; i++)
             {
                 KeyValuePair<long, string> p = cod_name_analise.ElementAt(i);
-                if (p.Value == nomeEstabelecimento)
+                if (p.Value == nomeAnalise)
                 {
                     cod = p.Key;
                     found = true;

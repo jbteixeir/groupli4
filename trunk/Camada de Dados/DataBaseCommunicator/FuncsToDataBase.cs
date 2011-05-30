@@ -186,19 +186,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             Analise a = null;
 
-            while (r.Read())
-            {
-                a = new Analise((long)r["cod_analise"],
-                   (long)r["codProjecto"],
-                   (DateTime)r["dataCriacao"],
-                   (string)r["nomeAnalise"],
-                   (string)r["tipoAnalise"],
-                   selectZonasAnalise((long)r["cod_analise"]),
-                   selectItensAnalise((long)r["cod_analise"]),
-                   (int)r["estadoWebCheckList"] == 0 ? false : true,
-                   (int)r["estadoWebFichaAvaliacao"] == 0 ? false : true,
-                   (int)r["estadoWebQuestionario"] == 0 ? false : true);
-            }
+            r.Read();
+            a = new Analise(codAnalise,
+               (long)r["cod_projecto"],
+               (DateTime)r["dataAnalise"],
+               (string)r["nomeAnalise"],
+               (string)r["tipoAnalise"],
+               selectZonasAnalise(codAnalise),
+               selectItensAnalise(codAnalise),
+               int.Parse(r["estadoWebCheckList"].ToString()) == 0 ? false : true,
+               int.Parse(r["estadoWebFichaAvaliacao"].ToString()) == 0 ? false : true,
+               int.Parse(r["estadoWebQuestionario"].ToString()) == 0 ? false : true);
 
          return a;
         }
@@ -434,7 +432,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             String query = "select item.cod_item, nome_item, default_item, ponderacao_analista, " + 
                 "ponderacao_profissional, ponderacao_cliente, inter_vermelho, inter_laranja, inter_amarelo, " +
-                "inter_verdelime, inter_verde, limite_inferior_analista from item_analise, item where cod_analise = " + 
+                "inter_verdelima, inter_verde, limite_inferior_analista from item_analise, item where cod_analise = " + 
                 codAnalise + " and item_analise.cod_item = item.cod_item ;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
@@ -445,15 +443,15 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 Item item = new Item((long)r["cod_item"],
                     (String)r["nome_item"],
                     (short)r["default_item"],
-                    (float)r["ponderacao_analista"],
-                    (float)r["ponderacao_profissional"],
-                    (float)r["ponderacao_cliente"],
-                    (float)r["inter_vermelho"],
-                    (float)r["inter_laranja"],
-                    (float)r["inter_amarelo"],
-                    (float)r["inter_verdelima"],
-                    (float)r["inter_verde"],
-                    (float)r["limite_inferior_analista"]);
+                    (double)r["ponderacao_analista"],
+                    (double)r["ponderacao_profissional"],
+                    (double)r["ponderacao_cliente"],
+                    (double)r["inter_vermelho"],
+                    (double)r["inter_laranja"],
+                    (double)r["inter_amarelo"],
+                    (double)r["inter_verdelima"],
+                    (double)r["inter_verde"],
+                    (double)r["limite_inferior_analista"]);
                 items.Add(item);
             }
             return items;
@@ -466,9 +464,11 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             {
                 double b = i.PonderacaoAnalista;
                 String query = "insert into item_analise values(" + i.CodigoItem + "," + codAnalise + ","
-                    + i.PonderacaoAnalista + "," + i.PonderacaoProfissional + "," + i.PonderacaoCliente +
-                    "," + i.Inter_Vermelho + "," + i.Inter_Laranja + "," + i.Inter_Amarelo + "," +
-                    i.Inter_Verde_Lima + "," + i.Inter_Verde + "," + i.LimiteInferiorAnalista + ");";
+                    + (i.PonderacaoAnalista*1000).ToString("0,000") + "," + (i.PonderacaoProfissional*1000).ToString("0,000") 
+                    + "," + (i.PonderacaoCliente*1000).ToString("0,000") + "," + (i.Inter_Vermelho*1000).ToString("0,000") + 
+                    "," + (i.Inter_Laranja*1000).ToString("0,000") + "," + (i.Inter_Amarelo*1000).ToString("0,000") + "," +
+                    (i.Inter_Verde_Lima*1000).ToString("0,000") + "," + (i.Inter_Verde*1000).ToString("0,000") + "," + 
+                    (i.LimiteInferiorAnalista*1000).ToString("0,000") + ");";
 
                 Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
             }
