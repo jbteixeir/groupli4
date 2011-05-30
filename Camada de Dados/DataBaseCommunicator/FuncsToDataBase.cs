@@ -107,7 +107,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             String query = "insert into projecto values('" +
             p.Nome + "'," + "CAST('" + p.Data.ToString("yyyyMMdd HH:mm:ss")
-            + "' AS datetime));" +
+            + "' AS datetime)) " +
             "SELECT SCOPE_IDENTITY();";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
@@ -495,7 +495,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-
+        /*
 		#region Questionario
 		static public void insertQuestionario(Questionario q)
 		{
@@ -511,7 +511,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 				fa.CodZona + ", " + fa.CodAnalise + ");");
 		}
 		#endregion
-
+        */
 		#region Respostas
 
 		#region Respostas CheckList
