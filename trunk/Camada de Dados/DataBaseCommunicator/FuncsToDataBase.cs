@@ -92,7 +92,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             {
                 p = new Projecto((long)r["cod_projecto"],
                     (string)r["estabelecimento"], (DateTime)r["ultimaActualizacao"],
-                    new Dictionary<string, string>());
+                    selectNomesAnalises(cod));
             }
 
             return p;
@@ -153,7 +153,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param codProjecto O Codigo do projecto à qual as analises fazem parte
          * @return Dictionary<long, string> Os codigos e os nomes das analises
          */
-        public static Dictionary<long, string> selectNomesAnalises(String codProjecto)
+        public static Dictionary<long, string> selectNomesAnalises(long codProjecto)
         {
             String query = "select cod_analise,nomeAnalise from analise where cod_projecto = " + codProjecto + ";";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
@@ -223,7 +223,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             long cod = (long)r["cod_analise"];
 
             insertZonasAnalise(a.Zonas, a.Codigo);
-            insertItemsAnalise(a.Itens, a.Codigo);
+            insertItensAnalise(a.Itens, a.Codigo);
 
             return cod;
         }
@@ -239,7 +239,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             deleteZonasAnalise(codAnalise);
             deleteItemsAnalise(codAnalise);
-            deleteFormularios(codAnalise);
+            //deleteFormularios(codAnalise);
             String query = "delete * from analise where cod_analise = " + codAnalise + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
@@ -523,7 +523,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     {
                         if (readerResposta["valor"].ToString() != "")
                         {
-                            respostas.Add(new Resposta(-1, -1, -1, int.Parse(readerItem["cod_item"].ToString()), int.Parse(readerZona["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), "", 1, Classes.Resposta.TipoResposta.RespostaNum));
+                            respostas.Add(new Resposta(-1, -1, -1, (long)readerItem["cod_item"], (long)readerZona["cod_zona"], (short)readerResposta["valor"], "", 1, Classes.Resposta.TipoResposta.RespostaNum));
                         }
                     }
                     readerResposta.Close();
@@ -580,7 +580,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                    "WHERE resposta_ficha_avaliacao_numero.cod_fichaAvaliacao=" + readerPergunta["cod_fichaAvaliacao"]);
                 while (readerResposta.Read())
                 {
-                    respostas.Add(new Resposta(-1, int.Parse(readerResposta["cod_fichaAvaliacao"].ToString()), int.Parse(readerResposta["numero_pergunta"].ToString()), int.Parse(readerResposta["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), int.Parse(readerResposta["valor"].ToString()), "", 2, Classes.Resposta.TipoResposta.RespostaNum));
+                    respostas.Add(new Resposta(-1, (long)readerResposta["cod_fichaAvaliacao"], (short)readerResposta["numero_pergunta"], (long)readerResposta["cod_item"], (long)readerResposta["cod_zona"], (short)readerResposta["valor"], "", 2, Classes.Resposta.TipoResposta.RespostaNum));
                 }
                 readerResposta.Close();
 
@@ -661,7 +661,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     while (readerResposta.Read())
                     {
                         if (readerResposta["valor"].ToString() != "")
-                            respostas.Add(new Resposta(int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), cod_item, cod_zona, int.Parse(readerResposta["valor"].ToString()), "", 3, Classes.Resposta.TipoResposta.RespostaNum));
+                            respostas.Add(new Resposta((long)readerResposta["cod_questionario"], -1, (long)reader["numero_pergunta"], cod_item, cod_zona, (short)readerResposta["valor"], "", 3, Classes.Resposta.TipoResposta.RespostaNum));
                     }
                     readerResposta.Close();
                 }
