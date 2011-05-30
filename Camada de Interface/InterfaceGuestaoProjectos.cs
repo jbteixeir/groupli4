@@ -67,7 +67,7 @@ namespace ETdA.Camada_de_Interface
                     treeView_Projectos.Nodes[i].Nodes.Add(t);
                     found = true;
                 }
-            tabPages.Remove(s[0]);
+            closeTab(tabControl1.SelectedIndex);
             initProgetPage(s[0]);
         }
 
