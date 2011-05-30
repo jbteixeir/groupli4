@@ -405,7 +405,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             r.Read();
-            return (long)r["cod_item"];
+            return long.Parse(r[0].ToString());
         }
 
         //Revisto
