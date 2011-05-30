@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ETdA.Camada_de_Dados;
 using ETdA.Camada_de_Dados.Classes.Estruturas;
+using System.Windows;
 
 namespace ETdA.Camada_de_Dados.Classes
 {
@@ -170,6 +171,11 @@ namespace ETdA.Camada_de_Dados.Classes
                 Analise a = Camada_de_Dados.DataBaseCommunicator.
                     FuncsToDataBase.selectAnalise(cod);
                 analises.Add(a.Codigo, a);
+                MessageBox.Show("Abiu Analise");
+            }
+            else
+            {
+                MessageBox.Show("Analise ja aberta");
             }
         }
 
