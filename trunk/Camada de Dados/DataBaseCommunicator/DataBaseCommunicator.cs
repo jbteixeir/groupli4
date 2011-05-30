@@ -134,7 +134,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             try
             {
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 SqlDataReader reader = null;
                 SqlCommand command = new SqlCommand(query, connection);
                 reader = command.ExecuteReader();

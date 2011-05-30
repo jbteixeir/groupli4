@@ -14,28 +14,31 @@ namespace ETdA.Camada_de_Interface
         private int cod_projecto;
         private int cod_analise;
         private Camada_de_Dados.Classes.Relatorio relatorio;
+        private List<Camada_de_Dados.Classes.Zona> zonas;
+        private List<Camada_de_Dados.Classes.Item> itens;
 
         public static void main(int cod_projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
-            relatorio.gerarResultadosRelatorio(cod_analise,new Lis
             Interface_Relatorio i = new Interface_Relatorio(cod_projecto, cod_analise, relatorio);
-            Application.Run(i);
+            i.Visible = true;
         }
 
         public Interface_Relatorio(int projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
-            InitializeComponent();
+            this.zonas = Camada_de_Negócio.GestaodeAnalises.getListaZona();
+            this.itens = Camada_de_Negócio.GestaodeAnalises.getListaItens();
+            relatorio.gerarResultadosRelatorio(cod_analise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
+
             this.cod_projecto = cod_projecto;
             this.cod_analise = cod_analise;
             this.relatorio = relatorio;
 
+            InitializeComponent();
             showRelatorio();
         }
 
         public void showRelatorio()
         {
-            List<Camada_de_Dados.Classes.Zona> zonas = Camada_de_Negócio.GestaodeAnalises.getListaZona();
-            List<Camada_de_Dados.Classes.Item> ites = Camada_de_Negócio.GestaodeAnalises.getListaItens();
 
             /*
                         System.Windows.Forms.Panel painelGeralItens;
@@ -80,7 +83,7 @@ namespace ETdA.Camada_de_Interface
 
                 for (int j = 0; j < 5; j++)
                 {
-                    relatorio.
+                    
                     System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
                     if(true)
                     corItem.Image = global::ETdA.Properties.Resources.vermelho;
