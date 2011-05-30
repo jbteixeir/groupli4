@@ -60,20 +60,6 @@ namespace ETdA.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap allcolor {
-            get {
-                object obj = ResourceManager.GetObject("allcolor", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap allcolor1 {
-            get {
-                object obj = ResourceManager.GetObject("allcolor1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap amarelo {
             get {
                 object obj = ResourceManager.GetObject("amarelo", resourceCulture);

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.painelHeaderZonas = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.TituloZonas = new System.Windows.Forms.Label();
             this.painelGeralZonas = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.painelHeaderZonas.SuspendLayout();
             this.SuspendLayout();
@@ -45,8 +45,18 @@
             this.painelHeaderZonas.Dock = System.Windows.Forms.DockStyle.Top;
             this.painelHeaderZonas.Location = new System.Drawing.Point(0, 0);
             this.painelHeaderZonas.Name = "painelHeaderZonas";
-            this.painelHeaderZonas.Size = new System.Drawing.Size(925, 88);
+            this.painelHeaderZonas.Size = new System.Drawing.Size(742, 88);
             this.painelHeaderZonas.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(17, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 29);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Relatório";
             // 
             // TituloZonas
             // 
@@ -62,20 +72,10 @@
             // 
             this.painelGeralZonas.AutoScroll = true;
             this.painelGeralZonas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.painelGeralZonas.Location = new System.Drawing.Point(0, 88);
+            this.painelGeralZonas.Location = new System.Drawing.Point(0, 0);
             this.painelGeralZonas.Name = "painelGeralZonas";
-            this.painelGeralZonas.Size = new System.Drawing.Size(925, 297);
+            this.painelGeralZonas.Size = new System.Drawing.Size(742, 373);
             this.painelGeralZonas.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 29);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Relatório";
             // 
             // panel1
             // 
@@ -83,7 +83,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 88);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(35, 297);
+            this.panel1.Size = new System.Drawing.Size(35, 285);
             this.panel1.TabIndex = 2;
             // 
             // Interface_Relatorio
@@ -92,10 +92,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(925, 385);
+            this.ClientSize = new System.Drawing.Size(742, 373);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.painelGeralZonas);
             this.Controls.Add(this.painelHeaderZonas);
+            this.Controls.Add(this.painelGeralZonas);
             this.Name = "Interface_Relatorio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Interface_Relatorio";

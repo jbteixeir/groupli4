@@ -17,16 +17,17 @@ namespace ETdA.Camada_de_Interface
         private List<Camada_de_Dados.Classes.Zona> zonas;
         private List<Camada_de_Dados.Classes.Item> itens;
 
+
         public static void main(int cod_projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
             Interface_Relatorio i = new Interface_Relatorio(cod_projecto, cod_analise, relatorio);
             i.Visible = true;
         }
 
-        public Interface_Relatorio(int projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
+        public Interface_Relatorio(int cod_projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
-            this.zonas = Camada_de_Negócio.GestaodeAnalises.getListaZonas();
-            this.itens = Camada_de_Negócio.GestaodeAnalises.getListaItens();
+            this.zonas = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Zonas;
+            this.itens = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Itens;
             relatorio.gerarResultadosRelatorio(cod_analise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
 
             this.cod_projecto = cod_projecto;
@@ -83,10 +84,19 @@ namespace ETdA.Camada_de_Interface
 
                 for (int j = 0; j < itens.Count; j++)
                 {
-                    
+
                     System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
-                    if(true)
-                    corItem.Image = global::ETdA.Properties.Resources.vermelho;
+                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Vermelho)
+                        corItem.Image = global::ETdA.Properties.Resources.vermelho;
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Laranja)
+                        corItem.Image = global::ETdA.Properties.Resources.laranja;
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Amarelo)
+                        corItem.Image = global::ETdA.Properties.Resources.amarelo;
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
+                        corItem.Image = global::ETdA.Properties.Resources.lima;
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde)
+                        corItem.Image = global::ETdA.Properties.Resources.verde;
+
 
                     corItem.Dock = System.Windows.Forms.DockStyle.Right;
                     corItem.Location = new System.Drawing.Point(600, 20);
