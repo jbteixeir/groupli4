@@ -135,7 +135,7 @@
             this.Controls.Add(this.painelGeralZonas);
             this.Name = "Interface_Relatorio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Interface_Relatorio";
+            this.Text = "Relatório";
             this.painelHeaderZonas.ResumeLayout(false);
             this.painelHeaderZonas.PerformLayout();
             this.painelGeralZonas.ResumeLayout(false);

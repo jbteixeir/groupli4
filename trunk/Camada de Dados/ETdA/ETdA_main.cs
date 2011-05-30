@@ -46,7 +46,10 @@ namespace ETdA.Camada_de_Dados.ETdA
 
         public static Projecto getProjecto(long codProjecto)
         {
-            return projectos[codProjecto];
+            if (projectos.Keys.Contains(codProjecto))
+                return projectos[codProjecto];
+            else
+                return null;
         }
 
         public static long getCodProjecto(string nome)

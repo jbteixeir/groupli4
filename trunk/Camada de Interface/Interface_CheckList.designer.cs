@@ -50,7 +50,7 @@
             this.ClientSize = new System.Drawing.Size(594, 411);
             this.Controls.Add(this.CheckList);
             this.Name = "Interface_CheckList";
-            this.Text = "Interface_CheckList";
+            this.Text = "Ver Checklist";
             this.Load += new System.EventHandler(this.Interface_CheckList_Load);
             this.ResumeLayout(false);
 

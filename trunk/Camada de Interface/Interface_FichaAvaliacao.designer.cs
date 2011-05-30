@@ -49,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(620, 366);
             this.Controls.Add(this.FichaAvaliacao);
             this.Name = "Interface_FichaAvaliacao";
-            this.Text = "Interface_FichaAvaliacao";
+            this.Text = "Ver Ficha de Avaliação";
             this.ResumeLayout(false);
 
         }

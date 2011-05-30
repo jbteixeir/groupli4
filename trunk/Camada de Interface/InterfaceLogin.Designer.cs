@@ -56,7 +56,7 @@
             // 
             // Login
             // 
-            this.Login.Location = new System.Drawing.Point(162, 238);
+            this.Login.Location = new System.Drawing.Point(196, 238);
             this.Login.Name = "Login";
             this.Login.Size = new System.Drawing.Size(75, 23);
             this.Login.TabIndex = 3;
