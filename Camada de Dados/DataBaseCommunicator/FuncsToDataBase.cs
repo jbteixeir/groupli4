@@ -496,10 +496,26 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 
+		#region Questionario
+		static public void insertQuestionario(Questionario q)
+		{
+			DataBaseCommunicator.query("INSERT INTO questionario VALUES (" +
+				q.CodQuestionario + ", " + q.CodAnalise);
+		}
+		#endregion
+
+		#region Ficha Avaliacao
+		static public void insertFichaAvaliacao(FichaAvaliacao fa)
+		{
+			DataBaseCommunicator.query("INSERT INTO ficha_avaliacao VALUES (" +
+				fa.CodZona + ", " + fa.CodAnalise + ");");
+		}
+		#endregion
+
 		#region Respostas
-		
-        #region Respostas CheckList
-        static public void selectRespostaCheckList(long codigoAnalise, List<Resposta> respostas)
+
+		#region Respostas CheckList
+		static public void selectRespostaCheckList(long codigoAnalise, List<Resposta> respostas)
         {
             SqlDataReader readerZona, readerItem, readerResposta;
 
@@ -595,6 +611,22 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
         }
 
+		static public void insertRespostaFichaAvaliacao(Resposta r)
+		{
+			switch (r.Tipo_Resposta)	{
+				case Resposta.TipoResposta.RespostaNum:
+					DataBaseCommunicator.query("INSERT INTO resposta_ficha_avaliacao_numero VALUES ("+
+						r.NumeroPergunta+ ", " + r.Valor+ ", "+ r.Cod_fichaAvaliacao + ", " +
+						r.Cod_analise + ");" );
+					break;
+				case Resposta.TipoResposta.RespostaStr:
+					DataBaseCommunicator.query("INSERT INTO resposta_ficha_avaliacao_string VALUES (" +
+						r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_fichaAvaliacao + ", " 
+						+ r.Cod_analise + ");");
+					break;
+			}
+			
+		}
         #endregion
         
         /* Respostas Questionario */
@@ -717,6 +749,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
+
 		
         #region Escala
         public static TipoEscala selectTipoEscala(long codTipo)
@@ -750,5 +783,3 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 	}
 
 }
-
-
