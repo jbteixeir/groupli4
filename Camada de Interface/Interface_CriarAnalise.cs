@@ -13,23 +13,26 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class Interface_CriarAnalise : Form
     {
-        List<string> zonas;
-        List<Item> itens;
-        List<string> itens_novos;
+        private List<string> zonas;
+        private List<Item> itens;
+        private List<string> itens_novos;
         private static Interface_CriarAnalise ica;
+        private string codProjecto;
 
-        public Interface_CriarAnalise()
+        public Interface_CriarAnalise(string codProjecto)
         {
             InitializeComponent();
             zonas = new List<string>();
             itens = new List<Item>();
 
+            this.codProjecto = codProjecto;
+
             label3.Enabled = false;
         }
 
-        public static void main()
+        public static void main(string codProjecto)
         {
-            ica = new Interface_CriarAnalise();
+            ica = new Interface_CriarAnalise(codProjecto);
             ica.Visible = true;
         }
 
@@ -61,7 +64,37 @@ namespace ETdA.Camada_de_Interface
             string nome = textBox1.Text;
             string tipo = comboBox1.SelectedItem.ToString();
 
+            String cont = "abcdefghijklmnopqrstuvwxyz" + 
+                          "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + 
+                          "0123456789" + 
+                          "_";
+
             MessageBox.Show(tipo);
+
+            bool found = true;
+            for ( int i = 0 ; i < nome.Length && found; i++ )
+                found = cont.Contains(nome[i]);
+
+            if (nome == "" || !found)
+                MessageBox.Show("Nome da análise inválida","Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            else if (itens.Count == 0 || zonas.Count == 0)
+                MessageBox.Show("Zonas e Itens têm de estar preenchidos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                if (itens_novos.Count != 0)
+                    GestaodeAnalises.adicionaItensNovos(itens_novos);
+
+                GestaodeAnalises.adcicionaZonasNovas(zonas);
+
+                Analise a = new Analise();
+                a.CodigoProj = codProjecto;
+                a.Nome = nome;
+                a.Tipo = tipo;
+                a.Zonas = ;
+                a.Itens = ;
+
+                GestaodeAnalises.AdicionaAnalise(a);
+            }
         }
 
 		private bool nomeAnaliseValido(string p)
