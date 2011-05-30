@@ -725,8 +725,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 		}
         #endregion
 
+		#region Respostas CheckList
+		static public void insertRespostaCheckList(Resposta r)
+		{
+			DataBaseCommunicator.query("INSERT INTO resposta_checkList VALUES (" +
+				r.Valor + ", " + r.CodigoItem + ", " + r.CodigoZona + ", " + r.Cod_analise + ");");
+		}
+
+		#endregion
+
 		#region Escala Resposta
-        public static EscalaResposta selectEscalaResposta(long codEscala)
+		public static EscalaResposta selectEscalaResposta(long codEscala)
         {
             String query = "select * from EscalaResposta where " + "cod_EscalaResposta = "
                 + codEscala + ";";
