@@ -10,16 +10,19 @@ namespace ETdA.Camada_de_Dados.Classes
     class Relatorio
     {
         private Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados;
+        private List<float> listaEstatisticas;
 
         //Constructores
-        public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados)
+        public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados, List<float> listaEstatisticas)
         {
             this.listaResultados = listaResultados;
+            this.listaEstatisticas = listaEstatisticas;
         }
 
         public Relatorio()
         {
             this.listaResultados = new Dictionary<long, Dictionary<long, Classes.ResultadoItem>>();
+            this.listaEstatisticas = new List<float>();
         }
 
 
@@ -28,6 +31,12 @@ namespace ETdA.Camada_de_Dados.Classes
         {
             get { return listaResultados; }
             set { listaResultados = value; }
+        }
+
+        public List<float> ListaEstatisticas
+        {
+            get { return listaEstatisticas; }
+            set { listaEstatisticas = value; }
         }
 
 

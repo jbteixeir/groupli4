@@ -80,6 +80,19 @@ namespace ETdA.Camada_de_Dados.Classes
             set { analises = value; }
         }
 
+        public long getCodigoAnalise(string nome)
+        {
+            long cod = -1;
+            bool found = false;
+            for (int i = 0; i < cod_name_analise.Count && !found; i++)
+                if (cod_name_analise.Values.ElementAt(i) == nome)
+                {
+                    cod = cod_name_analise.Keys.ElementAt(i);
+                    found = true;
+                }
+            return cod;
+        }
+
         public Projecto clone()
         {
             return new Projecto(this);

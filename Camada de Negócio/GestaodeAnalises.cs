@@ -87,5 +87,10 @@ namespace ETdA.Camada_de_Negócio
             }
             return zonas;
         }
+
+        public static long getCodAnalise(long codProjecto,string nomeAnalise)
+        {
+            return Camada_de_Dados.ETdA.ETdA.getProjecto(codProjecto).getCodigoAnalise(nomeAnalise);
+        }
     }
 }
