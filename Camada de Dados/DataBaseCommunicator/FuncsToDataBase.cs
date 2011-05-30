@@ -290,7 +290,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static long insertZona(string nome)
         {
-            String query = "insert into zona values('" + nome + "';" +
+            String query = "insert into zona values('" + nome + "') " +
                 "SELECT SCOPE_IDENTITY();";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);

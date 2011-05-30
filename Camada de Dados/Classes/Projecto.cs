@@ -135,9 +135,12 @@ namespace ETdA.Camada_de_Dados.Classes
                 }
             }
 
-            Analise a = Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.selectAnalise(cod);
-            analises.Add(a.Codigo, a);
+            if (!analises.Keys.Contains(cod))
+            {
+                Analise a = Camada_de_Dados.DataBaseCommunicator.
+                    FuncsToDataBase.selectAnalise(cod);
+                analises.Add(a.Codigo, a);
+            }
         }
 
         /*

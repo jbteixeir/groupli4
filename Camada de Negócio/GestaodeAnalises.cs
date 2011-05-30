@@ -39,6 +39,12 @@ namespace ETdA.Camada_de_Negócio
 //        void geraWebsite();
 //        void geraFormularioOnline();
 
+        public static void abreAnalise(string np, string na){
+            long codp = GestaodeProjectos.getCodProjecto(np);
+
+            Camada_de_Dados.ETdA.ETdA.getProjecto(codp).abreAnalise(na);
+        }
+
         public static List<string> getNomeAnalises(string nomeProjecto)
         {
             long cod = Camada_de_Dados.ETdA.ETdA.abreProjecto(nomeProjecto);
