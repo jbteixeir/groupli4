@@ -39,14 +39,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Password = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Sair
             // 
-            this.Sair.Location = new System.Drawing.Point(333, 249);
+            this.Sair.Location = new System.Drawing.Point(336, 238);
             this.Sair.Name = "Sair";
             this.Sair.Size = new System.Drawing.Size(75, 23);
             this.Sair.TabIndex = 2;
@@ -56,7 +56,7 @@
             // 
             // Login
             // 
-            this.Login.Location = new System.Drawing.Point(162, 249);
+            this.Login.Location = new System.Drawing.Point(162, 238);
             this.Login.Name = "Login";
             this.Login.Size = new System.Drawing.Size(75, 23);
             this.Login.TabIndex = 3;
@@ -66,7 +66,7 @@
             // 
             // Registar
             // 
-            this.Registar.Location = new System.Drawing.Point(48, 249);
+            this.Registar.Location = new System.Drawing.Point(48, 238);
             this.Registar.Name = "Registar";
             this.Registar.Size = new System.Drawing.Size(75, 23);
             this.Registar.TabIndex = 9;
@@ -76,7 +76,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(97, 36);
+            this.textBox1.Location = new System.Drawing.Point(100, 43);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(195, 20);
             this.textBox1.TabIndex = 0;
@@ -85,7 +85,7 @@
             // Username
             // 
             this.Username.AutoSize = true;
-            this.Username.Location = new System.Drawing.Point(26, 39);
+            this.Username.Location = new System.Drawing.Point(29, 46);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(55, 13);
             this.Username.TabIndex = 1;
@@ -94,7 +94,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(193, 146);
+            this.label3.Location = new System.Drawing.Point(196, 153);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 13);
             this.label3.TabIndex = 8;
@@ -103,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(173, 133);
+            this.label2.Location = new System.Drawing.Point(176, 140);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(176, 13);
             this.label2.TabIndex = 7;
@@ -111,7 +111,7 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(97, 80);
+            this.maskedTextBox1.Location = new System.Drawing.Point(100, 87);
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.PasswordChar = '*';
             this.maskedTextBox1.Size = new System.Drawing.Size(194, 20);
@@ -121,7 +121,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(193, 120);
+            this.label1.Location = new System.Drawing.Point(196, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(141, 13);
             this.label1.TabIndex = 6;
@@ -131,7 +131,7 @@
             // Password
             // 
             this.Password.AutoSize = true;
-            this.Password.Location = new System.Drawing.Point(26, 83);
+            this.Password.Location = new System.Drawing.Point(29, 90);
             this.Password.Name = "Password";
             this.Password.Size = new System.Drawing.Size(53, 13);
             this.Password.TabIndex = 5;
@@ -140,7 +140,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 120);
+            this.checkBox1.Location = new System.Drawing.Point(18, 127);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(134, 17);
             this.checkBox1.TabIndex = 10;
@@ -148,21 +148,31 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // groupControl1
+            // panel1
             // 
-            this.groupControl1.Controls.Add(this.label1);
-            this.groupControl1.Controls.Add(this.textBox1);
-            this.groupControl1.Controls.Add(this.checkBox1);
-            this.groupControl1.Controls.Add(this.maskedTextBox1);
-            this.groupControl1.Controls.Add(this.Username);
-            this.groupControl1.Controls.Add(this.label2);
-            this.groupControl1.Controls.Add(this.Password);
-            this.groupControl1.Controls.Add(this.label3);
-            this.groupControl1.Location = new System.Drawing.Point(48, 35);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(360, 165);
-            this.groupControl1.TabIndex = 12;
-            this.groupControl1.Text = "Login";
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.Password);
+            this.panel1.Controls.Add(this.maskedTextBox1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.Username);
+            this.panel1.Location = new System.Drawing.Point(48, 29);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(363, 175);
+            this.panel1.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(15, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 16);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "ETdAnalyser";
             // 
             // InterfaceLogin
             // 
@@ -170,8 +180,8 @@
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = global::ETdA.Properties.Resources.login1;
-            this.ClientSize = new System.Drawing.Size(463, 303);
-            this.Controls.Add(this.groupControl1);
+            this.ClientSize = new System.Drawing.Size(465, 295);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.Registar);
             this.Controls.Add(this.Login);
             this.Controls.Add(this.Sair);
@@ -180,9 +190,8 @@
             this.Name = "InterfaceLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -200,6 +209,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Password;
         private System.Windows.Forms.CheckBox checkBox1;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label4;
     }
 }
