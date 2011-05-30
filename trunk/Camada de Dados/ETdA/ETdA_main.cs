@@ -125,10 +125,14 @@ namespace ETdA.Camada_de_Dados.ETdA
                 }
             }
 
-            Projecto proj = Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.selectProjecto(cod);
-            projectos.Add(proj.Codigo, proj);
-            return proj.Codigo;
+            if (!projectos.Keys.Contains(cod))
+            {
+                Projecto proj = Camada_de_Dados.DataBaseCommunicator.
+                    FuncsToDataBase.selectProjecto(cod);
+                MessageBox.Show("proj.Codigo " + proj.Codigo);
+                projectos.Add(proj.Codigo, proj);
+            }
+            return cod;
         }
 
         /*
