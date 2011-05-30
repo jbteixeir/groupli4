@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 using System;
+using Word = Microsoft.Office.Interop.Word;
+using System.Reflection;
 
 namespace ETdA.Camada_de_Dados.Classes
 {
     class Relatorio
     {
         private Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados;
-        private List<float> listaEstatisticas;
+        private List<double> listaEstatisticas;
 
         //Constructores
-        public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados, List<float> listaEstatisticas)
+        public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados, List<double> listaEstatisticas)
         {
             this.listaResultados = listaResultados;
             this.listaEstatisticas = listaEstatisticas;
@@ -22,7 +24,7 @@ namespace ETdA.Camada_de_Dados.Classes
         public Relatorio()
         {
             this.listaResultados = new Dictionary<long, Dictionary<long, Classes.ResultadoItem>>();
-            this.listaEstatisticas = new List<float>();
+            this.listaEstatisticas = new List<double>();
         }
 
 
@@ -33,7 +35,7 @@ namespace ETdA.Camada_de_Dados.Classes
             set { listaResultados = value; }
         }
 
-        public List<float> ListaEstatisticas
+        public List<double> ListaEstatisticas
         {
             get { return listaEstatisticas; }
             set { listaEstatisticas = value; }

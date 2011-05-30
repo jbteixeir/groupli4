@@ -34,7 +34,6 @@
             this.painelGeralZonas = new System.Windows.Forms.Panel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.painelHeaderZonas.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,14 +98,6 @@
             this.button1.Text = "Concluir";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeView1.Location = new System.Drawing.Point(0, 88);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(154, 285);
-            this.treeView1.TabIndex = 5;
-            // 
             // Interface_Relatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,7 +105,6 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(742, 373);
-            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.painelHeaderZonas);
@@ -137,7 +127,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TreeView treeView1;
 
     }
 }
