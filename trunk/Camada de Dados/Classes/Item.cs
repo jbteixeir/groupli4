@@ -11,19 +11,19 @@ namespace ETdA.Camada_de_Dados.Classes
         private long cod_item;
         private String nome_item;
         private int defaultItem;
-        private float ponderacao_analista;
-        private float ponderacao_profissional;
-        private float ponderacao_cliente;
-        private float inter_vemelho;
-        private float inter_laranja;
-        private float inter_amarelo;
-        private float inter_verdelima;
-        private float inter_verde;
-        private float limite_inferior_analista;
+        private double ponderacao_analista;
+        private double ponderacao_profissional;
+        private double ponderacao_cliente;
+        private double inter_vemelho;
+        private double inter_laranja;
+        private double inter_amarelo;
+        private double inter_verdelima;
+        private double inter_verde;
+        private double limite_inferior_analista;
         
         //Constructores
 
-        public Item(long cod, String nome, int def, float ponderacao_analista, float ponderacao_profissional, float ponderacao_cliente, float inter_vemelho, float inter_laranja, float inter_amarelo, float inter_verdelima, float inter_verde, float limite_inferior_analista)
+        public Item(long cod, String nome, int def, double ponderacao_analista, double ponderacao_profissional, double ponderacao_cliente, double inter_vemelho, double inter_laranja, double inter_amarelo, double inter_verdelima, double inter_verde, double limite_inferior_analista)
         {
             cod_item = cod;
             nome_item = nome;
@@ -72,47 +72,47 @@ namespace ETdA.Camada_de_Dados.Classes
             set { defaultItem = value; }
         }
         
-        public float PonderacaoAnalista
+        public double PonderacaoAnalista
         {
             get { return ponderacao_analista; }
             set { ponderacao_analista = value; }
         }
-        public float PonderacaoProfissional
+        public double PonderacaoProfissional
         {
             get { return ponderacao_profissional; }
             set { ponderacao_profissional = value; }
         }
-        public float PonderacaoCliente
+        public double PonderacaoCliente
         {
             get { return ponderacao_cliente; }
             set { ponderacao_cliente = value; }
         }
-        public float LimiteInferiorAnalista
+        public double LimiteInferiorAnalista
         {
             get { return limite_inferior_analista; }
             set { limite_inferior_analista = value; }
         }
-        public float Inter_Vermelho
+        public double Inter_Vermelho
         {
             get { return inter_vemelho; }
             set { inter_vemelho = value; }
         }
-        public float Inter_Laranja
+        public double Inter_Laranja
         {
             get { return inter_laranja; }
             set { inter_laranja = value; }
         }
-        public float Inter_Amarelo
+        public double Inter_Amarelo
         {
             get { return inter_amarelo; }
             set { inter_amarelo = value; }
         }
-        public float Inter_Verde_Lima
+        public double Inter_Verde_Lima
         {
             get { return inter_verdelima; }
             set { inter_verdelima = value; }
         }
-        public float Inter_Verde
+        public double Inter_Verde
         {
             get { return inter_verde; }
             set { inter_verde = value; }

@@ -50,6 +50,27 @@ namespace ETdA.Camada_de_Interface
             nodo.Text = (string) sender;
             this.treeView_Projectos.Nodes.Add(nodo);
         }
+
+        public static void addAnaliseReenc(object sender, EventArgs e)
+        {
+            igp.addAnalise(sender, e);
+        }
+        private void addAnalise(object sender, EventArgs e)
+        {
+            List<string> s = (List<string>) sender;
+            bool found = false;
+            for (int i = 0 ; i < treeView_Projectos.Nodes.Count && !found ; i++)
+                if (treeView_Projectos.Nodes[i].Text == s[0])
+                {
+                    TreeNode t = new TreeNode();
+                    t.Text = s[1];
+                    treeView_Projectos.Nodes[i].Nodes.Add(t);
+                    found = true;
+                }
+            tabPages.Remove(s[0]);
+            initProgetPage(s[0]);
+        }
+
         /*
         public static void remProjectoReenc(object sender, EventArgs e)
         {

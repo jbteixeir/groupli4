@@ -17,8 +17,6 @@ namespace ETdA.Camada_de_Dados.ETdA
         private static event eventoEventHandler evento_analista_registado;
         private static event eventoEventHandler evento_projecto_adicionado;
         private static event eventoEventHandler evento_projecto_removido;
-        private static event eventoEventHandler evento_analise_adicionada;
-        private static event eventoEventHandler evento_analise_removida;
 
         private static Dictionary<long, string> cod_nome_projectos;
         private static Dictionary<long, Projecto> projectos;
