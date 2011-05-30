@@ -25,7 +25,7 @@ namespace ETdA.Camada_de_Interface
 
         public Interface_Relatorio(int projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
-            this.zonas = Camada_de_Negócio.GestaodeAnalises.getListaZona();
+            this.zonas = Camada_de_Negócio.GestaodeAnalises.getListaZonas();
             this.itens = Camada_de_Negócio.GestaodeAnalises.getListaItens();
             relatorio.gerarResultadosRelatorio(cod_analise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
 
@@ -55,7 +55,7 @@ namespace ETdA.Camada_de_Interface
                         */
 
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < zonas.Count; i++)
             {
                 Panel painelGeralItens = new Panel();
                 painelGeralItens.SuspendLayout();
@@ -77,11 +77,11 @@ namespace ETdA.Camada_de_Interface
                 groupBoxZona.TabIndex = 1;
                 groupBoxZona.TabStop = false;
                 //nome da zona
-                groupBoxZona.Text = "GroupBoxZona1";
+                groupBoxZona.Text = zonas[i].Nome;
 
                 painelGeralZonas.Controls.Add(groupBoxZona);
 
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < itens.Count; j++)
                 {
                     
                     System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
@@ -108,7 +108,7 @@ namespace ETdA.Camada_de_Interface
                     groupBoxItem.TabIndex = 1;
                     groupBoxItem.TabStop = false;
                     //nome do item
-                    groupBoxItem.Text = "GroupBoxItem1";
+                    groupBoxItem.Text = itens[j].NomeItem;
 
 
                     groupBoxZona.Controls.Add(groupBoxItem);

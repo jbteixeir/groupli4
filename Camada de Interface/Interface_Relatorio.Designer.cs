@@ -31,26 +31,28 @@
             this.painelHeaderZonas = new System.Windows.Forms.Panel();
             this.TituloZonas = new System.Windows.Forms.Label();
             this.painelGeralZonas = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.painelHeaderZonas.SuspendLayout();
-            this.painelGeralZonas.SuspendLayout();
             this.SuspendLayout();
             // 
             // painelHeaderZonas
             // 
             this.painelHeaderZonas.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.painelHeaderZonas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.painelHeaderZonas.Controls.Add(this.label1);
             this.painelHeaderZonas.Controls.Add(this.TituloZonas);
             this.painelHeaderZonas.Dock = System.Windows.Forms.DockStyle.Top;
             this.painelHeaderZonas.Location = new System.Drawing.Point(0, 0);
             this.painelHeaderZonas.Name = "painelHeaderZonas";
-            this.painelHeaderZonas.Size = new System.Drawing.Size(925, 45);
+            this.painelHeaderZonas.Size = new System.Drawing.Size(925, 88);
             this.painelHeaderZonas.TabIndex = 0;
             // 
             // TituloZonas
             // 
             this.TituloZonas.AutoSize = true;
             this.TituloZonas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TituloZonas.Location = new System.Drawing.Point(13, 9);
+            this.TituloZonas.Location = new System.Drawing.Point(42, 42);
             this.TituloZonas.Name = "TituloZonas";
             this.TituloZonas.Size = new System.Drawing.Size(208, 25);
             this.TituloZonas.TabIndex = 1;
@@ -59,24 +61,30 @@
             // painelGeralZonas
             // 
             this.painelGeralZonas.AutoScroll = true;
-            this.painelGeralZonas.Controls.Add(this.checkBox1);
             this.painelGeralZonas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.painelGeralZonas.Location = new System.Drawing.Point(0, 45);
+            this.painelGeralZonas.Location = new System.Drawing.Point(0, 88);
             this.painelGeralZonas.Name = "painelGeralZonas";
-            this.painelGeralZonas.Size = new System.Drawing.Size(925, 340);
+            this.painelGeralZonas.Size = new System.Drawing.Size(925, 297);
             this.painelGeralZonas.TabIndex = 1;
             // 
-            // checkBox1
+            // label1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(310, 109);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 0;
-            
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Checked = true;
-                this.checkBox1.Text = "checkado!";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(17, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 29);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Relatório";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 88);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(35, 297);
+            this.panel1.TabIndex = 2;
             // 
             // Interface_Relatorio
             // 
@@ -85,6 +93,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(925, 385);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.painelGeralZonas);
             this.Controls.Add(this.painelHeaderZonas);
             this.Name = "Interface_Relatorio";
@@ -92,8 +101,6 @@
             this.Text = "Interface_Relatorio";
             this.painelHeaderZonas.ResumeLayout(false);
             this.painelHeaderZonas.PerformLayout();
-            this.painelGeralZonas.ResumeLayout(false);
-            this.painelGeralZonas.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -101,16 +108,10 @@
         #endregion
 
         private System.Windows.Forms.Panel painelHeaderZonas;
-        /*
-        private System.Windows.Forms.Panel painelZona;
-        private System.Windows.Forms.Panel painelGeralItens;
-        private System.Windows.Forms.Panel painelItem;
-        private System.Windows.Forms.Label labelItem;
-        private System.Windows.Forms.Label labelZona;
-         */
         private System.Windows.Forms.Label TituloZonas;
         private System.Windows.Forms.Panel painelGeralZonas;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
 
     }
 }
