@@ -533,12 +533,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             readerZona.Close();
         }
         #endregion
-
+        /*
 		static public void insertRespostaCheckList(int codigoAnalise, List<Resposta> respostas)
 		{
 			foreach (Resposta resposta in respostas)
 			{
-				switch (resposta.Tipo_Resposta)
+				switch (resposta.tipoResposta)
 				{
 					case (Resposta.TipoResposta.RespostaNum):
 						DataBaseCommunicator.query(
@@ -561,6 +561,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 				}
 			}
 		}
+         * */
 
 		#endregion
 		
@@ -717,7 +718,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-		#endregion
+		
 
         #region Escala
         public static TipoEscala selectTipoEscala(long codTipo)

@@ -15,7 +15,9 @@ namespace ETdA_starter
         [STAThread]
         static void Main()
         {
+            //ETdA.Camada_de_Interface.Interface_IntroduzirManualmente.main();
             Boolean b = GestaodeAnalistas.loadConnectionUtilizadorLogado();
+            
 
             if (b)
             {
@@ -26,11 +28,15 @@ namespace ETdA_starter
                 b = GestaodeAnalistas.loadConnectionSuper();
 
                 if (b)
+                {
                     InterfaceLogin.main();
+                }
                 else
                     MessageBox.Show("Não foi possível Ligar à base de dados", "Connection Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
             }
+
         }
     }
 }

@@ -11,6 +11,13 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class Interface_IntroduzirManualmente : Form
     {
+
+        public static void main()
+        {
+            Interface_IntroduzirManualmente i = new Interface_IntroduzirManualmente();
+            Application.Run(i);
+        }
+
         public Interface_IntroduzirManualmente()
         {
             InitializeComponent();
