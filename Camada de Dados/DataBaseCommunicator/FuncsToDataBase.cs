@@ -10,8 +10,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 {
     class FuncsToDataBase
     {
-        /* ----------------------------------------------*/
-        /* Analistas */
         #region Analistas
         /**
          * Liga o analista à sua base de dados
@@ -52,10 +50,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
 
         #endregion
-        /* ----------------------------------------------*/
-
-        /* ----------------------------------------------*/
-        /* Projectos */
+        
         #region Projectos
         /**
          * Retorna os codigos e nomes de todos os Projectos por ordem de data
@@ -151,10 +146,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-        /* ----------------------------------------------*/
-
-        /* ----------------------------------------------*/
-        /* Analises */
+        
         #region Analises
         /**
          * Retorna os codigos e nomes das analises
@@ -268,10 +260,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-        /* ----------------------------------------------*/
-
-        /* ----------------------------------------------*/
-        /* Zonas */
+        
         #region Zonas
         /**
          * Retorna as zonas/actividades/área comum que já foram adicionadas anteriormente
@@ -333,10 +322,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-        /* ----------------------------------------------*/
-
-        /* ----------------------------------------------*/
-        /* Zonas - Analise */
+        
         #region Zonas-Analise
         /**
          * Retorna as Zonas de uma dada análise
@@ -379,10 +365,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-        /* ----------------------------------------------*/
-
-        /* ----------------------------------------------*/
-        /* Itens */
+        
         #region Itens
         //Revisto
         public static Dictionary<long,string> selectItensDefault()
@@ -441,10 +424,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-        /* ----------------------------------------------*/
-
-        /* ----------------------------------------------*/
-        /* Itens - Analise */
+        
         #region Itens-Analise
         //Revisto
         public static List<Item> selectItensAnalise(long codAnalise)
@@ -515,12 +495,10 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-        /* ----------------------------------------------*/
 
-        /* ----------------------------------------------*/
-        /* Respostas */
-
-        /* Respostas CheckList */
+		
+		#region Respostas
+		
         #region Respostas CheckList
         static public void selectRespostaCheckList(long codigoAnalise, List<Resposta> respostas)
         {
@@ -556,6 +534,36 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 
+		static public void insertRespostaCheckList(int codigoAnalise, List<Resposta> respostas)
+		{
+			foreach (Resposta resposta in respostas)
+			{
+				switch (resposta.Tipo_Resposta)
+				{
+					case (Resposta.TipoResposta.RespostaNum):
+						DataBaseCommunicator.query(
+							"INSERT INTO resposta_questionario_numero VALUES (" +
+							resposta.NumeroPergunta + ", " + resposta.Valor + ", " +
+							resposta.CodigoQuestionario + ", " + resposta.Cod_analise + ", " +
+							resposta.CodigoZona + ", " + resposta.Cod_pergunta + ");"
+							);
+						break;
+					case (Resposta.TipoResposta.RespostaStr):
+					case (Resposta.TipoResposta.RespostaMemo):
+
+						DataBaseCommunicator.query(
+							"INSERT INTO resposta_questionario_string VALUES (" +
+							resposta.NumeroPergunta + ", " + resposta.ValorString + ", " +
+							resposta.CodigoQuestionario + ", " + resposta.Cod_analise + ", " +
+							resposta.CodigoZona + ", " + resposta.Cod_pergunta + ");"
+							);
+						break;
+				}
+			}
+		}
+
+		#endregion
+		
         /* Respostas FichaAnaliacao */
         #region Respostas Ficha de Avaliação
         static public void selectRespostaFichaAvaliacao(long codigoAnalise, List<Resposta> respostas)
@@ -586,6 +594,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 readerResposta.Close();
             }
         }
+
         #endregion
 
         /* Respostas Questionario */
@@ -662,9 +671,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 
-        /* ----------------------------------------------*/
-        /* Escala Resposta */
-        #region Escala Resposta
+		#region Escala Resposta
         public static EscalaResposta selectEscalaResposta(long codEscala)
         {
             String query = "select * from EscalaResposta where " + "cod_EscalaResposta = "
@@ -710,10 +717,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-        /* ----------------------------------------------*/
+		#endregion
 
-        /* ----------------------------------------------*/
-        /* Tipo Escala */
         #region Escala
         public static TipoEscala selectTipoEscala(long codTipo)
         {
@@ -743,8 +748,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         }
         #endregion
-        /* ----------------------------------------------*/
-    }
+	}
 
 }
 
