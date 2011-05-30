@@ -28,7 +28,7 @@ namespace ETdA.Camada_de_Negócio
 		}
 
         public static List<string> getNomeAnalises(){
-            return Camada_de_Dados.ETdA.ETdA.Projecto.Analises;
+            return 
         }
 
 		public Analise criaAnalise(Analise a)
@@ -75,7 +75,7 @@ namespace ETdA.Camada_de_Negócio
             return new List<Item>();
         }
 
-        public static List<Zona> getListaZona()
+        public static List<Zona> getListaZonas()
         {
             return new List<Zona>();
         }
