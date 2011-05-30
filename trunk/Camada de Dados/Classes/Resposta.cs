@@ -10,6 +10,8 @@ namespace ETdA.Camada_de_Dados.Classes
         //Variaveis de Instancia
 		private long cod_analise;
 		// ID do formulario correspondente
+		private long cod_questionario;
+		private long cod_fichaAvaliacao;
 		private long cod_checklist;
 		// ID da pergunta corresponde
 		private long cod_pergunta_questionario;
@@ -75,6 +77,18 @@ namespace ETdA.Camada_de_Dados.Classes
 		}
 
 		//Métodos
+		public long Cod_questionario
+		{
+			get { return cod_questionario; }
+			set { cod_questionario = value; }
+		}
+
+
+		public long Cod_fichaAvaliacao
+		{
+			get { return cod_fichaAvaliacao; }
+			set { cod_fichaAvaliacao = value; }
+		}
 		public long Cod_checklist
 		{
 			get { return cod_checklist; }
@@ -142,6 +156,6 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return tipo; }
             set { tipo = value; }
         }
-        
-    }
+
+	}
 }
