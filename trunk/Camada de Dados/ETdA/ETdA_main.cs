@@ -20,6 +20,9 @@ namespace ETdA.Camada_de_Dados.ETdA
         private static event eventoEventHandler evento_analise_adicionada;
         private static event eventoEventHandler evento_analise_removida;
 
+        private static Dictionary<long, string> cod_nome_projectos;
+        private static Dictionary<long, Projecto> projectos;
+
         private static void initEventos()
         {
             //evento_analista_registado += Camada_de_Interface.InterfaceLogin.
@@ -27,46 +30,35 @@ namespace ETdA.Camada_de_Dados.ETdA
                 Camada_de_Interface.InterfaceGuestaoProjectos.addProjectoReenc);
         }
 
-        private static Analista analista;
-        private static Dictionary<string, string> cod_nome;
-        private static Projecto projectoAberto;
-
-        public static Analista Analista
+        public static void init()
         {
-            get { return analista; }
-            set { analista = value; }
+            initEventos();
+
+            cod_nome_projectos = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
+
+            projectosRecentes();
         }
 
         public static List<String> Nomes_Estabelecimentos
         {
             get 
             {
-                return new List<string>(cod_nome.Values);
+                return new List<string>(cod_nome_projectos.Values);
             }
         }
 
-        public static Projecto Projecto
+        public static Projecto getProjecto(long codProjecto)
         {
-            get { return projectoAberto; }
-            set { projectoAberto = value; }
+            return projectos[codProjecto];
         }
 
         /* ------------------------------------------------------ */
         /* Metodos */
         /* ------------------------------------------------------ */
 
-        public static void init()
-        {
-            initEventos();
-
-            cod_nome = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
-
-            projectosRecentes();
-        }
-
         private static List<String> projectosRecentes()
         {
-            List<String> proj = new List<string>(cod_nome.Values);
+            List<String> proj = new List<string>(cod_nome_projectos.Values);
             List<String> projectos_recentes = new List<String>();
 
             for (int i = 0; i < 5 && i < proj.Count; i++)
@@ -76,13 +68,13 @@ namespace ETdA.Camada_de_Dados.ETdA
         }
 
         /* Gestao dos Projectos */
-
+        #region Gestao Projectos
         /*
          * Verifica se Ja tem Projecto com esse nome na Base de dados
          */
         public static Boolean podeAdicionarProjecto(String nomeEstabelecimento)
         {
-            List<string> p = new List<string>(cod_nome.Values);
+            List<string> p = new List<string>(cod_nome_projectos.Values);
 
             return !p.Contains(nomeEstabelecimento);
         }
@@ -168,11 +160,11 @@ namespace ETdA.Camada_de_Dados.ETdA
             /*Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
                updateProjecto(projectoAberto);*/
         }
-
+#endregion
         /* Fim Gestao Projectos */
 
         /* Gestao de Analistas */
-        
+        #region Gestao Analistas
         public static bool adicionaAnalista(String username, String password)
         {
             return Camada_de_Dados.DataBaseCommunicator.
@@ -191,6 +183,7 @@ namespace ETdA.Camada_de_Dados.ETdA
             return Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.ligaAnalista(server, database, username, password);
         }
+        #endregion
         /* Fim de Gestao de Analistas */
     }
 }
