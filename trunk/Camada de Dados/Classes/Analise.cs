@@ -8,8 +8,8 @@ namespace ETdA.Camada_de_Dados.Classes
     class Analise
     {
         //Variáveis de Instância
-        private String codAnalise;
-        private String codProjecto;
+        private long codAnalise;
+        private long codProjecto;
         private DateTime dataAnalise;
         private String nomeAnalise;
         private String tipoAnalise;
@@ -21,11 +21,11 @@ namespace ETdA.Camada_de_Dados.Classes
         private Formulario checkList;
         private List<Formulario> fichasAvaliacao;
         private List<Formulario> questionarios;
-		//private Relatorio relatorio;
+		private Relatorio relatorio;
 
         //Constructores
 
-        public Analise(String cod, String codProj, DateTime data, String nome,
+        public Analise(long cod, long codProj, DateTime data, String nome,
             String tipo, List<Zona> zonas, List<Item> itens, 
             Boolean estadoWebCL, Boolean estadoWebFA, Boolean estadoWebQ)
         {
@@ -43,8 +43,8 @@ namespace ETdA.Camada_de_Dados.Classes
           
         public Analise()
         {
-            codAnalise = "";
-            codProjecto = "";
+            codAnalise = -1;
+            codProjecto = -1;
             dataAnalise = new DateTime();
             dataAnalise = DateTime.Now;
             nomeAnalise = "";
@@ -78,12 +78,12 @@ namespace ETdA.Camada_de_Dados.Classes
 
         //Métodos
 
-        public String Codigo
+        public long Codigo
         {
             get { return codAnalise; }
             set { codAnalise = value; }
         }
-        public String CodigoProj
+        public long CodigoProj
         {
             get { return codProjecto; }
             set { codProjecto = value; }
