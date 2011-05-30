@@ -17,11 +17,14 @@ namespace ETdA.Camada_de_Interface
         private List<Camada_de_Dados.Classes.Zona> zonas;
         private List<Camada_de_Dados.Classes.Item> itens;
 
+        private Dictionary<long,Dictionary<long,RichTextBox>> obs;
+
 
         public static void main(int cod_projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
             Interface_Relatorio i = new Interface_Relatorio(cod_projecto, cod_analise, relatorio);
-            i.Visible = true;
+            Application.Run(i);
+            //i.Visible = true;
         }
 
         public Interface_Relatorio(int cod_projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
@@ -54,7 +57,7 @@ namespace ETdA.Camada_de_Interface
                         painelGeralZonas.SuspendLayout();
                         SuspendLayout();
                         */
-
+            obs= new Dictionary<long,Dictionary<long,RichTextBox>>();
 
             for (int i = 0; i < zonas.Count; i++)
             {
@@ -81,6 +84,7 @@ namespace ETdA.Camada_de_Interface
                 groupBoxZona.Text = zonas[i].Nome;
 
                 painelGeralZonas.Controls.Add(groupBoxZona);
+                Dictionary<long,RichTextBox> obsitem = new Dictionary<long,RichTextBox>();
 
                 for (int j = 0; j < itens.Count; j++)
                 {
@@ -105,10 +109,29 @@ namespace ETdA.Camada_de_Interface
                     corItem.TabIndex = 0;
                     corItem.TabStop = false;
 
+                    RichTextBox obstb = new System.Windows.Forms.RichTextBox();
+                    Label obslabel = new System.Windows.Forms.Label();
+
+                    obstb.Location = new System.Drawing.Point(264, 231);
+                    obstb.Name = "obstb";
+                    obstb.Size = new System.Drawing.Size(360, 100);
+                    obstb.TabIndex = 1;
+                    obstb.Text = "";
+
+                    obslabel.AutoSize = true;
+                    obslabel.Location = new System.Drawing.Point(261, 215);
+                    obslabel.Name = "label2";
+                    obslabel.Size = new System.Drawing.Size(70, 13);
+                    obslabel.TabIndex = 2;
+                    obslabel.Text = "Observações";
+
+                    obsitem.Add(itens[j].CodigoItem, obstb);
 
                     GroupBox groupBoxItem = new GroupBox();
                     //groupBoxItem.AutoSize = true;
                     groupBoxItem.Controls.Add(corItem);
+                    groupBoxItem.Controls.Add(obstb);
+                    groupBoxItem.Controls.Add(obslabel);
                     groupBoxItem.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
                     groupBoxItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     groupBoxItem.Dock = System.Windows.Forms.DockStyle.Top;
@@ -123,7 +146,7 @@ namespace ETdA.Camada_de_Interface
 
                     groupBoxZona.Controls.Add(groupBoxItem);
                 }
-
+                obs.Add(zonas[i].Codigo, obsitem);
             }
         }
     }
