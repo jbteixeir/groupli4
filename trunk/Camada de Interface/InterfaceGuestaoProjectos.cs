@@ -435,6 +435,7 @@ namespace ETdA.Camada_de_Interface
         private void OpenAnaliseClick(object sender, EventArgs e)
         {
             Label l = (Label) sender;
+            GestaodeAnalises.abreAnalise(tabControl1.SelectedTab.Text, l.Text);
 
             initAnalisePage(tabControl1.SelectedTab.Text ,l.Text);
         }
