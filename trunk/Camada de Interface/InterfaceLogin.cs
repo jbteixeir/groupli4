@@ -67,5 +67,10 @@ namespace ETdA.Camada_de_Interface
             InterfaceLogin il = new InterfaceLogin();
             Application.Run(il);
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
