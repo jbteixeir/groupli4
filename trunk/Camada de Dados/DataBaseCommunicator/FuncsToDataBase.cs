@@ -288,9 +288,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          * @param z Zona que se pretende adicionar
          * @return long Código da zona que foi inserido
          */
-        public static long insertZona(Zona z)
+        public static long insertZona(string nome)
         {
-            String query = "insert into zona values(" + z.Codigo + "," + z.Nome + ";" +
+            String query = "insert into zona values('" + nome + "';" +
                 "SELECT SCOPE_IDENTITY();";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);

@@ -27,37 +27,6 @@ namespace ETdA.Camada_de_Negócio
 			}
 		}
 
-        public static List<string> getNomeAnalises(){
-            return 
-        }
-
-		public Analise criaAnalise(Analise a)
-		{
-			string cod = "";
-            a.Codigo = cod;
-
-            return a;
-		}
-
-        public List<int> adicionaItensNovos(List<string> itens_novos)
-        {
-            return new List<int>();
-        }
-
-        public List<Zona> adicionaZonas(List<string> zonas)
-        {
-            List<Zona> zs = new List<Zona>();
-            string cod;
-            foreach (string s in zonas)
-            {
-                //cod = ;
-                //Zona z = new Zona(cod, s);
-                //zs.Add(z);
-            }
-            return zs;
-        }
-
-
 //        void editaAnalise(String codAnalise, string nomeAnalise);
 //        void removeAnalise(String codAnalise);
 //        void adicionaItemAnalise(String codParametro);
@@ -70,24 +39,37 @@ namespace ETdA.Camada_de_Negócio
 //        void geraWebsite();
 //        void geraFormularioOnline();
 
-        public static List<Item> getListaItens()
-        {
-            return new List<Item>();
-        }
-
-        public static List<Zona> getListaZonas()
-        {
-            return new List<Zona>();
-        }
-
-        public static Dictionary<int, string> getItensDefault()
+        public static Dictionary<long, string> getItensDefault()
         {
             return Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectItensDefault();
         }
 
-        public static Dictionary<int, string> getTodosItens()
+        public static Dictionary<long, string> getTodosItens()
         {
             return Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectAllItens();
+        }
+
+        public static List<long> adicionaItensNovos(List<string> it)
+        {
+            List<long> ss = new List<long>();
+            foreach (string s in it)
+            {
+                long cod = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.insertItem(s);
+                ss.Add(cod);
+            }
+            return ss;
+        }
+
+        public static List<Zona> adicionaZonasNovas(List<string> zn)
+        {
+            List<Zona> zonas = new List<Zona>();
+            foreach (string s in zn)
+            {
+                long cod = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.insertZona(s);
+                Zona z = new Zona(cod, s);
+                zonas.Add(z);
+            }
+            return zonas;
         }
     }
 }
