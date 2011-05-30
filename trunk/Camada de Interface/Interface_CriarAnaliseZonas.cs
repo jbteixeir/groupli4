@@ -15,6 +15,7 @@ namespace ETdA.Camada_de_Interface
 
         //[Category(""), Description("Ocorre sempre ...")]
         private static event eventoEventHandler done_action;
+        string tipo;
 
         public Interface_CriarAnaliseZonas(List<string> zonas, string tipo)
         {
@@ -22,6 +23,7 @@ namespace ETdA.Camada_de_Interface
                 Camada_de_Interface.Interface_CriarAnalise.ZonasOkReenc);
 
             InitializeComponent();
+            this.tipo = tipo;
 
             label1.Text = (tipo.Split(' ')[1]);
 
@@ -38,8 +40,22 @@ namespace ETdA.Camada_de_Interface
         {
             string s = textBox1.Text;
 
-            listBox1.Items.Add(s);
-            textBox1.Text = "";
+            String cont = "abcdefghijklmnopqrstuvwxyz" +
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            bool found = true;
+            for ( int i = 0 ; i < s.Length && found; i++ )
+                found = cont.Contains(s[i]);
+
+            if (s == "" || !found)
+                MessageBox.Show("Nome da " + tipo + " inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (listBox1.Items.Contains(s))
+                MessageBox.Show("Já existe uma " + tipo + " " + s + ".", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                listBox1.Items.Add(s);
+                textBox1.Text = "";
+            }      
         }
 
         private void OK_ActionPerformed(object sender, EventArgs e)
