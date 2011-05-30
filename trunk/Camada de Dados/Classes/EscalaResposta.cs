@@ -8,13 +8,13 @@ namespace ETdA.Camada_de_Dados.Classes
     class EscalaResposta
     {
         //Variáveis de Instância
-        private String cod_escala;
-        private String cod_tipo;
+        private long cod_escala;
+        private long cod_tipo;
         private String descricao;
         private int valorResposta;
  
         //Constructores
-        public EscalaResposta(String cod, String tipoE, String desc, int valor)
+        public EscalaResposta(long cod, long tipoE, String desc, int valor)
         {
             cod_escala = cod;
             cod_tipo = tipoE;
@@ -24,8 +24,8 @@ namespace ETdA.Camada_de_Dados.Classes
 
         public EscalaResposta()
         {
-            cod_escala = "";
-            cod_tipo = "";
+            cod_escala = -1;
+            cod_tipo = -1;
             descricao = "";
             valorResposta = 0;
         }
@@ -39,13 +39,13 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
         //Métodos
-        public String CodEscala
+        public long CodEscala
         {
             get { return cod_escala; }
             set { cod_escala = value; }
         }
 
-        public String CodTipo
+        public long CodTipo
         {
             get { return cod_tipo; }
             set { cod_tipo = value; }

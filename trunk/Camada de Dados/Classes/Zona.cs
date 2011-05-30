@@ -8,12 +8,12 @@ namespace ETdA.Camada_de_Dados.Classes
     class Zona
     {
         //Variaveis de Instancia
-        private int codZona;
+        private long codZona;
         private String nomeZona;
 
         //Constructores
 
-        public Zona(int cod, String nome)
+        public Zona(long cod, String nome)
         {
             codZona = cod;
             nomeZona = nome;
@@ -32,7 +32,7 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
         //Métodos
-        public int Codigo
+        public long Codigo
         {
             get { return codZona; }
             set { codZona = value; }

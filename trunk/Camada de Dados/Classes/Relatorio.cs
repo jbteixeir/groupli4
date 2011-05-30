@@ -9,22 +9,22 @@ namespace ETdA.Camada_de_Dados.Classes
 {
     class Relatorio
     {
-        private Dictionary<int, Dictionary<int, Classes.ResultadoItem>> listaResultados;
+        private Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados;
 
         //Constructores
-        public Relatorio(Dictionary<int, Dictionary<int, Classes.ResultadoItem>> listaResultados)
+        public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados)
         {
             this.listaResultados = listaResultados;
         }
 
         public Relatorio()
         {
-            this.listaResultados = new Dictionary<int, Dictionary<int, Classes.ResultadoItem>>();
+            this.listaResultados = new Dictionary<long, Dictionary<long, Classes.ResultadoItem>>();
         }
 
 
         //Métodos
-        public Dictionary<int, Dictionary<int, Classes.ResultadoItem>> ListaResultados
+        public Dictionary<long, Dictionary<long, Classes.ResultadoItem>> ListaResultados
         {
             get { return listaResultados; }
             set { listaResultados = value; }
@@ -48,7 +48,7 @@ namespace ETdA.Camada_de_Dados.Classes
             //para cada zona
             foreach (Classes.Zona zona in zonas)
             {
-                Dictionary<int, Classes.ResultadoItem> listaItens = new Dictionary<int, Classes.ResultadoItem>();
+                Dictionary<long, Classes.ResultadoItem> listaItens = new Dictionary<long, Classes.ResultadoItem>();
                 //para cada item
                 foreach (Classes.Item item in itens)
                 {

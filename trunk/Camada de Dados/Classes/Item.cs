@@ -8,7 +8,7 @@ namespace ETdA.Camada_de_Dados.Classes
     class Item
     {
         //Variaveis de Instancia
-        private int cod_item;
+        private long cod_item;
         private String nome_item;
         private int defaultItem;
         private float ponderacao_analista;
@@ -23,7 +23,7 @@ namespace ETdA.Camada_de_Dados.Classes
         
         //Constructores
 
-        public Item(int cod, String nome, int def, float ponderacao_analista, float ponderacao_profissional, float ponderacao_cliente, float inter_vemelho, float inter_laranja, float inter_amarelo, float inter_verdelima, float inter_verde, float limite_inferior_analista)
+        public Item(long cod, String nome, int def, float ponderacao_analista, float ponderacao_profissional, float ponderacao_cliente, float inter_vemelho, float inter_laranja, float inter_amarelo, float inter_verdelima, float inter_verde, float limite_inferior_analista)
         {
             cod_item = cod;
             nome_item = nome;
@@ -56,7 +56,7 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
         //Métodos
-        public int CodigoItem
+        public long CodigoItem
         {
             get { return cod_item; }
             set { cod_item = value; }

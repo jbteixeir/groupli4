@@ -88,15 +88,10 @@ namespace ETdA.Camada_de_Dados.ETdA
             p.Nome = nomeEstabelecimento;
             p.Data = DateTime.Now;
 
-            MessageBox.Show(p.Data.ToString("yyyymmdd hh:mm:ss"));
+            p.Codigo = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.insertProjecto(p);
 
-            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.insertProjecto(p);
-            String cod = Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.selectCodigoProjecto(nomeEstabelecimento);
-            p.Codigo = cod;
-
-            cod_nome.Add(p.Codigo,nomeEstabelecimento);
-            projectoAberto = p;
+            cod_nome_projectos.Add(p.Codigo,p.Nome);
+            projectos.Add(p.Codigo, p);
 
             evento_projecto_adicionado(p.Nome, new EventArgs());
         }
@@ -106,11 +101,11 @@ namespace ETdA.Camada_de_Dados.ETdA
          */
         public static void abreProjecto(string nomeEstabelecimento)
         {
-            String cod = null;
+            long cod = -1;
             Boolean found = false;
-            for (int i = 0; i < cod_nome.Count && !found; i++)
+            for (int i = 0; i < cod_nome_projectos.Count && !found; i++)
             {
-                KeyValuePair<string, string> p = cod_nome.ElementAt(i);
+                KeyValuePair<long, string> p = cod_nome_projectos.ElementAt(i);
                 if (p.Value == nomeEstabelecimento)
                 {
                     cod = p.Key;
@@ -118,11 +113,9 @@ namespace ETdA.Camada_de_Dados.ETdA
                 }
             }
 
-            projectoAberto = Camada_de_Dados.DataBaseCommunicator.
+            Projecto proj = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectProjecto(cod);
-            projectoAberto.Cod_Name_Analise = Camada_de_Dados.
-                DataBaseCommunicator.FuncsToDataBase.selectNomesAnalises(
-                projectoAberto.Codigo);
+            projectos.Add(proj.Codigo, proj);
         }
 
         /*
@@ -130,15 +123,17 @@ namespace ETdA.Camada_de_Dados.ETdA
          */
         public static void removeProjecto(String nomeEstabelecimento)
         {
-            String cod = null;
+            long cod = -1;
             Boolean found = false;
-            for (int i = 0; i < cod_nome.Count && !found; i++)
+            for (int i = 0; i < cod_nome_projectos.Count && !found; i++)
             {
-                KeyValuePair<string, string> p = cod_nome.ElementAt(i);
+                KeyValuePair<long, string> p = cod_nome_projectos.ElementAt(i);
                 if (p.Value == nomeEstabelecimento)
                 {
                     cod = p.Key;
-                    cod_nome.Remove(cod);
+                    cod_nome_projectos.Remove(cod);
+                    if (projectos[cod] != null)
+                        projectos.Remove(cod);
                     found = true;
                 }
             }
@@ -147,18 +142,16 @@ namespace ETdA.Camada_de_Dados.ETdA
                 deleteProjecto(cod);
         }
 
-        public static void modificaProjecto(String nomeEstabelecimentoNovo)
+        public static void modificaProjecto(Projecto p)
         {
-            projectoAberto.Nome = nomeEstabelecimentoNovo;
-            /*Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
-               updateProjecto(projectoAberto);*/
+            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+               updateProjecto(p);
         }
 
-        public static void ultimaAlteracao(DateTime novaData)
+        public static void ultimaAlteracao(Projecto p)
         {
-            projectoAberto.Data = novaData;
-            /*Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
-               updateProjecto(projectoAberto);*/
+            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+               updateProjecto(p);
         }
 #endregion
         /* Fim Gestao Projectos */
@@ -170,13 +163,7 @@ namespace ETdA.Camada_de_Dados.ETdA
             return Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.insertAnalista(username, password);
         }
-        /*
-        public static void removeAnalista(String username, String password)
-        {
-            Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.deleteAnalista(username);
-        }
-        */
+
         public static bool loginAnalista(String server, String database, 
             String username, String password)
         {

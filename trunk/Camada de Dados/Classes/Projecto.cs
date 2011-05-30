@@ -9,7 +9,6 @@ namespace ETdA.Camada_de_Dados.Classes
 {
     class Projecto
     {
-
         //Variaveis de instância
         private long codProjecto;
         private String nomeEstabelecimento;
@@ -111,24 +110,12 @@ namespace ETdA.Camada_de_Dados.Classes
             a.Nome = nomeAnalise;
             a.Zonas = zonas;
             a.Itens = itens;
-            /*
-            Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.insertAnalise(codProjecto,a);
+            
             a.Codigo = Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.selectCodigoAnalise(a.Data);
-
-            for (int i = 0 ; i < zonas.Count ; i++)
-                Camada_de_Dados.DataBaseCommunicator.
-                    FuncsToDataBase.insertZonaAnalise(zonas[i].Codigo,
-                    a.Codigo);
-
-            for (int i = 0; i < itens.Count; i++)
-                Camada_de_Dados.DataBaseCommunicator.
-                    FuncsToDataBase.insertZonaAnalise(itens[i].Codigo,
-                    a.Codigo);
-            */
+                FuncsToDataBase.insertAnalise(codProjecto,a);
+            
             cod_name_analise.Add(a.Codigo,a.Nome);
-            analise_Aberta = a;
+            analises.Add(a.Codigo, a);
         }
 
         /*
@@ -136,11 +123,11 @@ namespace ETdA.Camada_de_Dados.Classes
          */
         public void abreAnalise(String nomeAnalise)
         {
-            String cod = null;
+            long cod = -1;
             Boolean found = false;
             for (int i = 0; i < cod_name_analise.Count && !found; i++)
             {
-                KeyValuePair<string, string> p = cod_name_analise.ElementAt(i);
+                KeyValuePair<long, string> p = cod_name_analise.ElementAt(i);
                 if (p.Value == nomeEstabelecimento)
                 {
                     cod = p.Key;
@@ -148,13 +135,9 @@ namespace ETdA.Camada_de_Dados.Classes
                 }
             }
 
-            /*
-            analise_Aberta = Camada_de_Dados.DataBaseCommunicator.
+            Analise a = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectAnalise(cod);
-            analise_Aberta.Zonas = Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.selectZonasAnalise(cod);
-            analise_Aberta.Itens = Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.selectItensAnalise(cod);*/
+            analises.Add(a.Codigo, a);
         }
 
         /*
@@ -162,29 +145,29 @@ namespace ETdA.Camada_de_Dados.Classes
          */
         public void removeAnalise(String nomeAnalise)
         {
-            String cod = null;
+            long cod = -1;
             Boolean found = false;
             for (int i = 0; i < cod_name_analise.Count && !found; i++)
             {
-                KeyValuePair<string, string> p = cod_name_analise.ElementAt(i);
+                KeyValuePair<long, string> p = cod_name_analise.ElementAt(i);
                 if (p.Value == nomeEstabelecimento)
                 {
                     cod = p.Key;
                     cod_name_analise.Remove(cod) ;
+                    if (analises[cod] != null)
+                        analises.Remove(cod);
                     found = true;
                 }
             }
 
-            /*
             Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.deleteAnalise(cod);*/
+                FuncsToDataBase.deleteAnalise(cod);
         }
 
-        public void modificaAnalise()
+        public void modificaAnalise(Analise a)
         {
-            /*
             Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.updateAnalise(codProjecto, analise_Aberta);*/
+                FuncsToDataBase.updateAnalise(a);
         }
 
         /* Fim de Gestao de Analises */

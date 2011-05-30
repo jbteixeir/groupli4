@@ -152,23 +152,6 @@ namespace ETdA.Camada_de_Dados.Classes
         /* ------------------------------------------------------ */
         /* Metodos de Gestao */
         /* ------------------------------------------------------ */
-
-        /* Introduzir Formularios Manualmente */
-
-        public void insereQuestionario(Formulario q)
-        {
-            questionarios.Add(q);
-        }
-
-        public void insereFichaAvaliaca(Formulario fa)
-        {
-            
-        }
-
-        public void insereCheckList(Formulario cl)
-        {
-            checkList = cl;
-        }
     }
 }
 
