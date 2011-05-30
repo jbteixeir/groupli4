@@ -607,7 +607,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                    "FROM  resposta_ficha_avaliacao_string, item " +
                                                                    "WHERE resposta_ficha_avaliacao_string.cod_fichaAvaliacao=" + readerPergunta["cod_fichaAvaliacao"]);
 
-                readerResposta.Read();
+                if(readerResposta.Read());
                 if (readerResposta["numero_pergunta"].ToString() != "")
                     respostas.Add(new Resposta(-1, int.Parse(readerResposta["cod_fichaAvaliacao"].ToString()), int.Parse(readerResposta["numero_pergunta"].ToString()), int.Parse(readerResposta["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 2, Classes.Resposta.TipoResposta.RespostaMemo));
                 readerResposta.Close();
