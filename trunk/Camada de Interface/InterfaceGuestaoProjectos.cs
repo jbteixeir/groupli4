@@ -193,6 +193,7 @@ namespace ETdA.Camada_de_Interface
                 tabPages.Add(nome_projecto);
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
+                p.Text = nome_projecto;
 
                 this.tabControl1.Controls.Add(p);
 
@@ -249,6 +250,7 @@ namespace ETdA.Camada_de_Interface
                 tabPages.Add(nome_projecto + "." + nome_analise);
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
+                p.Name = nome_projecto + "." + nome_analise;
 
                 this.tabControl1.Controls.Add(p);
 
@@ -435,6 +437,8 @@ namespace ETdA.Camada_de_Interface
         {
             if (e.Node.Level == 1)
             {
+                GestaodeAnalises.abreAnalise(e.Node.Parent.Text, e.Node.Text);
+
                 initAnalisePage(e.Node.Parent.Text ,e.Node.Text);
             }
             else
@@ -477,7 +481,7 @@ namespace ETdA.Camada_de_Interface
             MessageBox.Show(tabControl1.SelectedTab.Name);
             string[] nomes = tabControl1.SelectedTab.Name.Split('.');
             //é preciso por por o projecto e a analise actuais
-            MessageBox.Show(tabControl1.SelectedTab.Name);
+            MessageBox.Show(nomes[0] + "\n" + nomes[1]);
             long codp = GestaodeProjectos.getCodProjecto(nomes[0]);
             long coda = GestaodeAnalises.getCodAnalise(codp, nomes[1]);
             Interface_Relatorio.main(1, 1, new ETdA.Camada_de_Dados.Classes.Relatorio());

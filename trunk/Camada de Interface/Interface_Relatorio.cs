@@ -11,8 +11,8 @@ namespace ETdA.Camada_de_Interface
 {
     partial class Interface_Relatorio : Form
     {
-        private int cod_projecto;
-        private int cod_analise;
+        private long cod_projecto;
+        private long cod_analise;
         private Camada_de_Dados.Classes.Relatorio relatorio;
         private List<Camada_de_Dados.Classes.Zona> zonas;
         private List<Camada_de_Dados.Classes.Item> itens;
@@ -20,14 +20,14 @@ namespace ETdA.Camada_de_Interface
         private Dictionary<long,Dictionary<long,RichTextBox>> obs;
 
 
-        public static void main(int cod_projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
+        public static void main(long cod_projecto, long cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
             Interface_Relatorio i = new Interface_Relatorio(cod_projecto, cod_analise, relatorio);
             Application.Run(i);
             //i.Visible = true;
         }
 
-        public Interface_Relatorio(int cod_projecto, int cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
+        public Interface_Relatorio(long cod_projecto, long cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
             this.zonas = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Zonas;
             this.itens = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Itens;
