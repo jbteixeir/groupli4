@@ -496,7 +496,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 
-		
 		#region Respostas
 		
         #region Respostas CheckList
@@ -597,7 +596,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
 
         #endregion
-
+        
         /* Respostas Questionario */
         #region Respostas Questionario
         static public void selectRespostaQuestionario(long codigoAnalise, List<Resposta> respostas)
@@ -719,7 +718,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 		
-
         #region Escala
         public static TipoEscala selectTipoEscala(long codTipo)
         {
