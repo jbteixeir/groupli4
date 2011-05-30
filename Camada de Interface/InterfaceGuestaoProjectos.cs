@@ -114,6 +114,12 @@ namespace ETdA.Camada_de_Interface
                 tabPages.Add("StartPage");
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
+                p.Name = "StartPage";
+                p.AutoScroll = true;
+
+                ContextMenu m = new ContextMenu();
+                m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
+                p.ContextMenu = m;
 
                 this.tabControl1.Controls.Add(p);
 
@@ -194,6 +200,11 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
                 p.Text = nome_projecto;
+                p.AutoScroll = true;
+
+                ContextMenu m = new ContextMenu();
+                m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
+                tabControl1.ContextMenu = m;
 
                 this.tabControl1.Controls.Add(p);
 
@@ -251,6 +262,11 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
                 p.Name = nome_projecto + "." + nome_analise;
+                p.AutoScroll = true;
+
+                ContextMenu m = new ContextMenu();
+                m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
+                tabControl1.ContextMenu = m;
 
                 this.tabControl1.Controls.Add(p);
 
@@ -391,6 +407,17 @@ namespace ETdA.Camada_de_Interface
         {
             Label t = (Label)sender;
             t.Font = new Font(t.Font, FontStyle.Regular);
+        }
+
+        private void fecharTab(object sender, EventArgs e)
+        {
+            closeTab(tabControl1.SelectedIndex);
+        }
+
+        private void closeTab(int nome)
+        {
+            tabControl1.TabPages.RemoveAt(nome);
+            tabPages.RemoveAt(nome);
         }
 
         public static void main(Boolean start)
