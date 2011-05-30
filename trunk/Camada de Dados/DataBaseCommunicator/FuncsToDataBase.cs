@@ -495,7 +495,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion
-        /*
+        
 		#region Questionario
 		static public void insertQuestionario(Questionario q)
 		{
@@ -511,7 +511,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 				fa.CodZona + ", " + fa.CodAnalise + ");");
 		}
 		#endregion
-        */
+        
 		#region Respostas
 
 		#region Respostas CheckList
