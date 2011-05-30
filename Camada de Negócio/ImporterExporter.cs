@@ -30,6 +30,7 @@ namespace CamadaNegocio
 		{
 			return importaFicheiro(path, temCabecalho, perguntas, modelo, null, null, null);
 		}
+
 		#region importer!
 		/**
 		 * Le um ficheiro e coloca os dados na base de dados

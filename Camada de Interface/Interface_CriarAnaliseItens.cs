@@ -324,15 +324,15 @@ namespace ETdA.Camada_de_Interface
                 TextBox b5 = (TextBox)bs[s8];
                 NumericUpDown n4 = (NumericUpDown)bs[s9];
 
-                i.PonderacaoAnalista = float.Parse(n1.Value.ToString());
-                i.PonderacaoProfissional = float.Parse(n2.Value.ToString());
-                i.PonderacaoCliente = float.Parse(n3.Value.ToString());
-                i.Inter_Vermelho= float.Parse(b1.Text);
-                i.Inter_Laranja= float.Parse(b2.Text);
-                i.Inter_Amarelo= float.Parse(b3.Text);
-                i.Inter_Verde_Lima= float.Parse(b4.Text);
-                i.Inter_Verde= float.Parse(b5.Text);
-                i.LimiteInferiorAnalista= float.Parse(n4.Value.ToString());
+                i.PonderacaoAnalista = double.Parse(n1.Value.ToString());
+                i.PonderacaoProfissional = double.Parse(n2.Value.ToString());
+                i.PonderacaoCliente = double.Parse(n3.Value.ToString());
+                i.Inter_Vermelho= double.Parse(b1.Text);
+                i.Inter_Laranja= double.Parse(b2.Text);
+                i.Inter_Amarelo= double.Parse(b3.Text);
+                i.Inter_Verde_Lima= double.Parse(b4.Text);
+                i.Inter_Verde= double.Parse(b5.Text);
+                i.LimiteInferiorAnalista= double.Parse(n4.Value.ToString());
 
                 itens.Add(i);
             }

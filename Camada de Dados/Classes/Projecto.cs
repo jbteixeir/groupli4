@@ -9,12 +9,21 @@ namespace ETdA.Camada_de_Dados.Classes
 {
     class Projecto
     {
+        private delegate void eventoEventHandler(object sender, EventArgs e);
+        private static event eventoEventHandler evento_analise_adicionada;
+        private static event eventoEventHandler evento_analise_removida;
         //Variaveis de instância
         private long codProjecto;
         private String nomeEstabelecimento;
         private DateTime ultimaActualizacao;
         private Dictionary<long,string> cod_name_analise;
         private Dictionary<long, Analise> analises;
+
+        private void init_Eventos()
+        {
+            evento_analise_adicionada += new eventoEventHandler(
+                Camada_de_Interface.InterfaceGuestaoProjectos.addAnaliseReenc);
+        }
 
         //Constructores
         public Projecto(long codProj, String nomeEst, 
@@ -129,6 +138,10 @@ namespace ETdA.Camada_de_Dados.Classes
             
             cod_name_analise.Add(a.Codigo,a.Nome);
             analises.Add(a.Codigo, a);
+            List<string> s = new List<string>();
+            s.Add(ETdA.ETdA.getProjecto(codProjecto).Nome);
+            s.Add(a.Nome);
+            evento_analise_adicionada(s, new EventArgs());
         }
 
         /*
