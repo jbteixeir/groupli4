@@ -440,13 +440,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                string s = r[0].ToString();
-                for (int i = 1; i < 12; i++)
-                    s += "\n" + r[i].ToString();
-
-                MessageBox.Show(s);
-
-
                 Item item = new Item((long)r["cod_item"],
                     r["nome_item"].ToString(),
                     r["default_item"].ToString() == "true" ? 1 : 0,
@@ -549,7 +542,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     {
                         if (readerResposta["valor"].ToString() != "")
                         {
-                            respostas.Add(new Resposta(-1, -1, -1, (long)readerItem["cod_item"], (long)readerZona["cod_zona"], (short)readerResposta["valor"], "", 1, Classes.Resposta.TipoResposta.RespostaNum));
+                            respostas.Add(new Resposta(-1, -1, -1, (long)readerItem["cod_item"], (long)readerZona["cod_zona"], short.Parse(readerResposta["valor"].ToString()), "", 1, Classes.Resposta.TipoResposta.RespostaNum));
                         }
                     }
                     readerResposta.Close();
@@ -607,9 +600,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                    "WHERE resposta_ficha_avaliacao_numero.cod_fichaAvaliacao=" + readerPergunta["cod_fichaAvaliacao"]);
                 while (readerResposta.Read())
                 {
-                    respostas.Add(new Resposta(-1, (long)readerResposta["cod_fichaAvaliacao"], (short)readerResposta["numero_pergunta"], (long)readerResposta["cod_item"], (long)readerResposta["cod_zona"], (short)readerResposta["valor"], "", 2, Classes.Resposta.TipoResposta.RespostaNum));
+                    respostas.Add(new Resposta(-1, (long)readerResposta["cod_fichaAvaliacao"], short.Parse(readerResposta["numero_pergunta"].ToString()), (long)readerResposta["cod_item"], (long)readerResposta["cod_zona"], short.Parse(readerResposta["valor"].ToString()), "", 2, Classes.Resposta.TipoResposta.RespostaNum));
                 }
-                readerResposta.Close();
 
                 readerResposta = DataBaseCommunicator.readData("SELECT numero_pergunta, item.cod_item, cod_fichaAvaliacao, cod_zona, valor " +
                                                                    "FROM  resposta_ficha_avaliacao_string, item " +
