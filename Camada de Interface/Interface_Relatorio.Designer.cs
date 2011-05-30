@@ -32,7 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TituloZonas = new System.Windows.Forms.Label();
             this.painelGeralZonas = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.painelHeaderZonas.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,14 +79,33 @@
             this.painelGeralZonas.Size = new System.Drawing.Size(742, 373);
             this.painelGeralZonas.TabIndex = 1;
             // 
-            // panel1
+            // checkBox1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 88);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(35, 285);
-            this.panel1.TabIndex = 2;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(460, 344);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(193, 17);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.Text = "Incluir estatísticas sobre os clientes";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(659, 340);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Concluir";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeView1.Location = new System.Drawing.Point(0, 88);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(154, 285);
+            this.treeView1.TabIndex = 5;
             // 
             // Interface_Relatorio
             // 
@@ -93,7 +114,9 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(742, 373);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.painelHeaderZonas);
             this.Controls.Add(this.painelGeralZonas);
             this.Name = "Interface_Relatorio";
@@ -102,6 +125,7 @@
             this.painelHeaderZonas.ResumeLayout(false);
             this.painelHeaderZonas.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -111,7 +135,9 @@
         private System.Windows.Forms.Label TituloZonas;
         private System.Windows.Forms.Panel painelGeralZonas;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TreeView treeView1;
 
     }
 }
