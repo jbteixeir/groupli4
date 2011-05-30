@@ -67,6 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camada de Dados\Classes\Estruturas\Tuplo.cs" />
+    <Compile Include="Camada de Dados\Classes\FichaAvaliacao.cs" />
+    <Compile Include="Camada de Dados\Classes\Pergunta.cs" />
+    <Compile Include="Camada de Dados\Classes\PerguntaFichaAvaliacao.cs" />
+    <Compile Include="Camada de Dados\Classes\PerguntaQuestionario.cs" />
+    <Compile Include="Camada de Dados\Classes\Questionario.cs" />
     <Compile Include="Camada de Dados\Classes\ResultadoItem.cs" />
     <Compile Include="Camada de Dados\Classes\TipoEscala.cs" />
     <Compile Include="Camada de Dados\Classes\Zona.cs" />
