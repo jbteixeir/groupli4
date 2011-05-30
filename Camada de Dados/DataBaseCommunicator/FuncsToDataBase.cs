@@ -440,18 +440,25 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
+                string s = r[0].ToString();
+                for (int i = 1; i < 12; i++)
+                    s += "\n" + r[i].ToString();
+
+                MessageBox.Show(s);
+
+
                 Item item = new Item((long)r["cod_item"],
-                    (String)r["nome_item"],
-                    (short)r["default_item"],
-                    (double)r["ponderacao_analista"],
-                    (double)r["ponderacao_profissional"],
-                    (double)r["ponderacao_cliente"],
-                    (double)r["inter_vermelho"],
-                    (double)r["inter_laranja"],
-                    (double)r["inter_amarelo"],
-                    (double)r["inter_verdelima"],
-                    (double)r["inter_verde"],
-                    (double)r["limite_inferior_analista"]);
+                    r["nome_item"].ToString(),
+                    r["default_item"].ToString() == "true" ? 1 : 0,
+                    double.Parse(r["ponderacao_analista"].ToString()),
+                    double.Parse(r["ponderacao_profissional"].ToString()),
+                    double.Parse(r["ponderacao_cliente"].ToString()),
+                    double.Parse(r["inter_vermelho"].ToString()),
+                    double.Parse(r["inter_laranja"].ToString()),
+                    double.Parse(r["inter_amarelo"].ToString()),
+                    double.Parse(r["inter_verdelima"].ToString()),
+                    double.Parse(r["inter_verde"].ToString()),
+                    double.Parse(r["limite_inferior_analista"].ToString()));
                 items.Add(item);
             }
             return items;

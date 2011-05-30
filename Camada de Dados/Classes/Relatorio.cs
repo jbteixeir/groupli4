@@ -41,7 +41,7 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
 
-        public void gerarResultadosRelatorio(int codigoAnalise, List<Classes.Resposta> respostas, List<Classes.Zona> zonas, List<Classes.Item> itens)
+        public void gerarResultadosRelatorio(long codigoAnalise, List<Classes.Resposta> respostas, List<Classes.Zona> zonas, List<Classes.Item> itens)
         {
             DataBaseCommunicator.FuncsToDataBase.selectRespostaCheckList(codigoAnalise, respostas);
             DataBaseCommunicator.FuncsToDataBase.selectRespostaFichaAvaliacao(codigoAnalise, respostas);
