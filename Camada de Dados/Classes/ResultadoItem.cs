@@ -7,22 +7,22 @@ namespace ETdA.Camada_de_Dados.Classes
 {
     class ResultadoItem
     {
-        private float resultado_questionario_geral;
-        private Dictionary<int, float> resultado_questionario_parcial;
+        private double resultado_questionario_geral;
+        private Dictionary<int, double> resultado_questionario_parcial;
 
-        private float resultado_fichaAvaliacao_geral;
-        private Dictionary<int, float> resultado_fichaAvaliacao_parcial;
+        private double resultado_fichaAvaliacao_geral;
+        private Dictionary<int, double> resultado_fichaAvaliacao_parcial;
 
-        private float resultado_checklist_geral;
-        private Dictionary<int, float> resultado_checklist_parcial;
+        private double resultado_checklist_geral;
+        private Dictionary<int, double> resultado_checklist_parcial;
 
         private string observacao;
 
-        private float resultado_final;
+        private double resultado_final;
 
         private int checkObs;
 
-        public ResultadoItem(float resultado_questionario_geral, Dictionary<int, float> resultado_questionario_parcial, float resultado_fichaAvaliacao_geral, Dictionary<int, float> resultado_fichaAvaliacao_parcial, float resultado_checklist_geral, Dictionary<int, float> resultado_checklist_parcial, string observacao, float resultado_final)
+        public ResultadoItem(double resultado_questionario_geral, Dictionary<int, double> resultado_questionario_parcial, double resultado_fichaAvaliacao_geral, Dictionary<int, double> resultado_fichaAvaliacao_parcial, double resultado_checklist_geral, Dictionary<int, double> resultado_checklist_parcial, string observacao, double resultado_final)
         {
             this.resultado_questionario_geral = resultado_questionario_geral;
             this.resultado_questionario_parcial=resultado_questionario_parcial;
@@ -43,13 +43,13 @@ namespace ETdA.Camada_de_Dados.Classes
         public ResultadoItem()
         {
             this.resultado_questionario_geral = -1;
-            this.resultado_questionario_parcial = new Dictionary<int, float>();
+            this.resultado_questionario_parcial = new Dictionary<int, double>();
 
             this.resultado_fichaAvaliacao_geral = -1;
-            this.resultado_fichaAvaliacao_parcial = new Dictionary<int,float>();
+            this.resultado_fichaAvaliacao_parcial = new Dictionary<int,double>();
 
             this.resultado_checklist_geral = -1;
-            this.resultado_checklist_parcial = new Dictionary<int,float>();
+            this.resultado_checklist_parcial = new Dictionary<int,double>();
 
             observacao = "";
 
@@ -59,37 +59,37 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
         //Métodos
-        public float ResultadoQuestionarioGeral
+        public double ResultadoQuestionarioGeral
         {
             get { return resultado_questionario_geral; }
             set { resultado_questionario_geral = value; }
         }
 
-        public Dictionary<int, float> ResultadoQuestionarioParcial
+        public Dictionary<int, double> ResultadoQuestionarioParcial
         {
             get { return resultado_questionario_parcial; }
             set { resultado_questionario_parcial = value; }
         }
 
-        public float ResultadoFichaAvaliacaoGeral
+        public double ResultadoFichaAvaliacaoGeral
         {
             get { return resultado_fichaAvaliacao_geral; }
             set { resultado_fichaAvaliacao_geral = value; }
         }
 
-        public Dictionary<int, float> ResultadoFichaAvaliacaoParcial
+        public Dictionary<int, double> ResultadoFichaAvaliacaoParcial
         {
             get { return resultado_fichaAvaliacao_parcial; }
             set { resultado_fichaAvaliacao_parcial = value; }
         }
 
-        public float ResultadoCheckListGeral
+        public double ResultadoCheckListGeral
         {
             get { return resultado_checklist_geral; }
             set { resultado_checklist_geral = value; }
         }
 
-        public Dictionary<int, float> ResultadoCheckListParcial
+        public Dictionary<int, double> ResultadoCheckListParcial
         {
             get { return resultado_checklist_parcial; }
             set { resultado_checklist_parcial = value; }
@@ -100,7 +100,7 @@ namespace ETdA.Camada_de_Dados.Classes
             set { observacao = value; }
         }
 
-        public float ResultadoFinal
+        public double ResultadoFinal
         {
             get { return resultado_final; }
             set { resultado_final = value; }
