@@ -30,6 +30,7 @@ namespace CamadaNegocio
 		{
 			return importaFicheiro(path, temCabecalho, perguntas, modelo, null, null, null);
 		}
+		#region importer!
 		/**
 		 * Le um ficheiro e coloca os dados na base de dados
 		 * Se nao conseguir retorna false, se conseguir retorna true
@@ -171,10 +172,163 @@ namespace CamadaNegocio
 
 			return true;
         }
+		
+		#endregion
 
-		/*public static void exportaParaFicheiro(String datapathFile, List<Formulario> formulario)
+		#region exporter!!
+		protected static float extractNrPergunta(Resposta r)	{
+			return r.NumeroPergunta;
+		}
+		protected static long extractCodQuestionario(Resposta r)
 		{
+			return r.Cod_questionario;
+		}
 
-		}*/
-    }
+		public static void exportaQuestionariosParaFicheiro(String datapathFile, long codAnalise)
+		{
+			StreamWriter outputStream = new StreamWriter(datapathFile);
+
+			List<Resposta> respostas = new List<Resposta>();
+			FuncsToDataBase.selectRespostaQuestionario(codAnalise, respostas);
+
+			respostas.OrderBy<Resposta, float>(extractNrPergunta);
+			respostas.OrderBy<Resposta, long>(extractCodQuestionario);
+			long ultimoCodQuestionario = 0;
+			bool fst = true;
+			foreach (Resposta r in respostas)
+			{
+				if (fst)
+				{
+					ultimoCodQuestionario = r.Cod_questionario;
+					fst = false;
+				}
+				if (ultimoCodQuestionario == r.Cod_questionario) // se for um elemento intermedio
+				{
+					switch (r.Tipo_Resposta)
+					{
+						case Resposta.TipoResposta.RespostaNum:
+							outputStream.Write(r.Valor + ";");
+							break;
+						case Resposta.TipoResposta.RespostaStr:
+						case Resposta.TipoResposta.RespostaMemo:
+							outputStream.Write(r.ValorString + ";");
+							break;
+					}
+				}
+				else
+				{
+					switch (r.Tipo_Resposta)
+					{
+						case Resposta.TipoResposta.RespostaNum:
+							outputStream.WriteLine(r.Valor);
+							break;
+						case Resposta.TipoResposta.RespostaStr:
+						case Resposta.TipoResposta.RespostaMemo:
+							outputStream.WriteLine(r.ValorString);
+							break;
+					}
+				}
+			}
+		}
+		protected static long extractCodFA(Resposta r)
+		{
+			return r.Cod_fichaAvaliacao;
+		}
+		public static void exportaFichasDeAvaliacaoParaFicheiro(String datapathFile, long codAnalise)
+		{
+			StreamWriter outputStream = new StreamWriter(datapathFile);
+
+			List<Resposta> respostas = new List<Resposta>();
+			FuncsToDataBase.selectRespostaFichaAvaliacao(codAnalise, respostas);
+
+			respostas.OrderBy<Resposta, float>(extractNrPergunta);
+			respostas.OrderBy<Resposta, long>(extractCodFA);
+			long ultimoCodFichaAvaliacao = 0;
+			bool fst = true;
+			foreach (Resposta r in respostas)
+			{
+				if (fst)
+				{
+					ultimoCodFichaAvaliacao = r.Cod_fichaAvaliacao;
+					fst = false;
+				}
+				if (ultimoCodFichaAvaliacao == r.Cod_fichaAvaliacao) // se for um elemento intermedio
+				{
+					switch (r.Tipo_Resposta)
+					{
+						case Resposta.TipoResposta.RespostaNum:
+							outputStream.Write(r.Valor + ";");
+							break;
+						case Resposta.TipoResposta.RespostaStr:
+						case Resposta.TipoResposta.RespostaMemo:
+							outputStream.Write(r.ValorString + ";");
+							break;
+					}
+				}
+				else
+				{
+					switch (r.Tipo_Resposta)
+					{
+						case Resposta.TipoResposta.RespostaNum:
+							outputStream.WriteLine(r.Valor);
+							break;
+						case Resposta.TipoResposta.RespostaStr:
+						case Resposta.TipoResposta.RespostaMemo:
+							outputStream.WriteLine(r.ValorString);
+							break;
+					}
+				}
+			}
+		}
+		protected static long extractItem(Resposta r)
+		{
+			return r.CodigoItem;
+		}
+		protected static long extractZona(Resposta r)
+		{
+			return r.CodigoZona;
+		}
+		public static void exportaCheckListParaFicheiro(String datapathFile, long codAnalise)
+		{
+			StreamWriter outputStream = new StreamWriter(datapathFile);
+
+			List<Resposta> respostas = new List<Resposta>();
+			FuncsToDataBase.selectRespostaCheckList(codAnalise, respostas);
+
+			respostas.OrderBy<Resposta, long>(extractItem);
+			respostas.OrderBy<Resposta, long>(extractZona);
+			long ultimoItem = 0;
+			bool fst = true;
+			foreach (Resposta r in respostas)
+			{
+				if (fst)
+				{
+					ultimoItem = r.CodigoItem;
+					fst = false;
+				}
+				if (ultimoItem == r.CodigoItem) // se for um elemento intermedio
+				{
+					switch (r.Tipo_Resposta)
+					{
+						case Resposta.TipoResposta.RespostaNum:
+							outputStream.Write(r.Valor + ";");
+							break;
+						default:
+							throw new Exception();
+					}
+				}
+				else
+				{
+					switch (r.Tipo_Resposta)
+					{
+						case Resposta.TipoResposta.RespostaNum:
+							outputStream.WriteLine(r.Valor);
+							break;
+					}
+				}
+			}
+		}
+
+		#endregion
+	}
 }
