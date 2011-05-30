@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using ETdA.Camada_de_Dados.Classes;
 using ETdA.Camada_de_Dados.Classes.Estruturas;
+using System.Windows;
 
 namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 {
@@ -107,13 +108,13 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             String query = "insert into projecto values('" +
             p.Nome + "'," + "CAST('" + p.Data.ToString("yyyyMMdd HH:mm:ss")
-            + "' AS datetime)) " +
+            + "' AS datetime));" +
             "SELECT SCOPE_IDENTITY();";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             r.Read();
-            return (long)r["cod_projecto"];
+            return long.Parse(r[0].ToString());
         }
 
         /**
@@ -213,14 +214,16 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         public static long insertAnalise(long codProjecto, Analise a)
         {
             String query = "insert into analise values(" + codProjecto + ","
-            + "CAST('" + a.Data.ToString("yyyymmdd hh:mm:ss") + "' AS datetime)"
-            + ",'" + a.Nome + "','" + a.Tipo + "'," + a.EstadoWebCL + "," + a.EstadoWebFA
-            + "," + a.EstadoWebQ + ";" + "SELECT SCOPE_IDENTITY();";
+            + "CAST('" + a.Data.ToString("yyyyMMdd HH:mm:ss") + "' AS datetime)"
+            + ",'" + a.Nome + "','" + a.Tipo + "'," + (a.EstadoWebCL ? 1 : 0) + "," + (a.EstadoWebFA ? 1 : 0)
+            + "," + (a.EstadoWebQ ? 1 : 0)+  ");" + " SELECT SCOPE_IDENTITY();";
+
+            MessageBox.Show(query);
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             r.Read();
-            long cod = (long)r["cod_analise"];
+            long cod = long.Parse(r[0].ToString());
 
             insertZonasAnalise(a.Zonas, a.Codigo);
             insertItensAnalise(a.Itens, a.Codigo);
@@ -290,13 +293,13 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static long insertZona(string nome)
         {
-            String query = "insert into zona values('" + nome + "') " +
+            String query = "insert into zona values('" + nome + "');" +
                 "SELECT SCOPE_IDENTITY();";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             r.Read();
-            return (long)r["cod_zona"];
+            return long.Parse(r[0].ToString());
         }
 
         /**
@@ -464,7 +467,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 String query = "insert into item_analise values(" + i.CodigoItem + "," + codAnalise + ","
                     + i.PonderacaoAnalista + "," + i.PonderacaoProfissional + "," + i.PonderacaoCliente +
                     "," + i.Inter_Vermelho + "," + i.Inter_Laranja + "," + i.Inter_Amarelo + "," +
-                    i.Inter_Verde_Lima + "," + i.Inter_Verde + "," + i.LimiteInferiorAnalista + ";";
+                    i.Inter_Verde_Lima + "," + i.Inter_Verde + "," + i.LimiteInferiorAnalista + ");";
 
                 Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
             }
