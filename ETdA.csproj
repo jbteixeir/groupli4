@@ -73,7 +73,6 @@
     <Compile Include="Camada de Dados\DataBaseCommunicator\ParserCreateAnalista.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\FuncsToDataBase.cs" />
     <Compile Include="Camada de Dados\Classes\Analise.cs" />
-    <Compile Include="Camada de Dados\Classes\Analista.cs" />
     <Compile Include="Camada de Dados\Classes\EscalaResposta.cs" />
     <Compile Include="Camada de Dados\Classes\Item.cs" />
     <Compile Include="Camada de Dados\Classes\Questao.cs" />
