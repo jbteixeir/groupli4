@@ -129,15 +129,26 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l1 =
                     new System.Windows.Forms.Label();
                 l1.Text = "Bem Vindo";
+                l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 l1.Location = new System.Drawing.Point(7, 7);
+                l1.Size = new System.Drawing.Size(111, 29);
 
                 p.Controls.Add(l1);
+                System.Windows.Forms.PictureBox pictureBox1 = new System.Windows.Forms.PictureBox();
+                pictureBox1.Image = global::ETdA.Properties.Resources.newproj;
+                pictureBox1.Location = new System.Drawing.Point(0, 30);
+                pictureBox1.Name = "pictureBox1";
+                pictureBox1.Size = new System.Drawing.Size(33, 33);
+                pictureBox1.TabIndex = 1;
+                pictureBox1.TabStop = false;
+
+                p.Controls.Add(pictureBox1);
 
                 System.Windows.Forms.Label l2 =
                     new System.Windows.Forms.Label();
                 l2.Width = 200;
                 l2.Text = "Criar Novo Projecto";
-                l2.Location = new System.Drawing.Point(7, 30);
+                l2.Location = new System.Drawing.Point(36, 40);
                 l2.Cursor = System.Windows.Forms.Cursors.Hand;
                 l2.Click += new System.EventHandler(CriarProjectoClick);
                 l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -145,10 +156,20 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l2);
 
+                System.Windows.Forms.PictureBox pictureBox2 = new System.Windows.Forms.PictureBox();
+                pictureBox2.Image = global::ETdA.Properties.Resources.openproj;
+                pictureBox2.Location = new System.Drawing.Point(0, 69);
+                pictureBox2.Name = "pictureBox2";
+                pictureBox2.Size = new System.Drawing.Size(33, 33);
+                pictureBox2.TabIndex = 1;
+                pictureBox2.TabStop = false;
+
+                p.Controls.Add(pictureBox2);
+
                 System.Windows.Forms.Label l3 =
                     new System.Windows.Forms.Label();
                 l3.Text = "Abrir Projecto";
-                l3.Location = new System.Drawing.Point(7, 55);
+                l3.Location = new System.Drawing.Point(36, 79);
                 l3.Cursor = System.Windows.Forms.Cursors.Hand;
                 //l3.Click += new System.EventHandler(this.OpenProjectClick);
                 l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -158,14 +179,16 @@ namespace ETdA.Camada_de_Interface
 
                 System.Windows.Forms.Label l4 =
                     new System.Windows.Forms.Label();
-                l4.Text = "Projectos";
+                l4.Text = "Projectos Recentes";
                 l4.Location = new System.Drawing.Point(7, 120);
+                l4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                l4.Size = new System.Drawing.Size(250, 29);
 
                 p.Controls.Add(l4);
 
                 List<string> rs = GestaodeProjectos.projectosRecentes();
 
-                int x = 7, y = 110;
+                int x = 20, y = 130;
                 foreach (string s in rs)
                 {
                     if (x + 10 < Size.Width)

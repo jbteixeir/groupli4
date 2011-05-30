@@ -102,6 +102,20 @@ namespace ETdA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap newproj {
+            get {
+                object obj = ResourceManager.GetObject("newproj", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap openproj {
+            get {
+                object obj = ResourceManager.GetObject("openproj", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap verde {
             get {
                 object obj = ResourceManager.GetObject("verde", resourceCulture);
