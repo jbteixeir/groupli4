@@ -8,12 +8,12 @@ namespace ETdA.Camada_de_Dados.Classes
     class Resposta
     {
         //Variaveis de Instancia
-        private int cod_questionario;
-        private int cod_fichaAvaliacao;
+        private long cod_questionario;
+        private long cod_fichaAvaliacao;
         private float numero_pergunta;
-        private int cod_item;
-        private int cod_zona;
-        private int valor;
+        private long cod_item;
+        private long cod_zona;
+        private short valor;
         private string valor_string;
         /*
          * Variável tipo
@@ -27,7 +27,7 @@ namespace ETdA.Camada_de_Dados.Classes
 		public enum TipoResposta {RespostaNum,RespostaStr, RespostaMemo};
 
         //Constructores
-        public Resposta(int cod_questionario, int cod_fichaAvaliacao, float numero_pergunta, int cod_item, int cod_zona, int valor, string valor_string, int tipo, TipoResposta tipo_Resposta)
+        public Resposta(long cod_questionario, long cod_fichaAvaliacao, float numero_pergunta, long cod_item, long cod_zona, short valor, string valor_string, int tipo, TipoResposta tipo_Resposta)
         {
             this.cod_questionario = cod_questionario;
             this.cod_fichaAvaliacao = cod_fichaAvaliacao;
@@ -59,13 +59,13 @@ namespace ETdA.Camada_de_Dados.Classes
 			get { return tipo_Resposta; }
 			set { }
 		}
-        public int CodigoQuestionario
+        public long CodigoQuestionario
         {
             get { return cod_questionario; }
             set { cod_questionario = value; }
         }
 
-        public int CodigoFichaAvaliacao
+        public long CodigoFichaAvaliacao
         {
             get { return cod_fichaAvaliacao; }
             set { cod_fichaAvaliacao = value; }
@@ -77,19 +77,19 @@ namespace ETdA.Camada_de_Dados.Classes
             set { numero_pergunta = value; }
         }
 
-        public int CodigoItem
+        public long CodigoItem
         {
             get { return cod_item; }
             set { cod_item = value; }
         }
 
-        public int CodigoZona
+        public long CodigoZona
         {
             get { return cod_zona; }
             set { cod_zona = value; }
         }
 
-        public int Valor
+        public short Valor
         {
             get { return valor; }
             set { valor = value; }

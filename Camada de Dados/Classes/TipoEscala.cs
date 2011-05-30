@@ -8,13 +8,13 @@ namespace ETdA.Camada_de_Dados.Classes
     class TipoEscala
     {
         //Variáveis de instância
-        String codTipo;
+        long codTipo;
         String descricao;
         int numero;
         int defaultTipo;
 
         //Constructores
-        public TipoEscala(String cod, String desc, int num, int def)
+        public TipoEscala(long cod, String desc, int num, int def)
         {
             codTipo = cod;
             descricao = desc;
@@ -24,7 +24,7 @@ namespace ETdA.Camada_de_Dados.Classes
 
         public TipoEscala()
         {
-            codTipo = "";
+            codTipo = -1;
             descricao = "";
             numero = 0;
             defaultTipo = 0;
@@ -39,7 +39,7 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
         //Métodos
-        public String Codigo
+        public long Codigo
         {
             get { return codTipo; }
             set { codTipo = value; }
