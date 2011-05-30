@@ -8,21 +8,25 @@ namespace ETdA.Camada_de_Dados.Classes
     class Resposta
     {
         //Variaveis de Instancia
-        private long cod_questionario;
-        private long cod_fichaAvaliacao;
+		private long cod_analise;
+		// ID do formulario correspondente
+		private long cod_checklist;
+		// ID da pergunta corresponde
+		private long cod_pergunta_questionario;
         private float numero_pergunta;
+
         private long cod_item;
         private long cod_zona;
+		// Resposta à pergunta
         private short valor;
         private string valor_string;
-        /*
-         * Variável tipo
+        /* Variável tipo
          * 1 - checklist
          * 2 - ficha de avaliacao
          * 3 - questionario
          */
         private int tipo;
-		private TipoResposta tipo_Resposta;
+		private TipoResposta tipoResposta;
 
 		public enum TipoResposta {RespostaNum,RespostaStr, RespostaMemo};
 
@@ -37,27 +41,59 @@ namespace ETdA.Camada_de_Dados.Classes
             this.valor = valor;
             this.valor_string = valor_string;
             this.tipo = tipo;
-			this.tipo_Resposta = tipo_Resposta;
+			this.tipoResposta = tipo_Resposta;
         }
 
         public Resposta()
         {
-            this.cod_questionario = -1;
-            this.cod_fichaAvaliacao = -1;
-            this.numero_pergunta = -1;
-            this.cod_item = -1;
-            this.cod_zona = -1;
-            this.valor = -1;
-            this.valor_string = "";
-            this.tipo = -1;
-			this.tipo_Resposta = TipoResposta.RespostaNum;
+			this.cod_questionario = -1;
+			this.cod_fichaAvaliacao = -1;
+			this.numero_pergunta = -1;
+			this.cod_item = -1;
+			this.cod_zona = -1;
+			this.valor = -1;
+			this.valor_string = "";
+			this.tipo = -1;
+			this.tipoResposta = TipoResposta.RespostaNum;
         }
 
-        //Métodos
-		public TipoResposta tipoResposta
+		public Resposta(Resposta modelo)
 		{
-			get { return tipo_Resposta; }
-			set { }
+			// TODO: Complete member initialization
+			this.Cod_analise = modelo.Cod_analise;
+			this.Cod_checklist = modelo.Cod_checklist;
+			this.Cod_pergunta = modelo.Cod_pergunta;
+			this.CodigoFichaAvaliacao = modelo.CodigoFichaAvaliacao;
+			this.CodigoItem = CodigoItem;
+			this.CodigoQuestionario = modelo.CodigoQuestionario;
+			this.CodigoZona = modelo.CodigoZona;
+			this.NumeroPergunta = modelo.NumeroPergunta;
+			this.Tipo = modelo.Tipo;
+			this.tipoResposta = modelo.tipoResposta;
+			this.Valor = modelo.Valor;
+			this.ValorString = modelo.ValorString;
+		}
+
+		//Métodos
+		public long Cod_checklist
+		{
+			get { return cod_checklist; }
+			set { cod_checklist = value; }
+		}
+		public TipoResposta Tipo_Resposta
+		{
+			get { return tipoResposta; }
+			set { tipoResposta = value; }
+		}
+		public long Cod_pergunta
+		{
+			get { return cod_pergunta_questionario; }
+			set { cod_pergunta_questionario = value; }
+		}
+		public long Cod_analise
+		{
+			get { return cod_analise; }
+			set { cod_analise = value; }
 		}
         public long CodigoQuestionario
         {
