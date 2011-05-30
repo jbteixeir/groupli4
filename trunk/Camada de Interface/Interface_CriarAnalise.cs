@@ -17,9 +17,9 @@ namespace ETdA.Camada_de_Interface
         private List<Item> itens;
         private List<string> itens_novos;
         private static Interface_CriarAnalise ica;
-        private string codProjecto;
+        private long codProjecto;
 
-        public Interface_CriarAnalise(string codProjecto)
+        public Interface_CriarAnalise(long codProjecto)
         {
             InitializeComponent();
             zonas = new List<string>();
@@ -30,7 +30,7 @@ namespace ETdA.Camada_de_Interface
             label3.Enabled = false;
         }
 
-        public static void main(string codProjecto)
+        public static void main(long codProjecto)
         {
             ica = new Interface_CriarAnalise(codProjecto);
             ica.Visible = true;
@@ -82,18 +82,31 @@ namespace ETdA.Camada_de_Interface
             else
             {
                 if (itens_novos.Count != 0)
-                    GestaodeAnalises.adicionaItensNovos(itens_novos);
+                {
+                    Dictionary<long,string> codes = GestaodeAnalises.adicionaItensNovos(itens_novos);
+                    foreach (long l in codes.Keys)
+                    {
+                        found = false;
+                        for(int i = 0 ; i < itens.Count ; i++)
+                            if (itens[i].NomeItem == codes[l])
+                            {
+                                itens[i].CodigoItem = l;
+                                found = true;
+                            }
+                    }
+                }
 
-                GestaodeAnalises.adcicionaZonasNovas(zonas);
+                List<Zona> zs = GestaodeAnalises.adicionaZonasNovas(zonas);
 
                 Analise a = new Analise();
                 a.CodigoProj = codProjecto;
                 a.Nome = nome;
                 a.Tipo = tipo;
-                a.Zonas = ;
-                a.Itens = ;
+                a.Zonas = zs;
+                a.Itens = itens;
 
-                GestaodeAnalises.AdicionaAnalise(a);
+                GestaodeAnalises.adicionaAnalise(a, codProjecto);
+                endFrame();
             }
         }
 

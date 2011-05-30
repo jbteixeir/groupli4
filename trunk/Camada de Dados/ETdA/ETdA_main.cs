@@ -35,8 +35,7 @@ namespace ETdA.Camada_de_Dados.ETdA
             initEventos();
 
             cod_nome_projectos = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
-
-            projectosRecentes();
+            projectos = new Dictionary<long, Projecto>();
         }
 
         public static List<String> Nomes_Estabelecimentos
@@ -50,6 +49,19 @@ namespace ETdA.Camada_de_Dados.ETdA
         public static Projecto getProjecto(long codProjecto)
         {
             return projectos[codProjecto];
+        }
+
+        public static long getCodProjecto(string nome)
+        {
+            long cod = -1;
+            bool found = false;
+            for (int i = 0 ; i < cod_nome_projectos.Count && !found; i++)
+                if (cod_nome_projectos.Values.ElementAt(i) == nome)
+                {
+                    cod = cod_nome_projectos.Keys.ElementAt(i);
+                    found = true;
+                }
+            return cod;
         }
 
         /* ------------------------------------------------------ */
@@ -99,7 +111,7 @@ namespace ETdA.Camada_de_Dados.ETdA
         /*
          * Abre um projecto com o nome de estabelecimento Recebido
          */
-        public static void abreProjecto(string nomeEstabelecimento)
+        public static long abreProjecto(string nomeEstabelecimento)
         {
             long cod = -1;
             Boolean found = false;
@@ -116,6 +128,7 @@ namespace ETdA.Camada_de_Dados.ETdA
             Projecto proj = Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.selectProjecto(cod);
             projectos.Add(proj.Codigo, proj);
+            return proj.Codigo;
         }
 
         /*

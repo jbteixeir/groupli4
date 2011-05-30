@@ -46,5 +46,10 @@ namespace ETdA.Camada_de_Negócio
 
             return rs;
         }
+
+        public static long getCodProjecto(string nome)
+        {
+            return Camada_de_Dados.ETdA.ETdA.getCodProjecto(nome);
+        }
     }
 }
