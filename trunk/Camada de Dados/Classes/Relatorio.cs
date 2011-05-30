@@ -70,7 +70,7 @@ namespace ETdA.Camada_de_Dados.Classes
                     numero_total_fichaAvaliacao = 0;
                     resultado_checklist_parcial = new Dictionary<int, int>();
                     numero_total_checklist = 0;
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 1; i < 6; i++)
                     {
                         resultado_questionario_parcial.Add(i, 0);
                         resultado_fichaAvaliacao_parcial.Add(i, 0);
@@ -115,7 +115,7 @@ namespace ETdA.Camada_de_Dados.Classes
                     double resultadoItem_geral = -1;
 
                     //atribuição das percentagens das respostas a cada um dos valores da escala em cada um dos tipos de formulário
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 1; i < 6; i++)
                     {
                         resultadoItem_questionario_parcial.Add(i, resultado_questionario_parcial[i] / numero_total_questionario);
                         resultadoItem_questionario_total += i * (resultado_questionario_parcial[i] / numero_total_questionario);

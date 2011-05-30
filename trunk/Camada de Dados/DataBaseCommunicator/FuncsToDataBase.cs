@@ -602,12 +602,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 {
                     respostas.Add(new Resposta(-1, (long)readerResposta["cod_fichaAvaliacao"], short.Parse(readerResposta["numero_pergunta"].ToString()), (long)readerResposta["cod_item"], (long)readerResposta["cod_zona"], short.Parse(readerResposta["valor"].ToString()), "", 2, Classes.Resposta.TipoResposta.RespostaNum));
                 }
-
+                readerResposta.Close();
                 readerResposta = DataBaseCommunicator.readData("SELECT numero_pergunta, item.cod_item, cod_fichaAvaliacao, cod_zona, valor " +
                                                                    "FROM  resposta_ficha_avaliacao_string, item " +
                                                                    "WHERE resposta_ficha_avaliacao_string.cod_fichaAvaliacao=" + readerPergunta["cod_fichaAvaliacao"]);
 
-                if(readerResposta.Read());
+                if(readerResposta.Read())
                 if (readerResposta["numero_pergunta"].ToString() != "")
                     respostas.Add(new Resposta(-1, int.Parse(readerResposta["cod_fichaAvaliacao"].ToString()), int.Parse(readerResposta["numero_pergunta"].ToString()), int.Parse(readerResposta["cod_item"].ToString()), int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 2, Classes.Resposta.TipoResposta.RespostaMemo));
                 readerResposta.Close();
@@ -695,8 +695,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                        " AND resposta_questionario_numero.cod_analise=" + codigoAnalise);
                     while (readerResposta.Read())
                     {
-                        if (readerResposta["valor"].ToString() != "")
-                            respostas.Add(new Resposta((long)readerResposta["cod_questionario"], -1, (long)reader["numero_pergunta"], cod_item, cod_zona, (short)readerResposta["valor"], "", 3, Classes.Resposta.TipoResposta.RespostaNum));
+                        if (readerResposta["valor"].ToString() != "" && reader["numero_pergunta"].ToString() != "")
+                            respostas.Add(new Resposta(long.Parse(readerResposta["cod_questionario"].ToString()), -1, long.Parse(reader["numero_pergunta"].ToString()), cod_item, cod_zona, short.Parse(readerResposta["valor"].ToString()), "", 3, Classes.Resposta.TipoResposta.RespostaNum));
                     }
                     readerResposta.Close();
                 }
