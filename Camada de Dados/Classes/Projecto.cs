@@ -11,15 +11,15 @@ namespace ETdA.Camada_de_Dados.Classes
     {
 
         //Variaveis de instância
-        private String codProjecto;
+        private long codProjecto;
         private String nomeEstabelecimento;
         private DateTime ultimaActualizacao;
-        private Dictionary<string,string> cod_name_analise;
-        private Analise analise_Aberta;
+        private Dictionary<long,string> cod_name_analise;
+        private Dictionary<long, Analise> analises;
 
         //Constructores
-        public Projecto(String codProj, String nomeEst, 
-            DateTime ultimaAct, Dictionary<string,string> analises)
+        public Projecto(long codProj, String nomeEst, 
+            DateTime ultimaAct, Dictionary<long,string> analises)
         {
             codProjecto = codProj;
             nomeEstabelecimento = nomeEst;
@@ -29,10 +29,12 @@ namespace ETdA.Camada_de_Dados.Classes
 
         public Projecto ()
         {
-            codProjecto = "";
+            codProjecto = -1;
             nomeEstabelecimento = "";
             ultimaActualizacao = new DateTime();
-            cod_name_analise = new Dictionary<string, string>();
+            ultimaActualizacao = DateTime.Now;
+            cod_name_analise = new Dictionary<long, string>();
+            analises = new Dictionary<long, Analise>();
         }
 
         public Projecto(Projecto p)
@@ -41,11 +43,12 @@ namespace ETdA.Camada_de_Dados.Classes
             nomeEstabelecimento = p.Nome;
             ultimaActualizacao = p.Data;
             cod_name_analise = p.Cod_Name_Analise;
+            analises = p.Analises;
         }
 
         //Métodos
 
-        public String Codigo
+        public long Codigo
         {
             get { return codProjecto; }
             set { codProjecto = value; }
@@ -60,22 +63,22 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return ultimaActualizacao; }
             set { ultimaActualizacao = value; }
         }
-        public List<String> Analises
+        public List<String> Nomes_Analises
         {
             get 
             {
                 return new List<string>(cod_name_analise.Values);
             }
         }
-        public Dictionary<string, string> Cod_Name_Analise
+        public Dictionary<long, string> Cod_Name_Analise
         {
             get { return cod_name_analise; }
             set { cod_name_analise = value; }
         }
-        public Analise Analise_Aberta
+        public Dictionary<long, Analise> Analises
         {
-            get { return analise_Aberta; }
-            set { analise_Aberta = value; }
+            get { return analises; }
+            set { analises = value; }
         }
 
         public Projecto clone()
@@ -88,15 +91,13 @@ namespace ETdA.Camada_de_Dados.Classes
         /* ------------------------------------------------------ */
 
         /* Gestao de Analises */
-
+ 
         /*
          * Verifica se Ja tem Projecto com esse nome na Base de dados
          */
         public Boolean podeAdicionarAnalise(String nomeAnalise)
         {
-            List<string> l = new List<string>(cod_name_analise.Values);
-
-            return l.Contains(nomeAnalise);
+            return cod_name_analise.Values.Contains(nomeAnalise);
         }
 
         /*
