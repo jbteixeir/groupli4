@@ -28,8 +28,8 @@ namespace ETdA.Camada_de_Interface
         private string s8 = "Verde";
         private string s9 = "Limite Inferior Analista";
 
-        private Dictionary<int, string> defaults;
-        private Dictionary<int, string> alls;
+        private Dictionary<long, string> defaults;
+        private Dictionary<long, string> alls;
         private Dictionary<string, Dictionary<string,object>> panels;
 
         public Interface_CriarAnaliseItens()
@@ -40,6 +40,7 @@ namespace ETdA.Camada_de_Interface
                Camada_de_Interface.Interface_CriarAnalise.ItensOkReenc);
 
             defaults = GestaodeAnalises.getItensDefault();
+            alls = defaults;
             int i = 0;
             foreach (string s in defaults.Values)
             {
@@ -291,12 +292,12 @@ namespace ETdA.Camada_de_Interface
             foreach (string s in checkedListBox1.CheckedItems)
             {
                 Item i = new Item();
-                int cod = -1;
+                long cod = -1;
                 bool found = false; 
-                for (int j = 0 ; j < defaults.Values.Count && !found; j++ )
-                    if(defaults.Values.ElementAt(j) == s)
+                for (int j = 0 ; j < alls.Values.Count && !found; j++ )
+                    if(alls.Values.ElementAt(j) == s)
                     {
-                        cod = defaults.Keys.ElementAt(j);
+                        cod = alls.Keys.ElementAt(j);
                         found = true;
                     }
 

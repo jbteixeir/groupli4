@@ -189,7 +189,7 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l1);
 
-                List<string> ans = GestaodeAnalises.getNomeAnalises();
+                List<string> ans = GestaodeAnalises.getNomeAnalises(nome_projecto);
 
                 int x = 7, y = 60;
                 foreach (string s in ans)
@@ -403,7 +403,7 @@ namespace ETdA.Camada_de_Interface
             if (!indexes.Contains(index))
             {
                 treeView_Projectos.Nodes[index].Nodes.RemoveAt(0);
-                List<string> nomes = GestaodeAnalises.getNomeAnalises();
+                List<string> nomes = GestaodeAnalises.getNomeAnalises(e.Node.Text);
                 foreach (string s in nomes)
                     treeView_Projectos.Nodes[index].Nodes.Add(new TreeNode(s));
                 indexes.Add(index);
@@ -446,7 +446,8 @@ namespace ETdA.Camada_de_Interface
 
         private void CriarAnaliseClick(object sender, EventArgs e)
         {
-            Interface_CriarAnalise.main();
+            Interface_CriarAnalise.main(GestaodeProjectos.getCodProjecto(
+                tabControl1.SelectedTab.Text));
         }
 
         private void GerarRelatorio(object sender, EventArgs e)
