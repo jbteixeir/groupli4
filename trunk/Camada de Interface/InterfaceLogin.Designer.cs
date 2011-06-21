@@ -60,7 +60,7 @@
             this.Login.Name = "Login";
             this.Login.Size = new System.Drawing.Size(75, 23);
             this.Login.TabIndex = 3;
-            this.Login.Text = "Login";
+            this.Login.Text = "Entrar";
             this.Login.UseVisualStyleBackColor = true;
             this.Login.Click += new System.EventHandler(this.Login_Click);
             // 
@@ -150,6 +150,7 @@
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBox1);
@@ -185,7 +186,8 @@
             this.Controls.Add(this.Registar);
             this.Controls.Add(this.Login);
             this.Controls.Add(this.Sair);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(285, 319);
             this.Name = "InterfaceLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
