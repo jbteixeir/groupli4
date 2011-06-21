@@ -76,7 +76,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(100, 43);
+            this.textBox1.Location = new System.Drawing.Point(111, 43);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(195, 20);
             this.textBox1.TabIndex = 0;
@@ -87,18 +87,18 @@
             this.Username.AutoSize = true;
             this.Username.Location = new System.Drawing.Point(29, 46);
             this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(55, 13);
+            this.Username.Size = new System.Drawing.Size(50, 13);
             this.Username.TabIndex = 1;
-            this.Username.Text = "Username";
+            this.Username.Text = "Utilizador";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(196, 153);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 13);
+            this.label3.Size = new System.Drawing.Size(143, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "username ou a password.";
+            this.label3.Text = "utilizador ou a palavra-chave";
             // 
             // label2
             // 
@@ -111,7 +111,7 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(100, 87);
+            this.maskedTextBox1.Location = new System.Drawing.Point(111, 87);
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.PasswordChar = '*';
             this.maskedTextBox1.Size = new System.Drawing.Size(194, 20);
@@ -133,9 +133,9 @@
             this.Password.AutoSize = true;
             this.Password.Location = new System.Drawing.Point(29, 90);
             this.Password.Name = "Password";
-            this.Password.Size = new System.Drawing.Size(53, 13);
+            this.Password.Size = new System.Drawing.Size(77, 13);
             this.Password.TabIndex = 5;
-            this.Password.Text = "Password";
+            this.Password.Text = "Palavra-Chave";
             // 
             // checkBox1
             // 

@@ -71,7 +71,7 @@
             this.Password2.Name = "Password2";
             this.Password2.Size = new System.Drawing.Size(121, 13);
             this.Password2.TabIndex = 2;
-            this.Password2.Text = "Confirme Palavra-Chava";
+            this.Password2.Text = "Confirme Palavra-Chave";
             // 
             // Registar
             // 
