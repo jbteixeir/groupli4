@@ -536,5 +536,10 @@ namespace ETdA.Camada_de_Interface
             long coda = GestaodeAnalises.getCodAnalise(codp, nomes[1]);
             Interface_Relatorio.main(1, 1, new ETdA.Camada_de_Dados.Classes.Relatorio());
         }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
