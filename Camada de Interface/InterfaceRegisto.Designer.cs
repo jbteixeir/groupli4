@@ -51,31 +51,31 @@
             this.Username.AutoSize = true;
             this.Username.Location = new System.Drawing.Point(12, 13);
             this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(55, 13);
+            this.Username.Size = new System.Drawing.Size(50, 13);
             this.Username.TabIndex = 0;
-            this.Username.Text = "Username";
+            this.Username.Text = "Utilizador";
             // 
             // Password1
             // 
             this.Password1.AutoSize = true;
             this.Password1.Location = new System.Drawing.Point(12, 39);
             this.Password1.Name = "Password1";
-            this.Password1.Size = new System.Drawing.Size(53, 13);
+            this.Password1.Size = new System.Drawing.Size(77, 13);
             this.Password1.TabIndex = 1;
-            this.Password1.Text = "Password";
+            this.Password1.Text = "Palavra-Chave";
             // 
             // Password2
             // 
             this.Password2.AutoSize = true;
             this.Password2.Location = new System.Drawing.Point(12, 65);
             this.Password2.Name = "Password2";
-            this.Password2.Size = new System.Drawing.Size(97, 13);
+            this.Password2.Size = new System.Drawing.Size(121, 13);
             this.Password2.TabIndex = 2;
-            this.Password2.Text = "Confirme Password";
+            this.Password2.Text = "Confirme Palavra-Chava";
             // 
             // Registar
             // 
-            this.Registar.Location = new System.Drawing.Point(205, 112);
+            this.Registar.Location = new System.Drawing.Point(261, 95);
             this.Registar.Name = "Registar";
             this.Registar.Size = new System.Drawing.Size(75, 23);
             this.Registar.TabIndex = 3;
@@ -85,7 +85,7 @@
             // 
             // Cancelar
             // 
-            this.Cancelar.Location = new System.Drawing.Point(115, 112);
+            this.Cancelar.Location = new System.Drawing.Point(169, 95);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(75, 23);
             this.Cancelar.TabIndex = 4;
@@ -95,27 +95,27 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(115, 10);
+            this.textBox1.Location = new System.Drawing.Point(138, 7);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(165, 20);
+            this.textBox1.Size = new System.Drawing.Size(198, 20);
             this.textBox1.TabIndex = 5;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeuPressActionPerformed);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(115, 36);
+            this.textBox2.Location = new System.Drawing.Point(138, 33);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(165, 20);
+            this.textBox2.Size = new System.Drawing.Size(198, 20);
             this.textBox2.TabIndex = 6;
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeuPressActionPerformed);
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(115, 62);
+            this.textBox3.Location = new System.Drawing.Point(138, 59);
             this.textBox3.Name = "textBox3";
             this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(165, 20);
+            this.textBox3.Size = new System.Drawing.Size(198, 20);
             this.textBox3.TabIndex = 7;
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeuPressActionPerformed);
             // 
@@ -134,18 +134,18 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(115, 89);
+            this.checkBox1.Location = new System.Drawing.Point(12, 95);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(115, 17);
+            this.checkBox1.Size = new System.Drawing.Size(134, 17);
             this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Manter-me Logado";
+            this.checkBox1.Text = "Manter sessão iniciada";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // InterfaceRegisto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 142);
+            this.ClientSize = new System.Drawing.Size(348, 132);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
