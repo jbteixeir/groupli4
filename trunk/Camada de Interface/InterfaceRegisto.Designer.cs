@@ -155,6 +155,8 @@
             this.Controls.Add(this.Password2);
             this.Controls.Add(this.Password1);
             this.Controls.Add(this.Username);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "InterfaceRegisto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registar";
