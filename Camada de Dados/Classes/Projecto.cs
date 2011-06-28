@@ -171,11 +171,11 @@ namespace ETdA.Camada_de_Dados.Classes
                 Analise a = Camada_de_Dados.DataBaseCommunicator.
                     FuncsToDataBase.selectAnalise(cod);
                 analises.Add(a.Codigo, a);
-                MessageBox.Show("Abiu Analise");
+                //MessageBox.Show("Abiu Analise");
             }
             else
             {
-                MessageBox.Show("Analise ja aberta");
+                //MessageBox.Show("Analise ja aberta");
             }
         }
 

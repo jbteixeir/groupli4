@@ -130,13 +130,13 @@ namespace ETdA.Camada_de_Dados.ETdA
             {
                 Projecto proj = Camada_de_Dados.DataBaseCommunicator.
                     FuncsToDataBase.selectProjecto(cod);
-                MessageBox.Show("proj.Codigo " + proj.Codigo);
+                //MessageBox.Show("proj.Codigo " + proj.Codigo);
                 projectos.Add(proj.Codigo, proj);
-                MessageBox.Show("Abiu Projecto");
+                //MessageBox.Show("Abiu Projecto");
             }
             else
             {
-                MessageBox.Show("Projecto já aberto");
+                //MessageBox.Show("Projecto já aberto");
             }
             return cod;
         }

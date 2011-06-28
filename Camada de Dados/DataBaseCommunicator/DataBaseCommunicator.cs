@@ -56,8 +56,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                              "Password=" + password + ";" +
                              "MultipleActiveResultSets = True";
 
-                Console.WriteLine(con);
-
                 connection = new SqlConnection(con);
                 connection.Open();
                 return true;
@@ -115,8 +113,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             try
             {
-                MessageBox.Show(query);
-
                 SqlCommand command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
                 command.Dispose();
@@ -134,7 +130,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             try
             {
-                //MessageBox.Show(query);
                 SqlDataReader reader = null;
                 SqlCommand command = new SqlCommand(query, connection);
                 reader = command.ExecuteReader();
