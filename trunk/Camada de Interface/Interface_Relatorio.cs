@@ -44,25 +44,20 @@ namespace ETdA.Camada_de_Interface
 
         public void showRelatorio()
         {
-            System.Windows.Forms.TreeNode treeNode1;
-            System.Windows.Forms.TreeNode treeNode2 = null;
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode();
+
+            
             for (int i = 0; i < zonas.Count; i++)
             {
-                Console.WriteLine("zona: " + zonas[i].Nome);
                 treeNode1 = new System.Windows.Forms.TreeNode(zonas[i].Nome);
-
                 for (int j = 0; j < itens.Count; j++)
                 {
-                    Console.WriteLine("item: " + itens[j].NomeItem);
-                    
-                    treeNode2 = new System.Windows.Forms.TreeNode(itens[j].NomeItem, new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-                    
+                    treeNode1.Nodes.Add(itens[j].NomeItem);
                 }
-
+                treeViewZonaItem.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
             }
-            treeViewZonaItem.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            
             obs= new Dictionary<long,Dictionary<long,RichTextBox>>();
             
             for (int i = 0; i < zonas.Count; i++)

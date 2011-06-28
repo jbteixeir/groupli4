@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeViewZonaItem = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -51,10 +50,10 @@
             // 
             // treeViewZonaItem
             // 
+            this.treeViewZonaItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.treeViewZonaItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewZonaItem.Location = new System.Drawing.Point(0, 0);
             this.treeViewZonaItem.Name = "treeViewZonaItem";
-            
             this.treeViewZonaItem.Size = new System.Drawing.Size(199, 373);
             this.treeViewZonaItem.TabIndex = 0;
             // 
