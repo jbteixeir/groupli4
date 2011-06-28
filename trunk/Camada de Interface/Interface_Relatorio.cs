@@ -150,5 +150,23 @@ namespace ETdA.Camada_de_Interface
                 obs.Add(zonas[i].Codigo, obsitem);
             }
         }
+        private void treeViewZonaItem_AfterSelect(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Level == 1)
+            {
+                int i = 0;
+                for (; i < zonas.Count() && zonas[i].Nome.Equals(e.Node.Parent.Text); i++) ;
+                long czona = zonas[i].Codigo;
+
+                for (; i < itens.Count() && itens[i].NomeItem.Equals(e.Node.Text); i++) ;
+                long citem = itens[i].CodigoItem;
+
+                //long codp = GestaodeProjectos.getCodProjecto(e.Node.Parent.Text);
+                //long coda = GestaodeAnalises.abreAnalise(codp, e.Node.Text);
+
+                //initAnalisePage(codp, e.Node.Text, coda);
+            }
+        }
+
     }
 }
