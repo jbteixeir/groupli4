@@ -548,6 +548,7 @@ namespace ETdA.Camada_de_Interface
 
         /* Analise (Eventos) */
 
+        // rdone
         private void GerarRelatorio(object sender, EventArgs e)
         {
             // Tab tem no nome "codP.codA"
