@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ETdA.Camada_de_Negócio;
+using System.Drawing.Drawing2D;
 
 namespace ETdA.Camada_de_Interface
 {
@@ -40,10 +41,15 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        /* Projectos e Analises Adicionadas */
+
+        // rdone
         public static void addProjectoReenc(object sender, EventArgs e)
         {
             igp.addProjecto(sender, e);
         }
+
+        // rdone
         private void addProjecto(object sender, EventArgs e)
         {
             TreeNode nodo = new TreeNode();
@@ -51,10 +57,13 @@ namespace ETdA.Camada_de_Interface
             this.treeView_Projectos.Nodes.Add(nodo);
         }
 
+        // rdone
         public static void addAnaliseReenc(object sender, EventArgs e)
         {
             igp.addAnalise(sender, e);
         }
+
+        // rdone
         private void addAnalise(object sender, EventArgs e)
         {
             List<string> s = (List<string>) sender;
@@ -68,7 +77,7 @@ namespace ETdA.Camada_de_Interface
                     found = true;
                 }
             closeTab(tabControl1.SelectedIndex);
-            initProgetPage(s[0]);
+            initProgetPage(s[0],long.Parse(s[2]));
         }
 
         /*
@@ -96,16 +105,8 @@ namespace ETdA.Camada_de_Interface
         {
         }
         */
-        private int getTabNumber(string name)
-        {
-            int index = 0;
-            bool found = false;
-            for (int i = 0; i < tabPages.Count && !found; i++)
-                if (tabPages[i] == name)
-                    index = i;
 
-            return index;
-        }
+        /* Gestao das Tabs */
 
         private void initStartPage()
         {
@@ -135,10 +136,10 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l1);
                 System.Windows.Forms.PictureBox pictureBox1 = new System.Windows.Forms.PictureBox();
-                pictureBox1.Image = global::ETdA.Properties.Resources.newproj;
-                pictureBox1.Location = new System.Drawing.Point(0, 30);
+                setImage(pictureBox1,global::ETdA.Properties.Resources._1309271576_folder_add);
+                pictureBox1.Location = new System.Drawing.Point(0, 40);
                 pictureBox1.Name = "pictureBox1";
-                pictureBox1.Size = new System.Drawing.Size(33, 33);
+                pictureBox1.Size = new System.Drawing.Size(25, 25);
                 pictureBox1.TabIndex = 1;
                 pictureBox1.TabStop = false;
 
@@ -148,19 +149,20 @@ namespace ETdA.Camada_de_Interface
                     new System.Windows.Forms.Label();
                 l2.Width = 200;
                 l2.Text = "Criar Novo Projecto";
-                l2.Location = new System.Drawing.Point(36, 40);
+                l2.Location = new System.Drawing.Point(26, 40);
                 l2.Cursor = System.Windows.Forms.Cursors.Hand;
                 l2.Click += new System.EventHandler(CriarProjectoClick);
                 l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                l2.Size = new System.Drawing.Size(250, 25);
 
                 p.Controls.Add(l2);
 
                 System.Windows.Forms.PictureBox pictureBox2 = new System.Windows.Forms.PictureBox();
-                pictureBox2.Image = global::ETdA.Properties.Resources.openproj;
-                pictureBox2.Location = new System.Drawing.Point(0, 69);
+                setImage(pictureBox2, global::ETdA.Properties.Resources._1309271471_file_add);
+                pictureBox2.Location = new System.Drawing.Point(0, 79);
                 pictureBox2.Name = "pictureBox2";
-                pictureBox2.Size = new System.Drawing.Size(33, 33);
+                pictureBox2.Size = new System.Drawing.Size(25, 25);
                 pictureBox2.TabIndex = 1;
                 pictureBox2.TabStop = false;
 
@@ -169,7 +171,8 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l3 =
                     new System.Windows.Forms.Label();
                 l3.Text = "Abrir Projecto";
-                l3.Location = new System.Drawing.Point(36, 79);
+                l3.Location = new System.Drawing.Point(26, 79);
+                l3.Size = new System.Drawing.Size(250, 25);
                 l3.Cursor = System.Windows.Forms.Cursors.Hand;
                 //l3.Click += new System.EventHandler(this.OpenProjectClick);
                 l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -215,39 +218,67 @@ namespace ETdA.Camada_de_Interface
             tabControl1.SelectedIndex = getTabNumber("StartPage");
         }
 
-        private void initProgetPage(string nome_projecto)
+        // rdone
+        private void closeTab(int nome)
         {
-            if (!tabPages.Contains(nome_projecto))
+            tabControl1.TabPages.RemoveAt(nome);
+            tabPages.RemoveAt(nome);
+        }
+
+        // rdone
+        private void initProgetPage(string nome_projecto, long codp)
+        {
+            if (!tabPages.Contains(""+codp))
             {
-                tabPages.Add(nome_projecto);
+                tabPages.Add(""+codp);
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
-                p.Text = nome_projecto;
+                p.Name = ""+codp;
                 p.AutoScroll = true;
+                p.Text = nome_projecto;
+                p.Size = new System.Drawing.Size(218, 385);
 
                 ContextMenu m = new ContextMenu();
                 m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
-                tabControl1.ContextMenu = m;
+                p.ContextMenu = m;
 
-                this.tabControl1.Controls.Add(p);
-
-                p.Text = nome_projecto;
-                p.Size = new System.Drawing.Size(218, 385);
+                tabControl1.Controls.Add(p);
 
                 System.Windows.Forms.Label l1 =
                     new System.Windows.Forms.Label();
                 l1.Text = "Nova Analise";
-                l1.Location = new System.Drawing.Point(20, 20);
+                l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, 
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                l1.Location = new System.Drawing.Point(26, 20);
                 l1.Cursor = System.Windows.Forms.Cursors.Hand;
                 l1.Click += new System.EventHandler(CriarAnaliseClick);
                 l1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                l1.Size = new System.Drawing.Size(250, 25);
 
                 p.Controls.Add(l1);
 
-                List<string> ans = GestaodeAnalises.getNomeAnalises(nome_projecto);
+                System.Windows.Forms.PictureBox pictureBox1 = new System.Windows.Forms.PictureBox();
+                setImage(pictureBox1, global::ETdA.Properties.Resources._1309271471_file_add);
+                pictureBox1.Location = new System.Drawing.Point(0, 20);
+                pictureBox1.Name = "pictureBox1";
+                pictureBox1.Size = new System.Drawing.Size(25,25);
 
-                int x = 7, y = 60;
+                p.Controls.Add(pictureBox1);
+
+                System.Windows.Forms.Label l2 =
+                    new System.Windows.Forms.Label();
+                l2.Text = "Analises";
+                l2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                l2.Location = new System.Drawing.Point(0, 100);
+                l2.Size = new System.Drawing.Size(250, 25);
+
+                p.Controls.Add(l2);
+
+                List<string> ans = GestaodeAnalises.getNomeAnalises(codp);
+
+                int x = 7, y = 130;
                 foreach (string s in ans)
                 {
                     if (x + 10 < Size.Width)
@@ -274,34 +305,34 @@ namespace ETdA.Camada_de_Interface
                     }
                 }
             }
-            tabControl1.SelectedIndex = getTabNumber(nome_projecto);
+            tabControl1.SelectedIndex = getTabNumber(""+codp);
         }
 
-        private void initAnalisePage(string nome_projecto, string nome_analise)
+        // rdone
+        private void initAnalisePage(long codp, string nome_analise, long coda)
         {
-            if (!tabPages.Contains(nome_projecto + "." + nome_analise))
+            if (!tabPages.Contains(""+codp + "." + coda))
             {
-                tabPages.Add(nome_projecto + "." + nome_analise);
+                tabPages.Add("" + codp + "." + coda);
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
-                p.Name = nome_projecto + "." + nome_analise;
+                p.Name = ""+codp + "." + ""+coda;
                 p.AutoScroll = true;
+                p.Text = nome_analise;
+                p.Size = new System.Drawing.Size(218, 385);
 
                 ContextMenu m = new ContextMenu();
                 m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
-                tabControl1.ContextMenu = m;
+                p.ContextMenu = m;
 
                 this.tabControl1.Controls.Add(p);
-
-                p.Text = nome_analise;
-                p.Size = new System.Drawing.Size(218, 385);
 
                 System.Windows.Forms.Label l1 =
                     new System.Windows.Forms.Label();
                 l1.Text = "Ver Itens";
                 l1.Location = new System.Drawing.Point(7, 7);
                 l1.Cursor = System.Windows.Forms.Cursors.Hand;
-                //l1.Click += new System.EventHandler(this.OpenProjectClick);
+                l1.Click += new System.EventHandler(this.OpenItensClick);
                 l1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
@@ -312,7 +343,7 @@ namespace ETdA.Camada_de_Interface
                 l2.Text = "Ver Zonas";
                 l2.Location = new System.Drawing.Point(7, 30);
                 l2.Cursor = System.Windows.Forms.Cursors.Hand;
-                //l2.Click += new System.EventHandler(this.OpenProjectClick);
+                l2.Click += new System.EventHandler(this.OpenZonasClick);
                 l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
@@ -417,19 +448,7 @@ namespace ETdA.Camada_de_Interface
                 p.Controls.Add(checkBox3);
 
             }
-            tabControl1.SelectedIndex = getTabNumber(nome_projecto + "." + nome_analise);
-        }
-
-        private void MouseEnterAction(object sender, EventArgs e)
-        {
-            Label t = (Label)sender;
-            t.Font = new Font(t.Font,FontStyle.Underline);
-        }
-
-        private void MouseLeaveAction(object sender, EventArgs e)
-        {
-            Label t = (Label)sender;
-            t.Font = new Font(t.Font, FontStyle.Regular);
+            tabControl1.SelectedIndex = getTabNumber("" + codp + "." + coda);
         }
 
         private void fecharTab(object sender, EventArgs e)
@@ -437,27 +456,21 @@ namespace ETdA.Camada_de_Interface
             closeTab(tabControl1.SelectedIndex);
         }
 
-        private void closeTab(int nome)
+        private int getTabNumber(string cod)
         {
-            tabControl1.TabPages.RemoveAt(nome);
-            tabPages.RemoveAt(nome);
+            int index = 0;
+            bool found = false;
+            for (int i = 0; i < tabPages.Count && !found; i++)
+                if (tabPages[i] == cod)
+                    index = i;
+
+            return index;
         }
 
-        public static void main(Boolean start)
-        {
-            igp = new InterfaceGuestaoProjectos();
-            if (start)
-                Application.Run(igp);
-            else
-                igp.Visible = true;
-        }
+        /* Abrir Projectos e Analises (Eventos) */
 
-        private void endFrame()
-        {
-            this.Dispose();
-        }
-
-        private void ProjectoSelectedAction(object sender, TreeViewEventArgs e)
+        // rdone
+        private void ExpandProjectAction(object sender, TreeViewEventArgs e)
         {
             int index = 0;
             for (int i = 0; i < treeView_Projectos.Nodes.Count; i++)
@@ -471,49 +484,56 @@ namespace ETdA.Camada_de_Interface
                     index = i;
             }
 
-            GestaodeProjectos.abreProjecto(e.Node.Text);
+            long cod = GestaodeProjectos.abreProjecto(e.Node.Text);
 
             if (!indexes.Contains(index))
             {
                 treeView_Projectos.Nodes[index].Nodes.RemoveAt(0);
-                List<string> nomes = GestaodeAnalises.getNomeAnalises(e.Node.Text);
+                List<string> nomes = GestaodeAnalises.getNomeAnalises(cod);
                 foreach (string s in nomes)
                     treeView_Projectos.Nodes[index].Nodes.Add(new TreeNode(s));
                 indexes.Add(index);
             }
         }
 
-        private void OpenAnaliseAction(object sender, TreeNodeMouseClickEventArgs e)
+        // rdone
+        private void OpenAction(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Level == 1)
             {
-                GestaodeAnalises.abreAnalise(e.Node.Parent.Text, e.Node.Text);
+                long codp = GestaodeProjectos.getCodProjecto(e.Node.Parent.Text);
+                long coda = GestaodeAnalises.abreAnalise(codp, e.Node.Text);
 
-                initAnalisePage(e.Node.Parent.Text ,e.Node.Text);
+                initAnalisePage(codp,e.Node.Text,coda);
             }
             else
             {
-                GestaodeProjectos.abreProjecto(e.Node.Text);
+                long cod = GestaodeProjectos.abreProjecto(e.Node.Text);
 
-                initProgetPage(e.Node.Text);
+                initProgetPage(e.Node.Text, cod);
             }
         }
 
+        // rdone
         private void OpenProjectClick(object sender, EventArgs e)
         {
             Label l = (Label)sender;
-            GestaodeProjectos.abreProjecto(l.Text);
+            long cod = GestaodeProjectos.abreProjecto(l.Text);
 
-            initProgetPage(l.Text);
+            initProgetPage(l.Text, cod);
         }
 
+        // rdone
         private void OpenAnaliseClick(object sender, EventArgs e)
         {
             Label l = (Label) sender;
-            GestaodeAnalises.abreAnalise(tabControl1.SelectedTab.Text, l.Text);
+            long codp = long.Parse(tabControl1.SelectedTab.Name);
+            long coda = GestaodeAnalises.abreAnalise(codp, l.Text);
 
-            initAnalisePage(tabControl1.SelectedTab.Text ,l.Text);
+            initAnalisePage(codp ,l.Text, coda);
         }
+
+        /* Criar Projectos e Analises (Eventos) */
 
         private void CriarProjectoClick(object sender, EventArgs e)
         {
@@ -526,6 +546,8 @@ namespace ETdA.Camada_de_Interface
                 tabControl1.SelectedTab.Text));
         }
 
+        /* Analise (Eventos) */
+
         private void GerarRelatorio(object sender, EventArgs e)
         {
             //MessageBox.Show(tabControl1.SelectedTab.Name);
@@ -537,9 +559,72 @@ namespace ETdA.Camada_de_Interface
             Interface_Relatorio.main(1, 1, new ETdA.Camada_de_Dados.Classes.Relatorio());
         }
 
+        private void OpenZonasClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenItensClick(object sender, EventArgs e)
+        {
+
+        }
+
+        /* Outros */
+
+        private void MouseEnterAction(object sender, EventArgs e)
+        {
+            Label t = (Label)sender;
+            t.Font = new Font(t.Font, FontStyle.Underline);
+        }
+
+        private void MouseLeaveAction(object sender, EventArgs e)
+        {
+            Label t = (Label)sender;
+            t.Font = new Font(t.Font, FontStyle.Regular);
+        }
+
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        /* Funcoes privadas */
+
+        private void setImage(PictureBox pb, Image i)
+        {
+            //create a new Bitmap with the proper dimensions
+            Bitmap finalImg = new Bitmap(i, 25, 25);
+
+            //create a new Graphics object from the image
+            Graphics gfx = Graphics.FromImage(i);
+
+            //clean up the image (take care of any image loss from resizing)
+            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            //empty the PictureBox
+            pb.Image = null;
+
+            //center the new image
+            pb.SizeMode = PictureBoxSizeMode.CenterImage;
+
+            //set the new image
+            pb.Image = finalImg;
+        }
+
+        /* Gestao da Janela */
+
+        public static void main(Boolean start)
+        {
+            igp = new InterfaceGuestaoProjectos();
+            if (start)
+                Application.Run(igp);
+            else
+                igp.Visible = true;
+        }
+
+        private void endFrame()
+        {
+            this.Dispose();
         }
     }
 }

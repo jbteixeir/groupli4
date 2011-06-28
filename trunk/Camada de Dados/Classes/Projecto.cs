@@ -146,13 +146,15 @@ namespace ETdA.Camada_de_Dados.Classes
             List<string> s = new List<string>();
             s.Add(ETdA.ETdA.getProjecto(codProjecto).Nome);
             s.Add(a.Nome);
+            s.Add("" + codProjecto);
+            s.Add("" + a.Codigo);
             evento_analise_adicionada(s, new EventArgs());
         }
 
         /*
          * 
          */
-        public void abreAnalise(String nomeAnalise)
+        public long abreAnalise(String nomeAnalise)
         {
             long cod = -1;
             Boolean found = false;
@@ -171,12 +173,13 @@ namespace ETdA.Camada_de_Dados.Classes
                 Analise a = Camada_de_Dados.DataBaseCommunicator.
                     FuncsToDataBase.selectAnalise(cod);
                 analises.Add(a.Codigo, a);
-                //MessageBox.Show("Abiu Analise");
+                MessageBox.Show("Abiu Analise");
             }
             else
             {
-                //MessageBox.Show("Analise ja aberta");
+                MessageBox.Show("Analise ja aberta");
             }
+            return cod;
         }
 
         /*

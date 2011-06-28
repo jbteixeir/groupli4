@@ -27,27 +27,12 @@ namespace ETdA.Camada_de_Negócio
 			}
 		}
 
-//        void editaAnalise(String codAnalise, string nomeAnalise);
-//        void removeAnalise(String codAnalise);
-//        void adicionaItemAnalise(String codParametro);
-//        void removeItemAnalise(String codParametro);
-//        void adicionaPerguntaFormulario(String codAnalise, String codFormulario, short numPergunta, String codParametro, String descricao, String escalaResp);
-//        void editaPerguntaFormulario(String codAnalise, String codFormulario, short numPergunta, String codParametro, String descricao, String escalaResp);
-//        void adicionaFormulario(String codAnalise, Formulario form);
-//        void editaFormulario(String codAnalise, String codFormulario, Formulario form);
-//        void removeFormulario(String codAnalise, String codFormulario);
-//        void geraWebsite();
-//        void geraFormularioOnline();
-
-        public static void abreAnalise(string np, string na){
-            long codp = GestaodeProjectos.getCodProjecto(np);
-
-            Camada_de_Dados.ETdA.ETdA.getProjecto(codp).abreAnalise(na);
+        public static long abreAnalise(long cp, string na){
+            return Camada_de_Dados.ETdA.ETdA.getProjecto(cp).abreAnalise(na);
         }
 
-        public static List<string> getNomeAnalises(string nomeProjecto)
+        public static List<string> getNomeAnalises(long cod)
         {
-            long cod = Camada_de_Dados.ETdA.ETdA.abreProjecto(nomeProjecto);
             return new List<string>(Camada_de_Dados.ETdA.ETdA.getProjecto(cod).Cod_Name_Analise.Values);
         }
 
