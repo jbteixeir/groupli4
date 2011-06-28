@@ -28,99 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.painelHeaderZonas = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TituloZonas = new System.Windows.Forms.Label();
-            this.painelGeralZonas = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.painelHeaderZonas.SuspendLayout();
-            this.painelGeralZonas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.treeViewZonaItem = new System.Windows.Forms.TreeView();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // painelHeaderZonas
+            // splitContainer1
             // 
-            this.painelHeaderZonas.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.painelHeaderZonas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.painelHeaderZonas.Controls.Add(this.label1);
-            this.painelHeaderZonas.Controls.Add(this.TituloZonas);
-            this.painelHeaderZonas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.painelHeaderZonas.Location = new System.Drawing.Point(0, 0);
-            this.painelHeaderZonas.Name = "painelHeaderZonas";
-            this.painelHeaderZonas.Size = new System.Drawing.Size(742, 88);
-            this.painelHeaderZonas.TabIndex = 0;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // label1
+            // splitContainer1.Panel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 29);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Relatório";
+            this.splitContainer1.Panel1.Controls.Add(this.treeViewZonaItem);
+            this.splitContainer1.Size = new System.Drawing.Size(742, 373);
+            this.splitContainer1.SplitterDistance = 199;
+            this.splitContainer1.TabIndex = 0;
             // 
-            // TituloZonas
+            // treeViewZonaItem
             // 
-            this.TituloZonas.AutoSize = true;
-            this.TituloZonas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TituloZonas.Location = new System.Drawing.Point(42, 42);
-            this.TituloZonas.Name = "TituloZonas";
-            this.TituloZonas.Size = new System.Drawing.Size(208, 25);
-            this.TituloZonas.TabIndex = 1;
-            this.TituloZonas.Text = "Zonas / Atividades";
-            // 
-            // painelGeralZonas
-            // 
-            this.painelGeralZonas.AutoScroll = true;
-            this.painelGeralZonas.Controls.Add(this.pictureBox1);
-            this.painelGeralZonas.Controls.Add(this.label2);
-            this.painelGeralZonas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.painelGeralZonas.Location = new System.Drawing.Point(0, 0);
-            this.painelGeralZonas.Name = "painelGeralZonas";
-            this.painelGeralZonas.Size = new System.Drawing.Size(742, 373);
-            this.painelGeralZonas.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ETdA.Properties.Resources.openproj;
-            this.pictureBox1.Location = new System.Drawing.Point(329, 189);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(33, 33);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(368, 199);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "label2";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(460, 344);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(193, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Incluir estatísticas sobre os clientes";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(659, 340);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Concluir";
-            this.button1.UseVisualStyleBackColor = true;
+            this.treeViewZonaItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewZonaItem.Location = new System.Drawing.Point(0, 0);
+            this.treeViewZonaItem.Name = "treeViewZonaItem";
+            
+            this.treeViewZonaItem.Size = new System.Drawing.Size(199, 373);
+            this.treeViewZonaItem.TabIndex = 0;
             // 
             // Interface_Relatorio
             // 
@@ -129,33 +65,24 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(742, 373);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.painelHeaderZonas);
-            this.Controls.Add(this.painelGeralZonas);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "Interface_Relatorio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relatório";
-            this.painelHeaderZonas.ResumeLayout(false);
-            this.painelHeaderZonas.PerformLayout();
-            this.painelGeralZonas.ResumeLayout(false);
-            this.painelGeralZonas.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel painelHeaderZonas;
-        private System.Windows.Forms.Label TituloZonas;
-        private System.Windows.Forms.Panel painelGeralZonas;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TreeView treeViewZonaItem;
+
+
+
 
     }
 }

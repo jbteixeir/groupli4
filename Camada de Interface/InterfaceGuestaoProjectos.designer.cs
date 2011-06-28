@@ -44,7 +44,7 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelZonaItem = new System.Windows.Forms.Panel();
             this.treeView_Projectos = new System.Windows.Forms.TreeView();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +68,7 @@
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelZonaItem.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -189,7 +189,7 @@
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.panel2);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.panelZonaItem);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(807, 447);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
@@ -215,15 +215,15 @@
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // panel2
+            // panelZonaItem
             // 
-            this.panel2.Controls.Add(this.treeView_Projectos);
-            this.panel2.Controls.Add(this.menuStrip2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(218, 447);
-            this.panel2.TabIndex = 3;
+            this.panelZonaItem.Controls.Add(this.treeView_Projectos);
+            this.panelZonaItem.Controls.Add(this.menuStrip2);
+            this.panelZonaItem.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelZonaItem.Location = new System.Drawing.Point(0, 0);
+            this.panelZonaItem.Name = "panelZonaItem";
+            this.panelZonaItem.Size = new System.Drawing.Size(218, 447);
+            this.panelZonaItem.TabIndex = 3;
             // 
             // treeView_Projectos
             // 
@@ -393,8 +393,8 @@
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panelZonaItem.ResumeLayout(false);
+            this.panelZonaItem.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -422,7 +422,7 @@
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         protected System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelZonaItem;
         private System.Windows.Forms.TreeView treeView_Projectos;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem projectosToolStripMenuItem;
