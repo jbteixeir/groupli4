@@ -7,20 +7,29 @@ namespace ETdA.Camada_de_Dados.Classes
 {
     class ResultadoItem
     {
+        //resultado do questionário
         private double resultado_questionario_geral;
         private Dictionary<int, double> resultado_questionario_parcial;
 
+        //resultado da ficha de avaliação
         private double resultado_fichaAvaliacao_geral;
         private Dictionary<int, double> resultado_fichaAvaliacao_parcial;
 
+        //resultado da checklist
         private double resultado_checklist_geral;
         private Dictionary<int, double> resultado_checklist_parcial;
 
+        //observação do analista para um Item
         private string observacao;
 
+        //resultado final
         private double resultado_final;
 
+        //Se a observação já foi preenchida
         private int checkObs;
+
+        //mostrar ou não os resultados parciais
+        private int mostraResParc;
 
         public ResultadoItem(double resultado_questionario_geral, Dictionary<int, double> resultado_questionario_parcial, double resultado_fichaAvaliacao_geral, Dictionary<int, double> resultado_fichaAvaliacao_parcial, double resultado_checklist_geral, Dictionary<int, double> resultado_checklist_parcial, string observacao, double resultado_final)
         {
@@ -97,7 +106,8 @@ namespace ETdA.Camada_de_Dados.Classes
         public string Observacao
         {
             get { return observacao; }
-            set { observacao = value; }
+            set { observacao = value;
+                  checkObs = 1;      }
         }
 
         public double ResultadoFinal
@@ -110,6 +120,12 @@ namespace ETdA.Camada_de_Dados.Classes
         {
             get { return checkObs; }
             set { checkObs = value; }
+        }
+
+        public int mostraResultadosParciais
+        {
+            get { return mostraResParc; }
+            set { mostraResParc = value; }
         }
     }
 }
