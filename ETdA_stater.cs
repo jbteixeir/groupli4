@@ -15,9 +15,7 @@ namespace ETdA_starter
         [STAThread]
         static void Main()
         {
-            //ETdA.Camada_de_Interface.Interface_IntroduzirManualmente.main();
             Boolean b = GestaodeAnalistas.loadConnectionUtilizadorLogado();
-            
 
             if (b)
             {
@@ -36,7 +34,6 @@ namespace ETdA_starter
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             
             }
-
         }
     }
 }

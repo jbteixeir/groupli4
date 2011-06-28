@@ -325,6 +325,78 @@
   <ItemGroup>
     <None Include="Imagens\openproj.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271588_folder_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271641_folder_warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271647_file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271471_file_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271476_file_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271481_file_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271537_file_warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271576_folder_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271453_notification_warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271459_notification_error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271465_file_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271487_notification_done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271507_notification_remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271512_notification_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271598_application_warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309272270_diskette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309272274_diskette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309272765_direction_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309272771_direction_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309272802_direction_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1309275214_folder_add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271580_folder_add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1309275211_folder_add.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
