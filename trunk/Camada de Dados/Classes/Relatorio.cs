@@ -54,7 +54,6 @@ namespace ETdA.Camada_de_Dados.Classes
             Dictionary<int, int> resultado_checklist_parcial;
             int numero_total_checklist;
 
-
             //para cada zona
             foreach (Classes.Zona zona in zonas)
             {
@@ -117,14 +116,37 @@ namespace ETdA.Camada_de_Dados.Classes
                     //atribuição das percentagens das respostas a cada um dos valores da escala em cada um dos tipos de formulário
                     for (int i = 1; i < 6; i++)
                     {
-                        resultadoItem_questionario_parcial.Add(i, resultado_questionario_parcial[i] / numero_total_questionario);
-                        resultadoItem_questionario_total += i * (resultado_questionario_parcial[i] / numero_total_questionario);
+                        if (resultado_questionario_parcial[i] == 0)
+                        {
+                            resultadoItem_questionario_parcial.Add(i, resultado_questionario_parcial[i]);
+                            resultadoItem_questionario_total += i * (resultado_questionario_parcial[i]);
+                        }
+                        else
+                        {
+                            resultadoItem_questionario_parcial.Add(i, resultado_questionario_parcial[i] / numero_total_questionario);
+                            resultadoItem_questionario_total += i * (resultado_questionario_parcial[i] / numero_total_questionario);
+                        }
 
-                        resultadoItem_fichaAvaliacao_parcial.Add(i, resultado_fichaAvaliacao_parcial[i] / numero_total_fichaAvaliacao);
-                        resultadoItem_fichaAvaliacao_total += i * (resultado_fichaAvaliacao_parcial[i] / numero_total_fichaAvaliacao);
-
-                        resultadoItem_checklist_parcial.Add(i, resultado_checklist_parcial[i] / numero_total_checklist);
-                        resultadoItem_checklist_total += i * (resultado_checklist_parcial[i] / numero_total_checklist);
+                        if (resultado_fichaAvaliacao_parcial[i] == 0)
+                        {
+                            resultadoItem_fichaAvaliacao_parcial.Add(i, resultado_fichaAvaliacao_parcial[i]);
+                            resultadoItem_fichaAvaliacao_total += i * (resultado_fichaAvaliacao_parcial[i]);
+                        }
+                        else
+                        {
+                            resultadoItem_fichaAvaliacao_parcial.Add(i, resultado_fichaAvaliacao_parcial[i] / numero_total_fichaAvaliacao);
+                            resultadoItem_fichaAvaliacao_total += i * (resultado_fichaAvaliacao_parcial[i] / numero_total_fichaAvaliacao);
+                        }
+                        if (resultado_checklist_parcial[i] == 0)
+                        {
+                            resultadoItem_checklist_parcial.Add(i, resultado_checklist_parcial[i]);
+                            resultadoItem_checklist_total += i * (resultado_checklist_parcial[i]);
+                        }
+                        else
+                        {
+                            resultadoItem_checklist_parcial.Add(i, resultado_checklist_parcial[i] / numero_total_checklist);
+                            resultadoItem_checklist_total += i * (resultado_checklist_parcial[i] / numero_total_checklist);
+                        }
                     }
 
                     //caso a nota do analista seja inferior ao limite imposto por este o resultado é a nota do analista
@@ -137,8 +159,8 @@ namespace ETdA.Camada_de_Dados.Classes
 
                     resultadoItem = new Classes.ResultadoItem(resultadoItem_questionario_total,resultadoItem_questionario_parcial,resultadoItem_questionario_total,resultadoItem_questionario_parcial,resultadoItem_checklist_total,resultadoItem_checklist_parcial,"",resultadoItem_geral);
                     listaItens.Add(item.CodigoItem, resultadoItem);
-                    listaResultados.Add(zona.Codigo, listaItens);
                 }
+                listaResultados.Add(zona.Codigo, listaItens);
             }
         }
     }

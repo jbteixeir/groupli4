@@ -23,12 +23,13 @@ namespace ETdA.Camada_de_Interface
         public static void main(long cod_projecto, long cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
             Interface_Relatorio i = new Interface_Relatorio(cod_projecto, cod_analise, relatorio);
-            Application.Run(i);
+            i.ShowDialog();
             //i.Visible = true;
         }
 
         public Interface_Relatorio(long cod_projecto, long cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
+            
             this.zonas = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Zonas;
             this.itens = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Itens;
             relatorio.gerarResultadosRelatorio(cod_analise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
@@ -43,22 +44,27 @@ namespace ETdA.Camada_de_Interface
 
         public void showRelatorio()
         {
+            System.Windows.Forms.TreeNode treeNode1;
+            System.Windows.Forms.TreeNode treeNode2 = null;
+            for (int i = 0; i < zonas.Count; i++)
+            {
+                Console.WriteLine("zona: " + zonas[i].Nome);
+                treeNode1 = new System.Windows.Forms.TreeNode(zonas[i].Nome);
 
-            /*
-                        System.Windows.Forms.Panel painelGeralItens;
-                        System.Windows.Forms.Panel painelItem;
-                        System.Windows.Forms.Label labelItem;
-                        System.Windows.Forms.Label labelZona;
+                for (int j = 0; j < itens.Count; j++)
+                {
+                    Console.WriteLine("item: " + itens[j].NomeItem);
+                    
+                    treeNode2 = new System.Windows.Forms.TreeNode(itens[j].NomeItem, new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+                    
+                }
 
-                        painelHeaderlZonas.SuspendLayout();
-            
-                        painelGeralItens.SuspendLayout();
-                        painelItem.SuspendLayout();
-                        painelGeralZonas.SuspendLayout();
-                        SuspendLayout();
-                        */
+            }
+            treeViewZonaItem.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2});
             obs= new Dictionary<long,Dictionary<long,RichTextBox>>();
-
+            
             for (int i = 0; i < zonas.Count; i++)
             {
                 Panel painelGeralItens = new Panel();
@@ -83,7 +89,7 @@ namespace ETdA.Camada_de_Interface
                 //nome da zona
                 groupBoxZona.Text = zonas[i].Nome;
 
-                painelGeralZonas.Controls.Add(groupBoxZona);
+                
                 Dictionary<long,RichTextBox> obsitem = new Dictionary<long,RichTextBox>();
 
                 for (int j = 0; j < itens.Count; j++)
