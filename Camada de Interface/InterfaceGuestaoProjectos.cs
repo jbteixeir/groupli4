@@ -550,12 +550,10 @@ namespace ETdA.Camada_de_Interface
 
         private void GerarRelatorio(object sender, EventArgs e)
         {
-            //MessageBox.Show(tabControl1.SelectedTab.Name);
-            string[] nomes = tabControl1.SelectedTab.Name.Split('.');
-            //é preciso por por o projecto e a analise actuais
-            //MessageBox.Show(nomes[0] + "\n" + nomes[1]);
-            long codp = GestaodeProjectos.getCodProjecto(nomes[0]);
-            long coda = GestaodeAnalises.getCodAnalise(codp, nomes[1]);
+            // Tab tem no nome "codP.codA"
+            string[] cods = tabControl1.SelectedTab.Name.Split('.');
+            long codp = long.Parse(cods[0]);
+            long coda = long.Parse(cods[1]);
             Interface_Relatorio.main(1, 1, new ETdA.Camada_de_Dados.Classes.Relatorio());
         }
 
