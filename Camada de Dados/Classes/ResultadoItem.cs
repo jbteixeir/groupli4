@@ -17,7 +17,7 @@ namespace ETdA.Camada_de_Dados.Classes
 
         //resultado da checklist
         private double resultado_checklist_geral;
-        private Dictionary<int, double> resultado_checklist_parcial;
+        private Dictionary<int, double> resultado_checklist_parcial; 
 
         //observação do analista para um Item
         private string observacao;
