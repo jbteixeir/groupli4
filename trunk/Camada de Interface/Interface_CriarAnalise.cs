@@ -156,7 +156,7 @@ namespace ETdA.Camada_de_Interface
         // rdone
         private void ItensActionPerformed(object sender, EventArgs e)
         {
-            Interface_CriarAnaliseItens.main();
+            Interface_CriarAnaliseItens.main(itens);
         }
 
         // rdone
