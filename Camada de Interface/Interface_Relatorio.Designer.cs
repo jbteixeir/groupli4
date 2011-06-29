@@ -56,6 +56,7 @@
             this.treeViewZonaItem.Name = "treeViewZonaItem";
             this.treeViewZonaItem.Size = new System.Drawing.Size(199, 373);
             this.treeViewZonaItem.TabIndex = 0;
+            this.treeViewZonaItem.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OpenAction);
             // 
             // Interface_Relatorio
             // 
