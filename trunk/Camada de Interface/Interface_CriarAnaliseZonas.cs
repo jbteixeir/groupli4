@@ -17,6 +17,7 @@ namespace ETdA.Camada_de_Interface
         private static event eventoEventHandler done_action;
         string tipo;
 
+        // rdone
         public Interface_CriarAnaliseZonas(List<string> zonas, string tipo)
         {
             done_action += new eventoEventHandler(
@@ -31,24 +32,21 @@ namespace ETdA.Camada_de_Interface
                 listBox1.Items.Add(s);
         }
 
+        // rdone
         private void CancelarActionPerformed(object sender, EventArgs e)
         {
             end_Frame();
         }
 
+        // rdone
         private void AdicionarActionPerformed(object sender, EventArgs e)
         {
             string s = textBox1.Text;
 
-            String cont = "abcdefghijklmnopqrstuvwxyz" +
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            bool valido = nomeZonaValido(s);
 
-            bool found = true;
-            for ( int i = 0 ; i < s.Length && found; i++ )
-                found = cont.Contains(s[i]);
-
-            if (s == "" || !found)
-                MessageBox.Show("Nome da " + tipo + " inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!valido)
+                MessageBox.Show("Nome da " + tipo + " inválido\n\n(Anpeas letras, números e \"_\")", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (listBox1.Items.Contains(s))
                 MessageBox.Show("Já existe uma " + tipo + " " + s + ".", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
@@ -58,6 +56,18 @@ namespace ETdA.Camada_de_Interface
             }      
         }
 
+        // rdone
+        private bool nomeZonaValido(string p)
+        {
+            if (p == "") return false;
+            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_";
+            bool found = true;
+            for (int i = 0; i < p.Length && found; i++)
+                found = possiveis.Contains(p[i]);
+            return found;
+        }
+
+        // rdone
         private void OK_ActionPerformed(object sender, EventArgs e)
         {
             List<string> ss = new List<string>();
@@ -69,12 +79,14 @@ namespace ETdA.Camada_de_Interface
             end_Frame();
         }
 
+        // rdone
         private void end_Frame()
         {
             Dispose();
             Close();
         }
 
+        // rdone
         public static void main(List<string> zonas, string tipo)
         {
             Interface_CriarAnaliseZonas icaz = new Interface_CriarAnaliseZonas(zonas,tipo);

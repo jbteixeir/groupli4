@@ -18,8 +18,11 @@ namespace ETdA.Camada_de_Interface
         private List<string> itens_novos;
         private static Interface_CriarAnalise ica;
         private long codProjecto;
+        private bool done;
+        private int wh;
 
-        public Interface_CriarAnalise(long codProjecto)
+        // rdone
+        public Interface_CriarAnalise(long codProjecto, string nomeProjecto)
         {
             InitializeComponent();
             zonas = new List<string>();
@@ -28,26 +31,33 @@ namespace ETdA.Camada_de_Interface
             this.codProjecto = codProjecto;
 
             label3.Visible = false;
+            done = false;
+
+            textBox1.Text = DateTime.Now.Date.ToString().Split(' ')[0];
         }
 
-        public static void main(long codProjecto)
+        // rdone
+        public static void main(long codProjecto, string nomeProjecto)
         {
-            ica = new Interface_CriarAnalise(codProjecto);
+            ica = new Interface_CriarAnalise(codProjecto,nomeProjecto);
             ica.Visible = true;
         }
 
+        // rdone
         private void MouseEnterAction(object sender, EventArgs e)
         {
             Label t = (Label)sender;
             t.Font = new Font(t.Font, FontStyle.Underline);
         }
 
+        // rdone
         private void MouseLeaveAction(object sender, EventArgs e)
         {
             Label t = (Label)sender;
             t.Font = new Font(t.Font, FontStyle.Regular);
         }
 
+        // rdone
         private void endFrame()
         {
             Dispose();
@@ -60,35 +70,43 @@ namespace ETdA.Camada_de_Interface
             endFrame();
         }
 
+        // rdone
         private void AdicionarActionPerfermed(object sender, EventArgs e)
         {
             string nome = textBox1.Text;
-            string tipo = comboBox1.SelectedItem.ToString();
 
-            String cont = "abcdefghijklmnopqrstuvwxyz" + 
-                          "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + 
-                          "0123456789" + 
-                          "_";
+            bool valido = nomeAnaliseValido(nome);
+            if (comboBox1.SelectedIndex == 2) done = true;
 
-            MessageBox.Show(tipo);
-
-            bool found = true;
-            for ( int i = 0 ; i < nome.Length && found; i++ )
-                found = cont.Contains(nome[i]);
-
-            if (nome == "" || !found)
-                MessageBox.Show("Nome da análise inválida","Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            else if (itens.Count == 0 || zonas.Count == 0)
-                MessageBox.Show("Zonas e Itens têm de estar preenchidos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!valido)
+                MessageBox.Show("Nome da análise inválida\n(Anpeas letras, números e \"_-/\")", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (!GestaodeAnalises.podeAdicionarAnalise(codProjecto, nome))
+                MessageBox.Show("Nome da análise já existente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (comboBox1.SelectedIndex < 0 || comboBox1.SelectedIndex >2 )
+                MessageBox.Show("Deve escolher o tipo de analise", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (itens.Count == 0 || zonas.Count == 0 || !done)
+            {
+                nome = label3.Text;
+                if (itens.Count == 0)
+                {
+                    errorProvider2.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    errorProvider2.SetError(label4, "Itens têm de estar preenchido");
+                }
+                if (zonas.Count == 0 || !done)
+                {
+                    errorProvider1.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    errorProvider1.SetError(label3, nome + " têm de estar preenchido");
+                }
+            }
             else
             {
                 if (itens_novos.Count != 0)
                 {
-                    Dictionary<long,string> codes = GestaodeAnalises.adicionaItensNovos(itens_novos);
+                    Dictionary<long, string> codes = GestaodeAnalises.adicionaItensNovos(itens_novos);
                     foreach (long l in codes.Keys)
                     {
-                        found = false;
-                        for(int i = 0 ; i < itens.Count ; i++)
+                        bool found = false;
+                        for (int i = 0; i < itens.Count; i++)
                             if (itens[i].NomeItem == codes[l])
                             {
                                 itens[i].CodigoItem = l;
@@ -98,6 +116,7 @@ namespace ETdA.Camada_de_Interface
                 }
 
                 List<Zona> zs = GestaodeAnalises.adicionaZonasNovas(zonas);
+                string tipo = comboBox1.SelectedItem.ToString();
 
                 Analise a = new Analise();
                 a.CodigoProj = codProjecto;
@@ -111,32 +130,30 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        // rdone
 		private bool nomeAnaliseValido(string p)
 		{
-			string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_";
-			bool valid;
-			foreach(char c in p)	{
-
-				valid = false;
-				for (int i = 0; i < possiveis.Length; i++)
-				{
-					if (c == possiveis[i])
-					{
-						valid = true;
-						break;
-					}
-				}
-				if (valid == false)
-					return false;
-			}
-			return true;
+            if (p == "") return false;
+			string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_-/";
+            bool found = true;
+            for (int i = 0; i < p.Length && found; i++)
+                found = possiveis.Contains(p[i]);
+            return found;
 		}
 
+        // rdone
         private void ZonasActionPerformed(object sender, EventArgs e)
         {
+            if (wh != comboBox1.SelectedIndex)
+            {
+                zonas = new List<string>();
+                done = false;
+                wh = comboBox1.SelectedIndex;
+            }
             Interface_CriarAnaliseZonas.main(zonas, comboBox1.SelectedItem.ToString());
         }
 
+        // rdone
         private void ItensActionPerformed(object sender, EventArgs e)
         {
             Interface_CriarAnaliseItens.main();
@@ -155,9 +172,14 @@ namespace ETdA.Camada_de_Interface
                 zonas.Add("Area Comum");
             }
             else
+            {
                 zonas = (List<string>)sender;
-            errorProvider1.Icon = global::ETdA.Properties.Resources._1309271491_notification_done;
-            errorProvider1.SetError(label3, "Zonas OK");
+                done = true;
+            }
+            errorProvider1.Clear();
+            errorProvider1.Icon = global::ETdA.Properties.Resources.notification_done_ico;
+            string nome = label3.Text;
+            errorProvider1.SetError(label3, nome + " OK");
         }
 
         // rdone
@@ -172,25 +194,50 @@ namespace ETdA.Camada_de_Interface
             itens = (List<Item>) l[0];
             itens_novos = (List<string>)l[1];
 
-            errorProvider2.Icon = global::ETdA.Properties.Resources._1309271491_notification_done;
+            errorProvider2.Clear();
+            errorProvider2.Icon = global::ETdA.Properties.Resources.notification_done_ico;
             errorProvider2.SetError(label4, "Itens OK");
         }
 
         // rdone
         private void ComboBoxClick(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             if (comboBox1.SelectedIndex >= 0 &&
                 comboBox1.SelectedIndex <= 2)
             {
                 string nome;
                 if (comboBox1.SelectedIndex == 0)
+                {
                     nome = "Zonas";
+                    label3.Enabled = true;
+                    if (wh == 0 && done)
+                    {
+                        errorProvider1.Icon = global::ETdA.Properties.Resources.notification_done_ico;
+                        errorProvider1.SetError(label3, nome + " OK");
+                    }
+                    else
+                        done = false;
+                }
                 else if (comboBox1.SelectedIndex == 1)
+                {
                     nome = "Actividades";
+                    label3.Enabled = true;
+                    if (wh == 1 && done)
+                    {
+                        errorProvider1.Icon = global::ETdA.Properties.Resources.notification_done_ico;
+                        errorProvider1.SetError(label3, nome + " OK");
+                    }
+                    else
+                        done = false;
+                }
                 else
                 {
                     nome = "Área Comum";
                     ZonasOk(sender, e);
+                    label3.Enabled = false;
+                    wh = 2;
+                    done = false;
                 }
                 label3.Text = nome;
                 label3.Visible = true;

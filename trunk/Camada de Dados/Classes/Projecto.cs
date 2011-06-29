@@ -123,7 +123,7 @@ namespace ETdA.Camada_de_Dados.Classes
          */
         public Boolean podeAdicionarAnalise(String nomeAnalise)
         {
-            return cod_name_analise.Values.Contains(nomeAnalise);
+            return !cod_name_analise.Values.Contains(nomeAnalise);
         }
 
         /*
