@@ -27,7 +27,7 @@ namespace ETdA.Camada_de_Interface
 
             this.codProjecto = codProjecto;
 
-            label3.Enabled = false;
+            label3.Visible = false;
         }
 
         public static void main(long codProjecto)
@@ -54,6 +54,7 @@ namespace ETdA.Camada_de_Interface
             Close();
         }
 
+        // rdone
         private void CancelarActionPerformed(object sender, EventArgs e)
         {
             endFrame();
@@ -141,16 +142,25 @@ namespace ETdA.Camada_de_Interface
             Interface_CriarAnaliseItens.main();
         }
 
+        // rdone
         public static void ZonasOkReenc(object sender, EventArgs e)
         {
             ica.ZonasOk(sender, e);
         }
         private void ZonasOk(object sender, EventArgs e)
         {
-            zonas = (List<string>)sender;
+            if (comboBox1.SelectedIndex == 2)
+            {
+                zonas = new List<string>();
+                zonas.Add("Area Comum");
+            }
+            else
+                zonas = (List<string>)sender;
+            errorProvider1.Icon = global::ETdA.Properties.Resources._1309271491_notification_done;
             errorProvider1.SetError(label3, "Zonas OK");
         }
 
+        // rdone
         public static void ItensOkReenc(object sender, EventArgs e)
         {
             ica.ItensOk(sender, e);
@@ -162,16 +172,31 @@ namespace ETdA.Camada_de_Interface
             itens = (List<Item>) l[0];
             itens_novos = (List<string>)l[1];
 
+            errorProvider2.Icon = global::ETdA.Properties.Resources._1309271491_notification_done;
             errorProvider2.SetError(label4, "Itens OK");
         }
 
+        // rdone
         private void ComboBoxClick(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex >= 0 &&
                 comboBox1.SelectedIndex <= 2)
-                label3.Enabled = true;
+            {
+                string nome;
+                if (comboBox1.SelectedIndex == 0)
+                    nome = "Zonas";
+                else if (comboBox1.SelectedIndex == 1)
+                    nome = "Actividades";
+                else
+                {
+                    nome = "Área Comum";
+                    ZonasOk(sender, e);
+                }
+                label3.Text = nome;
+                label3.Visible = true;
+            }
             else
-                label3.Enabled = false;
+                label3.Visible = false;
         }
     }
 }

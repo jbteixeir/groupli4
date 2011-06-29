@@ -17,7 +17,7 @@ namespace ETdA.Camada_de_Interface
             InitializeComponent();
         }
 
-        private void KeuPressActionPerformed(object sender, KeyPressEventArgs e)
+        private void KeyPressActionPerformed(object sender, KeyPressEventArgs e)
         {
             TextBox t = (TextBox)sender;
 

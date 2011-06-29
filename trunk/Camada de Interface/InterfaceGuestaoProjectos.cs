@@ -535,15 +535,17 @@ namespace ETdA.Camada_de_Interface
 
         /* Criar Projectos e Analises (Eventos) */
 
+        // rdone
         private void CriarProjectoClick(object sender, EventArgs e)
         {
             Interface_CriarProjecto.main();
         }
 
+        // rdone
         private void CriarAnaliseClick(object sender, EventArgs e)
         {
-            Interface_CriarAnalise.main(GestaodeProjectos.getCodProjecto(
-                tabControl1.SelectedTab.Text));
+            long cod = long.Parse(tabControl1.SelectedTab.Name);
+            Interface_CriarAnalise.main(cod);
         }
 
         /* Analise (Eventos) */
