@@ -17,7 +17,7 @@ namespace ETdA.Camada_de_Interface
         private List<Camada_de_Dados.Classes.Zona> zonas;
         private List<Camada_de_Dados.Classes.Item> itens;
 
-        private Dictionary<long,Dictionary<long,RichTextBox>> obs;
+        private Dictionary<long, Dictionary<long, RichTextBox>> obs;
 
 
         public static void main(long cod_projecto, long cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
@@ -29,7 +29,7 @@ namespace ETdA.Camada_de_Interface
 
         public Interface_Relatorio(long cod_projecto, long cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
-            
+
             this.zonas = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Zonas;
             this.itens = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Itens;
             relatorio.gerarResultadosRelatorio(cod_analise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
@@ -46,7 +46,7 @@ namespace ETdA.Camada_de_Interface
         {
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode();
 
-            
+
             for (int i = 0; i < zonas.Count; i++)
             {
                 treeNode1 = new System.Windows.Forms.TreeNode(zonas[i].Nome);
@@ -57,25 +57,25 @@ namespace ETdA.Camada_de_Interface
                 treeViewZonaItem.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
             }
-            
-            obs= new Dictionary<long,Dictionary<long,RichTextBox>>();
-            
-            for (int i = 0; i < zonas.Count; i++)
+
+        }
+        private void OpenAction(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Level == 1)
             {
-                Panel painelGeralItens = new Panel();
-                painelGeralItens.SuspendLayout();
-                //falta adicionar cada panel de cada item
-                painelGeralItens.Dock = System.Windows.Forms.DockStyle.Bottom;
-                painelGeralItens.Location = new System.Drawing.Point(0, 45);
-                painelGeralItens.Name = "painelGeralItens";
-                painelGeralItens.Size = new System.Drawing.Size(943, 170);
-                painelGeralItens.TabIndex = 1;
+                int i;
+                for (i = 0; i < zonas.Count() && !zonas[i].Nome.Equals(e.Node.Parent.Text); i++) ;
+                long czona = zonas[i].Codigo;
+                
+                int j;
+                for (j = 0; j < itens.Count() && !itens[j].NomeItem.Equals(e.Node.Text); j++) ;
+                long citem = itens[j].CodigoItem;
 
                 GroupBox groupBoxZona = new GroupBox();
                 groupBoxZona.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
                 groupBoxZona.AutoSize = true;
                 groupBoxZona.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                groupBoxZona.Dock = System.Windows.Forms.DockStyle.Top;
+                groupBoxZona.Dock = System.Windows.Forms.DockStyle.Fill;
                 groupBoxZona.Location = new System.Drawing.Point(12, 6);
                 groupBoxZona.Name = "groupBoxZona";
                 groupBoxZona.Size = new System.Drawing.Size(943, 215);
@@ -84,85 +84,70 @@ namespace ETdA.Camada_de_Interface
                 //nome da zona
                 groupBoxZona.Text = zonas[i].Nome;
 
+
+                System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
+                if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Vermelho)
+                    corItem.Image = global::ETdA.Properties.Resources.vermelho;
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Laranja)
+                    corItem.Image = global::ETdA.Properties.Resources.laranja;
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Amarelo)
+                    corItem.Image = global::ETdA.Properties.Resources.amarelo;
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
+                    corItem.Image = global::ETdA.Properties.Resources.lima;
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde)
+                    corItem.Image = global::ETdA.Properties.Resources.verde;
+
+
+                corItem.Dock = System.Windows.Forms.DockStyle.Right;
+                corItem.Location = new System.Drawing.Point(600, 20);
+                corItem.Name = "corItem";
+                corItem.Size = new System.Drawing.Size(280, 98);
+                corItem.TabIndex = 0;
+                corItem.TabStop = false;
+
+                RichTextBox obstb = new System.Windows.Forms.RichTextBox();
+                Label obslabel = new System.Windows.Forms.Label();
+
+                obstb.Location = new System.Drawing.Point(20, 231);
+                obstb.Name = "obstb";
+                obstb.Size = new System.Drawing.Size(360, 100);
+                obstb.TabIndex = 1;
+                obstb.Text = "";
+
+                obslabel.AutoSize = true;
+                obslabel.Location = new System.Drawing.Point(20, 215);
+                obslabel.Name = "label2";
+                obslabel.Size = new System.Drawing.Size(70, 13);
+                obslabel.TabIndex = 2;
+                obslabel.Text = "Observações";
+
+
+                GroupBox groupBoxItem = new GroupBox();
+                groupBoxItem.AutoSize = true;
+                groupBoxItem.Controls.Add(corItem);
+                groupBoxItem.Controls.Add(obstb);
+                groupBoxItem.Controls.Add(obslabel);
+                groupBoxItem.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+                groupBoxItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                groupBoxItem.Dock = System.Windows.Forms.DockStyle.Top;
+                groupBoxItem.Location = new System.Drawing.Point(12, 6);
+                groupBoxItem.Name = "GroupBoxItem";
+                groupBoxItem.Size = new System.Drawing.Size(943, 215);
+                groupBoxItem.TabIndex = 1;
+                groupBoxItem.TabStop = false;
+                //nome do item
+                groupBoxItem.Text = itens[j].NomeItem;
+
+                groupBoxZona.Controls.Add(groupBoxItem);
+
+                panelZonaItem.Controls.Clear();
                 
-                Dictionary<long,RichTextBox> obsitem = new Dictionary<long,RichTextBox>();
-
-                for (int j = 0; j < itens.Count; j++)
-                {
-
-                    System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
-                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Vermelho)
-                        corItem.Image = global::ETdA.Properties.Resources.vermelho;
-                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Laranja)
-                        corItem.Image = global::ETdA.Properties.Resources.laranja;
-                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Amarelo)
-                        corItem.Image = global::ETdA.Properties.Resources.amarelo;
-                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
-                        corItem.Image = global::ETdA.Properties.Resources.lima;
-                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde)
-                        corItem.Image = global::ETdA.Properties.Resources.verde;
-
-
-                    corItem.Dock = System.Windows.Forms.DockStyle.Right;
-                    corItem.Location = new System.Drawing.Point(600, 20);
-                    corItem.Name = "corItem";
-                    corItem.Size = new System.Drawing.Size(280, 98);
-                    corItem.TabIndex = 0;
-                    corItem.TabStop = false;
-
-                    RichTextBox obstb = new System.Windows.Forms.RichTextBox();
-                    Label obslabel = new System.Windows.Forms.Label();
-
-                    obstb.Location = new System.Drawing.Point(264, 231);
-                    obstb.Name = "obstb";
-                    obstb.Size = new System.Drawing.Size(360, 100);
-                    obstb.TabIndex = 1;
-                    obstb.Text = "";
-
-                    obslabel.AutoSize = true;
-                    obslabel.Location = new System.Drawing.Point(261, 215);
-                    obslabel.Name = "label2";
-                    obslabel.Size = new System.Drawing.Size(70, 13);
-                    obslabel.TabIndex = 2;
-                    obslabel.Text = "Observações";
-
-                    obsitem.Add(itens[j].CodigoItem, obstb);
-
-                    GroupBox groupBoxItem = new GroupBox();
-                    //groupBoxItem.AutoSize = true;
-                    groupBoxItem.Controls.Add(corItem);
-                    groupBoxItem.Controls.Add(obstb);
-                    groupBoxItem.Controls.Add(obslabel);
-                    groupBoxItem.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-                    groupBoxItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    groupBoxItem.Dock = System.Windows.Forms.DockStyle.Top;
-                    groupBoxItem.Location = new System.Drawing.Point(12, 6);
-                    groupBoxItem.Name = "GroupBoxItem";
-                    groupBoxItem.Size = new System.Drawing.Size(943, 215);
-                    groupBoxItem.TabIndex = 1;
-                    groupBoxItem.TabStop = false;
-                    //nome do item
-                    groupBoxItem.Text = itens[j].NomeItem;
-
-
-                    groupBoxZona.Controls.Add(groupBoxItem);
-                }
-                obs.Add(zonas[i].Codigo, obsitem);
+                panelZonaItem.Controls.Add(groupBoxZona);
+             
             }
         }
-        private void OpenAction(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            if (e.Node.Level == 1)
-            {
-                int i;
-                for (i=0; i < zonas.Count() && !zonas[i].Nome.Equals(e.Node.Parent.Text); i++) ;
-                long czona = zonas[i].Codigo;
 
-                for (i=0; i < itens.Count() && !itens[i].NomeItem.Equals(e.Node.Text); i++) ;
-                long citem = itens[i].CodigoItem;
-   
-            }
-        }
+
 
     }
 }

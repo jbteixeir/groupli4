@@ -30,8 +30,10 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeViewZonaItem = new System.Windows.Forms.TreeView();
+            this.panelZonaItem = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +46,10 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.treeViewZonaItem);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panelZonaItem);
             this.splitContainer1.Size = new System.Drawing.Size(742, 373);
             this.splitContainer1.SplitterDistance = 199;
             this.splitContainer1.TabIndex = 0;
@@ -58,6 +64,15 @@
             this.treeViewZonaItem.TabIndex = 0;
             this.treeViewZonaItem.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OpenAction);
             // 
+            // panelZonaItem
+            // 
+            this.panelZonaItem.AutoScroll = true;
+            this.panelZonaItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelZonaItem.Location = new System.Drawing.Point(0, 0);
+            this.panelZonaItem.Name = "panelZonaItem";
+            this.panelZonaItem.Size = new System.Drawing.Size(539, 373);
+            this.panelZonaItem.TabIndex = 0;
+            // 
             // Interface_Relatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -70,6 +85,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relatório";
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -80,6 +96,7 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView treeViewZonaItem;
+        private System.Windows.Forms.Panel panelZonaItem;
 
 
 
