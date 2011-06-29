@@ -77,5 +77,10 @@ namespace ETdA.Camada_de_Negócio
         {
             return Camada_de_Dados.ETdA.ETdA.getProjecto(codProjecto).getCodigoAnalise(nomeAnalise);
         }
+
+        public static bool podeAdicionarAnalise(long codProjecto, string nomeAnalise)
+        {
+            return Camada_de_Dados.ETdA.ETdA.getProjecto(codProjecto).podeAdicionarAnalise(nomeAnalise);
+        }
     }
 }

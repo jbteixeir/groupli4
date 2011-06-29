@@ -27,14 +27,27 @@ namespace ETdA.Camada_de_Interface
         private void CriarProjectoAction(object sender, EventArgs e)
         {
             string nomeEstabelecimento = textBox1.Text;
+            bool valido = nomeProjectoValido(nomeEstabelecimento);
 
-            if (GestaodeProjectos.podeCriarProjecto(nomeEstabelecimento))
+            if (valido && GestaodeProjectos.podeCriarProjecto(nomeEstabelecimento))
             {
                 GestaodeProjectos.criaProjecto(nomeEstabelecimento);
                 endFrame();
             }
+            else if (!valido)
+                errorProvider1.SetError(this.textBox1, "Nome do projecto inválido.\n\n(Anpeas letras, números e \"_\")");
             else
                 errorProvider1.SetError(this.textBox1, "Projecto já existente.");
+        }
+
+        private bool nomeProjectoValido(string p)
+        {
+            if (p == "") return false;
+            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_";
+            bool found = true;
+            for (int i = 0; i < p.Length && found; i++)
+                found = possiveis.Contains(p[i]);
+            return found;
         }
 
         private void CancelarActionPerformed(object sender, EventArgs e)

@@ -32,7 +32,7 @@ namespace ETdA.Camada_de_Interface
         private Dictionary<long, string> alls;
         private Dictionary<string, Dictionary<string,object>> panels;
 
-        public Interface_CriarAnaliseItens()
+        public Interface_CriarAnaliseItens(List<Item> itens)
         {
             InitializeComponent();
 
@@ -232,25 +232,20 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        public static void main()
+        public static void main(List<Item> itens)
         {
-            Interface_CriarAnaliseItens icai = new Interface_CriarAnaliseItens();
+            Interface_CriarAnaliseItens icai = new Interface_CriarAnaliseItens(itens);
             icai.Visible = true;
         }
 
         private void AdicionarActionPerformed(object sender, EventArgs e)
         {
-            String cont = "abcdefghijklmnopqrstuvwxyz" +
-              "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
             string s = textBox1.Text;
 
-            bool found = true;
-            for ( int i = 0 ; i < s.Length && found; i++ )
-                found = cont.Contains(s[i]);
+            bool valido = nomeItemValido(s);
 
-            if (s == "" || !found)
-                MessageBox.Show("Nome do item inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!valido)
+                MessageBox.Show("Nome do item inválido\n(Anpeas letras, números e \"_-\")", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (checkedListBox1.Items.Contains(s))
                 MessageBox.Show("Já existe um item " + s + ".", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
@@ -262,6 +257,16 @@ namespace ETdA.Camada_de_Interface
 
                 ponderacao(-1);
             }
+        }
+
+        private bool nomeItemValido(string p)
+        {
+            if (p == "") return false;
+            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_-";
+            bool found = true;
+            for (int i = 0; i < p.Length && found; i++)
+                found = possiveis.Contains(p[i]);
+            return found;
         }
 
         private void MostrarTodosActionPerformed(object sender, EventArgs e)

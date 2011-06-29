@@ -545,7 +545,8 @@ namespace ETdA.Camada_de_Interface
         private void CriarAnaliseClick(object sender, EventArgs e)
         {
             long cod = long.Parse(tabControl1.SelectedTab.Name);
-            Interface_CriarAnalise.main(cod);
+            string nome = tabControl1.SelectedTab.Text;
+            Interface_CriarAnalise.main(cod,nome);
         }
 
         /* Analise (Eventos) */
