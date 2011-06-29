@@ -397,6 +397,15 @@
   <ItemGroup>
     <None Include="Resources\1309275211_folder_add.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271458_notification_warning.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271463_notification_error.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\1309271491_notification_done.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

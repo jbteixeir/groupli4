@@ -60,6 +60,20 @@ namespace ETdA.Properties {
             }
         }
         
+        internal static System.Drawing.Icon _1309271458_notification_warning {
+            get {
+                object obj = ResourceManager.GetObject("_1309271458_notification_warning", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon _1309271463_notification_error {
+            get {
+                object obj = ResourceManager.GetObject("_1309271463_notification_error", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap _1309271465_file_search {
             get {
                 object obj = ResourceManager.GetObject("1309271465_file_search", resourceCulture);
@@ -92,6 +106,13 @@ namespace ETdA.Properties {
             get {
                 object obj = ResourceManager.GetObject("1309271487_notification_done", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon _1309271491_notification_done {
+            get {
+                object obj = ResourceManager.GetObject("_1309271491_notification_done", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
