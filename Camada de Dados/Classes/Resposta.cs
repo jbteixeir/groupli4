@@ -32,9 +32,12 @@ namespace ETdA.Camada_de_Dados.Classes
 
 		public enum TipoResposta {RespostaNum,RespostaStr, RespostaMemo};
 
+        //NOTA: na ficha de avaliacao no caso da sugestao, o item e o numero da pergunta são -1
         //Constructores
-        public Resposta(long cod_questionario, long cod_fichaAvaliacao, float numero_pergunta, long cod_item, long cod_zona, short valor, string valor_string, int tipo, TipoResposta tipo_Resposta)
+        public Resposta(long cod_analise, long cod_checklist, long cod_questionario, long cod_fichaAvaliacao, float numero_pergunta, long cod_item, long cod_zona, short valor, string valor_string, int tipo, TipoResposta tipo_Resposta)
         {
+            this.cod_analise = cod_analise;
+            this.cod_checklist = cod_checklist;
             this.cod_questionario = cod_questionario;
             this.cod_fichaAvaliacao = cod_fichaAvaliacao;
             this.numero_pergunta = numero_pergunta;
