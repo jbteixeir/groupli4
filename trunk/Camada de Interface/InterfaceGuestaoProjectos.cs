@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ETdA.Camada_de_Negócio;
 using System.Drawing.Drawing2D;
+using ETdA.Camada_de_Dados.Classes;
 
 namespace ETdA.Camada_de_Interface
 {
@@ -451,6 +452,7 @@ namespace ETdA.Camada_de_Interface
             tabControl1.SelectedIndex = getTabNumber("" + codp + "." + coda);
         }
 
+        // rdone
         private void fecharTab(object sender, EventArgs e)
         {
             closeTab(tabControl1.SelectedIndex);
@@ -561,24 +563,36 @@ namespace ETdA.Camada_de_Interface
             Interface_Relatorio.main(1, 1, new ETdA.Camada_de_Dados.Classes.Relatorio());
         }
 
+        // rdone
         private void OpenZonasClick(object sender, EventArgs e)
         {
-
+            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            List<string> zonas = GestaodeAnalises.getNomeZonasAnalise(codProjecto,codAnalise);
+            string tipo = GestaodeAnalises.getTipoAnalise(codProjecto,codAnalise);
+            MessageBox.Show(tipo);
+            Interface_CriarAnaliseZonas.main(zonas,tipo,false);
         }
 
+        // rdone
         private void OpenItensClick(object sender, EventArgs e)
         {
-
+            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto,codAnalise);
+            Interface_CriarAnaliseItens.main(itens,false);
         }
 
         /* Outros */
 
+        // rdone
         private void MouseEnterAction(object sender, EventArgs e)
         {
             Label t = (Label)sender;
             t.Font = new Font(t.Font, FontStyle.Underline);
         }
 
+        // rdone
         private void MouseLeaveAction(object sender, EventArgs e)
         {
             Label t = (Label)sender;
@@ -592,6 +606,7 @@ namespace ETdA.Camada_de_Interface
 
         /* Funcoes privadas */
 
+        // rdone
         private void setImage(PictureBox pb, Image i)
         {
             //create a new Bitmap with the proper dimensions
@@ -615,6 +630,7 @@ namespace ETdA.Camada_de_Interface
 
         /* Gestao da Janela */
 
+        // rdone
         public static void main(Boolean start)
         {
             igp = new InterfaceGuestaoProjectos();
@@ -624,6 +640,7 @@ namespace ETdA.Camada_de_Interface
                 igp.Visible = true;
         }
 
+        // rdone
         private void endFrame()
         {
             this.Dispose();

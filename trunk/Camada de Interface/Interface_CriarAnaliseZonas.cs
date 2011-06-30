@@ -18,7 +18,7 @@ namespace ETdA.Camada_de_Interface
         string tipo;
 
         // rdone
-        public Interface_CriarAnaliseZonas(List<string> zonas, string tipo)
+        public Interface_CriarAnaliseZonas(List<string> zonas, string tipo, bool b)
         {
             done_action += new eventoEventHandler(
                 Camada_de_Interface.Interface_CriarAnalise.ZonasOkReenc);
@@ -30,6 +30,13 @@ namespace ETdA.Camada_de_Interface
 
             foreach (string s in zonas)
                 listBox1.Items.Add(s);
+
+            if (!b)
+            {
+                textBox1.Visible = false;
+                button2.Visible = false;
+                button3.Visible = false;
+            }
         }
 
         // rdone
@@ -87,9 +94,9 @@ namespace ETdA.Camada_de_Interface
         }
 
         // rdone
-        public static void main(List<string> zonas, string tipo)
+        public static void main(List<string> zonas, string tipo, bool b)
         {
-            Interface_CriarAnaliseZonas icaz = new Interface_CriarAnaliseZonas(zonas,tipo);
+            Interface_CriarAnaliseZonas icaz = new Interface_CriarAnaliseZonas(zonas,tipo,b);
             icaz.Visible = true;
         }
     }

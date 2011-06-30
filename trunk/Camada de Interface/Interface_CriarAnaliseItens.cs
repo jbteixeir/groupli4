@@ -33,13 +33,15 @@ namespace ETdA.Camada_de_Interface
         private Dictionary<string, Dictionary<string,object>> panels;
         private Dictionary<object, ErrorProvider> erros;
         private List<Item> itens;
+        private bool adding;
 
-        public Interface_CriarAnaliseItens(object o)
+        public Interface_CriarAnaliseItens(object o, bool b)
         {
             InitializeComponent();
 
             erros = new Dictionary<object, ErrorProvider>();
             itens = (List<Item>) o;
+            adding = b;
 
             done_action += new eventoEventHandler(
                Camada_de_Interface.Interface_CriarAnalise.ItensOkReenc);
@@ -48,7 +50,7 @@ namespace ETdA.Camada_de_Interface
             alls = defaults;
 
             int i = 0;
-            if (itens.Count == 0)
+            if (itens.Count == 0 && b)
             {
                 foreach (string s in defaults.Values)
                 {
@@ -56,7 +58,7 @@ namespace ETdA.Camada_de_Interface
                     checkedListBox1.SetItemChecked(i++, true);
                 }
             }
-            else
+            else if (itens.Count != 0 && b)
             {
                 foreach (string s in defaults.Values)
                 {
@@ -73,6 +75,19 @@ namespace ETdA.Camada_de_Interface
                         checkedListBox1.SetItemChecked(i++, true);
                     }
                 }
+            }
+            else
+            {
+                foreach (Item item in itens)
+                {
+                    checkedListBox1.Items.Add(item.NomeItem);
+                    checkedListBox1.SetItemChecked(i++, true);
+                }
+                button1.Visible = false;
+                button2.Visible = false;
+                button4.Visible = false;
+                textBox1.Visible = false;
+                checkedListBox1.Enabled = false;
             }
 
             ponderacao(-1);
@@ -131,6 +146,7 @@ namespace ETdA.Camada_de_Interface
                     y += 30;
                     n.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
                     n.Click += new EventHandler(MouseClickActionPerformed);
+                    if (!adding) n.Enabled = false;
                     controls.Add(s1, n);
                     p.Controls.Add(n);
 
@@ -149,6 +165,7 @@ namespace ETdA.Camada_de_Interface
                     y += 30;
                     n2.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
                     n2.Click += new EventHandler(MouseClickActionPerformed);
+                    if (!adding) n2.Enabled = false;
                     controls.Add(s2,n2);
                     p.Controls.Add(n2);
 
@@ -167,6 +184,7 @@ namespace ETdA.Camada_de_Interface
                     y += 40;
                     n3.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
                     n3.Click += new EventHandler(MouseClickActionPerformed);
+                    if (!adding) n3.Enabled = false;
                     controls.Add(s3,n3);
                     p.Controls.Add(n3);
 
@@ -193,6 +211,7 @@ namespace ETdA.Camada_de_Interface
                     y += 25;
                     b1.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
                     b1.Click += new EventHandler(MouseClickActionPerformed);
+                    if (!adding) b1.Enabled = false;
                     controls.Add(s4,b1);
                     p.Controls.Add(b1);
 
@@ -210,6 +229,7 @@ namespace ETdA.Camada_de_Interface
                     y += 25;
                     b3.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
                     b3.Click += new EventHandler(MouseClickActionPerformed);
+                    if (!adding) b3.Enabled = false;
                     controls.Add(s5,b3);
                     p.Controls.Add(b3);
 
@@ -227,6 +247,7 @@ namespace ETdA.Camada_de_Interface
                     y += 25;
                     b5.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
                     b5.Click += new EventHandler(MouseClickActionPerformed);
+                    if (!adding) b5.Enabled = false;
                     controls.Add(s6,b5);
                     p.Controls.Add(b5);
 
@@ -244,6 +265,7 @@ namespace ETdA.Camada_de_Interface
                     y += 25;
                     b7.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
                     b7.Click += new EventHandler(MouseClickActionPerformed);
+                    if (!adding) b7.Enabled = false;
                     controls.Add(s7,b7);
                     p.Controls.Add(b7);
 
@@ -275,6 +297,7 @@ namespace ETdA.Camada_de_Interface
                     n4.DecimalPlaces = 3;
                     n4.Value = new Decimal((item != null) ? item.LimiteInferiorAnalista : 0);
                     n4.Location = new System.Drawing.Point(157, y);
+                    if (!adding) n4.Enabled = false;
                     controls.Add(s9,n4);
                     p.Controls.Add(n4);
 
@@ -300,9 +323,9 @@ namespace ETdA.Camada_de_Interface
             return item;
         }
 
-        public static void main(object o)
+        public static void main(object o, bool b)
         {
-            Interface_CriarAnaliseItens icai = new Interface_CriarAnaliseItens(o);
+            Interface_CriarAnaliseItens icai = new Interface_CriarAnaliseItens(o,b);
             icai.Visible = true;
         }
 
