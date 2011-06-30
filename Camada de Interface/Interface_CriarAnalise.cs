@@ -150,13 +150,13 @@ namespace ETdA.Camada_de_Interface
                 done = false;
                 wh = comboBox1.SelectedIndex;
             }
-            Interface_CriarAnaliseZonas.main(zonas, comboBox1.SelectedItem.ToString());
+            Interface_CriarAnaliseZonas.main(zonas, comboBox1.SelectedItem.ToString(),true);
         }
 
         // rdone
         private void ItensActionPerformed(object sender, EventArgs e)
         {
-            Interface_CriarAnaliseItens.main(itens);
+            Interface_CriarAnaliseItens.main(itens,true);
         }
 
         // rdone
