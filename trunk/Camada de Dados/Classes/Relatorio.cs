@@ -44,14 +44,17 @@ namespace ETdA.Camada_de_Dados.Classes
         public void gerarResultadosRelatorio(long codigoAnalise, List<Classes.Resposta> respostas, List<Classes.Zona> zonas, List<Classes.Item> itens)
         {
             DataBaseCommunicator.FuncsToDataBase.selectRespostaCheckList(codigoAnalise, respostas);
+            Console.WriteLine(respostas.Count()+" ");
             DataBaseCommunicator.FuncsToDataBase.selectRespostaFichaAvaliacao(codigoAnalise, respostas);
+            Console.WriteLine(respostas.Count()+" ");
             DataBaseCommunicator.FuncsToDataBase.selectRespostaQuestionario(codigoAnalise, respostas);
+            Console.WriteLine(respostas.Count()+" ");
 
-            Dictionary<int, int> resultado_questionario_parcial;
+            Dictionary<int, double> resultado_questionario_parcial;
             int numero_total_questionario;
-            Dictionary<int, int> resultado_fichaAvaliacao_parcial;
+            Dictionary<int, double> resultado_fichaAvaliacao_parcial;
             int numero_total_fichaAvaliacao;
-            Dictionary<int, int> resultado_checklist_parcial;
+            Dictionary<int, double> resultado_checklist_parcial;
             int numero_total_checklist;
 
             //para cada zona
@@ -63,101 +66,117 @@ namespace ETdA.Camada_de_Dados.Classes
                 {
                     Classes.ResultadoItem resultadoItem;
                     //inicializar contagens
-                    resultado_questionario_parcial = new Dictionary<int, int>();
+                    
                     numero_total_questionario = 0;
-                    resultado_fichaAvaliacao_parcial = new Dictionary<int, int>();
                     numero_total_fichaAvaliacao = 0;
-                    resultado_checklist_parcial = new Dictionary<int, int>();
                     numero_total_checklist = 0;
+
+                    Dictionary<int, double> resultadoItem_questionario_parcial = new Dictionary<int, double>();
+                    double resultadoItem_questionario_total = 0;
+                    Dictionary<int, double> resultadoItem_fichaAvaliacao_parcial = new Dictionary<int, double>();
+                    double resultadoItem_fichaAvaliacao_total = 0;
+                    Dictionary<int, double> resultadoItem_checklist_parcial = new Dictionary<int, double>();
+                    double resultadoItem_checklist_total = 0;
+
                     for (int i = 1; i < 6; i++)
                     {
-                        resultado_questionario_parcial.Add(i, 0);
-                        resultado_fichaAvaliacao_parcial.Add(i, 0);
-                        resultado_checklist_parcial.Add(i, 0);
+                        resultadoItem_questionario_parcial.Add(i, 0);
+                        resultadoItem_fichaAvaliacao_parcial.Add(i, 0);
+                        resultadoItem_checklist_parcial.Add(i, 0);
                     }
+
+
+                    double resultadoItem_geral = -1;
 
                     //para cada resposta
                     foreach (Classes.Resposta resposta in respostas)
                     {
-                        //se a resposta é relativa a esta zona e a este item
-                        if (zona.Codigo == resposta.CodigoZona && item.CodigoItem == resposta.CodigoItem)
+                        //se a resposta é relativa a esta zona e a este item e se é do tipo inteiro(os outros nao sao relevantes para o calculo das cores)
+                        if (zona.Codigo == resposta.CodigoZona && item.CodigoItem == resposta.CodigoItem && resposta.Tipo_Resposta == Camada_de_Dados.Classes.Resposta.TipoResposta.RespostaNum)
                         {
                             //se a resposta é relativa a um questionário
                             if (resposta.CodigoQuestionario != -1)
                             {
-                                resultado_questionario_parcial[resposta.Valor] = resultado_questionario_parcial[resposta.Valor]++;
+                                //numero total de respostas possiveis
+                                int total = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 3);
+
+                                //incremento do numero de resposta da cor respectiva
+                                if (resposta.Valor <= item.Inter_Vermelho)
+                                    resultadoItem_questionario_parcial[1]++;
+                                else if (resposta.Valor <= item.Inter_Laranja)
+                                    resultadoItem_questionario_parcial[2]++;
+                                else if (resposta.Valor <= item.Inter_Amarelo)
+                                    resultadoItem_questionario_parcial[3]++;
+                                else if (resposta.Valor <= item.Inter_Verde_Lima)
+                                    resultadoItem_questionario_parcial[4]++;
+                                else if (resposta.Valor <= item.Inter_Verde)
+                                    resultadoItem_questionario_parcial[5]++;
+                                
+                                //incremento do valor da resposta
+                                resultadoItem_questionario_total += (5 * resposta.Valor) / total;
+
+                                //incremento do numero de respostas do tipo questionario
                                 numero_total_questionario++;
                             }
                             //se a resposta é relativa a uma ficha de avaliação
                             if (resposta.CodigoFichaAvaliacao != -1)
                             {
-                                resultado_fichaAvaliacao_parcial[resposta.Valor] = resultado_fichaAvaliacao_parcial[resposta.Valor]++;
+                                //numero total de respostas possiveis
+                                int total = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 2);
+
+                                //incremento do numero de resposta da cor respectiva
+                                if (resposta.Valor <= item.Inter_Vermelho)
+                                    resultadoItem_fichaAvaliacao_parcial[1]++;
+                                else if (resposta.Valor <= item.Inter_Laranja)
+                                    resultadoItem_fichaAvaliacao_parcial[2]++;
+                                else if (resposta.Valor <= item.Inter_Amarelo)
+                                    resultadoItem_fichaAvaliacao_parcial[3]++;
+                                else if (resposta.Valor <= item.Inter_Verde_Lima)
+                                    resultadoItem_fichaAvaliacao_parcial[4]++;
+                                else if (resposta.Valor <= item.Inter_Verde)
+                                    resultadoItem_fichaAvaliacao_parcial[5]++;
+
+                                //incremento do valor da resposta
+                                resultadoItem_fichaAvaliacao_total += (5 * resposta.Valor) / total;
+
+                                //incremento do numero de respostas do tipo ficha de avaliacao
                                 numero_total_fichaAvaliacao++;
                             }
                             //se a resposta é relativa a um checklist
                             else
                             {
-                                resultado_checklist_parcial[resposta.Valor] = resultado_checklist_parcial[resposta.Valor]++;
-                                numero_total_checklist++;
+                                resultadoItem_checklist_total = resposta.Valor;
                             }
 
                         }
 
                     }
-                    Dictionary<int, double> resultadoItem_questionario_parcial = new Dictionary<int, double>();
-                    double resultadoItem_questionario_total = -1;
-                    Dictionary<int, double> resultadoItem_fichaAvaliacao_parcial = new Dictionary<int, double>();
-                    double resultadoItem_fichaAvaliacao_total = -1;
-                    Dictionary<int, double> resultadoItem_checklist_parcial = new Dictionary<int, double>();
-                    double resultadoItem_checklist_total = -1;
-
-                    double resultadoItem_geral = -1;
+                    
 
                     //atribuição das percentagens das respostas a cada um dos valores da escala em cada um dos tipos de formulário
                     for (int i = 1; i < 6; i++)
                     {
-                        if (resultado_questionario_parcial[i] == 0)
+                        if (resultadoItem_questionario_parcial[i] != 0)
                         {
-                            resultadoItem_questionario_parcial.Add(i, resultado_questionario_parcial[i]);
-                            resultadoItem_questionario_total += i * (resultado_questionario_parcial[i]);
+                            resultadoItem_questionario_parcial[i] = (resultadoItem_questionario_parcial[i] / numero_total_questionario);
+                            resultadoItem_questionario_total = (resultadoItem_questionario_total / numero_total_questionario);
                         }
-                        else
+                        if (resultadoItem_fichaAvaliacao_parcial[i] != 0)
                         {
-                            resultadoItem_questionario_parcial.Add(i, resultado_questionario_parcial[i] / numero_total_questionario);
-                            resultadoItem_questionario_total += i * (resultado_questionario_parcial[i] / numero_total_questionario);
-                        }
-
-                        if (resultado_fichaAvaliacao_parcial[i] == 0)
-                        {
-                            resultadoItem_fichaAvaliacao_parcial.Add(i, resultado_fichaAvaliacao_parcial[i]);
-                            resultadoItem_fichaAvaliacao_total += i * (resultado_fichaAvaliacao_parcial[i]);
-                        }
-                        else
-                        {
-                            resultadoItem_fichaAvaliacao_parcial.Add(i, resultado_fichaAvaliacao_parcial[i] / numero_total_fichaAvaliacao);
-                            resultadoItem_fichaAvaliacao_total += i * (resultado_fichaAvaliacao_parcial[i] / numero_total_fichaAvaliacao);
-                        }
-                        if (resultado_checklist_parcial[i] == 0)
-                        {
-                            resultadoItem_checklist_parcial.Add(i, resultado_checklist_parcial[i]);
-                            resultadoItem_checklist_total += i * (resultado_checklist_parcial[i]);
-                        }
-                        else
-                        {
-                            resultadoItem_checklist_parcial.Add(i, resultado_checklist_parcial[i] / numero_total_checklist);
-                            resultadoItem_checklist_total += i * (resultado_checklist_parcial[i] / numero_total_checklist);
+                            resultadoItem_fichaAvaliacao_parcial[i]= ( resultadoItem_fichaAvaliacao_parcial[i] / numero_total_fichaAvaliacao);
+                            resultadoItem_fichaAvaliacao_total = (resultadoItem_fichaAvaliacao_total / numero_total_fichaAvaliacao);
                         }
                     }
 
                     //caso a nota do analista seja inferior ao limite imposto por este o resultado é a nota do analista
-                    if(resultadoItem_checklist_total <= item.LimiteInferiorAnalista)
-                        resultadoItem_geral =(resultadoItem_checklist_total*item.PonderacaoAnalista);
+                    if (resultadoItem_checklist_total <= item.LimiteInferiorAnalista)
+                        resultadoItem_geral = resultadoItem_checklist_total;
                     // caso contrario é a ponderacao de todas as dimensoes
                     else
                         resultadoItem_geral = (resultadoItem_questionario_total * item.PonderacaoCliente) + (resultadoItem_fichaAvaliacao_total * item.PonderacaoProfissional) + (resultadoItem_checklist_total * item.PonderacaoAnalista);
 
 
-                    resultadoItem = new Classes.ResultadoItem(resultadoItem_questionario_total,resultadoItem_questionario_parcial,resultadoItem_questionario_total,resultadoItem_questionario_parcial,resultadoItem_checklist_total,resultadoItem_checklist_parcial,"",resultadoItem_geral);
+                    resultadoItem = new Classes.ResultadoItem(resultadoItem_questionario_total, resultadoItem_questionario_parcial, resultadoItem_questionario_total, resultadoItem_questionario_parcial, resultadoItem_checklist_total, resultadoItem_checklist_parcial, "", resultadoItem_geral);
                     listaItens.Add(item.CodigoItem, resultadoItem);
                 }
                 listaResultados.Add(zona.Codigo, listaItens);

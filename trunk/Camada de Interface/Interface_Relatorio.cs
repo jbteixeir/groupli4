@@ -84,6 +84,7 @@ namespace ETdA.Camada_de_Interface
                 //nome da zona
                 groupBoxZona.Text = zonas[i].Nome;
 
+                Console.WriteLine("red " + itens[j].Inter_Vermelho + " " + itens[j].Inter_Laranja + " " + itens[j].Inter_Amarelo + " " + itens[j].Inter_Verde_Lima + " " + itens[j].Inter_Verde);
 
                 System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
                 if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Vermelho)
@@ -146,8 +147,5 @@ namespace ETdA.Camada_de_Interface
              
             }
         }
-
-
-
     }
 }

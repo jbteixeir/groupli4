@@ -9,14 +9,17 @@ namespace ETdA.Camada_de_Dados.Classes
     {
         //resultado do questionário
         private double resultado_questionario_geral;
+        //contem o numero de pessoas cujo resultado da sua resposta corresponde a uma cor -> primeiro Int e a soma Segundo Int
         private Dictionary<int, double> resultado_questionario_parcial;
 
         //resultado da ficha de avaliação
         private double resultado_fichaAvaliacao_geral;
+        //contem o numero de pessoas cujo resultado da sua resposta corresponde a uma cor -> primeiro Int e a soma Segundo Int
         private Dictionary<int, double> resultado_fichaAvaliacao_parcial;
 
         //resultado da checklist
         private double resultado_checklist_geral;
+        //contem o numero de pessoas cujo resultado da sua resposta corresponde a uma cor -> primeiro Int e a soma Segundo Int
         private Dictionary<int, double> resultado_checklist_parcial; 
 
         //observação do analista para um Item
