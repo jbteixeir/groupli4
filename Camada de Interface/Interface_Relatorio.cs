@@ -72,9 +72,9 @@ namespace ETdA.Camada_de_Interface
                 long citem = itens[j].CodigoItem;
 
                 GroupBox groupBoxZona = new GroupBox();
-                groupBoxZona.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+                groupBoxZona.BackColor = System.Drawing.SystemColors.AppWorkspace;
                 groupBoxZona.AutoSize = true;
-                groupBoxZona.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                //groupBoxZona.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 groupBoxZona.Dock = System.Windows.Forms.DockStyle.Fill;
                 groupBoxZona.Location = new System.Drawing.Point(12, 6);
                 groupBoxZona.Name = "groupBoxZona";
@@ -128,9 +128,9 @@ namespace ETdA.Camada_de_Interface
                 groupBoxItem.Controls.Add(corItem);
                 groupBoxItem.Controls.Add(obstb);
                 groupBoxItem.Controls.Add(obslabel);
-                groupBoxItem.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-                groupBoxItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                groupBoxItem.Dock = System.Windows.Forms.DockStyle.Top;
+                groupBoxItem.BackColor = System.Drawing.SystemColors.Control;
+                //groupBoxItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                groupBoxItem.Dock = System.Windows.Forms.DockStyle.Fill;
                 groupBoxItem.Location = new System.Drawing.Point(12, 6);
                 groupBoxItem.Name = "GroupBoxItem";
                 groupBoxItem.Size = new System.Drawing.Size(943, 215);
