@@ -12,6 +12,7 @@ namespace ETdA.Camada_de_Dados.Classes
     {
         private Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados;
         private List<double> listaEstatisticas;
+        private string filename;
 
         //Constructores
         public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados, List<double> listaEstatisticas)
@@ -38,6 +39,12 @@ namespace ETdA.Camada_de_Dados.Classes
         {
             get { return listaEstatisticas; }
             set { listaEstatisticas = value; }
+        }
+
+        public String Filename
+        {
+            get { return filename; }
+            set { filename = value; }
         }
 
 

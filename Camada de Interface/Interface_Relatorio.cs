@@ -66,23 +66,19 @@ namespace ETdA.Camada_de_Interface
                 int i;
                 for (i = 0; i < zonas.Count() && !zonas[i].Nome.Equals(e.Node.Parent.Text); i++) ;
                 long czona = zonas[i].Codigo;
-                
+
                 int j;
                 for (j = 0; j < itens.Count() && !itens[j].NomeItem.Equals(e.Node.Text); j++) ;
                 long citem = itens[j].CodigoItem;
 
-                GroupBox groupBoxZona = new GroupBox();
-                groupBoxZona.BackColor = System.Drawing.SystemColors.AppWorkspace;
-                groupBoxZona.AutoSize = true;
-                //groupBoxZona.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                groupBoxZona.Dock = System.Windows.Forms.DockStyle.Fill;
-                groupBoxZona.Location = new System.Drawing.Point(12, 6);
-                groupBoxZona.Name = "groupBoxZona";
-                groupBoxZona.Size = new System.Drawing.Size(943, 215);
-                groupBoxZona.TabIndex = 1;
-                groupBoxZona.TabStop = false;
+                Label Zona = new Label();
+                Zona.Location = new System.Drawing.Point(12, 6);
+                Zona.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                Zona.Dock = DockStyle.Top;
+                Zona.TabIndex = 3;
                 //nome da zona
-                groupBoxZona.Text = zonas[i].Nome;
+                Zona.Text = zonas[i].Nome;
 
                 Console.WriteLine("red " + itens[j].Inter_Vermelho + " " + itens[j].Inter_Laranja + " " + itens[j].Inter_Amarelo + " " + itens[j].Inter_Verde_Lima + " " + itens[j].Inter_Verde);
 
@@ -100,7 +96,7 @@ namespace ETdA.Camada_de_Interface
 
 
                 corItem.Dock = System.Windows.Forms.DockStyle.Right;
-                corItem.Location = new System.Drawing.Point(600, 20);
+                corItem.Location = new System.Drawing.Point(300, 60);
                 corItem.Name = "corItem";
                 corItem.Size = new System.Drawing.Size(280, 98);
                 corItem.TabIndex = 0;
@@ -123,29 +119,46 @@ namespace ETdA.Camada_de_Interface
                 obslabel.Text = "Observações";
 
 
-                GroupBox groupBoxItem = new GroupBox();
-                groupBoxItem.AutoSize = true;
-                groupBoxItem.Controls.Add(corItem);
-                groupBoxItem.Controls.Add(obstb);
-                groupBoxItem.Controls.Add(obslabel);
-                groupBoxItem.BackColor = System.Drawing.SystemColors.Control;
-                //groupBoxItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                groupBoxItem.Dock = System.Windows.Forms.DockStyle.Fill;
-                groupBoxItem.Location = new System.Drawing.Point(12, 6);
-                groupBoxItem.Name = "GroupBoxItem";
-                groupBoxItem.Size = new System.Drawing.Size(943, 215);
-                groupBoxItem.TabIndex = 1;
-                groupBoxItem.TabStop = false;
+                Label Item = new Label();
+                Item.Location = new System.Drawing.Point(12, 30);
+                Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                Item.Dock = DockStyle.Top;
+                Item.TabIndex = 2;
                 //nome do item
-                groupBoxItem.Text = itens[j].NomeItem;
+                Item.Text = itens[j].NomeItem;
 
-                groupBoxZona.Controls.Add(groupBoxItem);
+                Panel panelrel = new Panel();
+                panelrel.Dock = DockStyle.Fill;
+                panelrel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 40);
+                panelrel.Controls.Add(Item);
+                panelrel.Controls.Add(Zona);
+                panelrel.Controls.Add(corItem);
+                panelrel.Controls.Add(obstb);
+                panelrel.Controls.Add(obslabel);
 
                 panelZonaItem.Controls.Clear();
-                
-                panelZonaItem.Controls.Add(groupBoxZona);
-             
+                panelZonaItem.Controls.Add(panelrel);
+                panelZonaItem.Controls.Add(BotaoCancelar);
+                panelZonaItem.Controls.Add(BotaoGuardar);
             }
+        }
+
+        private void BotaoCancelar_Click(object sender, EventArgs e)
+        {
+            Interface_Relatorio.ActiveForm.Close();
+        }
+
+        private void BotaoGuardar_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter += "Word Document (*.doc)|";
+            saveFileDialog1.ShowDialog();
+        }
+
+        private void saveFileFialog1_FileOk(object sender, EventArgs e)
+        {
+            relatorio.Filename = saveFileDialog1.FileName;
+            //colocar aqui o codigo para gerar o documento word
         }
     }
 }
