@@ -560,7 +560,7 @@ namespace ETdA.Camada_de_Interface
             string[] cods = tabControl1.SelectedTab.Name.Split('.');
             long codp = long.Parse(cods[0]);
             long coda = long.Parse(cods[1]);
-            Interface_Relatorio.main(1, 1, new ETdA.Camada_de_Dados.Classes.Relatorio());
+            Interface_Relatorio.main(1, 1, "Makro12Maio2010", new ETdA.Camada_de_Dados.Classes.Relatorio());
         }
 
         // rdone
@@ -644,6 +644,11 @@ namespace ETdA.Camada_de_Interface
         private void endFrame()
         {
             this.Dispose();
+        }
+
+        private void InterfaceGuestaoProjectos_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

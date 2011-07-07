@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Word = Microsoft.Office.Interop.Word;
+using System.Reflection;
+
 
 namespace ETdA.Camada_de_Interface
 {
@@ -13,6 +16,7 @@ namespace ETdA.Camada_de_Interface
     {
         private long cod_projecto;
         private long cod_analise;
+        private String nome_analise;
         private Camada_de_Dados.Classes.Relatorio relatorio;
         private List<Camada_de_Dados.Classes.Zona> zonas;
         private List<Camada_de_Dados.Classes.Item> itens;
@@ -20,14 +24,14 @@ namespace ETdA.Camada_de_Interface
         private Dictionary<long, Dictionary<long, RichTextBox>> obs;
 
 
-        public static void main(long cod_projecto, long cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
+        public static void main(long cod_projecto, long cod_analise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
-            Interface_Relatorio i = new Interface_Relatorio(cod_projecto, cod_analise, relatorio);
+            Interface_Relatorio i = new Interface_Relatorio(cod_projecto, cod_analise, nome_analise, relatorio);
             i.ShowDialog();
             //i.Visible = true;
         }
 
-        public Interface_Relatorio(long cod_projecto, long cod_analise, Camada_de_Dados.Classes.Relatorio relatorio)
+        public Interface_Relatorio(long cod_projecto, long cod_analise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
 
             this.zonas = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Zonas;
@@ -36,6 +40,7 @@ namespace ETdA.Camada_de_Interface
 
             this.cod_projecto = cod_projecto;
             this.cod_analise = cod_analise;
+            this.nome_analise = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Nome;
             this.relatorio = relatorio;
 
             InitializeComponent();
@@ -159,6 +164,80 @@ namespace ETdA.Camada_de_Interface
         {
             relatorio.Filename = saveFileDialog1.FileName;
             //colocar aqui o codigo para gerar o documento word
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            object oMissing = System.Reflection.Missing.Value;
+            object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
+
+            //Start Word and create a new document.
+            Word._Application oWord;
+            Word._Document oDoc;
+            oWord = new Word.Application();
+            oWord.Visible = true;
+            oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
+                ref oMissing, ref oMissing);
+
+            //Título
+            Word.Paragraph oPara1;
+            oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
+            oPara1.Range.Text = "Relatório" + this.nome_analise;
+            oPara1.Range.Font.Bold = 1;
+            oPara1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
+            oPara1.Range.InsertParagraphAfter();
+
+            //Subtítulo
+            Word.Paragraph oPara2;
+            object oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
+            oPara2.Range.Text = "Resultados obtidos";
+            oPara2.Format.SpaceAfter = 6;
+            oPara2.Range.InsertParagraphAfter();
+
+            //Gráfico
+            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            Word.InlineShape oShape;
+            object oClassType = "MSGraph.Chart.8";
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oShape = wrdRng.InlineShapes.AddOLEObject(ref oClassType, ref oMissing,
+                ref oMissing, ref oMissing, ref oMissing,
+                ref oMissing, ref oMissing, ref oMissing);
+
+            //Demonstrate use of late bound oChart and oChartApp objects to
+            //manipulate the chart object with MSGraph.
+            object oChart;
+            object oChartApp;
+            oChart = oShape.OLEFormat.Object;
+            oChartApp = oChart.GetType().InvokeMember("Application",
+                BindingFlags.GetProperty, null, oChart, null);
+
+            //Change the chart type to Line.
+            object[] Parameters = new Object[1];
+            Parameters[0] = 4; //xlLine = 4
+            oChart.GetType().InvokeMember("ChartType", BindingFlags.SetProperty,
+                null, oChart, Parameters);
+
+            //Update the chart image and quit MSGraph.
+            oChartApp.GetType().InvokeMember("Update",
+                BindingFlags.InvokeMethod, null, oChartApp, null);
+            oChartApp.GetType().InvokeMember("Quit",
+                BindingFlags.InvokeMethod, null, oChartApp, null);
+            //... If desired, you can proceed from here using the Microsoft Graph 
+            //Object model on the oChart and oChartApp objects to make additional
+            //changes to the chart.
+
+            //Set the width of the chart.
+            oShape.Width = oWord.InchesToPoints(6.25f);
+            oShape.Height = oWord.InchesToPoints(3.57f);
+
+            //Add text after the chart.
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            wrdRng.InsertParagraphAfter();
+            wrdRng.InsertAfter("THE END.");
+
+            //Close this form.
+            this.Close();
         }
     }
 }
