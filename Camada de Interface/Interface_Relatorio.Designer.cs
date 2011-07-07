@@ -30,10 +30,11 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeViewZonaItem = new System.Windows.Forms.TreeView();
+            this.panelZonaItem = new System.Windows.Forms.Panel();
             this.BotaoGuardar = new System.Windows.Forms.Button();
             this.BotaoCancelar = new System.Windows.Forms.Button();
-            this.panelZonaItem = new System.Windows.Forms.Panel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,6 +70,19 @@
             this.treeViewZonaItem.TabIndex = 0;
             this.treeViewZonaItem.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OpenAction);
             // 
+            // panelZonaItem
+            // 
+            this.panelZonaItem.AutoScroll = true;
+            this.panelZonaItem.Controls.Add(this.button1);
+            this.panelZonaItem.Controls.Add(this.BotaoGuardar);
+            this.panelZonaItem.Controls.Add(this.BotaoCancelar);
+            this.panelZonaItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelZonaItem.Location = new System.Drawing.Point(0, 0);
+            this.panelZonaItem.Name = "panelZonaItem";
+            this.panelZonaItem.Padding = new System.Windows.Forms.Padding(0, 5, 5, 40);
+            this.panelZonaItem.Size = new System.Drawing.Size(595, 432);
+            this.panelZonaItem.TabIndex = 0;
+            // 
             // BotaoGuardar
             // 
             this.BotaoGuardar.Location = new System.Drawing.Point(388, 397);
@@ -89,21 +103,19 @@
             this.BotaoCancelar.UseVisualStyleBackColor = true;
             this.BotaoCancelar.Click += new System.EventHandler(this.BotaoCancelar_Click);
             // 
-            // panelZonaItem
-            // 
-            this.panelZonaItem.AutoScroll = true;
-            this.panelZonaItem.Controls.Add(this.BotaoGuardar);
-            this.panelZonaItem.Controls.Add(this.BotaoCancelar);
-            this.panelZonaItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelZonaItem.Location = new System.Drawing.Point(0, 0);
-            this.panelZonaItem.Name = "panelZonaItem";
-            this.panelZonaItem.Padding = new System.Windows.Forms.Padding(0, 5, 5, 40);
-            this.panelZonaItem.Size = new System.Drawing.Size(595, 432);
-            this.panelZonaItem.TabIndex = 0;
-            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileFialog1_FileOk);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(388, 342);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(184, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Gerar Documento Word";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Interface_Relatorio
             // 
@@ -134,6 +146,7 @@
         private System.Windows.Forms.Button BotaoGuardar;
         private System.Windows.Forms.Button BotaoCancelar;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button button1;
 
 
 
