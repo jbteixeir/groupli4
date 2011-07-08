@@ -379,7 +379,7 @@ namespace ETdA.Camada_de_Interface
                 l5.Text = "Importar Dados Manualmente";
                 l5.Location = new System.Drawing.Point(217, 110);
                 l5.Cursor = System.Windows.Forms.Cursors.Hand;
-                //l5.Click += new System.EventHandler(this.OpenProjectClick);
+                l5.Click += new System.EventHandler(this.InserirManualClick);
                 l5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
@@ -649,6 +649,11 @@ namespace ETdA.Camada_de_Interface
         private void InterfaceGuestaoProjectos_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void InserirManualClick(object sender, EventArgs e)
+        {
+            Interface_IntroduzirManualmente.main();
         }
     }
 }

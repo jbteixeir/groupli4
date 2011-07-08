@@ -26,8 +26,6 @@ namespace ETdA.Camada_de_Interface
             InitializeComponent();
             this.tipo = tipo;
 
-            label1.Text = (tipo.Split(' ')[1]);
-
             foreach (string s in zonas)
                 listBox1.Items.Add(s);
 

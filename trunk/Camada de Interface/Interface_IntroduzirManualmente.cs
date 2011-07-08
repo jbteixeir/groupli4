@@ -15,7 +15,7 @@ namespace ETdA.Camada_de_Interface
         public static void main()
         {
             Interface_IntroduzirManualmente i = new Interface_IntroduzirManualmente();
-            Application.Run(i);
+            i.Visible = true;
         }
 
         public Interface_IntroduzirManualmente()
