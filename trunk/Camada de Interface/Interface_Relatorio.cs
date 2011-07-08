@@ -50,6 +50,7 @@ namespace ETdA.Camada_de_Interface
         public void showRelatorio()
         {
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode();
+            treeViewZonaItem.TabStop = true;
 
 
             for (int i = 0; i < zonas.Count; i++)
@@ -62,8 +63,9 @@ namespace ETdA.Camada_de_Interface
                 treeViewZonaItem.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
             }
-
+            
         }
+
         private void OpenAction(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Level == 1)
@@ -76,76 +78,134 @@ namespace ETdA.Camada_de_Interface
                 for (j = 0; j < itens.Count() && !itens[j].NomeItem.Equals(e.Node.Text); j++) ;
                 long citem = itens[j].CodigoItem;
 
+                //Titulo Zona
                 Label Zona = new Label();
                 Zona.Location = new System.Drawing.Point(12, 6);
-                Zona.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular,
+                Zona.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 Zona.Dock = DockStyle.Top;
-                Zona.TabIndex = 3;
+                Zona.TabIndex = 1;
                 //nome da zona
                 Zona.Text = zonas[i].Nome;
 
-                Console.WriteLine("red " + itens[j].Inter_Vermelho + " " + itens[j].Inter_Laranja + " " + itens[j].Inter_Amarelo + " " + itens[j].Inter_Verde_Lima + " " + itens[j].Inter_Verde);
-
-                System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
-                if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Vermelho)
-                    corItem.Image = global::ETdA.Properties.Resources.vermelho;
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Laranja)
-                    corItem.Image = global::ETdA.Properties.Resources.laranja;
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Amarelo)
-                    corItem.Image = global::ETdA.Properties.Resources.amarelo;
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
-                    corItem.Image = global::ETdA.Properties.Resources.lima;
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde)
-                    corItem.Image = global::ETdA.Properties.Resources.verde;
-
-
-                corItem.Dock = System.Windows.Forms.DockStyle.Right;
-                corItem.Location = new System.Drawing.Point(300, 60);
-                corItem.Name = "corItem";
-                corItem.Size = new System.Drawing.Size(280, 98);
-                corItem.TabIndex = 0;
-                corItem.TabStop = false;
-
-                RichTextBox obstb = new System.Windows.Forms.RichTextBox();
-                Label obslabel = new System.Windows.Forms.Label();
-
-                obstb.Location = new System.Drawing.Point(20, 231);
-                obstb.Name = "obstb";
-                obstb.Size = new System.Drawing.Size(360, 100);
-                obstb.TabIndex = 1;
-                obstb.Text = "";
-
-                obslabel.AutoSize = true;
-                obslabel.Location = new System.Drawing.Point(20, 215);
-                obslabel.Name = "label2";
-                obslabel.Size = new System.Drawing.Size(70, 13);
-                obslabel.TabIndex = 2;
-                obslabel.Text = "Observações";
-
-
+                //Titulo Item
                 Label Item = new Label();
-                Item.Location = new System.Drawing.Point(12, 30);
-                Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
+                Item.Location = new System.Drawing.Point(17, 30);
+                Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 Item.Dock = DockStyle.Top;
                 Item.TabIndex = 2;
                 //nome do item
                 Item.Text = itens[j].NomeItem;
 
-                Panel panelrel = new Panel();
-                panelrel.Dock = DockStyle.Fill;
-                panelrel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 40);
+                //desenhar o texto "Resultado"
+                Label labelres = new Label();
+                labelres.Text = "Resultado";
+                labelres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelres.TabIndex = 3;
+                labelres.Location = new System.Drawing.Point(0, 55);
+
+                //desenhar o texto da imagem
+                Label labeltxtimg = new Label();
+                labeltxtimg.TabIndex = 4;
+                labeltxtimg.Location = new System.Drawing.Point(60, 155);
+                labeltxtimg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                //desenhar a imagem da cor
+                System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
+                if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Vermelho)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.vermelho;
+                    labeltxtimg.ForeColor = Color.Red;
+                    labeltxtimg.Text = "VERMELHO";
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Laranja)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.laranja;
+                    labeltxtimg.ForeColor = Color.Orange;
+                    labeltxtimg.Text = "LARANJA";
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Amarelo)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.amarelo;
+                    labeltxtimg.ForeColor = Color.Yellow;
+                    labeltxtimg.Text = "AMARELO";
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.lima;
+                    labeltxtimg.ForeColor = Color.YellowGreen;
+                    labeltxtimg.Text = "VERDE LIMA";
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.verde;
+                    labeltxtimg.ForeColor = Color.Green;
+                    labeltxtimg.Text = "VERDE";
+                }
+
+                corItem.Location = new System.Drawing.Point(10, 90);
+                corItem.Name = "corItem";
+                corItem.Size = new System.Drawing.Size(160, 60);
+                corItem.TabIndex = 0;
+                corItem.TabStop = false;
+
+                //desenhar texto "Resultado Detalhado
+                Label labelresdet = new Label();
+                labelresdet.Text = "Resultado Detalhado";
+                labelresdet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelresdet.TabIndex = 5;
+                labelresdet.Location = new System.Drawing.Point(0, 200);
+                labelresdet.Size = new System.Drawing.Size(200, 25);
+
+                //desenhar tres labels uma para cada dimensão
+
+                //desenhar labels de resultados parciais
+
+                //desenhar label das percentagens de cada dimensão
+
+                //desenhar checkbox para incluir(ou nao) no relatorio o resultado detalhado
+                CheckBox checkBoxInsDt = new CheckBox();
+                checkBoxInsDt.Text = "Incluir resultado detalhado no relatório";
+                checkBoxInsDt.Location = new System.Drawing.Point(10, 245);
+                checkBoxInsDt.Size = new System.Drawing.Size(200, 30);
+                checkBoxInsDt.TabIndex = 3;
+                checkBoxInsDt.TabStop = true;
+
+                //desenhar "label" de observações
+                Label obslabel = new System.Windows.Forms.Label();
+                obslabel.AutoSize = true;
+                obslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                obslabel.Location = new System.Drawing.Point(0, 290);
+                obslabel.Size = new System.Drawing.Size(50, 20);
+                obslabel.Name = "label2";
+                obslabel.Text = "Observações";
+
+                //desenhar caixa de observações
+                RichTextBox obstb = new System.Windows.Forms.RichTextBox();
+                obstb.Location = new System.Drawing.Point(10, 335);
+                obstb.Name = "obstb";
+                obstb.Size = new System.Drawing.Size(500, 100);
+                obstb.Margin = new Padding(0, 0, 0, 60);
+                obstb.TabIndex = 4;
+                obstb.TabStop = true;
+                obstb.Text = "";
+                
+                panelrel.Controls.Clear();
                 panelrel.Controls.Add(Item);
                 panelrel.Controls.Add(Zona);
+                panelrel.Controls.Add(labelres);
+                panelrel.Controls.Add(labeltxtimg);
                 panelrel.Controls.Add(corItem);
+                panelrel.Controls.Add(labelresdet);
                 panelrel.Controls.Add(obstb);
                 panelrel.Controls.Add(obslabel);
-
-                panelZonaItem.Controls.Clear();
-                panelZonaItem.Controls.Add(panelrel);
-                panelZonaItem.Controls.Add(BotaoCancelar);
-                panelZonaItem.Controls.Add(BotaoGuardar);
+                panelrel.Controls.Add(checkBoxInsDt);
+                
             }
         }
 
