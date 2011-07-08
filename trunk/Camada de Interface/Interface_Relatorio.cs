@@ -164,16 +164,81 @@ namespace ETdA.Camada_de_Interface
                 labelresdet.Size = new System.Drawing.Size(200, 25);
 
                 //desenhar tres labels uma para cada dimensão
+                Label labeltxt = new Label();
+                labeltxt.Text = "Dimensão                        Ponderação                        Resultado Parcial";
+                labeltxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labeltxt.TabIndex = 5;
+                labeltxt.Location = new System.Drawing.Point(10, 230);
+                labeltxt.Size = new System.Drawing.Size(500, 25);
+
+                Label labeldmn = new Label();
+                labeldmn.Text = "Cliente\n\nProfissional\n\nAnalista";
+                labeldmn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labeldmn.TabIndex = 5;
+                labeldmn.Location = new System.Drawing.Point(10, 230+25);
+                labeldmn.Size = new System.Drawing.Size(100, 75);
+
+                //desenhar label as ponderações de cada dimensão
+                Label labelpnd = new Label();
+                labelpnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelpnd.TabIndex = 6;
+                labelpnd.Location = new System.Drawing.Point(190, 230 + 25);
+                labelpnd.Size = new System.Drawing.Size(50, 75);
+                labelpnd.Text = itens[i].PonderacaoCliente.ToString() + "\n\n" + itens[i].PonderacaoProfissional.ToString() + "\n\n" + itens[i].PonderacaoAnalista.ToString();
+
 
                 //desenhar labels de resultados parciais
+                String cl = "", pf = "", an = "";
+                Label labelresp = new Label();
+                labelres.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelresp.TabIndex = 7;
+                labelresp.Location = new System.Drawing.Point(350, 230 + 25);
+                labelresp.Size = new System.Drawing.Size(150, 75);
 
-                //desenhar label das percentagens de cada dimensão
+                if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Vermelho)
+                    cl = " VERMELHO (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Laranja)
+                    cl = " LARANJA (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Amarelo)
+                    cl = " AMARELO (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde_Lima)
+                    cl = " VERDE LIMA (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde)
+                    cl = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
+
+                if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Vermelho)
+                    an = " VERMELHO (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Laranja)
+                    an = " LARANJA (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Amarelo)
+                    an = " AMARELO (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde_Lima)
+                    an = " VERDE LIMA (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde)
+                    an = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")"; 
+                
+                if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Vermelho)
+                    pf = " VERMELHO (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Laranja)
+                    pf = " LARANJA (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Amarelo)
+                    pf = " AMARELO (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde_Lima)
+                    pf = " VERDE LIMA (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde)
+                    pf = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
+
+                labelresp.Text = cl + "\n\n" + pf + "\n\n" + an;
 
                 //desenhar checkbox para incluir(ou nao) no relatorio o resultado detalhado
                 CheckBox checkBoxInsDt = new CheckBox();
                 checkBoxInsDt.Text = "Incluir resultado detalhado no relatório";
-                checkBoxInsDt.Location = new System.Drawing.Point(10, 245);
-                checkBoxInsDt.Size = new System.Drawing.Size(200, 30);
+                checkBoxInsDt.Location = new System.Drawing.Point(10, 245+105);
+                checkBoxInsDt.Size = new System.Drawing.Size(300, 30);
                 checkBoxInsDt.TabIndex = 3;
                 checkBoxInsDt.TabStop = true;
 
@@ -182,14 +247,14 @@ namespace ETdA.Camada_de_Interface
                 obslabel.AutoSize = true;
                 obslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                obslabel.Location = new System.Drawing.Point(0, 290);
+                obslabel.Location = new System.Drawing.Point(0, 290+105);
                 obslabel.Size = new System.Drawing.Size(50, 20);
                 obslabel.Name = "label2";
                 obslabel.Text = "Observações";
 
                 //desenhar caixa de observações
                 RichTextBox obstb = new System.Windows.Forms.RichTextBox();
-                obstb.Location = new System.Drawing.Point(10, 335);
+                obstb.Location = new System.Drawing.Point(10, 335+105);
                 obstb.Name = "obstb";
                 obstb.Size = new System.Drawing.Size(500, 100);
                 obstb.Margin = new Padding(0, 0, 0, 60);
@@ -204,6 +269,10 @@ namespace ETdA.Camada_de_Interface
                 panelrel.Controls.Add(labeltxtimg);
                 panelrel.Controls.Add(corItem);
                 panelrel.Controls.Add(labelresdet);
+                panelrel.Controls.Add(labeltxt);
+                panelrel.Controls.Add(labeldmn);
+                panelrel.Controls.Add(labelpnd);
+                panelrel.Controls.Add(labelresp);
                 panelrel.Controls.Add(obstb);
                 panelrel.Controls.Add(obslabel);
                 panelrel.Controls.Add(checkBoxInsDt);
