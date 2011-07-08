@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Word = Microsoft.Office.Interop.Word;
 using System.Reflection;
-
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ETdA.Camada_de_Interface
 {
@@ -37,6 +37,8 @@ namespace ETdA.Camada_de_Interface
             this.zonas = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Zonas;
             this.itens = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Itens;
             relatorio.gerarResultadosRelatorio(cod_analise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
+            relatorio.gerarEstatisticasRelatorioSexo(cod_analise);
+            
 
             this.cod_projecto = cod_projecto;
             this.cod_analise = cod_analise;
@@ -251,14 +253,44 @@ namespace ETdA.Camada_de_Interface
             Word.Paragraph oPara2;
             object oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
-            oPara2.Range.Text = "Resultados obtidos";
+            oPara2.Range.Text = "Estatísticas Clientes";
             oPara2.Format.SpaceAfter = 6;
             oPara2.Range.InsertParagraphAfter();
 
+            //Insert a 3 x 5 table, fill it with data, and make the first row
+	        //bold and italic.
+	        Word.Table oTable;
+	        Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+	        oTable = oDoc.Tables.Add(wrdRng, 2, 2, ref oMissing, ref oMissing);
+	        oTable.Range.ParagraphFormat.SpaceAfter = 6;
+	        oTable.Cell(1,1).Range.Text = "Feminino";
+            oTable.Cell(1,2).Range.Text = "Masculino";
+            oTable.Cell(2, 1).Range.Text = relatorio.ListaEstatisticasSexo[0] + "%";
+            oTable.Cell(2, 2).Range.Text = relatorio.ListaEstatisticasSexo[1] + "%";
+
+	        oTable.Rows[1].Range.Font.Bold = 1;
+	        oTable.Rows[1].Range.Font.Italic = 1;
+           
+            //Pie Chart Sexo
+           
+           /* PieChart3D chart1 = new PieChart3D(); 
+            chart1.PieChart3D_Load(values);
+
+            object oMissing = System.Reflection.Missing.Value;
+            object oEndOfDoc = "\\endofdoc"; 
+            Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+
+            wrdRng.InlineShapes.AddOLEControl(chart1);
+            wrdRng.InlineShapes.AddChart(chart1);
+            wrdRng.InlineShapes.AddOLEObject(chart1);
+
+            */
+
             //Gráfico
-            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            
             Word.InlineShape oShape;
             object oClassType = "MSGraph.Chart.8";
+           // Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             oShape = wrdRng.InlineShapes.AddOLEObject(ref oClassType, ref oMissing,
                 ref oMissing, ref oMissing, ref oMissing,
