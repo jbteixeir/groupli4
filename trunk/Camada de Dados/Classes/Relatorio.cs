@@ -11,20 +11,20 @@ namespace ETdA.Camada_de_Dados.Classes
     class Relatorio
     {
         private Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados;
-        private List<double> listaEstatisticas;
+        private Double[] listaEstatisticasSexo;
         private string filename;
 
         //Constructores
-        public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados, List<double> listaEstatisticas)
+        public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados, Double[] listaEstatisticas)
         {
             this.listaResultados = listaResultados;
-            this.listaEstatisticas = listaEstatisticas;
+            this.listaEstatisticasSexo = listaEstatisticas;
         }
 
         public Relatorio()
         {
             this.listaResultados = new Dictionary<long, Dictionary<long, Classes.ResultadoItem>>();
-            this.listaEstatisticas = new List<double>();
+            this.listaEstatisticasSexo = new Double[2];
         }
 
 
@@ -35,10 +35,10 @@ namespace ETdA.Camada_de_Dados.Classes
             set { listaResultados = value; }
         }
 
-        public List<double> ListaEstatisticas
+        public Double[] ListaEstatisticasSexo
         {
-            get { return listaEstatisticas; }
-            set { listaEstatisticas = value; }
+            get { return listaEstatisticasSexo; }
+            set { listaEstatisticasSexo = value; }
         }
 
         public String Filename
@@ -188,6 +188,27 @@ namespace ETdA.Camada_de_Dados.Classes
                 }
                 listaResultados.Add(zona.Codigo, listaItens);
             }
+        }
+
+        public void gerarEstatisticasRelatorioSexo(long codigoAnalise)
+        {
+            int respostasF = 0, respostasM = 0;
+            double percentagemF = 0.0, percentagemM = 0.0;
+            List<int> respostas = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectRespostasSexo(codigoAnalise);
+            for (int i = 0; i < respostas.Count(); i++)
+            {
+                if (respostas[i] == 1) respostasF++;
+                else if (respostas[i] == 2) respostasM++;
+            }
+
+                       
+            percentagemF = (respostasF / respostas.Count()) * 100;
+            percentagemM = (respostasM / respostas.Count()) * 100;
+            listaEstatisticasSexo[0] = (percentagemF);
+            listaEstatisticasSexo[1] = (percentagemM);
+            
+            
+
         }
     }
 }

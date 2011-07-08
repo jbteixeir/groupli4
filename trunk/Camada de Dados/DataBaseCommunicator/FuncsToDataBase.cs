@@ -722,6 +722,33 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             reader.Close();
         }
 
+        #region Select Resposta Sexo
+
+        static public List<int> selectRespostasSexo (long codigoAnalise)
+        {
+            SqlDataReader reader;
+
+            reader = DataBaseCommunicator.readData("SELECT valor, cod_resposta_questionario_numero " +
+                                                "FROM pergunta_questionario, resposta_questionario_numero " +
+                                                "WHERE pergunta_questionario.cod_pergunta_questionario = resposta_questionario_numero.cod_pergunta_questionario " +
+                                                "AND pergunta_questionario.numero_pergunta = 1 " +
+                                                "AND pergunta_questionario.cod_analise=" + codigoAnalise);
+
+            List<int> respostas = new List<int>();
+            String aux = null;
+
+            while (reader.Read())
+            {
+                aux = reader["valor"].ToString();
+                int resposta = Convert.ToInt32(aux);
+                respostas.Add(resposta);
+            }
+
+            return respostas;
+        }
+
+        #endregion
+
         #region INserir Resposta Questionário
 
         static public void insertRespostaQuestionario(Resposta r)
@@ -878,5 +905,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 }
         #endregion
 
+        
         #endregion
 
