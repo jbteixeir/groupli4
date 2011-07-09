@@ -228,7 +228,7 @@ namespace ETdA.Camada_de_Interface
                 else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde)
                 {
                     labelcl.Text = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
-                    labelcl.BackColor = Color.Green;
+                    labelcl.ForeColor = Color.Green;
                 }
                 #endregion
 

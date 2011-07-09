@@ -185,13 +185,13 @@ namespace ETdA.Camada_de_Dados.Classes
                     resultadoItem = new Classes.ResultadoItem(resultadoItem_questionario_total, resultadoItem_questionario_parcial, resultadoItem_fichaAvaliacao_total, resultadoItem_fichaAvaliacao_parcial, resultadoItem_checklist_total, resultadoItem_checklist_parcial, "", resultadoItem_geral);
                     listaItens.Add(item.CodigoItem, resultadoItem);
 
-                   // Console.WriteLine(item.NomeItem + "codigo: " + item.CodigoItem);
-                   // Console.WriteLine("RESULTADO: " + resultadoItem_questionario_total.ToString() + " -" + " -" + resultadoItem_fichaAvaliacao_total.ToString() + " -" + " -" + resultadoItem_checklist_total.ToString() + " -" + " -" + resultadoItem_geral.ToString());
-                   // Console.WriteLine("RESULTADO ITEM GERAL = " + "(" + resultadoItem_questionario_total.ToString() + " * " + item.PonderacaoCliente.ToString() + ")" + " (" + resultadoItem_fichaAvaliacao_total.ToString() + " * " + item.PonderacaoProfissional.ToString() + ") " + " (" + resultadoItem_checklist_total.ToString() + " * " + item.PonderacaoAnalista.ToString() + ")");
+                    Console.WriteLine(item.NomeItem + "codigo: " + item.CodigoItem);
+                    Console.WriteLine("RESULTADO: " + resultadoItem_questionario_total.ToString() + " -" + " -" + resultadoItem_fichaAvaliacao_total.ToString() + " -" + " -" + resultadoItem_checklist_total.ToString() + " -" + " -" + resultadoItem_geral.ToString());
+                    Console.WriteLine("RESULTADO ITEM GERAL = " + "(" + resultadoItem_questionario_total.ToString() + " * " + item.PonderacaoCliente.ToString() + ")" + " (" + resultadoItem_fichaAvaliacao_total.ToString() + " * " + item.PonderacaoProfissional.ToString() + ") " + " (" + resultadoItem_checklist_total.ToString() + " * " + item.PonderacaoAnalista.ToString() + ")");
                 }
                 listaResultados.Add(zona.Codigo, listaItens);
 
-                //Console.WriteLine(zona.Nome + "codigo: " + zona.Codigo);
+                Console.WriteLine(zona.Nome + "codigo: " + zona.Codigo);
             }
         }
 
@@ -206,9 +206,11 @@ namespace ETdA.Camada_de_Dados.Classes
                 else if (respostas[i] == 2) respostasM++;
             }
 
-                       
-            percentagemF = (respostasF / respostas.Count()) * 100;
-            percentagemM = (respostasM / respostas.Count()) * 100;
+            if (respostas.Count() != 0)
+            {
+                percentagemF = (respostasF / respostas.Count()) * 100;
+                percentagemM = (respostasM / respostas.Count()) * 100;
+            }
             listaEstatisticasSexo[0] = (percentagemF);
             listaEstatisticasSexo[1] = (percentagemM);
             
