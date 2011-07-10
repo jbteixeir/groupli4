@@ -102,7 +102,7 @@ namespace ETdA.Camada_de_Dados.Classes
                         if (zona.Codigo == resposta.CodigoZona && item.CodigoItem == resposta.CodigoItem && resposta.Tipo_Resposta == Camada_de_Dados.Classes.Resposta.TipoResposta.RespostaNum)
                         {
                             //se a resposta é relativa a um questionário
-                            if (resposta.CodigoQuestionario != -1)
+                            if (resposta.CodigoFichaAvaliacao == -1 && resposta.CodigoCheckList ==-1)
                             {
                                 //numero total de respostas possiveis
                                 int total = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 3);
@@ -126,7 +126,7 @@ namespace ETdA.Camada_de_Dados.Classes
                                 numero_total_questionario++;
                             }
                             //se a resposta é relativa a uma ficha de avaliação
-                            if (resposta.CodigoFichaAvaliacao != -1)
+                            else if (resposta.CodigoCheckList == -1 && resposta.CodigoQuestionario ==-1)
                             {
                                 //numero total de respostas possiveis
                                 int total = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 2);
@@ -150,7 +150,7 @@ namespace ETdA.Camada_de_Dados.Classes
                                 numero_total_fichaAvaliacao++;
                             }
                             //se a resposta é relativa a um checklist
-                            else
+                            else if (resposta.CodigoFichaAvaliacao == -1 && resposta.CodigoQuestionario == -1)
                             {
                                 resultadoItem_checklist_total = resposta.Valor;
                             }
