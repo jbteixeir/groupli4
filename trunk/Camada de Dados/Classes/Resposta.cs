@@ -124,6 +124,12 @@ namespace ETdA.Camada_de_Dados.Classes
             set { cod_fichaAvaliacao = value; }
         }
 
+        public long CodigoCheckList
+        {
+            get { return cod_checklist; }
+            set { cod_checklist = value; }
+        }
+
         public float NumeroPergunta
         {
             get { return numero_pergunta; }

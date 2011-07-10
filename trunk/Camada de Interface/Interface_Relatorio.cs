@@ -232,47 +232,12 @@ namespace ETdA.Camada_de_Interface
                 }
                 #endregion
 
-                #region Analista
-                Label labelan = new Label();
-                labelan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                labelan.TabIndex = 7;
-                labelan.Location = new System.Drawing.Point(350, 230 + 55);
-                labelan.Size = new System.Drawing.Size(150, 15);
-
-                if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Vermelho)
-                {
-                    labelan.Text = " VERMELHO (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.Red;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Laranja)
-                {
-                    labelan.Text = " LARANJA (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.Orange;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Amarelo)
-                {
-                    labelan.Text = " AMARELO (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.Yellow;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde_Lima)
-                {
-                    labelan.Text = " VERDE LIMA (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.YellowGreen;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde)
-                {
-                    labelan.Text = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.Green;
-                }
-                #endregion
-
                 #region Profissional
                 Label labelpf = new Label();
                 labelpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labelpf.TabIndex = 7;
-                labelpf.Location = new System.Drawing.Point(350, 230 + 87);
+                labelpf.Location = new System.Drawing.Point(350, 230 + 55);
                 labelpf.Size = new System.Drawing.Size(150, 15);
 
                 if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Vermelho)
@@ -299,6 +264,41 @@ namespace ETdA.Camada_de_Interface
                 {
                     labelpf.Text = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
                     labelpf.ForeColor = Color.Green;
+                }
+                #endregion
+
+                #region Analista
+                Label labelan = new Label();
+                labelan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelan.TabIndex = 7;
+                labelan.Location = new System.Drawing.Point(350, 230 + 87);
+                labelan.Size = new System.Drawing.Size(150, 15);
+
+                if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Vermelho)
+                {
+                    labelan.Text = " VERMELHO (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
+                    labelan.ForeColor = Color.Red;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Laranja)
+                {
+                    labelan.Text = " LARANJA (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
+                    labelan.ForeColor = Color.Orange;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Amarelo)
+                {
+                    labelan.Text = " AMARELO (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
+                    labelan.ForeColor = Color.Yellow;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde_Lima)
+                {
+                    labelan.Text = " VERDE LIMA (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
+                    labelan.ForeColor = Color.YellowGreen;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde)
+                {
+                    labelan.Text = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
+                    labelan.ForeColor = Color.Green;
                 }
                 #endregion
 
