@@ -158,6 +158,28 @@
             this.panelZonaItem.PerformLayout();
             this.ResumeLayout(false);
 
+            //
+            // CheckBox Resultado Detalhado
+            //
+            checkBoxInsDt = new System.Windows.Forms.CheckBox();
+            checkBoxInsDt.Text = "Incluir resultado detalhado no relatório";
+            checkBoxInsDt.Location = new System.Drawing.Point(10, 245 + 105);
+            checkBoxInsDt.Size = new System.Drawing.Size(300, 30);
+            checkBoxInsDt.TabIndex = 3;
+            checkBoxInsDt.TabStop = true;
+            checkBoxInsDt.CheckedChanged += new System.EventHandler(checkBoxInsDt_CheckedChanged);
+
+            //
+            // TextBox observações
+            //
+            obstb = new System.Windows.Forms.RichTextBox();
+            obstb.Location = new System.Drawing.Point(10, 335 + 105);
+            obstb.Name = "obstb";
+            obstb.Size = new System.Drawing.Size(500, 100);
+            obstb.Margin = new System.Windows.Forms.Padding(0, 0, 0, 60);
+            obstb.TabIndex = 4;
+            obstb.TabStop = true;
+            obstb.TextChanged += new System.EventHandler(obstb_TextChanged);
         }
 
         #endregion
@@ -170,9 +192,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panelrel;
-
-
-
-
+        private System.Windows.Forms.RichTextBox obstb;
+        private System.Windows.Forms.CheckBox checkBoxInsDt;
     }
 }

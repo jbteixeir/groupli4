@@ -20,6 +20,7 @@ namespace ETdA.Camada_de_Interface
         private Camada_de_Dados.Classes.Relatorio relatorio;
         private List<Camada_de_Dados.Classes.Zona> zonas;
         private List<Camada_de_Dados.Classes.Item> itens;
+        private long czona = -1, citem = -1;
 
         private Dictionary<long, Dictionary<long, RichTextBox>> obs;
 
@@ -74,17 +75,17 @@ namespace ETdA.Camada_de_Interface
             {
                 int i;
                 for (i = 0; i < zonas.Count() && !zonas[i].Nome.Equals(e.Node.Parent.Text); i++) ;
-                long czona = zonas[i].Codigo;
+                czona = zonas[i].Codigo;
 
                 int j;
                 for (j = 0; j < itens.Count() && !itens[j].NomeItem.Equals(e.Node.Text); j++) ;
-                long citem = itens[j].CodigoItem;
+                citem = itens[j].CodigoItem;
 
-               // Console.WriteLine("zona: " + e.Node.Parent.Text + " item: " + e.Node.Text);
-               // Console.WriteLine("zona: " + zonas[i].Nome + " item: " + itens[j].NomeItem);
-               // Console.WriteLine("codzona: " + czona + "coditem: " + citem);
+                // Console.WriteLine("zona: " + e.Node.Parent.Text + " item: " + e.Node.Text);
+                // Console.WriteLine("zona: " + zonas[i].Nome + " item: " + itens[j].NomeItem);
+                // Console.WriteLine("codzona: " + czona + "coditem: " + citem);
 
-                //Titulo Zona
+                #region Titulo Zona
                 Label Zona = new Label();
                 Zona.Location = new System.Drawing.Point(12, 6);
                 Zona.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular,
@@ -93,8 +94,9 @@ namespace ETdA.Camada_de_Interface
                 Zona.TabIndex = 1;
                 //nome da zona
                 Zona.Text = zonas[i].Nome;
+                #endregion
 
-                //Titulo Item
+                #region Titulo Item
                 Label Item = new Label();
                 Item.Location = new System.Drawing.Point(17, 30);
                 Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular,
@@ -103,24 +105,27 @@ namespace ETdA.Camada_de_Interface
                 Item.TabIndex = 2;
                 //nome do item
                 Item.Text = itens[j].NomeItem;
+                #endregion
 
-                //desenhar o texto "Resultado"
+                #region desenhar o texto "Resultado"
                 Label labelres = new Label();
                 labelres.Text = "Resultado";
                 labelres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labelres.TabIndex = 3;
                 labelres.Location = new System.Drawing.Point(0, 55);
+                #endregion
 
-                //desenhar o texto da imagem
+                #region desenhar o texto da imagem
                 Label labeltxtimg = new Label();
                 labeltxtimg.TabIndex = 4;
                 labeltxtimg.Location = new System.Drawing.Point(50, 155);
                 labeltxtimg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labeltxtimg.Size = new System.Drawing.Size(400, 25);
+                #endregion
 
-                //desenhar a imagem da cor
+                #region desenhar a imagem da cor
                 System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
                 if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Vermelho)
                 {
@@ -158,8 +163,9 @@ namespace ETdA.Camada_de_Interface
                 corItem.Size = new System.Drawing.Size(160, 60);
                 corItem.TabIndex = 0;
                 corItem.TabStop = false;
+                #endregion
 
-                //desenhar texto "Resultado Detalhado
+                #region desenhar texto "Resultado Detalhado
                 Label labelresdet = new Label();
                 labelresdet.Text = "Resultado Detalhado";
                 labelresdet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
@@ -167,8 +173,9 @@ namespace ETdA.Camada_de_Interface
                 labelresdet.TabIndex = 5;
                 labelresdet.Location = new System.Drawing.Point(0, 200);
                 labelresdet.Size = new System.Drawing.Size(200, 25);
+                #endregion
 
-                //desenhar tres labels uma para cada dimensão
+                #region desenhar tres labels uma para cada dimensão
                 Label labeltxt = new Label();
                 labeltxt.Text = "Dimensão                        Ponderação                        Resultado Parcial";
                 labeltxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
@@ -182,10 +189,11 @@ namespace ETdA.Camada_de_Interface
                 labeldmn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labeldmn.TabIndex = 5;
-                labeldmn.Location = new System.Drawing.Point(10, 230+25);
+                labeldmn.Location = new System.Drawing.Point(10, 230 + 25);
                 labeldmn.Size = new System.Drawing.Size(100, 75);
+                #endregion
 
-                //desenhar label as ponderações de cada dimensão
+                #region desenhar label as ponderações de cada dimensão
                 Label labelpnd = new Label();
                 labelpnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -193,10 +201,9 @@ namespace ETdA.Camada_de_Interface
                 labelpnd.Location = new System.Drawing.Point(190, 230 + 25);
                 labelpnd.Size = new System.Drawing.Size(50, 75);
                 labelpnd.Text = itens[j].PonderacaoCliente.ToString() + "\n\n" + itens[j].PonderacaoProfissional.ToString() + "\n\n" + itens[j].PonderacaoAnalista.ToString();
+                #endregion
 
-
-                //desenhar labels de resultados parciais
-
+                #region desenhar labels de resultados parciais
                 #region Cliente
                 Label labelcl = new Label();
                 labelcl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
@@ -301,46 +308,61 @@ namespace ETdA.Camada_de_Interface
                     labelan.ForeColor = Color.Green;
                 }
                 #endregion
+                #endregion
 
-                //desenhar label do titulo dos limites
-               /* Label labeltitlim = new Label();
+                #region [FALTA] desenhar label do titulo dos limites
+                /* Label labeltitlim = new Label();
                 labeltitlim.Text = "Limites das cores";
                 labeltitlim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labeltitlim.TabIndex = 10;
                 labeltitlim.Location = new System.Drawing.Point(0, 200);
                 labeltitlim.Size = new System.Drawing.Size(200, 25);*/
+                #endregion
 
-                //Desenhar os limites de cada cor
+                #region [FALTA] Desenhar os limites de cada cor
 
-                //desenhar checkbox para incluir(ou nao) no relatorio o resultado detalhado
-                CheckBox checkBoxInsDt = new CheckBox();
-                checkBoxInsDt.Text = "Incluir resultado detalhado no relatório";
-                checkBoxInsDt.Location = new System.Drawing.Point(10, 245+105);
+                #endregion
+
+                #region desenhar checkbox para incluir(ou nao) no relatorio o resultado detalhado
+                //verificar se já foi preenchido se foi, por o que já foi preenchido
+                checkBoxInsDt.Location = new System.Drawing.Point(10, 245 + 105);
                 checkBoxInsDt.Size = new System.Drawing.Size(300, 30);
                 checkBoxInsDt.TabIndex = 3;
                 checkBoxInsDt.TabStop = true;
+                if(relatorio.ListaResultados[czona][citem].mostraResultadosParciais)
+                    checkBoxInsDt.Checked = true;
+                else
+                    checkBoxInsDt.Checked = false;
+                #endregion
 
-                //desenhar "label" de observações
+                #region desenhar "label" de observações
                 Label obslabel = new System.Windows.Forms.Label();
                 obslabel.AutoSize = true;
                 obslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                obslabel.Location = new System.Drawing.Point(0, 290+105);
+                obslabel.Location = new System.Drawing.Point(0, 290 + 105);
                 obslabel.Size = new System.Drawing.Size(50, 20);
                 obslabel.Name = "label2";
                 obslabel.Text = "Observações";
+                #endregion
 
-                //desenhar caixa de observações
-                RichTextBox obstb = new System.Windows.Forms.RichTextBox();
-                obstb.Location = new System.Drawing.Point(10, 335+105);
+                #region desenhar caixa de observações
+                //verificar se já foi preenchido se foi, por o que já foi preenchido
+                obstb.Location = new System.Drawing.Point(10, 335 + 105);
                 obstb.Name = "obstb";
                 obstb.Size = new System.Drawing.Size(500, 100);
-                obstb.Margin = new Padding(0, 0, 0, 60);
+                obstb.Margin = new System.Windows.Forms.Padding(0, 0, 0, 60);
                 obstb.TabIndex = 4;
                 obstb.TabStop = true;
-                obstb.Text = "";
-                
+                if(relatorio.ListaResultados[czona][citem].CheckObservacoes)
+                    obstb.Text = relatorio.ListaResultados[czona][citem].Observacao;
+                else
+                    obstb.Text = "";
+
+                #endregion
+
+                #region Adicionar Controlos ao painel
                 panelrel.Controls.Clear();
                 panelrel.Controls.Add(Item);
                 panelrel.Controls.Add(Zona);
@@ -357,8 +379,23 @@ namespace ETdA.Camada_de_Interface
                 panelrel.Controls.Add(obstb);
                 panelrel.Controls.Add(obslabel);
                 panelrel.Controls.Add(checkBoxInsDt);
-                
+                #endregion
+
             }
+        }
+
+        private void checkBoxInsDt_CheckedChanged(object sender, EventArgs e)
+        {
+            relatorio.ListaResultados[czona][citem].mostraResultadosParciais = checkBoxInsDt.Checked;
+        }
+
+        private void obstb_TextChanged(object sender, EventArgs e)
+        {
+            relatorio.ListaResultados[czona][citem].Observacao = obstb.Text;
+            if (obstb.Text == "")
+                relatorio.ListaResultados[czona][citem].CheckObservacoes = false;
+            else
+                relatorio.ListaResultados[czona][citem].CheckObservacoes = true;
         }
 
         private void BotaoCancelar_Click(object sender, EventArgs e)
