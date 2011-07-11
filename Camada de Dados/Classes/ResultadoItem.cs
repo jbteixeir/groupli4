@@ -29,10 +29,10 @@ namespace ETdA.Camada_de_Dados.Classes
         private double resultado_final;
 
         //Se a observação já foi preenchida
-        private int checkObs;
+        private bool checkObs;
 
         //mostrar ou não os resultados parciais
-        private int mostraResParc;
+        private bool mostraResParc;
 
         public ResultadoItem(double resultado_questionario_geral, Dictionary<int, double> resultado_questionario_parcial, double resultado_fichaAvaliacao_geral, Dictionary<int, double> resultado_fichaAvaliacao_parcial, double resultado_checklist_geral, Dictionary<int, double> resultado_checklist_parcial, string observacao, double resultado_final)
         {
@@ -45,11 +45,13 @@ namespace ETdA.Camada_de_Dados.Classes
             this.resultado_checklist_geral=resultado_checklist_geral;
             this.resultado_checklist_parcial=resultado_checklist_parcial;
 
-            this.observacao = observacao;
-
             this.resultado_final = resultado_final;
 
-            this.checkObs = 0;
+            this.observacao = observacao;
+            this.checkObs = false;
+
+            this.mostraResParc = false;
+
         }
 
         public ResultadoItem()
@@ -63,11 +65,12 @@ namespace ETdA.Camada_de_Dados.Classes
             this.resultado_checklist_geral = -1;
             this.resultado_checklist_parcial = new Dictionary<int,double>();
 
-            observacao = "";
-
             resultado_final = -1;
 
-            this.checkObs = 0;
+            observacao = "";
+            checkObs = false;
+
+            mostraResParc = false;
         }
 
         //Métodos
@@ -109,8 +112,7 @@ namespace ETdA.Camada_de_Dados.Classes
         public string Observacao
         {
             get { return observacao; }
-            set { observacao = value;
-                  checkObs = 1;      }
+            set { observacao = value;}
         }
 
         public double ResultadoFinal
@@ -119,13 +121,13 @@ namespace ETdA.Camada_de_Dados.Classes
             set { resultado_final = value; }
         }
 
-        public int CheckObservacoes
+        public bool CheckObservacoes
         {
             get { return checkObs; }
             set { checkObs = value; }
         }
 
-        public int mostraResultadosParciais
+        public bool mostraResultadosParciais
         {
             get { return mostraResParc; }
             set { mostraResParc = value; }
