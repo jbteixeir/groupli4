@@ -542,7 +542,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     {
                         if (readerResposta["valor"].ToString() != "")
                         {
-                            Console.WriteLine("CHECKLIST: coda " + codigoAnalise + "codr " + (long)readerResposta["cod_resposta_checkList"] + "-1" + "-1" + "-1" + (long)readerItem["cod_item"] + (long)readerZona["cod_zona"] + short.Parse(readerResposta["valor"].ToString()) + " " + 1 + Classes.Resposta.TipoResposta.RespostaNum);
+                            //Console.WriteLine("CHECKLIST: coda " + codigoAnalise + "codr " + (long)readerResposta["cod_resposta_checkList"] + "-1" + "-1" + "-1" + (long)readerItem["cod_item"] + (long)readerZona["cod_zona"] + short.Parse(readerResposta["valor"].ToString()) + " " + 1 + Classes.Resposta.TipoResposta.RespostaNum);
                             respostas.Add(new Resposta(codigoAnalise, (long)readerResposta["cod_resposta_checkList"], -1, -1, -1, (long)readerItem["cod_item"], (long)readerZona["cod_zona"], short.Parse(readerResposta["valor"].ToString()), "", 1, Classes.Resposta.TipoResposta.RespostaNum));
                         }
                     }
@@ -553,6 +553,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             readerZona.Close();
         }
         #endregion
+
         #region Respostas CheckList
         static public void insertRespostaCheckList(Resposta r)
         {
@@ -561,6 +562,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
 
         #endregion
+
         #region Inserir Respostas CheckList
 
         static public void insertRespostaCheckList(int codigoAnalise, List<Resposta> respostas)
@@ -593,7 +595,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         #endregion
 
-        /* Respostas FichaAnaliacao */
         #region Respostas Ficha de Avaliação
         static public void selectRespostaFichaAvaliacao(long codigoAnalise, List<Resposta> respostas)
         {
@@ -610,7 +611,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                    "AND pergunta_ficha_avaliacao.numero_pergunta = resposta_ficha_avaliacao_numero.numero_pergunta");
                 while (readerResposta.Read())
                 {
-                    Console.WriteLine("FICHA AVALIACAO:" + codigoAnalise + "-1" + "-1" + (long)readerResposta["cod_fichaAvaliacao"] + short.Parse(readerResposta["numero_pergunta"].ToString()) + (long)readerResposta["cod_item"] + (long)readerResposta["cod_zona"] + short.Parse(readerResposta["valor"].ToString()) + "" + 2 + Classes.Resposta.TipoResposta.RespostaNum);
+                    //Console.WriteLine("FICHA AVALIACAO:" + codigoAnalise + "/-1" + "/-1" + "/" + (long)readerResposta["cod_fichaAvaliacao"] + "/" + short.Parse(readerResposta["numero_pergunta"].ToString()) + "/" + (long)readerResposta["cod_item"] + "/" + (long)readerResposta["cod_zona"] + "/" + short.Parse(readerResposta["valor"].ToString()) + "/" + "" + "/" + 2 + "/" + Classes.Resposta.TipoResposta.RespostaNum);
                     respostas.Add(new Resposta(codigoAnalise, -1, -1, (long)readerResposta["cod_fichaAvaliacao"], short.Parse(readerResposta["numero_pergunta"].ToString()), (long)readerResposta["cod_item"], (long)readerResposta["cod_zona"], short.Parse(readerResposta["valor"].ToString()), "", 2, Classes.Resposta.TipoResposta.RespostaNum));
                 }
                 readerResposta.Close();
@@ -624,6 +625,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
         }
         #endregion
+
         #region Inserir Respostas Questionario
 
         static public void insertRespostaFichaAvaliacao(Resposta r)
@@ -645,7 +647,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 
-        /* Respostas Questionario */
         #region Respostas Questionario
         static public void selectRespostaQuestionario(long codigoAnalise, List<Resposta> respostas)
         {
@@ -680,7 +681,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                                        "AND respostas_questionario.cod_analise=" + codigoAnalise);
                     while (readerResposta.Read())
                     {
-                        Console.WriteLine("QUESTIONARIO:" + codigoAnalise + "-1" + int.Parse(readerResposta["cod_questionario"].ToString()) + "-1" + int.Parse(reader["numero_pergunta"].ToString()) + cod_item + cod_zona + "-1" + readerResposta["valor"].ToString() + 3 + Classes.Resposta.TipoResposta.RespostaStr);
+                        //Console.WriteLine("QUESTIONARIO:" + codigoAnalise + "-1" + int.Parse(readerResposta["cod_questionario"].ToString()) + "-1" + int.Parse(reader["numero_pergunta"].ToString()) + cod_item + cod_zona + "-1" + readerResposta["valor"].ToString() + 3 + Classes.Resposta.TipoResposta.RespostaStr);
                         respostas.Add(new Resposta(codigoAnalise, -1, int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), cod_item, cod_zona, -1, readerResposta["valor"].ToString(), 3, Classes.Resposta.TipoResposta.RespostaStr));
                     }
 
@@ -711,7 +712,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     {
                         if (readerResposta["valor"].ToString() != "" && reader["numero_pergunta"].ToString() != "")
                         {
-                            Console.WriteLine("QUESTIONARIO:" + codigoAnalise + -1 + long.Parse(readerResposta["cod_questionario"].ToString()) + -1 + long.Parse(reader["numero_pergunta"].ToString()) + cod_item + cod_zona + short.Parse(readerResposta["valor"].ToString()) + "" + 3 + Classes.Resposta.TipoResposta.RespostaNum);
+                            //Console.WriteLine("QUESTIONARIO:" + codigoAnalise + -1 + long.Parse(readerResposta["cod_questionario"].ToString()) + -1 + long.Parse(reader["numero_pergunta"].ToString()) + cod_item + cod_zona + short.Parse(readerResposta["valor"].ToString()) + "" + 3 + Classes.Resposta.TipoResposta.RespostaNum);
                             respostas.Add(new Resposta(codigoAnalise, -1, long.Parse(readerResposta["cod_questionario"].ToString()), -1, long.Parse(reader["numero_pergunta"].ToString()), cod_item, cod_zona, short.Parse(readerResposta["valor"].ToString()), "", 3, Classes.Resposta.TipoResposta.RespostaNum));
                         }
                     }
@@ -862,10 +863,11 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             //Questionario
             if (tipoResposta == 3)
             {
-                Console.WriteLine("SELECT cod_tipoEscala " +
+                /*Console.WriteLine("SELECT cod_tipoEscala " +
                                                         "FROM pergunta_questionario " +
                                                         "WHERE cod_analise=" + analise +
                                                             " AND numero_pergunta=" + num_pergunta);
+                 */
                 reader = DataBaseCommunicator.readData("SELECT cod_tipoEscala " +
                                                         "FROM pergunta_questionario " +
                                                         "WHERE cod_analise=" + analise +
@@ -874,10 +876,11 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             //FIcha de Avalicao -if(tipoResposta==2)
             else
             {
-                Console.WriteLine("SELECT cod_tipoEscala " +
+                /*Console.WriteLine("SELECT cod_tipoEscala " +
                                                         "FROM pergunta_ficha_avaliacao " +
                                                         "WHERE cod_analise=" + analise +
                                                             " AND numero_pergunta=" + num_pergunta);
+                 */
                 reader = DataBaseCommunicator.readData("SELECT cod_tipoEscala " +
                                                         "FROM pergunta_ficha_avaliacao " +
                                                         "WHERE cod_analise=" + analise +
@@ -903,8 +906,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
     }
 
 }
-        #endregion
-
-        
+        #endregion        
         #endregion
 
