@@ -391,7 +391,7 @@ namespace ETdA.Camada_de_Interface
                 l6.Text = "Gerar Formulários Online";
                 l6.Location = new System.Drawing.Point(7, 150);
                 l6.Cursor = System.Windows.Forms.Cursors.Hand;
-                //l6.Click += new System.EventHandler(this.OpenProjectClick);
+                l6.Click += new System.EventHandler(this.PerguntasAction);
                 l6.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l6.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
@@ -655,6 +655,15 @@ namespace ETdA.Camada_de_Interface
         private void InserirManualClick(object sender, EventArgs e)
         {
             Interface_IntroduzirManualmente.main();
+        }
+
+        private void PerguntasAction(object sender, EventArgs e)
+        {
+            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
+
+            Interface_Perguntas.main(codAnalise, itens);
         }
     }
 }
