@@ -560,11 +560,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             DataBaseCommunicator.query("INSERT INTO resposta_checkList VALUES (" +
                     r.Valor + ", " + r.CodigoItem + ", " + r.CodigoZona + ", " + r.Cod_analise + ");");
         }
-
         #endregion
 
         #region Inserir Respostas CheckList
-
         static public void insertRespostaCheckList(int codigoAnalise, List<Resposta> respostas)
         {
             foreach (Resposta resposta in respostas)
@@ -592,7 +590,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 }
             }
         }
-
         #endregion
 
         #region Respostas Ficha de Avaliação
@@ -627,7 +624,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         #endregion
 
         #region Inserir Respostas Questionario
-
         static public void insertRespostaFichaAvaliacao(Resposta r)
         {
             switch (r.Tipo_Resposta)
@@ -722,6 +718,30 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
             reader.Close();
         }
+        #endregion
+        #region INserir Resposta Questionário
+        static public void insertRespostaQuestionario(Resposta r)
+        {
+            switch (r.Tipo_Resposta)
+            {
+                case Resposta.TipoResposta.RespostaNum:
+                    DataBaseCommunicator.query("INSERT INTO resposta_questionario_numero VALUES (" +
+                        r.NumeroPergunta + ", " + r.Valor + ", " + r.Cod_questionario + ", " +
+                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
+                    break;
+                case Resposta.TipoResposta.RespostaStr:
+                    DataBaseCommunicator.query("INSERT INTO resposta_questionario_string VALUES (" +
+                        r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
+                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
+                    break;
+                case Resposta.TipoResposta.RespostaMemo:
+                    DataBaseCommunicator.query("INSERT INTO resposta_questionario_memo VALUES (" +
+                        r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
+                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
+                    break;
+            }
+        }
+        #endregion
 
         #region Select Resposta Sexo
 
@@ -750,36 +770,33 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         #endregion
 
-        #region INserir Resposta Questionário
-
-        static public void insertRespostaQuestionario(Resposta r)
+        #region Escala Resposta
+        public static List<EscalaResposta> selectRespostas(long cod_tipoEscala)
         {
-            switch (r.Tipo_Resposta)
+            List<EscalaResposta> resps = new List<EscalaResposta>();
+
+            String query = "select * from EscalaResposta where cod_TipoResposta = "
+                + cod_tipoEscala + ";";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            while (r.Read())
             {
-                case Resposta.TipoResposta.RespostaNum:
-                    DataBaseCommunicator.query("INSERT INTO resposta_questionario_numero VALUES (" +
-                        r.NumeroPergunta + ", " + r.Valor + ", " + r.Cod_questionario + ", " +
-                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
-                    break;
-                case Resposta.TipoResposta.RespostaStr:
-                    DataBaseCommunicator.query("INSERT INTO resposta_questionario_string VALUES (" +
-                        r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
-                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
-                    break;
-                case Resposta.TipoResposta.RespostaMemo:
-                    DataBaseCommunicator.query("INSERT INTO resposta_questionario_memo VALUES (" +
-                        r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
-                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
-                    break;
+                EscalaResposta e = new EscalaResposta(
+                    (long)r["cod_EscalaResposta"],
+                    (long)r["cod_TipoEscala"],
+                    (String)r["descricaoEscalaResposta"],
+                    (int)r["valorEscalaResposta"]);
+
+                resps.Add(e);
             }
+
+            return resps;
         }
 
-        #endregion
-
-        #region Escala Resposta
         public static EscalaResposta selectEscalaResposta(long codEscala)
         {
-            String query = "select * from EscalaResposta where " + "cod_EscalaResposta = "
+            String query = "select * from EscalaResposta where cod_EscalaResposta = "
                 + codEscala + ";";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
@@ -823,8 +840,28 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 
+        #region TipoEscala
+        public static Dictionary<string, TipoEscala> getTiposResposta()
+        {
+            Dictionary<string, TipoEscala> resps = new Dictionary<string, TipoEscala>();
 
-        #region Escala
+            string query = "select * from TipoEscala";
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            
+            while (r.Read())
+            {
+                TipoEscala te = new TipoEscala(
+                    (long)r["cod_tipoEscala"],
+                    (string)r["tipoEscalaResposta"],
+                    (int)r["numeroEscalaResposta"],
+                    (int)r["default_tipoEscala"],
+                    selectRespostas((long)r["cod_tipoEscala"]));
+                resps.Add(te.Descricao,te);
+            }
+
+            return resps;
+        }
+
         public static TipoEscala selectTipoEscala(long codTipo)
         {
             String query = "select * from TipoEscala where cod_tipoEscala = "
@@ -903,9 +940,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return -1;
         }
         #endregion
-    }
 
-}
-        #endregion        
         #endregion
-
+    }
+}

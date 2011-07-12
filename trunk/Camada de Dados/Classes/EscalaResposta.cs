@@ -62,5 +62,10 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return valorResposta; }
             set { valorResposta = value; }
         }
+
+        public EscalaResposta clone()
+        {
+            return new EscalaResposta(this);
+        }
     }
 }

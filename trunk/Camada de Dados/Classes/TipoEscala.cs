@@ -9,17 +9,26 @@ namespace ETdA.Camada_de_Dados.Classes
     {
         //Variáveis de instância
         long codTipo;
-        String descricao;
+        string descricao;
         int numero;
+        // 0 - TextBox -> Letras
+        // 1 - TextBox -> Numeros
+        // >1 - RadioButons 
+        // -1 - Sugestao
+        // -2 - CheckButons
+
         int defaultTipo;
 
+        List<EscalaResposta> respostas;
+
         //Constructores
-        public TipoEscala(long cod, String desc, int num, int def)
+        public TipoEscala(long cod, String desc, int num, int def, List<EscalaResposta> resps)
         {
             codTipo = cod;
             descricao = desc;
             numero = num;
             defaultTipo = def;
+            respostas = resps;
         }
 
         public TipoEscala()
@@ -28,6 +37,7 @@ namespace ETdA.Camada_de_Dados.Classes
             descricao = "";
             numero = 0;
             defaultTipo = 0;
+            respostas = new List<EscalaResposta>();
         }
 
         public TipoEscala(TipoEscala t)
@@ -36,6 +46,7 @@ namespace ETdA.Camada_de_Dados.Classes
             descricao = t.Descricao;
             numero = t.Numero;
             defaultTipo = t.Default;
+            respostas = t.Respostas;
         }
 
         //Métodos
@@ -53,13 +64,25 @@ namespace ETdA.Camada_de_Dados.Classes
         public int Numero
         {
             get { return numero; }
-            set { numero= value; }
+            set { numero = value; }
         }
 
         public int Default
         {
             get { return defaultTipo; }
             set { defaultTipo = value; }
+        }
+
+        public List<EscalaResposta> Respostas
+        {
+            get 
+            {
+                List<EscalaResposta> resps = new List<EscalaResposta>();
+                foreach (EscalaResposta er in respostas)
+                    resps.Add(er.clone());
+                return resps;
+            }
+            set { respostas = value; }
         }
     }
 }

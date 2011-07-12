@@ -8,10 +8,10 @@ namespace ETdA.Camada_de_Dados.Classes
 	class Pergunta
 	{
 		private long cod_Pergunta;
+        private long cod_Analise;
 		private double num_Pergunta;
+        private long cod_Item;
 		private string texto;
-		private long cod_Analise;
-		private long cod_Item;
 		private long cod_TipoEscala;
 
 		public long Cod_Pergunta
