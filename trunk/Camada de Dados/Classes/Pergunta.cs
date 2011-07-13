@@ -14,6 +14,35 @@ namespace ETdA.Camada_de_Dados.Classes
 		private string texto;
 		private long cod_TipoEscala;
 
+        public Pergunta(long cod_Analise, double num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
+        {
+            this.cod_Analise = cod_Analise;
+            this.num_Pergunta = num_Pergunta;
+            this.cod_Item = cod_Item;
+            this.texto = texto;
+            this.cod_TipoEscala = cod_TipoEscala;
+        }
+
+        public Pergunta(long cod_Pergunta,long cod_Analise, double num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
+        {
+            this.cod_Pergunta = cod_Pergunta;
+            this.cod_Analise = cod_Analise;
+            this.num_Pergunta = num_Pergunta;
+            this.cod_Item = cod_Item;
+            this.texto = texto;
+            this.cod_TipoEscala = cod_TipoEscala;
+        }
+
+        public Pergunta()
+        {
+            cod_Pergunta = -1;
+            cod_Analise = -1;
+            num_Pergunta = -1;
+            cod_Item = -1;
+            texto = "";
+            cod_TipoEscala = -1;
+        }
+
 		public long Cod_Pergunta
 		{
 			get { return cod_Pergunta; }
