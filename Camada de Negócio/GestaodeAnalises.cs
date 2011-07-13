@@ -107,9 +107,14 @@ namespace ETdA.Camada_de_Negócio
             return Camada_de_Dados.ETdA.ETdA.getProjecto(codProjecto).Analises[codAnalise].Tipo;
         }
 
-        public static Dictionary<string, TipoEscala> getHipResposta()
+        public static Dictionary<string, List<TipoEscala>> getTipResposta()
         {
             return FuncsToDataBase.getTiposResposta();
+        }
+
+        public static TipoEscala getTipoEscala(long codTipoEscala)
+        {
+            return FuncsToDataBase.selectTipoEscala(codTipoEscala);
         }
     }
 }

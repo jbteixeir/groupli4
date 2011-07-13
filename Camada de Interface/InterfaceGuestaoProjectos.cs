@@ -118,6 +118,7 @@ namespace ETdA.Camada_de_Interface
                     new System.Windows.Forms.TabPage();
                 p.Name = "StartPage";
                 p.AutoScroll = true;
+                p.BackColor = Color.LightCyan;
 
                 ContextMenu m = new ContextMenu();
                 m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));

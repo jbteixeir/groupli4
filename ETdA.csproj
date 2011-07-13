@@ -163,6 +163,12 @@
     <Compile Include="Camada de Interface\Interface_CriarProjecto.Designer.cs">
       <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\Interface_GestaoRespostas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_GestaoRespostas.Designer.cs">
+      <DependentUpon>Interface_GestaoRespostas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\Interface_Perguntas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_CriarProjecto.resx">
       <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_GestaoRespostas.resx">
+      <DependentUpon>Interface_GestaoRespostas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Perguntas.resx">
       <DependentUpon>Interface_Perguntas.cs</DependentUpon>

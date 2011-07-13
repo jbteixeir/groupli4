@@ -719,6 +719,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             reader.Close();
         }
         #endregion
+
         #region INserir Resposta Questionário
         static public void insertRespostaQuestionario(Resposta r)
         {
@@ -775,7 +776,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             List<EscalaResposta> resps = new List<EscalaResposta>();
 
-            String query = "select * from EscalaResposta where cod_TipoResposta = "
+            String query = "select * from EscalaResposta where cod_TipoEscala = "
                 + cod_tipoEscala + ";";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
@@ -841,9 +842,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         #endregion
 
         #region TipoEscala
-        public static Dictionary<string, TipoEscala> getTiposResposta()
+        public static Dictionary<string, List<TipoEscala>> getTiposResposta()
         {
-            Dictionary<string, TipoEscala> resps = new Dictionary<string, TipoEscala>();
+            Dictionary<string, List<TipoEscala>> resps = new Dictionary<string, List<TipoEscala>>();
 
             string query = "select * from TipoEscala";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
@@ -854,9 +855,19 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     (long)r["cod_tipoEscala"],
                     (string)r["tipoEscalaResposta"],
                     (int)r["numeroEscalaResposta"],
-                    (int)r["default_tipoEscala"],
                     selectRespostas((long)r["cod_tipoEscala"]));
-                resps.Add(te.Descricao,te);
+
+                if (resps.ContainsKey(te.Descricao))
+                {
+                    resps[te.Descricao].Add(te);
+                }
+                else
+                {
+                    List<TipoEscala> ti = new List<TipoEscala>();
+                    ti.Add(te); 
+                    resps.Add(te.Descricao, ti);
+                }
+                
             }
 
             return resps;
@@ -872,10 +883,10 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             while (r.Read())
             {
-                t = new TipoEscala((long)r["cod_TipoEscala"],
+                t = new TipoEscala((long)r["cod_tipoEscala"],
                     (String)r["tipoEscalaResposta"],
                     (int)r["numeroEscalaResposta"],
-                    (short)r["default_tipoEscala"]);
+                    selectRespostas((long)r["cod_tipoEscala"]));
             }
 
             return t;
@@ -884,7 +895,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         public static void insertTipoEscala(TipoEscala t)
         {
             String query = "insert into TipoEscala values (" + t.Codigo + "," +
-                t.Descricao + "," + t.Numero + "," + t.Default + ";";
+                t.Descricao + "," + t.Numero + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
 
