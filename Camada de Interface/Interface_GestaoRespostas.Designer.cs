@@ -40,6 +40,7 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(162, 246);
             this.treeView1.TabIndex = 0;
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeMouseClicked);
             // 
             // panel1
             // 
@@ -56,6 +57,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Novo";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.NovoMouseClicked);
             // 
             // button2
             // 
@@ -63,8 +65,9 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
-            this.button2.Text = "Modificar";
+            this.button2.Text = "Seleccionar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.SeleccionarMouseClicked);
             // 
             // Interface_GestaoRespostas
             // 

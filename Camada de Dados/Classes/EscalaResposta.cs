@@ -22,12 +22,11 @@ namespace ETdA.Camada_de_Dados.Classes
             valorResposta = valor;
         }
 
-        public EscalaResposta()
+        public EscalaResposta(long tipoE, string desc, int valor)
         {
-            cod_escala = -1;
-            cod_tipo = -1;
-            descricao = "";
-            valorResposta = 0;
+            cod_tipo = tipoE;
+            descricao = desc;
+            valorResposta = valor;
         }
 
         public EscalaResposta(EscalaResposta e)
