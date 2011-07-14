@@ -16,15 +16,17 @@ namespace ETdA.Camada_de_Dados.Classes
         // >1 - RadioButons 
         // -1 - Sugestao
         // -2 - CheckButons
+        int default_tipo;
 
         List<EscalaResposta> respostas;
 
         //Constructores
-        public TipoEscala(long cod, String desc, int num, List<EscalaResposta> resps)
+        public TipoEscala(long cod, String desc, int num, int default_t,List<EscalaResposta> resps)
         {
             codTipo = cod;
             descricao = desc;
             numero = num;
+            default_tipo = default_t;
             respostas = resps;
         }
 
@@ -33,6 +35,7 @@ namespace ETdA.Camada_de_Dados.Classes
             codTipo = -1;
             descricao = "";
             numero = 0;
+            default_tipo = 0;
             respostas = new List<EscalaResposta>();
         }
 
@@ -41,6 +44,7 @@ namespace ETdA.Camada_de_Dados.Classes
             codTipo = t.Codigo;
             descricao = t.Descricao;
             numero = t.Numero;
+            default_tipo = t.Default;
             respostas = t.Respostas;
         }
 
@@ -61,7 +65,11 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return numero; }
             set { numero = value; }
         }
-
+        public short Default
+        {
+            get { return default_tipo; }
+            set { default_tipo = value; }
+        }
         public List<EscalaResposta> Respostas
         {
             get 

@@ -305,7 +305,6 @@ namespace ETdA.Camada_de_Interface
 
         private void mudarTipoRespostaClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Not Implemented Yet.");
             Interface_GestaoRespostas.main();
         }
 

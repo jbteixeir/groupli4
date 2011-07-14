@@ -886,6 +886,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 t = new TipoEscala((long)r["cod_tipoEscala"],
                     (String)r["tipoEscalaResposta"],
                     (int)r["numeroEscalaResposta"],
+                    r["default_tipoEscala"].ToString() == "true" ? 1 : 0,
                     selectRespostas((long)r["cod_tipoEscala"]));
             }
 
