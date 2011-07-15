@@ -30,6 +30,14 @@ namespace ETdA.Camada_de_Dados.Classes
             respostas = resps;
         }
 
+        public TipoEscala(String desc, int num)
+        {
+            descricao = desc;
+            numero = num;
+            default_tipo = 0;
+            respostas = new List<EscalaResposta>();
+        }
+
         public TipoEscala()
         {
             codTipo = -1;
