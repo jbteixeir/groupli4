@@ -193,6 +193,13 @@ namespace ETdA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap amareloWord {
+            get {
+                object obj = ResourceManager.GetObject("amareloWord", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap dog_color_vision {
             get {
                 object obj = ResourceManager.GetObject("dog_color_vision", resourceCulture);
@@ -207,9 +214,23 @@ namespace ETdA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap laranjaWord {
+            get {
+                object obj = ResourceManager.GetObject("laranjaWord", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap lima {
             get {
                 object obj = ResourceManager.GetObject("lima", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap limaWord {
+            get {
+                object obj = ResourceManager.GetObject("limaWord", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -270,9 +291,23 @@ namespace ETdA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap verdeWord {
+            get {
+                object obj = ResourceManager.GetObject("verdeWord", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap vermelho {
             get {
                 object obj = ResourceManager.GetObject("vermelho", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap vermelhoWord {
+            get {
+                object obj = ResourceManager.GetObject("vermelhoWord", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -181,6 +181,12 @@
     <Compile Include="Camada de Interface\Interface_Relatorio.Designer.cs">
       <DependentUpon>Interface_Relatorio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\Interface_Relatorio_EsperaWord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Relatorio_EsperaWord.Designer.cs">
+      <DependentUpon>Interface_Relatorio_EsperaWord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
     <Compile Include="Camada de Negócio\GestaodeProjectos.cs" />
@@ -253,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Questionario.resx">
       <DependentUpon>Interface_Questionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_Relatorio_EsperaWord.resx">
+      <DependentUpon>Interface_Relatorio_EsperaWord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -494,7 +503,13 @@
   <ItemGroup>
     <None Include="Icons\1309271491_notification_done.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="colors\amareloWord.png" />
+    <Content Include="colors\laranjaWord.png" />
+    <Content Include="colors\limaWord.png" />
+    <Content Include="colors\verdeWord.png" />
+    <Content Include="colors\vermelhoWord.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

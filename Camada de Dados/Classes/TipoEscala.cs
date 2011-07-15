@@ -65,7 +65,7 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return numero; }
             set { numero = value; }
         }
-        public short Default
+        public int Default
         {
             get { return default_tipo; }
             set { default_tipo = value; }

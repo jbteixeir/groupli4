@@ -417,6 +417,8 @@ namespace ETdA.Camada_de_Interface
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Interface_Relatorio_EsperaWord.main(zonas.Count*itens.Count);
+
             object oMissing = System.Reflection.Missing.Value;
             object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
 
@@ -424,14 +426,82 @@ namespace ETdA.Camada_de_Interface
             Word._Application oWord;
             Word._Document oDoc;
             oWord = new Word.Application();
-            oWord.Visible = true;
+            oWord.Visible = false;
             oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
                 ref oMissing, ref oMissing);
+
+            #region Página principal
+
+
+            #endregion
+
+            #region Indice
+            
+            //SETTING THE FORMAT TYPE
+            //SELECT THE CONTENST TO BE FORMATTED AND SET THE VALUE
+
+            Object styleHeading2 = "Heading 2";
+            Object styleHeading3 = "Heading 3";
+
+            //oWord.Selection.Range.set_Style(ref styleHeading2);
+            //oWord.Selection.Range.set_Style(ref styleHeading3);
+
+            //SETTING THE OUTLINE LEVEL
+            //SELECT THE CONTENTS WHOSE OUTLINE LEVEL NEEDS TO BE CHANGED AND
+            //SET THE VALUE
+
+            //oWord.Selection.Paragraphs.OutlineLevel = Word.WdOutlineLevel.wdOutlineLevel2;
+            //oWord.Selection.Paragraphs.OutlineLevel = Word.WdOutlineLevel.wdOutlineLevel3;
+            oWord.Selection.Paragraphs.OutlineLevel = Word.WdOutlineLevel.wdOutlineLevelBodyText;
+
+            Object trueo = true;
+            // INCLUDING THE TABLE OF CONTENTS
+            Object oUpperHeadingLevel = "1";
+            Object oLowerHeadingLevel = "3";
+            Object oTOCTableID = "Indice";
+            oDoc.TablesOfContents.Add(oWord.Selection.Range, ref trueo, ref oUpperHeadingLevel,
+                ref oLowerHeadingLevel, ref oMissing, ref oTOCTableID, ref trueo,
+                ref trueo, ref oMissing, ref trueo, ref trueo, ref trueo);
+            oWord.Selection.InsertNewPage();
+            #endregion
+
+            #region Numeração das Páginas
+
+            oWord.ActiveWindow.ActivePane.View.SeekView = Word.WdSeekView.wdSeekCurrentPageFooter;
+
+            //ENTERING A PARAGRAPH BREAK "ENTER"
+            oWord.Selection.TypeParagraph();
+
+            //INSERTING THE PAGE NUMBERS CENTRALLY ALIGNED IN THE PAGE FOOTER
+            oWord.Selection.Paragraphs.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
+            oWord.ActiveWindow.Selection.Font.Name = "Arial";
+            oWord.ActiveWindow.Selection.Font.Size = 8;
+            oWord.ActiveWindow.Selection.TypeText("ETdAnalyser - Documentos");
+
+            //INSERTING TAB CHARACTERS
+            oWord.ActiveWindow.Selection.TypeText("\t");
+            oWord.ActiveWindow.Selection.TypeText("\t");
+
+            oWord.ActiveWindow.Selection.TypeText("Página ");
+            Object CurrentPage = Word.WdFieldType.wdFieldPage;
+            oWord.ActiveWindow.Selection.Fields.Add(oWord.Selection.Range, ref CurrentPage, ref oMissing, ref oMissing);
+            oWord.ActiveWindow.Selection.TypeText(" de ");
+            Object TotalPages = Word.WdFieldType.wdFieldNumPages;
+            oWord.ActiveWindow.Selection.Fields.Add(oWord.Selection.Range, ref TotalPages, ref oMissing, ref oMissing);
+
+            //SETTING FOCUES BACK TO DOCUMENT
+            oWord.ActiveWindow.ActivePane.View.SeekView = Word.WdSeekView.wdSeekMainDocument;
+
+            #endregion
+
+            #region Estatísticas
+
+            /*
 
             //Título
             Word.Paragraph oPara1;
             oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
-            oPara1.Range.Text = "Relatório" + this.nome_analise;
+            oPara1.Range.Text = "Relatório " + this.nome_analise;
             oPara1.Range.Font.Bold = 1;
             oPara1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
             oPara1.Range.InsertParagraphAfter();
@@ -460,7 +530,7 @@ namespace ETdA.Camada_de_Interface
            
             //Pie Chart Sexo
            
-           /* PieChart3D chart1 = new PieChart3D(); 
+            PieChart3D chart1 = new PieChart3D(); 
             chart1.PieChart3D_Load(values);
 
             object oMissing = System.Reflection.Missing.Value;
@@ -471,7 +541,7 @@ namespace ETdA.Camada_de_Interface
             wrdRng.InlineShapes.AddChart(chart1);
             wrdRng.InlineShapes.AddOLEObject(chart1);
 
-            */
+            
 
             //Gráfico
             
@@ -510,11 +580,277 @@ namespace ETdA.Camada_de_Interface
             oShape.Width = oWord.InchesToPoints(6.25f);
             oShape.Height = oWord.InchesToPoints(3.57f);
 
-            //Add text after the chart.
-            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            wrdRng.InsertParagraphAfter();
-            wrdRng.InsertAfter("THE END.");
 
+            
+            //Add text after the chart.
+            //wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            //wrdRng.InsertParagraphAfter();
+            //wrdRng.InsertAfter("THE END.");
+
+            */
+            #endregion
+
+            #region Resultados
+            for (int i = 0; i < zonas.Count; i++)
+            {
+                oWord.Selection.ClearFormatting();
+                //Zonas
+                oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                oWord.ActiveWindow.Selection.Font.Size = 28;
+                oWord.ActiveWindow.Selection.TypeText((i + 1) + ". " + zonas[i].Nome);
+                oWord.Selection.TypeParagraph();
+                oWord.Selection.ClearFormatting();
+                for (int j = 0; j < itens.Count; j++)
+                {
+                    Interface_Relatorio_EsperaWord.StatIncrementar_Progressbar();
+                    //Itens
+                    oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                    oWord.ActiveWindow.Selection.Font.Size = 24;
+                    oWord.ActiveWindow.Selection.TypeText((i + 1) + "." + (j + 1) + ". " + itens[j].NomeItem);
+                    oWord.Selection.TypeParagraph();
+
+                    #region Resultado Geral
+                    oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                    oWord.ActiveWindow.Selection.Font.Size = 20;
+                    oWord.ActiveWindow.Selection.TypeText("Resultado");
+                    oWord.Selection.TypeParagraph();
+
+                    #region Cor Resultado
+                    oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Vermelho)
+                    {
+                        Clipboard.SetImage(global::ETdA.Properties.Resources.vermelhoWord);
+                        oWord.Selection.Paste();
+                        oWord.Selection.TypeParagraph();
+                        oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: Vermelho Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.Selection.TypeParagraph();
+                    }
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Laranja)
+                    {
+                        Clipboard.SetImage(global::ETdA.Properties.Resources.laranjaWord);
+                        oWord.Selection.Paste();
+                        oWord.Selection.TypeParagraph();
+                        oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: Laranja Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.Selection.TypeParagraph();
+                    }
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Amarelo)
+                    {
+                        Clipboard.SetImage(global::ETdA.Properties.Resources.amareloWord);
+                        oWord.Selection.Paste();
+                        oWord.Selection.TypeParagraph();
+                        oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: Amarelo Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.Selection.TypeParagraph();
+                    }
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
+                    {
+                        Clipboard.SetImage(global::ETdA.Properties.Resources.limaWord);
+                        oWord.Selection.Paste();
+                        oWord.Selection.TypeParagraph();
+                        oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: Verde-Lima Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.Selection.TypeParagraph();
+                    }
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde)
+                    {
+                        Clipboard.SetImage(global::ETdA.Properties.Resources.verdeWord);
+                        oWord.Selection.Paste();
+                        oWord.Selection.TypeParagraph();
+                        oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: Verde Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.Selection.TypeParagraph();
+                        oWord.Selection.TypeParagraph();
+                    }
+                    #endregion
+
+                    //linhar texto à esquerda
+                    oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft;
+                    #endregion
+                    
+                    #region Resultado Detalhado
+                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].mostraResultadosParciais)
+                    {
+                        oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                        oWord.ActiveWindow.Selection.Font.Size = 20;
+                        oWord.ActiveWindow.Selection.TypeText("Resultado Detalhado");
+                        oWord.Selection.TypeParagraph();
+
+                        
+                        Word.Table rdTabela = oWord.Selection.Tables.Add(oWord.Selection.Range, 4, 4, Microsoft.Office.Interop.Word.WdDefaultTableBehavior.wdWord8TableBehavior, Microsoft.Office.Interop.Word.WdAutoFitBehavior.wdAutoFitFixed);
+                        rdTabela.Range.Font.Size = 14;
+                        rdTabela.Rows[1].Range.Font.Bold = 1;
+                        rdTabela.Rows.Alignment = Word.WdRowAlignment.wdAlignRowCenter;
+
+                        rdTabela.Range.Cells.Borders.Enable = 1;
+                        rdTabela.Range.Cells.Borders.InsideColor = Word.WdColor.wdColorBlack;
+                        rdTabela.Range.Cells.Borders.OutsideColor = Word.WdColor.wdColorBlack;
+
+                        rdTabela.Range.Cells.Height = 13;
+
+                        rdTabela.Cell(1, 1).Range.Text = "Dimensão";
+                        rdTabela.Cell(1, 2).Range.Text = "Ponderação";
+                        rdTabela.Cell(1, 3).Range.Text = "Resultado Parcial";
+                        rdTabela.Cell(1, 4).Range.Text = "Cor";
+
+                        #region dimensões
+                        rdTabela.Cell(2, 1).Range.Text = "Cliente";
+                        rdTabela.Cell(3, 1).Range.Text = "Profissional";
+                        rdTabela.Cell(4, 1).Range.Text = "Analista";
+                        #endregion
+
+                        #region Ponderações
+                        rdTabela.Cell(2, 2).Range.Text = itens[j].PonderacaoCliente.ToString();
+                        rdTabela.Cell(3, 2).Range.Text = itens[j].PonderacaoProfissional.ToString();
+                        rdTabela.Cell(4, 2).Range.Text = itens[j].PonderacaoAnalista.ToString();
+
+                        #endregion
+
+                        #region Resultados Parciais
+                        rdTabela.Cell(2, 3).Range.Text = relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString();
+                        rdTabela.Cell(3, 3).Range.Text = relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString();
+                        rdTabela.Cell(4, 3).Range.Text = relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString();
+                        #endregion
+
+                        #region Cores
+                        #region Cliente
+
+                        if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Vermelho)
+                    {
+                        rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorRed;
+                        rdTabela.Cell(2, 4).Range.Text = "Vermelho";
+                    }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Laranja)
+                    {
+                        rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorOrange;
+                        rdTabela.Cell(2, 4).Range.Text = "Laranja";
+                    }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Amarelo)
+                    {
+                        rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorYellow;
+                        rdTabela.Cell(2, 4).Range.Text = "Amarelo";
+                    }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde_Lima)
+                    {
+                        rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorLime;
+                        rdTabela.Cell(2, 4).Range.Text = "Verde Lima";
+                    }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde)
+                    {
+                        rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorGreen;
+                        rdTabela.Cell(2, 4).Range.Text = "Verdemelho";
+                    }
+                        #endregion
+
+                        #region Profissional
+                        if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Vermelho)
+                        {
+                            rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorRed;
+                            rdTabela.Cell(3, 4).Range.Text = "Vermelho";
+                        }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Laranja)
+                        {
+                            rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorOrange;
+                            rdTabela.Cell(3, 4).Range.Text = "Laranja";
+                        }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Amarelo)
+                        {
+                            rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorYellow;
+                            rdTabela.Cell(3, 4).Range.Text = "Amarelo";
+                        }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde_Lima)
+                        {
+                            rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorLime;
+                            rdTabela.Cell(3, 4).Range.Text = "Verde Lima";
+                        }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde)
+                        {
+                            rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorGreen;
+                            rdTabela.Cell(3, 4).Range.Text = "Verdemelho";
+                        }
+
+                        #endregion
+
+                        #region Analista
+                        if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Vermelho)
+                        {
+                            rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorRed;
+                            rdTabela.Cell(4, 4).Range.Text = "Vermelho";
+                        }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Laranja)
+                        {
+                            rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorOrange;
+                            rdTabela.Cell(4, 4).Range.Text = "Laranja";
+                        }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Amarelo)
+                        {
+                            rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorYellow;
+                            rdTabela.Cell(4, 4).Range.Text = "Amarelo";
+                        }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Verde_Lima)
+                        {
+                            rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorLime;
+                            rdTabela.Cell(4, 4).Range.Text = "Verde Lima";
+                        }
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Verde)
+                        {
+                            rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorGreen;
+                            rdTabela.Cell(4, 4).Range.Text = "Verdemelho";
+                        }
+
+                        #endregion
+
+                        #endregion
+                        object count = 4;
+                        oWord.Selection.MoveDown(ref oMissing, ref count, oMissing);
+                        oWord.Selection.ClearFormatting();
+                        oWord.Selection.TypeParagraph();
+                    }
+                    
+                    #endregion
+
+                    #region Observações
+                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].CheckObservacoes)
+                    {
+                        oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
+                        oWord.ActiveWindow.Selection.Font.Size = 20;
+                        oWord.ActiveWindow.Selection.TypeText("Observações");
+                        oWord.Selection.TypeParagraph();
+                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].Observacao);
+
+                        oWord.Selection.TypeParagraph();
+                    }
+                    #endregion
+
+                    oWord.Selection.TypeParagraph();
+                    oWord.Selection.ClearFormatting();
+
+                }
+                oWord.Selection.TypeParagraph();
+            }
+            
+            //Quebra de Página
+            oWord.Selection.InsertNewPage();
+            //ENTERING A PARAGRAPH BREAK "ENTER"
+            oWord.Selection.TypeParagraph();
+            #endregion
+
+            #region Actualizar Indice
+            //UPDATING THE TABLE OF CONTENTS
+            oDoc.TablesOfContents[1].Update();
+
+            //UPDATING THE TABLE OF CONTENTS
+            oDoc.TablesOfContents[1].UpdatePageNumbers();
+
+            #endregion
+            oWord.Visible = true;
             //Close this form.
             this.Close();
         }
