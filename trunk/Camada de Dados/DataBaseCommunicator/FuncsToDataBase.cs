@@ -442,7 +442,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             {
                 Item item = new Item((long)r["cod_item"],
                     r["nome_item"].ToString(),
-                    r["default_item"].ToString() == "true" ? 1 : 0,
+                    r["default_item"].ToString() == "True" ? 1 : 0,
                     double.Parse(r["ponderacao_analista"].ToString()),
                     double.Parse(r["ponderacao_profissional"].ToString()),
                     double.Parse(r["ponderacao_cliente"].ToString()),
@@ -855,7 +855,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     (long)r["cod_tipoEscala"],
                     (string)r["tipoEscalaResposta"],
                     (int)r["numeroEscalaResposta"],
-                    r["default_item"].ToString() == "true" ? 1 : 0,
+                    r["default_tipoEscala"].ToString() == "True" ? 1 : 0,
                     selectRespostas((long)r["cod_tipoEscala"]));
 
                 if (resps.ContainsKey(te.Descricao))
