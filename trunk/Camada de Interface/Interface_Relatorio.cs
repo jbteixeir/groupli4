@@ -600,8 +600,10 @@ namespace ETdA.Camada_de_Interface
                 oWord.ActiveWindow.Selection.TypeText((i + 1) + ". " + zonas[i].Nome);
                 oWord.Selection.TypeParagraph();
                 oWord.Selection.ClearFormatting();
+                Interface_Relatorio_EsperaWord.StatZona(zonas[i].Nome);
                 for (int j = 0; j < itens.Count; j++)
                 {
+                    Interface_Relatorio_EsperaWord.StatItem(itens[j].NomeItem);
                     Interface_Relatorio_EsperaWord.StatIncrementar_Progressbar();
                     //Itens
                     oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
