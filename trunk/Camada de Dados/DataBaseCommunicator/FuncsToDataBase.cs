@@ -765,10 +765,64 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 int resposta = Convert.ToInt32(aux);
                 respostas.Add(resposta);
             }
-
+           
             return respostas;
         }
 
+        #endregion
+
+        #region Idade
+        static public List<int> selectIdades (long codigoAnalise)
+        {
+            List<int> idades = new List<int>();
+
+            string query = "SELECT valor, cod_resposta_questionario_numero " +
+                           "FROM pergunta_questionario, resposta_questionario_numero " +
+                           "WHERE pergunta_questionario.cod_pergunta_questionario = resposta_questionario_numero.cod_pergunta_questionario " +
+                           "AND pergunta_questionario.numero_pergunta = 16 " +
+                           "AND pergunta_questionario.cod_analise=" + codigoAnalise; 
+            
+           SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+           String aux = null;
+
+           while (r.Read())
+           {
+               aux = r["valor"].ToString();
+               int resposta = Convert.ToInt32(aux);
+               //Console.WriteLine("idade :" + resposta);
+               idades.Add(resposta);
+           }
+
+           return idades;
+        }
+
+        #endregion
+
+        #region Cliente Habitual
+
+        static public List<int> selectRespostasHabitual(long codigoAnalise)
+        {
+            SqlDataReader reader;
+
+            reader = DataBaseCommunicator.readData("SELECT valor, cod_resposta_questionario_numero " +
+                                                "FROM pergunta_questionario, resposta_questionario_numero " +
+                                                "WHERE pergunta_questionario.cod_pergunta_questionario = resposta_questionario_numero.cod_pergunta_questionario " +
+                                                "AND pergunta_questionario.numero_pergunta = 2 " +
+                                                "AND pergunta_questionario.cod_analise=" + codigoAnalise);
+
+            List<int> respostas = new List<int>();
+            String aux = null;
+
+            while (reader.Read())
+            {
+                aux = reader["valor"].ToString();
+                int resposta = Convert.ToInt32(aux);
+                respostas.Add(resposta);
+            }
+
+            return respostas;
+        }
         #endregion
 
         #region Escala Resposta

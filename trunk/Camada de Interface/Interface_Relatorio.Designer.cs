@@ -31,11 +31,13 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeViewZonaItem = new System.Windows.Forms.TreeView();
             this.panelZonaItem = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.BotaoGuardar = new System.Windows.Forms.Button();
-            this.BotaoCancelar = new System.Windows.Forms.Button();
             this.panelrel = new System.Windows.Forms.Panel();
+            this.BotaoCancelar = new System.Windows.Forms.Button();
+            this.BotaoGuardar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.checkBoxInsDt = new System.Windows.Forms.CheckBox();
+            this.obstb = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,29 +88,16 @@
             this.panelZonaItem.Size = new System.Drawing.Size(582, 427);
             this.panelZonaItem.TabIndex = 0;
             // 
-            // button1
+            // panelrel
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.Location = new System.Drawing.Point(150, 392);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Gerar Documento Word";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // BotaoGuardar
-            // 
-            this.BotaoGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BotaoGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BotaoGuardar.Location = new System.Drawing.Point(375, 392);
-            this.BotaoGuardar.Name = "BotaoGuardar";
-            this.BotaoGuardar.Size = new System.Drawing.Size(75, 23);
-            this.BotaoGuardar.TabIndex = 2;
-            this.BotaoGuardar.Text = "Guardar";
-            this.BotaoGuardar.UseVisualStyleBackColor = true;
-            this.BotaoGuardar.Click += new System.EventHandler(this.BotaoGuardar_Click);
+            this.panelrel.AutoScroll = true;
+            this.panelrel.AutoSize = true;
+            this.panelrel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelrel.Location = new System.Drawing.Point(0, 5);
+            this.panelrel.Name = "panelrel";
+            this.panelrel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 60);
+            this.panelrel.Size = new System.Drawing.Size(577, 382);
+            this.panelrel.TabIndex = 0;
             // 
             // BotaoCancelar
             // 
@@ -122,20 +111,52 @@
             this.BotaoCancelar.UseVisualStyleBackColor = true;
             this.BotaoCancelar.Click += new System.EventHandler(this.BotaoCancelar_Click);
             // 
-            // panelrel
+            // BotaoGuardar
             // 
-            this.panelrel.AutoScroll = true;
-            this.panelrel.AutoSize = true;
-            this.panelrel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelrel.Location = new System.Drawing.Point(0, 5);
-            this.panelrel.Name = "panelrel";
-            this.panelrel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 60);
-            this.panelrel.Size = new System.Drawing.Size(577, 382);
-            this.panelrel.TabIndex = 0;
+            this.BotaoGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BotaoGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BotaoGuardar.Location = new System.Drawing.Point(375, 392);
+            this.BotaoGuardar.Name = "BotaoGuardar";
+            this.BotaoGuardar.Size = new System.Drawing.Size(75, 23);
+            this.BotaoGuardar.TabIndex = 2;
+            this.BotaoGuardar.Text = "Guardar";
+            this.BotaoGuardar.UseVisualStyleBackColor = true;
+            this.BotaoGuardar.Click += new System.EventHandler(this.BotaoGuardar_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.Location = new System.Drawing.Point(150, 392);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(184, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Gerar Documento Word";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileFialog1_FileOk);
+            // 
+            // checkBoxInsDt
+            // 
+            this.checkBoxInsDt.Location = new System.Drawing.Point(10, 245);
+            this.checkBoxInsDt.Name = "checkBoxInsDt";
+            this.checkBoxInsDt.Size = new System.Drawing.Size(300, 30);
+            this.checkBoxInsDt.TabIndex = 3;
+            this.checkBoxInsDt.Text = "Incluir resultado detalhado no relatório";
+            this.checkBoxInsDt.CheckedChanged += new System.EventHandler(this.checkBoxInsDt_CheckedChanged);
+            // 
+            // obstb
+            // 
+            this.obstb.Location = new System.Drawing.Point(10, 335);
+            this.obstb.Margin = new System.Windows.Forms.Padding(0, 0, 0, 60);
+            this.obstb.Name = "obstb";
+            this.obstb.Size = new System.Drawing.Size(500, 100);
+            this.obstb.TabIndex = 4;
+            this.obstb.Text = "";
+            this.obstb.TextChanged += new System.EventHandler(this.obstb_TextChanged);
             // 
             // Interface_Relatorio
             // 
@@ -150,6 +171,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relatório";
+            this.Load += new System.EventHandler(this.Interface_Relatorio_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -158,28 +180,6 @@
             this.panelZonaItem.PerformLayout();
             this.ResumeLayout(false);
 
-            //
-            // CheckBox Resultado Detalhado
-            //
-            checkBoxInsDt = new System.Windows.Forms.CheckBox();
-            checkBoxInsDt.Text = "Incluir resultado detalhado no relatório";
-            checkBoxInsDt.Location = new System.Drawing.Point(10, 245 + 105);
-            checkBoxInsDt.Size = new System.Drawing.Size(300, 30);
-            checkBoxInsDt.TabIndex = 3;
-            checkBoxInsDt.TabStop = true;
-            checkBoxInsDt.CheckedChanged += new System.EventHandler(checkBoxInsDt_CheckedChanged);
-
-            //
-            // TextBox observações
-            //
-            obstb = new System.Windows.Forms.RichTextBox();
-            obstb.Location = new System.Drawing.Point(10, 335 + 105);
-            obstb.Name = "obstb";
-            obstb.Size = new System.Drawing.Size(500, 100);
-            obstb.Margin = new System.Windows.Forms.Padding(0, 0, 0, 60);
-            obstb.TabIndex = 4;
-            obstb.TabStop = true;
-            obstb.TextChanged += new System.EventHandler(obstb_TextChanged);
         }
 
         #endregion

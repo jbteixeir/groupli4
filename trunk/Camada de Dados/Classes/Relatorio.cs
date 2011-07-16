@@ -11,20 +11,20 @@ namespace ETdA.Camada_de_Dados.Classes
     class Relatorio
     {
         private Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados;
-        private Double[] listaEstatisticasSexo;
+        private Double[] listaEstatisticas;
         private string filename;
 
         //Constructores
         public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados, Double[] listaEstatisticas)
         {
             this.listaResultados = listaResultados;
-            this.listaEstatisticasSexo = listaEstatisticas;
+            this.listaEstatisticas = listaEstatisticas;
         }
 
         public Relatorio()
         {
             this.listaResultados = new Dictionary<long, Dictionary<long, Classes.ResultadoItem>>();
-            this.listaEstatisticasSexo = new Double[2];
+            this.listaEstatisticas = new Double[10];
         }
 
 
@@ -35,10 +35,10 @@ namespace ETdA.Camada_de_Dados.Classes
             set { listaResultados = value; }
         }
 
-        public Double[] ListaEstatisticasSexo
+        public Double[] ListaEstatisticas
         {
-            get { return listaEstatisticasSexo; }
-            set { listaEstatisticasSexo = value; }
+            get { return listaEstatisticas; }
+            set { listaEstatisticas = value; }
         }
 
         public String Filename
@@ -208,14 +208,55 @@ namespace ETdA.Camada_de_Dados.Classes
 
             if (respostas.Count() != 0)
             {
-                percentagemF = (respostasF / respostas.Count()) * 100;
-                percentagemM = (respostasM / respostas.Count()) * 100;
+                percentagemF = ((double)respostasF / (double)respostas.Count()) * 100; 
+                percentagemM = ((double)respostasM / (double)respostas.Count()) * 100; 
             }
-            listaEstatisticasSexo[0] = (percentagemF);
-            listaEstatisticasSexo[1] = (percentagemM);
-            
-            
+            listaEstatisticas[0] = (percentagemF);
+            listaEstatisticas[1] = (percentagemM);
+                       
 
+        }
+
+        public void gerarEstatisticasIdade(long codigoAnalise)
+        {
+            int menores20 = 0; int entre20e30 = 0; int entre30e40 = 0; int entre40e50 = 0; int entre50e60 = 0; int maioresde60 = 0;
+            List<int> idades = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectIdades(codigoAnalise);
+            for (int i = 0; i < idades.Count(); i++)
+            {
+                if (idades[i] < 20) menores20++;
+                else if (idades[i] >= 20 && idades[i] < 30) entre20e30++;
+                else if (idades[i] >= 30 && idades[i] < 40) entre30e40++;
+                else if (idades[i] >= 40 && idades[i] < 50) entre40e50++;
+                else if (idades[i] >= 50 && idades[i] < 60) entre50e60++;
+                else if (idades[i] >= 60 ) maioresde60++;
+            }
+
+            listaEstatisticas[2] = (menores20);
+            listaEstatisticas[3] = (entre20e30);
+            listaEstatisticas[4] = (entre30e40);
+            listaEstatisticas[5] = (entre40e50);
+            listaEstatisticas[6] = (entre50e60);
+            listaEstatisticas[7] = (maioresde60);
+            
+        }
+
+        public void gerarEstatisticasClienteHabitual(long codigoAnalise)
+        {
+            int sim = 0; int nao = 0;
+            double percentagemsim = 0.0; double percentagemnao = 0.0;
+            List<int> respostas = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectRespostasHabitual(codigoAnalise);
+
+            for (int i = 0; i < respostas.Count(); i++)
+            {
+                if (respostas[i] == 1) sim++;
+                else if (respostas[i] == 2) nao++;
+            }
+
+            percentagemsim = ((double)sim / (double)respostas.Count());
+            percentagemnao = ((double)nao / (double)respostas.Count());
+
+            listaEstatisticas[8] = percentagemsim;
+            listaEstatisticas[9] = percentagemnao;
         }
     }
 }
