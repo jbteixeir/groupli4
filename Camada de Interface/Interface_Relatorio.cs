@@ -39,7 +39,8 @@ namespace ETdA.Camada_de_Interface
             this.itens = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Itens;
             relatorio.gerarResultadosRelatorio(cod_analise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
             relatorio.gerarEstatisticasRelatorioSexo(cod_analise);
-            
+            relatorio.gerarEstatisticasIdade(cod_analise);
+            relatorio.gerarEstatisticasClienteHabitual(cod_analise);
 
             this.cod_projecto = cod_projecto;
             this.cod_analise = cod_analise;
@@ -496,7 +497,7 @@ namespace ETdA.Camada_de_Interface
 
             #region Estatísticas
 
-            /*
+            
 
             //Título
             Word.Paragraph oPara1;
@@ -514,80 +515,74 @@ namespace ETdA.Camada_de_Interface
             oPara2.Format.SpaceAfter = 6;
             oPara2.Range.InsertParagraphAfter();
 
-            //Insert a 3 x 5 table, fill it with data, and make the first row
-	        //bold and italic.
+            //Tabela Sexo
+
 	        Word.Table oTable;
 	        Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
 	        oTable = oDoc.Tables.Add(wrdRng, 2, 2, ref oMissing, ref oMissing);
 	        oTable.Range.ParagraphFormat.SpaceAfter = 6;
 	        oTable.Cell(1,1).Range.Text = "Feminino";
             oTable.Cell(1,2).Range.Text = "Masculino";
-            oTable.Cell(2, 1).Range.Text = relatorio.ListaEstatisticasSexo[0] + "%";
-            oTable.Cell(2, 2).Range.Text = relatorio.ListaEstatisticasSexo[1] + "%";
+            oTable.Cell(2, 1).Range.Text = relatorio.ListaEstatisticas[0] + "%";
+            oTable.Cell(2, 2).Range.Text = relatorio.ListaEstatisticas[1] + "%";
 
 	        oTable.Rows[1].Range.Font.Bold = 1;
 	        oTable.Rows[1].Range.Font.Italic = 1;
-           
-            //Pie Chart Sexo
-           
-            PieChart3D chart1 = new PieChart3D(); 
-            chart1.PieChart3D_Load(values);
 
-            object oMissing = System.Reflection.Missing.Value;
-            object oEndOfDoc = "\\endofdoc"; 
-            Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-
-            wrdRng.InlineShapes.AddOLEControl(chart1);
-            wrdRng.InlineShapes.AddChart(chart1);
-            wrdRng.InlineShapes.AddOLEObject(chart1);
-
-            
-
-            //Gráfico
-            
-            Word.InlineShape oShape;
-            object oClassType = "MSGraph.Chart.8";
-           // Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            oShape = wrdRng.InlineShapes.AddOLEObject(ref oClassType, ref oMissing,
-                ref oMissing, ref oMissing, ref oMissing,
-                ref oMissing, ref oMissing, ref oMissing);
-
-            //Demonstrate use of late bound oChart and oChartApp objects to
-            //manipulate the chart object with MSGraph.
-            object oChart;
-            object oChartApp;
-            oChart = oShape.OLEFormat.Object;
-            oChartApp = oChart.GetType().InvokeMember("Application",
-                BindingFlags.GetProperty, null, oChart, null);
-
-            //Change the chart type to Line.
-            object[] Parameters = new Object[1];
-            Parameters[0] = 4; //xlLine = 4
-            oChart.GetType().InvokeMember("ChartType", BindingFlags.SetProperty,
-                null, oChart, Parameters);
-
-            //Update the chart image and quit MSGraph.
-            oChartApp.GetType().InvokeMember("Update",
-                BindingFlags.InvokeMethod, null, oChartApp, null);
-            oChartApp.GetType().InvokeMember("Quit",
-                BindingFlags.InvokeMethod, null, oChartApp, null);
-            //... If desired, you can proceed from here using the Microsoft Graph 
-            //Object model on the oChart and oChartApp objects to make additional
-            //changes to the chart.
-
-            //Set the width of the chart.
-            oShape.Width = oWord.InchesToPoints(6.25f);
-            oShape.Height = oWord.InchesToPoints(3.57f);
-
-
-            
             //Add text after the chart.
-            //wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            //wrdRng.InsertParagraphAfter();
-            //wrdRng.InsertAfter("THE END.");
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            wrdRng.InsertParagraphAfter();
+            wrdRng.InsertAfter("Tabela Idades");
 
-            */
+
+            //Tabela Idades
+
+            Word.Table oTable1;
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oTable1 = oDoc.Tables.Add(wrdRng, 7, 2, ref oMissing, ref oMissing);
+            oTable1.Range.ParagraphFormat.SpaceAfter = 6;
+            oTable1.Cell(1, 1).Range.Text = "Intervalo de Idades";
+            oTable1.Cell(1, 2).Range.Text = "Total por Intervalo";
+            oTable1.Cell(2, 1).Range.Text = "Menores de 20";
+            oTable1.Cell(2, 2).Range.Text = relatorio.ListaEstatisticas[2] + "";
+            oTable1.Cell(3, 1).Range.Text = "Entre 20 e 30";
+            oTable1.Cell(3, 2).Range.Text = relatorio.ListaEstatisticas[3] + "";
+            oTable1.Cell(4, 1).Range.Text = "Entre 30 e 40";
+            oTable1.Cell(4, 2).Range.Text = relatorio.ListaEstatisticas[4] + "";
+            oTable1.Cell(5, 1).Range.Text = "Entre 40 e 50";
+            oTable1.Cell(5, 2).Range.Text = relatorio.ListaEstatisticas[5] + "";
+            oTable1.Cell(6, 1).Range.Text = "Entre 50 e 60";
+            oTable1.Cell(6, 2).Range.Text = relatorio.ListaEstatisticas[6] + "";
+            oTable1.Cell(7, 1).Range.Text = "Maiores de 60";
+            oTable1.Cell(7, 2).Range.Text = relatorio.ListaEstatisticas[7] + "";
+
+            oTable1.Rows[1].Range.Font.Bold = 1;
+            oTable1.Rows[1].Range.Font.Italic = 1;
+
+            //Add text after the chart.
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            wrdRng.InsertParagraphAfter();
+            wrdRng.InsertAfter("Tabela Clientes Habituais");
+
+            //Tabela Clientes Habituais
+            Word.Table oTable2;
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oTable2 = oDoc.Tables.Add(wrdRng, 2, 2, ref oMissing, ref oMissing);
+            oTable2.Range.ParagraphFormat.SpaceAfter = 6;
+            oTable2.Cell(1, 1).Range.Text = "Clientes Habituais";
+            oTable2.Cell(1, 2).Range.Text = "Clientes Ocasionais";
+            oTable2.Cell(2, 1).Range.Text = relatorio.ListaEstatisticas[8] + "%";
+            oTable2.Cell(2, 2).Range.Text = relatorio.ListaEstatisticas[9] + "%";
+
+            oTable2.Rows[1].Range.Font.Bold = 1;
+            oTable2.Rows[1].Range.Font.Italic = 1;
+                              
+            //Add text after the chart.
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            wrdRng.InsertParagraphAfter();
+            wrdRng.InsertAfter("THE END.");
+
+            
             #endregion
 
             #region Resultados
@@ -855,6 +850,11 @@ namespace ETdA.Camada_de_Interface
             oWord.Visible = true;
             //Close this form.
             this.Close();
+        }
+
+        private void Interface_Relatorio_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
