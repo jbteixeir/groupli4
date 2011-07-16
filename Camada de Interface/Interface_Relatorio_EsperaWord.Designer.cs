@@ -64,13 +64,17 @@
             // 
             // Interface_Relatorio_EsperaWord
             // 
+            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ControlBox = false;
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "Interface_Relatorio_EsperaWord";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
