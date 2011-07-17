@@ -77,7 +77,6 @@
             this.MaximizeBox = false;
             this.Name = "Interface_Relatorio_EsperaWord";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.ResumeLayout(false);
             this.PerformLayout();
 
