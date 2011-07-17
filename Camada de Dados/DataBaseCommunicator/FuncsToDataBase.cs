@@ -463,11 +463,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             foreach (Item i in itens)
             {
                 double b = i.PonderacaoAnalista;
-                String query = "insert into item_analise values(" + i.CodigoItem + "," + codAnalise + ","
-                    + (i.PonderacaoAnalista * 1000).ToString("0,000") + "," + (i.PonderacaoProfissional * 1000).ToString("0,000")
-                    + "," + (i.PonderacaoCliente * 1000).ToString("0,000") + "," + (i.Inter_Vermelho * 1000).ToString("0,000") +
-                    "," + (i.Inter_Laranja * 1000).ToString("0,000") + "," + (i.Inter_Amarelo * 1000).ToString("0,000") + "," +
-                    (i.Inter_Verde_Lima * 1000).ToString("0,000") + "," + (i.Inter_Verde * 1000).ToString("0,000") + "," +
+                String query = "insert into item_analise values(" + 
+                    i.CodigoItem + "," + 
+                    codAnalise + "," + 
+                    (i.PonderacaoAnalista * 1000).ToString("0,000") + "," + 
+                    (i.PonderacaoProfissional * 1000).ToString("0,000") + "," + 
+                    (i.PonderacaoCliente * 1000).ToString("0,000") + "," + 
+                    (i.Inter_Vermelho * 1000).ToString("0,000") + "," + 
+                    (i.Inter_Laranja * 1000).ToString("0,000") + "," + 
+                    (i.Inter_Amarelo * 1000).ToString("0,000") + "," +
+                    (i.Inter_Verde_Lima * 1000).ToString("0,000") + "," + 
+                    (i.Inter_Verde * 1000).ToString("0,000") + "," +
                     (i.LimiteInferiorAnalista * 1000).ToString("0,000") + ");";
 
                 Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
@@ -868,13 +874,19 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return e;
         }
 
-        public static void insertEscalaResposta(EscalaResposta e)
+        // usada 
+        public static long insertEscalaResposta(EscalaResposta e)
         {
-            String query = "insert into EscalaResposta values (" + e.CodEscala + "," +
-                e.CodTipo + "," + e.Descricao + "," + e.Valor + ";";
+            String query = "insert into EscalaResposta values (" + 
+                e.CodTipo + ",'" + 
+                e.Descricao + "'," + 
+                e.Valor + ");" +
+                "SELECT SCOPE_IDENTITY();";
 
-            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
+            r.Read();
+            return long.Parse(r[0].ToString());
         }
 
         public static void deleteEscalaResposta(String codEscala)
@@ -948,12 +960,18 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return t;
         }
 
-        public static void insertTipoEscala(TipoEscala t)
+        // usada
+        public static long insertTipoEscala(TipoEscala t)
         {
-            String query = "insert into TipoEscala values (" + t.Codigo + "," +
-                t.Descricao + "," + t.Numero + ";";
+            String query = "insert into TipoEscala values ('" + 
+                t.Descricao + "'," +
+                t.Numero + ",1);" +
+                "SELECT SCOPE_IDENTITY();";
 
-            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            return long.Parse(r[0].ToString());
 
         }
         #endregion

@@ -13,20 +13,32 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class Interface_GestaoRespostas : Form
     {
+        private int num_pergunta;
         private Dictionary<string, List<TipoEscala>> resps;
+        private List<TipoEscala> novos;
 
-        public Interface_GestaoRespostas()
+        private delegate void eventoEventHandler(object sender, EventArgs e);
+        private static event eventoEventHandler done_action;
+
+        // revisto
+        public Interface_GestaoRespostas(int num_perg)
         {
             InitializeComponent();
             panel1.AutoScroll = true;
 
-            resps = GestaodeAnalises.getTipResposta();
+            done_action += new eventoEventHandler(
+               Camada_de_Interface.Interface_Perguntas.reenc_New_Anser);
+
+            num_pergunta = num_perg;
+            resps = GestaodeRespostas.getTipResposta();
             initTree();
+            novos = new List<TipoEscala>();
         }
 
-        public static void main()
+        // revisto
+        public static void main(int num_perg)
         {
-            Interface_GestaoRespostas igr = new Interface_GestaoRespostas();
+            Interface_GestaoRespostas igr = new Interface_GestaoRespostas(num_perg);
             igr.Visible = true;
         }
 
@@ -43,7 +55,7 @@ namespace ETdA.Camada_de_Interface
                 for (int j = 0; j < resps[tipo].Count; j++)
                 {
                     TreeNode sub_nodo = new TreeNode();
-                    sub_nodo.Text = "Tipo" + j;
+                    sub_nodo.Text = "Tipo " + j;
                     sub_nodo.Name = tipo;
                     nodo.Nodes.Add(sub_nodo);
                 }
@@ -51,6 +63,7 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        // revisto
         private void NovoMouseClicked(object sender, EventArgs e)
         {
             string value1 = "";
@@ -75,26 +88,91 @@ namespace ETdA.Camada_de_Interface
                     lst.Add(te_novo);
                     resps.Add(value1, lst);
                 }
+                novos.Add(te_novo);
+                panel1.Controls.Clear();
                 initTree();
             }
         }
 
+        // revisto
         private void SeleccionarMouseClicked(object sender, EventArgs e)
         {
+            string erro = "";
+            if (verifica(ref erro))
+            {
+                resps = GestaodeRespostas.insertNovosTipos(resps);
 
+                string key = panel1.Controls[0].Text;
+                int indice = int.Parse(panel1.Controls[1].Text.Split(' ')[1]);
+
+                long cod = resps[key][indice].Codigo;
+
+                List<object> sender2 = new List<object>();
+                sender2.Add(num_pergunta);
+                sender2.Add(cod);
+
+                done_action(sender2, new EventArgs());
+                end_Frame();
+            }
+            else
+            {
+                MessageBox.Show(erro);
+            }
         }
 
         // revisto
-        private void show_respostas(TipoEscala te, string s)
+        private bool verifica(ref string erro)
+        {
+            bool ok = true;
+
+            for (int i = 0; i < novos.Count && ok; i++)
+            {
+                erro = "Tipo de Resposta em " + novos[i].Descricao + "\n";
+                if (novos[i].Numero == -2 && novos[i].Respostas.Count < 1)
+                {
+                    ok = false;
+                    erro += "Erro: É necessário colocar pelo menos uma hipótese de resposta.";
+                }
+                else if (novos[i].Numero == 2 && novos[i].Respostas.Count < 2 && ok)
+                {
+                    ok = false;
+                    erro += "Erro: É necessário colocar pelo menos duas hipóteses de resposta.";
+                }
+
+                if ((novos[i].Numero == -2 || novos[i].Numero == 2) && ok)
+                    for (int j = 0; j < novos[i].Respostas.Count && ok ; j++)
+                        for (int z = j + 1; z < novos[i].Respostas.Count && ok; z++)
+                            if (novos[i].Respostas[j].Valor == novos[i].Respostas[z].Valor)
+                            {
+                                erro += "Erro: Existem duas hipóteses de resposta com o mesmo valor.";
+                                ok = false;
+                            }
+            }
+                return ok;
+        }
+
+        // revisto
+        private void show_respostas(TipoEscala te, string s, string tip1, string tip2)
         {
             panel1.Controls.Clear();
             Label l1 = new System.Windows.Forms.Label();
-            l1.Text = s;
+            l1.Text = tip1;
             l1.Width = 100;
             l1.Location = new System.Drawing.Point(10, 10);
             panel1.Controls.Add(l1);
 
-            int y = 40;
+            Label l2 = new System.Windows.Forms.Label();
+            l2.Text = s;
+            l2.Location = new System.Drawing.Point(10, 40);
+            panel1.Controls.Add(l2);
+
+            Label l6 = new System.Windows.Forms.Label();
+            l6.Text = "(" + tip2 + ")";
+            l6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            l6.Location = new System.Drawing.Point(10, 40+l2.Height);
+            panel1.Controls.Add(l6);
+
+            int y = 90;
             if (te.Numero >= -1 && te.Numero <= 1)
             {
                 TextBox t2 = new System.Windows.Forms.TextBox();
@@ -110,7 +188,7 @@ namespace ETdA.Camada_de_Interface
                 Label l5 = new System.Windows.Forms.Label();
                 l5.Text = "Valor";
                 l5.Width = 100;
-                l5.Location = new System.Drawing.Point(110, 10);
+                l5.Location = new System.Drawing.Point(110, 40);
                 panel1.Controls.Add(l5);
 
                 int i = 0;
@@ -128,26 +206,28 @@ namespace ETdA.Camada_de_Interface
                     cb.Width = 40;
                     cb.Location = new System.Drawing.Point(115, y);
                     cb.Enabled = false;
+                    cb.Name = te.Descricao + "." + s.Split(' ')[1] + "." + i.ToString();
+                    cb.SelectedIndexChanged += new System.EventHandler(IndexChanchedEvent);
                     panel1.Controls.Add(cb);
 
                     if (te.Default == 0)
                     {
                         cb.Enabled = true;
-                        Label l2 = new System.Windows.Forms.Label();
-                        l2.Text = "Eliminar";
-                        l2.Name = te.Descricao + "." + s.Split(' ')[1] + "." + i.ToString();
-                        l2.Cursor = System.Windows.Forms.Cursors.Hand;
-                        l2.Click += new System.EventHandler(EliminarMouseClicked);
-                        l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                        l2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-                        l2.Location = new System.Drawing.Point(160, y);
-                        panel1.Controls.Add(l2);
+                        Label l3 = new System.Windows.Forms.Label();
+                        l3.Text = "Eliminar";
+                        l3.Name = te.Descricao + "." + s.Split(' ')[1] + "." + i.ToString();
+                        l3.Cursor = System.Windows.Forms.Cursors.Hand;
+                        l3.Click += new System.EventHandler(EliminarMouseClicked);
+                        l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                        l3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                        l3.Location = new System.Drawing.Point(160, y);
+                        panel1.Controls.Add(l3);
                     }
                     y += 30;
                     i++;
                 }
 
-                if (te.Default == 1)
+                if (te.Default == 0)
                 {
                     Label l3 = new System.Windows.Forms.Label();
                     l3.Text = "Novo";
@@ -167,7 +247,7 @@ namespace ETdA.Camada_de_Interface
                 Label l5 = new System.Windows.Forms.Label();
                 l5.Text = "Valor";
                 l5.Width = 100;
-                l5.Location = new System.Drawing.Point(110, 10);
+                l5.Location = new System.Drawing.Point(110, 40);
                 panel1.Controls.Add(l5);
 
                 int i = 0;
@@ -186,21 +266,23 @@ namespace ETdA.Camada_de_Interface
                     cb.Width = 40;
                     cb.Location = new System.Drawing.Point(115, y);
                     cb.Enabled = false;
+                    cb.Name = te.Descricao + "." + s.Split(' ')[1] + "." + i.ToString();
+                    cb.SelectedIndexChanged += new System.EventHandler(IndexChanchedEvent);
                     panel1.Controls.Add(cb);
 
                     if (te.Default == 0)
                     {
                         cb.Enabled = true;
 
-                        Label l2 = new System.Windows.Forms.Label();
-                        l2.Text = "Eliminar";
-                        l2.Name = te.Descricao + "." + s.Split(' ')[1] + "." + i.ToString();
-                        l2.Cursor = System.Windows.Forms.Cursors.Hand;
-                        l2.Click += new System.EventHandler(EliminarMouseClicked);
-                        l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                        l2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-                        l2.Location = new System.Drawing.Point(160, y);
-                        panel1.Controls.Add(l2);
+                        Label l3 = new System.Windows.Forms.Label();
+                        l3.Text = "Eliminar";
+                        l3.Name = te.Descricao + "." + s.Split(' ')[1] + "." + i.ToString();
+                        l3.Cursor = System.Windows.Forms.Cursors.Hand;
+                        l3.Click += new System.EventHandler(EliminarMouseClicked);
+                        l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                        l3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                        l3.Location = new System.Drawing.Point(160, y);
+                        panel1.Controls.Add(l3);
                     }
                     y += 30;
                     i++;
@@ -221,6 +303,7 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        // revisto
         private object[] getRange(TipoEscala te)
         {
             object[] ret = new object[te.Respostas.Count];
@@ -245,11 +328,13 @@ namespace ETdA.Camada_de_Interface
             t.BackColor = Color.Empty;
         }
 
+        // revisto
         private void NovaRespostaMouseClicked(object sender, EventArgs e)
         {
             Label b = (Label)sender;
-            string key = b.Name.Split('.')[1];
-            TipoEscala te = resps[key.Split(' ')[0]][getIndice(key)];
+            string key = b.Name.Split('.')[0];
+            int indice = int.Parse(b.Name.Split('.')[1]);
+            TipoEscala te = resps[key][indice];
 
             string value = "";
             if (InputBox("Nova Resposta", "Nome:", ref value) == DialogResult.OK)
@@ -260,7 +345,12 @@ namespace ETdA.Camada_de_Interface
                     List<EscalaResposta> lst = te.Respostas;
                     lst.Add(er);
                     te.Respostas = lst;
-                    show_respostas(te, te.Descricao + " " + te.Numero);
+                    string x;
+                    if (te.Numero == 0) x = "Letras";
+                    else if (te.Numero == 1) x = "Número";
+                    else if (te.Numero == -2) x = "Várias Opções";
+                    else x = "Uma Opção";
+                    show_respostas(te, "Tipo " + indice.ToString(), te.Descricao, x);
                 }
                 else
                 {
@@ -269,6 +359,17 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        private bool nomeValido(string p)
+        {
+            if (p == "") return false;
+            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_-/";
+            bool found = true;
+            for (int i = 0; i < p.Length && found; i++)
+                found = possiveis.Contains(p[i]);
+            return found;
+        }
+
+        // revisto
         private bool verificaExiste(TipoEscala te, string s)
         {
             bool found = false;
@@ -276,16 +377,6 @@ namespace ETdA.Camada_de_Interface
                 if (te.Respostas[i].Descricao == s)
                     found = true;
             return found;
-        }
-
-        private int getIndice(string s)
-        {
-            bool b = false;
-            int i, num = int.Parse(s.Split(' ')[1]);
-            for (i = 0; i < resps[s.Split(' ')[0]].Count && !b; i++)
-                if (resps[s.Split(' ')[0]][i].Numero == num)
-                    b = true;
-            return i-1;
         }
 
         // revisto
@@ -304,7 +395,12 @@ namespace ETdA.Camada_de_Interface
             lst.RemoveAt(indice2);
             te.Respostas = lst;
 
-            show_respostas(te, "Tipo " + indice1.ToString());
+            string x;
+            if (te.Numero == 0) x = "Letras";
+            else if (te.Numero == 1) x = "Número";
+            else if (te.Numero == -2) x = "Várias Opções";
+            else x = "Uma Opção";
+            show_respostas(te, "Tipo " + indice1.ToString(), te.Descricao, x);
         }
 
         // revisto
@@ -333,7 +429,12 @@ namespace ETdA.Camada_de_Interface
                 if (e.Node.Level == 1)
                 {
                     TipoEscala te = resps[e.Node.Name][int.Parse(e.Node.Text.Split(' ')[1])];
-                    show_respostas(te, e.Node.Text);
+                    string x;
+                    if (te.Numero == 0) x = "Letras";
+                    else if (te.Numero == 1) x = "Número";
+                    else if (te.Numero == -2) x = "Várias Opções";
+                    else x = "Uma Opção";
+                    show_respostas(te, e.Node.Text,te.Descricao,x);
                 }
             }
         }
@@ -409,7 +510,7 @@ namespace ETdA.Camada_de_Interface
 
             cb1.Items.AddRange(its);
             cb1.SelectedIndex = 0;
-            cb2.Items.AddRange(new Object[] { "Uma opção em várias", "Várias opções", "Caixa de texto (letras)", "Caixa de texto (números)" });
+            cb2.Items.AddRange(new Object[] { "Uma opção", "Várias opções", "Caixa de texto (letras)", "Caixa de texto (números)" });
             cb2.SelectedIndex = 0;
             buttonOk.DialogResult = DialogResult.OK;
             buttonCancel.DialogResult = DialogResult.Cancel;
@@ -453,7 +554,10 @@ namespace ETdA.Camada_de_Interface
 
             DialogResult dialogResult = form.ShowDialog();
             if (cb1.SelectedIndex == its.Length - 1) value1 = textBox.Text;
-            else value1 = cb1.Items[cb1.SelectedIndex].ToString();
+            else if (cb1.SelectedIndex >= 0 &&
+                cb1.SelectedIndex <= its.Length - 1)
+                value1 = cb1.Items[cb1.SelectedIndex].ToString();
+            else value1 = cb1.Text;
             value2 = cb2.SelectedIndex;
             return dialogResult;
         }
@@ -493,10 +597,12 @@ namespace ETdA.Camada_de_Interface
             MenuItem l = (MenuItem)sender;
             string key = l.Name;
             string k = key.Split(' ')[0];
-            int ind = int.Parse(key.Split(' ')[0]);
+            int ind = int.Parse(key.Split(' ')[1]);
             if (resps[k][ind].Default == 0)
             {
                 resps[k].RemoveAt(ind);
+                if (resps[k].Count == 0)
+                    resps.Remove(k);
                 initTree();
                 panel1.Controls.Clear();
             }
@@ -504,6 +610,20 @@ namespace ETdA.Camada_de_Interface
             {
                 MessageBox.Show("Não é possível elimnar este tipo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // revisto
+        private void IndexChanchedEvent(object sender, EventArgs e)
+        {
+            
+            ComboBox cb = (ComboBox)sender;
+            string key = cb.Name.Split('.')[0];
+            int indice1 = int.Parse(cb.Name.Split('.')[1]);
+            int indice2 = int.Parse(cb.Name.Split('.')[2]);
+
+            List<EscalaResposta> er_lst = resps[key][indice1].Respostas;
+            er_lst[indice2].Valor = (int)cb.SelectedItem;
+            resps[key][indice1].Respostas = er_lst;
         }
     }
 }

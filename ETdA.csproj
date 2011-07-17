@@ -191,6 +191,7 @@
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
     <Compile Include="Camada de Negócio\GestaodeProjectos.cs" />
     <Compile Include="Camada de Negócio\GestaodeRelatorios.cs" />
+    <Compile Include="Camada de Negócio\GestaodeRespostas.cs" />
     <Compile Include="Camada de Negócio\ImporterExporter.cs" />
     <Compile Include="ETdA_stater.cs" />
     <Compile Include="Camada de Interface\Interface_CheckList.cs">
