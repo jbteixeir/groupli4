@@ -89,5 +89,16 @@ namespace ETdA.Camada_de_Dados.Classes
             }
             set { respostas = value; }
         }
+
+        public string ToString()
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("Tipo Resposta:\n");
+            a.Append("CodTipo: " + codTipo.ToString() + "\n");
+            a.Append("Descrição: " + descricao + "\n");
+            a.Append("Número: " + numero.ToString() + "\n");
+            a.Append("Default: " + default_tipo.ToString() + "\n");
+            return a.ToString();
+        }
     }
 }

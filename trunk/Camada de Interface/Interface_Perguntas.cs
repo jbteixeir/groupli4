@@ -13,6 +13,7 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class Interface_Perguntas : Form
     {
+        private static Interface_Perguntas ip;
         private long codAnalise;
         private Dictionary<string, Dictionary<string, object>> panels;
         private List<Item> itens;
@@ -159,9 +160,9 @@ namespace ETdA.Camada_de_Interface
 
         private void init()
         {
-            panel.AutoScroll = true;
+            panel.Controls.Clear();
 
-            int y = 50;
+            int y = 10;
             foreach(PerguntaFichaAvaliacao fa in ficha_avaliacao)
                 y += show_pergutna(fa, y);
         }
@@ -172,9 +173,10 @@ namespace ETdA.Camada_de_Interface
 
             Panel p = new System.Windows.Forms.Panel();
             p.Name = "" + perg.Num_Pergunta;
-            p.Width = 500;
+            p.Width = panel.Width - 14;
             p.BorderStyle = BorderStyle.FixedSingle;
             p.Location = new System.Drawing.Point(7, location_y);
+            p.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
 
             Label l1 = new System.Windows.Forms.Label();
             l1.Width = 50;
@@ -183,10 +185,11 @@ namespace ETdA.Camada_de_Interface
             p.Controls.Add(l1);
 
             TextBox t1 = new System.Windows.Forms.TextBox();
-            t1.Width = 430;
+            t1.Width = p.Width - 75;
             t1.Text = perg.Texto;
             t1.Name = "t_box";
             t1.Location = new System.Drawing.Point(65, 10);
+            t1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             p.Controls.Add(t1);
             itens_panel.Add("t_box", t1);
 
@@ -219,6 +222,7 @@ namespace ETdA.Camada_de_Interface
             Label l4 = new System.Windows.Forms.Label();
             l4.Width = 200;
             l4.Text = "Mudar Tipo Resposta";
+            l4.Name = perg.Num_Pergunta.ToString();
             l4.Location = new System.Drawing.Point(95, 10);
             l4.Cursor = System.Windows.Forms.Cursors.Hand;
             l4.Click += new System.EventHandler(mudarTipoRespostaClick);
@@ -226,7 +230,7 @@ namespace ETdA.Camada_de_Interface
             l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
             p2.Controls.Add(l4);
 
-            TipoEscala ti = GestaodeAnalises.getTipoEscala(perg.Cod_TipoEscala);
+            TipoEscala ti = GestaodeRespostas.getTipoEscala(perg.Cod_TipoEscala);
             
             int y = 40;
             if (ti.Numero >= -1 && ti.Numero <= 1)
@@ -305,7 +309,8 @@ namespace ETdA.Camada_de_Interface
 
         private void mudarTipoRespostaClick(object sender, EventArgs e)
         {
-            Interface_GestaoRespostas.main();
+            Label l = (Label)sender;
+            Interface_GestaoRespostas.main(int.Parse(l.Name));
         }
 
         public Interface_Perguntas(long codAnalise, object itens)
@@ -316,13 +321,30 @@ namespace ETdA.Camada_de_Interface
 
             init_perg_fa();
             init_perg_q();
+
+            toolStripStatusLabel2.Text = ficha_avaliacao.Count.ToString();
+
             init();
         }
 
         public static void main(long codAnalise, object itens)
         {
-            Interface_Perguntas ip = new Interface_Perguntas(codAnalise, itens);
+            ip = new Interface_Perguntas(codAnalise, itens);
             ip.Visible = true;
+        }
+
+        public static void reenc_New_Anser(object sender, EventArgs e)
+        {
+            ip.new_Anser(sender,e);
+        }
+        private void new_Anser(object sender, EventArgs e)
+        {
+            List<object> lst = (List<object>)sender;
+            int num_pergunta = (int)lst[0];
+            long cod_tipoResposta = (long)lst[1];
+
+            ficha_avaliacao[num_pergunta].Cod_TipoEscala = cod_tipoResposta;
+            init();
         }
     }
 }
