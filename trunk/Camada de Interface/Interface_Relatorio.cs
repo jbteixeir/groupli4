@@ -580,7 +580,9 @@ namespace ETdA.Camada_de_Interface
             //Add text after the chart.
             wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             wrdRng.InsertParagraphAfter();
-            wrdRng.InsertAfter("THE END.");
+
+            for(int w=0; w<21; w++)
+                oWord.Selection.MoveDown();
 
             
             #endregion
@@ -588,10 +590,11 @@ namespace ETdA.Camada_de_Interface
             #region Resultados
             for (int i = 0; i < zonas.Count; i++)
             {
+
                 oWord.Selection.ClearFormatting();
                 //Zonas
                 oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                oWord.ActiveWindow.Selection.Font.Size = 28;
+                oWord.ActiveWindow.Selection.Font.Size = 20;
                 oWord.ActiveWindow.Selection.TypeText((i + 1) + ". " + zonas[i].Nome);
                 oWord.Selection.TypeParagraph();
                 oWord.Selection.ClearFormatting();
@@ -602,14 +605,16 @@ namespace ETdA.Camada_de_Interface
                     Interface_Relatorio_EsperaWord.StatIncrementar_Progressbar();
                     //Itens
                     oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                    oWord.ActiveWindow.Selection.Font.Size = 24;
+                    oWord.ActiveWindow.Selection.Font.Size = 18;
                     oWord.ActiveWindow.Selection.TypeText((i + 1) + "." + (j + 1) + ". " + itens[j].NomeItem);
                     oWord.Selection.TypeParagraph();
 
                     #region Resultado Geral
                     oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                    oWord.ActiveWindow.Selection.Font.Size = 20;
+                    oWord.ActiveWindow.Selection.Font.Size = 16;
+                    oWord.ActiveWindow.Selection.Font.Bold = 1;
                     oWord.ActiveWindow.Selection.TypeText("Resultado");
+                    oWord.ActiveWindow.Selection.Font.Bold = 0;
                     oWord.Selection.TypeParagraph();
 
                     #region Cor Resultado
@@ -621,7 +626,14 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
                         oWord.ActiveWindow.Selection.Font.Size = 14;
-                        oWord.ActiveWindow.Selection.TypeText("Cor: Vermelho Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText("Vermelho    ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Resultado: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
                         oWord.Selection.TypeParagraph();
                     }
                     else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Laranja)
@@ -631,7 +643,14 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
                         oWord.ActiveWindow.Selection.Font.Size = 14;
-                        oWord.ActiveWindow.Selection.TypeText("Cor: Laranja Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText("Laranja    ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Resultado: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
                         oWord.Selection.TypeParagraph();
                     }
                     else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Amarelo)
@@ -641,7 +660,14 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
                         oWord.ActiveWindow.Selection.Font.Size = 14;
-                        oWord.ActiveWindow.Selection.TypeText("Cor: Amarelo Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText("Amarelo    ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Resultado: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
                         oWord.Selection.TypeParagraph();
                     }
                     else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
@@ -651,7 +677,14 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
                         oWord.ActiveWindow.Selection.Font.Size = 14;
-                        oWord.ActiveWindow.Selection.TypeText("Cor: Verde-Lima Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText("Verde-Lima    ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Resultado: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
                         oWord.Selection.TypeParagraph();
                     }
                     else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde)
@@ -661,7 +694,14 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
                         oWord.ActiveWindow.Selection.Font.Size = 14;
-                        oWord.ActiveWindow.Selection.TypeText("Cor: Verde Resultado: " + relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Cor: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText("Verde    ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 1;
+                        oWord.ActiveWindow.Selection.TypeText("Resultado: ");
+                        oWord.ActiveWindow.Selection.Font.Bold = 0;
+                        oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
                         oWord.Selection.TypeParagraph();
                         oWord.Selection.TypeParagraph();
                     }
@@ -675,7 +715,7 @@ namespace ETdA.Camada_de_Interface
                     if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].mostraResultadosParciais)
                     {
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                        oWord.ActiveWindow.Selection.Font.Size = 20;
+                        oWord.ActiveWindow.Selection.Font.Size = 16;
                         oWord.ActiveWindow.Selection.TypeText("Resultado Detalhado");
                         oWord.Selection.TypeParagraph();
 
@@ -816,7 +856,7 @@ namespace ETdA.Camada_de_Interface
                     if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].CheckObservacoes)
                     {
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                        oWord.ActiveWindow.Selection.Font.Size = 20;
+                        oWord.ActiveWindow.Selection.Font.Size = 16;
                         oWord.ActiveWindow.Selection.TypeText("Observações");
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Size = 14;
