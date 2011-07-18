@@ -5,10 +5,9 @@ using System.Text;
 
 namespace ETdA.Camada_de_Dados.Classes
 {
-	class FichaAvaliacao
+	class FichaAvaliacao : Formulario
 	{
 		private long codFichaAvaliacao;
-		private long codAnalise;
 		private long codZona;
 
 
@@ -22,11 +21,7 @@ namespace ETdA.Camada_de_Dados.Classes
 			get { return codZona; }
 			set { codZona = value; }
 		}
-		public long CodAnalise
-		{
-			get { return codAnalise; }
-			set { codAnalise = value; }
-		}
+		
 
 	}
 }

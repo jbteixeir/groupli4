@@ -627,8 +627,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 
-        #region Inserir Respostas Questionario
-        static public void insertRespostaFichaAvaliacao(Resposta r)
+		#region Inserir Respostas Ficha de Avaliacao
+		static public void insertRespostaFichaAvaliacao(Resposta r)
         {
             switch (r.Tipo_Resposta)
             {

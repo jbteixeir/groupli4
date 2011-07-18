@@ -15,6 +15,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return s1;
         }
 
+		#region cenas...
         private static string query2(string usr, string pw)
         {
             string s2 = "USE model;\n" + 
@@ -280,8 +281,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                          ");\n";
             return c18;
         }
+		#endregion
 
-        private static string query5()
+		private static string query5()
         {
             string q5 = "";// "GO \n";
 
@@ -301,8 +303,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                         "";// "GO";
             return q7;
         }
-
-        public static List<string> devolveQuery(string usr, string pw)
+		#region
+		public static List<string> devolveQuery(string usr, string pw)
         {
             List<string> strs = new List<string>();
             strs.Add(query1(usr));
@@ -320,3 +322,5 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
     }
 }
+
+		#endregion

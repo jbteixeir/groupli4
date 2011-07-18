@@ -8,19 +8,20 @@ using System.Text;
 using ETdA.Camada_de_Dados.DataBaseCommunicator;
 using ETdA.Camada_de_Dados.Classes;
 
-namespace CamadaNegocio
+namespace ETdA.Camada_de_Negócio
 {
     class ImporterExporter
     {
-		static public bool importarCheckList(String path,bool temCabecalho, long cod_analise, int[] items, int[] zonas)	{
+		static public bool importarCheckList(String path,bool temCabecalho, long cod_analise, long[] items, long[] zonas)	{
 			Resposta modelo = new Resposta();
 			modelo.Cod_analise = cod_analise;
 			return importaFicheiro(path,temCabecalho,null, modelo,items,zonas,null);
 		}
+
 		/**
 		 * @param zonas das fichas de avaliação pela ordem do ficheiro
 		 */
-		static public bool importarFichaAvaliacao(String path, bool temCabecalho, Resposta modelo, List<PerguntaFichaAvaliacao> perguntas, int[] zonas)
+		static public bool importarFichaAvaliacao(String path, bool temCabecalho, Resposta modelo, List<PerguntaFichaAvaliacao> perguntas, long[] zonas)
 		{
 			return importaFicheiro(path, temCabecalho, null, modelo, null, zonas, perguntas);
 		}
@@ -40,7 +41,7 @@ namespace CamadaNegocio
 		 * todos os outros devem ser -1 ou null
 		 */
 		private static bool importaFicheiro(String datapathFile, bool temCabecalho, List<PerguntaQuestionario> perguntasQ,
-			Resposta modelo, int[] items, int[] zonas, List<PerguntaFichaAvaliacao> perguntasFA)
+			Resposta modelo, long[] items, long[] zonas, List<PerguntaFichaAvaliacao> perguntasFA)
         {
             #region normalAproach
 			
