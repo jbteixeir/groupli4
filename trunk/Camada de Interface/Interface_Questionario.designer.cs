@@ -39,8 +39,6 @@
             this.Questionario.Name = "Questionario";
             this.Questionario.Size = new System.Drawing.Size(601, 366);
             this.Questionario.TabIndex = 0;
-            this.Questionario.Url = new System.Uri("http://jbteixeir.dyndns.org:54749/ETdA/Default.aspx?form=Q&usr=test_user&anl=1&pr" +
-                    "j=1", System.UriKind.Absolute);
             // 
             // Interface_Questionario
             // 

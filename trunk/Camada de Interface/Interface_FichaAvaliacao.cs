@@ -11,9 +11,12 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class Interface_FichaAvaliacao : Form
     {
-        public Interface_FichaAvaliacao()
+        public Interface_FichaAvaliacao(long codProjecto, long codAnalise)
         {
             InitializeComponent();
+            FichaAvaliacao.Url = new System.Uri("http://jbteixeir.dyndns.org:54749/ETdA/Default.aspx?form=FA&usr=" + 
+                Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codAnalise + "&prj" +
+                    "=" + codProjecto, System.UriKind.Absolute);
         }
     }
 }

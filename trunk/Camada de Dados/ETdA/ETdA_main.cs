@@ -19,6 +19,7 @@ namespace ETdA.Camada_de_Dados.ETdA
 
         private static Dictionary<long, string> cod_nome_projectos;
         private static Dictionary<long, Projecto> projectos;
+        private static string utilizador;
 
         private static void initEventos()
         {
@@ -43,6 +44,12 @@ namespace ETdA.Camada_de_Dados.ETdA
             }
         }
 
+        public static string Username
+        {
+            get{ return utilizador; }
+            set { utilizador = value; }
+        }
+ 
         public static Projecto getProjecto(long codProjecto)
         {
             if (projectos.Keys.Contains(codProjecto))
@@ -130,11 +137,11 @@ namespace ETdA.Camada_de_Dados.ETdA
                 Projecto proj = Camada_de_Dados.DataBaseCommunicator.
                     FuncsToDataBase.selectProjecto(cod);
                 projectos.Add(proj.Codigo, proj);
-                MessageBox.Show("Abiu Projecto");
+                //MessageBox.Show("Abiu Projecto");
             }
             else
             {
-                MessageBox.Show("Projecto já aberto");
+                //MessageBox.Show("Projecto já aberto");
             }
             return cod;
         }
