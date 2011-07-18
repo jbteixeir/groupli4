@@ -119,8 +119,9 @@ namespace ETdA.Camada_de_Interface
                     Panel p = new System.Windows.Forms.Panel();
                     p.Name = checkedListBox1.CheckedItems[i].ToString();
                     p.Height = 355;
-                    p.Width = 320;
+                    p.Width = panel1.Width - 14;
                     p.BorderStyle = BorderStyle.FixedSingle;
+                    p.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
 
                     Label l = new System.Windows.Forms.Label();
                     l.Width = 250;

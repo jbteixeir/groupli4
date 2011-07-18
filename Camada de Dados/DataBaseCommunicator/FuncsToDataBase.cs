@@ -216,8 +216,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             + ",'" + a.Nome + "','" + a.Tipo + "'," + (a.EstadoWebCL ? 1 : 0) + "," + (a.EstadoWebFA ? 1 : 0)
             + "," + (a.EstadoWebQ ? 1 : 0) + ");" + " SELECT SCOPE_IDENTITY();";
 
-            MessageBox.Show(query);
-
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             r.Read();
@@ -1025,6 +1023,128 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return -1;
         }
         #endregion
+
+        #endregion
+
+        #region Perguntas
+
+        public static long insertPerguntaFichaAvaliacao(PerguntaFichaAvaliacao p)
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("insert into pergunta_ficha_avaliacao VALUES (");
+            a.Append(p.Cod_Analise.ToString() + ",");
+            a.Append(p.Num_Pergunta.ToString() + ",");
+            a.Append(p.Cod_Item.ToString() + ",'");
+            a.Append(p.Texto + "',");
+            a.Append(p.Cod_TipoEscala.ToString() + ");");
+            a.Append("SELECT SCOPE_IDENTITY();");
+
+            string query = a.ToString();
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            return long.Parse(r[0].ToString());
+        }
+
+        public static long insertPerguntaQuestionario(PerguntaQuestionario p)
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("insert into pergunta_questionario VALUES (");
+            a.Append(p.Cod_Analise.ToString() + ",");
+            a.Append(p.Num_Pergunta.ToString() + ",");
+            a.Append(p.Cod_zona.ToString() + ",");
+            a.Append(p.Cod_Item.ToString() + ",");
+            a.Append(p.Cod_TipoEscala.ToString() + ",'");
+            a.Append(p.Texto + "','");
+            a.Append(p.TipoQuestao + "');");
+            a.Append("SELECT SCOPE_IDENTITY();");
+
+            string query = a.ToString();
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            return long.Parse(r[0].ToString());
+        }
+
+        public static bool isFAcreated(long codAnalise)
+        {
+            string query = "select count(*) from pergunta_ficha_avaliacao where cod_analise = " + codAnalise + ";";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            return (int.Parse(r[0].ToString()) > 0) ? true : false; 
+        }
+
+        public static bool isQTcreated(long codAnalise)
+        {
+            string query = "select count(*) from pergunta_questionario where cod_analise = " + codAnalise + ";";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            return (int.Parse(r[0].ToString()) > 0) ? true : false; 
+        }
+
+        public static bool isFAOnline(long codAnalise)
+        {
+            string query = "select estadoWebFichaAvaliacao from analise where cod_analise = " + codAnalise + ";";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            return (int.Parse(r[0].ToString()) == 1) ? true : false; 
+        }
+
+        public static bool isQTOnline(long codAnalise)
+        {
+            string query = "select estadoWebQuestionario from analise where cod_analise = " + codAnalise + ";";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            return (int.Parse(r[0].ToString()) == 1) ? true : false;
+        }
+
+        public static bool haveAnswerFA(long codAnalise)
+        {
+            string query = "select count(*) from resposta_ficha_avaliacao_numero where cod_analise = " + codAnalise + ";";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            return (int.Parse(r[0].ToString()) > 0) ? true : false; 
+        }
+
+        public static bool haveAnswerQT(long codAnalise)
+        {
+            bool b;
+            string query = "select count(*) from resposta_questionario_numero where cod_analise = " + codAnalise + ";";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            b = (int.Parse(r[0].ToString()) > 0) ? true : false;
+            if (b) return b;
+
+            query = "select count(*) from respostas_questionarios_string where cod_analise = " + codAnalise + ";";
+
+            r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            b = (int.Parse(r[0].ToString()) > 0) ? true : false;
+            if (b) return b;
+
+            query = "select count(*) from rresposta_questionario_memo where cod_analise = " + codAnalise + ";";
+
+            r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            b = (int.Parse(r[0].ToString()) > 0) ? true : false;
+            return b;
+        }
 
         #endregion
     }

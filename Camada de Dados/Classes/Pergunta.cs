@@ -73,5 +73,18 @@ namespace ETdA.Camada_de_Dados.Classes
 			get { return cod_TipoEscala; }
 			set { cod_TipoEscala = value; }
 		}
+
+        public string ToString()
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("Pergunta:\n");
+            a.Append("Cod_Pergunta: " + cod_Pergunta.ToString() + "\n");
+            a.Append("Cod_Analise: " + cod_Analise.ToString() + "\n");
+            a.Append("Número Pergunta: " + num_Pergunta.ToString() + "\n");
+            a.Append("Cod_Item: " + cod_Item.ToString() + "\n");
+            a.Append("Texto: " + texto + "\n");
+            a.Append("Cod_TipoEscala: " + cod_TipoEscala.ToString() + "\n");
+            return a.ToString();
+        }
 	}
 }

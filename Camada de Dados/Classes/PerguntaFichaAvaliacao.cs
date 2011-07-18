@@ -14,5 +14,13 @@ namespace ETdA.Camada_de_Dados.Classes
         base(cod_Pergunta, num_Pergunta, cod_Item, texto, cod_TipoEscala){}
 
         public PerguntaFichaAvaliacao() : base() { }
+
+        public string ToString()
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("Pergunta Ficha Avaliação:\n");
+            a.Append(base.ToString());
+            return a.ToString();
+        }
 	}
 }
