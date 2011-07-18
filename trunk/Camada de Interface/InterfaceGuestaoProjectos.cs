@@ -360,23 +360,25 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l3);
 
+                /*
                 System.Windows.Forms.Label l4 =
                     new System.Windows.Forms.Label();
                 l4.Width = 150;
                 l4.Text = "Importar Dados de Ficheiro";
                 l4.Location = new System.Drawing.Point(7, 110);
                 l4.Cursor = System.Windows.Forms.Cursors.Hand;
-                //l4.Click += new System.EventHandler(this.OpenProjectClick);
+                l4.Click += new System.EventHandler(this.OpenProjectClick);
                 l4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-
+                 
                 p.Controls.Add(l4);
-
+                * */
                 System.Windows.Forms.Label l5 =
                     new System.Windows.Forms.Label();
                 l5.Width = 200;
                 l5.Text = "Importar Dados Manualmente";
-                l5.Location = new System.Drawing.Point(217, 110);
+                //l5.Location = new System.Drawing.Point(217, 110);
+                l5.Location = new System.Drawing.Point(7, 110);
                 l5.Cursor = System.Windows.Forms.Cursors.Hand;
                 l5.Click += new System.EventHandler(this.InserirManualClick);
                 l5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -652,10 +654,11 @@ namespace ETdA.Camada_de_Interface
 
         private void InserirManualClick(object sender, EventArgs e)
         {
-            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
-            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            string[] cods = tabControl1.SelectedTab.Name.Split('.');
+            long codp = long.Parse(cods[0]);
+            long coda = long.Parse(cods[1]);
 
-            Interface_IntroduzirManualmente.main(codProjecto,codAnalise);
+            Interface_IntroduzirManualmente.main(codp,coda);
 
         }
 
