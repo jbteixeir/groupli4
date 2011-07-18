@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="Camada de Dados\Classes\Estruturas\Tuplo.cs" />
     <Compile Include="Camada de Dados\Classes\FichaAvaliacao.cs" />
+    <Compile Include="Camada de Dados\Classes\Formulario.cs" />
     <Compile Include="Camada de Dados\Classes\Pergunta.cs" />
     <Compile Include="Camada de Dados\Classes\PerguntaFichaAvaliacao.cs" />
     <Compile Include="Camada de Dados\Classes\PerguntaQuestionario.cs" />
@@ -114,8 +115,6 @@
     <Compile Include="Camada de Dados\Classes\Analise.cs" />
     <Compile Include="Camada de Dados\Classes\EscalaResposta.cs" />
     <Compile Include="Camada de Dados\Classes\Item.cs" />
-    <Compile Include="Camada de Dados\Classes\Questao.cs" />
-    <Compile Include="Camada de Dados\Classes\Formulario.cs" />
     <Compile Include="Camada de Dados\Classes\Projecto.cs" />
     <Compile Include="Camada de Dados\Classes\Relatorio.cs" />
     <Compile Include="Camada de Dados\Classes\Resposta.cs" />
@@ -174,6 +173,12 @@
     </Compile>
     <Compile Include="Camada de Interface\Interface_GestaoRespostas.Designer.cs">
       <DependentUpon>Interface_GestaoRespostas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Importer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Importer.Designer.cs">
+      <DependentUpon>Interface_Importer.cs</DependentUpon>
     </Compile>
     <Compile Include="Camada de Interface\Interface_Perguntas.cs">
       <SubType>Form</SubType>
@@ -257,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_GestaoRespostas.resx">
       <DependentUpon>Interface_GestaoRespostas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_Importer.resx">
+      <DependentUpon>Interface_Importer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Perguntas.resx">
       <DependentUpon>Interface_Perguntas.cs</DependentUpon>
