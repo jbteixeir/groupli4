@@ -199,12 +199,6 @@
     <Compile Include="Camada de Interface\Interface_Relatorio_EsperaWord.Designer.cs">
       <DependentUpon>Interface_Relatorio_EsperaWord.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\teste2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Camada de Interface\teste2.Designer.cs">
-      <DependentUpon>teste2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
     <Compile Include="Camada de Negócio\GestaodeProjectos.cs" />
@@ -287,9 +281,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Relatorio_EsperaWord.resx">
       <DependentUpon>Interface_Relatorio_EsperaWord.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\teste2.resx">
-      <DependentUpon>teste2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
