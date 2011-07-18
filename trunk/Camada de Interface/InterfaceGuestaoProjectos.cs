@@ -131,14 +131,14 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l1 =
                     new System.Windows.Forms.Label();
                 l1.Text = "Bem Vindo";
-                l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                l1.Location = new System.Drawing.Point(7, 7);
+                l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                l1.Location = new Point(7, 7);
                 l1.Size = new System.Drawing.Size(111, 29);
 
                 p.Controls.Add(l1);
                 System.Windows.Forms.PictureBox pictureBox1 = new System.Windows.Forms.PictureBox();
-                setImage(pictureBox1,global::ETdA.Properties.Resources._1309271576_folder_add);
-                pictureBox1.Location = new System.Drawing.Point(0, 40);
+                setImage(pictureBox1, global::ETdA.Properties.Resources._1309271576_folder_add);
+                pictureBox1.Location = new Point(0, 40);
                 pictureBox1.Name = "pictureBox1";
                 pictureBox1.Size = new System.Drawing.Size(25, 25);
                 pictureBox1.TabIndex = 1;
@@ -150,7 +150,7 @@ namespace ETdA.Camada_de_Interface
                     new System.Windows.Forms.Label();
                 l2.Width = 200;
                 l2.Text = "Criar Novo Projecto";
-                l2.Location = new System.Drawing.Point(26, 40);
+                l2.Location = new Point(26, 40);
                 l2.Cursor = System.Windows.Forms.Cursors.Hand;
                 l2.Click += new System.EventHandler(CriarProjectoClick);
                 l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -161,7 +161,7 @@ namespace ETdA.Camada_de_Interface
 
                 System.Windows.Forms.PictureBox pictureBox2 = new System.Windows.Forms.PictureBox();
                 setImage(pictureBox2, global::ETdA.Properties.Resources._1309271471_file_add);
-                pictureBox2.Location = new System.Drawing.Point(0, 79);
+                pictureBox2.Location = new Point(0, 79);
                 pictureBox2.Name = "pictureBox2";
                 pictureBox2.Size = new System.Drawing.Size(25, 25);
                 pictureBox2.TabIndex = 1;
@@ -172,7 +172,7 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l3 =
                     new System.Windows.Forms.Label();
                 l3.Text = "Abrir Projecto";
-                l3.Location = new System.Drawing.Point(26, 79);
+                l3.Location = new Point(26, 79);
                 l3.Size = new System.Drawing.Size(250, 25);
                 l3.Cursor = System.Windows.Forms.Cursors.Hand;
                 //l3.Click += new System.EventHandler(this.OpenProjectClick);
@@ -184,8 +184,8 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l4 =
                     new System.Windows.Forms.Label();
                 l4.Text = "Projectos Recentes";
-                l4.Location = new System.Drawing.Point(7, 120);
-                l4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                l4.Location = new Point(7, 120);
+                l4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
                 l4.Size = new System.Drawing.Size(250, 29);
 
                 p.Controls.Add(l4);
@@ -206,7 +206,7 @@ namespace ETdA.Camada_de_Interface
                                 new System.Windows.Forms.Label();
 
                             p1.Text = s;
-                            p1.Location = new System.Drawing.Point(x, y);
+                            p1.Location = new Point(x, y);
                             p1.Cursor = System.Windows.Forms.Cursors.Hand;
                             p1.Click += new System.EventHandler(this.OpenProjectClick);
                             p1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -229,12 +229,12 @@ namespace ETdA.Camada_de_Interface
         // rdone
         private void initProgetPage(string nome_projecto, long codp)
         {
-            if (!tabPages.Contains(""+codp))
+            if (!tabPages.Contains("" + codp))
             {
-                tabPages.Add(""+codp);
+                tabPages.Add("" + codp);
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
-                p.Name = ""+codp;
+                p.Name = "" + codp;
                 p.AutoScroll = true;
                 p.Text = nome_projecto;
                 p.Size = new System.Drawing.Size(218, 385);
@@ -248,9 +248,9 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l1 =
                     new System.Windows.Forms.Label();
                 l1.Text = "Nova Analise";
-                l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, 
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                l1.Location = new System.Drawing.Point(26, 20);
+                l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
+                l1.Location = new Point(26, 20);
                 l1.Cursor = System.Windows.Forms.Cursors.Hand;
                 l1.Click += new System.EventHandler(CriarAnaliseClick);
                 l1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -261,18 +261,18 @@ namespace ETdA.Camada_de_Interface
 
                 System.Windows.Forms.PictureBox pictureBox1 = new System.Windows.Forms.PictureBox();
                 setImage(pictureBox1, global::ETdA.Properties.Resources._1309271471_file_add);
-                pictureBox1.Location = new System.Drawing.Point(0, 20);
+                pictureBox1.Location = new Point(0, 20);
                 pictureBox1.Name = "pictureBox1";
-                pictureBox1.Size = new System.Drawing.Size(25,25);
+                pictureBox1.Size = new System.Drawing.Size(25, 25);
 
                 p.Controls.Add(pictureBox1);
 
                 System.Windows.Forms.Label l2 =
                     new System.Windows.Forms.Label();
                 l2.Text = "Analises";
-                l2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular,
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                l2.Location = new System.Drawing.Point(0, 100);
+                l2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
+                l2.Location = new Point(0, 100);
                 l2.Size = new System.Drawing.Size(250, 25);
 
                 p.Controls.Add(l2);
@@ -295,7 +295,7 @@ namespace ETdA.Camada_de_Interface
                             p1.Height = 30;
 
                             p1.Text = s;
-                            p1.Location = new System.Drawing.Point(x, y);
+                            p1.Location = new Point(x, y);
                             p1.Cursor = System.Windows.Forms.Cursors.Hand;
                             p1.Click += new System.EventHandler(OpenAnaliseClick);
                             p1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -305,18 +305,18 @@ namespace ETdA.Camada_de_Interface
                     }
                 }
             }
-            tabControl1.SelectedIndex = getTabNumber(""+codp);
+            tabControl1.SelectedIndex = getTabNumber("" + codp);
         }
 
         // rdone
         private void initAnalisePage(long codp, string nome_analise, long coda)
         {
-            if (!tabPages.Contains(""+codp + "." + coda))
+            if (!tabPages.Contains("" + codp + "." + coda))
             {
                 tabPages.Add("" + codp + "." + coda);
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
-                p.Name = ""+codp + "." + ""+coda;
+                p.Name = "" + codp + "." + "" + coda;
                 p.AutoScroll = true;
                 p.Text = nome_analise;
                 p.Size = new System.Drawing.Size(218, 385);
@@ -327,10 +327,19 @@ namespace ETdA.Camada_de_Interface
 
                 this.tabControl1.Controls.Add(p);
 
+                System.Windows.Forms.Label lconsulta =
+                   new System.Windows.Forms.Label();
+                lconsulta.Text = "Consultar";
+                lconsulta.Location = new Point(7, 17);
+                lconsulta.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
+
+                p.Controls.Add(lconsulta);
+
                 System.Windows.Forms.Label l1 =
                     new System.Windows.Forms.Label();
-                l1.Text = "Ver Itens";
-                l1.Location = new System.Drawing.Point(7, 7);
+                l1.Text = "Itens";
+                l1.Location = new Point(15, 47);
                 l1.Cursor = System.Windows.Forms.Cursors.Hand;
                 l1.Click += new System.EventHandler(this.OpenItensClick);
                 l1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -340,8 +349,8 @@ namespace ETdA.Camada_de_Interface
 
                 System.Windows.Forms.Label l2 =
                     new System.Windows.Forms.Label();
-                l2.Text = "Ver Zonas";
-                l2.Location = new System.Drawing.Point(7, 30);
+                l2.Text = "Zonas";
+                l2.Location = new Point(15, 70);
                 l2.Cursor = System.Windows.Forms.Cursors.Hand;
                 l2.Click += new System.EventHandler(this.OpenZonasClick);
                 l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -349,10 +358,20 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l2);
 
+                System.Windows.Forms.Label lrel =
+                   new System.Windows.Forms.Label();
+                lrel.Text = "Relatório";
+                lrel.Location = new Point(7, 100);
+                lrel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
+
+                p.Controls.Add(lrel);
+
+
                 System.Windows.Forms.Label l3 =
                     new System.Windows.Forms.Label();
                 l3.Text = "Gerar Relatorio";
-                l3.Location = new System.Drawing.Point(7, 80);
+                l3.Location = new Point(15, 130);
                 l3.Cursor = System.Windows.Forms.Cursors.Hand;
                 l3.Click += new System.EventHandler(this.GerarRelatorio);
                 l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -373,12 +392,22 @@ namespace ETdA.Camada_de_Interface
                  
                 p.Controls.Add(l4);
                 * */
+
+                System.Windows.Forms.Label ldados =
+                   new System.Windows.Forms.Label();
+                ldados.Text = "Dados";
+                ldados.Location = new Point(7, 160);
+                ldados.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
+
+                p.Controls.Add(ldados);
+
                 System.Windows.Forms.Label l5 =
                     new System.Windows.Forms.Label();
                 l5.Width = 200;
-                l5.Text = "Importar Dados Manualmente";
+                l5.Text = "Inserir Dados Manualmente";
                 //l5.Location = new System.Drawing.Point(217, 110);
-                l5.Location = new System.Drawing.Point(7, 110);
+                l5.Location = new Point(15, 190);
                 l5.Cursor = System.Windows.Forms.Cursors.Hand;
                 l5.Click += new System.EventHandler(this.InserirManualClick);
                 l5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -386,11 +415,22 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l5);
 
+
+                System.Windows.Forms.Label lfo =
+                   new System.Windows.Forms.Label();
+                lfo.Text = "Formulários Online";
+                lfo.Location = new Point(7, 220);
+                lfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
+
+                p.Controls.Add(lfo);
+
+
                 System.Windows.Forms.Label l6 =
                     new System.Windows.Forms.Label();
                 l6.Width = 150;
                 l6.Text = "Gerar Formulários Online";
-                l6.Location = new System.Drawing.Point(7, 150);
+                l6.Location = new Point(15, 250);
                 l6.Cursor = System.Windows.Forms.Cursors.Hand;
                 l6.Click += new System.EventHandler(this.PerguntasAction);
                 l6.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -401,8 +441,8 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l7 =
                     new System.Windows.Forms.Label();
                 l7.Width = 150;
-                l7.Text = "Website CheckList";
-                l7.Location = new System.Drawing.Point(190, 150);
+                l7.Text = "CheckList Online";
+                l7.Location = new Point(15, 280);
 
                 p.Controls.Add(l7);
 
@@ -410,7 +450,7 @@ namespace ETdA.Camada_de_Interface
                 checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
 
                 checkBox1.Text = "Activar";
-                checkBox1.Location = new System.Drawing.Point(350, 150);
+                checkBox1.Location = new Point(175, 275);
                 //l8.Click += new System.EventHandler(this.OpenProjectClick);
 
                 p.Controls.Add(checkBox1);
@@ -418,8 +458,8 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l8 =
                     new System.Windows.Forms.Label();
                 l8.Width = 150;
-                l8.Text = "Website Ficha de Avaliação";
-                l8.Location = new System.Drawing.Point(190, 180);
+                l8.Text = "Ficha de Avaliação Online";
+                l8.Location = new Point(15, 310);
 
                 p.Controls.Add(l8);
 
@@ -427,7 +467,7 @@ namespace ETdA.Camada_de_Interface
                 checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
 
                 checkBox2.Text = "Activar";
-                checkBox2.Location = new System.Drawing.Point(350, 180);
+                checkBox2.Location = new Point(175, 305);
                 //l8.Click += new System.EventHandler(this.OpenProjectClick);
 
                 p.Controls.Add(checkBox2);
@@ -435,8 +475,8 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l9 =
                     new System.Windows.Forms.Label();
                 l9.Width = 150;
-                l9.Text = "Website Ficha de Avaliação";
-                l9.Location = new System.Drawing.Point(190, 210);
+                l9.Text = "Questionário Online";
+                l9.Location = new Point(15, 340);
 
                 p.Controls.Add(l9);
 
@@ -444,7 +484,7 @@ namespace ETdA.Camada_de_Interface
                 checkBox3.Appearance = System.Windows.Forms.Appearance.Button;
 
                 checkBox3.Text = "Activar";
-                checkBox3.Location = new System.Drawing.Point(350, 210);
+                checkBox3.Location = new Point(175, 335);
                 //l8.Click += new System.EventHandler(this.OpenProjectClick);
 
                 p.Controls.Add(checkBox3);
