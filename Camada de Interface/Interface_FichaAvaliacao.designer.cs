@@ -39,8 +39,6 @@
             this.FichaAvaliacao.Name = "FichaAvaliacao";
             this.FichaAvaliacao.Size = new System.Drawing.Size(620, 366);
             this.FichaAvaliacao.TabIndex = 0;
-            this.FichaAvaliacao.Url = new System.Uri("http://jbteixeir.dyndns.org:54749/ETdA/Default.aspx?form=FA&usr=test_user&anl=1&p" +
-                    "rj=1", System.UriKind.Absolute);
             // 
             // Interface_FichaAvaliacao
             // 

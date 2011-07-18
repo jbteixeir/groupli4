@@ -39,8 +39,7 @@
             this.CheckList.Name = "CheckList";
             this.CheckList.Size = new System.Drawing.Size(594, 411);
             this.CheckList.TabIndex = 0;
-            this.CheckList.Url = new System.Uri("http://jbteixeir.dyndns.org:54749/ETdA/Default.aspx?form=CL&usr=test_user&anl=1&p" +
-                    "rj=1", System.UriKind.Absolute);
+
             this.CheckList.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.CheckList_DocumentCompleted);
             // 
             // Interface_CheckList

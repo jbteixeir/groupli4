@@ -53,6 +53,8 @@ namespace ETdA.Camada_de_Negócio
                 string password = sr.ReadLine();
                 sr.Close();
 
+                Camada_de_Dados.ETdA.ETdA.Username = username;
+
                 return Camada_de_Dados.ETdA.ETdA.loginAnalista(server, database, username, password);
             }
             catch
@@ -74,6 +76,8 @@ namespace ETdA.Camada_de_Negócio
                 string server = sr.ReadLine();
                 string database = sr.ReadLine();
                 sr.Close();
+
+                Camada_de_Dados.ETdA.ETdA.Username = username;
 
                 return Camada_de_Dados.ETdA.ETdA.loginAnalista(server, database, username, password);
             }
