@@ -37,5 +37,55 @@ namespace ETdA.Camada_de_Negócio
                 }
             return lst;
         }
+
+        public static List<PerguntaFichaAvaliacao> insert_PerguntasFA(List<PerguntaFichaAvaliacao> lst)
+        {
+            foreach (PerguntaFichaAvaliacao fa in lst)
+            {
+                long cod = FuncsToDataBase.insertPerguntaFichaAvaliacao(fa);
+                fa.Cod_Pergunta = cod;
+            }
+            return lst;
+        }
+
+        public static List<PerguntaQuestionario> insert_PerguntasQT(List<PerguntaQuestionario> lst)
+        {
+            foreach (PerguntaQuestionario qt in lst)
+            {
+                long cod = FuncsToDataBase.insertPerguntaQuestionario(qt);
+                qt.Cod_Pergunta = cod;
+            }
+            return lst;
+        }
+
+        public static bool isFAcreated(long codAnalise)
+        {
+            return FuncsToDataBase.isFAcreated(codAnalise);
+        }
+
+        public static bool isQTcreated(long codAnalise)
+        {
+            return FuncsToDataBase.isQTcreated(codAnalise);
+        }
+
+        public static bool canEditFA(long codAnalise)
+        {
+            bool a = FuncsToDataBase.isFAOnline(codAnalise);
+            bool b = FuncsToDataBase.haveAnswerFA(codAnalise);
+
+            if (b) return false;
+            else if (a) return false;
+            else return true;
+        }
+
+        public static bool canEditQT(long codAnalise)
+        {
+            bool a = FuncsToDataBase.isQTOnline(codAnalise);
+            bool b = FuncsToDataBase.haveAnswerQT(codAnalise);
+
+            if (b) return false;
+            else if (a) return false;
+            else return true;
+        }
     }
 }

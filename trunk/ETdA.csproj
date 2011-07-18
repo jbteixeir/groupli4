@@ -163,6 +163,12 @@
     <Compile Include="Camada de Interface\Interface_CriarProjecto.Designer.cs">
       <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\Interface_GestaoFormulariosOnline.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_GestaoFormulariosOnline.Designer.cs">
+      <DependentUpon>Interface_GestaoFormulariosOnline.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\Interface_GestaoRespostas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,12 @@
     <Compile Include="Camada de Interface\Interface_Perguntas.Designer.cs">
       <DependentUpon>Interface_Perguntas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\Interface_PerguntasQT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_PerguntasQT.Designer.cs">
+      <DependentUpon>Interface_PerguntasQT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\Interface_Relatorio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +198,12 @@
     </Compile>
     <Compile Include="Camada de Interface\Interface_Relatorio_EsperaWord.Designer.cs">
       <DependentUpon>Interface_Relatorio_EsperaWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camada de Interface\teste2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\teste2.Designer.cs">
+      <DependentUpon>teste2.cs</DependentUpon>
     </Compile>
     <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
@@ -240,11 +258,17 @@
     <EmbeddedResource Include="Camada de Interface\Interface_CriarProjecto.resx">
       <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_GestaoFormulariosOnline.resx">
+      <DependentUpon>Interface_GestaoFormulariosOnline.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_GestaoRespostas.resx">
       <DependentUpon>Interface_GestaoRespostas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Perguntas.resx">
       <DependentUpon>Interface_Perguntas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_PerguntasQT.resx">
+      <DependentUpon>Interface_PerguntasQT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Relatorio.resx">
       <DependentUpon>Interface_Relatorio.cs</DependentUpon>
@@ -263,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Relatorio_EsperaWord.resx">
       <DependentUpon>Interface_Relatorio_EsperaWord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\teste2.resx">
+      <DependentUpon>teste2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

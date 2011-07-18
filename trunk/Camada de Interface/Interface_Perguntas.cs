@@ -15,10 +15,11 @@ namespace ETdA.Camada_de_Interface
     {
         private static Interface_Perguntas ip;
         private long codAnalise;
-        private Dictionary<string, Dictionary<string, object>> panels;
+        List<TextBox> perguntas;
+        List<ComboBox> itens_pergunta;
+        Dictionary<object, object> erros;
         private List<Item> itens;
         private List<PerguntaFichaAvaliacao> ficha_avaliacao;
-        private List<PerguntaQuestionario> questionario;
 
         private string[] nomes_itens()
         {
@@ -74,7 +75,7 @@ namespace ETdA.Camada_de_Interface
             else if (i.NomeItem == "Tarefas de elevação") return elevacao;
             else if (i.NomeItem == "Restritividade") return restritividade;
             else if (i.NomeItem == "Repetitividade") return repetitividade;
-            else if (i.NomeItem == "Tomada de Decisões") return decicoes;
+            else if (i.NomeItem == "Tomada de decisões") return decicoes;
             else if (i.NomeItem == "Conteúdo") return conteudo_trabalho;
             else if (i.NomeItem == "Nível de Atenção Requerido") return atencao;
             else if (i.NomeItem == "Actividade Física") return actividade_fisica;
@@ -98,69 +99,11 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        private void init_perg_q()
-        {
-            questionario = new List<PerguntaQuestionario>();
-
-            PerguntaQuestionario p = new PerguntaQuestionario(
-                codAnalise,
-                1,
-                1,
-                -1,
-                "Idade:",
-                9,
-                "qc");
-            questionario.Add(p);
-            p = new PerguntaQuestionario(
-                codAnalise,
-                2,
-                1,
-                -1,
-                "Género",
-                8,
-                "qc");
-            questionario.Add(p);
-            p = new PerguntaQuestionario(
-                codAnalise,
-                3,
-                1,
-                -1,
-                "Profissão",
-                10,
-                "qc");
-            questionario.Add(p);
-            p = new PerguntaQuestionario(
-                codAnalise,
-                4,
-                1,
-                -1,
-                "Habilitações Literárias",
-                -1,
-                "qc");
-            questionario.Add(p);
-            p = new PerguntaQuestionario(
-                codAnalise,
-                5,
-                1,
-                -1,
-                "Qual a importância que dá às considerações ergonómicas na concepção de espaços de trabalho?",
-                3,
-                "ql");
-            questionario.Add(p);
-            p = new PerguntaQuestionario(
-                codAnalise,
-                6,
-                1,
-                -1,
-                "É cliente habitual deste estabelecimento?",
-                6,
-                "ql");
-             questionario.Add(p);
-        }
-
         private void init()
         {
             panel.Controls.Clear();
+            perguntas = new List<TextBox>();
+            itens_pergunta = new List<ComboBox>();
 
             int y = 10;
             foreach(PerguntaFichaAvaliacao fa in ficha_avaliacao)
@@ -169,8 +112,6 @@ namespace ETdA.Camada_de_Interface
 
         private int show_pergutna(Pergunta perg, int location_y)
         {
-            Dictionary<string, object> itens_panel = new Dictionary<string, object>();
-
             Panel p = new System.Windows.Forms.Panel();
             p.Name = "" + perg.Num_Pergunta;
             p.Width = panel.Width - 14;
@@ -190,8 +131,10 @@ namespace ETdA.Camada_de_Interface
             t1.Name = "t_box";
             t1.Location = new System.Drawing.Point(65, 10);
             t1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+            t1.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
+            t1.Click += new EventHandler(MouseClickActionPerformed);
             p.Controls.Add(t1);
-            itens_panel.Add("t_box", t1);
+            perguntas.Add(t1);
 
             Label l2 = new System.Windows.Forms.Label();
             l2.Width = 50;
@@ -204,8 +147,9 @@ namespace ETdA.Camada_de_Interface
             c1.Items.AddRange(nomes_itens());
             c1.SelectedIndex = numero_item(item(perg.Cod_Item));
             c1.Location = new System.Drawing.Point(65, 40);
+            c1.SelectedIndexChanged += new EventHandler(MouseClickActionPerformed);
             p.Controls.Add(c1);
-            itens_panel.Add("t_combo", c1);
+            itens_pergunta.Add(c1);
 
             Panel p2 = new System.Windows.Forms.Panel();
             p2.Name = "Respostas";
@@ -239,7 +183,9 @@ namespace ETdA.Camada_de_Interface
                 t2.Width = 100;
                 t2.Name = "t_box";
                 t2.Location = new System.Drawing.Point(10, 40);
+                t2.Enabled = false;
                 p2.Controls.Add(t2);
+                y += 30;
             }
             else if (ti.Numero == -2)
             {
@@ -273,26 +219,6 @@ namespace ETdA.Camada_de_Interface
             return p.Height;
         }
 
-        /*
-        private void show_add(int location_y)
-        {
-            Panel p = new System.Windows.Forms.Panel();
-            p.Width = 500;
-            p.BorderStyle = BorderStyle.FixedSingle;
-            p.Location = new System.Drawing.Point(7, location_y);
-
-            Label l = new System.Windows.Forms.Label();
-            l.Width = 200;
-            l.Text = "Mudar Tipo Resposta";
-            l.Location = new System.Drawing.Point(95, 10);
-            l.Cursor = System.Windows.Forms.Cursors.Hand;
-            l.Click += new System.EventHandler(adcionarPerguntaClick);
-            l.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-            l.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-            p.Controls.Add(l);
-        }
-        */
-
         private void MouseEnterAction(object sender, EventArgs e)
         {
             Label t = (Label)sender;
@@ -310,7 +236,7 @@ namespace ETdA.Camada_de_Interface
         private void mudarTipoRespostaClick(object sender, EventArgs e)
         {
             Label l = (Label)sender;
-            Interface_GestaoRespostas.main(int.Parse(l.Name));
+            Interface_GestaoRespostas.main(int.Parse(l.Name),true);
         }
 
         public Interface_Perguntas(long codAnalise, object itens)
@@ -319,8 +245,8 @@ namespace ETdA.Camada_de_Interface
             this.codAnalise = codAnalise;
             this.itens = (List<Item>)itens;
 
+            erros = new Dictionary<object, object>();
             init_perg_fa();
-            init_perg_q();
 
             toolStripStatusLabel2.Text = ficha_avaliacao.Count.ToString();
 
@@ -345,6 +271,129 @@ namespace ETdA.Camada_de_Interface
 
             ficha_avaliacao[num_pergunta].Cod_TipoEscala = cod_tipoResposta;
             init();
+        }
+
+        private void CancelarActionPerformed(object sender, EventArgs e)
+        {
+            end_Frame();
+        }
+
+        private void end_Frame()
+        {
+            Dispose();
+            Close();
+        }
+
+        private void Done_ActionPerformed(object sender, EventArgs e)
+        {
+            if (!verifica_Erros())
+            {
+                MessageBox.Show("É necessário corrigir os erros.");
+            }
+            else
+            {
+                for (int i = 0; i < ficha_avaliacao.Count; i++)
+                {
+                    ficha_avaliacao[i].Texto = perguntas[i].Text;
+                    ficha_avaliacao[i].Cod_Item = itens[itens_pergunta[i].SelectedIndex].CodigoItem;
+                }
+
+                GestaodeRespostas.insert_PerguntasFA(ficha_avaliacao);
+                end_Frame();
+            }
+        }
+
+        private bool verifica_Erros()
+        {
+            bool ok = true;
+            for (int i = 0; i < perguntas.Count ; i++)
+                if (!pergunta_valida(perguntas[i].Text))
+                {
+                    ErrorProvider err = new ErrorProvider();
+                    err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    err.SetError(perguntas[i], "O texto desta pergunta não é válido.");
+                    if (!erros.ContainsKey(perguntas[i]))
+                        erros.Add(perguntas[i], err);
+                    ok = false;
+                }
+
+            for (int i = 0; i < itens_pergunta.Count && !erros.ContainsKey(itens_pergunta[i]); i++)
+            {
+                List<object> objs = new List<object>();
+                List<ErrorProvider> lst = new List<ErrorProvider>();
+                for (int j = i + 1; j < itens_pergunta.Count && !erros.ContainsKey(itens_pergunta[j]); j++)
+                    if (itens_pergunta[i].SelectedIndex == itens_pergunta[j].SelectedIndex)
+                    {
+                        if (!objs.Contains(itens_pergunta[i]))
+                        {
+                            ErrorProvider err1 = new ErrorProvider();
+                            err1.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err1.SetError(itens_pergunta[i], "Existem duas perguntas com o mesmo item.");
+                                lst.Add(err1);
+                                objs.Add(itens_pergunta[i]);
+                        }
+
+                        ErrorProvider err2 = new ErrorProvider();
+                        err2.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err2.SetError(itens_pergunta[j], "Existem duas perguntas com o mesmo item.");
+                        lst.Add(err2);
+                        objs.Add(itens_pergunta[j]);
+
+                        ok = false;
+                    }
+                List<object> listas = new List<object>();
+                listas.Add(lst);
+                listas.Add(objs);
+                foreach (object b in objs)
+                    if (!erros.ContainsKey(b))
+                        erros.Add(b, listas);
+            }
+            return ok;
+        }
+
+        private bool pergunta_valida(string s)
+        {
+            if (s == "") return false;
+            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789" +
+                            "áàãâéèêíìîóòôõúùûçÁÀÂÃÉÈÊÍÌÎÓÒÕÔÚÙÛ \t,.;:/()[]{}'?!";
+            bool found = true;
+            for (int i = 0; i < s.Length && found; i++)
+                found = possiveis.Contains(s[i]);
+            return found;
+        }
+
+        private void KeyPressActionPerformed(object sender, KeyPressEventArgs e)
+        {
+            if (erros.Keys.Contains(sender))
+            {
+                ErrorProvider err = (ErrorProvider)erros[sender];
+                err.Clear();
+                erros.Remove(sender);
+            }
+        }
+
+        private void MouseClickActionPerformed(object sender, EventArgs e)
+        {
+            if (erros.Keys.Contains(sender))
+            {
+                if (sender.GetType().ToString() == new ComboBox().GetType().ToString())
+                {
+                    List<object> listas = (List<object>)erros[sender];
+                    List<ErrorProvider> es = (List<ErrorProvider>)listas[0];
+                    List<object> objs = (List<object>)listas[1];
+
+                    foreach (ErrorProvider ep in es)
+                        ep.Clear();
+                    foreach (object o in objs)
+                        erros.Remove(o);
+                }
+                else
+                {
+                    ErrorProvider err = (ErrorProvider)erros[sender];
+                    err.Clear();
+                    erros.Remove(sender);
+                }
+            }
         }
     }
 }

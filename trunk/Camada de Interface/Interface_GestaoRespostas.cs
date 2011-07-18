@@ -16,18 +16,24 @@ namespace ETdA.Camada_de_Interface
         private int num_pergunta;
         private Dictionary<string, List<TipoEscala>> resps;
         private List<TipoEscala> novos;
+        private bool fa;
 
         private delegate void eventoEventHandler(object sender, EventArgs e);
         private static event eventoEventHandler done_action;
 
         // revisto
-        public Interface_GestaoRespostas(int num_perg)
+        public Interface_GestaoRespostas(int num_perg, bool fa)
         {
+            this.fa = fa;
             InitializeComponent();
             panel1.AutoScroll = true;
 
-            done_action += new eventoEventHandler(
-               Camada_de_Interface.Interface_Perguntas.reenc_New_Anser);
+            if (fa)
+                done_action += new eventoEventHandler(
+                   Camada_de_Interface.Interface_Perguntas.reenc_New_Anser);
+            else
+                done_action += new eventoEventHandler(
+                   Camada_de_Interface.Interface_PerguntasQT.reenc_New_Anser);
 
             num_pergunta = num_perg;
             resps = GestaodeRespostas.getTipResposta();
@@ -36,9 +42,9 @@ namespace ETdA.Camada_de_Interface
         }
 
         // revisto
-        public static void main(int num_perg)
+        public static void main(int num_perg, bool fa)
         {
-            Interface_GestaoRespostas igr = new Interface_GestaoRespostas(num_perg);
+            Interface_GestaoRespostas igr = new Interface_GestaoRespostas(num_perg,fa);
             igr.Visible = true;
         }
 
@@ -70,7 +76,6 @@ namespace ETdA.Camada_de_Interface
             int value2 = 0;
             if (DualInputBox("Novo Tipo", "Nome:", ref value1, ref value2) == DialogResult.OK)
             {
-                MessageBox.Show(value1 + " " + value2.ToString());
                 int nu;
                 switch (value2)
                 {

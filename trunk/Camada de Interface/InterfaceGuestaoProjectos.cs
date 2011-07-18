@@ -118,7 +118,6 @@ namespace ETdA.Camada_de_Interface
                     new System.Windows.Forms.TabPage();
                 p.Name = "StartPage";
                 p.AutoScroll = true;
-                p.BackColor = Color.LightCyan;
 
                 ContextMenu m = new ContextMenu();
                 m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
@@ -294,7 +293,6 @@ namespace ETdA.Camada_de_Interface
                                 new System.Windows.Forms.Label();
 
                             p1.Height = 30;
-                            //MessageBox.Show(p1.Width + " " + p1.Height);
 
                             p1.Text = s;
                             p1.Location = new System.Drawing.Point(x, y);
@@ -572,7 +570,6 @@ namespace ETdA.Camada_de_Interface
             long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
             List<string> zonas = GestaodeAnalises.getNomeZonasAnalise(codProjecto,codAnalise);
             string tipo = GestaodeAnalises.getTipoAnalise(codProjecto,codAnalise);
-            MessageBox.Show(tipo);
             Interface_CriarAnaliseZonas.main(zonas,tipo,false);
         }
 
@@ -667,8 +664,9 @@ namespace ETdA.Camada_de_Interface
             long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
             long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
             List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
+            List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codProjecto, codAnalise);
 
-            Interface_Perguntas.main(codAnalise, itens);
+            Interface_GestaoFormulariosOnline.main(codAnalise, itens, zonas);
         }
     }
 }
