@@ -311,12 +311,12 @@ namespace ETdA.Camada_de_Interface
         // rdone
         private void initAnalisePage(long codp, string nome_analise, long coda)
         {
-            if (!tabPages.Contains(""+codp + "." + coda))
+            if (!tabPages.Contains("" + codp + "." + coda))
             {
                 tabPages.Add("" + codp + "." + coda);
                 System.Windows.Forms.TabPage p =
                     new System.Windows.Forms.TabPage();
-                p.Name = ""+codp + "." + ""+coda;
+                p.Name = "" + codp + "." + "" + coda;
                 p.AutoScroll = true;
                 p.Text = nome_analise;
                 p.Size = new System.Drawing.Size(218, 385);
@@ -327,10 +327,19 @@ namespace ETdA.Camada_de_Interface
 
                 this.tabControl1.Controls.Add(p);
 
+                System.Windows.Forms.Label lconsulta =
+                   new System.Windows.Forms.Label();
+                lconsulta.Text = "Consultar";
+                lconsulta.Location = new Point(7, 17);
+                lconsulta.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
+
+                p.Controls.Add(lconsulta);
+
                 System.Windows.Forms.Label l1 =
                     new System.Windows.Forms.Label();
-                l1.Text = "Ver Itens";
-                l1.Location = new System.Drawing.Point(7, 7);
+                l1.Text = "Itens";
+                l1.Location = new Point(15, 47);
                 l1.Cursor = System.Windows.Forms.Cursors.Hand;
                 l1.Click += new System.EventHandler(this.OpenItensClick);
                 l1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -340,8 +349,8 @@ namespace ETdA.Camada_de_Interface
 
                 System.Windows.Forms.Label l2 =
                     new System.Windows.Forms.Label();
-                l2.Text = "Ver Zonas";
-                l2.Location = new System.Drawing.Point(7, 30);
+                l2.Text = "Zonas";
+                l2.Location = new Point(15, 70);
                 l2.Cursor = System.Windows.Forms.Cursors.Hand;
                 l2.Click += new System.EventHandler(this.OpenZonasClick);
                 l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -349,10 +358,20 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l2);
 
+                System.Windows.Forms.Label lrel =
+                   new System.Windows.Forms.Label();
+                lrel.Text = "Relatório";
+                lrel.Location = new Point(7, 100);
+                lrel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
+
+                p.Controls.Add(lrel);
+
+
                 System.Windows.Forms.Label l3 =
                     new System.Windows.Forms.Label();
                 l3.Text = "Gerar Relatorio";
-                l3.Location = new System.Drawing.Point(7, 80);
+                l3.Location = new Point(15, 130);
                 l3.Cursor = System.Windows.Forms.Cursors.Hand;
                 l3.Click += new System.EventHandler(this.GerarRelatorio);
                 l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -360,23 +379,21 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l3);
 
-                System.Windows.Forms.Label l4 =
-                    new System.Windows.Forms.Label();
-                l4.Width = 150;
-                l4.Text = "Importar Dados de Ficheiro";
-                l4.Location = new System.Drawing.Point(7, 110);
-                l4.Cursor = System.Windows.Forms.Cursors.Hand;
-                l4.Click += new System.EventHandler(importer);
-                l4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                System.Windows.Forms.Label ldados =
+                   new System.Windows.Forms.Label();
+                ldados.Text = "Dados";
+                ldados.Location = new Point(7, 160);
+                ldados.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
 
-                p.Controls.Add(l4);
+                p.Controls.Add(ldados);
 
                 System.Windows.Forms.Label l5 =
                     new System.Windows.Forms.Label();
                 l5.Width = 200;
-                l5.Text = "Importar Dados Manualmente";
-                l5.Location = new System.Drawing.Point(217, 110);
+                l5.Text = "Inserir Dados Manualmente";
+                //l5.Location = new System.Drawing.Point(217, 110);
+                l5.Location = new Point(15, 190);
                 l5.Cursor = System.Windows.Forms.Cursors.Hand;
                 l5.Click += new System.EventHandler(this.InserirManualClick);
                 l5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -384,11 +401,34 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l5);
 
+                System.Windows.Forms.Label l4 =
+                    new System.Windows.Forms.Label();
+                l4.Width = 150;
+                l4.Text = "Importar Dados de Ficheiro";
+                l4.Location = new System.Drawing.Point(15, 220);
+                l4.Cursor = System.Windows.Forms.Cursors.Hand;
+                l4.Click += new System.EventHandler(importer);
+                l4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                p.Controls.Add(l4);
+
+
+                System.Windows.Forms.Label lfo =
+                   new System.Windows.Forms.Label();
+                lfo.Text = "Formulários Online";
+                lfo.Location = new Point(7, 250);
+                lfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(0)));
+
+                p.Controls.Add(lfo);
+
+
                 System.Windows.Forms.Label l6 =
                     new System.Windows.Forms.Label();
                 l6.Width = 150;
                 l6.Text = "Gerar Formulários Online";
-                l6.Location = new System.Drawing.Point(7, 150);
+                l6.Location = new Point(15, 280);
                 l6.Cursor = System.Windows.Forms.Cursors.Hand;
                 l6.Click += new System.EventHandler(this.PerguntasAction);
                 l6.MouseEnter += new System.EventHandler(this.MouseEnterAction);
@@ -399,8 +439,8 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l7 =
                     new System.Windows.Forms.Label();
                 l7.Width = 150;
-                l7.Text = "Website CheckList";
-                l7.Location = new System.Drawing.Point(190, 150);
+                l7.Text = "CheckList Online";
+                l7.Location = new Point(15, 310);
 
                 p.Controls.Add(l7);
 
@@ -408,7 +448,7 @@ namespace ETdA.Camada_de_Interface
                 checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
 
                 checkBox1.Text = "Activar";
-                checkBox1.Location = new System.Drawing.Point(350, 150);
+                checkBox1.Location = new Point(175, 305);
                 //l8.Click += new System.EventHandler(this.OpenProjectClick);
 
                 p.Controls.Add(checkBox1);
@@ -416,8 +456,8 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l8 =
                     new System.Windows.Forms.Label();
                 l8.Width = 150;
-                l8.Text = "Website Ficha de Avaliação";
-                l8.Location = new System.Drawing.Point(190, 180);
+                l8.Text = "Ficha de Avaliação Online";
+                l8.Location = new Point(15, 340);
 
                 p.Controls.Add(l8);
 
@@ -425,7 +465,7 @@ namespace ETdA.Camada_de_Interface
                 checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
 
                 checkBox2.Text = "Activar";
-                checkBox2.Location = new System.Drawing.Point(350, 180);
+                checkBox2.Location = new Point(175, 335);
                 //l8.Click += new System.EventHandler(this.OpenProjectClick);
 
                 p.Controls.Add(checkBox2);
@@ -433,8 +473,8 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label l9 =
                     new System.Windows.Forms.Label();
                 l9.Width = 150;
-                l9.Text = "Website Ficha de Avaliação";
-                l9.Location = new System.Drawing.Point(190, 210);
+                l9.Text = "Questionário Online";
+                l9.Location = new Point(15, 370);
 
                 p.Controls.Add(l9);
 
@@ -442,7 +482,7 @@ namespace ETdA.Camada_de_Interface
                 checkBox3.Appearance = System.Windows.Forms.Appearance.Button;
 
                 checkBox3.Text = "Activar";
-                checkBox3.Location = new System.Drawing.Point(350, 210);
+                checkBox3.Location = new Point(175, 365);
                 //l8.Click += new System.EventHandler(this.OpenProjectClick);
 
                 p.Controls.Add(checkBox3);
