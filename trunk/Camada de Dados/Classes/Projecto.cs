@@ -12,7 +12,7 @@ namespace ETdA.Camada_de_Dados.Classes
     {
         private delegate void eventoEventHandler(object sender, EventArgs e);
         private static event eventoEventHandler evento_analise_adicionada;
-        private static event eventoEventHandler evento_analise_removida;
+		//private static event eventoEventHandler evento_analise_removida;
         //Variaveis de instância
         private long codProjecto;
         private String nomeEstabelecimento;

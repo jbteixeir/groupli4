@@ -1,42 +1,18 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace ETdA.Camada_de_Dados.Classes
 {
-    class Formulario
-    {
-        //Variaveis de Instancia
-        private String tipo;
-        private String codFormulario;
-		//private List<Questao> perguntas;
-		//private List<EscalaResposta> opcoesResposta;
-		//private List<Resposta> respostas;
+	class Formulario
+	{
+		private long codAnalise;
 
-        //Constructores
-        public Formulario()
-        {
-            tipo = "";
-            codFormulario = "";
-        }
-
-        public Formulario(String type, String codForm)
-        {
-            tipo = type;
-            codFormulario = codForm;
-        }
-
-        //Métodos
-
-        public String Tipo
-        {
-            get { return tipo; }
-            set { tipo = value; }
-        }
-
-        public String Codigo
-        {
-            get { return codFormulario; }
-            set { codFormulario = value; }
-        }
-    }
+		public long CodAnalise
+		{
+			get { return codAnalise; }
+			set { codAnalise = value; }
+		}
+	}
 }

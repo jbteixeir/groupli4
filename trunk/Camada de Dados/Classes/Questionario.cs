@@ -5,16 +5,10 @@ using System.Text;
 
 namespace ETdA.Camada_de_Dados.Classes
 {
-	class Questionario
+	class Questionario : Formulario
 	{
 		private long codQuestionario;
-		private long codAnalise;
 
-		public long CodAnalise
-		{
-			get { return codAnalise; }
-			set { codAnalise = value; }
-		}
 		public long CodQuestionario
 		{
 			get { return codQuestionario; }

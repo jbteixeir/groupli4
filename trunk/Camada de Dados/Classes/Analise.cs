@@ -19,9 +19,9 @@ namespace ETdA.Camada_de_Dados.Classes
         private Boolean estadoWebsiteFichaAvaliacao;
         private Boolean estadoWebsiteQuestionario;
         private Formulario checkList;
-        private List<Formulario> fichasAvaliacao;
-        private List<Formulario> questionarios;
-		private Relatorio relatorio;
+        private List<FichaAvaliacao> fichasAvaliacao;
+        private List<Questionario> questionarios;
+		//private Relatorio relatorio;
 
         //Constructores
 
@@ -55,8 +55,8 @@ namespace ETdA.Camada_de_Dados.Classes
             estadoWebsiteFichaAvaliacao = false;
             estadoWebsiteQuestionario = false;
             checkList = new Formulario();
-            fichasAvaliacao = new List<Formulario>();
-            questionarios = new List<Formulario>();
+            fichasAvaliacao = new List<FichaAvaliacao>();
+            questionarios = new List<Questionario>();
         }
 
         public Analise(Analise a)
@@ -71,7 +71,6 @@ namespace ETdA.Camada_de_Dados.Classes
             estadoWebsiteCheckList = a.EstadoWebCL;
             estadoWebsiteFichaAvaliacao = a.EstadoWebFA;
             estadoWebsiteQuestionario = a.EstadoWebQ;
-            checkList = a.CheckList;
             fichasAvaliacao = a.FichasAvaliacao;
             questionarios = a.Questionarios;
         }
@@ -128,17 +127,12 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return estadoWebsiteQuestionario; }
             set { estadoWebsiteQuestionario = value; }
         }
-        public Formulario CheckList
-        {
-            get { return checkList; }
-            set { checkList = value; }
-        }
-        public List<Formulario> FichasAvaliacao
+        public List<FichaAvaliacao> FichasAvaliacao
         {
             get { return fichasAvaliacao; }
             set { fichasAvaliacao = value; }
         }
-        public List<Formulario> Questionarios
+        public List<Questionario> Questionarios
         {
             get { return questionarios; }
             set { questionarios = value; }
