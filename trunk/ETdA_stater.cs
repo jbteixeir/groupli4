@@ -32,7 +32,6 @@ namespace ETdA_starter
                 else
                     MessageBox.Show("Não foi possível Ligar à base de dados", "Connection Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
             }
         }
     }
