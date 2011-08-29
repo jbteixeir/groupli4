@@ -235,7 +235,6 @@
     <Compile Include="Camada de Interface\Interface_Questionario.designer.cs">
       <DependentUpon>Interface_Questionario.cs</DependentUpon>
     </Compile>
-    <Compile Include="NoDB\FakeDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Camada de Interface\InterfaceGuestaoProjectos.resx">
       <DependentUpon>InterfaceGuestaoProjectos.cs</DependentUpon>
