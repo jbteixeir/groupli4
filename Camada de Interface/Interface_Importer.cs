@@ -68,6 +68,7 @@ namespace ETdA.Camada_de_Interface
 
 			//textBox1.Text = openFileDialog1.p;
 			textBox1.Text = folderBrowserDialog1.SelectedPath;
+            MessageBox.Show(textBox1.Text);
 		}
 
 		private void importar(object sender, EventArgs e)
@@ -83,5 +84,17 @@ namespace ETdA.Camada_de_Interface
 					break;
 			}
 		}
+
+        private void end_Frame()
+        {
+            Dispose();
+            Close();
+        }
+
+        private void CancelarActionPerformed(object sender, EventArgs e)
+        {
+            end_Frame();
+        }
+
 	}
 }
