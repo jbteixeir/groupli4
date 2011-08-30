@@ -872,6 +872,8 @@ namespace ETdA.Camada_de_Interface
                 }
                 oWord.Selection.TypeParagraph();
             }
+            Interface_Relatorio_EsperaWord.fechar();
+
             
             //Quebra de Página
             oWord.Selection.InsertNewPage();
@@ -887,14 +889,10 @@ namespace ETdA.Camada_de_Interface
             oDoc.TablesOfContents[1].UpdatePageNumbers();
 
             #endregion
+
             oWord.Visible = true;
             //Close this form.
             this.Close();
-        }
-
-        private void Interface_Relatorio_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
