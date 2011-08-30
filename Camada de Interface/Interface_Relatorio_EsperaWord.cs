@@ -65,6 +65,10 @@ namespace ETdA.Camada_de_Interface
         {
             label4.Text = item;
         }
-        
+
+        public static void fechar()
+        {
+            irew.Close();
+        }
     }
 }
