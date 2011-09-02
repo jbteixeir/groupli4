@@ -31,6 +31,7 @@ namespace ETdA.Camada_de_Dados.ETdA
         // s_final
         public static void init()
         {
+            
             initEventos();
 
             cod_nome_projectos = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();

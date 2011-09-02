@@ -28,8 +28,6 @@ namespace ETdA.Camada_de_Interface
         public static void main(long cod_projecto, long cod_analise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
             Interface_Relatorio i = new Interface_Relatorio(cod_projecto, cod_analise, nome_analise, relatorio);
-            i.ShowDialog();
-            //i.Visible = true;
         }
 
         public Interface_Relatorio(long cod_projecto, long cod_analise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
@@ -47,8 +45,21 @@ namespace ETdA.Camada_de_Interface
             this.nome_analise = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Nome;
             this.relatorio = relatorio;
 
-            InitializeComponent();
-            showRelatorio();
+            if (relatorio.NumeroRespostas == 0)
+            {
+                if (MessageBox.Show("Ainda não existem respostas. Tem a certeza que pretende continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    InitializeComponent();
+                    showRelatorio();
+                    this.ShowDialog();
+                }
+            }
+            else
+            {
+                InitializeComponent();
+                showRelatorio();
+                this.ShowDialog();
+            }
         }
 
         public void showRelatorio()
@@ -404,22 +415,17 @@ namespace ETdA.Camada_de_Interface
             Interface_Relatorio.ActiveForm.Close();
         }
 
-        private void BotaoGuardar_Click(object sender, EventArgs e)
-        {/*
-            saveFileDialog1.Filter += "Word Document (*.doc)|";
-            saveFileDialog1.ShowDialog();
-        */
-        }
 
-        private void saveFileFialog1_FileOk(object sender, EventArgs e)
-        {
-            //relatorio.Filename = saveFileDialog1.FileName;
-            //colocar aqui o codigo para gerar o documento word
-        }
-
+        //quando carrega no buttao de gerar relatorio
         private void button1_Click(object sender, EventArgs e)
         {
-            Interface_Relatorio_EsperaWord.main(zonas.Count*itens.Count);
+            //mostrar a barra de estados
+            ZonaActividadelabel.Visible = false;
+            ZonaActividadetextlabel.Visible = false;
+            Itemtextlabel.Visible = false;
+            Itemlabel.Text = "A preparar relatório...";
+            Itemlabel.Visible = true;
+            statusStrip1.Visible = true;
 
             object oMissing = System.Reflection.Missing.Value;
             object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
@@ -595,24 +601,34 @@ namespace ETdA.Camada_de_Interface
                 oWord.Selection.ClearFormatting();
                 //Zonas
                 oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                oWord.ActiveWindow.Selection.Font.Size = 20;
+                oWord.ActiveWindow.Selection.Font.Size = 16;
                 oWord.ActiveWindow.Selection.TypeText((i + 1) + ". " + zonas[i].Nome);
                 oWord.Selection.TypeParagraph();
                 oWord.Selection.ClearFormatting();
-                Interface_Relatorio_EsperaWord.StatZona(zonas[i].Nome);
+                //zona a gerar - aparece na barra
+                ZonaActividadelabel.Text = zonas[i].Nome;
                 for (int j = 0; j < itens.Count; j++)
                 {
-                    Interface_Relatorio_EsperaWord.StatItem(itens[j].NomeItem);
-                    Interface_Relatorio_EsperaWord.StatIncrementar_Progressbar();
+                    //barra de progresso
+                    GerarDocumentoBar.Value = (int)(((double)((i + 1) * (j + 1)) / (double) (zonas.Count * itens.Count)) * (double)100);
+                    //item a gerar - aparece na barra
+                    Itemlabel.Text = itens[j].NomeItem;
+                    if (ZonaActividadelabel.Visible == false)
+                    {
+                        ZonaActividadelabel.Visible = true;
+                        ZonaActividadetextlabel.Visible = true;
+                        Itemlabel.Visible = true;
+                        Itemtextlabel.Visible = true;
+                    }
                     //Itens
                     oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                    oWord.ActiveWindow.Selection.Font.Size = 18;
+                    oWord.ActiveWindow.Selection.Font.Size = 14;
                     oWord.ActiveWindow.Selection.TypeText((i + 1) + "." + (j + 1) + ". " + itens[j].NomeItem);
                     oWord.Selection.TypeParagraph();
 
                     #region Resultado Geral
                     oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                    oWord.ActiveWindow.Selection.Font.Size = 16;
+                    oWord.ActiveWindow.Selection.Font.Size = 12;
                     oWord.ActiveWindow.Selection.Font.Bold = 1;
                     oWord.ActiveWindow.Selection.TypeText("Resultado");
                     oWord.ActiveWindow.Selection.Font.Bold = 0;
@@ -626,7 +642,7 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.Font.Size = 12;
                         oWord.ActiveWindow.Selection.Font.Bold = 1;
                         oWord.ActiveWindow.Selection.TypeText("Cor: ");
                         oWord.ActiveWindow.Selection.Font.Bold = 0;
@@ -643,7 +659,7 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.Font.Size = 12;
                         oWord.ActiveWindow.Selection.Font.Bold = 1;
                         oWord.ActiveWindow.Selection.TypeText("Cor: ");
                         oWord.ActiveWindow.Selection.Font.Bold = 0;
@@ -660,7 +676,7 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.Font.Size = 12;
                         oWord.ActiveWindow.Selection.Font.Bold = 1;
                         oWord.ActiveWindow.Selection.TypeText("Cor: ");
                         oWord.ActiveWindow.Selection.Font.Bold = 0;
@@ -677,7 +693,7 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.Font.Size = 12;
                         oWord.ActiveWindow.Selection.Font.Bold = 1;
                         oWord.ActiveWindow.Selection.TypeText("Cor: ");
                         oWord.ActiveWindow.Selection.Font.Bold = 0;
@@ -694,7 +710,7 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                        oWord.ActiveWindow.Selection.Font.Size = 14;
+                        oWord.ActiveWindow.Selection.Font.Size = 12;
                         oWord.ActiveWindow.Selection.Font.Bold = 1;
                         oWord.ActiveWindow.Selection.TypeText("Cor: ");
                         oWord.ActiveWindow.Selection.Font.Bold = 0;
@@ -716,13 +732,13 @@ namespace ETdA.Camada_de_Interface
                     if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].mostraResultadosParciais)
                     {
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
-                        oWord.ActiveWindow.Selection.Font.Size = 16;
+                        oWord.ActiveWindow.Selection.Font.Size = 14;
                         oWord.ActiveWindow.Selection.TypeText("Resultado Detalhado");
                         oWord.Selection.TypeParagraph();
 
                         
                         Word.Table rdTabela = oWord.Selection.Tables.Add(oWord.Selection.Range, 4, 4, Microsoft.Office.Interop.Word.WdDefaultTableBehavior.wdWord8TableBehavior, Microsoft.Office.Interop.Word.WdAutoFitBehavior.wdAutoFitFixed);
-                        rdTabela.Range.Font.Size = 14;
+                        rdTabela.Range.Font.Size = 12;
                         rdTabela.Rows[1].Range.Font.Bold = 1;
                         rdTabela.Rows.Alignment = Word.WdRowAlignment.wdAlignRowCenter;
 
@@ -873,7 +889,6 @@ namespace ETdA.Camada_de_Interface
                 }
                 oWord.Selection.TypeParagraph();
             }
-            Interface_Relatorio_EsperaWord.fechar();
 
             
             //Quebra de Página
@@ -892,8 +907,18 @@ namespace ETdA.Camada_de_Interface
             #endregion
 
             oWord.Visible = true;
+
+            //Indicar a conclusão do gerar do relatório
+            ZonaActividadelabel.Visible = false;
+            ZonaActividadetextlabel.Visible = false;
+            Itemlabel.Visible = false;
+            Itemtextlabel.Text = "Relatório gerado com sucesso";
+            button1.Enabled = false;
+
             //Close this form.
-            this.Close();
+            //this.Close();
+
+            
         }
     }
 }
