@@ -119,24 +119,28 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="treeViewZonaItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 429</value>
+    <value>205, 421</value>
   </data>
   <data name="panelrel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>577, 394</value>
+    <value>583, 386</value>
   </data>
   <data name="BotaoCancelar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>486, 404</value>
+    <value>492, 396</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>282, 405</value>
+    <value>288, 397</value>
   </data>
   <data name="panelZonaItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>582, 439</value>
+    <value>588, 431</value>
   </data>
   <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>799, 439</value>
+    <value>807, 431</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
+    <value>215</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>799, 439</value>
+    <value>807, 431</value>
   </data>
 </root>
