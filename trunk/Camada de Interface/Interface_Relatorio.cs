@@ -405,14 +405,15 @@ namespace ETdA.Camada_de_Interface
         }
 
         private void BotaoGuardar_Click(object sender, EventArgs e)
-        {
+        {/*
             saveFileDialog1.Filter += "Word Document (*.doc)|";
             saveFileDialog1.ShowDialog();
+        */
         }
 
         private void saveFileFialog1_FileOk(object sender, EventArgs e)
         {
-            relatorio.Filename = saveFileDialog1.FileName;
+            //relatorio.Filename = saveFileDialog1.FileName;
             //colocar aqui o codigo para gerar o documento word
         }
 

@@ -19,15 +19,16 @@ namespace ETdA.Camada_de_Dados.ETdA
 
         private static Dictionary<long, string> cod_nome_projectos;
         private static Dictionary<long, Projecto> projectos;
-        private static string utilizador;
+        private static string username;
 
+        // s_final
         private static void initEventos()
         {
-            //evento_analista_registado += Camada_de_Interface.InterfaceLogin.
             evento_projecto_adicionado +=new eventoEventHandler(
                 Camada_de_Interface.InterfaceGuestaoProjectos.addProjectoReenc);
         }
 
+        // s_final
         public static void init()
         {
             initEventos();
@@ -36,20 +37,22 @@ namespace ETdA.Camada_de_Dados.ETdA
             projectos = new Dictionary<long, Projecto>();
         }
 
-        public static List<String> Nomes_Estabelecimentos
+        // s_final
+        public static Dictionary<long, string> Codes_Nomes_Estabelecimentos
         {
             get 
             {
-                return new List<string>(cod_nome_projectos.Values);
+                return new Dictionary<long,string>(cod_nome_projectos);
             }
         }
 
         public static string Username
         {
-            get{ return utilizador; }
-            set { utilizador = value; }
+            get { return username; }
+            set { username = value; }
         }
- 
+
+        // s_final
         public static Projecto getProjecto(long codProjecto)
         {
             if (projectos.Keys.Contains(codProjecto))
@@ -58,49 +61,35 @@ namespace ETdA.Camada_de_Dados.ETdA
                 return null;
         }
 
-        public static long getCodProjecto(string nome)
-        {
-            long cod = -1;
-            bool found = false;
-            for (int i = 0 ; i < cod_nome_projectos.Count && !found; i++)
-                if (cod_nome_projectos.Values.ElementAt(i) == nome)
-                {
-                    cod = cod_nome_projectos.Keys.ElementAt(i);
-                    found = true;
-                }
-            return cod;
-        }
-
         /* ------------------------------------------------------ */
         /* Metodos */
         /* ------------------------------------------------------ */
 
-        private static List<String> projectosRecentes()
+        // s_final
+        public static Dictionary<long, string> projectosRecentes()
         {
-            List<String> proj = new List<string>(cod_nome_projectos.Values);
-            List<String> projectos_recentes = new List<String>();
+            Dictionary<long, string> rs = new Dictionary<long, string>();
 
-            for (int i = 0; i < 5 && i < proj.Count; i++)
-                projectos_recentes.Add(proj[i]);
+            for (int i = 0; i < 5 && i < cod_nome_projectos.Count; i++)
+                rs.Add(cod_nome_projectos.ElementAt(i).Key, cod_nome_projectos.ElementAt(i).Value);
 
-            return projectos_recentes;
+            return rs;
         }
 
-        /* Gestao dos Projectos */
         #region Gestao Projectos
         /*
          * Verifica se Ja tem Projecto com esse nome na Base de dados
          */
+        // s_final
         public static Boolean podeAdicionarProjecto(String nomeEstabelecimento)
         {
-            List<string> p = new List<string>(cod_nome_projectos.Values);
-
-            return !p.Contains(nomeEstabelecimento);
+            return !cod_nome_projectos.Values.Contains(nomeEstabelecimento);
         }
 
         /*
          * Adiciona Novo Projecto na aplicação
          */
+        // s_final
         public static void adicionaNovoProjecto(String nomeEstabelecimento)
         {
             Projecto p = new Projecto();
@@ -112,38 +101,28 @@ namespace ETdA.Camada_de_Dados.ETdA
             cod_nome_projectos.Add(p.Codigo,p.Nome);
             projectos.Add(p.Codigo, p);
 
-            evento_projecto_adicionado(p.Nome, new EventArgs());
+            List<string> s = new List<string>();
+            s.Add(p.Codigo.ToString());
+            s.Add(p.Nome);
+
+            evento_projecto_adicionado(s, new EventArgs());
         }
 
         /*
-         * Abre um projecto com o nome de estabelecimento Recebido
+         * Abre um projecto com o código de estabelecimento
          */
-        public static long abreProjecto(string nomeEstabelecimento)
+        // s_final
+        public static void abreProjecto(long codEstabelecimento)
         {
-            long cod = -1;
-            Boolean found = false;
-            for (int i = 0; i < cod_nome_projectos.Count && !found; i++)
-            {
-                KeyValuePair<long, string> p = cod_nome_projectos.ElementAt(i);
-                if (p.Value == nomeEstabelecimento)
-                {
-                    cod = p.Key;
-                    found = true;
-                }
-            }
-
-            if (!projectos.Keys.Contains(cod))
+            if (!projectos.Keys.Contains(codEstabelecimento))
             {
                 Projecto proj = Camada_de_Dados.DataBaseCommunicator.
-                    FuncsToDataBase.selectProjecto(cod);
+                    FuncsToDataBase.selectProjecto(codEstabelecimento);
                 projectos.Add(proj.Codigo, proj);
             }
-            return cod;
         }
 
         /*
-         * Remove Projecto da aplicação
-         */
         public static void removeProjecto(String nomeEstabelecimento)
         {
             long cod = -1;
@@ -176,10 +155,9 @@ namespace ETdA.Camada_de_Dados.ETdA
             Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
                updateProjecto(p);
         }
-#endregion
-        /* Fim Gestao Projectos */
+        */
+        #endregion
 
-        /* Gestao de Analistas */
         #region Gestao Analistas
         public static bool adicionaAnalista(String username, String password)
         {
@@ -194,6 +172,5 @@ namespace ETdA.Camada_de_Dados.ETdA
                 FuncsToDataBase.ligaAnalista(server, database, username, password);
         }
         #endregion
-        /* Fim de Gestao de Analistas */
     }
 }
