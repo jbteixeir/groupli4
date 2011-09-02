@@ -10,10 +10,29 @@ namespace ETdA.Camada_de_Negócio
 {
     class GestaodeAnalises
     {
-		enum TipoAnalise { AreaComum, Actividade, Zona };
+        enum TipoAnalise { AreaComum, Actividade, Zona };
 
-		//Métodos
-		private string getDescricao(TipoAnalise t)	{
+        //Métodos
+
+        // s_final
+        public static Dictionary<long,string> getCodeNomeAnalises(long codProj)
+        {
+            return Camada_de_Dados.ETdA.ETdA.getProjecto(codProj).Cod_Name_Analise;
+        }
+
+        // s_final
+        public static void abreAnalise(long cp, long ca)
+        {
+            Camada_de_Dados.ETdA.ETdA.getProjecto(cp).abreAnalise(ca);
+        }
+
+
+
+
+
+
+
+        private string getDescricao(TipoAnalise t)	{
 			switch (t)
 			{
 				case TipoAnalise.AreaComum:
@@ -27,14 +46,9 @@ namespace ETdA.Camada_de_Negócio
 			}
 		}
 
-        public static long abreAnalise(long cp, string na){
-            return Camada_de_Dados.ETdA.ETdA.getProjecto(cp).abreAnalise(na);
-        }
 
-        public static List<string> getNomeAnalises(long cod)
-        {
-            return new List<string>(Camada_de_Dados.ETdA.ETdA.getProjecto(cod).Cod_Name_Analise.Values);
-        }
+
+
 
         public static void adicionaAnalise(Analise a, long codProjecto){
             Camada_de_Dados.ETdA.ETdA.getProjecto(codProjecto).adicionaNovaAnalise(a.Tipo, a.Nome, a.Zonas, a.Itens);
@@ -71,11 +85,6 @@ namespace ETdA.Camada_de_Negócio
                 zonas.Add(z);
             }
             return zonas;
-        }
-
-        public static long getCodAnalise(long codProjecto,string nomeAnalise)
-        {
-            return Camada_de_Dados.ETdA.ETdA.getProjecto(codProjecto).getCodigoAnalise(nomeAnalise);
         }
 
         public static bool podeAdicionarAnalise(long codProjecto, string nomeAnalise)

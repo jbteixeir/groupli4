@@ -272,6 +272,9 @@
     <EmbeddedResource Include="Camada de Interface\Interface_PerguntasQT.resx">
       <DependentUpon>Interface_PerguntasQT.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_Relatorio.pt.resx">
+      <DependentUpon>Interface_Relatorio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Relatorio.resx">
       <DependentUpon>Interface_Relatorio.cs</DependentUpon>
     </EmbeddedResource>

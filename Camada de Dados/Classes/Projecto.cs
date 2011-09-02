@@ -11,8 +11,10 @@ namespace ETdA.Camada_de_Dados.Classes
     class Projecto
     {
         private delegate void eventoEventHandler(object sender, EventArgs e);
+
         private static event eventoEventHandler evento_analise_adicionada;
-		//private static event eventoEventHandler evento_analise_removida;
+        //private static event eventoEventHandler evento_analise_removida;
+        
         //Variaveis de instância
         private long codProjecto;
         private String nomeEstabelecimento;
@@ -20,13 +22,14 @@ namespace ETdA.Camada_de_Dados.Classes
         private Dictionary<long,string> cod_name_analise;
         private Dictionary<long, Analise> analises;
 
+        // s_final
         private void init_Eventos()
         {
             evento_analise_adicionada += new eventoEventHandler(
                 Camada_de_Interface.InterfaceGuestaoProjectos.addAnaliseReenc);
         }
 
-        //Constructores
+        #region Construtores
         public Projecto(long codProj, String nomeEst, 
             DateTime ultimaAct, Dictionary<long,string> analises)
         {
@@ -58,9 +61,9 @@ namespace ETdA.Camada_de_Dados.Classes
             analises = p.Analises;
             init_Eventos();
         }
+        #endregion
 
-        //Métodos
-
+        #region Gets/Sets
         public long Codigo
         {
             get { return codProjecto; }
@@ -76,36 +79,23 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return ultimaActualizacao; }
             set { ultimaActualizacao = value; }
         }
-        public List<String> Nomes_Analises
-        {
-            get 
-            {
-                return new List<string>(cod_name_analise.Values);
-            }
-        }
         public Dictionary<long, string> Cod_Name_Analise
         {
-            get { return cod_name_analise; }
+            get
+            { 
+                Dictionary<long,string> _new = new Dictionary<long,string>();
+                for (int i = 0; i < cod_name_analise.Count; i++)
+                    _new.Add(cod_name_analise.ElementAt(i).Key, cod_name_analise.ElementAt(i).Value);
+                return _new;
+            }
             set { cod_name_analise = value; }
         }
         public Dictionary<long, Analise> Analises
         {
-            get { return analises; }
+            get { return new Dictionary<long,Analise>(analises); }
             set { analises = value; }
         }
-
-        public long getCodigoAnalise(string nome)
-        {
-            long cod = -1;
-            bool found = false;
-            for (int i = 0; i < cod_name_analise.Count && !found; i++)
-                if (cod_name_analise.Values.ElementAt(i) == nome)
-                {
-                    cod = cod_name_analise.Keys.ElementAt(i);
-                    found = true;
-                }
-            return cod;
-        }
+        #endregion
 
         public Projecto clone()
         {
@@ -113,14 +103,13 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
         /* ------------------------------------------------------ */
-        /* Metodos de Gestao */
+        /* Metodos */
         /* ------------------------------------------------------ */
 
-        /* Gestao de Analises */
- 
         /*
-         * Verifica se Ja tem Projecto com esse nome na Base de dados
+         * Verifica se já existe alguma análise com o nome recebido
          */
+        // s_final
         public Boolean podeAdicionarAnalise(String nomeAnalise)
         {
             return !cod_name_analise.Values.Contains(nomeAnalise);
@@ -129,6 +118,7 @@ namespace ETdA.Camada_de_Dados.Classes
         /*
          * Adiciona uma nova Analise
          */
+        // s_final
         public void adicionaNovaAnalise(String tipoAnalise, 
             String nomeAnalise, List<Zona> zonas, List<Item> itens)
         {
@@ -143,43 +133,26 @@ namespace ETdA.Camada_de_Dados.Classes
             
             cod_name_analise.Add(a.Codigo,a.Nome);
             analises.Add(a.Codigo, a);
+
             List<string> s = new List<string>();
-            s.Add(ETdA.ETdA.getProjecto(codProjecto).Nome);
+            s.Add(codProjecto.ToString());
+            s.Add(a.Codigo.ToString());
             s.Add(a.Nome);
-            s.Add("" + codProjecto);
-            s.Add("" + a.Codigo);
             evento_analise_adicionada(s, new EventArgs());
         }
 
-        /*
-         * 
-         */
-        public long abreAnalise(String nomeAnalise)
+        // s_final
+        public void abreAnalise(long codAnalise)
         {
-            long cod = -1;
-            Boolean found = false;
-            for (int i = 0; i < cod_name_analise.Count && !found; i++)
-            {
-                KeyValuePair<long, string> p = cod_name_analise.ElementAt(i);
-                if (p.Value == nomeAnalise)
-                {
-                    cod = p.Key;
-                    found = true;
-                }
-            }
-
-            if (!analises.Keys.Contains(cod))
+            if (!analises.Keys.Contains(codAnalise))
             {
                 Analise a = Camada_de_Dados.DataBaseCommunicator.
-                    FuncsToDataBase.selectAnalise(cod);
+                    FuncsToDataBase.selectAnalise(codAnalise);
                 analises.Add(a.Codigo, a);
             }
-            return cod;
         }
 
         /*
-         * Remove Analise
-         */
         public void removeAnalise(String nomeAnalise)
         {
             long cod = -1;
@@ -206,7 +179,6 @@ namespace ETdA.Camada_de_Dados.Classes
             Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.updateAnalise(a);
         }
-
-        /* Fim de Gestao de Analises */
+        */
     }
 }

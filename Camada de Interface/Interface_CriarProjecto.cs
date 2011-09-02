@@ -12,11 +12,13 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class Interface_CriarProjecto : Form
     {
+        // s_final
         public Interface_CriarProjecto()
         {
             InitializeComponent();
         }
 
+        // s_final
         private void KeyPressActionPerformed(object sender, KeyPressEventArgs e)
         {
             TextBox t = (TextBox)sender;
@@ -24,10 +26,11 @@ namespace ETdA.Camada_de_Interface
             errorProvider1.Clear();
         }
 
+        // s_final
         private void CriarProjectoAction(object sender, EventArgs e)
         {
             string nomeEstabelecimento = textBox1.Text;
-            bool valido = nomeProjectoValido(nomeEstabelecimento);
+            bool valido = nomeValido(nomeEstabelecimento);
 
             if (valido && GestaodeProjectos.podeCriarProjecto(nomeEstabelecimento))
             {
@@ -35,36 +38,41 @@ namespace ETdA.Camada_de_Interface
                 endFrame();
             }
             else if (!valido)
-                errorProvider1.SetError(this.textBox1, "Nome do projecto inválido.\n\n(Anpeas letras, números e \"_\")");
+                errorProvider1.SetError(this.textBox1, "Nome do projecto inválido.\n\n(Anpeas letras, números e \"_-/ e espaços\").");
             else
                 errorProvider1.SetError(this.textBox1, "Projecto já existente.");
         }
 
-        private bool nomeProjectoValido(string p)
+        // s_final
+        private bool nomeValido(string p)
         {
             if (p == "") return false;
-            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_";
+            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_-/ áàãâéêíóõúÁÀÃÂÉÊÍÓÕÚçÇ";
             bool found = true;
             for (int i = 0; i < p.Length && found; i++)
                 found = possiveis.Contains(p[i]);
             return found;
         }
 
+        // s_final
         private void CancelarActionPerformed(object sender, EventArgs e)
         {
             endFrame();
         }
 
+        // s_final
         private void endFrame()
         {
             Dispose();
             Close();
         }
 
+        // s_final
         public static void main()
         {
             Interface_CriarProjecto icp = new Interface_CriarProjecto();
-            icp.Visible = true;
+            //icp.Visible = true;
+            icp.ShowDialog();
         }
     }
 }
