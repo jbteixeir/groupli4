@@ -13,12 +13,14 @@ namespace ETdA.Camada_de_Dados.Classes
         private Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados;
         private Double[] listaEstatisticas;
         private string filename;
+        private int numeroRespostas;
 
         //Constructores
         public Relatorio(Dictionary<long, Dictionary<long, Classes.ResultadoItem>> listaResultados, Double[] listaEstatisticas)
         {
             this.listaResultados = listaResultados;
             this.listaEstatisticas = listaEstatisticas;
+
         }
 
         public Relatorio()
@@ -46,16 +48,21 @@ namespace ETdA.Camada_de_Dados.Classes
             get { return filename; }
             set { filename = value; }
         }
-
+        
+        public int NumeroRespostas
+        {
+            get { return numeroRespostas; }
+            set { numeroRespostas = value; }
+        }
 
         public void gerarResultadosRelatorio(long codigoAnalise, List<Classes.Resposta> respostas, List<Classes.Zona> zonas, List<Classes.Item> itens)
         {
             DataBaseCommunicator.FuncsToDataBase.selectRespostaCheckList(codigoAnalise, respostas);
-            Console.WriteLine(respostas.Count()+" ");
+            numeroRespostas += respostas.Count;
             DataBaseCommunicator.FuncsToDataBase.selectRespostaFichaAvaliacao(codigoAnalise, respostas);
-            Console.WriteLine(respostas.Count()+" ");
+            numeroRespostas += respostas.Count;
             DataBaseCommunicator.FuncsToDataBase.selectRespostaQuestionario(codigoAnalise, respostas);
-            Console.WriteLine(respostas.Count()+" ");
+            numeroRespostas += respostas.Count;
 
             Dictionary<int, double> resultado_questionario_parcial;
             int numero_total_questionario;
