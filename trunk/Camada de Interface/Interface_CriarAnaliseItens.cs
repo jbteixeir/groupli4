@@ -327,7 +327,7 @@ namespace ETdA.Camada_de_Interface
         public static void main(object o, bool b)
         {
             Interface_CriarAnaliseItens icai = new Interface_CriarAnaliseItens(o,b);
-            icai.Visible = true;
+            icai.ShowDialog();
         }
 
         private void AdicionarActionPerformed(object sender, EventArgs e)

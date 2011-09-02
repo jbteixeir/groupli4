@@ -26,6 +26,11 @@ namespace ETdA.Camada_de_Interface
             GestaodeProjectos.init();
             indexes = new List<int>();
             tabPages = new List<string>();
+
+            ImageList lstimg = new ImageList();
+            lstimg.Images.Add(global::ETdA.Properties.Resources._1309271487_notification_done);
+            tabControl1.ImageList = lstimg;
+
             initTree();
             initStartPage();
         }
@@ -60,9 +65,9 @@ namespace ETdA.Camada_de_Interface
             if (!tabPages.Contains("StartPage"))
             {
                 tabPages.Add("StartPage");
-                System.Windows.Forms.TabPage p =
-                    new System.Windows.Forms.TabPage();
+                System.Windows.Forms.TabPage p = new System.Windows.Forms.TabPage();
                 p.Name = "StartPage";
+                p.ImageIndex = 0;
                 p.AutoScroll = true;
 
                 ContextMenu m = new ContextMenu();

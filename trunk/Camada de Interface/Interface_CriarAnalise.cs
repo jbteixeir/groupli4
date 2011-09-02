@@ -40,7 +40,7 @@ namespace ETdA.Camada_de_Interface
         public static void main(long codProjecto, string nomeProjecto)
         {
             ica = new Interface_CriarAnalise(codProjecto,nomeProjecto);
-            ica.Visible = true;
+            ica.ShowDialog();
         }
 
         // rdone

@@ -95,7 +95,7 @@ namespace ETdA.Camada_de_Interface
         public static void main(List<string> zonas, string tipo, bool b)
         {
             Interface_CriarAnaliseZonas icaz = new Interface_CriarAnaliseZonas(zonas,tipo,b);
-            icaz.Visible = true;
+            icaz.ShowDialog();
         }
     }
 }
