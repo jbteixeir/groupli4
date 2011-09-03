@@ -16,20 +16,20 @@ namespace ETdA.Camada_de_Interface
     {
         private static InterfaceGuestaoProjectos igp;
         private List<int> indexes;
-        private List<string> tabPages;
+        private MyTabControl tabControl1;
 
         // s_final
         public InterfaceGuestaoProjectos()
         {
             InitializeComponent();
+            tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Appearance = TabAppearance.FlatButtons;
+            tabControl1.Dock = DockStyle.Fill;
+            panel1.Controls.Add(tabControl1);
 
             GestaodeProjectos.init();
             indexes = new List<int>();
-            tabPages = new List<string>();
-
-            ImageList lstimg = new ImageList();
-            lstimg.Images.Add(global::ETdA.Properties.Resources._1309271487_notification_done);
-            tabControl1.ImageList = lstimg;
 
             initTree();
             initStartPage();
@@ -56,18 +56,17 @@ namespace ETdA.Camada_de_Interface
         private void closeTab(int nome)
         {
             tabControl1.TabPages.RemoveAt(nome);
-            tabPages.RemoveAt(nome);
+            tabControl1.Pages.RemoveAt(nome);
         }
 
         // s_final
         private void initStartPage()
         {
-            if (!tabPages.Contains("StartPage"))
+            if (!tabControl1.Pages.Contains("StartPage"))
             {
-                tabPages.Add("StartPage");
+                tabControl1.AddPage("StartPage");
                 System.Windows.Forms.TabPage p = new System.Windows.Forms.TabPage();
                 p.Name = "StartPage";
-                p.ImageIndex = 0;
                 p.AutoScroll = true;
 
                 ContextMenu m = new ContextMenu();
@@ -174,9 +173,9 @@ namespace ETdA.Camada_de_Interface
         // s_final
         private void initProgetPage(string nome_projecto, string codp)
         {
-            if (!tabPages.Contains(codp))
+            if (!tabControl1.Pages.Contains(codp))
             {
-                tabPages.Add(codp);
+                tabControl1.AddPage(codp);
                 System.Windows.Forms.TabPage p = new System.Windows.Forms.TabPage();
                 p.Name = codp;
                 p.AutoScroll = true;
@@ -245,15 +244,15 @@ namespace ETdA.Camada_de_Interface
                     }
                 }
             }
-            tabControl1.SelectedIndex = getTabNumber(codp.ToString());
+            tabControl1.SelectedIndex = getTabNumber(codp);
         }
 
         // s_final
         private void initAnalisePage(long codp, long coda, string nome_analise)
         {
-            if (!tabPages.Contains(codp.ToString() + "." + coda.ToString()))
+            if (!tabControl1.Pages.Contains(codp.ToString() + "." + coda.ToString()))
             {
-                tabPages.Add(codp.ToString() + "." + coda.ToString());
+                tabControl1.AddPage(codp.ToString() + "." + coda.ToString());
                 System.Windows.Forms.TabPage p = new System.Windows.Forms.TabPage();
                 p.Name = codp.ToString() + "." + coda.ToString();
                 p.AutoScroll = true;
@@ -421,13 +420,12 @@ namespace ETdA.Camada_de_Interface
         // s_final
         private int getTabNumber(string cod)
         {
-            int index = 0;
+            int i;
             bool found = false;
-            for (int i = 0; i < tabPages.Count && !found; i++)
-                if (tabPages[i] == cod)
-                    index = i;
-
-            return index;
+            for (i = 0; i < tabControl1.Pages.Count && !found; i++)
+                if (tabControl1.Pages[i] == cod)
+                    found = true;
+            return i - 1;
         }
 
         #endregion
