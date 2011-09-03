@@ -166,6 +166,10 @@
     <Compile Include="Camada de Interface\Interface_Relatorio.Designer.cs">
       <DependentUpon>Interface_Relatorio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\MessageBoxPortuguese.cs" />
+    <Compile Include="Camada de Interface\MyTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Camada de Negócio\GestaodeAnalises.cs" />
     <Compile Include="Camada de Negócio\GestaodeAnalistas.cs" />
     <Compile Include="Camada de Negócio\GestaodeProjectos.cs" />
@@ -239,6 +243,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Relatorio.resx">
       <DependentUpon>Interface_Relatorio.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_CheckList.resx">
       <DependentUpon>Interface_CheckList.cs</DependentUpon>
@@ -498,6 +503,8 @@
     <Content Include="colors\limaWord.png" />
     <Content Include="colors\verdeWord.png" />
     <Content Include="colors\vermelhoWord.png" />
+    <Content Include="Icons\Tooltip-CloseButton-Active.png" />
+    <None Include="Resources\Tooltip-CloseButton-Active.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -284,6 +284,13 @@ namespace ETdA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Tooltip_CloseButton_Active {
+            get {
+                object obj = ResourceManager.GetObject("Tooltip-CloseButton-Active", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap verde {
             get {
                 object obj = ResourceManager.GetObject("verde", resourceCulture);
