@@ -1146,6 +1146,79 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return b;
         }
 
+        public static List<PerguntaFichaAvaliacao> selectPerguntasFA(long codAnalise)
+        {
+            string query = "select * from pergunta_ficha_avaliacao where cod_analise = " + codAnalise.ToString() + " order by numero_pergunta desc;";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            List<PerguntaFichaAvaliacao> pergs = new List<PerguntaFichaAvaliacao>();
+
+            while (r.Read())
+            {
+                PerguntaFichaAvaliacao p = new PerguntaFichaAvaliacao(
+                    (long)r["cod_pergunta_ficha_avaliacao"],
+                    (long)r["cod_analise"],
+                    (int)r["numero_pergunta"],
+                    (long)r["cod_item"],
+                    (string)r["texto"],
+                    (long)r["cod_tipoEscala"]);
+                pergs.Add(p);
+            }
+
+            return pergs;
+        }
+
+        public static List<PerguntaQuestionario> selectPerguntasQT(long codAnalise)
+        {
+            string query = "select * from pergunta_questionario where cod_analise = " + codAnalise.ToString() + " order by numero_pergunta desc;";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            List<PerguntaQuestionario> pergs = new List<PerguntaQuestionario>();
+
+            while (r.Read())
+            {
+                PerguntaQuestionario p = new PerguntaQuestionario(
+                    (long)r["cod_pergunta_questionario"],
+                    (long)r["cod_analise"],
+                    (int)r["numero_pergunta"],
+                    (long)r["cod_zona"],
+                    (long)r["cod_item"],
+                    (string)r["texto"],
+                    (long)r["cod_tipoEscala"],
+                    (string)r["tipo_questao"]);
+                pergs.Add(p);
+            }
+
+            return pergs;
+        }
+
+        public static void updatePerguntasFA(PerguntaFichaAvaliacao p, long codAnalise)
+        {
+            String query = "update pergunta_ficha_avaliacao set " +
+                "cod_item = " + p.Cod_Item + "," +
+                "texto = '" + p.Texto + "'," +
+                "cod_tipoEscala = " + p.Cod_TipoEscala +
+                " where cod_analise = " + codAnalise + " and " +
+                "numero_pergunta = " + p.Num_Pergunta + ";";
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
+        public static void updatePerguntasQT(PerguntaQuestionario p, long codAnalise)
+        {
+            String query = "update pergunta_questionario set " +
+                "cod_zona = " + p.Cod_zona + "," + 
+                "cod_item = " + p.Cod_Item + "," +
+                "texto = '" + p.Texto + "'," +
+                "cod_tipoEscala = " + p.Cod_TipoEscala + "," +
+                "tipo_questao = '" + p.TipoQuestao +
+                "' where cod_analise = " + codAnalise + " and " +
+                "numero_pergunta = " + p.Num_Pergunta + ";";
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
         #endregion
 
         #region Website

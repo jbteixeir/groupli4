@@ -80,12 +80,12 @@ namespace ETdA.Camada_de_Interface
                     if (!GestaodeRespostas.canEditFA(codAnalise))
                         MessageBox.Show("Não é possível editar, porque já foram adcionadas respostas ou porque o Website está online.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
-                        Interface_Perguntas.main(codAnalise, itens);
+                        Interface_Perguntas.main(codAnalise, itens, fa);
                 }
             }
             else
             {
-                Interface_Perguntas.main(codAnalise, itens);
+                Interface_Perguntas.main(codAnalise, itens, fa);
             }
         }
 
@@ -114,6 +114,7 @@ namespace ETdA.Camada_de_Interface
         private void done_FA_event(object sender, EventArgs e)
         {
             toolStripStatusLabel2.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
+            fa = true;
         }
 
         public static void done_QT_Reenc(object sender, EventArgs e)
@@ -124,6 +125,7 @@ namespace ETdA.Camada_de_Interface
         private void done_QT_event(object sender, EventArgs e)
         {
             toolStripStatusLabel4.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
+            qt = true;
         }
     }
 }
