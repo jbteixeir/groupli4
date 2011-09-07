@@ -1147,5 +1147,93 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
 
         #endregion
+
+        #region Website
+        public static bool getEstadoCheckListOnline(long codProjecto, long codAnalise)
+        {
+            string query = "SELECT analise.estadoWebCheckList FROM analise WHERE analise.cod_analise = " + codAnalise + 
+                            " AND analise.cod_projecto = " + codProjecto;
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            if (r.Read())
+            {
+                if (int.Parse(r["estadoWebCheckList"].ToString()) == 1)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
+        public static bool getEstadoFichaAvaliacaoOnline(long codProjecto, long codAnalise)
+        {
+            string query = "SELECT analise.estadoWebFichaAvaliacao FROM analise WHERE analise.cod_analise = " + codAnalise +
+                            " AND analise.cod_projecto = " + codProjecto;
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            if (int.Parse(r["estadoWebFichaAvaliacao"].ToString()) == 1)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool getEstadoQuestionariosOnline(long codProjecto, long codAnalise)
+        {
+            string query = "SELECT analise.estadoWebQuestionario FROM analise WHERE analise.cod_analise = " + codAnalise +
+                            " AND analise.cod_projecto = " + codProjecto;
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            r.Read();
+            if (int.Parse(r["estadoWebQuestionario"].ToString()) == 1)
+                return true;
+            else
+                return false;
+        }
+
+        public static void setEstadoCheckListOnline(long codProjecto, long codAnalise, bool estado)
+        {
+            int value;
+            if(estado)
+                value=1;
+            else
+                value=0;
+            DataBaseCommunicator.query("Update analise "+
+                                       "Set estadoWebCheckList=" + value +
+                                        "where analise.cod_projecto = "+codProjecto+
+                                        " and analise.cod_analise = "+codAnalise);
+        }
+
+        public static void setEstadoFichaAvaliacaoOnline(long codProjecto, long codAnalise, bool estado)
+        {
+            int value;
+            if(estado)
+                value=1;
+            else
+                value=0;
+            DataBaseCommunicator.query("Update analise " +
+                                       "Set estadoWebFichaAvaliacao="+ value +
+                                        "where analise.cod_projecto = " + codProjecto +
+                                        " and analise.cod_analise = " + codAnalise);
+        }
+
+        public static void setEstadoQuestionarioOnline(long codProjecto, long codAnalise, bool estado)
+        {
+            int value;
+            if(estado)
+                value=1;
+            else
+                value=0;
+            DataBaseCommunicator.query("Update analise " +
+                                       "Set estadoWebQuestionario=" + value +
+                                        "where analise.cod_projecto = " + codProjecto +
+                                        " and analise.cod_analise = " + codAnalise);
+        }
+        #endregion
+
     }
 }
