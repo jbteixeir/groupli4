@@ -121,6 +121,7 @@
             this.Controls.Add(this.button1);
             this.MaximizeBox = false;
             this.Name = "Interface_GestaoFormulariosOnline";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criar WebSite";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

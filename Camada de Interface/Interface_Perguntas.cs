@@ -15,21 +15,27 @@ namespace ETdA.Camada_de_Interface
     {
         private static Interface_Perguntas ip;
         private long codAnalise;
-        List<TextBox> perguntas;
-        List<ComboBox> itens_pergunta;
-        Dictionary<object, object> erros;
+        private List<TextBox> perguntas;
+        private List<ComboBox> itens_pergunta;
+        private Dictionary<object, object> erros;
         private List<Item> itens;
         private List<PerguntaFichaAvaliacao> ficha_avaliacao;
+        private bool already_created;
 
-        public Interface_Perguntas(long codAnalise, object itens)
+        private delegate void eventoEventHandler(object sender, EventArgs e);
+        private static event eventoEventHandler evento_FA_Done;
+
+        public Interface_Perguntas(long codAnalise, object itens, bool created)
         {
             InitializeComponent();
             toolStripStatusLabel4.Visible = false;
             toolStripStatusLabel5.Visible = false;
             toolStripStatusLabel6.Visible = false;
 
+            already_created = created;
             this.codAnalise = codAnalise;
             this.itens = (List<Item>)itens;
+            evento_FA_Done += new eventoEventHandler(Camada_de_Interface.Interface_GestaoFormulariosOnline.done_FA_Reenc);
 
             erros = new Dictionary<object, object>();
             init_perg_fa();
@@ -39,9 +45,9 @@ namespace ETdA.Camada_de_Interface
             init();
         }
 
-        public static void main(long codAnalise, object itens)
+        public static void main(long codAnalise, object itens, bool created)
         {
-            ip = new Interface_Perguntas(codAnalise, itens);
+            ip = new Interface_Perguntas(codAnalise, itens, created);
             ip.ShowDialog();
         }
 
@@ -125,17 +131,24 @@ namespace ETdA.Camada_de_Interface
          */
         private void init_perg_fa()
         {
-            ficha_avaliacao = new List<PerguntaFichaAvaliacao>();
-
-            for (int i = itens.Count - 1 ; i >= 0 ; i--)  
+            if (!already_created)
             {
-                PerguntaFichaAvaliacao p = new PerguntaFichaAvaliacao(
-                    codAnalise,
-                    i,
-                    itens[i].CodigoItem,
-                    fa_return_quest(itens[i]),
-                    7);
-                ficha_avaliacao.Add(p);
+                ficha_avaliacao = new List<PerguntaFichaAvaliacao>();
+
+                for (int i = itens.Count - 1; i >= 0; i--)
+                {
+                    PerguntaFichaAvaliacao p = new PerguntaFichaAvaliacao(
+                        codAnalise,
+                        i,
+                        itens[i].CodigoItem,
+                        fa_return_quest(itens[i]),
+                        7);
+                    ficha_avaliacao.Add(p);
+                }
+            }
+            else
+            {
+                ficha_avaliacao = GestaodeRespostas.getPerguntasFA(codAnalise);
             }
         }
 
@@ -149,7 +162,7 @@ namespace ETdA.Camada_de_Interface
                 show_pergunta(fa);
         }
 
-        private Panel show_pergunta(Pergunta perg)
+        private void show_pergunta(Pergunta perg)
         {
             Panel p = new System.Windows.Forms.Panel();
             p.Name = perg.Num_Pergunta.ToString();
@@ -157,6 +170,7 @@ namespace ETdA.Camada_de_Interface
             p.BorderStyle = BorderStyle.FixedSingle;
             p.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             p.Dock = DockStyle.Top;
+            p.TabIndex = (int)perg.Num_Pergunta;
             panel.Controls.Add(p);
 
             Label l1 = new System.Windows.Forms.Label();
@@ -213,8 +227,6 @@ namespace ETdA.Camada_de_Interface
 
             Panel p2 = getRespostasPanel(GestaodeRespostas.getTipoEscala(perg.Cod_TipoEscala));
             p.Controls.Add(p2);
-
-            return p;
         }
 
         private Panel getRespostasPanel(TipoEscala ti)
@@ -327,7 +339,12 @@ namespace ETdA.Camada_de_Interface
                     ficha_avaliacao[i].Cod_Item = itens[itens_pergunta[i].SelectedIndex].CodigoItem;
                 }
 
-                GestaodeRespostas.insert_PerguntasFA(ficha_avaliacao);
+                if (!already_created)
+                    GestaodeRespostas.insert_PerguntasFA(ficha_avaliacao);
+                else
+                    GestaodeRespostas.modificaPerguntasFA(ficha_avaliacao, codAnalise);
+
+                evento_FA_Done(null, new EventArgs());
                 end_Frame();
             }
         }
