@@ -503,6 +503,10 @@
     <Content Include="colors\limaWord.png" />
     <Content Include="colors\verdeWord.png" />
     <Content Include="colors\vermelhoWord.png" />
+    <None Include="Icons\Warning.png" />
+    <None Include="Icons\Error.png" />
+    <None Include="Icons\Help.png" />
+    <None Include="Icons\Info.png" />
     <Content Include="Icons\Tooltip-CloseButton-Active.png" />
     <None Include="Resources\Tooltip-CloseButton-Active.png" />
   </ItemGroup>
