@@ -21,6 +21,34 @@ namespace ETdA.Camada_de_Interface
         private List<Item> itens;
         private List<PerguntaFichaAvaliacao> ficha_avaliacao;
 
+        public Interface_Perguntas(long codAnalise, object itens)
+        {
+            InitializeComponent();
+            toolStripStatusLabel4.Visible = false;
+            toolStripStatusLabel5.Visible = false;
+            toolStripStatusLabel6.Visible = false;
+
+            this.codAnalise = codAnalise;
+            this.itens = (List<Item>)itens;
+
+            erros = new Dictionary<object, object>();
+            init_perg_fa();
+
+            toolStripStatusLabel2.Text = ficha_avaliacao.Count.ToString();
+
+            init();
+        }
+
+        public static void main(long codAnalise, object itens)
+        {
+            ip = new Interface_Perguntas(codAnalise, itens);
+            ip.ShowDialog();
+        }
+
+        #region Começo
+        /*
+         * Devolve o nome dos itens
+         */
         private string[] nomes_itens()
         {
             string[] nomes = new string[itens.Count];
@@ -29,6 +57,9 @@ namespace ETdA.Camada_de_Interface
             return nomes;
         }
 
+        /*
+         * Retorna o indice do item recebido na lista
+         */
         private int numero_item(Item item)
         {
             int i;
@@ -39,6 +70,9 @@ namespace ETdA.Camada_de_Interface
             return i - 1;
         }
 
+        /*
+         * Devolve um item com o cod recebido
+         */
         private Item item(long cod_item)
         {
             int i;
@@ -49,6 +83,9 @@ namespace ETdA.Camada_de_Interface
             return itens[i-1];
         }
 
+        /*
+         * Retorna o texto defualt da pergunta para o item recebido
+         */
         private string fa_return_quest(Item i)
         {
             string ruido = "Analise se o ruído existente interfere com a comunicação ou com a sua concentração no trabalho e, avalie.";
@@ -83,11 +120,14 @@ namespace ETdA.Camada_de_Interface
             else return "";
         }
 
+        /*
+         * Inicia o texto as perguntas
+         */
         private void init_perg_fa()
         {
             ficha_avaliacao = new List<PerguntaFichaAvaliacao>();
 
-            for ( int i = 0 ; i < itens.Count ; i++ )  
+            for (int i = itens.Count - 1 ; i >= 0 ; i--)  
             {
                 PerguntaFichaAvaliacao p = new PerguntaFichaAvaliacao(
                     codAnalise,
@@ -105,30 +145,30 @@ namespace ETdA.Camada_de_Interface
             perguntas = new List<TextBox>();
             itens_pergunta = new List<ComboBox>();
 
-            int y = 10;
             foreach(PerguntaFichaAvaliacao fa in ficha_avaliacao)
-                y += show_pergutna(fa, y);
+                show_pergunta(fa);
         }
 
-        private int show_pergutna(Pergunta perg, int location_y)
+        private Panel show_pergunta(Pergunta perg)
         {
             Panel p = new System.Windows.Forms.Panel();
-            p.Name = "" + perg.Num_Pergunta;
-            p.Width = panel.Width - 14;
+            p.Name = perg.Num_Pergunta.ToString();
+            p.AutoSize = true;
             p.BorderStyle = BorderStyle.FixedSingle;
-            p.Location = new System.Drawing.Point(7, location_y);
             p.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+            p.Dock = DockStyle.Top;
+            panel.Controls.Add(p);
 
             Label l1 = new System.Windows.Forms.Label();
             l1.Width = 50;
-            l1.Text = "Per. " + perg.Num_Pergunta;
+            l1.Text = "Perg. " + perg.Num_Pergunta.ToString();
             l1.Location = new System.Drawing.Point(10, 10);
             p.Controls.Add(l1);
 
             TextBox t1 = new System.Windows.Forms.TextBox();
-            t1.Width = p.Width - 75;
+            t1.Width = p.Width - 85;
             t1.Text = perg.Texto;
-            t1.Name = "t_box";
+            t1.Name = perg.Num_Pergunta.ToString();
             t1.Location = new System.Drawing.Point(65, 10);
             t1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             t1.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
@@ -144,48 +184,55 @@ namespace ETdA.Camada_de_Interface
 
             ComboBox c1 = new System.Windows.Forms.ComboBox();
             c1.Width = 200;
+            c1.Name = perg.Num_Pergunta.ToString();
             c1.Items.AddRange(nomes_itens());
             c1.SelectedIndex = numero_item(item(perg.Cod_Item));
             c1.Location = new System.Drawing.Point(65, 40);
             c1.SelectedIndexChanged += new EventHandler(MouseClickActionPerformed);
+            c1.DropDownStyle = ComboBoxStyle.DropDownList;
             p.Controls.Add(c1);
             itens_pergunta.Add(c1);
-
-            Panel p2 = new System.Windows.Forms.Panel();
-            p2.Name = "Respostas";
-            p2.Width = 320;
-            p2.Location = new System.Drawing.Point(0, 70);
-            p.Controls.Add(p2);
 
             Label l3 = new System.Windows.Forms.Label();
             l3.Width = 80;
             l3.Text = "Respostas: ";
-            l3.Location = new System.Drawing.Point(10, 10);
-            p2.Controls.Add(l3);
+            l3.Location = new System.Drawing.Point(10, 80);
+            p.Controls.Add(l3);
 
             Label l4 = new System.Windows.Forms.Label();
             l4.Width = 200;
             l4.Text = "Mudar Tipo Resposta";
+            l4.AutoSize = true;
             l4.Name = perg.Num_Pergunta.ToString();
-            l4.Location = new System.Drawing.Point(95, 10);
+            l4.Location = new System.Drawing.Point(95, 80);
             l4.Cursor = System.Windows.Forms.Cursors.Hand;
             l4.Click += new System.EventHandler(mudarTipoRespostaClick);
             l4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
             l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-            p2.Controls.Add(l4);
+            p.Controls.Add(l4);
 
-            TipoEscala ti = GestaodeRespostas.getTipoEscala(perg.Cod_TipoEscala);
-            
-            int y = 40;
+            Panel p2 = getRespostasPanel(GestaodeRespostas.getTipoEscala(perg.Cod_TipoEscala));
+            p.Controls.Add(p2);
+
+            return p;
+        }
+
+        private Panel getRespostasPanel(TipoEscala ti)
+        {
+            Panel p2 = new Panel();
+            p2.Size = new Size(0, 0);
+            p2.Name = "Respostas";
+            p2.AutoSize = true;
+            p2.Location = new System.Drawing.Point(0, 100);
+
+            int y = 10;
             if (ti.Numero >= -1 && ti.Numero <= 1)
             {
                 TextBox t2 = new System.Windows.Forms.TextBox();
-                t2.Width = 100;
                 t2.Name = "t_box";
-                t2.Location = new System.Drawing.Point(10, 40);
+                t2.Location = new System.Drawing.Point(10, 10);
                 t2.Enabled = false;
                 p2.Controls.Add(t2);
-                y += 30;
             }
             else if (ti.Numero == -2)
             {
@@ -209,16 +256,15 @@ namespace ETdA.Camada_de_Interface
                     r.Location = new System.Drawing.Point(10, y);
                     p2.Controls.Add(r);
                     y += 30;
-                } 
+                }
             }
-            p2.Height = y ;
 
-            p.Height = 70+p2.Height;
-            panel.Controls.Add(p);
-
-            return p.Height;
+            return p2;
         }
 
+        #endregion
+
+        #region Eventos
         private void MouseEnterAction(object sender, EventArgs e)
         {
             Label t = (Label)sender;
@@ -232,33 +278,9 @@ namespace ETdA.Camada_de_Interface
             t.Font = new Font(t.Font, FontStyle.Regular);
             t.BackColor = Color.Empty;
         }
+        #endregion
 
-        private void mudarTipoRespostaClick(object sender, EventArgs e)
-        {
-            Label l = (Label)sender;
-            Interface_GestaoRespostas.main(int.Parse(l.Name),true);
-        }
-
-        public Interface_Perguntas(long codAnalise, object itens)
-        {
-            InitializeComponent();
-            this.codAnalise = codAnalise;
-            this.itens = (List<Item>)itens;
-
-            erros = new Dictionary<object, object>();
-            init_perg_fa();
-
-            toolStripStatusLabel2.Text = ficha_avaliacao.Count.ToString();
-
-            init();
-        }
-
-        public static void main(long codAnalise, object itens)
-        {
-            ip = new Interface_Perguntas(codAnalise, itens);
-            ip.Visible = true;
-        }
-
+        #region Tipo de Resposta Mudada
         public static void reenc_New_Anser(object sender, EventArgs e)
         {
             ip.new_Anser(sender,e);
@@ -266,11 +288,22 @@ namespace ETdA.Camada_de_Interface
         private void new_Anser(object sender, EventArgs e)
         {
             List<object> lst = (List<object>)sender;
-            int num_pergunta = (int)lst[0];
+            int num_pergunta = ficha_avaliacao.Count - 1 - (int)lst[0];
             long cod_tipoResposta = (long)lst[1];
 
             ficha_avaliacao[num_pergunta].Cod_TipoEscala = cod_tipoResposta;
-            init();
+            Panel perg = (Panel)panel.Controls[num_pergunta];
+            perg.Controls.RemoveAt(6);
+            Panel novo = getRespostasPanel(GestaodeRespostas.getTipoEscala(cod_tipoResposta));
+            perg.Controls.Add(novo);
+        }
+        #endregion
+
+        private void mudarTipoRespostaClick(object sender, EventArgs e)
+        {
+            Label l = (Label)sender;
+            MessageBoxPortuguese.Show("", l.Name);
+            Interface_GestaoRespostas.main(int.Parse(l.Name), true);
         }
 
         private void CancelarActionPerformed(object sender, EventArgs e)
@@ -286,11 +319,7 @@ namespace ETdA.Camada_de_Interface
 
         private void Done_ActionPerformed(object sender, EventArgs e)
         {
-            if (!verifica_Erros())
-            {
-                MessageBox.Show("É necessário corrigir os erros.");
-            }
-            else
+            if (verifica_Erros())
             {
                 for (int i = 0; i < ficha_avaliacao.Count; i++)
                 {
@@ -303,17 +332,20 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        #region verificação Erros
         private bool verifica_Erros()
         {
             bool ok = true;
             for (int i = 0; i < perguntas.Count ; i++)
                 if (!pergunta_valida(perguntas[i].Text))
                 {
-                    ErrorProvider err = new ErrorProvider();
-                    err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
-                    err.SetError(perguntas[i], "O texto desta pergunta não é válido.");
                     if (!erros.ContainsKey(perguntas[i]))
+                    {
+                        ErrorProvider err = new ErrorProvider();
+                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.SetError(perguntas[i], "O texto desta pergunta não é válido.");
                         erros.Add(perguntas[i], err);
+                    }
                     ok = false;
                 }
 
@@ -348,6 +380,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.ContainsKey(b))
                         erros.Add(b, listas);
             }
+            setErroStatusBar();
             return ok;
         }
 
@@ -355,13 +388,50 @@ namespace ETdA.Camada_de_Interface
         {
             if (s == "") return false;
             string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789" +
-                            "áàãâéèêíìîóòôõúùûçÁÀÂÃÉÈÊÍÌÎÓÒÕÔÚÙÛ \t,.;:/()[]{}'?!";
+                            "áàãâéèêíìîóòôõúùûçÁÀÂÃÉÈÊÍÌÎÓÒÕÔÚÙÛÇ ,.;:/()[]{}'?!_-|\\+ºª'";
             bool found = true;
             for (int i = 0; i < s.Length && found; i++)
                 found = possiveis.Contains(s[i]);
             return found;
         }
 
+        private void setErroStatusBar()
+        {
+            if (erros.Count != 0)
+            {
+                TextBox tb = new TextBox();
+                ComboBox cb = new ComboBox();
+                object p = erros.Keys.ElementAt(0);
+                if (p.GetType() == tb.GetType())
+                {
+                    ErrorProvider err = (ErrorProvider)erros[p];
+                    tb = (TextBox)p;
+                    toolStripStatusLabel5.Text = "Perg. " + tb.Name;
+                    toolStripStatusLabel6.Text = err.GetError(tb);
+                }
+                else
+                {
+                    List<object> errr = (List<object>)erros[p];
+                    List<ErrorProvider> err = (List<ErrorProvider>)errr[0];
+                    cb = (ComboBox)p;
+                    toolStripStatusLabel5.Text = "Perg. " + cb.Name;
+                    toolStripStatusLabel6.Text = err[0].GetError(cb);
+                }
+                toolStripStatusLabel4.Visible = true;
+                toolStripStatusLabel5.Visible = true;
+                toolStripStatusLabel6.Visible = true;
+            }
+            else
+            {
+                toolStripStatusLabel4.Visible = false;
+                toolStripStatusLabel5.Visible = false;
+                toolStripStatusLabel6.Visible = false;
+            }
+        }
+
+        #endregion
+
+        #region Limpar errorProvider
         private void KeyPressActionPerformed(object sender, KeyPressEventArgs e)
         {
             if (erros.Keys.Contains(sender))
@@ -369,6 +439,7 @@ namespace ETdA.Camada_de_Interface
                 ErrorProvider err = (ErrorProvider)erros[sender];
                 err.Clear();
                 erros.Remove(sender);
+                setErroStatusBar();
             }
         }
 
@@ -393,7 +464,9 @@ namespace ETdA.Camada_de_Interface
                     err.Clear();
                     erros.Remove(sender);
                 }
+                setErroStatusBar();
             }
         }
+        #endregion
     }
 }

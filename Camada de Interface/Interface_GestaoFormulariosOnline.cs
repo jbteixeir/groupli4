@@ -12,6 +12,7 @@ namespace ETdA.Camada_de_Interface
 {
     public partial class Interface_GestaoFormulariosOnline : Form
     {
+        private static Interface_GestaoFormulariosOnline i; 
         private long codAnalise;
         private object itens;
         private object zonas;
@@ -31,17 +32,17 @@ namespace ETdA.Camada_de_Interface
             if (fa)
                 toolStripStatusLabel2.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
             else
-                toolStripStatusLabel2.Image = global::ETdA.Properties.Resources._1309271507_notification_remove;
+                toolStripStatusLabel2.Image = global::ETdA.Properties.Resources.Error;
             if (qt)
                 toolStripStatusLabel4.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
             else
-                toolStripStatusLabel4.Image = global::ETdA.Properties.Resources._1309271507_notification_remove;
+                toolStripStatusLabel4.Image = global::ETdA.Properties.Resources.Error;
         }
 
         public static void main(long codAnalise, object itens, object zonas)
         {
-            Interface_GestaoFormulariosOnline i = new Interface_GestaoFormulariosOnline(codAnalise,itens, zonas);
-            i.Visible = true;
+            i = new Interface_GestaoFormulariosOnline(codAnalise,itens, zonas);
+            i.ShowDialog();
         }
 
         private void end_Frame()
@@ -103,6 +104,26 @@ namespace ETdA.Camada_de_Interface
             }
             else
                 Interface_PerguntasQT.main(codAnalise, itens, zonas);
+        }
+
+        public static void done_FA_Reenc(object sender, EventArgs e)
+        {
+            i.done_FA_event(sender, e);
+        }
+
+        private void done_FA_event(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
+        }
+
+        public static void done_QT_Reenc(object sender, EventArgs e)
+        {
+            i.done_QT_event(sender, e);
+        }
+
+        private void done_QT_event(object sender, EventArgs e)
+        {
+            toolStripStatusLabel4.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
         }
     }
 }

@@ -35,7 +35,7 @@ namespace ETdA.Camada_de_Interface
             tabpages = new List<string>();
             DrawMode = TabDrawMode.OwnerDrawFixed;
             // used to expand the tab header, find a better way
-            Padding = new Point(16, 0);
+            Padding = new Point(16,0);
         }
 
         protected override void OnDrawItem(DrawItemEventArgs e)

@@ -119,6 +119,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
+            this.MaximizeBox = false;
             this.Name = "Interface_GestaoFormulariosOnline";
             this.Text = "Criar WebSite";
             this.statusStrip1.ResumeLayout(false);
