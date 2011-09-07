@@ -204,6 +204,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Camada de Interface\InterfaceGuestaoProjectos.resx">
       <DependentUpon>InterfaceGuestaoProjectos.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\InterfaceLogin.resx">
       <DependentUpon>InterfaceLogin.cs</DependentUpon>
