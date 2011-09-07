@@ -17,6 +17,7 @@ namespace ETdA.Camada_de_Interface
         private static InterfaceGuestaoProjectos igp;
         private List<int> indexes;
         private MyTabControl tabControl1;
+        private CheckBox checkBox1, checkBox2, checkBox3;
 
         // s_final
         public InterfaceGuestaoProjectos()
@@ -347,6 +348,7 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(lfo);
 
+                #region Formularios Online
 
                 System.Windows.Forms.Label l6 = new System.Windows.Forms.Label();
                 l6.Width = 150;
@@ -366,13 +368,23 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l7);
 
-                CheckBox checkBox1 = new System.Windows.Forms.CheckBox();
+                checkBox1 = new System.Windows.Forms.CheckBox();
                 checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
 
-                checkBox1.Text = "Activar";
+                
                 checkBox1.Location = new Point(175, 305);
-                //l8.Click += new System.EventHandler();
-
+                
+                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoCheckListOnline(codp, coda))
+                {
+                    checkBox1.Checked = true;
+                    checkBox1.Text = "Desactivar";
+                }
+                else
+                {
+                    checkBox1.Checked = false;
+                    checkBox1.Text = "Activar";
+                }
+                checkBox1.CheckedChanged += checkBox1checkChanged;
                 p.Controls.Add(checkBox1);
 
                 System.Windows.Forms.Label l8 = new System.Windows.Forms.Label();
@@ -382,13 +394,23 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l8);
 
-                CheckBox checkBox2 = new System.Windows.Forms.CheckBox();
+                checkBox2 = new System.Windows.Forms.CheckBox();
                 checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
 
-                checkBox2.Text = "Activar";
+                
                 checkBox2.Location = new Point(175, 335);
-                //l8.Click += new System.EventHandler();
-
+                
+                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoFichaAvaliacaoOnline(codp, coda))
+                {
+                    checkBox2.Checked = true;
+                    checkBox2.Text = "Desactivar";
+                }
+                else
+                {
+                    checkBox2.Checked = false;
+                    checkBox2.Text = "Activar";
+                }
+                checkBox2.CheckedChanged += checkBox2checkChanged;
                 p.Controls.Add(checkBox2);
 
                 System.Windows.Forms.Label l9 = new System.Windows.Forms.Label();
@@ -398,14 +420,26 @@ namespace ETdA.Camada_de_Interface
 
                 p.Controls.Add(l9);
 
-                CheckBox checkBox3 = new System.Windows.Forms.CheckBox();
+                checkBox3 = new System.Windows.Forms.CheckBox();
                 checkBox3.Appearance = System.Windows.Forms.Appearance.Button;
 
-                checkBox3.Text = "Activar";
+                
                 checkBox3.Location = new Point(175, 365);
-                //l8.Click += new System.EventHandler();
-
+                
+                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoQuestionariosOnline(codp, coda))
+                {
+                    checkBox3.Checked = true;
+                    checkBox3.Text = "Desactivar";
+                }
+                else
+                {
+                    checkBox3.Checked = false;
+                    checkBox3.Text = "Activar";
+                }
+                checkBox3.CheckedChanged += checkBox3checkChanged;
                 p.Controls.Add(checkBox3);
+
+                #endregion
 
             }
             tabControl1.SelectedIndex = getTabNumber(codp.ToString() + "." + coda.ToString());
@@ -596,6 +630,65 @@ namespace ETdA.Camada_de_Interface
         #endregion
 
         #region Analise (Eventos)
+
+        #region Website (Eventos)
+        private void checkBox1checkChanged(object sender, EventArgs e)
+        {
+            string[] cods = tabControl1.SelectedTab.Name.Split('.');
+            long codp = long.Parse(cods[0]);
+            long coda = long.Parse(cods[1]);
+
+            if (checkBox1.Checked == true)
+            {
+                checkBox1.Text = "Desactivar";
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codp, coda, true);
+            }
+            else if (checkBox1.Checked == false)
+            {
+                checkBox1.Text = "Activar";
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codp, coda, false);
+            }
+
+        }
+
+        private void checkBox2checkChanged(object sender, EventArgs e)
+        {
+            string[] cods = tabControl1.SelectedTab.Name.Split('.');
+            long codp = long.Parse(cods[0]);
+            long coda = long.Parse(cods[1]);
+
+            if (checkBox2.Checked == true)
+            {
+                checkBox2.Text = "Desactivar";
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codp, coda, true);
+            }
+            else if (checkBox1.Checked == false)
+            {
+                checkBox2.Text = "Activar";
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codp, coda, false);
+            }
+
+        }
+
+        private void checkBox3checkChanged(object sender, EventArgs e)
+        {
+            string[] cods = tabControl1.SelectedTab.Name.Split('.');
+            long codp = long.Parse(cods[0]);
+            long coda = long.Parse(cods[1]);
+
+            if (checkBox3.Checked == true)
+            {
+                checkBox3.Text = "Desactivar";
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codp, coda, true);
+            }
+            else if (checkBox1.Checked == false)
+            {
+                checkBox3.Text = "Activar";
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codp, coda, false);
+            }
+
+        }
+        #endregion
 
         private void importer(object sender, EventArgs e)
 		{
