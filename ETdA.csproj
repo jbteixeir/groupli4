@@ -176,6 +176,15 @@
     <Compile Include="Camada de Negócio\GestaodeRelatorios.cs" />
     <Compile Include="Camada de Negócio\GestaodeRespostas.cs" />
     <Compile Include="Camada de Negócio\ImporterExporter.cs" />
+    <Compile Include="ETdAForms\App_data\DataBaseCommunicator.cs" />
+    <Compile Include="ETdAForms\cl.aspx.cs" />
+    <Compile Include="ETdAForms\clInsert.aspx.cs" />
+    <Compile Include="ETdAForms\Default.aspx.cs" />
+    <Compile Include="ETdAForms\Erro.aspx.cs" />
+    <Compile Include="ETdAForms\fa.aspx.cs" />
+    <Compile Include="ETdAForms\faInsert.aspx.cs" />
+    <Compile Include="ETdAForms\qt.aspx.cs" />
+    <Compile Include="ETdAForms\qtInsert.aspx.cs" />
     <Compile Include="ETdA_stater.cs" />
     <Compile Include="Camada de Interface\Interface_CheckList.cs">
       <SubType>Form</SubType>
@@ -268,6 +277,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ETdAForms\Config.ini" />
+    <None Include="ETdAForms\web.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -508,6 +519,17 @@
     <None Include="Icons\Error.png" />
     <None Include="Icons\Help.png" />
     <None Include="Icons\Info.png" />
+    <Content Include="ETdAForms\cl.aspx" />
+    <Content Include="ETdAForms\clInsert.aspx" />
+    <Content Include="ETdAForms\Default.aspx" />
+    <Content Include="ETdAForms\Erro.aspx" />
+    <Content Include="ETdAForms\fa.aspx" />
+    <Content Include="ETdAForms\faInsert.aspx" />
+    <Content Include="ETdAForms\Global.asax" />
+    <Content Include="ETdAForms\qt.aspx" />
+    <Content Include="ETdAForms\qtInsert.aspx" />
+    <Content Include="ETdAForms\style.css" />
+    <Content Include="ETdAForms\style.js" />
     <Content Include="Icons\Tooltip-CloseButton-Active.png" />
     <None Include="Resources\Tooltip-CloseButton-Active.png" />
   </ItemGroup>
