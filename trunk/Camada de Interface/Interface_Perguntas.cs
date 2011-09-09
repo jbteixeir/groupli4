@@ -214,7 +214,6 @@ namespace ETdA.Camada_de_Interface
             p.Controls.Add(l3);
 
             Label l4 = new System.Windows.Forms.Label();
-            l4.Width = 200;
             l4.Text = "Mudar Tipo Resposta";
             l4.AutoSize = true;
             l4.Name = perg.Num_Pergunta.ToString();
@@ -300,11 +299,11 @@ namespace ETdA.Camada_de_Interface
         private void new_Anser(object sender, EventArgs e)
         {
             List<object> lst = (List<object>)sender;
-            int num_pergunta = ficha_avaliacao.Count - 1 - (int)lst[0];
+            int index_pergunta = ficha_avaliacao.Count - 1 - (int)lst[0];
             long cod_tipoResposta = (long)lst[1];
 
-            ficha_avaliacao[num_pergunta].Cod_TipoEscala = cod_tipoResposta;
-            Panel perg = (Panel)panel.Controls[num_pergunta];
+            ficha_avaliacao[index_pergunta].Cod_TipoEscala = cod_tipoResposta;
+            Panel perg = (Panel)panel.Controls[index_pergunta];
             perg.Controls.RemoveAt(6);
             Panel novo = getRespostasPanel(GestaodeRespostas.getTipoEscala(cod_tipoResposta));
             perg.Controls.Add(novo);
@@ -314,7 +313,6 @@ namespace ETdA.Camada_de_Interface
         private void mudarTipoRespostaClick(object sender, EventArgs e)
         {
             Label l = (Label)sender;
-            MessageBoxPortuguese.Show("", l.Name);
             Interface_GestaoRespostas.main(int.Parse(l.Name), true);
         }
 
@@ -342,7 +340,7 @@ namespace ETdA.Camada_de_Interface
                 if (!already_created)
                     GestaodeRespostas.insert_PerguntasFA(ficha_avaliacao);
                 else
-                    GestaodeRespostas.modificaPerguntasFA(ficha_avaliacao, codAnalise);
+                    GestaodeRespostas.modificaPerguntasFA(ficha_avaliacao);
 
                 evento_FA_Done(null, new EventArgs());
                 end_Frame();

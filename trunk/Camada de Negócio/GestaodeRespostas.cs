@@ -98,16 +98,16 @@ namespace ETdA.Camada_de_Negócio
             return FuncsToDataBase.selectPerguntasQT(codAnalise);
         }
 
-        public static void modificaPerguntasFA(List<PerguntaFichaAvaliacao> pergs, long codAnalise)
+        public static void modificaPerguntasFA(List<PerguntaFichaAvaliacao> pergs)
         {
             foreach (PerguntaFichaAvaliacao p in pergs)
-                FuncsToDataBase.updatePerguntasFA(p, codAnalise);
+                FuncsToDataBase.updatePerguntasFA(p);
         }
 
         public static void modificaPerguntasQT(List<PerguntaQuestionario> pergs, long codAnalise)
         {
-            foreach (PerguntaQuestionario p in pergs)
-                FuncsToDataBase.updatePerguntasQT(p, codAnalise);
+            FuncsToDataBase.deletePerguntasQT(codAnalise);
+            insert_PerguntasQT(pergs);
         }
     }
 }

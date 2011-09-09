@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using ETdA.Camada_de_Dados.Classes;
 using ETdA.Camada_de_Dados.Classes.Estruturas;
 using System.Windows;
+using System.Data.SqlTypes;
 
 namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 {
@@ -130,7 +131,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             while (r.Read())
                 deleteAnalise((long)r["cod_analise"]);
 
-            query = "delete * from projecto where" + "cod_projecto = " + codProjecto + ";";
+            query = "delete * from projecto where cod_projecto = " + codProjecto + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
@@ -1053,8 +1054,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             a.Append("insert into pergunta_questionario VALUES (");
             a.Append(p.Cod_Analise.ToString() + ",");
             a.Append(p.Num_Pergunta.ToString() + ",");
-            a.Append(p.Cod_zona.ToString() + ",");
-            a.Append(p.Cod_Item.ToString() + ",");
+            a.Append(((p.Cod_zona==-1)?"null":p.Cod_zona.ToString()) + ",");
+            a.Append(((p.Cod_Item==-1)?"null":p.Cod_Item.ToString()) + ",");
             a.Append(p.Cod_TipoEscala.ToString() + ",'");
             a.Append(p.Texto + "','");
             a.Append(p.TipoQuestao + "');");
@@ -1129,7 +1130,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             b = (int.Parse(r[0].ToString()) > 0) ? true : false;
             if (b) return b;
 
-            query = "select count(*) from respostas_questionarios_string where cod_analise = " + codAnalise + ";";
+            query = "select count(*) from resposta_questionario_string where cod_analise = " + codAnalise + ";";
 
             r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
@@ -1137,7 +1138,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             b = (int.Parse(r[0].ToString()) > 0) ? true : false;
             if (b) return b;
 
-            query = "select count(*) from rresposta_questionario_memo where cod_analise = " + codAnalise + ";";
+            query = "select count(*) from resposta_questionario_memo where cod_analise = " + codAnalise + ";";
 
             r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
@@ -1182,9 +1183,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 PerguntaQuestionario p = new PerguntaQuestionario(
                     (long)r["cod_pergunta_questionario"],
                     (long)r["cod_analise"],
-                    (int)r["numero_pergunta"],
-                    (long)r["cod_zona"],
-                    (long)r["cod_item"],
+                    (float)r["numero_pergunta"],
+                    ((r["cod_zona"].ToString() == "") ? -1 : (long)r["cod_zona"]),
+                    ((r["cod_item"].ToString() == "") ? -1 : (long)r["cod_item"]),
                     (string)r["texto"],
                     (long)r["cod_tipoEscala"],
                     (string)r["tipo_questao"]);
@@ -1194,28 +1195,36 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return pergs;
         }
 
-        public static void updatePerguntasFA(PerguntaFichaAvaliacao p, long codAnalise)
+        public static void updatePerguntasFA(PerguntaFichaAvaliacao p)
         {
             String query = "update pergunta_ficha_avaliacao set " +
                 "cod_item = " + p.Cod_Item + "," +
                 "texto = '" + p.Texto + "'," +
                 "cod_tipoEscala = " + p.Cod_TipoEscala +
-                " where cod_analise = " + codAnalise + " and " +
+                " where cod_analise = " + p.Cod_Analise + " and " +
                 "numero_pergunta = " + p.Num_Pergunta + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
 
-        public static void updatePerguntasQT(PerguntaQuestionario p, long codAnalise)
+        // not used
+        public static void updatePerguntasQT(PerguntaQuestionario p)
         {
             String query = "update pergunta_questionario set " +
-                "cod_zona = " + p.Cod_zona + "," + 
-                "cod_item = " + p.Cod_Item + "," +
+                "cod_zona = " + ((p.Cod_zona == -1) ? "null" : p.Cod_zona.ToString()) + "," +
+                "cod_item = " + ((p.Cod_Item == -1) ? "null" : p.Cod_Item.ToString()) + "," +
                 "texto = '" + p.Texto + "'," +
                 "cod_tipoEscala = " + p.Cod_TipoEscala + "," +
                 "tipo_questao = '" + p.TipoQuestao +
-                "' where cod_analise = " + codAnalise + " and " +
+                "' where cod_analise = " + p.Cod_Analise + " and " +
                 "numero_pergunta = " + p.Num_Pergunta + ";";
+
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
+        public static void deletePerguntasQT(long codAnalise)
+        {
+            string query = "delete from pergunta_questionario where cod_analise = " + codAnalise + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
