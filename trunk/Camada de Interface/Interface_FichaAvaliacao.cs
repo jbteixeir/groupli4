@@ -16,7 +16,7 @@ namespace ETdA.Camada_de_Interface
             InitializeComponent();
             FichaAvaliacao.Url = new System.Uri("http://rocket-pc:54749/ETdA/Default.aspx?form=FA&usr=" + 
                 Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codAnalise + "&prj" +
-                    "=" + codProjecto, System.UriKind.Absolute);
+                    "=" + codProjecto + "&adminmode=true", System.UriKind.Absolute);
         }
     }
 }
