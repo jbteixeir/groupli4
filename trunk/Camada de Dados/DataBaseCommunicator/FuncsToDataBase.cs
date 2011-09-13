@@ -1231,6 +1231,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         #endregion
 
         #region Website
+        #region Get Estado Formulários
+
         public static bool getEstadoCheckListOnline(long codProjecto, long codAnalise)
         {
             string query = "SELECT analise.estadoWebCheckList FROM analise WHERE analise.cod_analise = " + codAnalise + 
@@ -1276,7 +1278,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             else
                 return false;
         }
-
+        #endregion
+        #region Set Estado Formulários
         public static void setEstadoCheckListOnline(long codProjecto, long codAnalise, bool estado)
         {
             int value;
@@ -1284,6 +1287,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 value=1;
             else
                 value=0;
+
             DataBaseCommunicator.query("Update analise "+
                                        "Set estadoWebCheckList=" + value +
                                         "where analise.cod_projecto = "+codProjecto+
@@ -1297,6 +1301,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 value=1;
             else
                 value=0;
+
             DataBaseCommunicator.query("Update analise " +
                                        "Set estadoWebFichaAvaliacao="+ value +
                                         "where analise.cod_projecto = " + codProjecto +
@@ -1310,11 +1315,13 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 value=1;
             else
                 value=0;
+
             DataBaseCommunicator.query("Update analise " +
                                        "Set estadoWebQuestionario=" + value +
                                         "where analise.cod_projecto = " + codProjecto +
                                         " and analise.cod_analise = " + codAnalise);
         }
+        #endregion
         #endregion
 
     }
