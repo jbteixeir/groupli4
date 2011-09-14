@@ -80,9 +80,6 @@
             this.proximaAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.anteriorAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fecharAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            listaProjectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            listaProjectosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            listaProjectosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -96,30 +93,6 @@
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // listaProjectosToolStripMenuItem
-            // 
-            listaProjectosToolStripMenuItem.Enabled = false;
-            listaProjectosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            listaProjectosToolStripMenuItem.Name = "listaProjectosToolStripMenuItem";
-            listaProjectosToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            listaProjectosToolStripMenuItem.Text = "Lista Projectos";
-            // 
-            // listaProjectosToolStripMenuItem1
-            // 
-            listaProjectosToolStripMenuItem1.Enabled = false;
-            listaProjectosToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            listaProjectosToolStripMenuItem1.Name = "listaProjectosToolStripMenuItem1";
-            listaProjectosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            listaProjectosToolStripMenuItem1.Text = "Lista Projectos";
-            // 
-            // listaProjectosToolStripMenuItem2
-            // 
-            listaProjectosToolStripMenuItem2.Enabled = false;
-            listaProjectosToolStripMenuItem2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            listaProjectosToolStripMenuItem2.Name = "listaProjectosToolStripMenuItem2";
-            listaProjectosToolStripMenuItem2.Size = new System.Drawing.Size(154, 22);
-            listaProjectosToolStripMenuItem2.Text = "Lista Projectos";
             // 
             // statusStrip1
             // 
@@ -274,9 +247,7 @@
             // novaAnaliseToolStripMenuItem
             // 
             this.novaAnaliseToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.novaAnaliseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            listaProjectosToolStripMenuItem2,
-            this.toolStripSeparator2});
+            this.novaAnaliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuListaProjectos());
             this.novaAnaliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271576_folder_add;
             this.novaAnaliseToolStripMenuItem.Name = "novaAnaliseToolStripMenuItem";
             this.novaAnaliseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
@@ -324,9 +295,7 @@
             // 
             // apagarProjectoToolStripMenuItem
             // 
-            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            listaProjectosToolStripMenuItem,
-            this.toolStripSeparator4});
+            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuListaProjectos());
             this.apagarProjectoToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271476_file_delete;
             this.apagarProjectoToolStripMenuItem.Name = "apagarProjectoToolStripMenuItem";
             this.apagarProjectoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
@@ -339,10 +308,7 @@
             // 
             // apagarAnáliseToolStripMenuItem
             // 
-            this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            listaProjectosToolStripMenuItem1,
-            this.toolStripSeparator5,
-            this.toolStripMenuItem1});
+            this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuListaProjectos());
             this.apagarAnáliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271588_folder_delete;
             this.apagarAnáliseToolStripMenuItem.Name = "apagarAnáliseToolStripMenuItem";
             this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
@@ -543,7 +509,6 @@
             // 
             // fecharAbaToolStripMenuItem
             // 
-            this.fecharAbaToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271459_notification_error;
             this.fecharAbaToolStripMenuItem.Name = "fecharAbaToolStripMenuItem";
             this.fecharAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
             this.fecharAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
@@ -559,7 +524,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "InterfaceGuestaoProjectos";
             this.Text = "ETdAnalyser";
-            this.Load += new System.EventHandler(this.InterfaceGuestaoProjectos_Load);
+           // this.Load += new System.EventHandler(this.InterfaceGuestaoProjectos_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
