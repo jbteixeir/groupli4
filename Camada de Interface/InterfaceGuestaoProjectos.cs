@@ -743,11 +743,6 @@ namespace ETdA.Camada_de_Interface
             t.Font = new Font(t.Font, FontStyle.Regular);
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         /* Funcoes privadas */
 
         // rdone
@@ -790,11 +785,6 @@ namespace ETdA.Camada_de_Interface
             this.Dispose();
         }
 
-        private void InterfaceGuestaoProjectos_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void InserirManualClick(object sender, EventArgs e)
         {
             long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
@@ -814,5 +804,39 @@ namespace ETdA.Camada_de_Interface
             Interface_GestaoFormulariosOnline.main(codAnalise, itens, zonas);
         }
 
+        private ToolStripItem[] GetToolStripMenuListaProjectos()
+        {
+            Dictionary<long, string> cod_names = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
+
+            ToolStripItem[] ListaProjectos = new ToolStripItem[cod_names.Count+2];
+            //cabeçalho - Lista Projectos
+            ToolStripMenuItem listaProjectosToolStripMenuItem = new ToolStripMenuItem();
+            listaProjectosToolStripMenuItem.Enabled = false;
+            listaProjectosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            listaProjectosToolStripMenuItem.Name = "listaProjectosToolStripMenuItem";
+            listaProjectosToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            listaProjectosToolStripMenuItem.Text = "Lista Projectos";
+
+            ListaProjectos[0] = listaProjectosToolStripMenuItem;
+
+            //Separador
+            ToolStripSeparator separador = new ToolStripSeparator();
+            separador.Name = "Separador";
+            separador.Size = new System.Drawing.Size(149, 6);
+            ListaProjectos[1] = separador;
+
+            for (int i = 0; i < cod_names.Count; i++)
+            {
+                ToolStripMenuItem ListaProjectoToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+                ListaProjectoToolStrip.Enabled = true;
+                ListaProjectoToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
+                ListaProjectoToolStrip.Name = "listaProjectosToolStripMenuItem";
+                ListaProjectoToolStrip.Size = new System.Drawing.Size(154, 22);
+                ListaProjectoToolStrip.Text = cod_names.ElementAt(i).Value;
+                ListaProjectos[i + 2] = ListaProjectoToolStrip;
+            }
+            return (ListaProjectos);
+        }
+                                                    
     }
 }
