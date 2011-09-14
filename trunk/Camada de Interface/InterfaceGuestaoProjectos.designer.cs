@@ -247,7 +247,7 @@
             // novaAnaliseToolStripMenuItem
             // 
             this.novaAnaliseToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.novaAnaliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuListaProjectos());
+            this.novaAnaliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuCriarAnalise());
             this.novaAnaliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271576_folder_add;
             this.novaAnaliseToolStripMenuItem.Name = "novaAnaliseToolStripMenuItem";
             this.novaAnaliseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
@@ -295,7 +295,7 @@
             // 
             // apagarProjectoToolStripMenuItem
             // 
-            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuListaProjectos());
+            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(GetToolStripListaProjectos());
             this.apagarProjectoToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271476_file_delete;
             this.apagarProjectoToolStripMenuItem.Name = "apagarProjectoToolStripMenuItem";
             this.apagarProjectoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
@@ -308,7 +308,7 @@
             // 
             // apagarAnáliseToolStripMenuItem
             // 
-            this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuListaProjectos());
+            this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripListaProjectos());
             this.apagarAnáliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271588_folder_delete;
             this.apagarAnáliseToolStripMenuItem.Name = "apagarAnáliseToolStripMenuItem";
             this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
