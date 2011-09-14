@@ -804,7 +804,8 @@ namespace ETdA.Camada_de_Interface
             Interface_GestaoFormulariosOnline.main(codAnalise, itens, zonas);
         }
 
-        private ToolStripItem[] GetToolStripMenuListaProjectos()
+        #region Menu de cima
+        private ToolStripItem[] GetToolStripListaProjectos()
         {
             Dictionary<long, string> cod_names = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
 
@@ -830,13 +831,83 @@ namespace ETdA.Camada_de_Interface
                 ToolStripMenuItem ListaProjectoToolStrip = new System.Windows.Forms.ToolStripMenuItem();
                 ListaProjectoToolStrip.Enabled = true;
                 ListaProjectoToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
-                ListaProjectoToolStrip.Name = "listaProjectosToolStripMenuItem";
+                ListaProjectoToolStrip.Name = cod_names.ElementAt(i).Key.ToString();
                 ListaProjectoToolStrip.Size = new System.Drawing.Size(154, 22);
                 ListaProjectoToolStrip.Text = cod_names.ElementAt(i).Value;
                 ListaProjectos[i + 2] = ListaProjectoToolStrip;
             }
             return (ListaProjectos);
         }
-                                                    
+
+        private ToolStripMenuItem[] GetToolStripMenuItemListaProjectos()
+        {
+            Dictionary<long, string> cod_names = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
+
+            ToolStripMenuItem[] ListaProjectos = new ToolStripMenuItem[cod_names.Count + 2];
+            //cabeçalho - Lista Projectos
+            ToolStripMenuItem listaProjectosToolStripMenuItem = new ToolStripMenuItem();
+            listaProjectosToolStripMenuItem.Enabled = false;
+            listaProjectosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            listaProjectosToolStripMenuItem.Name = "listaProjectosToolStripMenuItem";
+            listaProjectosToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            listaProjectosToolStripMenuItem.Text = "Lista Projectos";
+
+            ListaProjectos[0] = listaProjectosToolStripMenuItem;
+
+            //Separador
+            /*
+            ToolStripSeparator separador = new ToolStripSeparator();
+            separador.Name = "Separador";
+            separador.Size = new System.Drawing.Size(149, 6);
+            ListaProjectos[1] = separador;
+             * */
+
+            for (int i = 0; i < cod_names.Count; i++)
+            {
+                ToolStripMenuItem ListaProjectoToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+                ListaProjectoToolStrip.Enabled = true;
+                ListaProjectoToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
+                ListaProjectoToolStrip.Name = cod_names.ElementAt(i).Key.ToString();
+                ListaProjectoToolStrip.Size = new System.Drawing.Size(154, 22);
+                ListaProjectoToolStrip.Text = cod_names.ElementAt(i).Value;
+                ListaProjectos[i + 2] = ListaProjectoToolStrip;
+            }
+            return (ListaProjectos);
+        }
+
+        private ToolStripItem[] GetToolStripMenuCriarAnalise() 
+        {
+            ToolStripItem[] ListaProjecto = GetToolStripListaProjectos();
+            for (int i = 0; i < ListaProjecto.Count(); i++)
+            {
+                ListaProjecto[i].Click += new EventHandler(toolstripMenuCriarAnalise);
+            }
+
+            return ListaProjecto;
+        }
+
+        private void toolstripMenuCriarAnalise(object sender, EventArgs e)
+        {
+            ToolStripItem tsi = (ToolStripItem)sender;
+
+            Interface_CriarAnalise.main(long.Parse(tsi.Name), tsi.Text);
+        }
+
+        private ToolStripItem[] GetToolStripMenuApagarProjecto()
+        {
+
+            return new ToolStripItem[] { };
+        }
+
+        private ToolStripMenuItem[] GetToolStripMenuApagarAnalise()
+        {
+            ToolStripMenuItem[] ListaProjecto = GetToolStripMenuItemListaProjectos();
+            for (int i = 0; i < ListaProjecto.Count(); i++)
+            {
+                ListaProjecto[i].DropDownItems.AddRange(new ToolStripItem[]{});
+            }
+            return (ListaProjecto);
+        }
+        #endregion
     }
 }
