@@ -524,7 +524,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "InterfaceGuestaoProjectos";
             this.Text = "ETdAnalyser";
-           // this.Load += new System.EventHandler(this.InterfaceGuestaoProjectos_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);

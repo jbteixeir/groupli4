@@ -75,7 +75,7 @@ namespace ETdA.Camada_de_Interface
         {
             string nome = textBox1.Text;
 
-            bool valido = nomeAnaliseValido(nome);
+            bool valido = nomeValido(nome);
             if (comboBox1.SelectedIndex == 2) done = true;
 
             if (!valido)
@@ -131,15 +131,15 @@ namespace ETdA.Camada_de_Interface
         }
 
         // rdone
-		private bool nomeAnaliseValido(string p)
-		{
+        private bool nomeValido(string p)
+        {
             if (p == "") return false;
-			string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_-/";
+            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_-/ áàãâéêíóõúÁÀÃÂÉÊÍÓÕÚçÇ";
             bool found = true;
             for (int i = 0; i < p.Length && found; i++)
                 found = possiveis.Contains(p[i]);
             return found;
-		}
+        }
 
         // rdone
         private void ZonasActionPerformed(object sender, EventArgs e)

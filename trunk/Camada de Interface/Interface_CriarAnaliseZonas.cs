@@ -65,7 +65,8 @@ namespace ETdA.Camada_de_Interface
         private bool nomeZonaValido(string p)
         {
             if (p == "") return false;
-            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789_";
+            string possiveis = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVKWXYZ0123456789" +
+                             "áàãâéèêíìîóòôõúùûçÁÀÂÃÉÈÊÍÌÎÓÒÕÔÚÙÛÇ ,.;:/()[]{}'?!_-|\\+ºª'";
             bool found = true;
             for (int i = 0; i < p.Length && found; i++)
                 found = possiveis.Contains(p[i]);
