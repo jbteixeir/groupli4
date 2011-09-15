@@ -22,6 +22,7 @@ namespace ETdA.Camada_de_Interface
         // s_final
         public InterfaceGuestaoProjectos()
         {
+            GestaodeProjectos.init();
             InitializeComponent();
             tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
             tabControl1.Location = new Point(0, 0);
@@ -29,7 +30,6 @@ namespace ETdA.Camada_de_Interface
             tabControl1.Dock = DockStyle.Fill;
             panel1.Controls.Add(tabControl1);
 
-            GestaodeProjectos.init();
             indexes = new List<int>();
 
             initTree();
@@ -805,18 +805,107 @@ namespace ETdA.Camada_de_Interface
         }
 
         #region Menu de cima
+
+        #region Analises
+
+        private ToolStripItem[] GetToolStripItemListaAnalises(long codProjecto)
+        {
+            Dictionary<long, string> ans = GestaodeAnalises.getCodeNomeAnalises(codProjecto);
+
+            ToolStripItem[] ListaAnalises = new ToolStripItem[ans.Count + 2];
+            //cabeçalho - Lista Analises
+            ToolStripMenuItem listaAnalisesToolStripMenuItem = new ToolStripMenuItem();
+            listaAnalisesToolStripMenuItem.Enabled = false;
+            listaAnalisesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            listaAnalisesToolStripMenuItem.Name = "listaAnalisesToolStripMenuItem";
+            listaAnalisesToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            listaAnalisesToolStripMenuItem.Text = "Lista de Análises";
+
+            ListaAnalises[0] = listaAnalisesToolStripMenuItem;
+
+            //Separador
+            ToolStripSeparator separador = new ToolStripSeparator();
+            separador.Name = "Separador";
+            separador.Size = new System.Drawing.Size(149, 6);
+            ListaAnalises[1] = separador;
+            int i = 0;
+            foreach (KeyValuePair<long, string> s in ans)
+            {
+                ToolStripMenuItem ListaAnaliseToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+                ListaAnaliseToolStrip.Enabled = true;
+                ListaAnaliseToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
+                ListaAnaliseToolStrip.Name = s.Key.ToString();
+                ListaAnaliseToolStrip.Size = new System.Drawing.Size(154, 22);
+                ListaAnaliseToolStrip.Text = s.Value;
+                ListaAnalises[i + 2] = ListaAnaliseToolStrip;
+                i++;
+            }
+            return (ListaAnalises);
+        }
+
+        private ToolStripItem[] GetToolStripMenuCriarAnalise()
+        {
+            ToolStripItem[] ListaProjecto = GetToolStripListaProjectos();
+            for (int i = 0; i < ListaProjecto.Count(); i++)
+            {
+                ListaProjecto[i].Click += new EventHandler(toolstripMenuCriarAnalise);
+            }
+
+            return ListaProjecto;
+        }
+
+        private ToolStripMenuItem[] GetToolStripMenuListaProjectoListaAnaliseTemp()
+        {
+            ToolStripMenuItem[] ListaProjecto = GetToolStripMenuItemListaProjectos();
+            for (int i = 0; i < ListaProjecto.Count(); i++)
+            {
+                ToolStripItem[] newtsi = GetToolStripItemListaAnalises(long.Parse(ListaProjecto[i].Name));
+                ListaProjecto[i].DropDownItems.AddRange(newtsi);
+            }
+
+            return (ListaProjecto);
+        }
+
+        private ToolStripItem[] GetFullToolStripMenuListaProjectoListaAnalise()
+        {
+            ToolStripMenuItem listaProjectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            listaProjectosToolStripMenuItem.Enabled = false;
+            listaProjectosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            listaProjectosToolStripMenuItem.Name = "listaProjectosToolStripMenuItem";
+            listaProjectosToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            listaProjectosToolStripMenuItem.Text = "Lista de Projectos";
+
+            //Separador
+
+            System.Windows.Forms.ToolStripSeparator separador = new System.Windows.Forms.ToolStripSeparator();
+            separador.Name = "Separador";
+            separador.Size = new System.Drawing.Size(149, 6);
+
+
+            System.Windows.Forms.ToolStripItem[] tsi1 = new System.Windows.Forms.ToolStripItem[] { listaProjectosToolStripMenuItem, separador };
+            System.Windows.Forms.ToolStripItem[] tsi2 = GetToolStripMenuListaProjectoListaAnaliseTemp();
+            System.Windows.Forms.ToolStripItem[] tsiMerged = new System.Windows.Forms.ToolStripItem[tsi1.Length + tsi2.Length];
+            System.Array.Copy(tsi1, tsiMerged, tsi1.Length);
+            System.Array.Copy(tsi2, 0, tsiMerged, tsi1.Length, tsi2.Length);
+
+            return (tsiMerged);
+        }
+        #endregion
+
+        #region Projectos
+
         private ToolStripItem[] GetToolStripListaProjectos()
         {
             Dictionary<long, string> cod_names = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
 
-            ToolStripItem[] ListaProjectos = new ToolStripItem[cod_names.Count+2];
+            ToolStripItem[] ListaProjectos = new ToolStripItem[cod_names.Count + 2];
             //cabeçalho - Lista Projectos
             ToolStripMenuItem listaProjectosToolStripMenuItem = new ToolStripMenuItem();
             listaProjectosToolStripMenuItem.Enabled = false;
             listaProjectosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             listaProjectosToolStripMenuItem.Name = "listaProjectosToolStripMenuItem";
             listaProjectosToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            listaProjectosToolStripMenuItem.Text = "Lista Projectos";
+            listaProjectosToolStripMenuItem.Text = "Lista de Projectos";
 
             ListaProjectos[0] = listaProjectosToolStripMenuItem;
 
@@ -843,24 +932,8 @@ namespace ETdA.Camada_de_Interface
         {
             Dictionary<long, string> cod_names = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
 
-            ToolStripMenuItem[] ListaProjectos = new ToolStripMenuItem[cod_names.Count + 2];
-            //cabeçalho - Lista Projectos
-            ToolStripMenuItem listaProjectosToolStripMenuItem = new ToolStripMenuItem();
-            listaProjectosToolStripMenuItem.Enabled = false;
-            listaProjectosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            listaProjectosToolStripMenuItem.Name = "listaProjectosToolStripMenuItem";
-            listaProjectosToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            listaProjectosToolStripMenuItem.Text = "Lista Projectos";
+            ToolStripMenuItem[] ListaProjectos = new ToolStripMenuItem[cod_names.Count];
 
-            ListaProjectos[0] = listaProjectosToolStripMenuItem;
-
-            //Separador
-            /*
-            ToolStripSeparator separador = new ToolStripSeparator();
-            separador.Name = "Separador";
-            separador.Size = new System.Drawing.Size(149, 6);
-            ListaProjectos[1] = separador;
-             * */
 
             for (int i = 0; i < cod_names.Count; i++)
             {
@@ -870,21 +943,25 @@ namespace ETdA.Camada_de_Interface
                 ListaProjectoToolStrip.Name = cod_names.ElementAt(i).Key.ToString();
                 ListaProjectoToolStrip.Size = new System.Drawing.Size(154, 22);
                 ListaProjectoToolStrip.Text = cod_names.ElementAt(i).Value;
-                ListaProjectos[i + 2] = ListaProjectoToolStrip;
+                ListaProjectos[i] = ListaProjectoToolStrip;
             }
             return (ListaProjectos);
         }
 
-        private ToolStripItem[] GetToolStripMenuCriarAnalise() 
+        private ToolStripItem[] GetToolStripMenuApagarProjecto()
         {
+
             ToolStripItem[] ListaProjecto = GetToolStripListaProjectos();
             for (int i = 0; i < ListaProjecto.Count(); i++)
             {
-                ListaProjecto[i].Click += new EventHandler(toolstripMenuCriarAnalise);
+                ListaProjecto[i].Click += new EventHandler(toolstripMenuApagarProjecto);
             }
 
             return ListaProjecto;
         }
+        #endregion
+
+        #region Event Handlers Menu
 
         private void toolstripMenuCriarAnalise(object sender, EventArgs e)
         {
@@ -893,21 +970,14 @@ namespace ETdA.Camada_de_Interface
             Interface_CriarAnalise.main(long.Parse(tsi.Name), tsi.Text);
         }
 
-        private ToolStripItem[] GetToolStripMenuApagarProjecto()
+        private void toolstripMenuApagarProjecto(object sender, EventArgs e)
         {
+            ToolStripItem tsi = (ToolStripItem)sender;
 
-            return new ToolStripItem[] { };
+            Interface_CriarAnalise.main(long.Parse(tsi.Name), tsi.Text);
         }
+        #endregion
 
-        private ToolStripMenuItem[] GetToolStripMenuApagarAnalise()
-        {
-            ToolStripMenuItem[] ListaProjecto = GetToolStripMenuItemListaProjectos();
-            for (int i = 0; i < ListaProjecto.Count(); i++)
-            {
-                ListaProjecto[i].DropDownItems.AddRange(new ToolStripItem[]{});
-            }
-            return (ListaProjecto);
-        }
         #endregion
     }
 }
