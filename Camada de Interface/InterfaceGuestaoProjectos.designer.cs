@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem;
-            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem1;
-            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem2;
+            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfaceGuestaoProjectos));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -295,7 +295,7 @@
             // 
             // apagarProjectoToolStripMenuItem
             // 
-            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(GetToolStripListaProjectos());
+            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuApagarProjecto());
             this.apagarProjectoToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271476_file_delete;
             this.apagarProjectoToolStripMenuItem.Name = "apagarProjectoToolStripMenuItem";
             this.apagarProjectoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
@@ -308,7 +308,8 @@
             // 
             // apagarAnáliseToolStripMenuItem
             // 
-            this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripListaProjectos());
+            //cabeçalho - Lista Projectos
+            this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetFullToolStripMenuListaProjectoListaAnalise());
             this.apagarAnáliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271588_folder_delete;
             this.apagarAnáliseToolStripMenuItem.Name = "apagarAnáliseToolStripMenuItem";
             this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(159, 22);

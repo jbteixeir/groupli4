@@ -17,6 +17,9 @@ namespace ETdA.Camada_de_Negócio
         // s_final
         public static Dictionary<long,string> getCodeNomeAnalises(long codProj)
         {
+            if (Camada_de_Dados.ETdA.ETdA.getProjecto(codProj) == null)
+                GestaodeProjectos.abreProjecto(codProj);
+
             return Camada_de_Dados.ETdA.ETdA.getProjecto(codProj).Cod_Name_Analise;
         }
 
