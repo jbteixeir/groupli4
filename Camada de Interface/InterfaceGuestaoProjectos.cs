@@ -446,12 +446,6 @@ namespace ETdA.Camada_de_Interface
         }
 
         // s_final
-        private void fecharTab(object sender, EventArgs e)
-        {
-            closeTab(tabControl1.SelectedIndex);
-        }
-
-        // s_final
         private int getTabNumber(string cod)
         {
             int i;
@@ -948,20 +942,33 @@ namespace ETdA.Camada_de_Interface
             return (ListaProjectos);
         }
 
-        private ToolStripItem[] GetToolStripMenuApagarProjecto()
-        {
-
-            ToolStripItem[] ListaProjecto = GetToolStripListaProjectos();
-            for (int i = 0; i < ListaProjecto.Count(); i++)
-            {
-                ListaProjecto[i].Click += new EventHandler(toolstripMenuApagarProjecto);
-            }
-
-            return ListaProjecto;
-        }
         #endregion
 
         #region Event Handlers Menu
+
+        #region Barra de botoes
+
+        #region tabControl
+        private void proximaTab(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex < tabControl1.TabCount -1)
+                this.tabControl1.SelectTab(tabControl1.SelectedIndex + 1);
+        }
+        private void anteriorTab(object sender, EventArgs e)
+        {
+            //this.tabControl1.Select(true, true);
+            if(tabControl1.SelectedIndex > 0)
+                this.tabControl1.SelectTab(tabControl1.SelectedIndex -1);
+        }
+
+        private void fecharTab(object sender, EventArgs e)
+        { 
+            if(tabControl1.TabCount > 0)
+                tabControl1.TabPages.Remove(tabControl1.SelectedTab);
+        }
+        #endregion
+
+        #endregion
 
         private void toolstripMenuCriarAnalise(object sender, EventArgs e)
         {
@@ -970,14 +977,7 @@ namespace ETdA.Camada_de_Interface
             Interface_CriarAnalise.main(long.Parse(tsi.Name), tsi.Text);
         }
 
-        private void toolstripMenuApagarProjecto(object sender, EventArgs e)
-        {
-            ToolStripItem tsi = (ToolStripItem)sender;
-
-            Interface_CriarAnalise.main(long.Parse(tsi.Name), tsi.Text);
-        }
         #endregion
-
         #endregion
     }
 }

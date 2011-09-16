@@ -127,17 +127,20 @@
   <data name="1309271453_notification_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271453_notification_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_1309271576_folder_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309271576_folder_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="verdeWord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\colors\verdeWord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1309271459_notification_error" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271459_notification_error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1309271588_folder_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271588_folder_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="laranjaWord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\colors\laranjaWord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1309271598_application_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271598_application_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1309271471_file_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271471_file_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -147,9 +150,6 @@
   </data>
   <data name="1309272270_diskette" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309272270_diskette.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1309272274_diskette" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309272274_diskette.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -162,6 +162,9 @@
   </data>
   <data name="1309271465_file_search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271465_file_search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1309271487_notification_done" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271487_notification_done.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Imagens\login.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,9 +181,6 @@
   <data name="1309271537_file_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271537_file_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="notification_error_ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309271463_notification_error.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="notification_done_ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271491_notification_done.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -193,11 +193,11 @@
   <data name="amarelo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\colors\amarelo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="1309272765_direction_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309272765_direction_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="vermelhoWord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\colors\vermelhoWord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1309271598_application_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309271598_application_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1309271507_notification_remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271507_notification_remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,8 +217,8 @@
   <data name="_1309271453_notification_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271453_notification_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1309271487_notification_done" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309271487_notification_done.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="1309272274_diskette" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309272274_diskette.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="openproj" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Imagens\openproj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -238,8 +238,8 @@
   <data name="lima" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\colors\lima.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_1309271459_notification_error" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309271459_notification_error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="notification_error_ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271463_notification_error.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1309272771_direction_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309272771_direction_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,10 +247,13 @@
   <data name="1309271512_notification_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271512_notification_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1309272765_direction_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309272765_direction_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1309271576_folder_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271576_folder_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1309271459_notification_error1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271459_notification_error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
