@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem1;
+            System.Windows.Forms.ToolStripMenuItem listaProjectosToolStripMenuItem2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfaceGuestaoProjectos));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -46,18 +46,16 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novoProjectoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novaAnaliseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.terminarSessãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.anteriorAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proximaAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fecharAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.apagarProjectoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.apagarAnáliseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaAnálisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.apagarDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.avançadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,15 +69,21 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.proximaAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.anteriorAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fecharAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaAnálisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            listaProjectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            listaProjectosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            listaProjectosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -93,6 +97,21 @@
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // listaProjectosToolStripMenuItem
+            // 
+            listaProjectosToolStripMenuItem.Name = "listaProjectosToolStripMenuItem";
+            listaProjectosToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // listaProjectosToolStripMenuItem1
+            // 
+            listaProjectosToolStripMenuItem1.Name = "listaProjectosToolStripMenuItem1";
+            listaProjectosToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // listaProjectosToolStripMenuItem2
+            // 
+            listaProjectosToolStripMenuItem2.Name = "listaProjectosToolStripMenuItem2";
+            listaProjectosToolStripMenuItem2.Size = new System.Drawing.Size(32, 19);
             // 
             // statusStrip1
             // 
@@ -246,18 +265,13 @@
             // 
             // novaAnaliseToolStripMenuItem
             // 
-            this.novaAnaliseToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.novaAnaliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuCriarAnalise());
+            this.novaAnaliseToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.novaAnaliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271576_folder_add;
             this.novaAnaliseToolStripMenuItem.Name = "novaAnaliseToolStripMenuItem";
             this.novaAnaliseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.novaAnaliseToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.novaAnaliseToolStripMenuItem.Text = "Nova Analise";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(151, 6);
             // 
             // toolStripSeparator1
             // 
@@ -293,60 +307,59 @@
             this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.editToolStripMenuItem.Text = "Editar";
             // 
+            // anteriorAbaToolStripMenuItem
+            // 
+            this.anteriorAbaToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309272771_direction_left;
+            this.anteriorAbaToolStripMenuItem.Name = "anteriorAbaToolStripMenuItem";
+            this.anteriorAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
+            this.anteriorAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.anteriorAbaToolStripMenuItem.Text = "Anterior Aba";
+            this.anteriorAbaToolStripMenuItem.Click += new System.EventHandler(this.anteriorTab);
+            // 
+            // proximaAbaToolStripMenuItem
+            // 
+            this.proximaAbaToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309272765_direction_right;
+            this.proximaAbaToolStripMenuItem.Name = "proximaAbaToolStripMenuItem";
+            this.proximaAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
+            this.proximaAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.proximaAbaToolStripMenuItem.Text = "Próxima Aba";
+            this.proximaAbaToolStripMenuItem.Click += new System.EventHandler(this.proximaTab);
+            // 
+            // fecharAbaToolStripMenuItem
+            // 
+            this.fecharAbaToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271459_notification_error1;
+            this.fecharAbaToolStripMenuItem.Name = "fecharAbaToolStripMenuItem";
+            this.fecharAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
+            this.fecharAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.fecharAbaToolStripMenuItem.Text = "Fechar Aba";
+            this.fecharAbaToolStripMenuItem.Click += new System.EventHandler(this.fecharTab);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(200, 6);
+            // 
             // apagarProjectoToolStripMenuItem
             // 
-            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuApagarProjecto());
+            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuItemListaProjectos());
             this.apagarProjectoToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271476_file_delete;
             this.apagarProjectoToolStripMenuItem.Name = "apagarProjectoToolStripMenuItem";
-            this.apagarProjectoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.apagarProjectoToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.apagarProjectoToolStripMenuItem.Text = "Apagar Projecto";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(151, 6);
             // 
             // apagarAnáliseToolStripMenuItem
             // 
-            //cabeçalho - Lista Projectos
             this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetFullToolStripMenuListaProjectoListaAnalise());
             this.apagarAnáliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271588_folder_delete;
             this.apagarAnáliseToolStripMenuItem.Name = "apagarAnáliseToolStripMenuItem";
-            this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.apagarAnáliseToolStripMenuItem.Text = "Apagar Análise";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listaAnálisesToolStripMenuItem,
-            this.toolStripSeparator6});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem1.Text = "toolStripMenuItem1";
-            // 
-            // listaAnálisesToolStripMenuItem
-            // 
-            this.listaAnálisesToolStripMenuItem.Enabled = false;
-            this.listaAnálisesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.listaAnálisesToolStripMenuItem.Name = "listaAnálisesToolStripMenuItem";
-            this.listaAnálisesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.listaAnálisesToolStripMenuItem.Text = "Lista Análises";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
             // 
             // apagarDadosToolStripMenuItem
             // 
             this.apagarDadosToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271507_notification_remove;
             this.apagarDadosToolStripMenuItem.Name = "apagarDadosToolStripMenuItem";
-            this.apagarDadosToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.apagarDadosToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.apagarDadosToolStripMenuItem.Text = "Apagar Dados";
             // 
             // viewToolStripMenuItem
@@ -364,7 +377,7 @@
             this.toolStripSeparator7,
             this.baseDeDadosToolStripMenuItem});
             this.avançadoToolStripMenuItem.Name = "avançadoToolStripMenuItem";
-            this.avançadoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.avançadoToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.avançadoToolStripMenuItem.Text = "Avançado";
             // 
             // eliminarContaToolStripMenuItem
@@ -416,11 +429,12 @@
             this.toolStripSeparator3,
             this.toolStripButton5,
             this.toolStripButton6,
+            this.toolStripButton4,
             this.toolStripSeparator8,
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(3, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(139, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(193, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -450,20 +464,6 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = global::ETdA.Properties.Resources._1309272765_direction_right;
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton6.Text = "Próxima aba (Ctrl + Direita)";
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            // 
             // toolStripButton5
             // 
             this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -472,6 +472,27 @@
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton5.Text = "Anterior aba (Ctrl + Esquerda)";
+            this.toolStripButton5.Click += new System.EventHandler(this.anteriorTab);
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton6.Image = global::ETdA.Properties.Resources._1309272765_direction_right;
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton6.Text = "Próxima aba (Ctrl + Direita)";
+            this.toolStripButton6.Click += new System.EventHandler(this.proximaTab);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = global::ETdA.Properties.Resources._1309271459_notification_error1;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "Fechar Aba";
+            this.toolStripButton4.Click += new System.EventHandler(this.fecharTab);
             // 
             // toolStripSeparator8
             // 
@@ -487,33 +508,47 @@
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "Apagar Dados";
             // 
-            // toolStripSeparator9
+            // toolStripSeparator2
             // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(200, 6);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(151, 6);
             // 
-            // proximaAbaToolStripMenuItem
+            // toolStripSeparator4
             // 
-            this.proximaAbaToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309272765_direction_right;
-            this.proximaAbaToolStripMenuItem.Name = "proximaAbaToolStripMenuItem";
-            this.proximaAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
-            this.proximaAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.proximaAbaToolStripMenuItem.Text = "Próxima Aba";
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(151, 6);
             // 
-            // anteriorAbaToolStripMenuItem
+            // toolStripSeparator5
             // 
-            this.anteriorAbaToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309272771_direction_left;
-            this.anteriorAbaToolStripMenuItem.Name = "anteriorAbaToolStripMenuItem";
-            this.anteriorAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
-            this.anteriorAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.anteriorAbaToolStripMenuItem.Text = "Anterior Aba";
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
-            // fecharAbaToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.fecharAbaToolStripMenuItem.Name = "fecharAbaToolStripMenuItem";
-            this.fecharAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-            this.fecharAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.fecharAbaToolStripMenuItem.Text = "Fechar Aba";
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listaAnálisesToolStripMenuItem,
+            this.toolStripSeparator6});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "toolStripMenuItem1";
+            // 
+            // listaAnálisesToolStripMenuItem
+            // 
+            this.listaAnálisesToolStripMenuItem.Enabled = false;
+            this.listaAnálisesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.listaAnálisesToolStripMenuItem.Name = "listaAnálisesToolStripMenuItem";
+            this.listaAnálisesToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.listaAnálisesToolStripMenuItem.Text = "Lista Análises";
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(143, 6);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
             // 
             // InterfaceGuestaoProjectos
             // 
@@ -598,5 +633,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripMenuItem fecharAbaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
     }
 }
