@@ -831,6 +831,7 @@ namespace ETdA.Camada_de_Interface
                 ListaAnaliseToolStrip.Name = s.Key.ToString();
                 ListaAnaliseToolStrip.Size = new System.Drawing.Size(154, 22);
                 ListaAnaliseToolStrip.Text = s.Value;
+                ListaAnaliseToolStrip.Click +=new EventHandler(ToolStripApagarAnalise);
                 ListaAnalises[i + 2] = ListaAnaliseToolStrip;
                 i++;
             }
@@ -848,7 +849,7 @@ namespace ETdA.Camada_de_Interface
             return ListaProjecto;
         }
 
-        private ToolStripMenuItem[] GetToolStripMenuListaProjectoListaAnaliseTemp()
+        private ToolStripMenuItem[] GetToolStripMenuApagarAnaliseTemp()
         {
             ToolStripMenuItem[] ListaProjecto = GetToolStripMenuItemListaProjectos();
             for (int i = 0; i < ListaProjecto.Count(); i++)
@@ -860,7 +861,7 @@ namespace ETdA.Camada_de_Interface
             return (ListaProjecto);
         }
 
-        private ToolStripItem[] GetFullToolStripMenuListaProjectoListaAnalise()
+        private ToolStripItem[] GetFullToolStripMenuApagarAnalise()
         {
             ToolStripMenuItem listaProjectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             listaProjectosToolStripMenuItem.Enabled = false;
@@ -877,20 +878,21 @@ namespace ETdA.Camada_de_Interface
 
 
             System.Windows.Forms.ToolStripItem[] tsi1 = new System.Windows.Forms.ToolStripItem[] { listaProjectosToolStripMenuItem, separador };
-            System.Windows.Forms.ToolStripItem[] tsi2 = GetToolStripMenuListaProjectoListaAnaliseTemp();
+            System.Windows.Forms.ToolStripItem[] tsi2 = GetToolStripMenuApagarAnaliseTemp();
             System.Windows.Forms.ToolStripItem[] tsiMerged = new System.Windows.Forms.ToolStripItem[tsi1.Length + tsi2.Length];
             System.Array.Copy(tsi1, tsiMerged, tsi1.Length);
             System.Array.Copy(tsi2, 0, tsiMerged, tsi1.Length, tsi2.Length);
 
             return (tsiMerged);
         }
+
         #endregion
 
         #region Projectos
 
         private ToolStripItem[] GetToolStripListaProjectos()
         {
-            Dictionary<long, string> cod_names = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
+            Dictionary<long, string> cod_names = GestaodeProjectos.Cod_names_Projects();
 
             ToolStripItem[] ListaProjectos = new ToolStripItem[cod_names.Count + 2];
             //cabeçalho - Lista Projectos
@@ -924,7 +926,7 @@ namespace ETdA.Camada_de_Interface
 
         private ToolStripMenuItem[] GetToolStripMenuItemListaProjectos()
         {
-            Dictionary<long, string> cod_names = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
+            Dictionary<long, string> cod_names = GestaodeProjectos.Cod_names_Projects();
 
             ToolStripMenuItem[] ListaProjectos = new ToolStripMenuItem[cod_names.Count];
 
@@ -942,6 +944,15 @@ namespace ETdA.Camada_de_Interface
             return (ListaProjectos);
         }
 
+        private ToolStripItem[] getToolStripApagarProjecto()
+        {
+            ToolStripItem[] ListaProjectos = GetToolStripListaProjectos();
+
+            for(int i=2; i < ListaProjectos.Count(); i++)
+                ListaProjectos[i].Click += new EventHandler(ToolStripApagarProjecto);
+
+            return ListaProjectos;
+        }
         #endregion
 
         #region Event Handlers Menu
@@ -977,6 +988,21 @@ namespace ETdA.Camada_de_Interface
             Interface_CriarAnalise.main(long.Parse(tsi.Name), tsi.Text);
         }
 
+        private void ToolStripApagarAnalise(object sender, EventArgs e)
+        {
+            ToolStripItem tsi = (ToolStripItem)sender;
+            if (MessageBoxPortuguese.Show("", "Tem a certeza que pretende apagar a análise " + tsi.Text + " e todos os dados relativos a esta?",
+                     MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
+            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(long.Parse(tsi.Name));
+        }
+
+        private void ToolStripApagarProjecto(object sender, EventArgs e)
+        {
+            ToolStripItem tsi = (ToolStripItem)sender;
+            if (MessageBoxPortuguese.Show("", "Tem a certeza que pretende apagar o projecto " + tsi.Text + " e todos os dados relativos a este?",
+                     MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
+            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarProjecto(long.Parse(tsi.Name));
+        }
         #endregion
         #endregion
     }

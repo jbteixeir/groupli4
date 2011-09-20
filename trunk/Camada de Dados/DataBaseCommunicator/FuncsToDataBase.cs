@@ -60,16 +60,19 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static Dictionary<long, string> selectNomeProjectos()
         {
-            String query = "select cod_projecto,estabelecimento from projecto order by ultimaActualizacao DESC;";
+            String query = "select cod_projecto, estabelecimento, activo from projecto order by ultimaActualizacao DESC;";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             Dictionary<long, string> cod_nome = new Dictionary<long, string>();
 
             while (r.Read())
             {
-                long cod = (long)r["cod_projecto"];
-                string nome = (string)r["estabelecimento"];
-                cod_nome.Add(cod, nome);
+                if (int.Parse(r["activo"].ToString()) == 1)
+                {
+                    long cod = (long)r["cod_projecto"];
+                    string nome = (string)r["estabelecimento"];
+                    cod_nome.Add(cod, nome);
+                }
             }
 
             return cod_nome;
@@ -147,6 +150,16 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
+
+        /**
+         * Descativa o projecto na base de dados
+         * @param codProjecto Código do projecto a ser desactivado
+         */
+        public static void desactivarProjecto(long codProjecto)
+        {
+            String query = "update projecto set activo = 0 where cod_projecto = " + codProjecto;
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
         #endregion
 
         #region Analises
@@ -157,16 +170,19 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
          */
         public static Dictionary<long, string> selectNomesAnalises(long codProjecto)
         {
-            String query = "select cod_analise,nomeAnalise from analise where cod_projecto = " + codProjecto + ";";
+            String query = "select cod_analise, nomeAnalise, activo from analise where cod_projecto = " + codProjecto + ";";
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             Dictionary<long, string> cod_nome = new Dictionary<long, string>();
 
             while (r.Read())
             {
-                long cod = (long)r["cod_analise"];
-                String nome = (string)r["nomeAnalise"];
-                cod_nome.Add(cod, nome);
+                if (int.Parse(r["activo"].ToString()) == 1)
+                {
+                    long cod = (long)r["cod_analise"];
+                    String nome = (string)r["nomeAnalise"];
+                    cod_nome.Add(cod, nome);
+                }
             }
 
             return cod_nome;
@@ -257,6 +273,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 + a.EstadoWebCL + "," + "estadoWebFichaAvaliacao = " + a.EstadoWebFA + "," + "estadoWebQuestionario = "
                 + a.EstadoWebQ + "where cod_analise = " + a.Codigo + ";";
 
+            Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
+        }
+
+        /**
+         * Descativa a analise na base de dados
+         * @param codProjecto Código do projecto a ser desactivado
+         * @param
+         */
+        public static void desactivarAnalise(long codAnalise)
+        {
+            String query = "update analise set activo = 0 where cod_analise = " + codAnalise;
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
         #endregion

@@ -148,7 +148,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
-            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
             this.toolStripContainer1.ContentPanel.Padding = new System.Windows.Forms.Padding(4);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(791, 436);
@@ -162,6 +162,7 @@
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
+            this.toolStripContainer1.TopToolStripPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
@@ -175,8 +176,11 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.splitContainer1.Panel1.Controls.Add(this.treeView_Projectos);
             this.splitContainer1.Panel1.Controls.Add(this.menuStrip2);
+            this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(3);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(3);
             this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.Panel1MinSize = 181;
             // 
@@ -191,27 +195,31 @@
             // treeView_Projectos
             // 
             this.treeView_Projectos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView_Projectos.Location = new System.Drawing.Point(0, 24);
+            this.treeView_Projectos.Location = new System.Drawing.Point(3, 24);
             this.treeView_Projectos.Name = "treeView_Projectos";
-            this.treeView_Projectos.Size = new System.Drawing.Size(194, 404);
+            this.treeView_Projectos.Size = new System.Drawing.Size(188, 401);
             this.treeView_Projectos.TabIndex = 1;
             this.treeView_Projectos.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.ExpandProjectAction);
             this.treeView_Projectos.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OpenAction);
             // 
             // menuStrip2
             // 
+            this.menuStrip2.AutoSize = false;
+            this.menuStrip2.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.projectosToolStripMenuItem});
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Location = new System.Drawing.Point(3, 3);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(194, 24);
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.menuStrip2.Size = new System.Drawing.Size(188, 21);
             this.menuStrip2.TabIndex = 2;
             this.menuStrip2.Text = "menuStrip2";
             // 
             // projectosToolStripMenuItem
             // 
+            this.projectosToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.projectosToolStripMenuItem.Name = "projectosToolStripMenuItem";
-            this.projectosToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.projectosToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.projectosToolStripMenuItem.Text = "Projectos";
             // 
             // panel1
@@ -226,18 +234,19 @@
             // menuStrip1
             // 
             this.menuStrip1.AllowMerge = false;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.AutoSize = false;
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(3, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(221, 24);
-            this.menuStrip1.Stretch = false;
+            this.menuStrip1.Size = new System.Drawing.Size(791, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.TabStop = true;
             this.menuStrip1.Text = "menuStrip1";
@@ -341,7 +350,7 @@
             // 
             // apagarProjectoToolStripMenuItem
             // 
-            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuItemListaProjectos());
+            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(getToolStripApagarProjecto());
             this.apagarProjectoToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271476_file_delete;
             this.apagarProjectoToolStripMenuItem.Name = "apagarProjectoToolStripMenuItem";
             this.apagarProjectoToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
@@ -349,7 +358,7 @@
             // 
             // apagarAnáliseToolStripMenuItem
             // 
-            this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetFullToolStripMenuListaProjectoListaAnalise());
+            this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetFullToolStripMenuApagarAnalise());
             this.apagarAnáliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271588_folder_delete;
             this.apagarAnáliseToolStripMenuItem.Name = "apagarAnáliseToolStripMenuItem";
             this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
@@ -422,6 +431,7 @@
             // toolStrip1
             // 
             this.toolStrip1.AllowItemReorder = true;
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton2,
@@ -434,7 +444,7 @@
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(3, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(193, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(162, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -570,7 +580,6 @@
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
