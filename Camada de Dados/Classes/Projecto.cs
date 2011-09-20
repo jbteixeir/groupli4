@@ -160,7 +160,7 @@ namespace ETdA.Camada_de_Dados.Classes
             for (int i = 0; i < cod_name_analise.Count && !found; i++)
             {
                 KeyValuePair<long, string> p = cod_name_analise.ElementAt(i);
-                if (p.Value == nomeEstabelecimento)
+                if (p.Value == nomeProjecto)
                 {
                     cod = p.Key;
                     cod_name_analise.Remove(cod) ;

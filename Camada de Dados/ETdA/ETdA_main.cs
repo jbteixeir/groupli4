@@ -39,7 +39,7 @@ namespace ETdA.Camada_de_Dados.ETdA
         }
 
         // s_final
-        public static Dictionary<long, string> Codes_Nomes_Estabelecimentos
+        public static Dictionary<long, string> Codes_Nomes_Projectos
         {
             get 
             {
@@ -124,14 +124,14 @@ namespace ETdA.Camada_de_Dados.ETdA
         }
 
         /*
-        public static void removeProjecto(String nomeEstabelecimento)
+        public static void removeProjecto(String nomeProjecto)
         {
             long cod = -1;
             Boolean found = false;
             for (int i = 0; i < cod_nome_projectos.Count && !found; i++)
             {
                 KeyValuePair<long, string> p = cod_nome_projectos.ElementAt(i);
-                if (p.Value == nomeEstabelecimento)
+                if (p.Value == nomeProjecto)
                 {
                     cod = p.Key;
                     cod_nome_projectos.Remove(cod);

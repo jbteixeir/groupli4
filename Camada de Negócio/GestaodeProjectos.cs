@@ -17,7 +17,7 @@ namespace ETdA.Camada_de_Negócio
         // s_final
         public static Dictionary<long, string> Cod_names_Projects()
         {
-            return Camada_de_Dados.ETdA.ETdA.Codes_Nomes_Estabelecimentos;
+            return Camada_de_Dados.ETdA.ETdA.Codes_Nomes_Projectos;
         }
 
         // s_final
@@ -27,21 +27,21 @@ namespace ETdA.Camada_de_Negócio
         }
 
         // s_final
-        public static void abreProjecto(long codEstabelecimento)
+        public static void abreProjecto(long codProjecto)
         {
-            Camada_de_Dados.ETdA.ETdA.abreProjecto(codEstabelecimento);
+            Camada_de_Dados.ETdA.ETdA.abreProjecto(codProjecto);
         }
 
         // s_final
-        public static Boolean podeCriarProjecto(String nomeEst)
+        public static Boolean podeCriarProjecto(String nomeProjecto)
         {
-            return Camada_de_Dados.ETdA.ETdA.podeAdicionarProjecto(nomeEst);
+            return Camada_de_Dados.ETdA.ETdA.podeAdicionarProjecto(nomeProjecto);
         }
 
         // s_final
-        public static void criaProjecto(String nomeEstabelecimento)
+        public static void criaProjecto(String nomeProjecto)
         {
-            Camada_de_Dados.ETdA.ETdA.adicionaNovoProjecto(nomeEstabelecimento);
+            Camada_de_Dados.ETdA.ETdA.adicionaNovoProjecto(nomeProjecto);
         }
     }
 }
