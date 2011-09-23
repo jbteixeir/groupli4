@@ -268,6 +268,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Icons\close_icon" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -504,10 +505,12 @@
     <Content Include="colors\limaWord.png" />
     <Content Include="colors\verdeWord.png" />
     <Content Include="colors\vermelhoWord.png" />
+    <None Include="Resources\close_icon.bmp" />
     <None Include="Icons\Warning.png" />
     <None Include="Icons\Error.png" />
     <None Include="Icons\Help.png" />
     <None Include="Icons\Info.png" />
+    <None Include="Icons\close-icon.png" />
     <Content Include="Icons\Tooltip-CloseButton-Active.png" />
     <None Include="Resources\Tooltip-CloseButton-Active.png" />
   </ItemGroup>

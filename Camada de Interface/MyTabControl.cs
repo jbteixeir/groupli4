@@ -40,12 +40,13 @@ namespace ETdA.Camada_de_Interface
 
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
+            
             RectangleF tabTextArea = RectangleF.Empty;
             for (int nIndex = 0; nIndex < this.TabCount; nIndex++)
             {
                 tabTextArea = (RectangleF)this.GetTabRect(nIndex);
                 LinearGradientBrush br = new LinearGradientBrush(tabTextArea,
-                    SystemColors.Control, SystemColors.Control,
+                    SystemColors.ControlLightLight, SystemColors.Control,
                     LinearGradientMode.Vertical);
                 e.Graphics.FillRectangle(br, tabTextArea);
 
@@ -54,10 +55,11 @@ namespace ETdA.Camada_de_Interface
                     /*if active draw ,inactive close button*/
                     using (Bitmap bm = new Bitmap(img))
                     {
-                        e.Graphics.DrawImage(bm, tabTextArea.X + tabTextArea.Width - 16, (tabTextArea.Height - img.Height) / 2);
+                        e.Graphics.DrawImage(bm, tabTextArea.X + tabTextArea.Width - 16, ((tabTextArea.Height - img.Height) / 2) + 2);
                     }
                     br.Dispose();
                 }
+
 
                 string str = this.TabPages[nIndex].Text;
                 StringFormat stringFormat = new StringFormat();
@@ -69,6 +71,8 @@ namespace ETdA.Camada_de_Interface
                     /*Draw the tab header text */
                     e.Graphics.DrawString(str, this.Font, brush, tabTextArea, stringFormat);
                 }
+
+
             }
         }
 

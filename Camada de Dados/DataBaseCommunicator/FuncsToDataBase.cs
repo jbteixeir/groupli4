@@ -112,7 +112,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             String query = "insert into projecto values('" +
             p.Nome + "'," + "CAST('" + p.Data.ToString("yyyyMMdd HH:mm:ss")
-            + "' AS datetime));" +
+            + "' AS datetime),1);" +
             "SELECT SCOPE_IDENTITY();";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
@@ -231,7 +231,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             String query = "insert into analise values(" + codProjecto + ","
             + "CAST('" + a.Data.ToString("yyyyMMdd HH:mm:ss") + "' AS datetime)"
             + ",'" + a.Nome + "','" + a.Tipo + "'," + (a.EstadoWebCL ? 1 : 0) + "," + (a.EstadoWebFA ? 1 : 0)
-            + "," + (a.EstadoWebQ ? 1 : 0) + ");" + " SELECT SCOPE_IDENTITY();";
+            + "," + (a.EstadoWebQ ? 1 : 0) + ",1);" + " SELECT SCOPE_IDENTITY();";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 

@@ -16,7 +16,7 @@ namespace ETdA.Camada_de_Interface
     {
         private static InterfaceGuestaoProjectos igp;
         private List<int> indexes;
-        private MyTabControl tabControl1;
+        
         private CheckBox checkBox1, checkBox2, checkBox3;
 
         // s_final
@@ -24,11 +24,8 @@ namespace ETdA.Camada_de_Interface
         {
             GestaodeProjectos.init();
             InitializeComponent();
-            tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Appearance = TabAppearance.FlatButtons;
-            tabControl1.Dock = DockStyle.Fill;
-            panel1.Controls.Add(tabControl1);
+            
+            
 
             indexes = new List<int>();
 
@@ -56,8 +53,10 @@ namespace ETdA.Camada_de_Interface
         // s_final
         private void closeTab(int nome)
         {
-            tabControl1.TabPages.RemoveAt(nome);
-            tabControl1.Pages.RemoveAt(nome);
+            if (tabControl1.TabPages[nome]!=null)
+                tabControl1.TabPages.RemoveAt(nome);
+            if(tabControl1.Pages[nome]!=null)
+                tabControl1.Pages.RemoveAt(nome);
         }
 
         // s_final
@@ -611,6 +610,7 @@ namespace ETdA.Camada_de_Interface
         private void CriarProjectoClick(object sender, EventArgs e)
         {
             Interface_CriarProjecto.main();
+            RefreshInterface();
         }
 
         // s_final
@@ -619,6 +619,7 @@ namespace ETdA.Camada_de_Interface
             long cod = long.Parse(tabControl1.SelectedTab.Name);
             string nome = tabControl1.SelectedTab.Text;
             Interface_CriarAnalise.main(cod,nome);
+            RefreshInterface();
         }
 
         #endregion
@@ -828,7 +829,7 @@ namespace ETdA.Camada_de_Interface
                 ToolStripMenuItem ListaAnaliseToolStrip = new System.Windows.Forms.ToolStripMenuItem();
                 ListaAnaliseToolStrip.Enabled = true;
                 ListaAnaliseToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
-                ListaAnaliseToolStrip.Name = s.Key.ToString();
+                ListaAnaliseToolStrip.Name = codProjecto + "." + s.Key.ToString();
                 ListaAnaliseToolStrip.Size = new System.Drawing.Size(154, 22);
                 ListaAnaliseToolStrip.Text = s.Value;
                 ListaAnaliseToolStrip.Click +=new EventHandler(ToolStripApagarAnalise);
@@ -986,6 +987,8 @@ namespace ETdA.Camada_de_Interface
             ToolStripItem tsi = (ToolStripItem)sender;
 
             Interface_CriarAnalise.main(long.Parse(tsi.Name), tsi.Text);
+
+            RefreshInterface();
         }
 
         private void ToolStripApagarAnalise(object sender, EventArgs e)
@@ -993,7 +996,36 @@ namespace ETdA.Camada_de_Interface
             ToolStripItem tsi = (ToolStripItem)sender;
             if (MessageBoxPortuguese.Show("", "Tem a certeza que pretende apagar a análise " + tsi.Text + " e todos os dados relativos a esta?",
                      MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
-            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(long.Parse(tsi.Name));
+            {
+                string[] cods = tsi.Name.Split('.');
+                long codp = long.Parse(cods[0]);
+                long coda = long.Parse(cods[1]);
+
+                //Apagar da base de dados
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(coda);
+                //Apagar do ETdA
+                GestaodeAnalises.removerAnalise(codp, coda);
+                //Actualizar o interface
+                RefreshInterface();
+                //Apagar Analise do TreeView
+                bool found = false;
+                for (int i = 0; i < treeView_Projectos.Nodes.Count && !found; i++)
+                {
+                    String a = treeView_Projectos.Nodes[i].Text;
+                    String b = codp.ToString();
+                    if (treeView_Projectos.Nodes[i].Name == codp.ToString())
+                    {
+                        for (int j = 0; j < treeView_Projectos.Nodes[i].Nodes.Count && !found; j++)
+                        {
+                            if (treeView_Projectos.Nodes[i].Nodes[j].Name == coda.ToString())
+                            {
+                                treeView_Projectos.Nodes[i].Nodes[j].Remove();
+                                found = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void ToolStripApagarProjecto(object sender, EventArgs e)
@@ -1001,9 +1033,41 @@ namespace ETdA.Camada_de_Interface
             ToolStripItem tsi = (ToolStripItem)sender;
             if (MessageBoxPortuguese.Show("", "Tem a certeza que pretende apagar o projecto " + tsi.Text + " e todos os dados relativos a este?",
                      MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
-            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarProjecto(long.Parse(tsi.Name));
+            {
+                //Apagar da base de dados
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarProjecto(long.Parse(tsi.Name));
+                //Apagar do ETdA
+                Camada_de_Dados.ETdA.ETdA.removeProjecto(long.Parse(tsi.Name));
+                //Actualizar o interface
+                RefreshInterface();
+                //Apagar Projecto do Treeview
+                bool found = false;
+                for (int i = 0; i < treeView_Projectos.Nodes.Count && !found; i++)
+                    if (treeView_Projectos.Nodes[i].Name == tsi.Name)
+                    {
+                        treeView_Projectos.Nodes[i].Remove();
+                        found = true;
+                    }
+            }
         }
         #endregion
+
+        #endregion
+
+        #region Refresh
+
+        public void RefreshInterface()
+        {
+            novaAnaliseToolStripMenuItem.DropDownItems.Clear();
+            novaAnaliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuCriarAnalise());
+
+            apagarProjectoToolStripMenuItem.DropDownItems.Clear();
+            apagarProjectoToolStripMenuItem.DropDownItems.AddRange(getToolStripApagarProjecto());
+
+            apagarAnáliseToolStripMenuItem.DropDownItems.Clear();
+            apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetFullToolStripMenuApagarAnalise());
+        }
+
         #endregion
     }
 }

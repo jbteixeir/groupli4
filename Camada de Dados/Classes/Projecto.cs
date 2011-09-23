@@ -152,7 +152,6 @@ namespace ETdA.Camada_de_Dados.Classes
             }
         }
 
-        /*
         public void removeAnalise(String nomeAnalise)
         {
             long cod = -1;
@@ -160,7 +159,7 @@ namespace ETdA.Camada_de_Dados.Classes
             for (int i = 0; i < cod_name_analise.Count && !found; i++)
             {
                 KeyValuePair<long, string> p = cod_name_analise.ElementAt(i);
-                if (p.Value == nomeProjecto)
+                if (p.Value == nomeAnalise)
                 {
                     cod = p.Key;
                     cod_name_analise.Remove(cod) ;
@@ -174,11 +173,17 @@ namespace ETdA.Camada_de_Dados.Classes
                 FuncsToDataBase.deleteAnalise(cod);
         }
 
+        public void removeAnalise(long codAnalise)
+        {
+            cod_name_analise.Remove(codAnalise);
+            analises.Remove(codAnalise);
+        }
+
         public void modificaAnalise(Analise a)
         {
             Camada_de_Dados.DataBaseCommunicator.
                 FuncsToDataBase.updateAnalise(a);
         }
-        */
+
     }
 }

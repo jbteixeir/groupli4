@@ -118,5 +118,11 @@ namespace ETdA.Camada_de_Negócio
         {
             return Camada_de_Dados.ETdA.ETdA.getProjecto(codProjecto).Analises[codAnalise].Tipo;
         }
+
+        public static void removerAnalise(long codProjecto, long codAnalise)
+        {
+           Camada_de_Dados.ETdA.ETdA.getProjecto(codProjecto).removeAnalise(codAnalise);
+        }
+
     }
 }
