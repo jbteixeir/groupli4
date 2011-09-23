@@ -97,6 +97,8 @@
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
+
+            tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
             // 
             // listaProjectosToolStripMenuItem
             // 
@@ -117,6 +119,7 @@
             // 
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+
             this.toolStripStatusLabel1,
             this.toolStripProgressBar1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
@@ -591,6 +594,14 @@
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
+            //tabcontrol1
+            tabControl1.Location = new System.Drawing.Point(0, 0);
+            tabControl1.Appearance = System.Windows.Forms.TabAppearance.Normal;
+            tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            tabControl1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            
+            panel1.Controls.Add(tabControl1);
+            
         }
 
         #endregion
@@ -643,5 +654,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripMenuItem fecharAbaToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
+
+        private MyTabControl tabControl1;
     }
 }

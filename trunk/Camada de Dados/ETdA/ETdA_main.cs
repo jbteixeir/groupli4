@@ -21,6 +21,12 @@ namespace ETdA.Camada_de_Dados.ETdA
         private static Dictionary<long, Projecto> projectos;
         private static string username;
 
+        public static Dictionary<long, Projecto> Projectos
+        {
+            get { return projectos; }
+            set { projectos = value; }
+        }
+
         // s_final
         private static void initEventos()
         {
@@ -56,10 +62,10 @@ namespace ETdA.Camada_de_Dados.ETdA
         // s_final
         public static Projecto getProjecto(long codProjecto)
         {
-            if (projectos.Keys.Contains(codProjecto))
-                return projectos[codProjecto];
-            else
-                return null;
+            if (!projectos.Keys.Contains(codProjecto))
+                abreProjecto(codProjecto);
+                
+            return projectos[codProjecto];
         }
 
         /* ------------------------------------------------------ */
@@ -113,17 +119,16 @@ namespace ETdA.Camada_de_Dados.ETdA
          * Abre um projecto com o código de estabelecimento
          */
         // s_final
-        public static void abreProjecto(long codEstabelecimento)
+        public static void abreProjecto(long codProjecto)
         {
-            if (!projectos.Keys.Contains(codEstabelecimento))
+            if (!projectos.Keys.Contains(codProjecto))
             {
                 Projecto proj = Camada_de_Dados.DataBaseCommunicator.
-                    FuncsToDataBase.selectProjecto(codEstabelecimento);
+                    FuncsToDataBase.selectProjecto(codProjecto);
                 projectos.Add(proj.Codigo, proj);
             }
         }
 
-        /*
         public static void removeProjecto(String nomeProjecto)
         {
             long cod = -1;
@@ -145,6 +150,11 @@ namespace ETdA.Camada_de_Dados.ETdA
                 deleteProjecto(cod);
         }
 
+        public static void removeProjecto(long codProjecto)
+        {
+            cod_nome_projectos.Remove(codProjecto);
+            projectos.Remove(codProjecto);
+        }
         public static void modificaProjecto(Projecto p)
         {
             Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
@@ -156,7 +166,7 @@ namespace ETdA.Camada_de_Dados.ETdA
             Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
                updateProjecto(p);
         }
-        */
+
         #endregion
 
         #region Gestao Analistas

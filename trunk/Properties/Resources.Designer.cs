@@ -207,6 +207,13 @@ namespace ETdA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap close_icon {
+            get {
+                object obj = ResourceManager.GetObject("close_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap dog_color_vision {
             get {
                 object obj = ResourceManager.GetObject("dog_color_vision", resourceCulture);
