@@ -96,15 +96,16 @@ namespace ETdA.Camada_de_Interface
             return rect;
         }
 
-        private void CloseTab(int tabindex)
+        public void CloseTab(int tabindex)
         {
             CloseTab(TabPages[tabindex]);
         }
 
-        private void CloseTab(TabPage tp)
+        public void CloseTab(TabPage tp)
         {
             TabPages.Remove(tp);
             tabpages.Remove(tp.Name);
+            Pages.Remove(tp.Name);
             tp.Dispose();
         }
     }
