@@ -1126,5 +1126,10 @@ namespace ETdA.Camada_de_Interface
         }
 
         #endregion
+
+        private void verPaginaInicial(object sender, EventArgs e)
+        {
+            initPaginaInicial();
+        }
     }
 }

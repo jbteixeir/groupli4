@@ -49,11 +49,13 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.terminarSessãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abaAnteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proximaAbaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fecharAbaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.páginaInicialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.anteriorAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.proximaAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fecharAbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.apagarProjectoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.apagarAnáliseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.apagarDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,11 +96,10 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-
-            tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
             // 
             // listaProjectosToolStripMenuItem
             // 
@@ -119,7 +120,6 @@
             // 
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-
             this.toolStripStatusLabel1,
             this.toolStripProgressBar1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
@@ -225,9 +225,27 @@
             this.projectosToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.projectosToolStripMenuItem.Text = "Projectos";
             // 
+            // tabControl1
+            // 
+            this.tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Normal;
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Padding = new System.Drawing.Point(16, 0);
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(585, 428);
+            this.tabControl1.TabIndex = 0;
+            panel1.Controls.Add(tabControl1);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.Controls.Add(this.tabControl1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -239,10 +257,11 @@
             this.menuStrip1.AllowMerge = false;
             this.menuStrip1.AutoSize = false;
             this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.verToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -277,7 +296,6 @@
             // 
             // novaAnaliseToolStripMenuItem
             // 
-            this.novaAnaliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuCriarAnalise());
             this.novaAnaliseToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.novaAnaliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271576_folder_add;
             this.novaAnaliseToolStripMenuItem.Name = "novaAnaliseToolStripMenuItem";
@@ -305,13 +323,61 @@
             this.quitToolStripMenuItem.Text = "Sair";
             this.quitToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
+            // verToolStripMenuItem
+            // 
+            this.verToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.abaAnteriorToolStripMenuItem,
+            this.proximaAbaToolStripMenuItem1,
+            this.fecharAbaToolStripMenuItem1,
+            this.toolStripSeparator10,
+            this.páginaInicialToolStripMenuItem});
+            this.verToolStripMenuItem.Name = "verToolStripMenuItem";
+            this.verToolStripMenuItem.Size = new System.Drawing.Size(36, 24);
+            this.verToolStripMenuItem.Text = "Ver";
+            // 
+            // abaAnteriorToolStripMenuItem
+            // 
+            this.abaAnteriorToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309272771_direction_left;
+            this.abaAnteriorToolStripMenuItem.Name = "abaAnteriorToolStripMenuItem";
+            this.abaAnteriorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
+            this.abaAnteriorToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.abaAnteriorToolStripMenuItem.Text = "Anterior Aba";
+            this.abaAnteriorToolStripMenuItem.Click += new System.EventHandler(this.anteriorTab);
+            // 
+            // proximaAbaToolStripMenuItem1
+            // 
+            this.proximaAbaToolStripMenuItem1.Image = global::ETdA.Properties.Resources._1309272765_direction_right;
+            this.proximaAbaToolStripMenuItem1.Name = "proximaAbaToolStripMenuItem1";
+            this.proximaAbaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
+            this.proximaAbaToolStripMenuItem1.Size = new System.Drawing.Size(203, 22);
+            this.proximaAbaToolStripMenuItem1.Text = "Proxima Aba";
+            this.proximaAbaToolStripMenuItem1.Click += new System.EventHandler(this.proximaTab);
+            // 
+            // fecharAbaToolStripMenuItem1
+            // 
+            this.fecharAbaToolStripMenuItem1.Image = global::ETdA.Properties.Resources.Error;
+            this.fecharAbaToolStripMenuItem1.Name = "fecharAbaToolStripMenuItem1";
+            this.fecharAbaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
+            this.fecharAbaToolStripMenuItem1.Size = new System.Drawing.Size(203, 22);
+            this.fecharAbaToolStripMenuItem1.Text = "Fechar Aba";
+            this.fecharAbaToolStripMenuItem1.Click += new System.EventHandler(this.fecharTab);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(200, 6);
+            // 
+            // páginaInicialToolStripMenuItem
+            // 
+            this.páginaInicialToolStripMenuItem.Name = "páginaInicialToolStripMenuItem";
+            this.páginaInicialToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this.páginaInicialToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.páginaInicialToolStripMenuItem.Text = "Página Inicial";
+            this.páginaInicialToolStripMenuItem.Click += new System.EventHandler(this.verPaginaInicial);
+            // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.anteriorAbaToolStripMenuItem,
-            this.proximaAbaToolStripMenuItem,
-            this.fecharAbaToolStripMenuItem,
-            this.toolStripSeparator9,
             this.apagarProjectoToolStripMenuItem,
             this.apagarAnáliseToolStripMenuItem,
             this.apagarDadosToolStripMenuItem});
@@ -319,59 +385,25 @@
             this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.editToolStripMenuItem.Text = "Editar";
             // 
-            // anteriorAbaToolStripMenuItem
-            // 
-            this.anteriorAbaToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309272771_direction_left;
-            this.anteriorAbaToolStripMenuItem.Name = "anteriorAbaToolStripMenuItem";
-            this.anteriorAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
-            this.anteriorAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.anteriorAbaToolStripMenuItem.Text = "Anterior Aba";
-            this.anteriorAbaToolStripMenuItem.Click += new System.EventHandler(this.anteriorTab);
-            // 
-            // proximaAbaToolStripMenuItem
-            // 
-            this.proximaAbaToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309272765_direction_right;
-            this.proximaAbaToolStripMenuItem.Name = "proximaAbaToolStripMenuItem";
-            this.proximaAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
-            this.proximaAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.proximaAbaToolStripMenuItem.Text = "Próxima Aba";
-            this.proximaAbaToolStripMenuItem.Click += new System.EventHandler(this.proximaTab);
-            // 
-            // fecharAbaToolStripMenuItem
-            // 
-            this.fecharAbaToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271459_notification_error1;
-            this.fecharAbaToolStripMenuItem.Name = "fecharAbaToolStripMenuItem";
-            this.fecharAbaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-            this.fecharAbaToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.fecharAbaToolStripMenuItem.Text = "Fechar Aba";
-            this.fecharAbaToolStripMenuItem.Click += new System.EventHandler(this.fecharTab);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(200, 6);
-            // 
             // apagarProjectoToolStripMenuItem
             // 
-            this.apagarProjectoToolStripMenuItem.DropDownItems.AddRange(getToolStripApagarProjecto());
             this.apagarProjectoToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271476_file_delete;
             this.apagarProjectoToolStripMenuItem.Name = "apagarProjectoToolStripMenuItem";
-            this.apagarProjectoToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.apagarProjectoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.apagarProjectoToolStripMenuItem.Text = "Apagar Projecto";
             // 
             // apagarAnáliseToolStripMenuItem
             // 
-            this.apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetFullToolStripMenuApagarAnalise());
             this.apagarAnáliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271588_folder_delete;
             this.apagarAnáliseToolStripMenuItem.Name = "apagarAnáliseToolStripMenuItem";
-            this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.apagarAnáliseToolStripMenuItem.Text = "Apagar Análise";
             // 
             // apagarDadosToolStripMenuItem
             // 
             this.apagarDadosToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271507_notification_remove;
             this.apagarDadosToolStripMenuItem.Name = "apagarDadosToolStripMenuItem";
-            this.apagarDadosToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.apagarDadosToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.apagarDadosToolStripMenuItem.Text = "Apagar Dados";
             // 
             // viewToolStripMenuItem
@@ -588,20 +620,13 @@
             this.splitContainer1.ResumeLayout(false);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
-            //tabcontrol1
-            tabControl1.Location = new System.Drawing.Point(0, 0);
-            tabControl1.Appearance = System.Windows.Forms.TabAppearance.Normal;
-            tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            tabControl1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            
-            panel1.Controls.Add(tabControl1);
-            
         }
 
         #endregion
@@ -646,15 +671,17 @@
         private System.Windows.Forms.ToolStripMenuItem sobreETdAnalyserToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
-        private System.Windows.Forms.ToolStripMenuItem proximaAbaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem anteriorAbaToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripMenuItem fecharAbaToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
 
         private MyTabControl tabControl1;
+        private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abaAnteriorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem proximaAbaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem fecharAbaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem páginaInicialToolStripMenuItem;
     }
 }
