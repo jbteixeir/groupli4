@@ -25,12 +25,29 @@ namespace ETdA.Camada_de_Interface
             GestaodeProjectos.init();
             InitializeComponent();
 
-                        
-
             indexes = new List<int>();
 
             initTree();
             initPaginaInicial();
+            //inicializar tabcontrol
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Normal;
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Padding = new System.Drawing.Point(16, 0);
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(585, 428);
+            this.tabControl1.TabIndex = 0;
+            panel1.Controls.Add(tabControl1);
+            //inicializar menu's dinâmicos
+            apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetFullToolStripMenuApagarAnalise());
+            apagarProjectoToolStripMenuItem.DropDownItems.AddRange(getToolStripApagarProjecto());
+            novaAnaliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuCriarAnalise());
         }
 
         // s_final
@@ -517,7 +534,6 @@ namespace ETdA.Camada_de_Interface
                     treeView_Projectos.Nodes[i].Nodes.Add(t);
                     found = true;
                 }
-            fecharPagina(tabControl1.SelectedIndex);
             initPaginaProjecto(nomeP, s[0]);
             initPaginaAnalise(long.Parse(s[0]), long.Parse(s[1]), s[2]);
         }
@@ -874,8 +890,13 @@ namespace ETdA.Camada_de_Interface
             ToolStripMenuItem[] ListaProjecto = GetToolStripMenuItemListaProjectos();
             for (int i = 0; i < ListaProjecto.Count(); i++)
             {
-                ToolStripItem[] newtsi = GetToolStripItemListaAnalises(long.Parse(ListaProjecto[i].Name));
-                ListaProjecto[i].DropDownItems.AddRange(newtsi);
+                if (GestaodeAnalises.getCodeNomeAnalises(long.Parse(ListaProjecto[i].Name)).Count == 0)
+                    ListaProjecto[i].Enabled = false;
+                else
+                {
+                    ToolStripItem[] newtsi = GetToolStripItemListaAnalises(long.Parse(ListaProjecto[i].Name));
+                    ListaProjecto[i].DropDownItems.AddRange(newtsi);
+                }
             }
 
             return (ListaProjecto);
@@ -883,6 +904,16 @@ namespace ETdA.Camada_de_Interface
 
         private ToolStripItem[] GetFullToolStripMenuApagarAnalise()
         {
+            if (GetToolStripMenuApagarAnaliseTemp().Count() == 0)
+            {
+                apagarAnáliseToolStripMenuItem.Enabled = false;
+                return new ToolStripItem[] { };
+            }
+            else
+            {
+                apagarAnáliseToolStripMenuItem.Enabled = true;
+            }
+
             ToolStripMenuItem listaProjectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             listaProjectosToolStripMenuItem.Enabled = false;
             listaProjectosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -914,6 +945,20 @@ namespace ETdA.Camada_de_Interface
         {
             Dictionary<long, string> cod_names = GestaodeProjectos.Cod_names_Projects();
 
+            //manipulação de dropdown menus (enable vs disable) mediante a existencia ou nao de projectos
+            if (cod_names.Count == 0)
+            {
+                apagarAnáliseToolStripMenuItem.Enabled = false;
+                apagarProjectoToolStripMenuItem.Enabled = false;
+                novaAnaliseToolStripMenuItem.Enabled = false;
+                return new ToolStripItem[] { };
+            }
+            else
+            {
+                apagarAnáliseToolStripMenuItem.Enabled = true;
+                apagarProjectoToolStripMenuItem.Enabled = true;
+                novaAnaliseToolStripMenuItem.Enabled = true;
+            }
             ToolStripItem[] ListaProjectos = new ToolStripItem[cod_names.Count + 2];
             //cabeçalho - Lista Projectos
             ToolStripMenuItem listaProjectosToolStripMenuItem = new ToolStripMenuItem();

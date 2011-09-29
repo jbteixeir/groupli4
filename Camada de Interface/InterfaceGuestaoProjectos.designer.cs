@@ -58,7 +58,6 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.apagarProjectoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.apagarAnáliseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.apagarDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.avançadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarContaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,8 +75,6 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -98,7 +95,6 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -233,27 +229,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panel1.Controls.Add(this.tabControl1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(583, 426);
             this.panel1.TabIndex = 4;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Normal;
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.Padding = new System.Drawing.Point(16, 0);
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(585, 428);
-            this.tabControl1.TabIndex = 0;
-            panel1.Controls.Add(tabControl1);
             // 
             // menuStrip1
             // 
@@ -382,8 +362,7 @@
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.apagarProjectoToolStripMenuItem,
-            this.apagarAnáliseToolStripMenuItem,
-            this.apagarDadosToolStripMenuItem});
+            this.apagarAnáliseToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.editToolStripMenuItem.Text = "Editar";
@@ -401,13 +380,6 @@
             this.apagarAnáliseToolStripMenuItem.Name = "apagarAnáliseToolStripMenuItem";
             this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.apagarAnáliseToolStripMenuItem.Text = "Apagar Análise";
-            // 
-            // apagarDadosToolStripMenuItem
-            // 
-            this.apagarDadosToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271507_notification_remove;
-            this.apagarDadosToolStripMenuItem.Name = "apagarDadosToolStripMenuItem";
-            this.apagarDadosToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.apagarDadosToolStripMenuItem.Text = "Apagar Dados";
             // 
             // viewToolStripMenuItem
             // 
@@ -492,12 +464,10 @@
             this.toolStripSeparator3,
             this.toolStripButton5,
             this.toolStripButton6,
-            this.toolStripButton4,
-            this.toolStripSeparator8,
-            this.toolStripButton3});
+            this.toolStripButton4});
             this.toolStrip1.Location = new System.Drawing.Point(3, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(162, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(133, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -556,20 +526,6 @@
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton4.Text = "Fechar Aba";
             this.toolStripButton4.Click += new System.EventHandler(this.fecharTab);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::ETdA.Properties.Resources._1309271507_notification_remove;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "Apagar Dados";
             // 
             // toolStripSeparator2
             // 
@@ -638,7 +594,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -680,7 +635,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem listaAnálisesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripMenuItem apagarDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem avançadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarContaToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
@@ -690,11 +644,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
 
-        private MyTabControl tabControl1;
+        private MyTabControl tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
+
         private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abaAnteriorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proximaAbaToolStripMenuItem1;
