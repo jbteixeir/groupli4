@@ -44,24 +44,33 @@ namespace ETdA.Camada_de_Interface
             RectangleF tabTextArea = RectangleF.Empty;
             for (int nIndex = 0; nIndex < this.TabCount; nIndex++)
             {
-                tabTextArea = (RectangleF)this.GetTabRect(nIndex);
-                LinearGradientBrush br = new LinearGradientBrush(tabTextArea,
-                    SystemColors.ControlLightLight, SystemColors.Control,
+                tabTextArea = new RectangleF(this.GetTabRect(nIndex).X-2, this.GetTabRect(nIndex).Y -2,this.GetTabRect(nIndex).Width +2, this.GetTabRect(nIndex).Height+ 4);
+                LinearGradientBrush brl = new LinearGradientBrush(tabTextArea,
+                    SystemColors.GradientInactiveCaption, Color.White,
                     LinearGradientMode.Vertical);
-                e.Graphics.FillRectangle(br, tabTextArea);
+
+                LinearGradientBrush brh = new LinearGradientBrush(tabTextArea,
+                    SystemColors.GradientActiveCaption, Color.White,
+                    LinearGradientMode.Vertical);
 
                 if (SelectedIndex == nIndex)
                 {
+                    e.Graphics.FillRectangle(brl, tabTextArea);
                     /*if active draw ,inactive close button*/
                     using (Bitmap bm = new Bitmap(img))
                     {
-                        e.Graphics.DrawImage(bm, tabTextArea.X + tabTextArea.Width - 16, ((tabTextArea.Height - img.Height) / 2) + 2);
+                        e.Graphics.DrawImage(bm, tabTextArea.X + tabTextArea.Width - 18, ((tabTextArea.Height - img.Height) / 2));
                     }
-                    br.Dispose();
+
+                    brl.Dispose();
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(brh, tabTextArea);
+                    brh.Dispose();
                 }
 
-
-                string str = this.TabPages[nIndex].Text;
+                string str = " " + this.TabPages[nIndex].Text;
                 StringFormat stringFormat = new StringFormat();
                 stringFormat.Alignment = StringAlignment.Near;
                 stringFormat.LineAlignment = StringAlignment.Center;
@@ -72,6 +81,13 @@ namespace ETdA.Camada_de_Interface
                     e.Graphics.DrawString(str, this.Font, brush, tabTextArea, stringFormat);
                 }
 
+                Brush background_brush = new SolidBrush(SystemColors.GradientActiveCaption);
+                Rectangle LastTabRect = this.GetTabRect(this.TabPages.Count - 1);
+                Rectangle rect = new Rectangle();
+                rect.Location = new Point(LastTabRect.Right + this.Left, this.Top);
+                rect.Size = new Size(this.Right - rect.Left, LastTabRect.Height+2);
+                e.Graphics.FillRectangle(background_brush, rect);
+                background_brush.Dispose();
 
             }
         }
