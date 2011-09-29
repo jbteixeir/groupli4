@@ -79,6 +79,7 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.TabPage p = new System.Windows.Forms.TabPage();
                 p.Name = "StartPage";
                 p.AutoScroll = true;
+                p.BackColor = Color.White;
 
                 ContextMenu m = new ContextMenu();
                 m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
@@ -197,6 +198,7 @@ namespace ETdA.Camada_de_Interface
                 p.AutoScroll = true;
                 p.Text = nome_projecto;
                 p.Size = new System.Drawing.Size(218, 385);
+                p.BackColor = Color.White;
 
                 ContextMenu m = new ContextMenu();
                 m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
@@ -274,6 +276,7 @@ namespace ETdA.Camada_de_Interface
                 p.AutoScroll = true;
                 p.Text = nome_analise;
                 p.Size = new System.Drawing.Size(218, 385);
+                p.BackColor = Color.White;
 
                 ContextMenu m = new ContextMenu();
                 m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
@@ -992,7 +995,7 @@ namespace ETdA.Camada_de_Interface
         private void fecharTab(object sender, EventArgs e)
         {
             if (tabControl1.TabCount > 0)
-                tabControl1.TabPages.Remove(tabControl1.SelectedTab);
+                tabControl1.CloseTab(tabControl1.SelectedTab);
         }
         #endregion
 
@@ -1130,6 +1133,16 @@ namespace ETdA.Camada_de_Interface
         private void verPaginaInicial(object sender, EventArgs e)
         {
             initPaginaInicial();
+        }
+
+        private void ajudaClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sobreETdAnalyserClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

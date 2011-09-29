@@ -66,6 +66,8 @@
             this.baseDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarLigaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.sobreETdAnalyserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -151,9 +153,9 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
-            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.Transparent;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
-            this.toolStripContainer1.ContentPanel.Padding = new System.Windows.Forms.Padding(4);
+            this.toolStripContainer1.ContentPanel.Padding = new System.Windows.Forms.Padding(5);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(791, 436);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
@@ -172,8 +174,9 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(4, 4);
+            this.splitContainer1.Location = new System.Drawing.Point(5, 5);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(10);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -191,16 +194,18 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2MinSize = 500;
-            this.splitContainer1.Size = new System.Drawing.Size(783, 428);
-            this.splitContainer1.SplitterDistance = 194;
+            this.splitContainer1.Size = new System.Drawing.Size(781, 426);
+            this.splitContainer1.SplitterDistance = 193;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 5;
             // 
             // treeView_Projectos
             // 
+            this.treeView_Projectos.BackColor = System.Drawing.Color.White;
             this.treeView_Projectos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_Projectos.Location = new System.Drawing.Point(3, 24);
             this.treeView_Projectos.Name = "treeView_Projectos";
-            this.treeView_Projectos.Size = new System.Drawing.Size(188, 401);
+            this.treeView_Projectos.Size = new System.Drawing.Size(187, 399);
             this.treeView_Projectos.TabIndex = 1;
             this.treeView_Projectos.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.ExpandProjectAction);
             this.treeView_Projectos.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OpenAction);
@@ -214,7 +219,7 @@
             this.menuStrip2.Location = new System.Drawing.Point(3, 3);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.menuStrip2.Size = new System.Drawing.Size(188, 21);
+            this.menuStrip2.Size = new System.Drawing.Size(187, 21);
             this.menuStrip2.TabIndex = 2;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -225,13 +230,21 @@
             this.projectosToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.projectosToolStripMenuItem.Text = "Projectos";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(583, 426);
+            this.panel1.TabIndex = 4;
+            // 
             // tabControl1
             // 
             this.tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Normal;
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -241,16 +254,6 @@
             this.tabControl1.Size = new System.Drawing.Size(585, 428);
             this.tabControl1.TabIndex = 0;
             panel1.Controls.Add(tabControl1);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(585, 428);
-            this.panel1.TabIndex = 4;
             // 
             // menuStrip1
             // 
@@ -452,16 +455,31 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ajudaToolStripMenuItem,
+            this.toolStripSeparator9,
             this.sobreETdAnalyserToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
             this.helpToolStripMenuItem.Text = "Ajuda";
+            // 
+            // ajudaToolStripMenuItem
+            // 
+            this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
+            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.ajudaToolStripMenuItem.Text = "Ajuda";
+            this.ajudaToolStripMenuItem.Click += new System.EventHandler(this.ajudaClick);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(169, 6);
             // 
             // sobreETdAnalyserToolStripMenuItem
             // 
             this.sobreETdAnalyserToolStripMenuItem.Name = "sobreETdAnalyserToolStripMenuItem";
             this.sobreETdAnalyserToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.sobreETdAnalyserToolStripMenuItem.Text = "Sobre ETdAnalyser";
+            this.sobreETdAnalyserToolStripMenuItem.Click += new System.EventHandler(this.sobreETdAnalyserClick);
             // 
             // toolStrip1
             // 
@@ -599,7 +617,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(791, 485);
             this.Controls.Add(this.toolStripContainer1);
             this.MainMenuStrip = this.menuStrip1;
@@ -683,5 +701,7 @@
         private System.Windows.Forms.ToolStripMenuItem fecharAbaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem páginaInicialToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
     }
 }
