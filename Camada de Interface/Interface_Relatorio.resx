@@ -123,30 +123,16 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="splitContainer1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-
-  <data name="&gt;&gt;BotaoCancelar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-
+    <value>5, 5</value>
   </data>
   <data name="treeViewZonaItem.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
-  </data>
-
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panelrel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 60</value>
-  </data>
-  <data name="panelZonaItem.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 5, 5, 40</value>
-
   </data>
   <data name="treeViewZonaItem.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 5</value>
   </data>
   <data name="treeViewZonaItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 449</value>
+    <value>189, 439</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="treeViewZonaItem.TabIndex" type="System.Int32, mscorlib">
@@ -185,24 +171,20 @@
   <data name="panelrel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="panelrel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-
   <data name="panelrel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="panelrel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 5</value>
+    <value>5, 5</value>
   </data>
   <data name="panelrel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 60</value>
+    <value>10, 10, 10, 20</value>
   </data>
   <data name="panelrel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>608, 414</value>
+    <value>595, 404</value>
   </data>
   <data name="panelrel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;panelrel.Name" xml:space="preserve">
     <value>panelrel</value>
@@ -222,13 +204,8 @@
   <data name="BotaoCancelar.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
   </data>
-
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="checkBoxInsDt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 245</value>
-  </data>
   <data name="BotaoCancelar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>517, 424</value>
+    <value>509, 414</value>
   </data>
   <data name="BotaoCancelar.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -258,7 +235,7 @@
     <value>BottomCenter</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>313, 425</value>
+    <value>305, 415</value>
   </data>
   <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 23</value>
@@ -288,10 +265,10 @@
     <value>0, 0</value>
   </data>
   <data name="panelZonaItem.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 5, 5, 40</value>
+    <value>5, 5, 5, 40</value>
   </data>
   <data name="panelZonaItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>613, 459</value>
+    <value>605, 449</value>
   </data>
   <data name="panelZonaItem.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -321,25 +298,16 @@
     <value>1</value>
   </data>
   <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>819, 459</value>
+    <value>809, 449</value>
   </data>
   <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>202</value>
+    <value>199</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel2.Name" xml:space="preserve">
-    <value>splitContainer1.Panel2</value>
-  </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="splitContainer1.SplitterWidth" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="splitContainer1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>815, 465</value>
-  </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Name" xml:space="preserve">
     <value>splitContainer1</value>
@@ -353,8 +321,8 @@
   <data name="&gt;&gt;splitContainer1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="panelrel.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="checkBoxInsDt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 245</value>
   </data>
   <data name="checkBoxInsDt.Size" type="System.Drawing.Size, System.Drawing">
     <value>300, 30</value>
@@ -386,26 +354,18 @@
   <data name="obstb.Text" xml:space="preserve">
     <value />
   </data>
-
   <data name="&gt;&gt;obstb.Name" xml:space="preserve">
     <value>obstb</value>
-  </data>
-
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-
   </data>
   <data name="&gt;&gt;obstb.Type" xml:space="preserve">
     <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="GerarDocumentoBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 16</value>
   </data>
-
   <data name="ZonaActividadetextlabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 17</value>
   </data>
@@ -460,17 +420,11 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>pt</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="obstb.Text" xml:space="preserve">
-    <value />
   </data>
   <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
@@ -480,6 +434,9 @@
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>815, 465</value>
+  </data>
+  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -523,14 +480,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="saveFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>pt</value>
-  </metadata>
-
 </root>

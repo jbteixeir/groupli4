@@ -210,6 +210,7 @@
             // 
             this.menuStrip2.AutoSize = false;
             this.menuStrip2.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.projectosToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(3, 3);
@@ -297,6 +298,7 @@
             this.terminarSessãoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F3)));
             this.terminarSessãoToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.terminarSessãoToolStripMenuItem.Text = "Terminar Sessão";
+            this.terminarSessãoToolStripMenuItem.Click += new System.EventHandler(this.terminarSessao);
             // 
             // quitToolStripMenuItem
             // 
@@ -305,6 +307,7 @@
             this.quitToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.quitToolStripMenuItem.Text = "Sair";
             this.quitToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.quitToolStripMenuItem.Click += new System.EventHandler(this.fecharAplicação);
             // 
             // verToolStripMenuItem
             // 
@@ -323,8 +326,8 @@
             this.abaAnteriorToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309272771_direction_left;
             this.abaAnteriorToolStripMenuItem.Name = "abaAnteriorToolStripMenuItem";
             this.abaAnteriorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
-            this.abaAnteriorToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.abaAnteriorToolStripMenuItem.Text = "Anterior Aba";
+            this.abaAnteriorToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.abaAnteriorToolStripMenuItem.Text = "Separador Anterior";
             this.abaAnteriorToolStripMenuItem.Click += new System.EventHandler(this.anteriorTab);
             // 
             // proximaAbaToolStripMenuItem1
@@ -332,8 +335,8 @@
             this.proximaAbaToolStripMenuItem1.Image = global::ETdA.Properties.Resources._1309272765_direction_right;
             this.proximaAbaToolStripMenuItem1.Name = "proximaAbaToolStripMenuItem1";
             this.proximaAbaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
-            this.proximaAbaToolStripMenuItem1.Size = new System.Drawing.Size(203, 22);
-            this.proximaAbaToolStripMenuItem1.Text = "Proxima Aba";
+            this.proximaAbaToolStripMenuItem1.Size = new System.Drawing.Size(236, 22);
+            this.proximaAbaToolStripMenuItem1.Text = "Proximo Separador";
             this.proximaAbaToolStripMenuItem1.Click += new System.EventHandler(this.proximaTab);
             // 
             // fecharAbaToolStripMenuItem1
@@ -341,20 +344,20 @@
             this.fecharAbaToolStripMenuItem1.Image = global::ETdA.Properties.Resources.Error;
             this.fecharAbaToolStripMenuItem1.Name = "fecharAbaToolStripMenuItem1";
             this.fecharAbaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-            this.fecharAbaToolStripMenuItem1.Size = new System.Drawing.Size(203, 22);
-            this.fecharAbaToolStripMenuItem1.Text = "Fechar Aba";
+            this.fecharAbaToolStripMenuItem1.Size = new System.Drawing.Size(236, 22);
+            this.fecharAbaToolStripMenuItem1.Text = "Fechar Separador";
             this.fecharAbaToolStripMenuItem1.Click += new System.EventHandler(this.fecharTab);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(200, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(233, 6);
             // 
             // páginaInicialToolStripMenuItem
             // 
             this.páginaInicialToolStripMenuItem.Name = "páginaInicialToolStripMenuItem";
             this.páginaInicialToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.páginaInicialToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.páginaInicialToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.páginaInicialToolStripMenuItem.Text = "Página Inicial";
             this.páginaInicialToolStripMenuItem.Click += new System.EventHandler(this.verPaginaInicial);
             // 
@@ -504,7 +507,7 @@
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "Anterior aba (Ctrl + Esquerda)";
+            this.toolStripButton5.Text = "Separador Anterior (Ctrl + Esquerda)";
             this.toolStripButton5.Click += new System.EventHandler(this.anteriorTab);
             // 
             // toolStripButton6
@@ -514,7 +517,7 @@
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton6.Text = "Próxima aba (Ctrl + Direita)";
+            this.toolStripButton6.Text = "Próximo Separador (Ctrl + Direita)";
             this.toolStripButton6.Click += new System.EventHandler(this.proximaTab);
             // 
             // toolStripButton4
@@ -524,7 +527,7 @@
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "Fechar Aba";
+            this.toolStripButton4.Text = "Fechar Separador";
             this.toolStripButton4.Click += new System.EventHandler(this.fecharTab);
             // 
             // toolStripSeparator2

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfaceRegisto));
             this.Username = new System.Windows.Forms.Label();
             this.Password1 = new System.Windows.Forms.Label();
             this.Password2 = new System.Windows.Forms.Label();
@@ -48,75 +49,55 @@
             // 
             // Username
             // 
-            this.Username.AutoSize = true;
-            this.Username.Location = new System.Drawing.Point(12, 13);
+            resources.ApplyResources(this.Username, "Username");
+            this.Username.BackColor = System.Drawing.Color.Transparent;
             this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(50, 13);
-            this.Username.TabIndex = 0;
-            this.Username.Text = "Utilizador";
             // 
             // Password1
             // 
-            this.Password1.AutoSize = true;
-            this.Password1.Location = new System.Drawing.Point(12, 39);
+            resources.ApplyResources(this.Password1, "Password1");
+            this.Password1.BackColor = System.Drawing.Color.Transparent;
             this.Password1.Name = "Password1";
-            this.Password1.Size = new System.Drawing.Size(77, 13);
-            this.Password1.TabIndex = 1;
-            this.Password1.Text = "Palavra-Chave";
             // 
             // Password2
             // 
-            this.Password2.AutoSize = true;
-            this.Password2.Location = new System.Drawing.Point(12, 65);
+            resources.ApplyResources(this.Password2, "Password2");
+            this.Password2.BackColor = System.Drawing.Color.Transparent;
             this.Password2.Name = "Password2";
-            this.Password2.Size = new System.Drawing.Size(121, 13);
-            this.Password2.TabIndex = 2;
-            this.Password2.Text = "Confirme Palavra-Chave";
             // 
             // Registar
             // 
-            this.Registar.Location = new System.Drawing.Point(261, 95);
+            this.Registar.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.Registar, "Registar");
             this.Registar.Name = "Registar";
-            this.Registar.Size = new System.Drawing.Size(75, 23);
-            this.Registar.TabIndex = 3;
-            this.Registar.Text = "Registar";
-            this.Registar.UseVisualStyleBackColor = true;
+            this.Registar.UseVisualStyleBackColor = false;
             this.Registar.Click += new System.EventHandler(this.RegistarActionPerformed);
             // 
             // Cancelar
             // 
-            this.Cancelar.Location = new System.Drawing.Point(169, 95);
+            this.Cancelar.BackColor = System.Drawing.SystemColors.Control;
+            this.Cancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.Cancelar, "Cancelar");
             this.Cancelar.Name = "Cancelar";
-            this.Cancelar.Size = new System.Drawing.Size(75, 23);
-            this.Cancelar.TabIndex = 4;
-            this.Cancelar.Text = "Cancelar";
-            this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.UseVisualStyleBackColor = false;
             this.Cancelar.Click += new System.EventHandler(this.CancelarActionPerformed);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(138, 7);
+            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(198, 20);
-            this.textBox1.TabIndex = 5;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeuPressActionPerformed);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(138, 33);
+            resources.ApplyResources(this.textBox2, "textBox2");
             this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(198, 20);
-            this.textBox2.TabIndex = 6;
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeuPressActionPerformed);
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(138, 59);
+            resources.ApplyResources(this.textBox3, "textBox3");
             this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(198, 20);
-            this.textBox3.TabIndex = 7;
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeuPressActionPerformed);
             // 
             // errorProvider1
@@ -133,19 +114,18 @@
             // 
             // checkBox1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 95);
+            resources.ApplyResources(this.checkBox1, "checkBox1");
+            this.checkBox1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(134, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Manter sessão iniciada";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.UseVisualStyleBackColor = false;
             // 
             // InterfaceRegisto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 132);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.Cancelar;
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -155,11 +135,9 @@
             this.Controls.Add(this.Password2);
             this.Controls.Add(this.Password1);
             this.Controls.Add(this.Username);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "InterfaceRegisto";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Registar";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
