@@ -60,14 +60,14 @@ namespace ETdA.Camada_de_Interface
         {
             Label t = (Label)sender;
             t.Font = new Font(t.Font, FontStyle.Underline);
-            t.BackColor = Color.LightGray;
+            //t.BackColor = SystemColors.GradientActiveCaption;
         }
 
         private void MouseLeaveAction(object sender, EventArgs e)
         {
             Label t = (Label)sender;
             t.Font = new Font(t.Font, FontStyle.Regular);
-            t.BackColor = Color.Empty;
+            //t.BackColor = Color.Transparent;
         }
 
         private void FA_ActionPerformed(object sender, EventArgs e)

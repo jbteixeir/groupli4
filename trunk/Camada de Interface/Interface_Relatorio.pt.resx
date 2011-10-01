@@ -118,29 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="treeViewZonaItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 421</value>
+  <data name="splitContainer1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
   </data>
-  <data name="panelrel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>583, 386</value>
+  <data name="treeViewZonaItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 411</value>
   </data>
   <data name="BotaoCancelar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>492, 396</value>
+    <value>497, 387</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 397</value>
+    <value>290, 387</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panelZonaItem.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 40</value>
   </data>
   <data name="panelZonaItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>588, 431</value>
+    <value>589, 421</value>
   </data>
   <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>807, 431</value>
+    <value>797, 421</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>215</value>
+    <value>207</value>
+  </data>
+  <data name="splitContainer1.SplitterWidth" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 404</value>
+  </data>
+  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>797, 22</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>807, 431</value>
+  </data>
+  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
   </data>
 </root>

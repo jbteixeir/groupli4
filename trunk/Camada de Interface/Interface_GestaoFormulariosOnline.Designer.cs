@@ -36,24 +36,28 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(73, 93);
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(64, 86);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(66, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.OKActioonPerformed);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Location = new System.Drawing.Point(58, 22);
+            this.label1.Location = new System.Drawing.Point(52, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 1;
@@ -65,8 +69,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label2.Location = new System.Drawing.Point(70, 57);
+            this.label2.Location = new System.Drawing.Point(64, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 2;
@@ -77,21 +82,23 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3,
             this.toolStripStatusLabel4});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 139);
+            this.statusStrip1.Location = new System.Drawing.Point(5, 134);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(209, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(199, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(81, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
             this.toolStripStatusLabel1.Text = "Ficha Avaliação";
             // 
             // toolStripStatusLabel2
@@ -102,7 +109,7 @@
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(68, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(75, 17);
             this.toolStripStatusLabel3.Text = "Questionário";
             // 
             // toolStripStatusLabel4
@@ -110,21 +117,37 @@
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
             this.toolStripStatusLabel4.Size = new System.Drawing.Size(0, 17);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Location = new System.Drawing.Point(5, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(199, 126);
+            this.panel1.TabIndex = 4;
+            // 
             // Interface_GestaoFormulariosOnline
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(209, 161);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.MaximizeBox = false;
             this.Name = "Interface_GestaoFormulariosOnline";
+            this.Padding = new System.Windows.Forms.Padding(5);
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criar WebSite";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,5 +163,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.Panel panel1;
     }
 }

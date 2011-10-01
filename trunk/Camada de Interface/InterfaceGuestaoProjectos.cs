@@ -408,6 +408,7 @@ namespace ETdA.Camada_de_Interface
 
 
                 checkBox1.Location = new Point(175, 305);
+                checkBox1.BackColor = SystemColors.Control;
 
                 if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoCheckListOnline(codp, coda))
                 {
@@ -434,6 +435,7 @@ namespace ETdA.Camada_de_Interface
 
 
                 checkBox2.Location = new Point(175, 335);
+                checkBox2.BackColor = SystemColors.Control;
 
                 if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoFichaAvaliacaoOnline(codp, coda))
                 {
@@ -460,6 +462,7 @@ namespace ETdA.Camada_de_Interface
 
 
                 checkBox3.Location = new Point(175, 365);
+                checkBox3.BackColor = SystemColors.Control;
 
                 if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoQuestionariosOnline(codp, coda))
                 {
@@ -692,7 +695,7 @@ namespace ETdA.Camada_de_Interface
                 checkBox2.Text = "Desactivar";
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codp, coda, true);
             }
-            else if (checkBox1.Checked == false)
+            else if (checkBox2.Checked == false)
             {
                 checkBox2.Text = "Activar";
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codp, coda, false);
@@ -711,7 +714,7 @@ namespace ETdA.Camada_de_Interface
                 checkBox3.Text = "Desactivar";
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codp, coda, true);
             }
-            else if (checkBox1.Checked == false)
+            else if (checkBox3.Checked == false)
             {
                 checkBox3.Text = "Activar";
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codp, coda, false);
@@ -1188,6 +1191,17 @@ namespace ETdA.Camada_de_Interface
         private void sobreETdAnalyserClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void terminarSessao(object sender, EventArgs e)
+        {
+            GestaodeAnalistas.remove_dados();
+            Application.Restart();
+        }
+
+        private void fecharAplicação(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

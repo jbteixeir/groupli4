@@ -505,6 +505,7 @@
     <Content Include="colors\limaWord.png" />
     <Content Include="colors\verdeWord.png" />
     <Content Include="colors\vermelhoWord.png" />
+    <None Include="Imagens\degrade1.png" />
     <None Include="Resources\close_icon.bmp" />
     <None Include="Icons\Warning.png" />
     <None Include="Icons\Error.png" />

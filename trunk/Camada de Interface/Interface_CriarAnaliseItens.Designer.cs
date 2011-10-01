@@ -49,6 +49,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
@@ -70,7 +71,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(38, 340);
+            this.button1.Location = new System.Drawing.Point(35, 346);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(119, 23);
             this.button1.TabIndex = 3;
@@ -81,7 +82,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(455, 28);
+            this.button2.Location = new System.Drawing.Point(471, 28);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 4;
@@ -95,7 +96,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(182, 30);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(252, 20);
+            this.textBox1.Size = new System.Drawing.Size(268, 20);
             this.textBox1.TabIndex = 5;
             this.textBox1.Click += new System.EventHandler(this.MouseClickActionPerformed);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressActionPerformed);
@@ -106,15 +107,17 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Location = new System.Drawing.Point(182, 57);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(348, 277);
+            this.panel1.Size = new System.Drawing.Size(364, 277);
             this.panel1.TabIndex = 6;
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(455, 340);
+            this.button3.Location = new System.Drawing.Point(471, 346);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 7;
@@ -125,7 +128,7 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(374, 340);
+            this.button4.Location = new System.Drawing.Point(390, 346);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
@@ -142,22 +145,22 @@
             this.toolStripStatusLabel4,
             this.toolStripStatusLabel5,
             this.toolStripStatusLabel6});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 375);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 381);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(542, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(558, 22);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(64, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(68, 17);
             this.toolStripStatusLabel1.Text = "Num. Itens:";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(29, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(35, 17);
             this.toolStripStatusLabel2.Text = "NUM";
             // 
             // toolStripStatusLabel3
@@ -175,20 +178,22 @@
             // toolStripStatusLabel5
             // 
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(36, 17);
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(40, 17);
             this.toolStripStatusLabel5.Text = "Sitio X";
             // 
             // toolStripStatusLabel6
             // 
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(91, 17);
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(99, 17);
             this.toolStripStatusLabel6.Text = "Descriçao do erro";
             // 
             // Interface_CriarAnaliseItens
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 397);
+            this.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(558, 403);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
