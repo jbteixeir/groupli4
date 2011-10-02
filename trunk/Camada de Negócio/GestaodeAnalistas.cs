@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -98,8 +99,7 @@ namespace ETdA.Camada_de_Negócio
 
         public static void remove_dados()
         {
-            System.IO.StreamWriter sr = new System.IO.StreamWriter("Utilizador.cfg");
-            sr.Close();
+            File.Delete("Utilizador.cfg");
         }
 	}
 }
