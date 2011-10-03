@@ -23,10 +23,11 @@ namespace ETdA.Camada_de_Negócio
         {
             try
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader("Super.cfg");
+                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
 
                 string server = sr.ReadLine();
                 string database = sr.ReadLine();
+                sr.ReadLine();
                 string username = sr.ReadLine();
                 string password = sr.ReadLine();
 
@@ -45,7 +46,9 @@ namespace ETdA.Camada_de_Negócio
             try
             {
                 System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+
                 string server = sr.ReadLine();
+                sr.ReadLine();
                 string database = sr.ReadLine();
                 sr.Close();
 
@@ -75,6 +78,7 @@ namespace ETdA.Camada_de_Negócio
                 System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
 
                 string server = sr.ReadLine();
+                sr.ReadLine();
                 string database = sr.ReadLine();
                 sr.Close();
 
@@ -100,6 +104,19 @@ namespace ETdA.Camada_de_Negócio
         public static void remove_dados()
         {
             File.Delete("Utilizador.cfg");
+        }
+
+        public static void alterar_ligacaoBaseDados(string server, string database, string superusername, string superpassword)
+        {
+            System.IO.StreamWriter sr = new System.IO.StreamWriter("Config.cfg");
+
+            sr.WriteLine(server);
+            sr.WriteLine(database);
+            sr.WriteLine("ETdA");
+            sr.WriteLine(superusername);
+            sr.WriteLine(superpassword);
+
+            sr.Close();
         }
 	}
 }

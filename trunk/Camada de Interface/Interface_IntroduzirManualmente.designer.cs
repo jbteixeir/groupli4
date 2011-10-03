@@ -76,6 +76,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Interface_IntroduzirManualmente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Introduzir Dados Manualmente";
             this.ResumeLayout(false);
 

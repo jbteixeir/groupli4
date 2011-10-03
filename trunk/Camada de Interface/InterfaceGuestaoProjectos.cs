@@ -1190,7 +1190,7 @@ namespace ETdA.Camada_de_Interface
 
         private void sobreETdAnalyserClick(object sender, EventArgs e)
         {
-
+            Interface_Creditos.main();
         }
 
         private void terminarSessao(object sender, EventArgs e)
@@ -1202,6 +1202,11 @@ namespace ETdA.Camada_de_Interface
         private void fecharAplicação(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void iniciarInterfaceConfLigBD(object sender, EventArgs e)
+        {
+            Interface_ConfigurarLigacaoBD.main();
         }
     }
 }

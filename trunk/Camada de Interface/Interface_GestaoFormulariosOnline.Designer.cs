@@ -142,7 +142,7 @@
             this.Name = "Interface_GestaoFormulariosOnline";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Criar WebSite";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

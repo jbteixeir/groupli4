@@ -32,6 +32,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeViewZonaItem = new System.Windows.Forms.TreeView();
             this.panelZonaItem = new System.Windows.Forms.Panel();
+            this.panelrel = new System.Windows.Forms.Panel();
             this.BotaoCancelar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBoxInsDt = new System.Windows.Forms.CheckBox();
@@ -42,7 +43,6 @@
             this.ZonaActividadelabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.Itemtextlabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.Itemlabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panelrel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,6 +85,13 @@
             this.panelZonaItem.Controls.Add(this.BotaoCancelar);
             this.panelZonaItem.Controls.Add(this.button1);
             this.panelZonaItem.Name = "panelZonaItem";
+            // 
+            // panelrel
+            // 
+            resources.ApplyResources(this.panelrel, "panelrel");
+            this.panelrel.BackColor = System.Drawing.Color.White;
+            this.panelrel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelrel.Name = "panelrel";
             // 
             // BotaoCancelar
             // 
@@ -153,13 +160,6 @@
             // 
             this.Itemlabel.Name = "Itemlabel";
             resources.ApplyResources(this.Itemlabel, "Itemlabel");
-            // 
-            // panelrel
-            // 
-            resources.ApplyResources(this.panelrel, "panelrel");
-            this.panelrel.BackColor = System.Drawing.Color.White;
-            this.panelrel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelrel.Name = "panelrel";
             // 
             // Interface_Relatorio
             // 

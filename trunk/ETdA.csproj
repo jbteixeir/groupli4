@@ -106,6 +106,18 @@
     <Compile Include="Camada de Interface\InterfaceRegisto.Designer.cs">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\Interface_ConfigurarLigacaoBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_ConfigurarLigacaoBD.Designer.cs">
+      <DependentUpon>Interface_ConfigurarLigacaoBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Creditos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Creditos.Designer.cs">
+      <DependentUpon>Interface_Creditos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\Interface_CriarAnalise.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +223,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\InterfaceRegisto.resx">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_ConfigurarLigacaoBD.resx">
+      <DependentUpon>Interface_ConfigurarLigacaoBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_Creditos.resx">
+      <DependentUpon>Interface_Creditos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_CriarAnalise.resx">
       <DependentUpon>Interface_CriarAnalise.cs</DependentUpon>

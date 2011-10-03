@@ -60,8 +60,6 @@
             this.apagarAnáliseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.avançadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminarContaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.baseDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarLigaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -395,23 +393,10 @@
             // avançadoToolStripMenuItem
             // 
             this.avançadoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eliminarContaToolStripMenuItem,
-            this.toolStripSeparator7,
             this.baseDeDadosToolStripMenuItem});
             this.avançadoToolStripMenuItem.Name = "avançadoToolStripMenuItem";
-            this.avançadoToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.avançadoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.avançadoToolStripMenuItem.Text = "Avançado";
-            // 
-            // eliminarContaToolStripMenuItem
-            // 
-            this.eliminarContaToolStripMenuItem.Name = "eliminarContaToolStripMenuItem";
-            this.eliminarContaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.eliminarContaToolStripMenuItem.Text = "Eliminar Conta";
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(149, 6);
             // 
             // baseDeDadosToolStripMenuItem
             // 
@@ -424,8 +409,9 @@
             // editarLigaçãoToolStripMenuItem
             // 
             this.editarLigaçãoToolStripMenuItem.Name = "editarLigaçãoToolStripMenuItem";
-            this.editarLigaçãoToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.editarLigaçãoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editarLigaçãoToolStripMenuItem.Text = "Editar Ligação";
+            this.editarLigaçãoToolStripMenuItem.Click += new System.EventHandler(this.iniciarInterfaceConfLigBD);
             // 
             // helpToolStripMenuItem
             // 
@@ -639,8 +625,6 @@
         private System.Windows.Forms.ToolStripMenuItem listaAnálisesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem avançadoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eliminarContaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem baseDeDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarLigaçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sobreETdAnalyserToolStripMenuItem;

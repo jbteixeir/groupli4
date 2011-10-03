@@ -72,5 +72,10 @@ namespace ETdA.Camada_de_Interface
         {
 
         }
+
+        private void alterarLigacaoBD(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Interface_ConfigurarLigacaoBD.main();
+        }
     }
 }
