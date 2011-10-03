@@ -48,7 +48,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(14, 43);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 20);
+            this.textBox1.Size = new System.Drawing.Size(174, 20);
             this.textBox1.TabIndex = 11;
             // 
             // button2
@@ -85,7 +85,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(112, 220);
+            this.button1.Location = new System.Drawing.Point(111, 220);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(77, 23);
             this.button1.TabIndex = 14;
@@ -97,7 +97,7 @@
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.SystemColors.Control;
-            this.button3.Location = new System.Drawing.Point(31, 220);
+            this.button3.Location = new System.Drawing.Point(30, 220);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 15;
@@ -143,6 +143,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "Interface_CriarAnaliseZonas";
             this.Padding = new System.Windows.Forms.Padding(5);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Criar Análise - Zonas";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

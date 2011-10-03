@@ -204,7 +204,7 @@
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label1);
             this.Name = "Interface_CriarAnaliseItens";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Criar Análise - Itens";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
