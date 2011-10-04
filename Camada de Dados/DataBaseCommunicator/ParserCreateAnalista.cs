@@ -8,15 +8,15 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
     class ParserCreateAnalista
     {
 
-        private static string query1(string usr)
+        private static string queryCriarBD(string usr)
         {
             string s1 = "CREATE DATABASE ETdA_" + usr + ";\n" +
                         "";// "GO \n";
             return s1;
         }
 
-		#region cenas...
-        private static string query2(string usr, string pw)
+		#region querys
+        private static string queryCriarUtilizador(string usr, string pw)
         {
             string s2 = "USE model;\n" + 
                         "CREATE LOGIN " + usr + " \n" +
@@ -30,33 +30,18 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return s2;
         }
 
-        private static string query3(string usr)
-        {
-            string s3 = "USE ETdA_" + usr + ";\n" +
-                        "";// "GO \n";
-
-            return s3;
-        }
-
-        private static string query4()
-        {
-            string s4 = "CREATE PROCEDURE criarTabelas \n" +
-                        "AS \n";
-
-            return s4;
-        }
-
-        private static string create1()
+        private static string createProjecto()
         {
             string c1 = "create table projecto(\n" + 
 	                    "cod_projecto bigint identity primary key,\n" +
 	                    "estabelecimento varchar(20) not null,\n" +
-	                    "ultimaActualizacao datetime not null\n" +
+	                    "ultimaActualizacao datetime not null,\n" +
+                        "activo tinyint not null\n" +
                         ");\n";
             return c1;
         }
 
-        private static string create2()
+        private static string createAnalise()
         {
             string c2 = "create table analise(\n" +
 	                    "cod_analise bigint identity primary key,\n" +
@@ -66,12 +51,13 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 	                    "tipoAnalise varchar(20) not null,\n" +
 	                    "estadoWebCheckList tinyint not null,\n" +
 	                    "estadoWebFichaAvaliacao tinyint not null,\n" +
-	                    "estadoWebQuestionario tinyint not null\n" + 
+	                    "estadoWebQuestionario tinyint not null,\n" +
+                        "activo tinyint not null\n" +
                         ");\n";
             return c2;
         }
 
-        private static string create3()
+        private static string createItem()
         {
             string c3 = "create table item(\n" +
 	                    "cod_item bigint identity primary key,\n" +
@@ -81,7 +67,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c3;
         }
 
-        private static string create4()
+        private static string createItemAnalise()
         {
             string c4 = "create table item_analise(\n" +
 	                    "cod_item_analise bigint identity primary key,\n" +
@@ -100,7 +86,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c4;
         }
 
-        private static string create5()
+        private static string createZona()
         {
             string c5 = "create table zona(\n" +
 	                    "cod_zona bigint Identity Primary Key,\n" +
@@ -109,7 +95,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c5;
         }
 
-        private static string create6()
+        private static string createZonaAnalise()
         {
             string c6 = "create table zona_analise(\n" +
 	                    "cod_zona_analise bigint identity primary key,\n" +
@@ -119,7 +105,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c6;
         }
 
-        private static string create7()
+        private static string createRespostaChecklist()
         {
             string c7 = "create table resposta_checkList(\n" +
 	                    "cod_resposta_checkList bigint identity primary key,\n" +
@@ -131,7 +117,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c7;
         }
 
-        private static string create8()
+        private static string createFichaAvaliacao()
         {
             string c8 = "create table ficha_avaliacao(\n" +
 	                    "cod_fichaAvaliacao bigint identity primary key,\n" +
@@ -142,7 +128,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c8;
         }
 
-        private static string create9()
+        private static string createTipoEscala()
         {
             string c9 = "CREATE TABLE TipoEscala\n" +
                         "(cod_tipoEscala BIGINT IDENTITY PRIMARY KEY,\n" +
@@ -153,7 +139,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c9;
         }
 
-        private static string create10()
+        private static string createEscalaResposta()
         {
             string c10 = "CREATE TABLE EscalaResposta\n" +
 	                     "(cod_EscalaResposta BIGINT IDENTITY PRIMARY KEY,\n" +
@@ -165,7 +151,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c10;
         }
 
-        private static string create11()
+        private static string createPerguntaFichaAvaliacao()
         {
             string c11 = "create table pergunta_ficha_avaliacao(\n" +
 	                     "cod_pergunta_ficha_avaliacao bigint identity primary key,\n" +
@@ -179,7 +165,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c11;
         }
 
-        private static string create12()
+        private static string createRespostaFichaAvaliacaoNumero()
         {
             string c12 = "create table resposta_ficha_avaliacao_numero(\n" +
 	                     "cod_resposta_ficha_avaliacao_numero bigint identity primary key,\n" +
@@ -192,7 +178,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c12;
         }
 
-        private static string create13()
+        private static string createQuestionario()
         {
             string c13 = "create table questionario(\n" +
 	                     "cod_questionario bigint identity primary key,\n" +
@@ -201,7 +187,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c13;
         }
 
-        private static string create14()
+        private static string createPerguntaQuestionario()
         {
             string c14 = "create table pergunta_questionario(\n" +
 	                     "cod_pergunta_questionario bigint identity primary key,\n" +
@@ -218,7 +204,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c14;
         }
 
-        private static string create15()
+        private static string createRespostaQuestionarioNumero()
         {
             string c15 = "create table resposta_questionario_numero(\n" + 
 	                     "cod_resposta_questionario_numero bigint identity primary key,\n" +
@@ -235,7 +221,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c15;
         }
 
-        private static string create16()
+        private static string createRespostaQuestionarioString()
         {
             string c16 = "create table respostas_questionarios_string(\n" +
 	                     "cod_resposta_questionario_string bigint identity primary key,\n" +
@@ -252,7 +238,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c16;
         }
 
-        private static string create17()
+        private static string createRespostaQuestionarioMemo()
         {
             string c17 = "create table resposta_questionario_memo(\n" +
 	                     "cod_resposta_questionario_memo bigint identity primary key,\n" +
@@ -269,7 +255,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return c17;
         }
 
-        private static string create18()
+        private static string createRespostaFichaAvaliacaoString()
         {
             string c18 = "create table resposta_ficha_avaliacao_string(\n" +
                          "cod_resposta_ficha_avaliacao_string bigint primary key,\n" +
@@ -281,6 +267,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                          ");\n";
             return c18;
         }
+
 		#endregion
 
 		private static string query5()
@@ -290,33 +277,120 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             return q5;
         }
 
-        private static string query6(string usr)
+        private static string queryUseDBUser(string usr)
         {
             string q6 = "USE ETdA_" + usr + ";\n" +
                         "";// "GO \n";
             return q6;
         }
 
-        private static string query7()
+        private static string insertsPredefinidos()
         {
-            string q7 = "EXECUTE criarTabelas;\n" +
-                        "";// "GO";
-            return q7;
+            string query =   "INSERT INTO item VALUES ( 'Ruido', 1);" +
+                             "INSERT INTO item VALUES ( 'Temperatura', 1);" +
+                             "INSERT INTO item VALUES ( 'Iluminação', 1);" +
+                             "INSERT INTO item VALUES ( 'Risco Acidente', 1);" +
+                             "INSERT INTO item VALUES ( 'Nível de Atenção Requerido', 1);" +
+                             "INSERT INTO item VALUES ( 'Actividade Física', 1);" +
+                             "INSERT INTO item VALUES ( 'Espaço de Trabalho', 1);" +
+                             "INSERT INTO item VALUES ( 'Posturas / Movimento', 1);" +
+                             "INSERT INTO item VALUES ( 'Tarefas de elevação', 1);" +
+                             "INSERT INTO item VALUES ( 'Comunicação Inter-relação', 1);" +
+                             "INSERT INTO item VALUES ( 'Conteúdo', 1);" +
+                             "INSERT INTO item VALUES ( 'Tomada de decisões', 1);" +
+                             "INSERT INTO item VALUES ( 'Repetitividade', 1);" +
+                             "INSERT INTO item VALUES ( 'Restritividade', 1);" +
+                             "INSERT INTO zona VALUES ('Frutas e Verduras');" +
+                             "INSERT INTO zona VALUES ('Peixaria');" +
+                             "INSERT INTO zona VALUES ('Talho/Charcutaria');" +
+                             "INSERT INTO zona VALUES ('Lacticinios');" +
+                             "INSERT INTO zona VALUES ('Bebidas');" +
+                             "INSERT INTO zona VALUES ('Office média');" +
+                             "INSERT INTO zona VALUES ('Electrodomésticos');" +
+                             "INSERT INTO zona VALUES ('Recepção ao cliente');" +
+                             "INSERT INTO zona VALUES ('Frente de loja');" +
+                             "INSERT INTO zona VALUES ('Manutenção');" +
+                             "INSERT INTO zona VALUES ('Recepção mercadoria');" +
+                             "INSERT INTO zona VALUES ('Administração');" +
+                             "INSERT INTO zona VALUES ('Limpeza');" +
+                             "INSERT INTO zona VALUES ('Segurança');" +
+                             "INSERT INTO zona VALUES ('Promotoras');" +
+                             "INSERT INTO zona VALUES ('Delivering mercadoria');" +
+                             "INSERT INTO zona VALUES ('Vendedor');" +
+                             "INSERT INTO zona VALUES ('DPH');" +
+                             "INSERT INTO zona VALUES ('Reposição Nocturna');" +
+                             "INSERT INTO zona VALUES ('Outros');" +
+                             "INSERT INTO zona VALUES ('Comum');" +
+                             "INSERT INTO TipoEscala VALUES ('Frequencia', 5, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Qualidade', 5, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Intensidade', 3, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Probabilidade', 5, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Satisfação', 5, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Opção', 2, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Qualidade', 4, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Sexo', 2, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Idade', 1, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Profissao', 0, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Habilitacoes', 6, 1);" +
+                             "INSERT INTO TipoEscala VALUES ('Intensidade', 3, 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 1, 'Nunca', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 1, 'Raramente', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 1, 'Às Vezes', 3);" +
+                             "INSERT INTO EscalaResposta VALUES ( 1, 'Muitas Vezes', 4);" +
+                             "INSERT INTO EscalaResposta VALUES ( 1, 'Sempre', 5);" +
+                             "INSERT INTO EscalaResposta VALUES ( 2, 'Muito Mau', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 2, 'Mau', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 2, 'Razoável', 3);" +
+                             "INSERT INTO EscalaResposta VALUES ( 2, 'Bom', 4);" +
+                             "INSERT INTO EscalaResposta VALUES ( 2, 'Muito Bom', 5);" +
+                             "INSERT INTO EscalaResposta VALUES ( 3, 'Fraca', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 3, 'Média', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 3, 'Intensa', 3);" +
+                             "INSERT INTO EscalaResposta VALUES ( 4, 'Impossível', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 4, 'Pouco Provável', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 4, 'Provável', 3);" +
+                             "INSERT INTO EscalaResposta VALUES ( 4, 'Muito Provável', 4);" +
+                             "INSERT INTO EscalaResposta VALUES ( 4, 'Certo', 5);" +
+                             "INSERT INTO EscalaResposta VALUES ( 5, 'Muito Insatisfeito', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 5, 'Insatisfeito', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 5, 'Indiferente', 3);" +
+                             "INSERT INTO EscalaResposta VALUES ( 5, 'Satisfeito', 4);" +
+                             "INSERT INTO EscalaResposta VALUES ( 5, 'Muito Satisfeito', 5);" +
+                             "INSERT INTO EscalaResposta VALUES ( 6, 'Sim', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 6, 'Não', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 7, 'Muito Mau', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 7, 'Mau', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 7, 'Bom', 3);" +
+                             "INSERT INTO EscalaResposta VALUES ( 7, 'Muito Bom', 4);" +
+                             "INSERT INTO EscalaResposta VALUES ( 8, 'Feminino', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 8, 'Masculino', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 11, 'Até 12º ano', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 11, 'Licenciatura', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 11, 'Mestrado', 3);" +
+                             "INSERT INTO EscalaResposta VALUES ( 11, 'Doutoramento', 4);" +
+                             "INSERT INTO EscalaResposta VALUES ( 11, 'Curso Tecnológico/Profissional', 5);" +
+                             "INSERT INTO EscalaResposta VALUES ( 11, 'Outro', 6);" +
+                             "INSERT INTO EscalaResposta VALUES ( 12, 'Muito Pouca', 1);" +
+                             "INSERT INTO EscalaResposta VALUES ( 12, 'Pouca', 2);" +
+                             "INSERT INTO EscalaResposta VALUES ( 12, 'Alguma', 3);" +
+                             "INSERT INTO EscalaResposta VALUES ( 12, 'Muita', 4);" +
+                             "INSERT INTO EscalaResposta VALUES ( 12, 'Bastante', 5);";
+           return query;
         }
 		#region
 		public static List<string> devolveQuery(string usr, string pw)
         {
             List<string> strs = new List<string>();
-            strs.Add(query1(usr));
-            strs.Add(query2(usr, pw));
-            strs.Add(query3(usr));
-            strs.Add(query4() + 
-                create1() + create2() + create3() + create4() + create5() +
-                create6() + create7() + create8() + create9() + create10() +
-                create11() + create12() + create13() + create14() + create15() +
-                create16() + create17() + create18() + query5());
-            strs.Add(query6(usr));
-            strs.Add(query7());
+            strs.Add(queryCriarBD(usr));
+            strs.Add(queryCriarUtilizador(usr, pw));
+            strs.Add(queryUseDBUser(usr));
+            strs.Add( 
+                createProjecto() + createAnalise() + createItem() + createItemAnalise() + createZona() + createZonaAnalise() 
+                + createRespostaChecklist() + createFichaAvaliacao() + createTipoEscala() + createEscalaResposta() +
+                createPerguntaFichaAvaliacao() + createRespostaFichaAvaliacaoNumero() + createQuestionario() 
+                + createPerguntaQuestionario() + createRespostaQuestionarioNumero() +
+                createRespostaQuestionarioString() + createRespostaQuestionarioMemo() + createRespostaFichaAvaliacaoString());
+            strs.Add(insertsPredefinidos());
 
             return strs;
         }

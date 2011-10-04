@@ -206,7 +206,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             r.Read();
             a = new Analise(codAnalise,
                (long)r["cod_projecto"],
-               (DateTime)r["dataAnalise"],
+               (DateTime)r["dataCriacao"],
                (string)r["nomeAnalise"],
                (string)r["tipoAnalise"],
                selectZonasAnalise(codAnalise),

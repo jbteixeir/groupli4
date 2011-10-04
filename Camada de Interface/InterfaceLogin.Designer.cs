@@ -40,19 +40,20 @@
             this.Password = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Sair
             // 
+            this.Sair.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Sair.Location = new System.Drawing.Point(368, 246);
             this.Sair.Name = "Sair";
             this.Sair.Size = new System.Drawing.Size(75, 23);
-            this.Sair.TabIndex = 5;
+            this.Sair.TabIndex = 6;
             this.Sair.Text = "Sair";
             this.Sair.UseVisualStyleBackColor = true;
             this.Sair.Click += new System.EventHandler(this.SairActionPerformed);
@@ -62,7 +63,7 @@
             this.Login.Location = new System.Drawing.Point(265, 246);
             this.Login.Name = "Login";
             this.Login.Size = new System.Drawing.Size(75, 23);
-            this.Login.TabIndex = 3;
+            this.Login.TabIndex = 4;
             this.Login.Text = "Entrar";
             this.Login.UseVisualStyleBackColor = true;
             this.Login.Click += new System.EventHandler(this.Login_Click);
@@ -72,7 +73,7 @@
             this.Registar.Location = new System.Drawing.Point(60, 246);
             this.Registar.Name = "Registar";
             this.Registar.Size = new System.Drawing.Size(75, 23);
-            this.Registar.TabIndex = 4;
+            this.Registar.TabIndex = 5;
             this.Registar.Text = "Registar";
             this.Registar.UseVisualStyleBackColor = true;
             this.Registar.Click += new System.EventHandler(this.RegistarActionPerformed);
@@ -82,8 +83,7 @@
             this.textBox1.Location = new System.Drawing.Point(123, 43);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(226, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "test_user";
+            this.textBox1.TabIndex = 1;
             // 
             // Username
             // 
@@ -118,8 +118,7 @@
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.PasswordChar = '*';
             this.maskedTextBox1.Size = new System.Drawing.Size(226, 20);
-            this.maskedTextBox1.TabIndex = 1;
-            this.maskedTextBox1.Text = "password";
+            this.maskedTextBox1.TabIndex = 2;
             // 
             // label1
             // 
@@ -146,7 +145,7 @@
             this.checkBox1.Location = new System.Drawing.Point(18, 127);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(134, 17);
-            this.checkBox1.TabIndex = 2;
+            this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "Manter sessão iniciada";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -171,6 +170,17 @@
             this.panel1.Size = new System.Drawing.Size(413, 180);
             this.panel1.TabIndex = 13;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(15, 153);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(159, 13);
+            this.linkLabel1.TabIndex = 12;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Alterar ligação à Base de Dados";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.alterarLigacaoBD);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -192,24 +202,15 @@
             this.panel2.Size = new System.Drawing.Size(425, 192);
             this.panel2.TabIndex = 14;
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(15, 153);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(159, 13);
-            this.linkLabel1.TabIndex = 12;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Alterar ligação à Base de Dados";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.alterarLigacaoBD);
-            // 
             // InterfaceLogin
             // 
+            this.AcceptButton = this.Login;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CancelButton = this.Sair;
             this.ClientSize = new System.Drawing.Size(501, 294);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.Registar);
