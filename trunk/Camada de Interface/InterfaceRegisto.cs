@@ -70,13 +70,17 @@ namespace ETdA.Camada_de_Interface
             bool b = GestaodeAnalistas.registaAnalista(usr,pw);
 
             if (!b)
-                MessageBox.Show("Não foi possível efectuar registo", "Connection Error",
+                MessageBox.Show("Não foi possível efectuar registo", "Erro de Ligação",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+                MessageBoxPortuguese.Show("Registo", "Registo efectuado com sucesso");
 
             if (checkBox1.Checked)
                 GestaodeAnalistas.guarda_dados(usr, pw);
 
             endFrame();
+            GestaodeAnalistas.login(usr, pw);
+            InterfaceLogin.closeFrame();           
         }
 
         private void endFrame()
