@@ -1185,7 +1185,7 @@ namespace ETdA.Camada_de_Interface
 
         private void ajudaClick(object sender, EventArgs e)
         {
-
+            Interface_Ajuda.main();
         }
 
         private void sobreETdAnalyserClick(object sender, EventArgs e)

@@ -419,6 +419,7 @@ namespace ETdA.Camada_de_Interface
         //quando carrega no buttao de gerar relatorio
         private void button1_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             //mostrar a barra de estados
             ZonaActividadelabel.Visible = false;
             ZonaActividadetextlabel.Visible = false;
@@ -917,7 +918,8 @@ namespace ETdA.Camada_de_Interface
 
             //Close this form.
             //this.Close();
-
+            this.Cursor = Cursors.Default;
+            BotaoCancelar.Text = "Fechar";
             
         }
     }

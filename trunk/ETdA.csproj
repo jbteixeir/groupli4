@@ -50,6 +50,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -88,6 +89,12 @@
     <Compile Include="Camada de Dados\Classes\Resposta.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
     <Compile Include="Camada de Dados\ETdA\ETdA_main.cs" />
+    <Compile Include="Camada de Interface\Interface_Ajuda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Ajuda.Designer.cs">
+      <DependentUpon>Interface_Ajuda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\InterfaceGuestaoProjectos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\InterfaceRegisto.resx">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_Ajuda.resx">
+      <DependentUpon>Interface_Ajuda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_ConfigurarLigacaoBD.resx">
       <DependentUpon>Interface_ConfigurarLigacaoBD.cs</DependentUpon>
