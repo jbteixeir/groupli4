@@ -68,7 +68,21 @@ namespace ETdA.Camada_de_Interface
         public static void main()
         {
             il = new InterfaceLogin();
+            il.showNaoExisteFicheiroConfiguracao();
             Application.Run(il);
+            
+        }
+
+        private void showNaoExisteFicheiroConfiguracao()
+        {
+            if (!GestaodeAnalistas.existeFicheiroConfiguracao())
+                if (MessageBoxPortuguese.Show("Configuração Servidor de Base de Dados", "Ainda não existe uma configuração de ligação ao servidor de base de dados.\n Sem esta o ETdAnalyser não pode ser utilizado. \nPretende configurar agora?",
+                     MessageBoxPortuguese.Button_OKCancel, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.OK)
+                {
+                    Interface_ConfigurarLigacaoBD.main();
+                }
+                else
+                    Application.Exit();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -88,6 +102,11 @@ namespace ETdA.Camada_de_Interface
         private void alterarLigacaoBD(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Interface_ConfigurarLigacaoBD.main();
+        }
+
+        private void clickAjuda(object sender, EventArgs e)
+        {
+            Interface_Ajuda.main();
         }
 
     }

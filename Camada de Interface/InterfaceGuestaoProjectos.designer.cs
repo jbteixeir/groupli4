@@ -151,12 +151,12 @@
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.Transparent;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
             this.toolStripContainer1.ContentPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(791, 436);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(863, 455);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(791, 485);
+            this.toolStripContainer1.Size = new System.Drawing.Size(863, 504);
             this.toolStripContainer1.TabIndex = 5;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -189,8 +189,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2MinSize = 500;
-            this.splitContainer1.Size = new System.Drawing.Size(781, 426);
-            this.splitContainer1.SplitterDistance = 193;
+            this.splitContainer1.Size = new System.Drawing.Size(853, 445);
+            this.splitContainer1.SplitterDistance = 197;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 5;
             // 
@@ -200,7 +200,7 @@
             this.treeView_Projectos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_Projectos.Location = new System.Drawing.Point(3, 24);
             this.treeView_Projectos.Name = "treeView_Projectos";
-            this.treeView_Projectos.Size = new System.Drawing.Size(187, 399);
+            this.treeView_Projectos.Size = new System.Drawing.Size(191, 418);
             this.treeView_Projectos.TabIndex = 1;
             this.treeView_Projectos.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.ExpandProjectAction);
             this.treeView_Projectos.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OpenAction);
@@ -215,7 +215,7 @@
             this.menuStrip2.Location = new System.Drawing.Point(3, 3);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.menuStrip2.Size = new System.Drawing.Size(187, 21);
+            this.menuStrip2.Size = new System.Drawing.Size(191, 21);
             this.menuStrip2.TabIndex = 2;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -232,7 +232,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(583, 426);
+            this.panel1.Size = new System.Drawing.Size(651, 445);
             this.panel1.TabIndex = 4;
             // 
             // menuStrip1
@@ -251,7 +251,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(791, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(863, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.TabStop = true;
             this.menuStrip1.Text = "menuStrip1";
@@ -572,7 +572,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(791, 485);
+            this.ClientSize = new System.Drawing.Size(863, 504);
             this.Controls.Add(this.toolStripContainer1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "InterfaceGuestaoProjectos";
@@ -653,5 +653,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+     
     }
 }

@@ -97,109 +97,348 @@ namespace ETdA.Camada_de_Interface
                 p.Name = "StartPage";
                 p.AutoScroll = true;
                 p.BackColor = Color.White;
+                p.Text = "Página Inicial";
+                p.Size = new System.Drawing.Size(218, 385);
 
                 ContextMenu m = new ContextMenu();
                 m.MenuItems.Add(new MenuItem("Fechar Tab", new EventHandler(fecharTab)));
                 p.ContextMenu = m;
 
+
                 this.tabControl1.Controls.Add(p);
 
-                p.Text = "Página Inicial";
-                p.Size = new System.Drawing.Size(218, 385);
-
-                System.Windows.Forms.Label l1 =
-                    new System.Windows.Forms.Label();
-                l1.Text = "Bem Vindo";
-                l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                l1.Location = new System.Drawing.Point(7, 7);
-                l1.Size = new System.Drawing.Size(111, 29);
-
-                p.Controls.Add(l1);
-                System.Windows.Forms.PictureBox pictureBox1 = new System.Windows.Forms.PictureBox();
-                setImage(pictureBox1, global::ETdA.Properties.Resources._1309271576_folder_add);
-                pictureBox1.Location = new System.Drawing.Point(0, 40);
+                #region desenho página inicial
+                System.Windows.Forms.Panel panelPaginaInicial;
+                System.Windows.Forms.SplitContainer splitContainer2;
+                System.Windows.Forms.SplitContainer splitContainer3;
+                System.Windows.Forms.Label label8;
+                System.Windows.Forms.PictureBox pictureBox1;
+                System.Windows.Forms.Label label7;
+                System.Windows.Forms.Label label6;
+                System.Windows.Forms.Label label5;
+                System.Windows.Forms.Label label4;
+                System.Windows.Forms.Label label3;
+                System.Windows.Forms.Label label2;
+                System.Windows.Forms.Label label11;
+                System.Windows.Forms.Label label10;
+                System.Windows.Forms.Label label9;
+                System.Windows.Forms.Panel panel2;
+                System.Windows.Forms.Label label1;
+                System.Windows.Forms.Panel panel4;
+                System.Windows.Forms.Panel panel3;
+                panelPaginaInicial = new System.Windows.Forms.Panel();
+                panel2 = new System.Windows.Forms.Panel();
+                label1 = new System.Windows.Forms.Label();
+                splitContainer2 = new System.Windows.Forms.SplitContainer();
+                splitContainer3 = new System.Windows.Forms.SplitContainer();
+                label2 = new System.Windows.Forms.Label();
+                label3 = new System.Windows.Forms.Label();
+                label4 = new System.Windows.Forms.Label();
+                label5 = new System.Windows.Forms.Label();
+                label6 = new System.Windows.Forms.Label();
+                label7 = new System.Windows.Forms.Label();
+                pictureBox1 = new System.Windows.Forms.PictureBox();
+                label8 = new System.Windows.Forms.Label();
+                label9 = new System.Windows.Forms.Label();
+                label10 = new System.Windows.Forms.Label();
+                label11 = new System.Windows.Forms.Label();
+                panel3 = new System.Windows.Forms.Panel();
+                panel4 = new System.Windows.Forms.Panel();
+                // 
+                // panelPaginaInicial
+                // 
+                panelPaginaInicial.BackColor = System.Drawing.Color.White;
+                panelPaginaInicial.Controls.Add(splitContainer2);
+                panelPaginaInicial.Controls.Add(panel2);
+                panelPaginaInicial.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelPaginaInicial.Location = new System.Drawing.Point(0, 0);
+                panelPaginaInicial.Name = "panelPaginaProjecto";
+                panelPaginaInicial.Padding = new System.Windows.Forms.Padding(20);
+                panelPaginaInicial.Size = new System.Drawing.Size(596, 389);
+                panelPaginaInicial.TabIndex = 0;
+                // 
+                // panel2
+                // 
+                panel2.Controls.Add(label1);
+                panel2.Dock = System.Windows.Forms.DockStyle.Top;
+                panel2.Location = new System.Drawing.Point(20, 20);
+                panel2.Name = "panel2";
+                panel2.Size = new System.Drawing.Size(556, 45);
+                panel2.TabIndex = 0;
+                // 
+                // label1
+                // 
+                label1.AutoSize = true;
+                label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label1.Location = new System.Drawing.Point(0, 6);
+                label1.Name = "label1";
+                label1.Size = new System.Drawing.Size(126, 25);
+                label1.TabIndex = 0;
+                label1.Text = "ETdAnalyser";
+                // 
+                // splitContainer2
+                // 
+                splitContainer2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+                splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+                splitContainer2.Location = new System.Drawing.Point(20, 65);
+                splitContainer2.Margin = new System.Windows.Forms.Padding(0);
+                splitContainer2.Name = "splitContainer2";
+                // 
+                // splitContainer2.Panel1
+                // 
+                splitContainer2.Panel1.Controls.Add(splitContainer3);
+                // 
+                // splitContainer2.Panel2
+                // 
+                splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
+                splitContainer2.Panel2.Controls.Add(panel4);
+                splitContainer2.Panel2.Controls.Add(panel3);
+                splitContainer2.Size = new System.Drawing.Size(556, 304);
+                splitContainer2.SplitterDistance = 212;
+                splitContainer2.SplitterWidth = 1;
+                splitContainer2.TabIndex = 1;
+                // 
+                // splitContainer3
+                // 
+                splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+                splitContainer3.Location = new System.Drawing.Point(0, 0);
+                splitContainer3.Margin = new System.Windows.Forms.Padding(0);
+                splitContainer3.Name = "splitContainer3";
+                splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+                // 
+                // splitContainer3.Panel1
+                // 
+                splitContainer3.Panel1.BackColor = System.Drawing.Color.White;
+                splitContainer3.Panel1.Controls.Add(label8);
+                splitContainer3.Panel1.Controls.Add(pictureBox1);
+                // 
+                // splitContainer3.Panel2
+                // 
+                splitContainer3.Panel2.BackColor = System.Drawing.Color.White;
+                splitContainer3.Panel2.Controls.Add(label2);
+                splitContainer3.Size = new System.Drawing.Size(212, 304);
+                splitContainer3.SplitterDistance = 62;
+                splitContainer3.SplitterWidth = 1;
+                splitContainer3.TabIndex = 0;
+                // 
+                // label2
+                // 
+                label2.AutoSize = true;
+                label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label2.ForeColor = System.Drawing.SystemColors.ControlDark;
+                label2.Location = new System.Drawing.Point(4, 10);
+                label2.Name = "label2";
+                label2.Size = new System.Drawing.Size(139, 18);
+                label2.TabIndex = 0;
+                label2.Text = "Projectos Recentes";
+                // 
+                // label3
+                // 
+                label3.AutoSize = true;
+                label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label3.ForeColor = System.Drawing.Color.Blue;
+                label3.Location = new System.Drawing.Point(20, 44);
+                label3.Name = "label3";
+                label3.Size = new System.Drawing.Size(55, 13);
+                label3.TabIndex = 1;
+                label3.Text = "Projecto 1";
+                label3.Visible = false;
+                label3.Cursor = System.Windows.Forms.Cursors.Hand;
+                label3.Click += new System.EventHandler(this.OpenProjectClick);
+                label3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label4
+                // 
+                label4.AutoSize = true;
+                label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label4.ForeColor = System.Drawing.Color.Blue;
+                label4.Location = new System.Drawing.Point(20, 71);
+                label4.Name = "label4";
+                label4.Size = new System.Drawing.Size(55, 13);
+                label4.TabIndex = 2;
+                label4.Text = "Projecto 2";
+                label4.Visible = false;
+                label4.Cursor = System.Windows.Forms.Cursors.Hand;
+                label4.Click += new System.EventHandler(this.OpenProjectClick);
+                label4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label5
+                // 
+                label5.AutoSize = true;
+                label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label5.ForeColor = System.Drawing.Color.Blue;
+                label5.Location = new System.Drawing.Point(20, 97);
+                label5.Name = "label5";
+                label5.Size = new System.Drawing.Size(55, 13);
+                label5.TabIndex = 3;
+                label5.Text = "Projecto 3";
+                label5.Visible = false;
+                label5.Cursor = System.Windows.Forms.Cursors.Hand;
+                label5.Click += new System.EventHandler(this.OpenProjectClick);
+                label5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label6
+                // 
+                label6.AutoSize = true;
+                label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label6.ForeColor = System.Drawing.Color.Blue;
+                label6.Location = new System.Drawing.Point(20, 126);
+                label6.Name = "label6";
+                label6.Size = new System.Drawing.Size(55, 13);
+                label6.TabIndex = 4;
+                label6.Text = "Projecto 4";
+                label6.Visible = false;
+                label6.Cursor = System.Windows.Forms.Cursors.Hand;
+                label6.Click += new System.EventHandler(this.OpenProjectClick);
+                label6.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label6.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label7
+                // 
+                label7.AutoSize = true;
+                label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label7.ForeColor = System.Drawing.Color.Blue;
+                label7.Location = new System.Drawing.Point(20, 157);
+                label7.Name = "label7";
+                label7.Size = new System.Drawing.Size(55, 13);
+                label7.TabIndex = 5;
+                label7.Text = "Projecto 5";
+                label7.Visible = false;
+                label7.Cursor = System.Windows.Forms.Cursors.Hand;
+                label7.Click += new System.EventHandler(this.OpenProjectClick);
+                label7.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label7.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // pictureBox1
+                // 
+                pictureBox1.BackgroundImage = global::ETdA.Properties.Resources._1309271471_file_add;
+                pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                pictureBox1.Location = new System.Drawing.Point(13, 19);
                 pictureBox1.Name = "pictureBox1";
-                pictureBox1.Size = new System.Drawing.Size(25, 25);
-                pictureBox1.TabIndex = 1;
+                pictureBox1.Size = new System.Drawing.Size(17, 17);
+                pictureBox1.TabIndex = 0;
                 pictureBox1.TabStop = false;
+                // 
+                // label8
+                // 
+                label8.AutoSize = true;
+                label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label8.ForeColor = System.Drawing.Color.Blue;
+                label8.Location = new System.Drawing.Point(38, 22);
+                label8.Name = "label8";
+                label8.Size = new System.Drawing.Size(94, 16);
+                label8.TabIndex = 6;
+                label8.Text = "Novo Projecto";
+                label8.Cursor = System.Windows.Forms.Cursors.Hand;
+                label8.Click += new System.EventHandler(this.CriarProjectoClick);
+                label8.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label8.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label9
+                // 
+                label9.AutoSize = true;
+                label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label9.Location = new System.Drawing.Point(18, 14);
+                label9.Name = "label9";
+                label9.Size = new System.Drawing.Size(131, 22);
+                label9.TabIndex = 0;
+                label9.Text = "Onde Começar";
+                // 
+                // label10
+                // 
+                label10.AutoSize = true;
+                label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label10.ForeColor = System.Drawing.Color.Blue;
+                label10.Location = new System.Drawing.Point(19, 48);
+                label10.Name = "label10";
+                label10.Size = new System.Drawing.Size(80, 18);
+                label10.TabIndex = 1;
+                label10.Text = "Bem Vindo";
+                // 
+                // label11
+                // 
+                label11.AutoSize = true;
+                label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label11.ForeColor = System.Drawing.Color.Blue;
+                label11.Location = new System.Drawing.Point(193, 48);
+                label11.Name = "label11";
+                label11.Size = new System.Drawing.Size(44, 18);
+                label11.TabIndex = 2;
+                label11.Text = "Ajuda";
+                label11.Click += new System.EventHandler(this.CriarProjectoClick);
+                label11.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label11.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // panel3
+                // 
+                panel3.Controls.Add(label9);
+                //panel3.Controls.Add(label11);
+                panel3.Controls.Add(label10);
+                panel3.Dock = System.Windows.Forms.DockStyle.Top;
+                panel3.Location = new System.Drawing.Point(0, 0);
+                panel3.Name = "panel3";
+                panel3.Size = new System.Drawing.Size(343, 73);
+                panel3.TabIndex = 3;
 
-                p.Controls.Add(pictureBox1);
+                // 
+                // panel4
+                // 
+                panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+                panel4.Location = new System.Drawing.Point(0, 73);
+                panel4.Name = "panel4";
+                panel4.Size = new System.Drawing.Size(343, 231);
+                panel4.TabIndex = 4;
+                panel4.Padding = new Padding(10, 0, 0, 0);
+                
+                //
+                // RIchtextbox
+                //
+                RichTextBox rtb = new RichTextBox();
+                rtb.Dock = System.Windows.Forms.DockStyle.Fill;
+                rtb.BorderStyle = BorderStyle.None;
+                rtb.BackColor = Color.White;
+                rtb.Text = "Sabia que...\n\n Apesar de ainda não termos nada de util para dizer aqui, este texto ajuda a tornar este separador mais agradável.";
+                rtb.ReadOnly = true;
+                panel4.Controls.Add(rtb);
+                #endregion
 
-                System.Windows.Forms.Label l2 =
-                    new System.Windows.Forms.Label();
-                l2.Width = 200;
-                l2.Text = "Criar Novo Projecto";
-                l2.Location = new System.Drawing.Point(26, 40);
-                l2.Cursor = System.Windows.Forms.Cursors.Hand;
-                l2.Click += new System.EventHandler(CriarProjectoClick);
-                l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                l2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-                l2.Size = new System.Drawing.Size(250, 25);
-
-                p.Controls.Add(l2);
-
-                System.Windows.Forms.PictureBox pictureBox2 = new System.Windows.Forms.PictureBox();
-                setImage(pictureBox2, global::ETdA.Properties.Resources._1309271471_file_add);
-                pictureBox2.Location = new System.Drawing.Point(0, 79);
-                pictureBox2.Name = "pictureBox2";
-                pictureBox2.Size = new System.Drawing.Size(25, 25);
-                pictureBox2.TabIndex = 1;
-                pictureBox2.TabStop = false;
-
-                p.Controls.Add(pictureBox2);
-                /*
-                System.Windows.Forms.Label l3 =
-                    new System.Windows.Forms.Label();
-                l3.Text = "Abrir Projecto";
-                l3.Location = new System.Drawing.Point(26, 79);
-                l3.Size = new System.Drawing.Size(250, 25);
-                l3.Cursor = System.Windows.Forms.Cursors.Hand;
-                //l3.Click += new System.EventHandler(this.OpenProjectClick);
-                l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                l3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-
-                p.Controls.Add(l3);*/
+                p.Controls.Add(panelPaginaInicial);
 
                 Dictionary<long, string> rs = GestaodeProjectos.projectosRecentes();
 
-                if (rs.Count != 0)
+                if (rs.Count() == 0)
                 {
-
-                    System.Windows.Forms.Label l4 =
-                        new System.Windows.Forms.Label();
-                    l4.Text = "Projectos Recentes";
-                    l4.Location = new System.Drawing.Point(7, 120);
-                    l4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    l4.Size = new System.Drawing.Size(250, 29);
-
-                    p.Controls.Add(l4);
-
-
-                    int x = 20, y = 130;
-                    foreach (KeyValuePair<long, string> s in rs)
-                    {
-                        if (x + 10 < Size.Width)
-                        {
-                            if (y + 10 >= this.Size.Height)
-                                x = 50;
-                            else
-                            {
-                                y += 30;
-                                System.Windows.Forms.Label p1 =
-                                    new System.Windows.Forms.Label();
-
-                                p1.Text = s.Value;
-                                p1.Name = s.Key.ToString();
-                                p1.Location = new System.Drawing.Point(x, y);
-                                p1.Cursor = System.Windows.Forms.Cursors.Hand;
-                                p1.Click += new System.EventHandler(this.OpenProjectClick);
-                                p1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                                p1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-                                p.Controls.Add(p1);
-                            }
-                        }
-                    }
+                    label3.Text = "Ainda não existem projectos...";
+                    label3.Enabled = false;
+                    label3.Visible = true;
+                    splitContainer3.Panel2.Controls.Add(label3);
                 }
+
+                int x = 20, y = 44;
+                foreach (KeyValuePair<long, string> s in rs)
+                {
+                    System.Windows.Forms.Label p1 =
+                        new System.Windows.Forms.Label();
+
+                    p1.Text = s.Value;
+                    p1.Name = s.Key.ToString();
+                    p1.Cursor = System.Windows.Forms.Cursors.Hand;
+                    p1.Location = new System.Drawing.Point(x,y);
+                    p1.Click += new System.EventHandler(this.OpenProjectClick);
+                    p1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                    p1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                    p1.AutoSize = true;
+                    p1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    p1.ForeColor = System.Drawing.Color.Blue;
+                    p1.TabIndex = 3;
+                    splitContainer3.Panel2.Controls.Add(p1);
+
+                    y += 25;
+                }
+
             }
             tabControl1.SelectedIndex = getTabNumber("StartPage");
         }
@@ -223,60 +462,272 @@ namespace ETdA.Camada_de_Interface
 
                 tabControl1.Controls.Add(p);
 
-                System.Windows.Forms.Label l1 = new System.Windows.Forms.Label();
-                l1.Text = "Nova Analise";
-                l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                l1.Location = new System.Drawing.Point(26, 20);
-                l1.Cursor = System.Windows.Forms.Cursors.Hand;
-                l1.Click += new System.EventHandler(CriarAnaliseClick);
-                l1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                l1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-                l1.Size = new System.Drawing.Size(250, 25);
+                #region desenho página inicial
+                System.Windows.Forms.Panel panelPaginaProjecto;
+                System.Windows.Forms.SplitContainer splitContainer2;
+                System.Windows.Forms.SplitContainer splitContainer3;
+                System.Windows.Forms.Label label8;
+                System.Windows.Forms.PictureBox pictureBox1;
+                System.Windows.Forms.Label label7;
+                System.Windows.Forms.Label label6;
+                System.Windows.Forms.Label label5;
+                System.Windows.Forms.Label label4;
+                System.Windows.Forms.Label label3;
+                System.Windows.Forms.Label label2;
+                System.Windows.Forms.Label label11;
+                System.Windows.Forms.Label label10;
+                System.Windows.Forms.Label label9;
+                System.Windows.Forms.Panel panel2;
+                System.Windows.Forms.Label label1;
+                System.Windows.Forms.Panel panel4;
+                System.Windows.Forms.Panel panel3;
+                panelPaginaProjecto = new System.Windows.Forms.Panel();
+                panel2 = new System.Windows.Forms.Panel();
+                label1 = new System.Windows.Forms.Label();
+                splitContainer2 = new System.Windows.Forms.SplitContainer();
+                splitContainer3 = new System.Windows.Forms.SplitContainer();
+                label2 = new System.Windows.Forms.Label();
+                label3 = new System.Windows.Forms.Label();
+                label4 = new System.Windows.Forms.Label();
+                label5 = new System.Windows.Forms.Label();
+                label6 = new System.Windows.Forms.Label();
+                label7 = new System.Windows.Forms.Label();
+                pictureBox1 = new System.Windows.Forms.PictureBox();
+                label8 = new System.Windows.Forms.Label();
+                label9 = new System.Windows.Forms.Label();
+                label10 = new System.Windows.Forms.Label();
+                label11 = new System.Windows.Forms.Label();
+                panel3 = new System.Windows.Forms.Panel();
+                panel4 = new System.Windows.Forms.Panel();
+                // 
+                // panelPaginaInicial
+                // 
+                panelPaginaProjecto.BackColor = System.Drawing.Color.White;
+                panelPaginaProjecto.Controls.Add(splitContainer2);
+                panelPaginaProjecto.Controls.Add(panel2);
+                panelPaginaProjecto.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelPaginaProjecto.Location = new System.Drawing.Point(0, 0);
+                panelPaginaProjecto.Name = "panelPaginaProjecto";
+                panelPaginaProjecto.Padding = new System.Windows.Forms.Padding(20);
+                panelPaginaProjecto.Size = new System.Drawing.Size(596, 389);
+                panelPaginaProjecto.TabIndex = 0;
+                // 
+                // panel2
+                // 
+                panel2.Controls.Add(label1);
+                panel2.Dock = System.Windows.Forms.DockStyle.Top;
+                panel2.Location = new System.Drawing.Point(20, 20);
+                panel2.Name = "panel2";
+                panel2.Size = new System.Drawing.Size(556, 45);
+                panel2.TabIndex = 0;
+                // 
+                // label1
+                // 
+                label1.AutoSize = true;
+                label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label1.Location = new System.Drawing.Point(0, 6);
+                label1.Name = "label1";
+                label1.Size = new System.Drawing.Size(126, 25);
+                label1.TabIndex = 0;
+                label1.Text = nome_projecto;
+                // 
+                // splitContainer2
+                // 
+                splitContainer2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+                splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+                splitContainer2.Location = new System.Drawing.Point(20, 65);
+                splitContainer2.Margin = new System.Windows.Forms.Padding(0);
+                splitContainer2.Name = "splitContainer2";
+                // 
+                // splitContainer2.Panel1
+                // 
+                splitContainer2.Panel1.Controls.Add(splitContainer3);
+                // 
+                // splitContainer2.Panel2
+                // 
+                splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
+                splitContainer2.Panel2.Controls.Add(panel4);
+                splitContainer2.Panel2.Controls.Add(panel3);
+                splitContainer2.Size = new System.Drawing.Size(556, 304);
+                splitContainer2.SplitterDistance = 212;
+                splitContainer2.SplitterWidth = 1;
+                splitContainer2.TabIndex = 1;
+                // 
+                // splitContainer3
+                // 
+                splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+                splitContainer3.Location = new System.Drawing.Point(0, 0);
+                splitContainer3.Margin = new System.Windows.Forms.Padding(0);
+                splitContainer3.Name = "splitContainer3";
+                splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+                // 
+                // splitContainer3.Panel1
+                // 
+                splitContainer3.Panel1.BackColor = System.Drawing.Color.White;
+                splitContainer3.Panel1.Controls.Add(label8);
+                splitContainer3.Panel1.Controls.Add(pictureBox1);
+                // 
+                // splitContainer3.Panel2
+                // 
+                splitContainer3.Panel2.BackColor = System.Drawing.Color.White;
+                splitContainer3.Panel2.Controls.Add(label2);
+                splitContainer3.Size = new System.Drawing.Size(212, 304);
+                splitContainer3.SplitterDistance = 62;
+                splitContainer3.SplitterWidth = 1;
+                splitContainer3.TabIndex = 0;
+                // 
+                // label2
+                // 
+                label2.AutoSize = true;
+                label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label2.ForeColor = System.Drawing.SystemColors.ControlDark;
+                label2.Location = new System.Drawing.Point(4, 10);
+                label2.Name = "label2";
+                label2.Size = new System.Drawing.Size(139, 18);
+                label2.TabIndex = 0;
+                label2.Text = "Analises desde projecto";
+                // 
+                // label3
+                // 
+                label3.AutoSize = true;
+                label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label3.ForeColor = System.Drawing.Color.Blue;
+                label3.Location = new System.Drawing.Point(20, 44);
+                label3.Name = "label3";
+                label3.Size = new System.Drawing.Size(55, 13);
+                label3.TabIndex = 1;
+                label3.Text = "Analise 1";
+                label3.Visible = false;
+                label3.Cursor = System.Windows.Forms.Cursors.Hand;
+                label3.Click += new System.EventHandler(this.OpenProjectClick);
+                label3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                //
+                // pictureBox1
+                // 
+                pictureBox1.BackgroundImage = global::ETdA.Properties.Resources._1309271576_folder_add;
+                pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                pictureBox1.Location = new System.Drawing.Point(13, 19);
+                pictureBox1.Name = "pictureBox1";
+                pictureBox1.Size = new System.Drawing.Size(17, 17);
+                pictureBox1.TabIndex = 0;
+                pictureBox1.TabStop = false;
+                // 
+                // label8
+                // 
+                label8.AutoSize = true;
+                label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label8.ForeColor = System.Drawing.Color.Blue;
+                label8.Location = new System.Drawing.Point(38, 22);
+                label8.Name = "label8";
+                label8.Size = new System.Drawing.Size(94, 16);
+                label8.TabIndex = 6;
+                label8.Text = "Nova Analise";
+                label8.Cursor = System.Windows.Forms.Cursors.Hand;
+                label8.Click += new System.EventHandler(this.CriarAnaliseClick);
+                label8.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label8.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label9
+                // 
+                label9.AutoSize = true;
+                label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label9.Location = new System.Drawing.Point(18, 14);
+                label9.Name = "label9";
+                label9.Size = new System.Drawing.Size(131, 22);
+                label9.TabIndex = 0;
+                label9.Text = "Mais Informação";
+                // 
+                // label10
+                // 
+                label10.AutoSize = true;
+                label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label10.ForeColor = System.Drawing.Color.Blue;
+                label10.Location = new System.Drawing.Point(19, 48);
+                label10.Name = "label10";
+                label10.Size = new System.Drawing.Size(80, 18);
+                label10.TabIndex = 1;
+                label10.Text = "Projectos";
+                // 
+                // label11
+                // 
+                label11.AutoSize = true;
+                label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label11.ForeColor = System.Drawing.Color.Blue;
+                label11.Location = new System.Drawing.Point(193, 48);
+                label11.Name = "label11";
+                label11.Size = new System.Drawing.Size(44, 18);
+                label11.TabIndex = 2;
+                label11.Text = "Ajuda";
+                label11.Click += new System.EventHandler(this.CriarProjectoClick);
+                label11.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label11.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // panel3
+                // 
+                panel3.Controls.Add(label9);
+                //panel3.Controls.Add(label11);
+                panel3.Controls.Add(label10);
+                panel3.Dock = System.Windows.Forms.DockStyle.Top;
+                panel3.Location = new System.Drawing.Point(0, 0);
+                panel3.Name = "panel3";
+                panel3.Size = new System.Drawing.Size(343, 73);
+                panel3.TabIndex = 3;
 
-                p.Controls.Add(l1);
+                // 
+                // panel4
+                // 
+                panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+                panel4.Location = new System.Drawing.Point(0, 73);
+                panel4.Name = "panel4";
+                panel4.Size = new System.Drawing.Size(343, 231);
+                panel4.TabIndex = 4;
+                panel4.Padding = new Padding(10, 0, 0, 0);
 
-                System.Windows.Forms.PictureBox pictureBox1 = new System.Windows.Forms.PictureBox();
-                setImage(pictureBox1, global::ETdA.Properties.Resources._1309271471_file_add);
-                pictureBox1.Location = new System.Drawing.Point(0, 20);
-                pictureBox1.Size = new System.Drawing.Size(25, 25);
+                //
+                // RIchtextbox
+                //
+                RichTextBox rtb = new RichTextBox();
+                rtb.Dock = System.Windows.Forms.DockStyle.Fill;
+                rtb.BorderStyle = BorderStyle.None;
+                rtb.BackColor = Color.White;
+                rtb.Text = "Sabia que...\n\n Apesar de ainda não termos nada de util para dizer aqui, este texto ajuda a tornar este separador mais agradável.";
+                rtb.ReadOnly = true;
+                panel4.Controls.Add(rtb);
+                #endregion
 
-                p.Controls.Add(pictureBox1);
-
-                System.Windows.Forms.Label l2 = new System.Windows.Forms.Label();
-                l2.Text = "Analises";
-                l2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                l2.Location = new System.Drawing.Point(0, 100);
-                l2.Size = new System.Drawing.Size(250, 25);
-
-                p.Controls.Add(l2);
+                p.Controls.Add(panelPaginaProjecto);
 
                 Dictionary<long, string> ans = GestaodeAnalises.getCodeNomeAnalises(long.Parse(codp));
 
-                int x = 7, y = 130;
+                if (ans.Count() == 0)
+                {
+                    label3.Text = "Ainda não existem analises...";
+                    label3.Enabled = false;
+                    label3.Visible = true;
+                    splitContainer3.Panel2.Controls.Add(label3);
+                }
+
+                int x = 20, y = 44;
                 foreach (KeyValuePair<long, string> s in ans)
                 {
-                    if (x + 10 < Size.Width)
-                    {
-                        if (y + 10 >= this.Size.Height)
-                            x = 50;
-                        else
-                        {
-                            y += 35;
-                            System.Windows.Forms.Label p1 =
-                                new System.Windows.Forms.Label();
+                    System.Windows.Forms.Label p1 =
+                        new System.Windows.Forms.Label();
 
-                            p1.Height = 30;
+                    p1.Text = s.Value;
+                    p1.Name = s.Key.ToString();
+                    p1.Cursor = System.Windows.Forms.Cursors.Hand;
+                    p1.Location = new System.Drawing.Point(x, y);
+                    p1.Click += new System.EventHandler(this.OpenAnaliseClick);
+                    p1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                    p1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                    p1.AutoSize = true;
+                    p1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    p1.ForeColor = System.Drawing.Color.Blue;
+                    p1.TabIndex = 3;
+                    splitContainer3.Panel2.Controls.Add(p1);
 
-                            p1.Name = s.Key.ToString();
-                            p1.Text = s.Value;
-                            p1.Location = new System.Drawing.Point(x, y);
-                            p1.Cursor = System.Windows.Forms.Cursors.Hand;
-                            p1.Click += new System.EventHandler(OpenAnaliseClick);
-                            p1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                            p1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-                            p.Controls.Add(p1);
-                        }
-                    }
+                    y += 25;
                 }
             }
             tabControl1.SelectedIndex = getTabNumber(codp);
@@ -301,113 +752,62 @@ namespace ETdA.Camada_de_Interface
 
                 this.tabControl1.Controls.Add(p);
 
+                #region desenho página Analise
+                #region COnsultar
                 System.Windows.Forms.Label lconsulta = new System.Windows.Forms.Label();
                 lconsulta.Text = "Consultar";
-                lconsulta.Location = new Point(7, 17);
+                lconsulta.ForeColor = SystemColors.ControlDark;
+                lconsulta.Location = new Point(7, 6);
                 lconsulta.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-
-                p.Controls.Add(lconsulta);
 
                 System.Windows.Forms.Label l1 = new System.Windows.Forms.Label();
                 l1.Text = "Itens";
-                l1.Location = new Point(15, 47);
+                l1.Location = new Point(15, 36);
+                l1.ForeColor = Color.Blue;
                 l1.Cursor = System.Windows.Forms.Cursors.Hand;
                 l1.Click += new System.EventHandler(this.OpenItensClick);
                 l1.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
-                p.Controls.Add(l1);
-
                 System.Windows.Forms.Label l2 = new System.Windows.Forms.Label();
                 l2.Text = "Zonas";
-                l2.Location = new Point(15, 70);
+                l2.ForeColor = Color.Blue;
+                l2.Location = new Point(15, 66);
                 l2.Cursor = System.Windows.Forms.Cursors.Hand;
                 l2.Click += new System.EventHandler(this.OpenZonasClick);
                 l2.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l2.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
-                p.Controls.Add(l2);
-
-                System.Windows.Forms.Label lrel = new System.Windows.Forms.Label();
-                lrel.Text = "Relatório";
-                lrel.Location = new Point(7, 100);
-                lrel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-
-                p.Controls.Add(lrel);
-
-
-                System.Windows.Forms.Label l3 = new System.Windows.Forms.Label();
-                l3.Text = "Gerar Relatorio";
-                l3.Location = new Point(15, 130);
-                l3.Cursor = System.Windows.Forms.Cursors.Hand;
-                l3.Click += new System.EventHandler(this.GerarRelatorio);
-                l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                l3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-
-                p.Controls.Add(l3);
-
-                System.Windows.Forms.Label ldados = new System.Windows.Forms.Label();
-                ldados.Text = "Dados";
-                ldados.Location = new Point(7, 160);
-                ldados.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-
-                p.Controls.Add(ldados);
-
-                System.Windows.Forms.Label l5 = new System.Windows.Forms.Label();
-                l5.Width = 200;
-                l5.Text = "Inserir Dados Manualmente";
-                l5.Location = new Point(15, 190);
-                l5.Cursor = System.Windows.Forms.Cursors.Hand;
-                l5.Click += new System.EventHandler(this.InserirManualClick);
-                l5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                l5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-
-                p.Controls.Add(l5);
-
-                System.Windows.Forms.Label l4 = new System.Windows.Forms.Label();
-                l4.Width = 150;
-                l4.Text = "Importar Dados de Ficheiro";
-                l4.Location = new System.Drawing.Point(15, 220);
-                l4.Cursor = System.Windows.Forms.Cursors.Hand;
-                l4.Click += new System.EventHandler(importer);
-                l4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
-
-                p.Controls.Add(l4);
-
-
-                System.Windows.Forms.Label lfo = new System.Windows.Forms.Label();
-                lfo.Text = "Formulários Online";
-                lfo.Location = new Point(7, 250);
-                lfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-
-                p.Controls.Add(lfo);
+                #endregion
 
                 #region Formularios Online
+                System.Windows.Forms.Label lfo = new System.Windows.Forms.Label();
+                lfo.Text = "Formulários Online";
+                lfo.Location = new Point(7, 10);
+                lfo.ForeColor = SystemColors.ControlDark;
+                lfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+
 
                 System.Windows.Forms.Label l6 = new System.Windows.Forms.Label();
                 l6.Width = 150;
                 l6.Text = "Gerar Formulários Online";
-                l6.Location = new Point(15, 280);
+                l6.Location = new Point(15, 40);
+                l6.ForeColor = Color.Blue;
                 l6.Cursor = System.Windows.Forms.Cursors.Hand;
                 l6.Click += new System.EventHandler(this.PerguntasAction);
                 l6.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l6.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
-                p.Controls.Add(l6);
-
+                
                 System.Windows.Forms.Label l7 = new System.Windows.Forms.Label();
                 l7.Width = 150;
                 l7.Text = "CheckList Online";
-                l7.Location = new Point(15, 310);
-
-                p.Controls.Add(l7);
+                l7.Location = new Point(15, 70);
 
                 checkBox1 = new System.Windows.Forms.CheckBox();
                 checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
 
-
-                checkBox1.Location = new Point(175, 305);
+                checkBox1.Location = new Point(175, 65);
                 checkBox1.BackColor = SystemColors.Control;
 
                 if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoCheckListOnline(codp, coda))
@@ -421,20 +821,27 @@ namespace ETdA.Camada_de_Interface
                     checkBox1.Text = "Activar";
                 }
                 checkBox1.CheckedChanged += checkBox1checkChanged;
-                p.Controls.Add(checkBox1);
 
+                TextBox tb1 = new TextBox();
+                tb1.Location = new Point(15, 100);
+                tb1.BackColor = Color.White;
+                tb1.BorderStyle = BorderStyle.None;
+                tb1.ReadOnly = true;
+                tb1.ForeColor = SystemColors.ControlDark;
+                tb1.Text = "http://"+GestaodeAnalistas.nomeservidor()+":54749"+"/ETdA/Default.aspx?form=CL&usr=" +
+                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
+                
+                
                 System.Windows.Forms.Label l8 = new System.Windows.Forms.Label();
                 l8.Width = 150;
                 l8.Text = "Ficha de Avaliação Online";
-                l8.Location = new Point(15, 340);
-
-                p.Controls.Add(l8);
+                l8.Location = new Point(15, 130);
 
                 checkBox2 = new System.Windows.Forms.CheckBox();
                 checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
 
 
-                checkBox2.Location = new Point(175, 335);
+                checkBox2.Location = new Point(175, 125);
                 checkBox2.BackColor = SystemColors.Control;
 
                 if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoFichaAvaliacaoOnline(codp, coda))
@@ -448,20 +855,26 @@ namespace ETdA.Camada_de_Interface
                     checkBox2.Text = "Activar";
                 }
                 checkBox2.CheckedChanged += checkBox2checkChanged;
-                p.Controls.Add(checkBox2);
+
+                TextBox tb2 = new TextBox();
+                tb2.Location = new Point(15, 160);
+                tb2.BackColor = Color.White;
+                tb2.BorderStyle = BorderStyle.None;
+                tb2.ReadOnly = true;
+                tb2.ForeColor = SystemColors.ControlDark;
+                tb2.Text = "http://" + GestaodeAnalistas.nomeservidor() + ":54749" + "/ETdA/Default.aspx?form=FA&usr=" +
+                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
 
                 System.Windows.Forms.Label l9 = new System.Windows.Forms.Label();
                 l9.Width = 150;
                 l9.Text = "Questionário Online";
-                l9.Location = new Point(15, 370);
-
-                p.Controls.Add(l9);
+                l9.Location = new Point(15, 190);
 
                 checkBox3 = new System.Windows.Forms.CheckBox();
                 checkBox3.Appearance = System.Windows.Forms.Appearance.Button;
 
 
-                checkBox3.Location = new Point(175, 365);
+                checkBox3.Location = new Point(175, 185);
                 checkBox3.BackColor = SystemColors.Control;
 
                 if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoQuestionariosOnline(codp, coda))
@@ -475,9 +888,340 @@ namespace ETdA.Camada_de_Interface
                     checkBox3.Text = "Activar";
                 }
                 checkBox3.CheckedChanged += checkBox3checkChanged;
-                p.Controls.Add(checkBox3);
+
+                TextBox tb3 = new TextBox();
+                tb3.Location = new Point(15, 220);
+                tb3.BackColor = Color.White;
+                tb3.ForeColor = SystemColors.ControlDark;
+                tb3.BorderStyle = BorderStyle.None;
+                tb3.ReadOnly = true;
+                tb3.Text = "http://" + GestaodeAnalistas.nomeservidor() + ":54749" + "/ETdA/Default.aspx?form=QT&usr=" +
+                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
+                #endregion
+
+                #region Relatorio
+                System.Windows.Forms.Label lrel = new System.Windows.Forms.Label();
+                lrel.Text = "Relatório";
+                lrel.ForeColor = SystemColors.ControlDark;
+                lrel.Location = new Point(7, 18);
+                lrel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+
+                System.Windows.Forms.Label l3 = new System.Windows.Forms.Label();
+                l3.Text = "Gerar Relatorio";
+                l3.Location = new Point(15, 48);
+                l3.ForeColor = Color.Blue;
+                l3.Cursor = System.Windows.Forms.Cursors.Hand;
+                l3.Click += new System.EventHandler(this.GerarRelatorio);
+                l3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
                 #endregion
+
+                #region Dados
+                System.Windows.Forms.Label ldados = new System.Windows.Forms.Label();
+                ldados.Text = "Dados";
+                ldados.ForeColor = SystemColors.ControlDark;
+                ldados.Location = new Point(7, 6);
+                ldados.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+
+                System.Windows.Forms.Label l5 = new System.Windows.Forms.Label();
+                l5.Width = 200;
+                l5.Text = "Inserir Dados Manualmente";
+                l5.Location = new Point(15, 36);
+                l5.ForeColor = Color.Blue;
+                l5.Cursor = System.Windows.Forms.Cursors.Hand;
+                l5.Click += new System.EventHandler(this.InserirManualClick);
+                l5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                System.Windows.Forms.Label l4 = new System.Windows.Forms.Label();
+                l4.Width = 150;
+                l4.Text = "Importar Dados de Ficheiro";
+                l4.Location = new System.Drawing.Point(15, 66);
+                l4.ForeColor = Color.Blue;
+                l4.Cursor = System.Windows.Forms.Cursors.Hand;
+                l4.Click += new System.EventHandler(importer);
+                l4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                #endregion
+
+                #region declaraçoes
+                System.Windows.Forms.Panel panelPaginaAnalise;
+                System.Windows.Forms.SplitContainer splitContainer2;
+                System.Windows.Forms.SplitContainer splitContainer3;
+                System.Windows.Forms.Label label8;
+                System.Windows.Forms.PictureBox pictureBox1;
+                System.Windows.Forms.Label label7;
+                System.Windows.Forms.Label label6;
+                System.Windows.Forms.Label label5;
+                System.Windows.Forms.Label label4;
+                System.Windows.Forms.Label label3;
+                System.Windows.Forms.Label label2;
+                System.Windows.Forms.Label label11;
+                System.Windows.Forms.Label label10;
+                System.Windows.Forms.Label label9;
+                System.Windows.Forms.Panel panel2;
+                System.Windows.Forms.Label label1;
+                System.Windows.Forms.Panel panel4;
+                System.Windows.Forms.Panel panel3;
+                panelPaginaAnalise = new System.Windows.Forms.Panel();
+                panel2 = new System.Windows.Forms.Panel();
+                label1 = new System.Windows.Forms.Label();
+                splitContainer2 = new System.Windows.Forms.SplitContainer();
+                splitContainer3 = new System.Windows.Forms.SplitContainer();
+                label2 = new System.Windows.Forms.Label();
+                label3 = new System.Windows.Forms.Label();
+                label4 = new System.Windows.Forms.Label();
+                label5 = new System.Windows.Forms.Label();
+                label6 = new System.Windows.Forms.Label();
+                label7 = new System.Windows.Forms.Label();
+                pictureBox1 = new System.Windows.Forms.PictureBox();
+                label8 = new System.Windows.Forms.Label();
+                label9 = new System.Windows.Forms.Label();
+                label10 = new System.Windows.Forms.Label();
+                label11 = new System.Windows.Forms.Label();
+                panel3 = new System.Windows.Forms.Panel();
+                panel4 = new System.Windows.Forms.Panel();
+                #endregion
+                // 
+                // panelPaginaAnalise
+                // 
+                panelPaginaAnalise.BackColor = System.Drawing.Color.White;
+                panelPaginaAnalise.Controls.Add(splitContainer2);
+                panelPaginaAnalise.Controls.Add(panel2);
+                panelPaginaAnalise.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelPaginaAnalise.Location = new System.Drawing.Point(0, 0);
+                panelPaginaAnalise.Name = "panelPaginaProjecto";
+                panelPaginaAnalise.Padding = new System.Windows.Forms.Padding(20);
+                panelPaginaAnalise.Size = new System.Drawing.Size(596, 389);
+                panelPaginaAnalise.TabIndex = 0;
+                // 
+                // panel2
+                // 
+                panel2.Controls.Add(label1);
+                panel2.Dock = System.Windows.Forms.DockStyle.Top;
+                panel2.Location = new System.Drawing.Point(20, 20);
+                panel2.Name = "panel2";
+                panel2.Size = new System.Drawing.Size(556, 45);
+                panel2.TabIndex = 0;
+                // 
+                // label1
+                // 
+                label1.AutoSize = true;
+                label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label1.Location = new System.Drawing.Point(0, 6);
+                label1.Name = "label1";
+                label1.Size = new System.Drawing.Size(126, 25);
+                label1.TabIndex = 0;
+                label1.Text = nome_analise;
+                // 
+                // splitContainer2
+                // 
+                splitContainer2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+                splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+                splitContainer2.Location = new System.Drawing.Point(20, 65);
+                splitContainer2.Margin = new System.Windows.Forms.Padding(0);
+                splitContainer2.Name = "splitContainer2";
+                // 
+                // splitContainer2.Panel1
+                // 
+                splitContainer2.Panel1.Controls.Add(splitContainer3);
+                // 
+                // splitContainer2.Panel2
+                // 
+                splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
+                splitContainer2.Panel2.Controls.Add(panel4);
+                splitContainer2.Panel2.Controls.Add(panel3);
+                splitContainer2.Size = new System.Drawing.Size(556, 304);
+                splitContainer2.SplitterDistance = 290;
+                splitContainer2.SplitterWidth = 1;
+                splitContainer2.TabIndex = 1;
+                // 
+                // splitContainer3
+                // 
+                splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+                splitContainer3.Location = new System.Drawing.Point(0, 0);
+                splitContainer3.Margin = new System.Windows.Forms.Padding(0);
+                splitContainer3.Name = "splitContainer3";
+                splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+                // 
+                // splitContainer3.Panel1
+                // 
+                splitContainer3.Panel1.BackColor = System.Drawing.Color.White;
+                splitContainer3.Panel1.Controls.Add(lconsulta);
+                splitContainer3.Panel1.Controls.Add(l1);
+                splitContainer3.Panel1.Controls.Add(l2);
+                // 
+                // splitContainer3.Panel2
+                // 
+                splitContainer3.Panel2.BackColor = System.Drawing.Color.White;
+                splitContainer3.Size = new System.Drawing.Size(212, 304);
+                splitContainer3.SplitterDistance = 90;
+                splitContainer3.SplitterWidth = 1;
+                splitContainer3.TabIndex = 0;
+                splitContainer3.Panel2.Controls.Add(lfo);
+                splitContainer3.Panel2.Controls.Add(l6);
+                splitContainer3.Panel2.Controls.Add(l7);
+                splitContainer3.Panel2.Controls.Add(checkBox1);
+                splitContainer3.Panel2.Controls.Add(tb1);
+                tb1.Size = new Size((splitContainer3.Size.Width - 20),10);
+                splitContainer3.Panel2.Controls.Add(l8);
+                splitContainer3.Panel2.Controls.Add(checkBox2);
+                splitContainer3.Panel2.Controls.Add(tb2);
+                tb2.Size = new Size((splitContainer3.Size.Width - 20), 10);
+                splitContainer3.Panel2.Controls.Add(l9);
+                splitContainer3.Panel2.Controls.Add(checkBox3);
+                splitContainer3.Panel2.Controls.Add(tb3);
+                tb3.Size = new Size((splitContainer3.Size.Width - 20), 10);
+                
+                
+                
+                
+                // 
+                // label2
+                // 
+                label2.AutoSize = true;
+                label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label2.ForeColor = System.Drawing.SystemColors.ControlDark;
+                label2.Location = new System.Drawing.Point(4, 10);
+                label2.Name = "label2";
+                label2.Size = new System.Drawing.Size(139, 18);
+                label2.TabIndex = 0;
+                label2.Text = "Projectos Recentes";
+                // 
+                // label3
+                // 
+                label3.AutoSize = true;
+                label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label3.ForeColor = System.Drawing.Color.Blue;
+                label3.Location = new System.Drawing.Point(20, 44);
+                label3.Name = "label3";
+                label3.Size = new System.Drawing.Size(55, 13);
+                label3.TabIndex = 1;
+                label3.Text = "Projecto 1";
+                label3.Visible = false;
+                label3.Cursor = System.Windows.Forms.Cursors.Hand;
+                label3.Click += new System.EventHandler(this.OpenProjectClick);
+                label3.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label3.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label4
+                // 
+                label4.AutoSize = true;
+                label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label4.ForeColor = System.Drawing.Color.Blue;
+                label4.Location = new System.Drawing.Point(20, 71);
+                label4.Name = "label4";
+                label4.Size = new System.Drawing.Size(55, 13);
+                label4.TabIndex = 2;
+                label4.Text = "Projecto 2";
+                label4.Visible = false;
+                label4.Cursor = System.Windows.Forms.Cursors.Hand;
+                label4.Click += new System.EventHandler(this.OpenProjectClick);
+                label4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label5
+                // 
+                label5.AutoSize = true;
+                label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label5.ForeColor = System.Drawing.Color.Blue;
+                label5.Location = new System.Drawing.Point(20, 97);
+                label5.Name = "label5";
+                label5.Size = new System.Drawing.Size(55, 13);
+                label5.TabIndex = 3;
+                label5.Text = "Projecto 3";
+                label5.Visible = false;
+                label5.Cursor = System.Windows.Forms.Cursors.Hand;
+                label5.Click += new System.EventHandler(this.OpenProjectClick);
+                label5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label6
+                // 
+                label6.AutoSize = true;
+                label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label6.ForeColor = System.Drawing.Color.Blue;
+                label6.Location = new System.Drawing.Point(20, 126);
+                label6.Name = "label6";
+                label6.Size = new System.Drawing.Size(55, 13);
+                label6.TabIndex = 4;
+                label6.Text = "Projecto 4";
+                label6.Visible = false;
+                label6.Cursor = System.Windows.Forms.Cursors.Hand;
+                label6.Click += new System.EventHandler(this.OpenProjectClick);
+                label6.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label6.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label7
+                // 
+                label7.AutoSize = true;
+                label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label7.ForeColor = System.Drawing.Color.Blue;
+                label7.Location = new System.Drawing.Point(20, 157);
+                label7.Name = "label7";
+                label7.Size = new System.Drawing.Size(55, 13);
+                label7.TabIndex = 5;
+                label7.Text = "Projecto 5";
+                label7.Visible = false;
+                label7.Cursor = System.Windows.Forms.Cursors.Hand;
+                label7.Click += new System.EventHandler(this.OpenProjectClick);
+                label7.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label7.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                
+                // 
+                // label8
+                // 
+                label8.AutoSize = true;
+                label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label8.ForeColor = System.Drawing.Color.Blue;
+                label8.Location = new System.Drawing.Point(38, 22);
+                label8.Name = "label8";
+                label8.Size = new System.Drawing.Size(94, 16);
+                label8.TabIndex = 6;
+                label8.Text = "Novo Projecto";
+                label8.Cursor = System.Windows.Forms.Cursors.Hand;
+                label8.Click += new System.EventHandler(this.CriarProjectoClick);
+                label8.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                label8.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                // 
+                // label9
+                // 
+                label9.AutoSize = true;
+                label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label9.Location = new System.Drawing.Point(18, 14);
+                label9.Name = "label9";
+                label9.Size = new System.Drawing.Size(131, 22);
+                label9.TabIndex = 0;
+                label9.Text = "Onde Começar";
+                // 
+                // panel3
+                // 
+                panel3.Dock = System.Windows.Forms.DockStyle.Top;
+                panel3.Location = new System.Drawing.Point(0, 0);
+                panel3.Name = "panel3";
+                panel3.Size = new System.Drawing.Size(343, 90);
+                panel3.TabIndex = 3;
+                panel3.Controls.Add(ldados);
+                panel3.Controls.Add(l5);
+                panel3.Controls.Add(l4);
+
+                // 
+                // panel4
+                // 
+                panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+                panel4.Location = new System.Drawing.Point(0, 73);
+                panel4.Name = "panel4";
+                panel4.Size = new System.Drawing.Size(343, 231);
+                panel4.TabIndex = 4;
+                panel4.Padding = new Padding(10, 0, 0, 0);
+                panel4.Controls.Add(lrel);
+                panel4.Controls.Add(l3);
+                
+                #endregion
+
+                p.Controls.Add(panelPaginaAnalise);
 
             }
             tabControl1.SelectedIndex = getTabNumber(codp.ToString() + "." + coda.ToString());
@@ -1139,8 +1883,8 @@ namespace ETdA.Camada_de_Interface
             if (tabControl1.Pages.Contains("StartPage"))
             {
                 fecharPagina("StartPage");
-              //tabControl1.TabPages.RemoveByKey("StartPage");
-              //tabControl1.Pages.Remove("StartPage");
+                //tabControl1.TabPages.RemoveByKey("StartPage");
+                //tabControl1.Pages.Remove("StartPage");
                 initPaginaInicial();
             }
 

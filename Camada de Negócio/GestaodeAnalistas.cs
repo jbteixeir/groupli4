@@ -118,5 +118,31 @@ namespace ETdA.Camada_de_Negócio
 
             sr.Close();
         }
+
+        public static string nomeservidor()
+        {
+             try
+            {
+                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+                return sr.ReadLine();
+            }
+             catch
+             {
+                 return "";
+             }
+        }
+
+        public static bool existeFicheiroConfiguracao()
+        {
+            try
+            {
+                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+                return (true);
+            }
+            catch
+            {
+                return (false);
+            }
+        }
 	}
 }
