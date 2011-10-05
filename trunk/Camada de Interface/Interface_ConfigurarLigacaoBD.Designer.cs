@@ -34,17 +34,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -127,6 +129,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Servidor SQL";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(159, 83);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.PasswordChar = '*';
+            this.textBox4.Size = new System.Drawing.Size(215, 20);
+            this.textBox4.TabIndex = 6;
+            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(159, 47);
@@ -187,13 +197,17 @@
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // textBox4
+            // pictureBox1
             // 
-            this.textBox4.Location = new System.Drawing.Point(159, 83);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.PasswordChar = '*';
-            this.textBox4.Size = new System.Drawing.Size(215, 20);
-            this.textBox4.TabIndex = 6;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::ETdA.Properties.Resources.Help;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(8, 234);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 23);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.clickAjuda);
             // 
             // Interface_ConfigurarLigacaoBD
             // 
@@ -204,6 +218,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(435, 267);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.splitContainer1);
@@ -214,12 +229,14 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Alterar Ligação";
+            this.Click += new System.EventHandler(this.clickAjuda);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -239,5 +256,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

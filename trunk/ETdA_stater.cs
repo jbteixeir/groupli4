@@ -10,28 +10,35 @@ using ETdA.Camada_de_Dados.DataBaseCommunicator;
 
 namespace ETdA_starter
 {
-    static class ETdA_stater
+    static class ETdA_starter
     {
         [STAThread]
         static void Main()
         {
-            Boolean b = GestaodeAnalistas.loadConnectionUtilizadorLogado();
-
-            if (b)
+            if (GestaodeAnalistas.existeFicheiroConfiguracao())
             {
-                InterfaceGuestaoProjectos.main(true);
-            }
-            else
-            {
-                b = GestaodeAnalistas.loadConnectionSuper();
+                Boolean b = GestaodeAnalistas.loadConnectionUtilizadorLogado();
 
                 if (b)
                 {
-                    InterfaceLogin.main();
+                    InterfaceGuestaoProjectos.main(true);
                 }
                 else
-                    MessageBox.Show("Não foi possível Ligar à base de dados", "Connection Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {
+                    b = GestaodeAnalistas.loadConnectionSuper();
+
+                    if (b)
+                    {
+                        InterfaceLogin.main();
+                    }
+                    else
+                        MessageBox.Show("Não foi possível ligar à base de dados", "Erro de ligação",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                InterfaceLogin.main();
             }
         }
     }

@@ -43,8 +43,10 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Sair
@@ -97,20 +99,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(217, 154);
+            this.label3.Location = new System.Drawing.Point(189, 154);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 13);
+            this.label3.Size = new System.Drawing.Size(161, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "utilizador ou a palavra-chave";
+            this.label3.Text = "e o utilizador ou a palavra-chave";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(197, 141);
+            this.label2.Location = new System.Drawing.Point(189, 141);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(176, 13);
+            this.label2.Size = new System.Drawing.Size(161, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Verifique a sua ligação à internet, o ";
+            this.label2.Text = "Verifique a sua ligação à internet";
             // 
             // maskedTextBox1
             // 
@@ -123,7 +125,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(217, 127);
+            this.label1.Location = new System.Drawing.Point(189, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(141, 13);
             this.label1.TabIndex = 6;
@@ -154,6 +156,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label1);
@@ -187,7 +190,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(15, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 16);
+            this.label4.Size = new System.Drawing.Size(98, 16);
             this.label4.TabIndex = 11;
             this.label4.Text = "ETdAnalyser";
             // 
@@ -201,6 +204,17 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(5);
             this.panel2.Size = new System.Drawing.Size(425, 192);
             this.panel2.TabIndex = 14;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::ETdA.Properties.Resources.Help;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(379, 146);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 21);
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.clickAjuda);
             // 
             // InterfaceLogin
             // 
@@ -226,6 +240,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -247,5 +262,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

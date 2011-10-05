@@ -25,21 +25,26 @@ namespace ETdA.Camada_de_Interface
 
         private void initTextBoxes()
         {
-            System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+            try
+            {
+                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
 
-            string server = sr.ReadLine();
-            string database = sr.ReadLine();
-            sr.ReadLine();
-            string username = sr.ReadLine();
-            string password = sr.ReadLine();
+                string server = sr.ReadLine();
+                string database = sr.ReadLine();
+                sr.ReadLine();
+                string username = sr.ReadLine();
+                string password = sr.ReadLine();
 
-            sr.Close();
+                sr.Close();
 
-            this.textBox1.Text = server;
-            this.textBox2.Text = database;
-            this.textBox3.Text = username;
-            this.textBox4.Text = password;
-            
+                this.textBox1.Text = server;
+                this.textBox2.Text = database;
+                this.textBox3.Text = username;
+                this.textBox4.Text = password;
+            }
+            catch
+            {
+            }
             //Disable das text boxes
             this.splitContainer1.Panel1.Enabled = false;
             this.splitContainer1.Panel2.Enabled = false;
@@ -90,6 +95,11 @@ namespace ETdA.Camada_de_Interface
 
                 }
             }
+        }
+
+        private void clickAjuda(object sender, EventArgs e)
+        {
+            Interface_Ajuda.main();
         }
 
     }
