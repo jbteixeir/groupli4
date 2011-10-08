@@ -34,7 +34,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             string c1 = "create table projecto(\n" + 
 	                    "cod_projecto bigint identity primary key,\n" +
-	                    "estabelecimento varchar(20) not null,\n" +
+	                    "estabelecimento varchar(200) not null,\n" +
 	                    "ultimaActualizacao datetime not null,\n" +
                         "activo tinyint not null\n" +
                         ");\n";
@@ -47,7 +47,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 	                    "cod_analise bigint identity primary key,\n" +
 	                    "cod_projecto bigint not null Foreign Key references Projecto(cod_projecto),\n" +
 	                    "dataCriacao datetime not null,\n" +
-	                    "nomeAnalise varchar(20) not null,\n" +
+	                    "nomeAnalise varchar(200) not null,\n" +
 	                    "tipoAnalise varchar(20) not null,\n" +
 	                    "estadoWebCheckList tinyint not null,\n" +
 	                    "estadoWebFichaAvaliacao tinyint not null,\n" +
@@ -61,7 +61,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             string c3 = "create table item(\n" +
 	                    "cod_item bigint identity primary key,\n" +
-	                    "nome_item varchar(50) not null,\n" +
+	                    "nome_item varchar(200) not null,\n" +
 	                    "default_item bit not null\n" +
                         ");\n";
             return c3;
@@ -90,7 +90,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             string c5 = "create table zona(\n" +
 	                    "cod_zona bigint Identity Primary Key,\n" +
-	                    "nome_zona varchar(50) not null\n" +
+	                    "nome_zona varchar(200) not null\n" +
                         ");\n";
             return c5;
         }
@@ -132,7 +132,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             string c9 = "CREATE TABLE TipoEscala\n" +
                         "(cod_tipoEscala BIGINT IDENTITY PRIMARY KEY,\n" +
-                        "tipoEscalaResposta VARCHAR(30),\n" +
+                        "tipoEscalaResposta VARCHAR(200),\n" +
 	                    "numeroEscalaResposta INT,\n" +
 	                    "default_tipoEscala bit\n" +
                         ");\n";
@@ -144,7 +144,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             string c10 = "CREATE TABLE EscalaResposta\n" +
 	                     "(cod_EscalaResposta BIGINT IDENTITY PRIMARY KEY,\n" +
 	                     "cod_TipoEscala BIGINT,\n" +
-	                     "descricaoEscalaResposta VARCHAR(30),\n" +
+	                     "descricaoEscalaResposta VARCHAR(200),\n" +
 	                     "valorEscalaResposta INT,\n" +
 	                     "FOREIGN KEY (cod_tipoEscala) REFERENCES TipoEscala(cod_TipoEscala)\n" +
 	                     ");\n";
@@ -223,7 +223,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         private static string createRespostaQuestionarioString()
         {
-            string c16 = "create table respostas_questionarios_string(\n" +
+            string c16 = "create table resposta_questionario_string(\n" +
 	                     "cod_resposta_questionario_string bigint identity primary key,\n" +
 	                     "cod_questionario bigint not null,\n" +
 	                     "cod_analise bigint not null,\n" +
@@ -300,26 +300,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                              "INSERT INTO item VALUES ( 'Tomada de decisões', 1);" +
                              "INSERT INTO item VALUES ( 'Repetitividade', 1);" +
                              "INSERT INTO item VALUES ( 'Restritividade', 1);" +
-                             "INSERT INTO zona VALUES ('Frutas e Verduras');" +
-                             "INSERT INTO zona VALUES ('Peixaria');" +
-                             "INSERT INTO zona VALUES ('Talho/Charcutaria');" +
-                             "INSERT INTO zona VALUES ('Lacticinios');" +
-                             "INSERT INTO zona VALUES ('Bebidas');" +
-                             "INSERT INTO zona VALUES ('Office média');" +
-                             "INSERT INTO zona VALUES ('Electrodomésticos');" +
-                             "INSERT INTO zona VALUES ('Recepção ao cliente');" +
-                             "INSERT INTO zona VALUES ('Frente de loja');" +
-                             "INSERT INTO zona VALUES ('Manutenção');" +
-                             "INSERT INTO zona VALUES ('Recepção mercadoria');" +
-                             "INSERT INTO zona VALUES ('Administração');" +
-                             "INSERT INTO zona VALUES ('Limpeza');" +
-                             "INSERT INTO zona VALUES ('Segurança');" +
-                             "INSERT INTO zona VALUES ('Promotoras');" +
-                             "INSERT INTO zona VALUES ('Delivering mercadoria');" +
-                             "INSERT INTO zona VALUES ('Vendedor');" +
-                             "INSERT INTO zona VALUES ('DPH');" +
-                             "INSERT INTO zona VALUES ('Reposição Nocturna');" +
-                             "INSERT INTO zona VALUES ('Outros');" +
                              "INSERT INTO zona VALUES ('Comum');" +
                              "INSERT INTO TipoEscala VALUES ('Frequencia', 5, 1);" +
                              "INSERT INTO TipoEscala VALUES ('Qualidade', 5, 1);" +

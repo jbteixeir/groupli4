@@ -533,10 +533,16 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         #endregion
 
         #region Questionario
-        static public void insertQuestionario(Questionario q)
+        static public long insertQuestionario(Questionario q)
         {
-            DataBaseCommunicator.query("INSERT INTO questionario VALUES (" +
-                q.CodQuestionario + ", " + q.CodAnalise);
+            string query = "INSERT INTO questionario VALUES (" + q.CodAnalise + ");" +
+                "SELECT SCOPE_IDENTITY();";
+
+            SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            reader.Read();
+            return long.Parse(reader[0].ToString());
+
         }
         #endregion
 
@@ -753,26 +759,37 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         #endregion
 
         #region INserir Resposta Questionário
-        static public void insertRespostaQuestionario(Resposta r)
+        static public long insertRespostaQuestionario(Resposta r)
         {
+            string query;
             switch (r.Tipo_Resposta)
             {
                 case Resposta.TipoResposta.RespostaNum:
-                    DataBaseCommunicator.query("INSERT INTO resposta_questionario_numero VALUES (" +
+                    query = "INSERT INTO resposta_questionario_numero VALUES (" +
                         r.NumeroPergunta + ", " + r.Valor + ", " + r.Cod_questionario + ", " +
-                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
+                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");" +
+                        "SELECT SCOPE_IDENTITY();";
                     break;
                 case Resposta.TipoResposta.RespostaStr:
-                    DataBaseCommunicator.query("INSERT INTO resposta_questionario_string VALUES (" +
+                    query = "INSERT INTO resposta_questionario_string VALUES (" +
                         r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
-                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
+                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");" +
+                        "SELECT SCOPE_IDENTITY();";
                     break;
-                case Resposta.TipoResposta.RespostaMemo:
-                    DataBaseCommunicator.query("INSERT INTO resposta_questionario_memo VALUES (" +
+                default:
+                    query = "INSERT INTO resposta_questionario_memo VALUES (" +
                         r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
-                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");");
+                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");"+
+                        "SELECT SCOPE_IDENTITY();";
                     break;
             }
+
+            MessageBox.Show(query);
+            //SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            //reader.Read();
+            //return long.Parse(reader[0].ToString());
+            return 1;
         }
         #endregion
 
@@ -908,7 +925,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 e.Descricao + "'," + 
                 e.Valor + ");" +
                 "SELECT SCOPE_IDENTITY();";
-
+            MessageBox.Show(query);
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             r.Read();
@@ -1080,8 +1097,8 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             StringBuilder a = new StringBuilder();
             a.Append("insert into pergunta_questionario VALUES (");
             a.Append(p.Cod_Analise.ToString() + ",");
-            a.Append(p.Num_Pergunta.ToString() + ",");
-            a.Append(((p.Cod_zona==-1)?"null":p.Cod_zona.ToString()) + ",");
+            a.Append((p.Num_Pergunta > (int)p.Num_Pergunta) ? (p.Num_Pergunta.ToString().Split(',')[0] + "." + p.Num_Pergunta.ToString().Split(',')[1] + ",") : p.Num_Pergunta.ToString() + ",");
+            a.Append(((p.Cod_zona==0)?"null":p.Cod_zona.ToString()) + ",");
             a.Append(((p.Cod_Item==-1)?"null":p.Cod_Item.ToString()) + ",");
             a.Append(p.Cod_TipoEscala.ToString() + ",'");
             a.Append(p.Texto + "','");
@@ -1176,7 +1193,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static List<PerguntaFichaAvaliacao> selectPerguntasFA(long codAnalise)
         {
-            string query = "select * from pergunta_ficha_avaliacao where cod_analise = " + codAnalise.ToString() + " order by numero_pergunta desc;";
+            string query = "select * from pergunta_ficha_avaliacao where cod_analise = " + codAnalise.ToString() + ";";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
@@ -1199,7 +1216,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static List<PerguntaQuestionario> selectPerguntasQT(long codAnalise)
         {
-            string query = "select * from pergunta_questionario where cod_analise = " + codAnalise.ToString() + " order by numero_pergunta desc;";
+            string query = "select * from pergunta_questionario where cod_analise = " + codAnalise.ToString() + ";";
 
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
@@ -1211,7 +1228,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                     (long)r["cod_pergunta_questionario"],
                     (long)r["cod_analise"],
                     (float)r["numero_pergunta"],
-                    ((r["cod_zona"].ToString() == "") ? -1 : (long)r["cod_zona"]),
+                    ((r["cod_zona"].ToString() == "") ? 0 : (long)r["cod_zona"]),
                     ((r["cod_item"].ToString() == "") ? -1 : (long)r["cod_item"]),
                     (string)r["texto"],
                     (long)r["cod_tipoEscala"],
@@ -1350,6 +1367,5 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
         #endregion
-
     }
 }
