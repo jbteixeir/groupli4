@@ -415,7 +415,6 @@ namespace ETdA.Camada_de_Interface
             Interface_Relatorio.ActiveForm.Close();
         }
 
-
         //quando carrega no buttao de gerar relatorio
         private void button1_Click(object sender, EventArgs e)
         {
