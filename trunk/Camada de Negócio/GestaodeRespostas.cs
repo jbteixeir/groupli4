@@ -109,5 +109,10 @@ namespace ETdA.Camada_de_Negócio
             FuncsToDataBase.deletePerguntasQT(codAnalise);
             insert_PerguntasQT(pergs);
         }
+
+        public static long insere_questionario(Questionario q)
+        {
+            return FuncsToDataBase.insertQuestionario(q);
+        }
     }
 }
