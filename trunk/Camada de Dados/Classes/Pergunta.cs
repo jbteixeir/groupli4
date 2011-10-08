@@ -9,12 +9,12 @@ namespace ETdA.Camada_de_Dados.Classes
 	{
 		private long cod_Pergunta;
         private long cod_Analise;
-		private double num_Pergunta;
+		private float num_Pergunta;
         private long cod_Item;
 		private string texto;
 		private long cod_TipoEscala;
 
-        public Pergunta(long cod_Analise, double num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
+        public Pergunta(long cod_Analise, float num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
         {
             this.cod_Analise = cod_Analise;
             this.num_Pergunta = num_Pergunta;
@@ -23,7 +23,7 @@ namespace ETdA.Camada_de_Dados.Classes
             this.cod_TipoEscala = cod_TipoEscala;
         }
 
-        public Pergunta(long cod_Pergunta,long cod_Analise, double num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
+        public Pergunta(long cod_Pergunta,long cod_Analise, float num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
         {
             this.cod_Pergunta = cod_Pergunta;
             this.cod_Analise = cod_Analise;
@@ -43,12 +43,22 @@ namespace ETdA.Camada_de_Dados.Classes
             cod_TipoEscala = -1;
         }
 
+        public Pergunta(Pergunta p)
+        {
+            cod_Pergunta = p.cod_Pergunta;
+            cod_Analise = p.cod_Analise;
+            num_Pergunta = p.num_Pergunta;
+            cod_Item = p.cod_Item;
+            texto = p.texto;
+            cod_TipoEscala = p.cod_TipoEscala;
+        }
+
 		public long Cod_Pergunta
 		{
 			get { return cod_Pergunta; }
 			set { cod_Pergunta = value; }
 		}
-		public double Num_Pergunta
+		public float Num_Pergunta
 		{
 			get { return num_Pergunta; }
 			set { num_Pergunta = value; }
@@ -85,6 +95,11 @@ namespace ETdA.Camada_de_Dados.Classes
             a.Append("Texto: " + texto + "\n");
             a.Append("Cod_TipoEscala: " + cod_TipoEscala.ToString() + "\n");
             return a.ToString();
+        }
+
+        public Pergunta Clone()
+        {
+            return new Pergunta(this);
         }
 	}
 }
