@@ -170,8 +170,8 @@ namespace ETdA.Camada_de_Interface
             p.BorderStyle = BorderStyle.FixedSingle;
             p.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             p.Dock = DockStyle.Top;
-            p.TabIndex = (int)perg.Num_Pergunta;
             panel.Controls.Add(p);
+            panel.Controls.SetChildIndex(p, 0);
 
             Label l1 = new System.Windows.Forms.Label();
             l1.Width = 50;
