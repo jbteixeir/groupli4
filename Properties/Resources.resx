@@ -127,9 +127,6 @@
   <data name="1309272802_direction_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309272802_direction_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1309271459_notification_error1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309271459_notification_error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="1309271453_notification_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271453_notification_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,6 +160,9 @@
   <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="smw_plus_delete_icon_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\smw_plus_delete_icon_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -180,6 +180,9 @@
   </data>
   <data name="1309271647_file" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271647_file.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1309271453_notification_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271453_notification_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="vermelho" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\colors\vermelho.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,14 +202,14 @@
   <data name="Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="degrade1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagens\degrade1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="amarelo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\colors\amarelo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="vermelhoWord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\colors\vermelhoWord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1309271598_application_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309271598_application_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1309271507_notification_remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271507_notification_remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -223,17 +226,23 @@
   <data name="Tooltip-CloseButton-Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tooltip-CloseButton-Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_1309271453_notification_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309271453_notification_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="1309271598_application_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271598_application_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1309271459_notification_error1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271459_notification_error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1309271487_notification_done" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271487_notification_done.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon-add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\icon-add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="openproj" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Imagens\openproj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1309271481_file_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\1309271481_file_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="4697" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\4697.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dog_color_vision" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\dog_color_vision.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,6 +256,9 @@
   <data name="lima" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\colors\lima.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="1309271481_file_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\1309271481_file_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_1309271459_notification_error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309271459_notification_error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -259,7 +271,13 @@
   <data name="1309272765_direction_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\1309272765_direction_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="degrade1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Imagens\degrade1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="smw_plus_delete_icon_16x161" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\smw_plus_delete_icon_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="116740_34218_16_delete_exit_remove_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\116740_34218_16_delete_exit_remove_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="116740_34218_16_delete_exit_remove_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\116740_34218_16_delete_exit_remove_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
