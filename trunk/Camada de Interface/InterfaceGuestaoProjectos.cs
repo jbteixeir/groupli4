@@ -1468,9 +1468,14 @@ namespace ETdA.Camada_de_Interface
         #endregion
 
         private void importer(object sender, EventArgs e)
-        {
-            Interface_Importer.main(long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]));
-        }
+		{
+            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codProjecto, codAnalise);
+            List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
+
+			Interface_Importer.main(codAnalise,zonas,itens);
+		}
 
         // rdone
         private void GerarRelatorio(object sender, EventArgs e)
