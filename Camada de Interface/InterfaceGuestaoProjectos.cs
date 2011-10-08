@@ -1943,7 +1943,7 @@ namespace ETdA.Camada_de_Interface
             Application.Restart();
         }
 
-        private void fecharAplicação(object sender, EventArgs e)
+        private void fecharAplicacao(object sender, EventArgs e)
         {
             Application.Exit();
         }

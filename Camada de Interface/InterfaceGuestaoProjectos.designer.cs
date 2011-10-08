@@ -306,7 +306,7 @@
             this.quitToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.quitToolStripMenuItem.Text = "Sair";
             this.quitToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
-            this.quitToolStripMenuItem.Click += new System.EventHandler(this.fecharAplicação);
+            this.quitToolStripMenuItem.Click += new System.EventHandler(this.fecharAplicacao);
             // 
             // verToolStripMenuItem
             // 
@@ -577,6 +577,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "InterfaceGuestaoProjectos";
             this.Text = "ETdAnalyser";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fecharAplicacao);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
