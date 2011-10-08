@@ -7,6 +7,7 @@ using System.Text;
 
 using ETdA.Camada_de_Dados.DataBaseCommunicator;
 using ETdA.Camada_de_Dados.Classes;
+using System.Windows.Forms;
 
 namespace ETdA.Camada_de_Negócio
 {
@@ -75,27 +76,24 @@ namespace ETdA.Camada_de_Negócio
 
 			switch (modelo.Tipo)	{
 				case 3: // Questionario
-					long codFormulario = modelo.CodigoQuestionario;
-					int i = 0;
+					int i;
 					bool jump = false; // para salta campos
 					foreach (string[] linhaD in dados)
 					{
-						codFormulario++;
-
+                        i = 0;
 						Questionario q = new Questionario();
 						q.CodAnalise = modelo.Cod_analise;
-						q.CodQuestionario = codFormulario;
-						FuncsToDataBase.insertQuestionario(q);
+						q.CodQuestionario = FuncsToDataBase.insertQuestionario(q);
 
 						foreach (string campo in linhaD)
 						{
 							if (!jump)
 							{
 								
-								PerguntaQuestionario perguntaReferente = perguntasQ.ElementAt<PerguntaQuestionario>(i);
+								PerguntaQuestionario perguntaReferente = perguntasQ.ElementAt(i);
 
 								Resposta resposta = new Resposta(modelo);
-								resposta.CodigoQuestionario = codFormulario;
+								resposta.CodigoQuestionario = q.CodQuestionario;
 								resposta.NumeroPergunta = (float)perguntaReferente.Num_Pergunta;
 								resposta.CodigoZona = perguntaReferente.Cod_zona;
 								// Aqui tem q se colocar a zona especial(reservada) que diz q a zona esta 
@@ -109,6 +107,7 @@ namespace ETdA.Camada_de_Negócio
 								resposta.Cod_pergunta = perguntaReferente.Cod_Pergunta;
 								resposta.Valor = Convert.ToInt16(linhaD[i]);
 
+                                MessageBox.Show(resposta.ToString());
 								FuncsToDataBase.insertRespostaQuestionario(resposta);
 							}
 							else jump = false;
@@ -117,24 +116,21 @@ namespace ETdA.Camada_de_Negócio
 					}
 					break;
 				case 2: // Ficha Avaliacao
-					codFormulario = modelo.CodigoFichaAvaliacao;
 					int j = 0;
 					jump = false; // para salta campos
 					foreach (string[] linhaD in dados)
 					{
 						FichaAvaliacao fa = new FichaAvaliacao();
-						fa.CodFichaAvaliacao = codFormulario;
 						fa.CodZona = zonas[j];
 						fa.CodAnalise = modelo.Cod_analise;
 						FuncsToDataBase.insertFichaAvaliacao(fa);
 
-						codFormulario++;
 						i = 0;
 						foreach (string campo in linhaD)
 						{
 							PerguntaFichaAvaliacao perguntaReferente = perguntasFA.ElementAt<PerguntaFichaAvaliacao>(i);
 							Resposta resposta = new Resposta(modelo);
-							resposta.CodigoFichaAvaliacao = (int)codFormulario;
+							resposta.CodigoFichaAvaliacao = fa.CodFichaAvaliacao;
 							resposta.NumeroPergunta = (float)perguntaReferente.Num_Pergunta;
 
 							resposta.Cod_pergunta = perguntaReferente.Cod_Pergunta;
@@ -147,13 +143,11 @@ namespace ETdA.Camada_de_Negócio
 					}
 					break;
 				case 1: // CheckList
-					codFormulario = (int) modelo.Cod_checklist;
 					i = 0;
 					j = 0;
 					jump = false; // para salta campos
 					foreach (string[] linhaD in dados)
 					{
-						codFormulario++;
 						foreach (string campo in linhaD)
 						{
 							Resposta resposta = new Resposta();
