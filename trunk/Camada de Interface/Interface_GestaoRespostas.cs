@@ -21,7 +21,6 @@ namespace ETdA.Camada_de_Interface
         private delegate void eventoEventHandler(object sender, EventArgs e);
         private static event eventoEventHandler done_action;
 
-        // revisto
         public Interface_GestaoRespostas(int num_perg, bool fa)
         {
             this.fa = fa;
@@ -41,14 +40,12 @@ namespace ETdA.Camada_de_Interface
             novos = new List<TipoEscala>();
         }
 
-        // revisto
         public static void main(int num_perg, bool fa)
         {
-            Interface_GestaoRespostas igr = new Interface_GestaoRespostas(num_perg,fa);
+            Interface_GestaoRespostas igr = new Interface_GestaoRespostas(num_perg, fa);
             igr.Visible = true;
         }
 
-        // revisto
         private void initTree()
         {
             treeView1.Nodes.Clear();
@@ -69,20 +66,20 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        // revisto
         private void NovoMouseClicked(object sender, EventArgs e)
         {
             string value1 = "";
             int value2 = 0;
             if (DualInputBox("Novo Tipo", "Nome:", ref value1, ref value2) == DialogResult.OK)
             {
-                int nu;
+                int nu ;
                 switch (value2)
                 {
                     case 0 : nu = 2; break;
                     case 1 : nu = -2; break;
                     case 2 : nu = 0; break;
-                    default : nu = 1; break;
+                    case 3 : nu = 1; break;
+                    default: nu = -3; break;
                 }
                 TipoEscala te_novo = new TipoEscala(value1, nu);
                 if (resps.ContainsKey(value1))
@@ -99,7 +96,6 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        // revisto
         private void SeleccionarMouseClicked(object sender, EventArgs e)
         {
             string erro = "";
@@ -125,7 +121,6 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        // revisto
         private bool verifica(ref string erro)
         {
             bool ok = true;
@@ -156,7 +151,6 @@ namespace ETdA.Camada_de_Interface
                 return ok;
         }
 
-        // revisto
         private void show_respostas(TipoEscala te, string s, string tip1, string tip2)
         {
             panel1.Controls.Clear();
@@ -236,6 +230,7 @@ namespace ETdA.Camada_de_Interface
                 {
                     Label l3 = new System.Windows.Forms.Label();
                     l3.Text = "Novo";
+                    l3.AutoSize = true;
                     l3.Name = te.Descricao + "." + s.Split(' ')[1];
                     l3.Cursor = System.Windows.Forms.Cursors.Hand;
                     l3.Click += new System.EventHandler(NovaRespostaMouseClicked);
@@ -246,7 +241,7 @@ namespace ETdA.Camada_de_Interface
                 }
                 #endregion
             }
-            else if (te.Numero > 1)
+            else if (te.Numero > 1 || te.Numero == -3)
             {
                 #region Radio
                 Label l5 = new System.Windows.Forms.Label();
@@ -296,6 +291,7 @@ namespace ETdA.Camada_de_Interface
                 {
                     Label l3 = new System.Windows.Forms.Label();
                     l3.Text = "Novo";
+                    l3.AutoSize = true;
                     l3.Name = te.Descricao + "." + s.Split(' ')[1];
                     l3.Cursor = System.Windows.Forms.Cursors.Hand;
                     l3.Click += new System.EventHandler(NovaRespostaMouseClicked);
@@ -308,7 +304,6 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        // revisto
         private object[] getRange(TipoEscala te)
         {
             object[] ret = new object[te.Respostas.Count];
@@ -317,7 +312,6 @@ namespace ETdA.Camada_de_Interface
             return ret;
         }
 
-        // revisto
         private void MouseEnterAction(object sender, EventArgs e)
         {
             Label t = (Label)sender;
@@ -325,7 +319,6 @@ namespace ETdA.Camada_de_Interface
             t.BackColor = Color.LightGray;
         }
 
-        // revisto
         private void MouseLeaveAction(object sender, EventArgs e)
         {
             Label t = (Label)sender;
@@ -333,7 +326,6 @@ namespace ETdA.Camada_de_Interface
             t.BackColor = Color.Empty;
         }
 
-        // revisto
         private void NovaRespostaMouseClicked(object sender, EventArgs e)
         {
             Label b = (Label)sender;
@@ -374,7 +366,6 @@ namespace ETdA.Camada_de_Interface
             return found;
         }
 
-        // revisto
         private bool verificaExiste(TipoEscala te, string s)
         {
             bool found = false;
@@ -384,7 +375,6 @@ namespace ETdA.Camada_de_Interface
             return found;
         }
 
-        // revisto
         private void EliminarMouseClicked(object sender, EventArgs e)
         {
             Label l = (Label)sender;
@@ -408,14 +398,12 @@ namespace ETdA.Camada_de_Interface
             show_respostas(te, "Tipo " + indice1.ToString(), te.Descricao, x);
         }
 
-        // revisto
         private void updateEscalasResposta(List<EscalaResposta> lst, int i)
         {
             for (int j = i + 1; j < lst.Count; j++)
                 lst[j].Valor--;  
         }
 
-        // revisto
         private void TreeMouseClicked(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -444,7 +432,6 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        // revisto
         private DialogResult InputBox(string title, string promptText, ref string value)
         {
             Form form = new Form();
@@ -486,7 +473,6 @@ namespace ETdA.Camada_de_Interface
             return dialogResult;
         }
 
-        // revisto
         private DialogResult DualInputBox(string title, string promptText, ref string value1, ref int value2)
         {
             Form form = new Form();
@@ -515,7 +501,7 @@ namespace ETdA.Camada_de_Interface
 
             cb1.Items.AddRange(its);
             cb1.SelectedIndex = 0;
-            cb2.Items.AddRange(new Object[] { "Uma opção", "Várias opções", "Caixa de texto (letras)", "Caixa de texto (números)" });
+            cb2.Items.AddRange(new Object[] { "Uma opção", "Várias opções", "Caixa de texto (letras)", "Caixa de texto (números)", "Classificação" });
             cb2.SelectedIndex = 0;
             buttonOk.DialogResult = DialogResult.OK;
             buttonCancel.DialogResult = DialogResult.Cancel;
@@ -567,7 +553,6 @@ namespace ETdA.Camada_de_Interface
             return dialogResult;
         }
 
-        // revisto
         private void cb1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox b = (ComboBox)sender;
@@ -583,20 +568,17 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        // revisto
         private void end_Frame()
         {
             Dispose();
             Close();
         }
 
-        // revisto
         private void CancelarMouseClicked(object sender, EventArgs e)
         {
             end_Frame();
         }
 
-        // revisto
         private void EliminarNodo(object sender, EventArgs e)
         {
             MenuItem l = (MenuItem)sender;
@@ -617,7 +599,6 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
-        // revisto
         private void IndexChanchedEvent(object sender, EventArgs e)
         {
             
