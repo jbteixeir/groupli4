@@ -258,7 +258,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         private static string createRespostaFichaAvaliacaoString()
         {
             string c18 = "create table resposta_ficha_avaliacao_string(\n" +
-                         "cod_resposta_ficha_avaliacao_string bigint primary key,\n" +
+                         "cod_resposta_ficha_avaliacao_string bigint identity primary key,\n" +
                          "cod_fichaAvaliacao bigint not null,\n" +
                          "cod_analise bigint not null,\n" +
                          "numero_pergunta tinyint,\n" +

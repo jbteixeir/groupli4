@@ -86,7 +86,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(196, 151);
+            this.button1.Location = new System.Drawing.Point(101, 149);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 7;
@@ -96,7 +96,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(101, 151);
+            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button3.Location = new System.Drawing.Point(196, 149);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 12;
@@ -138,10 +139,12 @@
             // 
             // Interface_CriarAnalise
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CancelButton = this.button3;
             this.ClientSize = new System.Drawing.Size(283, 184);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);

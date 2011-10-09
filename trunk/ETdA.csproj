@@ -108,7 +108,9 @@
     <Compile Include="Camada de Interface\InterfaceRegisto.Designer.cs">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Ajuda.cs" />
+    <Compile Include="Camada de Interface\Interface_Ajuda.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Camada de Interface\Interface_Ajuda.designer.cs">
       <DependentUpon>Interface_Ajuda.cs</DependentUpon>
     </Compile>
