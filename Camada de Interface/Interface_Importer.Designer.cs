@@ -105,6 +105,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button3.Location = new System.Drawing.Point(340, 91);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
@@ -136,7 +137,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(91, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(99, 17);
             this.toolStripStatusLabel2.Text = "Descricao do Erro";
             // 
             // toolStripStatusLabel3
@@ -152,8 +153,10 @@
             // 
             // Interface_Importer
             // 
+            this.AcceptButton = this.button2;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button3;
             this.ClientSize = new System.Drawing.Size(437, 138);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button3);

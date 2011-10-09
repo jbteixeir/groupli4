@@ -97,6 +97,7 @@
             // 
             resources.ApplyResources(this.BotaoCancelar, "BotaoCancelar");
             this.BotaoCancelar.BackColor = System.Drawing.SystemColors.Control;
+            this.BotaoCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BotaoCancelar.Name = "BotaoCancelar";
             this.BotaoCancelar.UseVisualStyleBackColor = false;
             this.BotaoCancelar.Click += new System.EventHandler(this.BotaoCancelar_Click);
@@ -163,9 +164,11 @@
             // 
             // Interface_Relatorio
             // 
+            this.AcceptButton = this.button1;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.CancelButton = this.BotaoCancelar;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "Interface_Relatorio";

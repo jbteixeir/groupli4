@@ -14,6 +14,7 @@ namespace ETdA.Camada_de_Interface
         public Interface_CheckList(long codProjecto, long codAnalise)
         {
             InitializeComponent();
+            CheckList.ScriptErrorsSuppressed = true;
             CheckList.Url = new System.Uri("http://rocket-pc:54749/ETdA/Default.aspx?form=CL&usr=" +
                 Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codAnalise + "&prj" +
                     "=" + codProjecto + "&adminmode=true", System.UriKind.Absolute);

@@ -111,13 +111,13 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(88, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(96, 17);
             this.toolStripStatusLabel1.Text = "Num. Perguntas:";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(28, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(34, 17);
             this.toolStripStatusLabel2.Text = "Num";
             // 
             // toolStripStatusLabel3
@@ -135,20 +135,22 @@
             // toolStripStatusLabel5
             // 
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(42, 17);
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLabel5.Text = "Perg. X";
             // 
             // toolStripStatusLabel6
             // 
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(91, 17);
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(99, 17);
             this.toolStripStatusLabel6.Text = "Descrição do Erro";
             // 
             // Interface_PerguntasQT
             // 
+            this.AcceptButton = this.button2;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(714, 401);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel2);
@@ -157,7 +159,7 @@
             this.Padding = new System.Windows.Forms.Padding(5);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Interface_PerguntasQT";
+            this.Text = "Gestão de Formulários Online";
             this.panel2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
