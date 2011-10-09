@@ -13,6 +13,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         private static String server;
         private static SqlConnection connection;
         private static String database;
+        private static String userConnectionString;
 
         //Construtores
         /*public DataBaseCommunicator(String server, SqlConnection connection)
@@ -39,6 +40,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             get { return database; }
             set { database = value; }
+        }
+
+        public static String UserConnectionString
+        {
+            get { return userConnectionString; }
+            set { userConnectionString = value; }
         }
 
         /* ----------------------------------------------*/
@@ -80,6 +87,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                              "Password=" + password + ";" +
                              "MultipleActiveResultSets = True";
 
+                userConnectionString = con;
 				connection = new SqlConnection(con);
 				connection.Open();
 				return true;
@@ -98,6 +106,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             try
             {
+                refreshConnection();
                 connection.Close();
             }
             catch (Exception e)
@@ -113,6 +122,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             try
             {
+                refreshConnection();
                 SqlCommand command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
                 command.Dispose();
@@ -130,6 +140,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             try
             {
+                refreshConnection();
                 SqlDataReader reader = null;
                 SqlCommand command = new SqlCommand(query, connection);
                 reader = command.ExecuteReader();
@@ -139,6 +150,15 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             {
                 MessageBox.Show(e.Message);
                 return null;
+            }
+        }
+
+        public static void refreshConnection()
+        {
+            if (connection.State == System.Data.ConnectionState.Broken)
+            {
+                connection = new SqlConnection(userConnectionString);
+                connection.Open();
             }
         }
 
