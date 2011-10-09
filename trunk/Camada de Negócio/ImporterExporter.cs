@@ -83,7 +83,7 @@ namespace ETdA.Camada_de_Negócio
                         i = 0;
 						Questionario q = new Questionario();
 						q.CodAnalise = modelo.Cod_analise;
-						q.CodQuestionario = FuncsToDataBase.insertQuestionario(q);
+						//q.CodQuestionario = FuncsToDataBase.insertQuestionario(q);
 
 						foreach (string campo in linhaD)
 						{
@@ -93,7 +93,7 @@ namespace ETdA.Camada_de_Negócio
 								PerguntaQuestionario perguntaReferente = perguntasQ.ElementAt(i);
 
 								Resposta resposta = new Resposta(modelo);
-								resposta.CodigoQuestionario = q.CodQuestionario;
+								//resposta.CodigoQuestionario = q.CodQuestionario;
 								resposta.NumeroPergunta = (float)perguntaReferente.Num_Pergunta;
 								resposta.CodigoZona = perguntaReferente.Cod_zona;
 								// Aqui tem q se colocar a zona especial(reservada) que diz q a zona esta 
