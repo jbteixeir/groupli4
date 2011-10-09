@@ -155,7 +155,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
         public static void refreshConnection()
         {
-            if (connection.State == System.Data.ConnectionState.Broken)
+            if (connection.State == System.Data.ConnectionState.Broken || connection.State == System.Data.ConnectionState.Closed)
             {
                 connection = new SqlConnection(userConnectionString);
                 connection.Open();
