@@ -90,9 +90,6 @@
     <Compile Include="Camada de Dados\Classes\Resposta.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
     <Compile Include="Camada de Dados\ETdA\ETdA_main.cs" />
-    <Compile Include="Camada de Interface\Interface_Ajuda.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Camada de Interface\InterfaceGuestaoProjectos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +107,10 @@
     </Compile>
     <Compile Include="Camada de Interface\InterfaceRegisto.Designer.cs">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Ajuda.cs" />
+    <Compile Include="Camada de Interface\Interface_Ajuda.designer.cs">
+      <DependentUpon>Interface_Ajuda.cs</DependentUpon>
     </Compile>
     <Compile Include="Camada de Interface\Interface_ConfigurarLigacaoBD.cs">
       <SubType>Form</SubType>
