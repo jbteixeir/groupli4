@@ -166,5 +166,22 @@ namespace ETdA.Camada_de_Dados.Classes
             set { tipo = value; }
         }
 
+        public string ToString()
+        {
+            StringBuilder sb = new StringBuilder("Resposta:\n");
+            sb.Append("Cod_analise: " + cod_analise + "\n");
+            sb.Append("Cod_QT: " + cod_questionario + "\n");
+            sb.Append("Cod_FA: " + cod_fichaAvaliacao + "\n");
+            sb.Append("Cod_CL: " + cod_checklist + "\n");
+            sb.Append("Numero Pergunta: " + numero_pergunta + "\n");
+            sb.Append("Cod_Item: " + cod_item + "\n");
+            sb.Append("Cod_Zona: " + cod_zona + "\n");
+            sb.Append("Valor: " + valor + "\n");
+            sb.Append("Valor string: " + valor_string + "\n");
+            sb.Append("Tipo: " + tipo + "\n");
+            sb.Append("Tipo Resposta: " + tipoResposta + "\n");
+
+            return sb.ToString();
+        }
 	}
 }

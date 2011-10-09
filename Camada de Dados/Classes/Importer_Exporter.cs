@@ -165,7 +165,7 @@ namespace ETdA.Camada_de_Dados.Classes
                 questionario.Cod_Questionario = GestaodeRespostas.insere_questionario(questionario);
 
                 /* Testar nuúmero de perguntas */
-                if (_perguntas_colunas_ficheiro.Keys.Count != )
+                //if (_perguntas_colunas_ficheiro.Keys.Count != )
 
                 for (int j = 0; j < _perguntas_colunas_ficheiro.Keys.Count; j++)
                 {
@@ -191,7 +191,7 @@ namespace ETdA.Camada_de_Dados.Classes
                     }
                     else
                         string_valor = (valores[i])[coluna_valor];
-
+                    /*
                     Resposta resp = new Resposta(
                         cod_analise,
                         -1,
@@ -204,15 +204,16 @@ namespace ETdA.Camada_de_Dados.Classes
                         ti.Numero != 0 ? "",
                         -1,
                         ti.Numero != 0 ? Resposta.TipoResposta.RespostaNum : Resposta.TipoResposta.RespostaStr);
-
+                    
                     if (ti.Numero != 0)
                         questionario.add_resposta_numero(resp);
                     else
                         questionario.add_resposta_string(resp);
+                     * */
                 }
             }
 
-            return true; ;
+            return true;
         }
 
         #endregion
@@ -227,8 +228,10 @@ namespace ETdA.Camada_de_Dados.Classes
             return null;
         }
 
+        /*
         private bool tem_colunas_necessarias(Dictionary<float, int> _perguntas_colunas_ficheiro)
         {
+
             int num_colunas_necessarias = 0;
 
             for(int i = 0 ; i < _perguntas_colunas_ficheiro.Keys.Count ; i++)
@@ -240,6 +243,7 @@ namespace ETdA.Camada_de_Dados.Classes
             }
 
         }
+         */
 
         /*
         #region Questionario

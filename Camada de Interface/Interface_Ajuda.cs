@@ -12,18 +12,18 @@ namespace ETdA.Camada_de_Interface
     public partial class Interface_Ajuda : Form
     {
         private static Interface_Ajuda ia;
-
+        /*
         public Interface_Ajuda()
         {
             InitializeComponent();
             initInterface();
         }
-
+        */
         public static void main()
         {
             ia = new Interface_Ajuda();
         }
-
+        /*
         private void initInterface()
         {
             labelTitulo.Text = treeViewAjuda.Nodes[0].Text;
@@ -270,5 +270,6 @@ namespace ETdA.Camada_de_Interface
             }
             return desc;
         }
+         * */
     }
 }
