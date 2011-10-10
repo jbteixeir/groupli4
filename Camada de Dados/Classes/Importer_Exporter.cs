@@ -23,7 +23,11 @@ namespace ETdA.Camada_de_Dados.Classes
         /* Variáveis quando existe erro */
         private string erro;
         private int linha_erro;
-        private int numero_pergunta_erro;
+        private float numero_pergunta_erro;
+
+        /* Variáveis das observações */
+        private int numero_formularios_ignorados;
+        private int numero_perguntas_ignoradas;
 
         /* Variáveis estáticas dos erros */
         private string erro_nomes_colunas = "Erro ao ler ficheiro.\nFicheiro vazio.";
@@ -96,9 +100,23 @@ namespace ETdA.Camada_de_Dados.Classes
         {
             get { return linha_erro; }
         }
-        public int Numero_Pergunta_Erro
+        public float Numero_Pergunta_Erro
         {
             get { return numero_pergunta_erro; }
+        }
+
+        // Resultados
+        public List<Formulario> Formularios
+        {
+            get { return formularios; }
+        }
+        public int Formularios_Ignorados
+        {
+            get { return numero_formularios_ignorados; }
+        }
+        public int Perguntas_Ignoradas
+        {
+            get { return numero_perguntas_ignoradas; }
         }
 
         #endregion
@@ -152,74 +170,270 @@ namespace ETdA.Camada_de_Dados.Classes
             Respostas_Vazias _modo_respostas_vazias,
             Valores_Respostas _modo_valores_respostas,
             List<Zona> _zonas,
-            List<Item> _itens,
             List<PerguntaQuestionario> _pergs,
-            Dictionary<float,int> _perguntas_colunas_ficheiro)
+            Dictionary<float, List<int>> _perguntas_colunas_ficheiro)
         {
-            bool valor_retorno = true;
+            numero_formularios_ignorados = 0;
+            numero_perguntas_ignoradas = 0;
             formularios = new List<Formulario>();
+            bool continuar = true;
+            bool continuar_formulario = true;
 
-            for (int i = 0; i < valores.Keys.Count && valor_retorno; i++ )
+            for (int i = 0; i < valores.Keys.Count && continuar; i++)
             {
-                Questionario questionario = new Questionario();
-                questionario.Cod_Questionario = GestaodeRespostas.insere_questionario(questionario);
+                continuar_formulario = true;
+                int num_linha = valores.Keys.ElementAt(i);
+                verifica_numero_colunas(num_linha, _perguntas_colunas_ficheiro, _pergs, _modo_num_respostas, ref continuar, ref continuar_formulario);
 
-                /* Testar nuúmero de perguntas */
-                //if (_perguntas_colunas_ficheiro.Keys.Count != )
-
-                for (int j = 0; j < _perguntas_colunas_ficheiro.Keys.Count; j++)
+                if (continuar && continuar_formulario)
                 {
-                    PerguntaQuestionario perg = getPerguntaByNum(j,_pergs);
-                    TipoEscala ti = GestaodeRespostas.getTipoEscala(perg.Cod_TipoEscala);
+                    List<Resposta> respostas = importar_linha_questionario(num_linha, _modo_respostas_vazias, _modo_valores_respostas, _zonas, _pergs, _perguntas_colunas_ficheiro, ref continuar, ref continuar_formulario);
 
-                    int coluna_valor = _perguntas_colunas_ficheiro[j];
-
-                    short int_valor;
-                    string string_valor;
-
-
-
-                    if (ti.Numero != 0)
+                    if (continuar && continuar_formulario  && respostas.Count != 0)
                     {
-                        if ((valores[i])[coluna_valor].Equals("") &&
-                            _modo_respostas_vazias.Equals(Respostas_Vazias.Sair_Vazias))
-                            valor_retorno = false;
+                        Questionario q = new Questionario();
+                        q.CodAnalise = cod_analise;
+                        q.Cod_Questionario = GestaodeRespostas.insere_questionario(q);
 
-                        int_valor = short.Parse((valores[i])[coluna_valor]);
-
-                        if (int_valor <= 0 || int_valor > ti.Respostas.Count);
+                        foreach (Resposta r in respostas)
+                        {
+                            if (r.Tipo_Resposta == Resposta.TipoResposta.RespostaNum)
+                                q.add_resposta_numero(r);
+                            else if (r.Tipo_Resposta == Resposta.TipoResposta.RespostaStr)
+                                q.add_resposta_string(r);
+                            else
+                                q.add_resposta_memo(r);
+                        }
+                        formularios.Add(q);
                     }
-                    else
-                        string_valor = (valores[i])[coluna_valor];
-                    /*
+                }
+            }
+            return continuar;
+        }
+
+        private List<Resposta> importar_linha_questionario(
+            int num_linha,
+            Respostas_Vazias _modo_respostas_vazias,
+            Valores_Respostas _modo_valores_respostas,
+            List<Zona> _zonas,
+            List<PerguntaQuestionario> _pergs,
+            Dictionary<float, List<int>> _perguntas_colunas_ficheiro,
+            ref bool continuar,
+            ref bool continuar_formulario)
+        {
+            List<Resposta> respostas = new List<Resposta>();
+            string[] valores_linha = valores[num_linha];
+            bool continuar_pergunta;
+
+            for (int i = 0; i < _perguntas_colunas_ficheiro.Keys.Count && continuar && continuar_formulario; i++)
+            {
+                continuar_pergunta = true;
+                PerguntaQuestionario perg_associada = getPerguntaByNum( _perguntas_colunas_ficheiro.Keys.ElementAt(i),_pergs);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(perg_associada.Cod_TipoEscala);
+
+                List<string> campos = new List<string>();
+
+                foreach(int num_coluna in _perguntas_colunas_ficheiro[perg_associada.Num_Pergunta])
+                    campos.Add( valores[num_linha][num_coluna]);
+
+                for (int j = 0; j < campos.Count && continuar && continuar_formulario && continuar_pergunta; j++ )
+                    verifica_campo(num_linha, campos[j], _modo_respostas_vazias, _modo_valores_respostas, perg_associada, ref continuar, ref continuar_formulario, ref continuar_pergunta);
+
+                if (continuar && continuar_formulario && continuar_pergunta)
+                {
+                    long cod_zona = -1;
+                    if (perg_associada.Cod_zona == 0)
+                    {
+                        string campo2 = valores[num_linha][_perguntas_colunas_ficheiro[perg_associada.Num_Pergunta][0]+1];
+                        verifica_campo(num_linha, campo2, _modo_respostas_vazias, _modo_valores_respostas, perg_associada, ref continuar, ref continuar_formulario, ref continuar_pergunta);
+
+                        if (continuar && continuar_formulario && continuar_pergunta)
+                        {
+                            cod_zona = long.Parse(campo2);
+                            if (cod_zona == 0) cod_zona = 1;
+                            else cod_zona = _zonas[int.Parse(campo2)].Codigo;
+                        }
+                    }
+                    if (continuar && continuar_formulario && continuar_pergunta)
+                    {
+                        List<Resposta> resps = get_resposta(campos,cod_zona,perg_associada,ti);
+                        foreach (Resposta resp in resps)
+                            respostas.Add(resp);
+                    }
+                }
+            }
+            return respostas;
+        }
+
+        private List<Resposta> get_resposta(
+            List<string> campos, 
+            long cod_zona, 
+            PerguntaQuestionario p, 
+            TipoEscala ti)
+        {
+            List<Resposta> resps = new List<Resposta>();
+
+            foreach (string campo in campos)
+            {
+                short i_valor;
+                string s_valor;
+
+                if (ti.Numero != 0)
+                {
+                    s_valor = "";
+                    i_valor = (short)(short.Parse(campo) + 1);
+                }
+                else
+                {
+                    s_valor = campo;
+                    i_valor = -1;
+                }
+
+                if (ti.Numero == -2 && i_valor == 2)
+                {
                     Resposta resp = new Resposta(
                         cod_analise,
                         -1,
-                        questionario.Cod_Questionario,
                         -1,
-                        j,
-                        perg.Cod_Item,
-                        perg.Cod_zona != 0 ? perg.Cod_zona : 1,
-                        ti.Numero != 0 ? short.Parse(""),
-                        ti.Numero != 0 ? "",
+                        -1,
+                        p.Num_Pergunta,
+                        p.Cod_Item,
+                        p.Cod_zona != 0 ? p.Cod_zona : cod_zona,
+                        i_valor,
+                        s_valor,
                         -1,
                         ti.Numero != 0 ? Resposta.TipoResposta.RespostaNum : Resposta.TipoResposta.RespostaStr);
-                    
-                    if (ti.Numero != 0)
-                        questionario.add_resposta_numero(resp);
-                    else
-                        questionario.add_resposta_string(resp);
-                     * */
+                    resps.Add(resp);
+                }
+                else if (ti.Numero != -2)
+                {
+                    Resposta resp = new Resposta(
+                        cod_analise,
+                        -1,
+                        -1,
+                        -1,
+                        p.Num_Pergunta,
+                        p.Cod_Item,
+                        p.Cod_zona != 0 ? p.Cod_zona : cod_zona,
+                        i_valor,
+                        s_valor,
+                        -1,
+                        ti.Numero != 0 ? Resposta.TipoResposta.RespostaNum : Resposta.TipoResposta.RespostaStr);
+                    resps.Add(resp);
                 }
             }
-
-            return true;
+            return resps;
         }
 
-        #endregion
+        #region verificar Erros
+        private void verifica_numero_colunas(
+            int num_linha,
+            Dictionary<float, List<int>> _perguntas_colunas_ficheiro,
+            List<PerguntaQuestionario> _pergs,
+            Numero_Respostas _modo_num_respostas,
+            ref bool continuar,
+            ref bool continuar_formulario)
+        {
+            if (!tem_colunas_necessarias(num_linha, _perguntas_colunas_ficheiro, _pergs))
+            {
+                if (_modo_num_respostas == Numero_Respostas.Sair_Numero)
+                {
+                    erro = erro_numero_respostas;
+                    linha_erro = num_linha;
+                    continuar = false;
+                    continuar_formulario = false;
+                }
+                else
+                {
+                    numero_formularios_ignorados++;
+                    continuar_formulario = false;
+                }
+            }
+        }
+
+        public void verifica_campo(
+            int num_linha,
+            string _campo,
+            Respostas_Vazias _modo_respostas_vazias,
+            Valores_Respostas _modo_valores_respostas,
+            PerguntaQuestionario _perg,
+            ref bool continuar,
+            ref bool continuar_formulario,
+            ref bool continuar_pergunta)
+        {
+            #region Teste Respostas Vazias
+            /* Testar Repostas vazias */
+            if (soEspacos(_campo))
+            {
+                if (_modo_respostas_vazias == Respostas_Vazias.Sair_Vazias)
+                {
+                    erro = erro_repostastas_vazias;
+                    linha_erro = num_linha;
+                    numero_pergunta_erro = _perg.Num_Pergunta;
+                    continuar = false;
+                }
+                else if (_modo_respostas_vazias == Respostas_Vazias.Ignorar_Formulario)
+                {
+                    numero_formularios_ignorados++;
+                    continuar_formulario = false;
+                }
+                else if (_modo_respostas_vazias == Respostas_Vazias.Ignorar_Pergunta_Nao_QE &&
+                    _perg.TipoQuestao.Equals("qe"))
+                {
+                    numero_perguntas_ignoradas++;
+                    continuar_pergunta = false;
+                }
+                else
+                {
+                    numero_perguntas_ignoradas++;
+                    continuar_pergunta = false;
+                }
+            }
+            #endregion
+
+            TipoEscala ti = GestaodeRespostas.getTipoEscala(_perg.Cod_TipoEscala);
+
+            #region Teste Valor Resposta
+
+            if (ti.Numero != 0 &&
+                ti.Numero != 1 &&
+               (!soNumeros(_campo) ||
+               (short.Parse(_campo) + 1) <= 0 ||
+               (short.Parse(_campo) + 1) > ti.Respostas.Count))
+            {
+                if (_modo_valores_respostas == Valores_Respostas.Sair_Valores)
+                {
+                    erro = erro_valores_respostas;
+                    linha_erro = num_linha;
+                    numero_pergunta_erro = _perg.Num_Pergunta;
+                    continuar = false;
+                }
+                else if (_modo_valores_respostas == Valores_Respostas.Ignorar_Formulario)
+                {
+                    numero_formularios_ignorados++;
+                    continuar_formulario = false;
+                }
+                else if (_modo_valores_respostas == Valores_Respostas.Ignorar_Pergunta_Nao_QE &&
+                    _perg.TipoQuestao.Equals("qe"))
+                {
+                    numero_perguntas_ignoradas++;
+                    continuar_pergunta = false;
+                }
+                else
+                {
+                    numero_perguntas_ignoradas++;
+                    continuar_pergunta = false;
+                }
+            }
+            #endregion
+        }
+#endregion
 
         #endregion
 
+        #endregion
+
+        #region Outros
         private PerguntaQuestionario getPerguntaByNum(float num, List<PerguntaQuestionario> ps)
         {
             for (int i = 0; i < ps.Count; i++)
@@ -228,153 +442,24 @@ namespace ETdA.Camada_de_Dados.Classes
             return null;
         }
 
-        /*
-        private bool tem_colunas_necessarias(Dictionary<float, int> _perguntas_colunas_ficheiro)
+        private bool tem_colunas_necessarias(int linha, Dictionary<float, List<int>> _perguntas_colunas_ficheiro, List<PerguntaQuestionario> _pergs)
         {
-
             int num_colunas_necessarias = 0;
 
             for(int i = 0 ; i < _perguntas_colunas_ficheiro.Keys.Count ; i++)
             {
-                num_colunas_necessarias++;
-                PerguntaQuestionario p = getPerguntaByNum(_perguntas_colunas_ficheiro.Keys.ElementAt(i);
-                if (_perguntas_colunas_ficheiro[i].Cod_zona == 0)
+                PerguntaQuestionario p = getPerguntaByNum(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(p.Cod_TipoEscala);
+
+                if (ti.Numero == -2)
+                    num_colunas_necessarias += ti.Respostas.Count;
+                else
+                    num_colunas_necessarias++;
+
+                if (p.Cod_zona == 0)
                     num_colunas_necessarias++;
             }
-
-        }
-         */
-
-        /*
-        #region Questionario
-        public List<Questionario> importar_questionario()
-        {
-            List<Questionario> questionarios = new List<Questionario>();
-            List<PerguntaQue
-
-nario> pergs1 = GestaodeRespostas.getPerguntasQT(cod_analise);
-            List<Pergunta> pergs2 = new List<Pergunta>();
-            List<TipoEscala> tes = new List<TipoEscala>();
-
-            foreach (PerguntaQuestionario p in pergs1)
-            {
-                pergs2.Add(p);
-                tes.Add(GestaodeRespostas.getTipoEscala(p.Cod_TipoEscala));
-            }
-
-            string linha = null;
-            if ((linha = ficheiro.ReadLine()) != null)
-            {
-                if (!cabecalho_correcto(linha.Split(';'), Cabecalho.Sair_Numero_Tipo, pergs2))
-                {
-                    linha_erro = 1;
-                    return null;
-                }
-            }
-
-            int num_linha = 2;
-            while ((linha = ficheiro.ReadLine()) != null)
-            {
-                string[] linhaSeparada = linha.Split(';');
-
-                Questionario q = compoe_questionario(linhaSeparada,tes, pergs1);
-                if (q == null)
-                {
-                    linha_erro = num_linha;
-                    return null;
-                }
-                questionarios.Add(q);
-                num_linha++;
-            }
-            return questionarios;
-        }
-
-        public List<Questionario> importar_questionario(
-            Cabecalho _modo_cabecalho,
-            Numero_Respostas _modo_num_respostas,
-            Respostas_Vazias _modo_respostas_vazias,
-            Valores_Respostas _modo_valores_respostas)
-        {
-            // TODO
-            return null;
-        }
-
-        private Questionario compoe_questionario(String[] _rs, List<TipoEscala> _tes, List<PerguntaQuestionario> _pergs)
-        {
-            if (_tes.Count != _rs.Length){
-                erro = erro_numero_respostas;
-                return null;
-            }
-
-            Questionario q = new Questionario();
-            for (int i = 0; i < _rs.Length; i++)
-            {
-                if (soEspacos(_rs[i]))
-                {
-                    erro = erro_repostastas_vazias;
-                    numero_pergunta_erro = i;
-                    return null;
-                }
-                switch (_tes.ElementAt(i).Numero)
-                {
-                    // string
-                    case 0:
-                        RespostaQuestionarioString r1 = 
-                            new RespostaQuestionarioString(
-                                -1,
-                                _rs[i],
-                                _pergs.ElementAt(i).Cod_Pergunta,
-                                i);
-                        q.add_resposta_string(r1);
-                        break;
-                    // strings grandes
-                    case 1:
-                        RespostaQuestionarioString r2 = 
-                            new RespostaQuestionarioString(
-                                -1,
-                                _rs[i],
-                                _pergs.ElementAt(i).Cod_Pergunta,
-                                i);
-                        q.add_resposta_memo(r2);
-                        break;
-                    // numeros
-                    default:
-                        if (!soNumeros(_rs[i]))
-                        {
-                            erro = erro_valores_respostas;
-                            numero_pergunta_erro = i;
-                            return null;
-                        }
-
-                        int res = int.Parse(_rs[i]);
-                        if (_tes.ElementAt(i).Numero != 1 &&
-                            res < 1 || res > _tes.ElementAt(i).Respostas.Count)
-                        {
-                            erro = erro_valores_respostas;
-                            numero_pergunta_erro = i;
-                            return null;
-                        }
-                        RespostaQuestionarioNumero r3 = 
-                            new RespostaQuestionarioNumero(
-                                -1,
-                                res,
-                                _pergs.ElementAt(i).Cod_Pergunta,
-                                i);
-                        q.add_resposta_numero(r3);
-                        break;
-                }
-            }
-            return q;
-        }
-
-        private bool soEspacos(string s)
-        {
-            if (s == "") return true;
-            string possiveis = " \n\t";
-            bool found = true;
-            for (int i = 0; i < s.Length && found; i++)
-                found = possiveis.Contains(s[i]);
-            return found;
+            return valores[linha].Length >= num_colunas_necessarias;
         }
 
         private bool soNumeros(string s)
@@ -387,8 +472,15 @@ nario> pergs1 = GestaodeRespostas.getPerguntasQT(cod_analise);
             return found;
         }
 
-
+        private bool soEspacos(string s)
+        {
+            if (s == "") return true;
+            string possiveis = " \t\n";
+            bool found = true;
+            for (int i = 0; i < s.Length && found; i++)
+                found = possiveis.Contains(s[i]);
+            return found;
+        }
         #endregion
-         * */
     }
 }
