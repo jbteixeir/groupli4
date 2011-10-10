@@ -54,9 +54,10 @@ namespace ETdA.Camada_de_Interface
 
         private void init()
         {
-            string[] pergs = new string[ps.Count];
+            string[] pergs = new string[ps.Count+1];
+            pergs[0] = "";
             for (int i = 0; i < ps.Count; i++)
-                pergs[i] = "P:" + ps[i].Num_Pergunta.ToString();
+                pergs[i+1] = "P:" + ps[i].Num_Pergunta.ToString();
 
             foreach (string s in ie.Colunas)
             {
@@ -109,14 +110,50 @@ namespace ETdA.Camada_de_Interface
 
             if (verifica_cabecalho(ref perguntas_colunas_ficheiro))
             {
+                Importer_Exporter.Numero_Respostas n_r;
+                Importer_Exporter.Respostas_Vazias r_v;
+                Importer_Exporter.Valores_Respostas v_r;
 
+                if (radioButton1.Checked)
+                    n_r = Importer_Exporter.Numero_Respostas.Sair_Numero;
+                else
+                    n_r = Importer_Exporter.Numero_Respostas.Ignorar_Formulario;
+                if (radioButton3.Checked)
+                    r_v = Importer_Exporter.Respostas_Vazias.Sair_Vazias;
+                else if (radioButton4.Checked)
+                    r_v = Importer_Exporter.Respostas_Vazias.Ignorar_Formulario;
+                else if (radioButton5.Checked)
+                    r_v = Importer_Exporter.Respostas_Vazias.Ignorar_Pergunta;
+                else
+                    r_v = Importer_Exporter.Respostas_Vazias.Ignorar_Pergunta_Nao_QE;
+                if (radioButton7.Checked)
+                    v_r = Importer_Exporter.Valores_Respostas.Sair_Valores;
+                else if (radioButton8.Checked)
+                    v_r = Importer_Exporter.Valores_Respostas.Ignorar_Formulario;
+                else if (radioButton9.Checked)
+                    v_r = Importer_Exporter.Valores_Respostas.Ignorar_Pergunta;
+                else
+                    v_r = Importer_Exporter.Valores_Respostas.Ignorar_Pergunta_Nao_QE;
+
+                List<PerguntaQuestionario> pergs = new List<PerguntaQuestionario>();
+                foreach (Pergunta p in ps)
+                    pergs.Add((PerguntaQuestionario)p);
+
+                if (ie.importar_questionario(n_r, r_v, v_r, zonas, pergs, perguntas_colunas_ficheiro))
+                {
+                    string result = "Resultados\nForam importados " + ie.Formularios.Count + " formulários com sucesso.\nForam ignorados " + ie.Formularios_Ignorados + " formulários.\nForam ignoradas " + ie.Perguntas_Ignoradas + " respostas.";
+                    MessageBox.Show(result, "Resultados");
+                }
+                else
+                {
+                    MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.Linha_Erro);
+                    dataGridView2.Rows[ie.Linha_Erro - 1].Selected = true;
+                }
             }
         }
 
         private void CellValueChangedActionPerformed(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(sender.GetType().ToString());
-            
             DataGridViewCell cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
             if (erros.ContainsKey(cell))
                 erros.Remove(cell);
@@ -138,45 +175,61 @@ namespace ETdA.Camada_de_Interface
             DataGridViewRow row = dataGridView1.Rows[0];
             for (int i = 0; i < row.Cells.Count; i++)
             {
-                if (!((string)row.Cells[i].Value).Equals(""))
+                if (row.Cells[i].Value != null)
                 {
-                    float num_pergunta = float.Parse(((string)row.Cells[i].Value).Split(':')[1]);
-                    TipoEscala ti = GestaodeRespostas.getTipoEscala(getPerguntaByNum(num_pergunta).Cod_TipoEscala);
-
-                    /* Perguntas cuja resposta tem o valor e o cod_zona */
-                    if (((PerguntaQuestionario)getPerguntaByNum(num_pergunta)).Cod_zona == 0 && 
-                        (i + 1 >= row.Cells.Count || 
-                        !((string)row.Cells[i].Value).Equals("")))
+                    if (!row.Cells[i].Value.Equals(""))
                     {
-                        if (i + 1 >= row.Cells.Count)
-                        {
-                            if (!erros.ContainsKey(row.Cells[i]))
-                                erros.Add(row.Cells[i], "Esta coluna não pode ser associada a pergunta escolhida, pois esta necessita de duas colunas de respostas consecutivas.");
-                        }
-                        else
-                        {
-                            if (!erros.ContainsKey(row.Cells[i + 1]))
-                                erros.Add(row.Cells[i + 1], "Esta coluna não pode ser associada a nenhuma pergunta pois a coluna anterior está associada a uma pergunta que necessita de duas colunas de respostas consecutivas.");
-                        }
-                        setErroStateBar();
-                        return_value =  false;
-                    }
+                        float num_pergunta = float.Parse(((string)row.Cells[i].Value).Split(':')[1]);
+                        TipoEscala ti = GestaodeRespostas.getTipoEscala(getPerguntaByNum(num_pergunta).Cod_TipoEscala);
 
-                    /* Perguntas cujo tipo de resposta tem apenas um valor nao pode ter duas colunas */
-                    if (_perguntas_colunas_ficheiro.ContainsKey(num_pergunta))
-                    {
-                        if (ti.Numero == -2)
-                            _perguntas_colunas_ficheiro[num_pergunta].Add(i);
-                        else
+                        /* Perguntas cuja resposta tem o valor e o cod_zona */
+                        if (((PerguntaQuestionario)getPerguntaByNum(num_pergunta)).Cod_zona == 0 &&
+                            (i + 1 >= row.Cells.Count ||
+                            !((string)row.Cells[i].Value).Equals("")))
                         {
-                            if (!erros.ContainsKey(row.Cells[i]))
-                                erros.Add(row.Cells[i], "Pergunta já associada a uma coluna");
+                            if (i + 1 >= row.Cells.Count)
+                            {
+                                if (!erros.ContainsKey(row.Cells[i]))
+                                    erros.Add(row.Cells[i], "Esta coluna não pode ser associada a pergunta escolhida, pois esta necessita de duas colunas de respostas consecutivas.");
+                            }
+                            else
+                            {
+                                if (!erros.ContainsKey(row.Cells[i + 1]))
+                                    erros.Add(row.Cells[i + 1], "Esta coluna não pode ser associada a nenhuma pergunta pois a coluna anterior está associada a uma pergunta que necessita de duas colunas de respostas consecutivas.");
+                            }
                             setErroStateBar();
                             return_value = false;
                         }
+
+                        /* Perguntas cujo tipo de resposta tem apenas um valor nao pode ter duas colunas */
+                        if (_perguntas_colunas_ficheiro.ContainsKey(num_pergunta))
+                        {
+                            if (ti.Numero == -2)
+                                _perguntas_colunas_ficheiro[num_pergunta].Add(i);
+                            else
+                            {
+                                if (!erros.ContainsKey(row.Cells[i]))
+                                    erros.Add(row.Cells[i], "Pergunta já associada a uma coluna");
+                                setErroStateBar();
+                                return_value = false;
+                            }
+                        }
+                        else
+                            _perguntas_colunas_ficheiro.Add(num_pergunta, new List<int>() { i });
                     }
                     else
-                        _perguntas_colunas_ficheiro.Add(num_pergunta, new List<int>() { i });
+                    {
+                        for (int j = 0; j < _perguntas_colunas_ficheiro.Keys.Count; j++)
+                        {
+                            float key = _perguntas_colunas_ficheiro.Keys.ElementAt(j);
+                            if (_perguntas_colunas_ficheiro[key].Contains(i))
+                            {
+                                _perguntas_colunas_ficheiro[key].Remove(i);
+                                if (_perguntas_colunas_ficheiro[key].Count == 0)
+                                    _perguntas_colunas_ficheiro.Remove(key);
+                            }
+                        }
+                    }
                 }
             }
             return return_value;
