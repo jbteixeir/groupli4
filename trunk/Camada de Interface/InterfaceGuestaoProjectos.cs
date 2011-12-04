@@ -585,7 +585,7 @@ namespace ETdA.Camada_de_Interface
                 label2.Name = "label2";
                 label2.Size = new System.Drawing.Size(139, 18);
                 label2.TabIndex = 0;
-                label2.Text = "Analises desde projecto";
+                label2.Text = "Lista de analises";
                 // 
                 // label3
                 // 
@@ -730,6 +730,7 @@ namespace ETdA.Camada_de_Interface
                     y += 25;
                 }
             }
+
             tabControl1.SelectedIndex = getTabNumber(codp);
         }
 
@@ -1821,8 +1822,7 @@ namespace ETdA.Camada_de_Interface
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(coda);
                 //Apagar do ETdA
                 GestaodeAnalises.removerAnalise(codp, coda);
-                //Actualizar o interface
-                RefreshInterface();
+
                 //Apagar Analise do TreeView
                 bool found = false;
                 for (int i = 0; i < treeView_Projectos.Nodes.Count && !found; i++)
@@ -1841,6 +1841,9 @@ namespace ETdA.Camada_de_Interface
                         }
                     }
                 }
+
+                //Actualizar o interface
+                RefreshInterface();
             }
         }
 
@@ -1854,8 +1857,7 @@ namespace ETdA.Camada_de_Interface
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarProjecto(long.Parse(tsi.Name));
                 //Apagar do ETdA
                 Camada_de_Dados.ETdA.ETdA.removeProjecto(long.Parse(tsi.Name));
-                //Actualizar o interface
-                RefreshInterface();
+                
                 //Apagar Projecto do Treeview
                 bool found = false;
                 for (int i = 0; i < treeView_Projectos.Nodes.Count && !found; i++)
@@ -1864,6 +1866,9 @@ namespace ETdA.Camada_de_Interface
                         treeView_Projectos.Nodes[i].Remove();
                         found = true;
                     }
+                
+                //Actualizar o interface
+                RefreshInterface();
             }
         }
         #endregion
@@ -1874,15 +1879,7 @@ namespace ETdA.Camada_de_Interface
 
         public void RefreshInterface()
         {
-            //actualização das listas dos menus
-            novaAnaliseToolStripMenuItem.DropDownItems.Clear();
-            novaAnaliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuCriarAnalise());
-
-            apagarProjectoToolStripMenuItem.DropDownItems.Clear();
-            apagarProjectoToolStripMenuItem.DropDownItems.AddRange(getToolStripApagarProjecto());
-
-            apagarAnáliseToolStripMenuItem.DropDownItems.Clear();
-            apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetFullToolStripMenuApagarAnalise());
+            RefreshInterfaceMenus();
 
             //pagina inicial
             if (tabControl1.Pages.Contains("StartPage"))
@@ -1893,25 +1890,16 @@ namespace ETdA.Camada_de_Interface
                 initPaginaInicial();
             }
 
-            //abas 
+            //separadores
             foreach (System.Windows.Forms.TabPage tb in tabControl1.TabPages)
             {
                 if (tb.Name != "StartPage")
                 {
                     string[] cods = tb.Name.Split('.');
-                    if (cods.Count() == 1)
+                    long codp = long.Parse(cods[0]);
+
+                    if (cods.Count() == 2)
                     {
-                        long codp = long.Parse(cods[0]);
-                        if (tabControl1.Pages.Contains(tb.Name))
-                        {
-                            fecharPagina(tb.Name);
-                            if (GestaodeProjectos.Cod_names_Projects().ContainsKey(codp))
-                                initPaginaProjecto(tb.Text, tb.Name);
-                        }
-                    }
-                    else if (cods.Count() == 2)
-                    {
-                        long codp = long.Parse(cods[0]);
                         long coda = long.Parse(cods[1]);
                         if (tabControl1.Pages.Contains(tb.Name))
                         {
@@ -1920,9 +1908,30 @@ namespace ETdA.Camada_de_Interface
                                 initPaginaAnalise(codp, coda, tb.Text);
                         }
                     }
-
+                    else if (cods.Count() == 1)
+                    {
+                        if (tabControl1.Pages.Contains(tb.Name))
+                        {
+                            fecharPagina(tb.Name);
+                            if (GestaodeProjectos.Cod_names_Projects().ContainsKey(codp))
+                                initPaginaProjecto(tb.Text, tb.Name);
+                        }
+                    }
                 }
             }
+        }
+
+        public void RefreshInterfaceMenus()
+        {
+            //actualização das listas dos menus
+            novaAnaliseToolStripMenuItem.DropDownItems.Clear();
+            novaAnaliseToolStripMenuItem.DropDownItems.AddRange(GetToolStripMenuCriarAnalise());
+
+            apagarProjectoToolStripMenuItem.DropDownItems.Clear();
+            apagarProjectoToolStripMenuItem.DropDownItems.AddRange(getToolStripApagarProjecto());
+
+            apagarAnáliseToolStripMenuItem.DropDownItems.Clear();
+            apagarAnáliseToolStripMenuItem.DropDownItems.AddRange(GetFullToolStripMenuApagarAnalise());
         }
 
         #endregion

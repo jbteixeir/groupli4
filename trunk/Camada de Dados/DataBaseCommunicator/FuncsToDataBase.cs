@@ -45,8 +45,12 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
                 return true;
             }
-            catch
+            catch(SqlException ex)
             {
+                if (ex.Number == 1801 || ex.Number == 15025 || ex.Number == 2714)
+                {
+                    MessageBox.Show("Nome de utilizador já existente. Por favor escolha um nome diferente.");
+                }
                 return false;
             }
         }

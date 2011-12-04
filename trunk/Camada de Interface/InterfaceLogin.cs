@@ -19,9 +19,6 @@ namespace ETdA.Camada_de_Interface
         public InterfaceLogin()
         {
             InitializeComponent();
-            label1.Visible = false;
-            label2.Visible = false;
-            label3.Visible = false;
         }
 
         private void Login_Click(object sender, EventArgs e)
@@ -42,9 +39,7 @@ namespace ETdA.Camada_de_Interface
             else
             {	//  Se nao tem connectividade a internet, ou o username ou a pass
                 // estao mal
-                label1.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
+
             }
 
         }

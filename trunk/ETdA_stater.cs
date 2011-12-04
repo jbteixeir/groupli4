@@ -32,8 +32,10 @@ namespace ETdA_starter
                         InterfaceLogin.main();
                     }
                     else
-                        MessageBox.Show("Não foi possível ligar à base de dados", "Erro de ligação",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    {
+                        Interface_ConfigurarLigacaoBD.main();
+                        InterfaceLogin.main();
+                    }
                 }
             }
             else
