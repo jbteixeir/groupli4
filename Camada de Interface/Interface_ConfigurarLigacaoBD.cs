@@ -70,6 +70,7 @@ namespace ETdA.Camada_de_Interface
                 this.textBox4.Enabled = false;
 
                 this.button1.Text = "Alterar";
+                this.button3.Enabled = false;
 
                 //informar do sucesso da operação
                 MessageBoxPortuguese.Show("", "Alteração efectuado com sucesso.",
@@ -92,6 +93,7 @@ namespace ETdA.Camada_de_Interface
                     this.textBox4.Enabled = true;
 
                     this.button1.Text = "Guardar";
+                    this.button3.Enabled = true;
 
                 }
             }
@@ -100,6 +102,12 @@ namespace ETdA.Camada_de_Interface
         private void clickAjuda(object sender, EventArgs e)
         {
             Interface_Ajuda.main();
+        }
+
+        private void testarLigacao(object sender, EventArgs e)
+        {
+            if (Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.connectToSuper(textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text))
+                MessageBox.Show("Configuração da ligação ao servidor SQL server efectuada com sucesso!");
         }
 
     }

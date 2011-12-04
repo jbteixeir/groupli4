@@ -153,6 +153,13 @@ namespace ETdA.Camada_de_Dados.ETdA
         public static void removeProjecto(long codProjecto)
         {
             cod_nome_projectos.Remove(codProjecto);
+
+            foreach (Analise a in projectos[codProjecto].Analises.Values)
+            {
+                Camada_de_Negócio.GestaodeAnalises.removerAnalise(codProjecto, a.Codigo);
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(a.Codigo);
+            }
+            
             projectos.Remove(codProjecto);
         }
         public static void modificaProjecto(Projecto p)

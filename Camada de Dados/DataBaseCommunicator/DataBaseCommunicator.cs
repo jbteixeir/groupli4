@@ -69,7 +69,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                //servidor base de dados unreachable / ligacao inexistente
+                if (ex.Number == 53 || ex.Number == 40)
+                    MessageBox.Show("O servidor SQL server a que se está a tentar ligar não se encontra disponível, por favor verifique a sua ligação à internet, e as configurações da ligação ao servidor de base de dados.");
+                //base de dados nao existe
+                if (ex.Number == 4060)
+                    MessageBox.Show("A base de dados ao qual se está a tentar ligar não existe ou não está disponível.");
+                //login errado 
+                if (ex.Number == 18456)
+                    MessageBox.Show("Utilizador ou palavra-chave errados, por favor tente novamente.");
+
+                //MessageBox.Show(ex.Message);
                 return false;
             }
         }
@@ -94,7 +104,18 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 			}
 			catch (SqlException ex)
 			{
-                MessageBox.Show(ex.Message);
+                //servidor base de dados unreachable / ligacao inexistente
+                if (ex.Number == 53 || ex.Number == 40)
+                    MessageBox.Show("O servidor SQL server a que se está a tentar ligar não se encontra disponível, por favor verifique a sua ligação à internet, e as configurações da ligação ao servidor de base de dados.");
+                //base de dados nao existe
+                if (ex.Number == 4060)
+                    MessageBox.Show("A base de dados ao qual se está a tentar ligar não existe ou não está disponível.");
+                //login errado 
+                if (ex.Number == 18456)
+                    MessageBox.Show("Utilizador ou palavra-chave errados, por favor tente novamente.");
+
+                //MessageBox.Show(ex.Number +" - " +ex.Message);
+                
 				return false;
 			}
         }
@@ -118,7 +139,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         /*
          * Executa query's sem ser de leitura à base de dados
          */
-        public static void query(string query)
+        public static void query(string query) 
         {
             try
             {
@@ -127,9 +148,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 command.ExecuteNonQuery();
                 command.Dispose();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
         }
 
