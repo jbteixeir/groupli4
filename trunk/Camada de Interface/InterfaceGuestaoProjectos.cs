@@ -1423,6 +1423,7 @@ namespace ETdA.Camada_de_Interface
             }
             else if (checkBox1.Checked == false)
             {
+                /* Não necessita de ter as perguntas já feitas para a colocar online */
                 checkBox1.Text = "Activar";
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codp, coda, false);
             }
@@ -1437,8 +1438,19 @@ namespace ETdA.Camada_de_Interface
 
             if (checkBox2.Checked == true)
             {
-                checkBox2.Text = "Desactivar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codp, coda, true);
+                /* Verificar se tem as perguntas FA feitas */
+                if (GestaodeRespostas.isFAcreated(coda))
+                {
+                    checkBox2.Text = "Desactivar";
+                    Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codp, coda, true);
+                }
+                else
+                {
+                    checkBox2.Checked = false;
+                    DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar a Ficha de Avaliação.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
+                    if (resultado == DialogResult.Yes)
+                        PerguntasAction(null, null);
+                }
             }
             else if (checkBox2.Checked == false)
             {
@@ -1456,8 +1468,19 @@ namespace ETdA.Camada_de_Interface
 
             if (checkBox3.Checked == true)
             {
-                checkBox3.Text = "Desactivar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codp, coda, true);
+                /* Verificar se tem as perguntas QT feitas */
+                if (GestaodeRespostas.isQTcreated(coda))
+                {
+                    checkBox3.Text = "Desactivar";
+                    Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codp, coda, true);
+                }
+                else
+                {
+                    checkBox3.Checked = false;
+                    DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar o Questionário.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
+                    if (resultado == DialogResult.Yes)
+                        PerguntasAction(null, null);
+                }
             }
             else if (checkBox3.Checked == false)
             {
@@ -1469,14 +1492,15 @@ namespace ETdA.Camada_de_Interface
         #endregion
 
         private void importer(object sender, EventArgs e)
-		{
+        {
             long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
             long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+
             List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codProjecto, codAnalise);
             List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
 
-			Interface_Importer.main(codAnalise,zonas,itens);
-		}
+            Interface_Importer.main(codAnalise, zonas, itens);
+        }
 
         // rdone
         private void GerarRelatorio(object sender, EventArgs e)

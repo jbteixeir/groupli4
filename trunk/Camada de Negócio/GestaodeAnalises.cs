@@ -51,7 +51,11 @@ namespace ETdA.Camada_de_Negócio
 
 
 
-
+        public static void modificaPonderacoes(List<Item> itens)
+        {
+            foreach (Item i in itens)
+                FuncsToDataBase.updateItemAnalise(i);
+        }
 
         public static void adicionaAnalise(Analise a, long codProjecto){
             Camada_de_Dados.ETdA.ETdA.getProjecto(codProjecto).adicionaNovaAnalise(a.Tipo, a.Nome, a.Zonas, a.Itens);

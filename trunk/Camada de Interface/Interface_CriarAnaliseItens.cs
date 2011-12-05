@@ -33,6 +33,7 @@ namespace ETdA.Camada_de_Interface
         private Dictionary<object, ErrorProvider> erros;
         private List<Item> itens;
         private bool adding; // se esta a adicionar ou a ver os itens
+        private bool editing;
 
         public Interface_CriarAnaliseItens(object o, bool b)
         {
@@ -44,6 +45,7 @@ namespace ETdA.Camada_de_Interface
             erros = new Dictionary<object, ErrorProvider>();
             itens = (List<Item>) o;
             adding = b;
+            editing = false;
 
             done_action += new eventoEventHandler(
                Camada_de_Interface.Interface_CriarAnalise.ItensOkReenc);
@@ -89,9 +91,9 @@ namespace ETdA.Camada_de_Interface
                     checkedListBox1.Items.Add(itens[i].NomeItem, CheckState.Checked);
                 button1.Visible = false;
                 button2.Visible = false;
-                button4.Visible = false;
                 textBox1.Visible = false;
                 checkedListBox1.Enabled = false;
+                button4.Text = "Editar";
             }
         }
 
@@ -390,66 +392,150 @@ namespace ETdA.Camada_de_Interface
 
         private void OK_ActionPerformed(object sender, EventArgs e)
         {
-            if (verificaErros())
+            #region Adicionar
+            if (adding)
             {
-                List<string> nome_novos = new List<string>();
-                List<Item> itens = new List<Item>();
-
-                foreach (string s in checkedListBox1.CheckedItems)
+                if (verificaErros())
                 {
-                    Item i = new Item();
-                    long cod = -1;
+                    List<string> nome_novos = new List<string>();
+                    List<Item> itens = new List<Item>();
 
-                    bool found = false; 
-                    for (int j = 0 ; j < alls.Values.Count && !found; j++ )
-                        if(alls.Values.ElementAt(j) == s)
+                    foreach (string s in checkedListBox1.CheckedItems)
+                    {
+                        Item i = new Item();
+                        long cod = -1;
+
+                        bool found = false;
+                        for (int j = 0; j < alls.Values.Count && !found; j++)
+                            if (alls.Values.ElementAt(j) == s)
+                            {
+                                cod = alls.Keys.ElementAt(j);
+                                found = true;
+                            }
+
+                        if (found)
                         {
-                            cod = alls.Keys.ElementAt(j);
-                            found = true;
+                            i.CodigoItem = cod;
+                        }
+                        else
+                        {
+                            nome_novos.Add(s);
+                            i.Default = 0;
                         }
 
-                    if (found)
-                    {
-                        i.CodigoItem = cod;
+                        i.NomeItem = s;
+                        Dictionary<string, object> bs = panels[s];
+                        NumericUpDown n1 = (NumericUpDown)bs[s1];
+                        NumericUpDown n2 = (NumericUpDown)bs[s2];
+                        NumericUpDown n3 = (NumericUpDown)bs[s3];
+                        TextBox b1 = (TextBox)bs[s4];
+                        TextBox b2 = (TextBox)bs[s5];
+                        TextBox b3 = (TextBox)bs[s6];
+                        TextBox b4 = (TextBox)bs[s7];
+                        TextBox b5 = (TextBox)bs[s8];
+                        NumericUpDown n4 = (NumericUpDown)bs[s9];
+
+                        i.PonderacaoAnalista = double.Parse(n1.Value.ToString());
+                        i.PonderacaoProfissional = double.Parse(n2.Value.ToString());
+                        i.PonderacaoCliente = double.Parse(n3.Value.ToString());
+                        i.Inter_Vermelho = double.Parse(b1.Text);
+                        i.Inter_Laranja = double.Parse(b2.Text);
+                        i.Inter_Amarelo = double.Parse(b3.Text);
+                        i.Inter_Verde_Lima = double.Parse(b4.Text);
+                        i.Inter_Verde = double.Parse(b5.Text);
+                        i.LimiteInferiorAnalista = double.Parse(n4.Value.ToString());
+
+                        itens.Add(i);
                     }
-                    else
-                    {
-                        nome_novos.Add(s);
-                        i.Default = 0;
-                    }
 
-                    i.NomeItem = s;
-                    Dictionary<string, object> bs = panels[s];
-                    NumericUpDown n1 = (NumericUpDown)bs[s1];
-                    NumericUpDown n2 = (NumericUpDown)bs[s2];
-                    NumericUpDown n3 = (NumericUpDown)bs[s3];
-                    TextBox b1 = (TextBox)bs[s4];
-                    TextBox b2 = (TextBox)bs[s5];
-                    TextBox b3 = (TextBox)bs[s6];
-                    TextBox b4 = (TextBox)bs[s7];
-                    TextBox b5 = (TextBox)bs[s8];
-                    NumericUpDown n4 = (NumericUpDown)bs[s9];
+                    List<object> obs = new List<object>();
+                    obs.Add(itens);
+                    obs.Add(nome_novos);
 
-                    i.PonderacaoAnalista = double.Parse(n1.Value.ToString());
-                    i.PonderacaoProfissional = double.Parse(n2.Value.ToString());
-                    i.PonderacaoCliente = double.Parse(n3.Value.ToString());
-                    i.Inter_Vermelho = double.Parse(b1.Text);
-                    i.Inter_Laranja = double.Parse(b2.Text);
-                    i.Inter_Amarelo = double.Parse(b3.Text);
-                    i.Inter_Verde_Lima = double.Parse(b4.Text);
-                    i.Inter_Verde = double.Parse(b5.Text);
-                    i.LimiteInferiorAnalista = double.Parse(n4.Value.ToString());
-
-                    itens.Add(i);
+                    done_action(obs, new EventArgs());
+                    end_Frame();
                 }
-
-                List<object> obs = new List<object>();
-                obs.Add(itens);
-                obs.Add(nome_novos);
-
-                done_action(obs, new EventArgs());
-                end_Frame();
             }
+            #endregion
+            #region Editar
+            else
+            {
+                #region Colocar tudo enable
+                if (!editing)
+                {
+                    foreach (Dictionary<string,object> dic in panels.Values)
+                    {
+                        NumericUpDown n1 = (NumericUpDown)dic[s1];
+                        NumericUpDown n2 = (NumericUpDown)dic[s2];
+                        NumericUpDown n3 = (NumericUpDown)dic[s3];
+                        TextBox b1 = (TextBox)dic[s4];
+                        TextBox b2 = (TextBox)dic[s5];
+                        TextBox b3 = (TextBox)dic[s6];
+                        TextBox b4 = (TextBox)dic[s7];
+                        TextBox b5 = (TextBox)dic[s8];
+                        NumericUpDown n4 = (NumericUpDown)dic[s9];
+
+                        n1.Enabled = true;
+                        n2.Enabled = true;
+                        n3.Enabled = true;
+                        n4.Enabled = true;
+                        b1.Enabled = true;
+                        b2.Enabled = true;
+                        b3.Enabled = true;
+                        b4.Enabled = true;
+                        b5.Enabled = true;
+                    }
+                    button4.Text = "Guardar";
+                    editing = true;
+                }
+                #endregion
+                #region Guardar as alterações
+                else
+                {
+                    foreach (Item i in itens)
+                    {
+                        Dictionary<string, object> dic = panels[i.NomeItem];
+
+                        NumericUpDown n1 = (NumericUpDown)dic[s1];
+                        NumericUpDown n2 = (NumericUpDown)dic[s2];
+                        NumericUpDown n3 = (NumericUpDown)dic[s3];
+                        TextBox b1 = (TextBox)dic[s4];
+                        TextBox b2 = (TextBox)dic[s5];
+                        TextBox b3 = (TextBox)dic[s6];
+                        TextBox b4 = (TextBox)dic[s7];
+                        TextBox b5 = (TextBox)dic[s8];
+                        NumericUpDown n4 = (NumericUpDown)dic[s9];
+
+                        i.PonderacaoAnalista = double.Parse(n1.Value.ToString());
+                        i.PonderacaoProfissional = double.Parse(n2.Value.ToString());
+                        i.PonderacaoCliente = double.Parse(n3.Value.ToString());
+                        i.Inter_Vermelho = double.Parse(b1.Text);
+                        i.Inter_Laranja = double.Parse(b2.Text);
+                        i.Inter_Amarelo = double.Parse(b3.Text);
+                        i.Inter_Verde_Lima = double.Parse(b4.Text);
+                        i.Inter_Verde = double.Parse(b5.Text);
+                        i.LimiteInferiorAnalista = double.Parse(n4.Value.ToString());
+
+                        n1.Enabled = false;
+                        n2.Enabled = false;
+                        n3.Enabled = false;
+                        n4.Enabled = false;
+                        b1.Enabled = false;
+                        b2.Enabled = false;
+                        b3.Enabled = false;
+                        b4.Enabled = false;
+                        b5.Enabled = false;
+
+                        button4.Text = "Editar";
+                        editing = false;
+
+                        /* Fazer o update */
+                        GestaodeAnalises.modificaPonderacoes(itens);
+                    }
+                }
+                #endregion
+            }
+            #endregion
         }
 
         #region verificação de erros

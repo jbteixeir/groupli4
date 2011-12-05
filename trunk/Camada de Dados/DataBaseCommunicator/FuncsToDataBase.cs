@@ -520,17 +520,17 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         //Revisto
         public static void updateItemAnalise(Item i)
         {
-            String query = "update item_analise set "
-                + "ponderacao_analista = " + i.PonderacaoAnalista + ","
-                + "ponderacao_profissional = " + i.PonderacaoProfissional + ","
-                + "ponderacao_cliente = " + i.PonderacaoCliente
-                + "inter_vermelho = " + i.Inter_Vermelho
-                + "inter_laranja = " + i.Inter_Laranja
-                + "inter_amarelo = " + i.Inter_Amarelo
-                + "inter_verdelima = " + i.Inter_Verde_Lima
-                + "inter_verde = " + i.Inter_Verde
-                + "limite_inferior_analista = " + i.LimiteInferiorAnalista
-                + "where cod_item = " + i.CodigoItem + ";";
+            String query = "update item_analise set " + 
+                "ponderacao_analista = " + (i.PonderacaoAnalista * 1000).ToString("0,000") + "," + 
+                "ponderacao_profissional = " + (i.PonderacaoProfissional * 1000).ToString("0,000") + "," + 
+                "ponderacao_cliente = " + (i.PonderacaoCliente * 1000).ToString("0,000") + "," + 
+                "inter_vermelho = " + (i.Inter_Vermelho * 1000).ToString("0,000") + "," + 
+                "inter_laranja = " + (i.Inter_Laranja * 1000).ToString("0,000") + "," + 
+                "inter_amarelo = " + (i.Inter_Amarelo * 1000).ToString("0,000") + "," +
+                "inter_verdelima = " + (i.Inter_Verde_Lima * 1000).ToString("0,000") + "," + 
+                "inter_verde = " + (i.Inter_Verde * 1000).ToString("0,000") + "," +
+                "limite_inferior_analista = " + (i.LimiteInferiorAnalista * 1000).ToString("0,000") + " " + 
+                "where cod_item = " + i.CodigoItem + ";";
 
             Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.query(query);
         }
