@@ -125,6 +125,14 @@ namespace ETdA.Camada_de_Interface
         {
             bool ok = true;
 
+            string key = panel1.Controls[0].Text;
+            int indice = int.Parse(panel1.Controls[1].Text.Split(' ')[1]);
+            if (fa && resps[key][indice].Numero < 2)
+            {
+                ok = false;
+                erro += "Apenas pode seleccionar respostas que sejam do tipo 'Uma Opção'.";
+            }
+
             for (int i = 0; i < novos.Count && ok; i++)
             {
                 erro = "Tipo de Resposta em " + novos[i].Descricao + "\n";

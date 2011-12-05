@@ -80,12 +80,12 @@ namespace ETdA.Camada_de_Interface
                     if (!GestaodeRespostas.canEditFA(codAnalise))
                         MessageBox.Show("Não é possível editar, porque já foram adcionadas respostas ou porque o Website está online.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
-                        Interface_Perguntas.main(codAnalise, itens, fa);
+                        Interface_Perguntas.main(codAnalise, itens, fa,true);
                 }
             }
             else
             {
-                Interface_Perguntas.main(codAnalise, itens, fa);
+                Interface_Perguntas.main(codAnalise, itens, fa,true);
             }
         }
 

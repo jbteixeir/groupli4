@@ -96,14 +96,14 @@ namespace ETdA.Camada_de_Interface
 
         private int numero_zona(long cod_zona)
         {
-            if (cod_zona == -1) return 1;
+            if (cod_zona == 1) return 1;
             if (cod_zona == 0) return 0;
             int i;
             bool found = false;
             for (i = 0; i < zonas.Count && !found; i++)
                 if (cod_zona == zonas[i].Codigo)
                     found = true;
-            return i;
+            return i+1;
         }
 
         private void init_perg_q()
@@ -116,7 +116,7 @@ namespace ETdA.Camada_de_Interface
                 PerguntaQuestionario p = new PerguntaQuestionario(
                     codAnalise,
                     1,
-                    -1,
+                    1,
                     -1,
                     "Idade:",
                     9,
@@ -127,7 +127,7 @@ namespace ETdA.Camada_de_Interface
                 p = new PerguntaQuestionario(
                     codAnalise,
                     2,
-                    -1,
+                    1,
                     -1,
                     "Género",
                     8,
@@ -138,7 +138,7 @@ namespace ETdA.Camada_de_Interface
                 p = new PerguntaQuestionario(
                     codAnalise,
                     3,
-                    -1,
+                    1,
                     -1,
                     "Profissão",
                     10,
@@ -149,7 +149,7 @@ namespace ETdA.Camada_de_Interface
                 p = new PerguntaQuestionario(
                     codAnalise,
                     4,
-                    -1,
+                    1,
                     -1,
                     "Habilitações Literárias",
                     11,
@@ -160,7 +160,7 @@ namespace ETdA.Camada_de_Interface
                 p = new PerguntaQuestionario(
                     codAnalise,
                     5,
-                    -1,
+                    1,
                     -1,
                     "Qual a importância que dá às considerações ergonómicas na concepção de espaços de trabalho?",
                     12,
@@ -171,7 +171,7 @@ namespace ETdA.Camada_de_Interface
                 p = new PerguntaQuestionario(
                     codAnalise,
                     6,
-                    -1,
+                    1,
                     -1,
                     "É cliente habitual deste estabelecimento?",
                     6,
@@ -374,7 +374,6 @@ namespace ETdA.Camada_de_Interface
 
             if (ti != null)
             {
-                p.Name = "Respostas";
                 if (ti.Numero == 0 || ti.Numero == 1)
                 {
                     #region Box
@@ -641,7 +640,7 @@ namespace ETdA.Camada_de_Interface
             PerguntaQuestionario p = new PerguntaQuestionario(
                 codAnalise,
                 questionario.Count + 1,
-                -1,
+                1,
                 -1,
                 "",
                 -4,
@@ -908,7 +907,7 @@ namespace ETdA.Camada_de_Interface
                 }
 
             for (int i = 0; i < tipos_resposta.Count ; i++)
-                if (!tipos_resposta[i].Parent.Controls.ContainsKey("Respostas"))
+                if (tipos_resposta[i].Parent.Controls["Respostas"].Height == 0)
                 {
                     if (!erros.ContainsKey(tipos_resposta[i]))
                     {
