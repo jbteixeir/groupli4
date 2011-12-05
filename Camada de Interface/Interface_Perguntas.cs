@@ -21,16 +21,18 @@ namespace ETdA.Camada_de_Interface
         private List<Item> itens;
         private List<PerguntaFichaAvaliacao> ficha_avaliacao;
         private bool already_created;
+        private bool enabled;
 
         private delegate void eventoEventHandler(object sender, EventArgs e);
         private static event eventoEventHandler evento_FA_Done;
 
-        public Interface_Perguntas(long codAnalise, object itens, bool created)
+        public Interface_Perguntas(long codAnalise, object itens, bool created, bool enabled)
         {
             InitializeComponent();
             toolStripStatusLabel4.Visible = false;
             toolStripStatusLabel5.Visible = false;
             toolStripStatusLabel6.Visible = false;
+            this.enabled = enabled;
 
             already_created = created;
             this.codAnalise = codAnalise;
@@ -45,9 +47,9 @@ namespace ETdA.Camada_de_Interface
             init();
         }
 
-        public static void main(long codAnalise, object itens, bool created)
+        public static void main(long codAnalise, object itens, bool created, bool enabled)
         {
-            ip = new Interface_Perguntas(codAnalise, itens, created);
+            ip = new Interface_Perguntas(codAnalise, itens, created, enabled);
             ip.ShowDialog();
         }
 
@@ -135,7 +137,7 @@ namespace ETdA.Camada_de_Interface
             {
                 ficha_avaliacao = new List<PerguntaFichaAvaliacao>();
 
-                for (int i = itens.Count - 1; i >= 0; i--)
+                for (int i = 0; i < itens.Count ; i++)
                 {
                     PerguntaFichaAvaliacao p = new PerguntaFichaAvaliacao(
                         codAnalise,
@@ -162,6 +164,24 @@ namespace ETdA.Camada_de_Interface
                 show_pergunta(fa);
         }
 
+        private Panel pergunta_barra_titulo(float number)
+        {
+            Panel p = new Panel();
+            p.Size = new Size(0, 0);
+            p.AutoSize = true;
+            p.Dock = DockStyle.Top;
+
+            Label l1 = new System.Windows.Forms.Label();
+            l1.AutoSize = true;
+            l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            l1.Text = "Pergunta " + number;
+            l1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+            l1.Location = new Point(10, 0);
+            p.Controls.Add(l1);
+
+            return p;
+        }
+
         private void show_pergunta(Pergunta perg)
         {
             Panel p = new System.Windows.Forms.Panel();
@@ -173,27 +193,26 @@ namespace ETdA.Camada_de_Interface
             panel.Controls.Add(p);
             panel.Controls.SetChildIndex(p, 0);
 
-            Label l1 = new System.Windows.Forms.Label();
-            l1.Width = 50;
-            l1.Text = "Perg. " + perg.Num_Pergunta.ToString();
-            l1.Location = new System.Drawing.Point(10, 10);
-            p.Controls.Add(l1);
+            Panel barra = pergunta_barra_titulo(perg.Num_Pergunta);
+            p.Controls.Add(barra);
 
             TextBox t1 = new System.Windows.Forms.TextBox();
-            t1.Width = p.Width - 85;
+            t1.Width = p.Width - 30;
             t1.Text = perg.Texto;
             t1.Name = perg.Num_Pergunta.ToString();
-            t1.Location = new System.Drawing.Point(65, 10);
+            t1.Location = new System.Drawing.Point(10, 40);
             t1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             t1.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
             t1.Click += new EventHandler(MouseClickActionPerformed);
+            if (!enabled)
+                t1.Enabled = false;
             p.Controls.Add(t1);
             perguntas.Add(t1);
 
             Label l2 = new System.Windows.Forms.Label();
             l2.Width = 50;
             l2.Text = "Item: ";
-            l2.Location = new System.Drawing.Point(10, 40);
+            l2.Location = new System.Drawing.Point(10, 70);
             p.Controls.Add(l2);
 
             ComboBox c1 = new System.Windows.Forms.ComboBox();
@@ -201,27 +220,31 @@ namespace ETdA.Camada_de_Interface
             c1.Name = perg.Num_Pergunta.ToString();
             c1.Items.AddRange(nomes_itens());
             c1.SelectedIndex = numero_item(item(perg.Cod_Item));
-            c1.Location = new System.Drawing.Point(65, 40);
+            c1.Location = new System.Drawing.Point(65, 70);
             c1.SelectedIndexChanged += new EventHandler(MouseClickActionPerformed);
             c1.DropDownStyle = ComboBoxStyle.DropDownList;
+            if (!enabled)
+                c1.Enabled = false;
             p.Controls.Add(c1);
             itens_pergunta.Add(c1);
 
             Label l3 = new System.Windows.Forms.Label();
             l3.Width = 80;
             l3.Text = "Respostas: ";
-            l3.Location = new System.Drawing.Point(10, 80);
+            l3.Location = new System.Drawing.Point(10, 110);
             p.Controls.Add(l3);
 
             Label l4 = new System.Windows.Forms.Label();
             l4.Text = "Mudar Tipo Resposta";
             l4.AutoSize = true;
             l4.Name = perg.Num_Pergunta.ToString();
-            l4.Location = new System.Drawing.Point(95, 80);
+            l4.Location = new System.Drawing.Point(95, 110);
             l4.Cursor = System.Windows.Forms.Cursors.Hand;
             l4.Click += new System.EventHandler(mudarTipoRespostaClick);
             l4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
             l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+            if (!enabled)
+                l4.Enabled = false;
             p.Controls.Add(l4);
 
             Panel p2 = getRespostasPanel(GestaodeRespostas.getTipoEscala(perg.Cod_TipoEscala));
@@ -230,47 +253,57 @@ namespace ETdA.Camada_de_Interface
 
         private Panel getRespostasPanel(TipoEscala ti)
         {
-            Panel p2 = new Panel();
-            p2.Size = new Size(0, 0);
-            p2.Name = "Respostas";
-            p2.AutoSize = true;
-            p2.Location = new System.Drawing.Point(0, 100);
+            Panel p = new Panel();
+            p.Name = "Respostas";
+            p.Height = 0;
+            p.AutoSize = true;
+            p.Location = new System.Drawing.Point(10, 140);
 
-            int y = 10;
-            if (ti.Numero >= -1 && ti.Numero <= 1)
+            if (ti != null)
             {
-                TextBox t2 = new System.Windows.Forms.TextBox();
-                t2.Name = "t_box";
-                t2.Location = new System.Drawing.Point(10, 10);
-                t2.Enabled = false;
-                p2.Controls.Add(t2);
-            }
-            else if (ti.Numero == -2)
-            {
-                foreach (EscalaResposta er in ti.Respostas)
+                if (ti.Numero == 0 || ti.Numero == 1)
                 {
-                    CheckBox c = new System.Windows.Forms.CheckBox();
-                    c.Text = er.Descricao;
-                    c.Enabled = false;
-                    c.Location = new System.Drawing.Point(10, y);
-                    p2.Controls.Add(c);
-                    y += 30;
+                    #region Box
+                    TextBox t2 = new System.Windows.Forms.TextBox();
+                    t2.Name = "t_box";
+                    t2.Enabled = false;
+                    t2.Location = new Point(0, 0);
+                    p.Controls.Add(t2);
+                    #endregion
+                }
+                else if (ti.Numero == -2)
+                {
+                    #region CheckBox
+                    foreach (EscalaResposta er in ti.Respostas)
+                    {
+                        CheckBox c = new System.Windows.Forms.CheckBox();
+                        c.Text = er.Descricao;
+                        c.AutoSize = true;
+                        c.Enabled = false;
+                        c.Dock = DockStyle.Top;
+                        p.Controls.Add(c);
+                        p.Controls.SetChildIndex(c, 0);
+                    }
+                    #endregion
+                }
+                else if (ti.Numero > 1)
+                {
+                    #region RadioButton
+                    foreach (EscalaResposta er in ti.Respostas)
+                    {
+                        RadioButton r = new System.Windows.Forms.RadioButton();
+                        r.Text = er.Descricao;
+                        r.AutoSize = true;
+                        r.Enabled = false;
+                        r.Dock = DockStyle.Top;
+                        p.Controls.Add(r);
+                        p.Controls.SetChildIndex(r, 0);
+                    }
+                    #endregion
                 }
             }
-            else if (ti.Numero > 1)
-            {
-                foreach (EscalaResposta er in ti.Respostas)
-                {
-                    RadioButton r = new System.Windows.Forms.RadioButton();
-                    r.Text = er.Descricao;
-                    r.Enabled = false;
-                    r.Location = new System.Drawing.Point(10, y);
-                    p2.Controls.Add(r);
-                    y += 30;
-                }
-            }
 
-            return p2;
+            return p;
         }
 
         #endregion
@@ -299,11 +332,12 @@ namespace ETdA.Camada_de_Interface
         private void new_Anser(object sender, EventArgs e)
         {
             List<object> lst = (List<object>)sender;
-            int index_pergunta = ficha_avaliacao.Count - 1 - (int)lst[0];
+
+            int index_pergunta = (int)lst[0];
             long cod_tipoResposta = (long)lst[1];
 
             ficha_avaliacao[index_pergunta].Cod_TipoEscala = cod_tipoResposta;
-            Panel perg = (Panel)panel.Controls[index_pergunta];
+            Panel perg = (Panel)panel.Controls[panel.Controls.IndexOfKey(index_pergunta.ToString())];
             perg.Controls.RemoveAt(6);
             Panel novo = getRespostasPanel(GestaodeRespostas.getTipoEscala(cod_tipoResposta));
             perg.Controls.Add(novo);
