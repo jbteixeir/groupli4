@@ -15,33 +15,7 @@ namespace ETdA_starter
         [STAThread]
         static void Main()
         {
-            if (GestaodeAnalistas.existeFicheiroConfiguracao())
-            {
-                Boolean b = GestaodeAnalistas.loadConnectionUtilizadorLogado();
-
-                if (b)
-                {
-                    InterfaceGuestaoProjectos.main(true);
-                }
-                else
-                {
-                    b = GestaodeAnalistas.loadConnectionSuper();
-
-                    if (b)
-                    {
-                        InterfaceLogin.main();
-                    }
-                    else
-                    {
-                        Interface_ConfigurarLigacaoBD.main();
-                        InterfaceLogin.main();
-                    }
-                }
-            }
-            else
-            {
-                InterfaceLogin.main();
-            }
+            Interface_Starter.main();
         }
     }
 }

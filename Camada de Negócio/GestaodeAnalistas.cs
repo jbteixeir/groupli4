@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 
 using ETdA.Camada_de_Dados.DataBaseCommunicator;
+using System.Windows.Forms;
 
 namespace ETdA.Camada_de_Negócio
 {
@@ -28,6 +29,8 @@ namespace ETdA.Camada_de_Negócio
                 string server = sr.ReadLine();
                 string database = sr.ReadLine();
                 sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
                 string username = sr.ReadLine();
                 string password = sr.ReadLine();
 
@@ -48,6 +51,8 @@ namespace ETdA.Camada_de_Negócio
                 System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
 
                 string server = sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
                 sr.ReadLine();
                 string database = sr.ReadLine();
                 sr.Close();
@@ -79,6 +84,8 @@ namespace ETdA.Camada_de_Negócio
 
                 string server = sr.ReadLine();
                 sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
                 string database = sr.ReadLine();
                 sr.Close();
 
@@ -106,12 +113,14 @@ namespace ETdA.Camada_de_Negócio
             File.Delete("Utilizador.cfg");
         }
 
-        public static void alterar_ligacaoBaseDados(string server, string database, string superusername, string superpassword)
+        public static void alterar_ligacaoBaseDados(string server, string database, string webserver, string porta, string superusername, string superpassword)
         {
             System.IO.StreamWriter sr = new System.IO.StreamWriter("Config.cfg");
 
             sr.WriteLine(server);
             sr.WriteLine(database);
+            sr.WriteLine(webserver);
+            sr.WriteLine(porta);
             sr.WriteLine("ETdA");
             sr.WriteLine(superusername);
             sr.WriteLine(superpassword);
@@ -130,6 +139,39 @@ namespace ETdA.Camada_de_Negócio
              {
                  return "";
              }
+        }
+
+        public static string nomeServidorWeb()
+        {
+            try
+            {
+                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+                sr.ReadLine();
+                sr.ReadLine();
+                return sr.ReadLine();
+            }
+            catch
+            {
+                MessageBox.Show("Ficheiro de Configuração inexistente ou corrompido.\nPor favor reconfigure a ligação aos servidores.");
+                return "";
+            }
+        }
+
+        public static string portaServidorWeb()
+        {
+            try
+            {
+                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                return sr.ReadLine();
+            }
+            catch
+            {
+                MessageBox.Show("Ficheiro de Configuração inexistente ou corrompido.\nPor favor reconfigure a ligação aos servidores.");
+                return "";
+            }
         }
 
         public static bool existeFicheiroConfiguracao()
