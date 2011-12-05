@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ETdA.Camada_de_Dados.Classes;
+using ETdA.Camada_de_Negócio;
 
 namespace ETdA.Camada_de_Interface
 {
@@ -30,14 +32,36 @@ namespace ETdA.Camada_de_Interface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Interface_Questionario newInterfaceQuestionario = new Interface_Questionario(cod_Projecto, cod_Analise);
-            newInterfaceQuestionario.ShowDialog();
+            if (GestaodeRespostas.isQTcreated(cod_Analise))
+            {
+                Interface_Questionario newInterfaceQuestionario = new Interface_Questionario(cod_Projecto, cod_Analise);
+                newInterfaceQuestionario.ShowDialog();
+            }
+            else
+            {
+                List<Item> itens = GestaodeAnalises.getItensAnalise(cod_Projecto, cod_Analise);
+                List<Zona> zonas = GestaodeAnalises.getZonasAnalise(cod_Projecto, cod_Analise);
+                DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar o Questionário.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
+                if (resultado == DialogResult.Yes)
+                    Interface_GestaoFormulariosOnline.main(cod_Analise, itens, zonas);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Interface_FichaAvaliacao newInterfaceFA = new Interface_FichaAvaliacao(cod_Projecto, cod_Analise);
-            newInterfaceFA.ShowDialog();
+            if (GestaodeRespostas.isFAcreated(cod_Analise))
+            {
+                Interface_FichaAvaliacao newInterfaceFA = new Interface_FichaAvaliacao(cod_Projecto, cod_Analise);
+                newInterfaceFA.ShowDialog();
+            }
+            else
+            {
+                List<Item> itens = GestaodeAnalises.getItensAnalise(cod_Projecto, cod_Analise);
+                List<Zona> zonas = GestaodeAnalises.getZonasAnalise(cod_Projecto, cod_Analise);
+                DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar a Ficha de Avaliação.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
+                if (resultado == DialogResult.Yes)
+                    Interface_GestaoFormulariosOnline.main(cod_Analise, itens, zonas);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

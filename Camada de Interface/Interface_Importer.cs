@@ -121,6 +121,21 @@ namespace ETdA.Camada_de_Interface
                 }
                 podeAdicionar = false;
             }
+            else if (comboBox1.SelectedIndex == 0 && !GestaodeRespostas.isQTcreated(cod_analise))
+            {
+                podeAdicionar = false;
+                DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar o Questionário.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
+                if (resultado == DialogResult.Yes)
+                    Interface_GestaoFormulariosOnline.main(cod_analise, itens, zonas);
+            }
+            else if (comboBox1.SelectedIndex == 1 && !GestaodeRespostas.isFAcreated(cod_analise))
+            {
+                podeAdicionar = false;
+                DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar a Ficha de Avaliação.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
+                if (resultado == DialogResult.Yes)
+                    Interface_GestaoFormulariosOnline.main(cod_analise, itens, zonas);
+            }
+
             setErroStatusBar();
             return podeAdicionar;
         }
