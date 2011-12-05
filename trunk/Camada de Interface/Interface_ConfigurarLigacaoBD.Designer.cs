@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,7 +58,6 @@
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
-            this.splitContainer1.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(5, 5);
@@ -65,6 +69,11 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Panel1.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
             this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.splitContainer1.Panel1.Controls.Add(this.textBox5);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox6);
+            this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Controls.Add(this.label8);
+            this.splitContainer1.Panel1.Controls.Add(this.label9);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -79,11 +88,56 @@
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
-            this.splitContainer1.Size = new System.Drawing.Size(425, 222);
-            this.splitContainer1.SplitterDistance = 103;
+            this.splitContainer1.Size = new System.Drawing.Size(425, 319);
+            this.splitContainer1.SplitterDistance = 199;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(161, 172);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(215, 20);
+            this.textBox5.TabIndex = 9;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(161, 142);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(215, 20);
+            this.textBox6.TabIndex = 8;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(18, 175);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Porta";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(18, 145);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 13);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Nome do Servidor";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(18, 110);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(98, 18);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Servidor Web";
             // 
             // textBox2
             // 
@@ -179,7 +233,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(352, 233);
+            this.button1.Location = new System.Drawing.Point(355, 331);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -191,7 +245,7 @@
             // 
             this.button2.BackColor = System.Drawing.SystemColors.Control;
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(271, 234);
+            this.button2.Location = new System.Drawing.Point(274, 331);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -203,7 +257,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::ETdA.Properties.Resources.Help;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(8, 234);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 331);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 23);
             this.pictureBox1.TabIndex = 7;
@@ -214,7 +268,7 @@
             // 
             this.button3.BackColor = System.Drawing.SystemColors.Control;
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(190, 234);
+            this.button3.Location = new System.Drawing.Point(193, 331);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 8;
@@ -226,17 +280,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.button2;
-            this.ClientSize = new System.Drawing.Size(435, 267);
-            this.Controls.Add(this.button3);
+            this.ClientSize = new System.Drawing.Size(435, 364);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.splitContainer1);
-            this.MaximumSize = new System.Drawing.Size(451, 305);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(451, 431);
             this.MinimumSize = new System.Drawing.Size(451, 305);
             this.Name = "Interface_ConfigurarLigacaoBD";
             this.Padding = new System.Windows.Forms.Padding(5, 5, 5, 40);
@@ -271,5 +326,10 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

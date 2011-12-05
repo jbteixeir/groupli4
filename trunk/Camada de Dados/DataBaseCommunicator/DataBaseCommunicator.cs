@@ -71,7 +71,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             {
                 //servidor base de dados unreachable / ligacao inexistente
                 if (ex.Number == 53 || ex.Number == 40)
-                    MessageBox.Show("O servidor SQL server a que se está a tentar ligar não se encontra disponível, por favor verifique a sua ligação à internet, e as configurações da ligação ao servidor de base de dados.");
+                    MessageBox.Show("O servidor SQL server a que se está a tentar ligar não se encontra disponível,"+
+                                    " por favor verifique a sua ligação à internet, "+
+                                    "e as configurações da ligação ao servidor de base de dados.");
                 //base de dados nao existe
                 if (ex.Number == 4060)
                     MessageBox.Show("A base de dados ao qual se está a tentar ligar não existe ou não está disponível.");

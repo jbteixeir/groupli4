@@ -192,6 +192,12 @@
     <Compile Include="Camada de Interface\Interface_Relatorio.Designer.cs">
       <DependentUpon>Interface_Relatorio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Camada de Interface\Interface_Starter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Interface_Starter.Designer.cs">
+      <DependentUpon>Interface_Starter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\MessageBoxPortuguese.cs" />
     <Compile Include="Camada de Interface\MyTabControl.cs">
       <SubType>Component</SubType>
@@ -295,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Questionario.resx">
       <DependentUpon>Interface_Questionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camada de Interface\Interface_Starter.resx">
+      <DependentUpon>Interface_Starter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -543,6 +552,8 @@
     <Content Include="colors\limaWord.png" />
     <Content Include="colors\verdeWord.png" />
     <Content Include="colors\vermelhoWord.png" />
+    <None Include="Imagens\intro.png" />
+    <None Include="Imagens\startup.png" />
     <None Include="Imagens\degrade1.png" />
     <None Include="Resources\close_icon.bmp" />
     <None Include="Icons\Warning.png" />

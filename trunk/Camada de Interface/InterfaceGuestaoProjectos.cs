@@ -829,7 +829,7 @@ namespace ETdA.Camada_de_Interface
                 tb1.BorderStyle = BorderStyle.None;
                 tb1.ReadOnly = true;
                 tb1.ForeColor = SystemColors.ControlDark;
-                tb1.Text = "http://"+GestaodeAnalistas.nomeservidor()+":54749"+"/ETdA/Default.aspx?form=CL&usr=" +
+                tb1.Text = "http://"+GestaodeAnalistas.nomeServidorWeb()+":"+GestaodeAnalistas.portaServidorWeb()+"/ETdA/Default.aspx?form=CL&usr=" +
                              Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
                 
                 
@@ -863,7 +863,7 @@ namespace ETdA.Camada_de_Interface
                 tb2.BorderStyle = BorderStyle.None;
                 tb2.ReadOnly = true;
                 tb2.ForeColor = SystemColors.ControlDark;
-                tb2.Text = "http://" + GestaodeAnalistas.nomeservidor() + ":54749" + "/ETdA/Default.aspx?form=FA&usr=" +
+                tb2.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdA/Default.aspx?form=FA&usr=" +
                              Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
 
                 System.Windows.Forms.Label l9 = new System.Windows.Forms.Label();
@@ -896,7 +896,7 @@ namespace ETdA.Camada_de_Interface
                 tb3.ForeColor = SystemColors.ControlDark;
                 tb3.BorderStyle = BorderStyle.None;
                 tb3.ReadOnly = true;
-                tb3.Text = "http://" + GestaodeAnalistas.nomeservidor() + ":54749" + "/ETdA/Default.aspx?form=QT&usr=" +
+                tb3.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdA/Default.aspx?form=QT&usr=" +
                              Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
                 #endregion
 
