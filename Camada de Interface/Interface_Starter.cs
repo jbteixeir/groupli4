@@ -15,6 +15,10 @@ namespace ETdA.Camada_de_Interface
     {
         static volatile Interface_Starter ins;
 
+        static volatile Inicializer inicializer;
+
+        static volatile Thread inicializerThread;
+
         public static void main()
         {
             ins = new Interface_Starter();
@@ -35,11 +39,13 @@ namespace ETdA.Camada_de_Interface
 
         static void start()
         {
-            Inicializer inicializer = new Inicializer();
-            Thread inicializerThread = new Thread(inicializer.Inicializar);
+            inicializer = new Inicializer();
+            inicializerThread = new Thread(inicializer.Inicializar);
 
             CheckForIllegalCrossThreadCalls = false;
+            inicializerThread.SetApartmentState(ApartmentState.STA);
             inicializerThread.Start();
+            
         }
     }
 
@@ -79,6 +85,7 @@ namespace ETdA.Camada_de_Interface
                 Interface_Starter.end();
                 InterfaceLogin.main();
             }
+            
         }
     }
 }
