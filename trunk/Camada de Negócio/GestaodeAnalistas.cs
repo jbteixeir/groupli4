@@ -24,17 +24,19 @@ namespace ETdA.Camada_de_Negócio
         {
             try
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+                FileStream fs = new FileStream("Config.cfg", FileMode.Open, FileAccess.Read);
+                BinaryReader r = new BinaryReader(fs);
 
-                string server = sr.ReadLine();
-                string database = sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                string username = sr.ReadLine();
-                string password = sr.ReadLine();
+                string server = r.ReadString();
+                string database = r.ReadString();
+                r.ReadString();
+                r.ReadString();
+                r.ReadString();
+                string username = r.ReadString();
+                string password = r.ReadString();
 
-                sr.Close();
+                r.Close();
+                fs.Close();
 
                 return DataBaseCommunicator.connectToSuper(server, username, password, database);
             }
@@ -48,20 +50,30 @@ namespace ETdA.Camada_de_Negócio
         {
             try
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+                FileStream fs = new FileStream("Config.cfg", FileMode.Open, FileAccess.Read);
+                BinaryReader r = new BinaryReader(fs);
 
-                string server = sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                string database = sr.ReadLine();
-                sr.Close();
+                string server = r.ReadString();
+                r.ReadString();
+                r.ReadString();
+                r.ReadString();
+                string database = r.ReadString();
 
+                /*
                 sr = new System.IO.StreamReader("Utilizador.cfg");
                 string username = sr.ReadLine();
                 string password = sr.ReadLine();
                 sr.Close();
+                */
 
+                fs = new FileStream("Utilizador.cfg", FileMode.Open, FileAccess.Read);
+                r = new BinaryReader(fs);
+
+                string username = r.ReadString();
+                string password = r.ReadString();
+
+                fs.Close();
+                r.Close();
                 Camada_de_Dados.ETdA.ETdA.Username = username;
 
                 return Camada_de_Dados.ETdA.ETdA.loginAnalista(server, database, username, password);
@@ -80,14 +92,17 @@ namespace ETdA.Camada_de_Negócio
         {
             try
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+                FileStream fs = new FileStream("Config.cfg", FileMode.Open, FileAccess.Read);
+                BinaryReader r = new BinaryReader(fs);
 
-                string server = sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                string database = sr.ReadLine();
-                sr.Close();
+                string server = r.ReadString();
+                r.ReadString();
+                r.ReadString();
+                r.ReadString();
+                string database = r.ReadString();
+
+                r.Close();
+                fs.Close();
 
                 Camada_de_Dados.ETdA.ETdA.Username = username;
 
@@ -101,11 +116,22 @@ namespace ETdA.Camada_de_Negócio
 
         public static void guarda_dados(string username, string password)
         {
+            /*
             System.IO.StreamWriter sr = new System.IO.StreamWriter("Utilizador.cfg");
 
             sr.WriteLine(username);
             sr.WriteLine(password);
             sr.Close();
+            */
+
+            FileStream fs = new FileStream("Utilizador.cfg", FileMode.Create);
+            BinaryWriter w = new BinaryWriter(fs);
+
+            w.Write(username);
+            w.Write(password);
+
+            w.Close();
+            fs.Close();
         }
 
         public static void remove_dados()
@@ -115,25 +141,29 @@ namespace ETdA.Camada_de_Negócio
 
         public static void alterar_ligacaoBaseDados(string server, string database, string webserver, string porta, string superusername, string superpassword)
         {
-            System.IO.StreamWriter sr = new System.IO.StreamWriter("Config.cfg");
+            FileStream fs = new FileStream("Config.cfg", FileMode.Create);
+            BinaryWriter w = new BinaryWriter(fs);
 
-            sr.WriteLine(server);
-            sr.WriteLine(database);
-            sr.WriteLine(webserver);
-            sr.WriteLine(porta);
-            sr.WriteLine("ETdA");
-            sr.WriteLine(superusername);
-            sr.WriteLine(superpassword);
+            w.Write(server);
+            w.Write(database);
+            w.Write(webserver);
+            w.Write(porta);
+            w.Write("ETdA");
+            w.Write(superusername);
+            w.Write(superpassword);
 
-            sr.Close();
+            w.Close();
+            fs.Close();
         }
 
         public static string nomeservidor()
         {
              try
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
-                return sr.ReadLine();
+                FileStream fs = new FileStream("Config.cfg", FileMode.Open, FileAccess.Read);
+                BinaryReader r = new BinaryReader(fs);
+
+                return r.ReadString();
             }
              catch
              {
@@ -145,10 +175,12 @@ namespace ETdA.Camada_de_Negócio
         {
             try
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
-                sr.ReadLine();
-                sr.ReadLine();
-                return sr.ReadLine();
+                FileStream fs = new FileStream("Config.cfg", FileMode.Open, FileAccess.Read);
+                BinaryReader r = new BinaryReader(fs);
+
+                r.ReadString();
+                r.ReadString();
+                return r.ReadString();
             }
             catch
             {
@@ -161,11 +193,13 @@ namespace ETdA.Camada_de_Negócio
         {
             try
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
-                sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                return sr.ReadLine();
+                FileStream fs = new FileStream("Config.cfg", FileMode.Open, FileAccess.Read);
+                BinaryReader r = new BinaryReader(fs);
+
+                r.ReadString();
+                r.ReadString();
+                r.ReadString();
+                return r.ReadString();
             }
             catch
             {
@@ -178,7 +212,7 @@ namespace ETdA.Camada_de_Negócio
         {
             try
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+                FileStream fs = new FileStream("Config.cfg", FileMode.Open, FileAccess.Read);
                 return (true);
             }
             catch
