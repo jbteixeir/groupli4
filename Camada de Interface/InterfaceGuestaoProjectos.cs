@@ -542,6 +542,7 @@ namespace ETdA.Camada_de_Interface
                 // splitContainer2.Panel1
                 // 
                 splitContainer2.Panel1.Controls.Add(splitContainer3);
+                splitContainer3.Panel1.AutoScroll = true;
                 // 
                 // splitContainer2.Panel2
                 // 
@@ -552,6 +553,7 @@ namespace ETdA.Camada_de_Interface
                 splitContainer2.SplitterDistance = 212;
                 splitContainer2.SplitterWidth = 1;
                 splitContainer2.TabIndex = 1;
+                splitContainer2.Panel2.AutoScroll = true;
                 // 
                 // splitContainer3
                 // 
@@ -566,6 +568,7 @@ namespace ETdA.Camada_de_Interface
                 splitContainer3.Panel1.BackColor = System.Drawing.Color.White;
                 splitContainer3.Panel1.Controls.Add(label8);
                 splitContainer3.Panel1.Controls.Add(pictureBox1);
+                splitContainer3.Panel1.AutoScroll = true;
                 // 
                 // splitContainer3.Panel2
                 // 
@@ -575,6 +578,7 @@ namespace ETdA.Camada_de_Interface
                 splitContainer3.SplitterDistance = 62;
                 splitContainer3.SplitterWidth = 1;
                 splitContainer3.TabIndex = 0;
+                splitContainer3.Panel2.AutoScroll = true;
                 // 
                 // label2
                 // 
