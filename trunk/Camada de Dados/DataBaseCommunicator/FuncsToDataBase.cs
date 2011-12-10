@@ -713,10 +713,10 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 if (int.Parse(reader["numeroEscalaResposta"].ToString()) == 0)
                 {
                     readerResposta = DataBaseCommunicator.readData("SELECT cod_questionario, valor, resposta_questionario_string.cod_zona, resposta_questionario_string.cod_zona,resposta_questionario_string.numero_pergunta " +
-                                                                       "FROM resposta_questionario_string, pergunta_questionario " +
-                                                                       "WHERE resposta_questionario_string.numero_pergunta=" + reader["numero_pergunta"].ToString() +
-                                                                       "AND resposta_questionario_string.numero_pergunta=pergunta_questionario.numero_pergunta" +
-                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
+                                                                       " FROM resposta_questionario_string, pergunta_questionario " +
+                                                                       " WHERE resposta_questionario_string.numero_pergunta=" + reader["numero_pergunta"].ToString() +
+                                                                       " AND resposta_questionario_string.numero_pergunta=pergunta_questionario.numero_pergunta" +
+                                                                       " AND resposta_questionario_string.cod_analise=" + codigoAnalise);
                     while (readerResposta.Read())
                     {
                         //Console.WriteLine("QUESTIONARIO:" + codigoAnalise + "-1" + int.Parse(readerResposta["cod_questionario"].ToString()) + "-1" + int.Parse(reader["numero_pergunta"].ToString()) + cod_item + cod_zona + "-1" + readerResposta["valor"].ToString() + 3 + Classes.Resposta.TipoResposta.RespostaStr);
@@ -728,10 +728,10 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 else if (int.Parse(reader["numeroEscalaResposta"].ToString()) == -1)
                 {
                     readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_memo.cod_questionario, resposta_questionario_memo.valor, resposta_questionario_memo.cod_zona,resposta_questionario_memo.numero_pergunta " +
-                                                                       "FROM resposta_questionario_memo, pergunta_questionario " +
-                                                                       "WHERE resposta_questionario_memo.numero_pergunta=" + reader["numero_pergunta"].ToString() +
-                                                                       "AND resposta_questionario_memo.numero_pergunta=pergunta_questionario.numero_pergunta" +
-                                                                       "AND respostas_questionario.cod_analise=" + codigoAnalise);
+                                                                       " FROM resposta_questionario_memo, pergunta_questionario " +
+                                                                       " WHERE resposta_questionario_memo.numero_pergunta=" + reader["numero_pergunta"].ToString() +
+                                                                       " AND resposta_questionario_memo.numero_pergunta=pergunta_questionario.numero_pergunta" +
+                                                                       " AND resposta_questionario_string.cod_analise=" + codigoAnalise);
                     while (readerResposta.Read())
                     {
                         respostas.Add(new Resposta(codigoAnalise, -1, int.Parse(readerResposta["cod_questionario"].ToString()), -1, int.Parse(reader["numero_pergunta"].ToString()), cod_item, cod_zona, -1, readerResposta["valor"].ToString(), 3, Classes.Resposta.TipoResposta.RespostaMemo));
