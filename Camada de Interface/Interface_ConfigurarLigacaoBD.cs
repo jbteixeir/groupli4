@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ETdA.Camada_de_Interface
 {
@@ -27,17 +28,19 @@ namespace ETdA.Camada_de_Interface
         {
             try
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader("Config.cfg");
+                FileStream fs = new FileStream("Config.cfg", FileMode.Open, FileAccess.Read);
+                BinaryReader r = new BinaryReader(fs);
 
-                this.textBox1.Text = sr.ReadLine();
-                this.textBox2.Text = sr.ReadLine();
-                this.textBox6.Text = sr.ReadLine();
-                this.textBox5.Text = sr.ReadLine();
-                sr.ReadLine();
-                this.textBox3.Text = sr.ReadLine();
-                this.textBox4.Text = sr.ReadLine();
+                this.textBox1.Text = r.ReadString();
+                this.textBox2.Text = r.ReadString();
+                this.textBox6.Text = r.ReadString();
+                this.textBox5.Text = r.ReadString();
+                r.ReadString();
+                this.textBox3.Text = r.ReadString();
+                this.textBox4.Text = r.ReadString();
 
-                sr.Close();
+                r.Close();
+                fs.Close();
             }
             catch
             {
