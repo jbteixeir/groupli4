@@ -572,54 +572,106 @@ namespace ETdA.Camada_de_Interface
                     podeAdicionar = false;
                 }
                 #endregion
+
                 #region Verificação dos máximos
-                if (!maximo_valido(b1.Text) || double.Parse(b1.Text) > double.Parse(b2.Text) || double.Parse(b1.Text) > 5)
+                if (b1.Text == "")
                 {
                     if (!erros.Keys.Contains(b1))
                     {
                         ErrorProvider err = new ErrorProvider();
                         err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
-                        err.SetError(b1, "Máximo da cor Vermelha inválida.");
+                        err.SetError(b1, "Campo da cor Vermelha vazio.");
 
                         erros.Add(b1, err);
                     }
                     podeAdicionar = false;
                 }
-                if (!maximo_valido(b2.Text) || double.Parse(b2.Text) > double.Parse(b3.Text) || double.Parse(b2.Text) > 5)
+                else if (b2.Text == "")
                 {
                     if (!erros.Keys.Contains(b2))
                     {
                         ErrorProvider err = new ErrorProvider();
                         err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
-                        err.SetError(b2, "Máximo da cor Laranja inválida.");
+                        err.SetError(b2, "Campo da cor Laranja vazio.");
 
                         erros.Add(b2, err);
                     }
                     podeAdicionar = false;
                 }
-                if (!maximo_valido(b3.Text) || double.Parse(b3.Text) > double.Parse(b4.Text) || double.Parse(b3.Text) > 5)
+                else if (b3.Text == "")
                 {
                     if (!erros.Keys.Contains(b3))
                     {
                         ErrorProvider err = new ErrorProvider();
                         err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
-                        err.SetError(b3, "Máximo da cor Amarela inválida.");
+                        err.SetError(b3, "Campo da cor Amarela vazio.");
 
                         erros.Add(b3, err);
                     }
                     podeAdicionar = false;
                 }
-                if (!maximo_valido(b4.Text) || double.Parse(b4.Text) > double.Parse(b5.Text) || double.Parse(b4.Text) > 5)
+                else if (b4.Text == "")
                 {
                     if (!erros.Keys.Contains(b4))
                     {
                         ErrorProvider err = new ErrorProvider();
                         err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
-                        err.SetError(b4, "Máximo da cor Verde Lima inválida.");
+                        err.SetError(b4, "Campo da cor Verde Lima vazio.");
 
                         erros.Add(b4, err);
                     }
                     podeAdicionar = false;
+                }
+                else
+                {
+                    if (!maximo_valido(b1.Text) || double.Parse(b1.Text) > double.Parse(b2.Text) || double.Parse(b1.Text) > 5)
+                    {
+                        if (!erros.Keys.Contains(b1))
+                        {
+                            ErrorProvider err = new ErrorProvider();
+                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.SetError(b1, "Máximo da cor Vermelha inválida.");
+
+                            erros.Add(b1, err);
+                        }
+                        podeAdicionar = false;
+                    }
+                    if (!maximo_valido(b2.Text) || double.Parse(b2.Text) > double.Parse(b3.Text) || double.Parse(b2.Text) > 5)
+                    {
+                        if (!erros.Keys.Contains(b2))
+                        {
+                            ErrorProvider err = new ErrorProvider();
+                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.SetError(b2, "Máximo da cor Laranja inválida.");
+
+                            erros.Add(b2, err);
+                        }
+                        podeAdicionar = false;
+                    }
+                    if (!maximo_valido(b3.Text) || double.Parse(b3.Text) > double.Parse(b4.Text) || double.Parse(b3.Text) > 5)
+                    {
+                        if (!erros.Keys.Contains(b3))
+                        {
+                            ErrorProvider err = new ErrorProvider();
+                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.SetError(b3, "Máximo da cor Amarela inválida.");
+
+                            erros.Add(b3, err);
+                        }
+                        podeAdicionar = false;
+                    }
+                    if (!maximo_valido(b4.Text) || double.Parse(b4.Text) > double.Parse(b5.Text) || double.Parse(b4.Text) > 5)
+                    {
+                        if (!erros.Keys.Contains(b4))
+                        {
+                            ErrorProvider err = new ErrorProvider();
+                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.SetError(b4, "Máximo da cor Verde Lima inválida.");
+
+                            erros.Add(b4, err);
+                        }
+                        podeAdicionar = false;
+                    }
                 }
                 #endregion
             }
