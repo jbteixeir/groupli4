@@ -63,6 +63,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                              "Password=" + password + ";" +
                              "MultipleActiveResultSets = True";
 
+                userConnectionString = con;
                 connection = new SqlConnection(con);
                 connection.Open();
                 return true;
@@ -180,6 +181,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         {
             if (connection.State == System.Data.ConnectionState.Broken || connection.State == System.Data.ConnectionState.Closed)
             {
+                if (userConnectionString == null)
+                {
+                }
                 connection = new SqlConnection(userConnectionString);
                 connection.Open();
             }

@@ -775,7 +775,14 @@ namespace ETdA.Camada_de_Interface
                 l1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
                 System.Windows.Forms.Label l2 = new System.Windows.Forms.Label();
-                l2.Text = "Zonas";
+                l2.Text = GestaodeAnalises.getTipoAnalise(codp, coda);
+                if (l2.Text == "Por Zonas")
+                    l2.Text = "Zonas";
+                else if (l2.Text == "Por Actividades")
+                    l2.Text = "Actividades";
+                else
+                    l2.Visible = false;
+                
                 l2.ForeColor = Color.Blue;
                 l2.Location = new Point(15, 66);
                 l2.Cursor = System.Windows.Forms.Cursors.Hand;

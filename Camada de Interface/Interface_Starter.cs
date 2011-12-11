@@ -33,8 +33,8 @@ namespace ETdA.Camada_de_Interface
 
         public static void end()
         {
-            //ins.Dispose();
-            ins.Close();
+            if(ins!=null)
+                ins.Close();
         }
 
         static void start()

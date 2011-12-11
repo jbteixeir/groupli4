@@ -25,6 +25,8 @@ namespace ETdA.Camada_de_Interface
 
             InitializeComponent();
             this.tipo = tipo;
+            this.Text = "Criar Análise - " + tipo;
+            this.label1.Text = tipo;
 
             foreach (string s in zonas)
                 listBox1.Items.Add(s);
@@ -51,9 +53,9 @@ namespace ETdA.Camada_de_Interface
             bool valido = nomeZonaValido(s);
 
             if (!valido)
-                MessageBox.Show("Nome da " + tipo + " inválido\n\n(Anpeas letras, números e \"_\")", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nome inválido\n\n(Apenas letras, números e \"_\")", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (listBox1.Items.Contains(s))
-                MessageBox.Show("Já existe uma " + tipo + " " + s + ".", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Já existe o nome " + s + ".", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 listBox1.Items.Add(s);

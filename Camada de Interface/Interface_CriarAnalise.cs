@@ -19,6 +19,7 @@ namespace ETdA.Camada_de_Interface
         private static Interface_CriarAnalise ica;
         private long codProjecto;
         private bool done;
+        private string tipo;
         private int wh;
 
         // rdone
@@ -79,7 +80,7 @@ namespace ETdA.Camada_de_Interface
             if (comboBox1.SelectedIndex == 2) done = true;
 
             if (!valido)
-                MessageBox.Show("Nome da análise inválida\n(Anpeas letras, números e \"_-/\")", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nome da análise inválida\n(Apenas letras, números e \"_-/\")", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (!GestaodeAnalises.podeAdicionarAnalise(codProjecto, nome))
                 MessageBox.Show("Nome da análise já existente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (comboBox1.SelectedIndex < 0 || comboBox1.SelectedIndex >2 )
@@ -150,7 +151,7 @@ namespace ETdA.Camada_de_Interface
                 done = false;
                 wh = comboBox1.SelectedIndex;
             }
-            Interface_CriarAnaliseZonas.main(zonas, comboBox1.SelectedItem.ToString(),true);
+            Interface_CriarAnaliseZonas.main(zonas, tipo,true);
         }
 
         // rdone
@@ -210,6 +211,7 @@ namespace ETdA.Camada_de_Interface
                 if (comboBox1.SelectedIndex == 0)
                 {
                     nome = "Zonas";
+                    tipo = nome;
                     label3.Enabled = true;
                     if (wh == 0 && done)
                     {
@@ -222,6 +224,7 @@ namespace ETdA.Camada_de_Interface
                 else if (comboBox1.SelectedIndex == 1)
                 {
                     nome = "Actividades";
+                    tipo = nome;
                     label3.Enabled = true;
                     if (wh == 1 && done)
                     {
