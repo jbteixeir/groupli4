@@ -139,6 +139,7 @@ namespace ETdA.Camada_de_Interface
 
                 #region desenhar a imagem da cor
                 System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
+                //double x = relatorio.ListaResultados[czona][citem].ResultadoFinal;
                 if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Vermelho)
                 {
                     corItem.Image = global::ETdA.Properties.Resources.vermelho;
@@ -259,6 +260,7 @@ namespace ETdA.Camada_de_Interface
                 labelpf.Location = new System.Drawing.Point(350, 230 + 55);
                 labelpf.Size = new System.Drawing.Size(150, 15);
 
+                //double x = relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral;
                 if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Vermelho)
                 {
                     labelpf.Text = " VERMELHO (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";

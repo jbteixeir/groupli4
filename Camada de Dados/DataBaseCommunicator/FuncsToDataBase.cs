@@ -644,20 +644,23 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                                                 "WHERE ficha_avaliacao.cod_analise=" + codigoAnalise);
             while (readerPergunta.Read())
             {
-                readerResposta = DataBaseCommunicator.readData("SELECT resposta_ficha_avaliacao_numero.numero_pergunta, pergunta_ficha_avaliacao.cod_item, cod_fichaAvaliacao, cod_zona, valor " +
-                                                                   "FROM  resposta_ficha_avaliacao_numero, pergunta_ficha_avaliacao " +
-                                                                   "WHERE resposta_ficha_avaliacao_numero.cod_fichaAvaliacao=" + readerPergunta["cod_fichaAvaliacao"] +
-                                                                   "AND pergunta_ficha_avaliacao.numero_pergunta = resposta_ficha_avaliacao_numero.numero_pergunta");
+                readerResposta = DataBaseCommunicator.readData("SELECT resposta_ficha_avaliacao_numero.numero_pergunta, pergunta_ficha_avaliacao.cod_item, resposta_ficha_avaliacao_numero.cod_fichaAvaliacao, ficha_avaliacao.cod_zona, valor " +
+                                                                   " FROM  resposta_ficha_avaliacao_numero, pergunta_ficha_avaliacao, ficha_avaliacao " +
+                                                                   " WHERE resposta_ficha_avaliacao_numero.cod_fichaAvaliacao=" + readerPergunta["cod_fichaAvaliacao"] +
+                                                                   " AND resposta_ficha_avaliacao_numero.cod_fichaAvaliacao = ficha_avaliacao.cod_fichaAvaliacao" +
+                                                                   " AND pergunta_ficha_avaliacao.numero_pergunta = resposta_ficha_avaliacao_numero.numero_pergunta");
                 while (readerResposta.Read())
                 {
                     //Console.WriteLine("FICHA AVALIACAO:" + codigoAnalise + "/-1" + "/-1" + "/" + (long)readerResposta["cod_fichaAvaliacao"] + "/" + short.Parse(readerResposta["numero_pergunta"].ToString()) + "/" + (long)readerResposta["cod_item"] + "/" + (long)readerResposta["cod_zona"] + "/" + short.Parse(readerResposta["valor"].ToString()) + "/" + "" + "/" + 2 + "/" + Classes.Resposta.TipoResposta.RespostaNum);
                     respostas.Add(new Resposta(codigoAnalise, -1, -1, (long)readerResposta["cod_fichaAvaliacao"], short.Parse(readerResposta["numero_pergunta"].ToString()), (long)readerResposta["cod_item"], (long)readerResposta["cod_zona"], short.Parse(readerResposta["valor"].ToString()), "", 2, Classes.Resposta.TipoResposta.RespostaNum));
                 }
                 readerResposta.Close();
-                readerResposta = DataBaseCommunicator.readData("SELECT resposta_ficha_avaliacao_string.numero_pergunta, cod_fichaAvaliacao, cod_zona, valor " +
-                                                                   "FROM resposta_ficha_avaliacao_string " +
-                                                                   "WHERE resposta_ficha_avaliacao_string.cod_fichaAvaliacao=" + readerPergunta["cod_fichaAvaliacao"]);
 
+                readerResposta = DataBaseCommunicator.readData("SELECT resposta_ficha_avaliacao_string.numero_pergunta, resposta_ficha_avaliacao_string.cod_fichaAvaliacao, ficha_avaliacao.cod_zona, valor " +
+                                                                   " FROM resposta_ficha_avaliacao_string, ficha_avaliacao " +
+                                                                   " WHERE resposta_ficha_avaliacao_string.cod_fichaAvaliacao=" + readerPergunta["cod_fichaAvaliacao"] +
+                                                                   " AND resposta_ficha_avaliacao_string.cod_fichaAvaliacao = ficha_avaliacao.cod_fichaAvaliacao");
+                
                 if (readerResposta.Read())
                     respostas.Add(new Resposta(codigoAnalise, -1, -1, int.Parse(readerResposta["cod_fichaAvaliacao"].ToString()), -1, -1, int.Parse(readerResposta["cod_zona"].ToString()), -1, readerResposta["valor"].ToString(), 2, Classes.Resposta.TipoResposta.RespostaMemo));
                 readerResposta.Close();
