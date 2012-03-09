@@ -166,12 +166,12 @@ namespace ETdA.Camada_de_Dados.Classes
         #region Questionario
 
         public bool importar_questionario(
-            Numero_Respostas _modo_num_respostas,
-            Respostas_Vazias _modo_respostas_vazias,
-            Valores_Respostas _modo_valores_respostas,
+            Numero_Respostas _modo_num_respostas, // modo como vai ser tratado se o numero de respostas nao esta correcto
+            Respostas_Vazias _modo_respostas_vazias, // modo como vai ser tratado se existirem respostas sem resposta
+            Valores_Respostas _modo_valores_respostas, // modo como vai ser tratado se os valores das respostas nao estarem de acordo com as respostas das perguntas
             List<Zona> _zonas,
             List<PerguntaQuestionario> _pergs,
-            Dictionary<float, List<int>> _perguntas_colunas_ficheiro)
+            Dictionary<float, List<int>> _perguntas_colunas_ficheiro) // assiciacao da pergunta à coluna (nao esquecer perguntas checkbox, que podem ser mais de uma coluna)
         {
             numero_formularios_ignorados = 0;
             numero_perguntas_ignoradas = 0;
@@ -179,18 +179,23 @@ namespace ETdA.Camada_de_Dados.Classes
             bool continuar = true;
             bool continuar_formulario = true;
 
+            // para cada linha do ficheiro ...
             for (int i = 0; i < valores.Keys.Count && continuar; i++)
             {
                 continuar_formulario = true;
-                int num_linha = valores.Keys.ElementAt(i);
-                verifica_numero_colunas(num_linha, _perguntas_colunas_ficheiro, _pergs, _modo_num_respostas, ref continuar, ref continuar_formulario);
+                int num_linha = valores.Keys.ElementAt(i); // retirar o numero da linha (nao estao por ordem ?)
+                verifica_numero_colunas(num_linha, _perguntas_colunas_ficheiro, _pergs, _modo_num_respostas, ref continuar, ref continuar_formulario); // verificar se o numero de colunas esta correcto
 
+                // se continuar a importacao e a importacao do formulario ...
                 if (continuar && continuar_formulario)
                 {
+                    // importar linha
                     List<Resposta> respostas = importar_linha_questionario(num_linha, _modo_respostas_vazias, _modo_valores_respostas, _zonas, _pergs, _perguntas_colunas_ficheiro, ref continuar, ref continuar_formulario);
 
+                    // se nao houveram erros e se foram importadas algumas respostas
                     if (continuar && continuar_formulario  && respostas.Count != 0)
                     {
+                        // Criar um questionario com essas respostas
                         Questionario q = new Questionario();
                         q.CodAnalise = cod_analise;
                         q.Cod_Questionario = GestaodeRespostas.insere_questionario(q);
@@ -212,14 +217,14 @@ namespace ETdA.Camada_de_Dados.Classes
         }
 
         private List<Resposta> importar_linha_questionario(
-            int num_linha,
-            Respostas_Vazias _modo_respostas_vazias,
-            Valores_Respostas _modo_valores_respostas,
+            int num_linha, // numero da linha no ficheiro
+            Respostas_Vazias _modo_respostas_vazias, // como tratar respostas sem resposta
+            Valores_Respostas _modo_valores_respostas, // como tratar respostas com valores absurdos
             List<Zona> _zonas,
             List<PerguntaQuestionario> _pergs,
-            Dictionary<float, List<int>> _perguntas_colunas_ficheiro,
-            ref bool continuar,
-            ref bool continuar_formulario)
+            Dictionary<float, List<int>> _perguntas_colunas_ficheiro, // associacao das perguntas com colunas
+            ref bool continuar, // se cotinuar importacao
+            ref bool continuar_formulario) // se continuar a importar este formulario
         {
             List<Resposta> respostas = new List<Resposta>();
             string[] valores_linha = valores[num_linha];
@@ -234,8 +239,9 @@ namespace ETdA.Camada_de_Dados.Classes
                 List<string> campos = new List<string>();
 
                 foreach(int num_coluna in _perguntas_colunas_ficheiro[perg_associada.Num_Pergunta])
-                    campos.Add( valores[num_linha][num_coluna]);
+                    campos.Add(valores[num_linha][num_coluna]); // retirar os varios campos da pergunta
 
+                // verificar se estes campos estao correctos e de acordo com o esperado
                 for (int j = 0; j < campos.Count && continuar && continuar_formulario && continuar_pergunta; j++ )
                     verifica_campo(num_linha, campos[j], _modo_respostas_vazias, _modo_valores_respostas, perg_associada, ref continuar, ref continuar_formulario, ref continuar_pergunta);
 
@@ -244,6 +250,7 @@ namespace ETdA.Camada_de_Dados.Classes
                     long cod_zona = -1;
                     if (perg_associada.Cod_zona == 0)
                     {
+                        // se é preciso colocar a zona como resposta
                         string campo2 = valores[num_linha][_perguntas_colunas_ficheiro[perg_associada.Num_Pergunta][0]+1];
                         verifica_campo(num_linha, campo2, _modo_respostas_vazias, _modo_valores_respostas, perg_associada, ref continuar, ref continuar_formulario, ref continuar_pergunta);
 
@@ -427,13 +434,9 @@ namespace ETdA.Camada_de_Dados.Classes
             }
             #endregion
         }
-#endregion
-
         #endregion
 
-        #endregion
-
-        #region Outros
+        #region Cenas
         private PerguntaQuestionario getPerguntaByNum(float num, List<PerguntaQuestionario> ps)
         {
             for (int i = 0; i < ps.Count; i++)
@@ -446,7 +449,7 @@ namespace ETdA.Camada_de_Dados.Classes
         {
             int num_colunas_necessarias = 0;
 
-            for(int i = 0 ; i < _perguntas_colunas_ficheiro.Keys.Count ; i++)
+            for (int i = 0; i < _perguntas_colunas_ficheiro.Keys.Count; i++)
             {
                 PerguntaQuestionario p = getPerguntaByNum(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
                 TipoEscala ti = GestaodeRespostas.getTipoEscala(p.Cod_TipoEscala);
@@ -461,7 +464,312 @@ namespace ETdA.Camada_de_Dados.Classes
             }
             return valores[linha].Length >= num_colunas_necessarias;
         }
+        #endregion
 
+        #endregion
+
+        #region Ficha Avaliacao
+
+        public bool importar_ficha_avaliacao(
+            Numero_Respostas _modo_num_respostas, // modo como vai ser tratado se o numero de respostas nao esta correcto
+            Respostas_Vazias _modo_respostas_vazias, // modo como vai ser tratado se existirem respostas sem resposta
+            Valores_Respostas _modo_valores_respostas, // modo como vai ser tratado se os valores das respostas nao estarem de acordo com as respostas das perguntas
+            List<Zona> _zonas,
+            List<PerguntaFichaAvaliacao> _pergs,
+            Dictionary<float, List<int>> _perguntas_colunas_ficheiro) // assiciacao da pergunta à coluna (nao esquecer perguntas checkbox, que podem ser mais de uma coluna)
+        {
+            numero_formularios_ignorados = 0;
+            numero_perguntas_ignoradas = 0;
+            formularios = new List<Formulario>();
+            bool continuar = true;
+            bool continuar_formulario = true;
+
+            // para cada linha do ficheiro ...
+            for (int i = 0; i < valores.Keys.Count && continuar; i++)
+            {
+                continuar_formulario = true;
+                int num_linha = valores.Keys.ElementAt(i); // retirar o numero da linha (nao estao por ordem ?)
+                verifica_numero_colunas_fa(num_linha, _perguntas_colunas_ficheiro, _pergs, _modo_num_respostas, ref continuar, ref continuar_formulario); // verificar se o numero de colunas esta correcto
+
+                // se continuar a importacao e a importacao do formulario ...
+                if (continuar && continuar_formulario)
+                {
+                    // importar linha
+                    List<Resposta> respostas = importar_linha_fa(num_linha, _modo_respostas_vazias, _modo_valores_respostas, _zonas, _pergs, _perguntas_colunas_ficheiro, ref continuar, ref continuar_formulario);
+
+                    // se nao houveram erros e se foram importadas algumas respostas
+                    if (continuar && continuar_formulario && respostas.Count != 0)
+                    {
+                        // Criar um questionario com essas respostas
+                        FichaAvaliacao fa = new FichaAvaliacao();
+                        fa.CodAnalise = cod_analise;
+                        fa.CodFichaAvaliacao = GestaodeRespostas.insere_ficha_avaliacao(fa);
+
+                        foreach (Resposta r in respostas)
+                        {
+                            if (r.Tipo_Resposta == Resposta.TipoResposta.RespostaNum)
+                                fa.add_resposta_numero(r);
+                            else if (r.Tipo_Resposta == Resposta.TipoResposta.RespostaStr)
+                                fa.add_resposta_string(r);
+                            else
+                                fa.add_resposta_memo(r);
+                        }
+                        formularios.Add(fa);
+                    }
+                }
+            }
+            return continuar;
+        }
+
+        private List<Resposta> importar_linha_fa(
+            int num_linha, // numero da linha no ficheiro
+            Respostas_Vazias _modo_respostas_vazias, // como tratar respostas sem resposta
+            Valores_Respostas _modo_valores_respostas, // como tratar respostas com valores absurdos
+            List<Zona> _zonas,
+            List<PerguntaFichaAvaliacao> _pergs,
+            Dictionary<float, List<int>> _perguntas_colunas_ficheiro, // associacao das perguntas com colunas
+            ref bool continuar, // se cotinuar importacao
+            ref bool continuar_formulario) // se continuar a importar este formulario
+        {
+            List<Resposta> respostas = new List<Resposta>();
+            string[] valores_linha = valores[num_linha];
+            bool continuar_pergunta;
+
+            for (int i = 0; i < _perguntas_colunas_ficheiro.Keys.Count && continuar && continuar_formulario; i++)
+            {
+                continuar_pergunta = true;
+                /* Sacar a pergunta assosiada */
+                PerguntaFichaAvaliacao perg_associada = getPerguntaByNum_fa(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
+                /* E o tipo de escala */
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(perg_associada.Cod_TipoEscala);
+
+                /* Aqui entende-se que cada pergunta tem uma so resosta, ao contrario do questionario, no entanto, se quisermos por perguntas de varias opcoes, ja fica a dar */
+                List<string> campos = new List<string>();
+
+                foreach (int num_coluna in _perguntas_colunas_ficheiro[perg_associada.Num_Pergunta])
+                    campos.Add(valores[num_linha][num_coluna]); // retirar os varios campos da pergunta
+
+                // verificar se estes campos estao correctos e de acordo com o esperado
+                for (int j = 0; j < campos.Count && continuar && continuar_formulario && continuar_pergunta; j++)
+                    verifica_campo_fa(num_linha, campos[j], _modo_respostas_vazias, _modo_valores_respostas, perg_associada, ref continuar, ref continuar_formulario, ref continuar_pergunta);
+
+                if (continuar && continuar_formulario && continuar_pergunta)
+                {
+                    long cod_zona = -1;
+                    List<Resposta> resps = get_resposta_fa(campos, cod_zona, perg_associada, ti);
+                    foreach (Resposta resp in resps)
+                        respostas.Add(resp);
+                }
+            }
+            return respostas;
+        }
+
+        private List<Resposta> get_resposta_fa(
+            List<string> campos,
+            long cod_zona,
+            PerguntaFichaAvaliacao p,
+            TipoEscala ti)
+        {
+            List<Resposta> resps = new List<Resposta>();
+
+            foreach (string campo in campos)
+            {
+                short i_valor;
+                string s_valor;
+
+                if (ti.Numero != 0)
+                {
+                    s_valor = "";
+                    i_valor = (short)(short.Parse(campo) + 1);
+                }
+                else
+                {
+                    s_valor = campo;
+                    i_valor = -1;
+                }
+
+                if (ti.Numero == -2 && i_valor == 2)
+                {
+                    Resposta resp = new Resposta(
+                        cod_analise,
+                        -1,
+                        -1,
+                        -1,
+                        p.Num_Pergunta,
+                        p.Cod_Item,
+                        cod_zona,
+                        i_valor,
+                        s_valor,
+                        -1,
+                        ti.Numero != 0 ? Resposta.TipoResposta.RespostaNum : Resposta.TipoResposta.RespostaStr);
+                    resps.Add(resp);
+                }
+                else if (ti.Numero != -2)
+                {
+                    Resposta resp = new Resposta(
+                        cod_analise,
+                        -1,
+                        -1,
+                        -1,
+                        p.Num_Pergunta,
+                        p.Cod_Item,
+                        cod_zona,
+                        i_valor,
+                        s_valor,
+                        -1,
+                        ti.Numero != 0 ? Resposta.TipoResposta.RespostaNum : Resposta.TipoResposta.RespostaStr);
+                    resps.Add(resp);
+                }
+            }
+            return resps;
+        }
+
+        #region verificar Erros
+        private void verifica_numero_colunas_fa(
+            int num_linha,
+            Dictionary<float, List<int>> _perguntas_colunas_ficheiro,
+            List<PerguntaFichaAvaliacao> _pergs,
+            Numero_Respostas _modo_num_respostas,
+            ref bool continuar,
+            ref bool continuar_formulario)
+        {
+            if (!tem_colunas_necessarias_fa(num_linha, _perguntas_colunas_ficheiro, _pergs))
+            {
+                if (_modo_num_respostas == Numero_Respostas.Sair_Numero)
+                {
+                    erro = erro_numero_respostas;
+                    linha_erro = num_linha;
+                    continuar = false;
+                    continuar_formulario = false;
+                }
+                else
+                {
+                    numero_formularios_ignorados++;
+                    continuar_formulario = false;
+                }
+            }
+        }
+
+        public void verifica_campo_fa(
+            int num_linha,
+            string _campo,
+            Respostas_Vazias _modo_respostas_vazias,
+            Valores_Respostas _modo_valores_respostas,
+            PerguntaFichaAvaliacao _perg,
+            ref bool continuar,
+            ref bool continuar_formulario,
+            ref bool continuar_pergunta)
+        {
+            #region Teste Respostas Vazias
+            /* Testar Repostas vazias */
+            if (soEspacos(_campo))
+            {
+                if (_modo_respostas_vazias == Respostas_Vazias.Sair_Vazias)
+                {
+                    erro = erro_repostastas_vazias;
+                    linha_erro = num_linha;
+                    numero_pergunta_erro = _perg.Num_Pergunta;
+                    continuar = false;
+                }
+                else if (_modo_respostas_vazias == Respostas_Vazias.Ignorar_Formulario)
+                {
+                    numero_formularios_ignorados++;
+                    continuar_formulario = false;
+                }
+                else if (_modo_respostas_vazias == Respostas_Vazias.Ignorar_Pergunta_Nao_QE)
+                {
+                    numero_perguntas_ignoradas++;
+                    continuar_pergunta = false;
+                }
+                else
+                {
+                    numero_perguntas_ignoradas++;
+                    continuar_pergunta = false;
+                }
+            }
+            #endregion
+
+            TipoEscala ti = GestaodeRespostas.getTipoEscala(_perg.Cod_TipoEscala);
+
+            #region Teste Valor Resposta
+
+            if (ti.Numero != 0 &&
+                ti.Numero != 1 &&
+               (!soNumeros(_campo) ||
+               (short.Parse(_campo) + 1) <= 0 ||
+               (short.Parse(_campo) + 1) > ti.Respostas.Count))
+            {
+                if (_modo_valores_respostas == Valores_Respostas.Sair_Valores)
+                {
+                    erro = erro_valores_respostas;
+                    linha_erro = num_linha;
+                    numero_pergunta_erro = _perg.Num_Pergunta;
+                    continuar = false;
+                }
+                else if (_modo_valores_respostas == Valores_Respostas.Ignorar_Formulario)
+                {
+                    numero_formularios_ignorados++;
+                    continuar_formulario = false;
+                }
+                else if (_modo_valores_respostas == Valores_Respostas.Ignorar_Pergunta_Nao_QE)
+                {
+                    numero_perguntas_ignoradas++;
+                    continuar_pergunta = false;
+                }
+                else
+                {
+                    numero_perguntas_ignoradas++;
+                    continuar_pergunta = false;
+                }
+            }
+            #endregion
+        }
+        #endregion
+
+        #region Cenas
+        private PerguntaFichaAvaliacao getPerguntaByNum_fa(float num, List<PerguntaFichaAvaliacao> ps)
+        {
+            for (int i = 0; i < ps.Count; i++)
+                if (ps[i].Num_Pergunta == num)
+                    return ps[i];
+            return null;
+        }
+
+        private bool tem_colunas_necessarias_fa(int linha, Dictionary<float, List<int>> _perguntas_colunas_ficheiro, List<PerguntaFichaAvaliacao> _pergs)
+        {
+            int num_colunas_necessarias = 0;
+
+            for (int i = 0; i < _perguntas_colunas_ficheiro.Keys.Count; i++)
+            {
+                PerguntaFichaAvaliacao p = getPerguntaByNum_fa(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(p.Cod_TipoEscala);
+
+                if (ti.Numero == -2)
+                    num_colunas_necessarias += ti.Respostas.Count;
+                else
+                    num_colunas_necessarias++;
+            }
+            return valores[linha].Length >= num_colunas_necessarias;
+        }
+        #endregion
+        #endregion
+
+        #region CheckList
+        public bool importar_checklist(
+            Numero_Respostas _modo_num_respostas, // modo como vai ser tratado se o numero de respostas nao esta correcto
+            Respostas_Vazias _modo_respostas_vazias, // modo como vai ser tratado se existirem respostas sem resposta
+            Valores_Respostas _modo_valores_respostas, // modo como vai ser tratado se os valores das respostas nao estarem de acordo com as respostas das perguntas
+            List<Zona> _zonas,
+            List<Item> _itens,
+            Dictionary<long, int> _itens_colunas_ficheiro)
+        {
+            return false;
+        }
+        #endregion 
+
+        #endregion
+
+        #region Outros
         private bool soNumeros(string s)
         {
             if (s == "") return false;
