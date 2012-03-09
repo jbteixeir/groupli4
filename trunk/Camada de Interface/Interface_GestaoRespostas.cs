@@ -125,36 +125,44 @@ namespace ETdA.Camada_de_Interface
         {
             bool ok = true;
 
-            string key = panel1.Controls[0].Text;
-            int indice = int.Parse(panel1.Controls[1].Text.Split(' ')[1]);
-            if (fa && resps[key][indice].Numero < 2)
+            if (panel1.Controls.Count != 0)
+            {
+                string key = panel1.Controls[0].Text;
+                int indice = int.Parse(panel1.Controls[1].Text.Split(' ')[1]);
+                if (fa && resps[key][indice].Numero < 2)
+                {
+                    ok = false;
+                    erro += "Apenas pode seleccionar respostas que sejam do tipo 'Uma Opção'.";
+                }
+
+                for (int i = 0; i < novos.Count && ok; i++)
+                {
+                    erro = "Tipo de Resposta em " + novos[i].Descricao + "\n";
+                    if (novos[i].Numero == -2 && novos[i].Respostas.Count < 1)
+                    {
+                        ok = false;
+                        erro += "Erro: É necessário colocar pelo menos uma hipótese de resposta.";
+                    }
+                    else if (novos[i].Numero == 2 && novos[i].Respostas.Count < 2 && ok)
+                    {
+                        ok = false;
+                        erro += "Erro: É necessário colocar pelo menos duas hipóteses de resposta.";
+                    }
+
+                    if ((novos[i].Numero == -2 || novos[i].Numero == 2) && ok)
+                        for (int j = 0; j < novos[i].Respostas.Count && ok; j++)
+                            for (int z = j + 1; z < novos[i].Respostas.Count && ok; z++)
+                                if (novos[i].Respostas[j].Valor == novos[i].Respostas[z].Valor)
+                                {
+                                    ok = false;
+                                    erro += "Erro: Existem duas hipóteses de resposta com o mesmo valor.";
+                                }
+                }
+            }
+            else
             {
                 ok = false;
-                erro += "Apenas pode seleccionar respostas que sejam do tipo 'Uma Opção'.";
-            }
-
-            for (int i = 0; i < novos.Count && ok; i++)
-            {
-                erro = "Tipo de Resposta em " + novos[i].Descricao + "\n";
-                if (novos[i].Numero == -2 && novos[i].Respostas.Count < 1)
-                {
-                    ok = false;
-                    erro += "Erro: É necessário colocar pelo menos uma hipótese de resposta.";
-                }
-                else if (novos[i].Numero == 2 && novos[i].Respostas.Count < 2 && ok)
-                {
-                    ok = false;
-                    erro += "Erro: É necessário colocar pelo menos duas hipóteses de resposta.";
-                }
-
-                if ((novos[i].Numero == -2 || novos[i].Numero == 2) && ok)
-                    for (int j = 0; j < novos[i].Respostas.Count && ok ; j++)
-                        for (int z = j + 1; z < novos[i].Respostas.Count && ok; z++)
-                            if (novos[i].Respostas[j].Valor == novos[i].Respostas[z].Valor)
-                            {
-                                erro += "Erro: Existem duas hipóteses de resposta com o mesmo valor.";
-                                ok = false;
-                            }
+                erro += "Deve seleccionar um tipo de resposta.";
             }
                 return ok;
         }
