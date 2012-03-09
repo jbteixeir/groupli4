@@ -551,10 +551,15 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         #endregion
 
         #region Ficha Avaliacao
-        static public void insertFichaAvaliacao(FichaAvaliacao fa)
+        static public long insertFichaAvaliacao(FichaAvaliacao fa)
         {
-            DataBaseCommunicator.query("INSERT INTO ficha_avaliacao VALUES (" +
-                fa.CodZona + ", " + fa.CodAnalise + ");");
+            string query = "INSERT INTO ficha_avaliacao VALUES (" + fa.CodAnalise + ");" +
+                "SELECT SCOPE_IDENTITY();";
+
+            SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            reader.Read();
+            return long.Parse(reader[0].ToString());
         }
         #endregion
 

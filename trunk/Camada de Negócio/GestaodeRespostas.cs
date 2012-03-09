@@ -114,5 +114,11 @@ namespace ETdA.Camada_de_Negócio
         {
             return FuncsToDataBase.insertQuestionario(q);
         }
+
+        public static long insere_ficha_avaliacao(FichaAvaliacao fa)
+        {
+            return FuncsToDataBase.insertFichaAvaliacao(fa);
+        }
+
     }
 }

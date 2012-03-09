@@ -54,10 +54,23 @@ namespace ETdA.Camada_de_Interface
 
         private void init()
         {
-            string[] pergs = new string[ps.Count+1];
+            string[] pergs;
+            int j = 1;
+            if (tipo == 0)
+                pergs = new string[ps.Count + 1];
+            else
+            {
+                pergs = new string[ps.Count + 2];
+                pergs[1] = "Zon/Actv";
+                j = 2;
+            }
             pergs[0] = "";
-            for (int i = 0; i < ps.Count; i++)
-                pergs[i+1] = "P:" + ps[i].Num_Pergunta.ToString();
+            if (tipo != 2)
+                for (int i = 0; i < ps.Count; i++)
+                    pergs[i + j] = "P:" + ps[i].Num_Pergunta.ToString();
+            else
+                for (int i = 0; i < itens.Count; i++)
+                    pergs[i + j] = itens[i].NomeItem;
 
             foreach (string s in ie.Colunas)
             {
@@ -107,39 +120,79 @@ namespace ETdA.Camada_de_Interface
         private void ContinuarClick(object sender, EventArgs e)
         {
             Dictionary<float, List<int>> perguntas_colunas_ficheiro = new Dictionary<float, List<int>>();
+            Dictionary<long, int> itens_colunas_ficheiro = new Dictionary<long, int>();
 
-            if (verifica_cabecalho(ref perguntas_colunas_ficheiro))
+            #region Modos Tratamento
+            Importer_Exporter.Numero_Respostas n_r;
+            Importer_Exporter.Respostas_Vazias r_v;
+            Importer_Exporter.Valores_Respostas v_r;
+
+            if (radioButton1.Checked)
+                n_r = Importer_Exporter.Numero_Respostas.Sair_Numero;
+            else
+                n_r = Importer_Exporter.Numero_Respostas.Ignorar_Formulario;
+            if (radioButton3.Checked)
+                r_v = Importer_Exporter.Respostas_Vazias.Sair_Vazias;
+            else if (radioButton4.Checked)
+                r_v = Importer_Exporter.Respostas_Vazias.Ignorar_Formulario;
+            else if (radioButton5.Checked)
+                r_v = Importer_Exporter.Respostas_Vazias.Ignorar_Pergunta;
+            else
+                r_v = Importer_Exporter.Respostas_Vazias.Ignorar_Pergunta_Nao_QE;
+            if (radioButton7.Checked)
+                v_r = Importer_Exporter.Valores_Respostas.Sair_Valores;
+            else if (radioButton8.Checked)
+                v_r = Importer_Exporter.Valores_Respostas.Ignorar_Formulario;
+            else if (radioButton9.Checked)
+                v_r = Importer_Exporter.Valores_Respostas.Ignorar_Pergunta;
+            else
+                v_r = Importer_Exporter.Valores_Respostas.Ignorar_Pergunta_Nao_QE;
+            #endregion
+
+            #region qt e fa
+            if (tipo !=3 && verifica_cabecalho_qt_fa(ref perguntas_colunas_ficheiro))
             {
-                Importer_Exporter.Numero_Respostas n_r;
-                Importer_Exporter.Respostas_Vazias r_v;
-                Importer_Exporter.Valores_Respostas v_r;
+                if (tipo == 0)
+                {
+                    List<PerguntaQuestionario> pergs = new List<PerguntaQuestionario>();
+                    foreach (Pergunta p in ps)
+                        pergs.Add((PerguntaQuestionario)p);
 
-                if (radioButton1.Checked)
-                    n_r = Importer_Exporter.Numero_Respostas.Sair_Numero;
+                    if (ie.importar_questionario(n_r, r_v, v_r, zonas, pergs, perguntas_colunas_ficheiro))
+                    {
+                        string result = "Resultados\nForam importados " + ie.Formularios.Count + " formulários com sucesso.\nForam ignorados " + ie.Formularios_Ignorados + " formulários.\nForam ignoradas " + ie.Perguntas_Ignoradas + " respostas.";
+                        MessageBox.Show(result, "Resultados");
+                    }
+                    else
+                    {
+                        MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.Linha_Erro);
+                        dataGridView2.Rows[ie.Linha_Erro - 1].Selected = true;
+                    }
+                }
                 else
-                    n_r = Importer_Exporter.Numero_Respostas.Ignorar_Formulario;
-                if (radioButton3.Checked)
-                    r_v = Importer_Exporter.Respostas_Vazias.Sair_Vazias;
-                else if (radioButton4.Checked)
-                    r_v = Importer_Exporter.Respostas_Vazias.Ignorar_Formulario;
-                else if (radioButton5.Checked)
-                    r_v = Importer_Exporter.Respostas_Vazias.Ignorar_Pergunta;
-                else
-                    r_v = Importer_Exporter.Respostas_Vazias.Ignorar_Pergunta_Nao_QE;
-                if (radioButton7.Checked)
-                    v_r = Importer_Exporter.Valores_Respostas.Sair_Valores;
-                else if (radioButton8.Checked)
-                    v_r = Importer_Exporter.Valores_Respostas.Ignorar_Formulario;
-                else if (radioButton9.Checked)
-                    v_r = Importer_Exporter.Valores_Respostas.Ignorar_Pergunta;
-                else
-                    v_r = Importer_Exporter.Valores_Respostas.Ignorar_Pergunta_Nao_QE;
+                {
+                    List<PerguntaFichaAvaliacao> pergs = new List<PerguntaFichaAvaliacao>();
+                    foreach (Pergunta p in ps)
+                        pergs.Add((PerguntaFichaAvaliacao)p);
 
-                List<PerguntaQuestionario> pergs = new List<PerguntaQuestionario>();
-                foreach (Pergunta p in ps)
-                    pergs.Add((PerguntaQuestionario)p);
+                    if (ie.importar_ficha_avaliacao(n_r, r_v, v_r, zonas, pergs, perguntas_colunas_ficheiro))
+                    {
+                        string result = "Resultados\nForam importados " + ie.Formularios.Count + " formulários com sucesso.\nForam ignorados " + ie.Formularios_Ignorados + " formulários.\nForam ignoradas " + ie.Perguntas_Ignoradas + " respostas.";
+                        MessageBox.Show(result, "Resultados");
+                    }
+                    else
+                    {
+                        MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.Linha_Erro);
+                        dataGridView2.Rows[ie.Linha_Erro - 1].Selected = true;
+                    }
+                }
+            }
+            #endregion 
 
-                if (ie.importar_questionario(n_r, r_v, v_r, zonas, pergs, perguntas_colunas_ficheiro))
+            #region cl
+            if (tipo == 3 && verifica_cabecalho_cl(ref itens_colunas_ficheiro))
+            {
+                if (ie.importar_checklist(n_r, r_v, v_r, zonas, itens,itens_colunas_ficheiro))
                 {
                     string result = "Resultados\nForam importados " + ie.Formularios.Count + " formulários com sucesso.\nForam ignorados " + ie.Formularios_Ignorados + " formulários.\nForam ignoradas " + ie.Perguntas_Ignoradas + " respostas.";
                     MessageBox.Show(result, "Resultados");
@@ -150,6 +203,7 @@ namespace ETdA.Camada_de_Interface
                     dataGridView2.Rows[ie.Linha_Erro - 1].Selected = true;
                 }
             }
+            #endregion
         }
 
         private void CellValueChangedActionPerformed(object sender, DataGridViewCellEventArgs e)
@@ -169,7 +223,7 @@ namespace ETdA.Camada_de_Interface
 
         #region Verificação de erros
 
-        private bool verifica_cabecalho(ref Dictionary<float, List<int>> _perguntas_colunas_ficheiro)
+        private bool verifica_cabecalho_qt_fa(ref Dictionary<float, List<int>> _perguntas_colunas_ficheiro)
         {
             bool return_value = true;
             DataGridViewRow row = dataGridView1.Rows[0];
@@ -235,6 +289,44 @@ namespace ETdA.Camada_de_Interface
             return return_value;
         }
 
+        private bool verifica_cabecalho_cl(ref Dictionary<long, int> _itens_colunas_ficheiro)
+        {
+            bool return_value = true;
+            DataGridViewRow row = dataGridView1.Rows[0];
+            for (int i = 0; i < row.Cells.Count; i++)
+            {
+                if (row.Cells[i].Value != null)
+                {
+                    if (!row.Cells[i].Value.Equals(""))
+                    {
+                        /* Perguntas nao pode ter 2 itens iguais */
+                        long cod_item = getItemByNume((string)row.Cells[i].Value).CodigoItem;
+                        if (_itens_colunas_ficheiro.ContainsKey(cod_item))
+                        {
+                            if (!erros.ContainsKey(row.Cells[i]))
+                                erros.Add(row.Cells[i], "Pergunta já associada a uma coluna");
+                            setErroStateBar();
+                            return_value = false;
+                        }
+                        else
+                            _itens_colunas_ficheiro.Add(cod_item, i);
+                    }
+                    else
+                    {
+                        for (int j = 0; j < _itens_colunas_ficheiro.Keys.Count; j++)
+                        {
+                            long key = _itens_colunas_ficheiro.Keys.ElementAt(j);
+                            if (_itens_colunas_ficheiro[key] == i)
+                            {
+                                _itens_colunas_ficheiro.Remove(key);
+                            }
+                        }
+                    }
+                }
+            }
+            return return_value;
+        }
+
         private void setErroStateBar()
         {
             if (erros.Count != 0)
@@ -260,6 +352,14 @@ namespace ETdA.Camada_de_Interface
             for (int i = 0; i < ps.Count; i++)
                 if (ps[i].Num_Pergunta == num)
                     return ps[i];
+            return null;
+        }
+
+        private Item getItemByNume(string name)
+        {
+            for (int i = 0; i < ps.Count; i++)
+                if (itens[i].NomeItem == name)
+                    return itens[i];
             return null;
         }
     }
