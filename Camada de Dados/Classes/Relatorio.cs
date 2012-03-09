@@ -173,14 +173,16 @@ namespace ETdA.Camada_de_Dados.Classes
                         if (resultadoItem_questionario_parcial[i] != 0)
                         {
                             resultadoItem_questionario_parcial[i] = (resultadoItem_questionario_parcial[i] / numero_total_questionario);
-                            resultadoItem_questionario_total = (resultadoItem_questionario_total / numero_total_questionario);
+                            
                         }
                         if (resultadoItem_fichaAvaliacao_parcial[i] != 0)
                         {
                             resultadoItem_fichaAvaliacao_parcial[i]= ( resultadoItem_fichaAvaliacao_parcial[i] / numero_total_fichaAvaliacao);
-                            resultadoItem_fichaAvaliacao_total = (resultadoItem_fichaAvaliacao_total / numero_total_fichaAvaliacao);
                         }
                     }
+
+                    resultadoItem_questionario_total = (resultadoItem_questionario_total / numero_total_questionario);
+                    resultadoItem_fichaAvaliacao_total = (resultadoItem_fichaAvaliacao_total / numero_total_fichaAvaliacao);
 
                     //caso a nota do analista seja inferior ao limite imposto por este o resultado é a nota do analista
                     if (resultadoItem_checklist_total <= item.LimiteInferiorAnalista)
