@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camada de Dados\Classes\CheckList.cs" />
+    <Compile Include="Camada de Dados\Classes\Estruturas\Enums.cs" />
     <Compile Include="Camada de Dados\Classes\Estruturas\Tuplo.cs" />
     <Compile Include="Camada de Dados\Classes\FichaAvaliacao.cs" />
     <Compile Include="Camada de Dados\Classes\Formulario.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Camada de Dados\Classes\Questionario.cs" />
     <Compile Include="Camada de Dados\Classes\ResultadoItem.cs" />
     <Compile Include="Camada de Dados\Classes\TipoEscala.cs" />
+    <Compile Include="Camada de Dados\Verificador\Input_Verifier.cs" />
     <Compile Include="Camada de Dados\Classes\Zona.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\ParserCreateAnalista.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\FuncsToDataBase.cs" />

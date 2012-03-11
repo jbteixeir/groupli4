@@ -6,6 +6,7 @@ using System.Linq;
 using System.IO;
 using ETdA.Camada_de_Dados.Classes;
 using ETdA.Camada_de_Negócio;
+using ETdA.Camada_de_Dados.Classes.Estruturas;
 
 namespace ETdA.Camada_de_Interface
 {
@@ -50,7 +51,7 @@ namespace ETdA.Camada_de_Interface
                             List<Pergunta> lst = new List<Pergunta>();
                             foreach (PerguntaQuestionario p in ps)
                                 lst.Add(p);
-                            Interface_Importer_Matching.main(lst, ie, 0, cod_analise, zonas, itens);
+                            Interface_Importer_Matching.main(lst, ie, Enums.Tipo_Formulário.Questionario, cod_analise, zonas, itens);
                         }
                         break;
                     case 1:
