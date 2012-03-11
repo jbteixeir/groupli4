@@ -24,6 +24,15 @@ namespace ETdA.Camada_de_Interface
 
         private Dictionary<long, Dictionary<long, RichTextBox>> obs;
 
+        private bool altpnd = false;
+        private NumericUpDown nudpndcliente;
+        private NumericUpDown nudpndprofissional;
+        private NumericUpDown nudpndanalista;
+        private Label labeltxtrespnd;
+        private PictureBox corItem;
+        private Label labeltxtimg;
+        private Camada_de_Dados.Classes.Item curitem;
+
 
         public static void main(long cod_projecto, long cod_analise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
@@ -99,6 +108,8 @@ namespace ETdA.Camada_de_Interface
 
                 int xmargin = 10;
 
+                altpnd = false;
+
                 #region Titulo Zona
                 Label Zona = new Label();
                 Zona.Location = new System.Drawing.Point(xmargin, 6);
@@ -118,7 +129,6 @@ namespace ETdA.Camada_de_Interface
                 //nome do item
                 Item.Text = itens[j].NomeItem;
                 #endregion
-
 
                 #region desenhar texto Resultado Parcial
                 Label labelresdet = new Label();
@@ -366,7 +376,7 @@ namespace ETdA.Camada_de_Interface
                 labelres.Size = new System.Drawing.Size(300, 20);
                 labelres.ForeColor = Color.Gray;
                 #endregion
-
+            
                 #region desenhar label 'Ponderações'
                 int yrp = labelres.Location.Y + 10;
 
@@ -409,28 +419,44 @@ namespace ETdA.Camada_de_Interface
 
                 #region desenhar os valores das ponderações de cada dimensão
 
-
-
-                NumericUpDown nudpndcliente = new System.Windows.Forms.NumericUpDown();
+                nudpndcliente = new System.Windows.Forms.NumericUpDown();
                 nudpndcliente.Increment = new Decimal(0.1);
                 nudpndcliente.Maximum = 1;
                 nudpndcliente.DecimalPlaces = 3;
-                nudpndcliente.Value = new decimal(itens[j].PonderacaoCliente);
                 nudpndcliente.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 60);
+                if (altpnd == false)
+                {
+                    nudpndcliente.Value = new decimal(itens[j].PonderacaoCliente);
+                    nudpndcliente.Enabled = false;
+                }
+                else
+                    nudpndcliente.Enabled = true;
 
-                NumericUpDown nudpndprofissional = new System.Windows.Forms.NumericUpDown();
+                nudpndprofissional = new System.Windows.Forms.NumericUpDown();
                 nudpndprofissional.Increment = new Decimal(0.1);
                 nudpndprofissional.Maximum = 1;
                 nudpndprofissional.DecimalPlaces = 3;
-                nudpndprofissional.Value = new decimal(itens[j].PonderacaoProfissional);
                 nudpndprofissional.Location = new System.Drawing.Point(xmargin + xcolunarespar, yrp + 60);
+                if (altpnd == false)
+                {
+                    nudpndprofissional.Value = new decimal(itens[j].PonderacaoProfissional);
+                    nudpndprofissional.Enabled = false;
+                }
+                else
+                    nudpndprofissional.Enabled = true;
 
-                NumericUpDown nudpndanalista = new System.Windows.Forms.NumericUpDown();
+                nudpndanalista = new System.Windows.Forms.NumericUpDown();
                 nudpndanalista.Increment = new Decimal(0.1);
                 nudpndanalista.Maximum = 1;
                 nudpndanalista.DecimalPlaces = 3;
-                nudpndanalista.Value = new decimal(itens[j].PonderacaoAnalista);
                 nudpndanalista.Location = new System.Drawing.Point(xmargin + xcolunacor, yrp + 60);
+                if (altpnd == false)
+                {
+                    nudpndanalista.Value = new decimal(itens[j].PonderacaoAnalista);
+                    nudpndanalista.Enabled = false;
+                }
+                else
+                    nudpndanalista.Enabled = true;
                 #endregion
 
                 #region Botões para alteração das ponderações e recálculo do resultado final
@@ -458,7 +484,7 @@ namespace ETdA.Camada_de_Interface
 
                 #region desenhar label 'Resultado Ponderado'
 
-                Label labeltxtrespnd = new Label();
+                labeltxtrespnd = new Label();
                 labeltxtrespnd.Text = "Resultado Ponderado = " + String.Format("{0:0.##}",relatorio.ListaResultados[czona][citem].ResultadoFinal);
                 labeltxtrespnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
                 System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -480,7 +506,7 @@ namespace ETdA.Camada_de_Interface
                 #endregion
                 
                 #region desenhar a imagem da cor
-                System.Windows.Forms.PictureBox corItem = new System.Windows.Forms.PictureBox();
+                corItem = new System.Windows.Forms.PictureBox();
                 corItem.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 210);
                 corItem.Name = "corItem";
                 corItem.Size = new System.Drawing.Size(160, 60);
@@ -488,13 +514,15 @@ namespace ETdA.Camada_de_Interface
                 corItem.TabStop = false;
 
                 #region desenhar o texto da imagem
-                Label labeltxtimg = new Label();
+                labeltxtimg = new Label();
                 labeltxtimg.TabIndex = 4;
                 labeltxtimg.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 275);
                 labeltxtimg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labeltxtimg.Size = new System.Drawing.Size(400, 25);
                 #endregion
+
+                curitem = itens[j];
 
                 if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Vermelho)
                 {
@@ -529,23 +557,6 @@ namespace ETdA.Camada_de_Interface
 
                 #endregion
 
-                #region [FALTA] desenhar label do titulo dos limites
-                /* Label labeltitlim = new Label();
-                labeltitlim.Text = "Limites das cores";
-                labeltitlim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                labeltitlim.TabIndex = 10;
-                labeltitlim.Location = new System.Drawing.Point(0, 200);
-                labeltitlim.Size = new System.Drawing.Size(200, 25);
-                #endregion
-                */
-                #endregion
-
-                #region [FALTA] Desenhar os limites de cada cor
-
-                #endregion
-
-               
 
                 #region desenhar "label" de observações
                 Label obslabel = new System.Windows.Forms.Label();
@@ -1142,12 +1153,66 @@ namespace ETdA.Camada_de_Interface
 
         private void buttonpnd_Click(object sender, EventArgs e)
         {
-            ;
+            if (altpnd == false)
+            {
+                altpnd = true;
+                nudpndcliente.Enabled = true;
+                nudpndprofissional.Enabled = true;
+                nudpndanalista.Enabled = true;
+            }
+            else
+            {
+                altpnd = false;
+                nudpndcliente.Enabled = false;
+                nudpndprofissional.Enabled = false;
+                nudpndanalista.Enabled = false;
+            }
         }
 
         private void buttonrr_Click(object sender, EventArgs e)
         {
-            ;
+            if ((float.Parse(nudpndcliente.Value.ToString()) + float.Parse(nudpndprofissional.Value.ToString()) + float.Parse(nudpndanalista.Value.ToString())) != 1)
+                //mostrar mensagem de erro;
+                ;
+            else
+            {
+                double resfinal = ((relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral * float.Parse(nudpndcliente.Value.ToString())) +
+                            (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral * float.Parse(nudpndprofissional.Value.ToString()))
+                             + (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral * float.Parse(nudpndanalista.Value.ToString())));
+
+                labeltxtrespnd.Text = "Resultado Ponderado = " + String.Format("{0:0.##}", resfinal);
+
+                if (resfinal <= curitem.Inter_Vermelho)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.vermelho;
+                    //labeltxtimg.ForeColor = Color.Red;
+                    labeltxtimg.Text = "Cor = Vermelho";
+                }
+                else if (resfinal <= curitem.Inter_Laranja)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.laranja;
+                    //labeltxtimg.ForeColor = Color.Orange;
+                    labeltxtimg.Text = "Cor = Laranja";
+                }
+                else if (resfinal <= curitem.Inter_Amarelo)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.amarelo;
+                    //labeltxtimg.ForeColor = Color.Yellow;
+                    labeltxtimg.Text = "Cor = Amarelo";
+                }
+                else if (resfinal <= curitem.Inter_Verde_Lima)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.lima;
+                    //labeltxtimg.ForeColor = Color.YellowGreen;
+                    labeltxtimg.Text = "Cor = Verde Lima";
+                }
+                else if (resfinal <= curitem.Inter_Verde)
+                {
+                    corItem.Image = global::ETdA.Properties.Resources.verde;
+                    //labeltxtimg.ForeColor = Color.Green;
+                    labeltxtimg.Text = "Cor = Verde";
+                }
+            }
         }
     }
 }
