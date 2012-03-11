@@ -97,12 +97,13 @@ namespace ETdA.Camada_de_Interface
                 // Console.WriteLine("zona: " + zonas[i].Nome + " item: " + itens[j].NomeItem);
                 // Console.WriteLine("codzona: " + czona + "coditem: " + citem);
 
+                int xmargin = 10;
+
                 #region Titulo Zona
                 Label Zona = new Label();
-                Zona.Location = new System.Drawing.Point(12, 6);
+                Zona.Location = new System.Drawing.Point(xmargin, 6);
                 Zona.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                Zona.Dock = DockStyle.Top;
                 Zona.TabIndex = 1;
                 //nome da zona
                 Zona.Text = zonas[i].Nome;
@@ -110,22 +111,246 @@ namespace ETdA.Camada_de_Interface
 
                 #region Titulo Item
                 Label Item = new Label();
-                Item.Location = new System.Drawing.Point(17, 30);
+                Item.Location = new System.Drawing.Point(xmargin, 30);
                 Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                Item.Dock = DockStyle.Top;
                 Item.TabIndex = 2;
                 //nome do item
                 Item.Text = itens[j].NomeItem;
                 #endregion
 
+                #region desenhar texto "Resultado Parcial
+                Label labelresdet = new Label();
+                labelresdet.Text = "Resultado Parcial";
+                labelresdet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelresdet.TabIndex = 5;
+                labelresdet.Location = new System.Drawing.Point(xmargin, 75);
+                labelresdet.Size = new System.Drawing.Size(200, 25);
+                labelresdet.ForeColor = Color.Gray;
+
+                #endregion
+
+                #region desenhar colunas e as tres labels uma para cada dimensão
+
+                int xcolunadim = 5;
+                int xcolunarespar = 155;
+                int xcolunacor = 355;
+
+                int ycoluna = 105;
+
+                Label labeltxtdim = new Label();
+                labeltxtdim.Text = "Dimensão";
+                labeltxtdim.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labeltxtdim.TabIndex = 5;
+                labeltxtdim.Location = new System.Drawing.Point(xmargin + xcolunadim, ycoluna);
+                labeltxtdim.Size = new System.Drawing.Size(150, 20);
+
+                Label labeltxtrespar = new Label();
+                labeltxtrespar.Text = "Resultado Parcial";
+                labeltxtrespar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labeltxtrespar.TabIndex = 5;
+                labeltxtrespar.Location = new System.Drawing.Point(xmargin + xcolunarespar, ycoluna);
+                labeltxtrespar.Size = new System.Drawing.Size(150, 20);
+
+                Label labeltxtcor = new Label();
+                labeltxtcor.Text = "Cor";
+                labeltxtcor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labeltxtcor.TabIndex = 5;
+                labeltxtcor.Location = new System.Drawing.Point(xmargin + xcolunacor, ycoluna);
+                labeltxtcor.Size = new System.Drawing.Size(150, 20);
+                
+                #region Dimensões
+                
+                Label labeldmncliente = new Label();
+                labeldmncliente.Text = "Cliente";
+                labeldmncliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labeldmncliente.TabIndex = 5;
+                labeldmncliente.Location = new System.Drawing.Point(xmargin + xcolunadim + 5, ycoluna + 20);
+                labeldmncliente.Size = new System.Drawing.Size(100, 20);
+                
+                Label labeldmnprofissional = new Label();
+                labeldmnprofissional.Text = "Profissional";
+                labeldmnprofissional.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labeldmnprofissional.TabIndex = 5;
+                labeldmnprofissional.Location = new System.Drawing.Point(xmargin + xcolunadim + 5, ycoluna + 45);
+                labeldmnprofissional.Size = new System.Drawing.Size(100, 20);
+
+                Label labeldmnanalista = new Label();
+                labeldmnanalista.Text = "Analista";
+                labeldmnanalista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labeldmnanalista.TabIndex = 5;
+                labeldmnanalista.Location = new System.Drawing.Point(xmargin + xcolunadim + 5, ycoluna + 70);
+                labeldmnanalista.Size = new System.Drawing.Size(100, 20);
+                #endregion
+
+                #endregion
+
+                #region desenhar labels de resultados parciais e cores
+                #region Cliente
+                #region Resultado Parcial
+                Label labelclrp = new Label();
+                labelclrp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelclrp.TabIndex = 7;
+                labelclrp.Location = new System.Drawing.Point(xmargin + xcolunarespar + 5, ycoluna + 20);
+                labelclrp.Size = new System.Drawing.Size(150, 15);
+
+                labelclrp.Text = String.Format("{0:0.##}",  relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral);
+                
+                #endregion
+                #region Cor
+
+                Label labelclcor = new Label();
+                labelclcor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelclcor.TabIndex = 7;
+                labelclcor.Location = new System.Drawing.Point(xmargin + xcolunacor - 5, ycoluna + 20);
+                labelclcor.Size = new System.Drawing.Size(150, 15);
+
+                if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Vermelho)
+                {
+                    labelclcor.Text = "Vermelho";
+                    //labelcl.ForeColor = Color.Red;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Laranja)
+                {
+                    labelclcor.Text = "Laranja";
+                    //labelcl.ForeColor = Color.Orange;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Amarelo)
+                {
+                    labelclcor.Text = " Amarelo";
+                    //labelcl.ForeColor = Color.Yellow;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde_Lima)
+                {
+                    labelclcor.Text = "Verde Lima";
+                    //labelcl.ForeColor = Color.YellowGreen;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde)
+                {
+                    labelclcor.Text = "Verde";
+                    //labelcl.ForeColor = Color.Green;
+                }
+
+                #endregion
+
+                #endregion
+
+                #region Profissional
+                #region Resultado Parcial
+                Label labelpfrp = new Label();
+                labelpfrp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelpfrp.TabIndex = 7;
+                labelpfrp.Location = new System.Drawing.Point(xmargin+xcolunarespar+5, ycoluna + 45);
+                labelpfrp.Size = new System.Drawing.Size(150, 15);
+
+                labelpfrp.Text = String.Format("{0:0.##}",relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral);
+                                 
+                #endregion 
+                #region Cor
+                Label labelpfcor = new Label();
+                labelpfcor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelpfcor.TabIndex = 7;
+                labelpfcor.Location = new System.Drawing.Point(xmargin+xcolunacor - 5, ycoluna + 45);
+                labelpfcor.Size = new System.Drawing.Size(150, 15);
+
+                //double x = relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral;
+                if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Vermelho)
+                {
+                    labelpfcor.Text = "Vermelho";
+                    //labelpfcor.ForeColor = Color.Red;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Laranja)
+                {
+                    labelpfcor.Text = "Laranja";
+                    //labelpfcor.ForeColor = Color.Orange;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Amarelo)
+                {
+                    labelpfcor.Text = "Amarelo";
+                    //labelpfcor.ForeColor = Color.Yellow;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde_Lima)
+                {
+                    labelpfcor.Text = "Verde Lima";
+                    //labelpfcor.ForeColor = Color.YellowGreen;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde)
+                {
+                    labelpfcor.Text = "Verde";
+                    //labelpfcor.ForeColor = Color.Green;
+                }
+                #endregion
+                #endregion
+
+                #region Analista
+                #region Resultado Parcial
+                Label labelanrp = new Label();
+                labelanrp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelanrp.TabIndex = 7;
+                labelanrp.Location = new System.Drawing.Point(xmargin + xcolunarespar + 5, ycoluna + 70);
+                labelanrp.Size = new System.Drawing.Size(150, 15);
+
+                labelanrp.Text = String.Format("{0:0.##}",relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral);
+                 
+                #endregion
+                #region Cor
+                Label labelancor = new Label();
+                labelancor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labelancor.TabIndex = 7;
+                labelancor.Location = new System.Drawing.Point(xmargin + xcolunacor - 5, ycoluna + 70);
+                labelancor.Size = new System.Drawing.Size(150, 15);
+
+                if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Vermelho)
+                {
+                    labelancor.Text = "Vermelho";
+                    //labelancor.ForeColor = Color.Red;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Laranja)
+                {
+                    labelancor.Text = "Laranja";
+                    //labelancor.ForeColor = Color.Orange;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Amarelo)
+                {
+                    labelancor.Text = "Amarelo";
+                    //labelancor.ForeColor = Color.Yellow;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde_Lima)
+                {
+                    labelancor.Text = "Verde Lima";
+                    //labelancor.ForeColor = Color.YellowGreen;
+                }
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde)
+                {
+                    labelancor.Text = "Verde";
+                    //labelancor.ForeColor = Color.Green;
+                }
+                #endregion
+                #endregion
+                #endregion
+
+
+                /*
                 #region desenhar o texto "Resultado"
                 Label labelres = new Label();
                 labelres.Text = "Resultado";
                 labelres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labelres.TabIndex = 3;
-                labelres.Location = new System.Drawing.Point(0, 55);
+                labelres.Location = new System.Drawing.Point(xmargin, 55);
                 #endregion
 
                 #region desenhar o texto da imagem
@@ -177,36 +402,10 @@ namespace ETdA.Camada_de_Interface
                 corItem.TabIndex = 0;
                 corItem.TabStop = false;
                 #endregion
-
-                #region desenhar texto "Resultado Detalhado
-                Label labelresdet = new Label();
-                labelresdet.Text = "Resultado Detalhado";
-                labelresdet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                labelresdet.TabIndex = 5;
-                labelresdet.Location = new System.Drawing.Point(0, 200);
-                labelresdet.Size = new System.Drawing.Size(200, 25);
-                #endregion
-
-                #region desenhar tres labels uma para cada dimensão
-                Label labeltxt = new Label();
-                labeltxt.Text = "Dimensão                        Ponderação                        Resultado Parcial";
-                labeltxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                labeltxt.TabIndex = 5;
-                labeltxt.Location = new System.Drawing.Point(10, 230);
-                labeltxt.Size = new System.Drawing.Size(500, 25);
-
-                Label labeldmn = new Label();
-                labeldmn.Text = "Cliente\n\nProfissional\n\nAnalista";
-                labeldmn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                labeldmn.TabIndex = 5;
-                labeldmn.Location = new System.Drawing.Point(10, 230 + 25);
-                labeldmn.Size = new System.Drawing.Size(100, 75);
-                #endregion
+                */
 
                 #region desenhar label as ponderações de cada dimensão
+                /*
                 Label labelpnd = new Label();
                 labelpnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -214,115 +413,31 @@ namespace ETdA.Camada_de_Interface
                 labelpnd.Location = new System.Drawing.Point(190, 230 + 25);
                 labelpnd.Size = new System.Drawing.Size(50, 75);
                 labelpnd.Text = itens[j].PonderacaoCliente.ToString() + "\n\n" + itens[j].PonderacaoProfissional.ToString() + "\n\n" + itens[j].PonderacaoAnalista.ToString();
+                 * */
+
+                NumericUpDown nudpndcliente = new System.Windows.Forms.NumericUpDown();
+                nudpndcliente.Increment = new Decimal(0.1);
+                nudpndcliente.Maximum = 1;
+                nudpndcliente.DecimalPlaces = 3;
+                nudpndcliente.Value = new decimal(itens[j].PonderacaoCliente);
+                nudpndcliente.Location = new System.Drawing.Point(160, 230 + 25);
+
+                NumericUpDown nudpndprofissional = new System.Windows.Forms.NumericUpDown();
+                nudpndprofissional.Increment = new Decimal(0.1);
+                nudpndprofissional.Maximum = 1;
+                nudpndprofissional.DecimalPlaces = 3;
+                nudpndprofissional.Value = new decimal(itens[j].PonderacaoProfissional);
+                nudpndprofissional.Location = new System.Drawing.Point(160, 230 + 55);
+
+                NumericUpDown nudpndanalista = new System.Windows.Forms.NumericUpDown();
+                nudpndanalista.Increment = new Decimal(0.1);
+                nudpndanalista.Maximum = 1;
+                nudpndanalista.DecimalPlaces = 3;
+                nudpndanalista.Value = new decimal(itens[j].PonderacaoAnalista);
+                nudpndanalista.Location = new System.Drawing.Point(160, 230 + 85);
                 #endregion
 
-                #region desenhar labels de resultados parciais
-                #region Cliente
-                Label labelcl = new Label();
-                labelcl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                labelcl.TabIndex = 7;
-                labelcl.Location = new System.Drawing.Point(350, 230 + 25);
-                labelcl.Size = new System.Drawing.Size(150, 15);
-
-                if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Vermelho)
-                {
-                    labelcl.Text = " VERMELHO (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
-                    labelcl.ForeColor = Color.Red;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Laranja)
-                {
-                    labelcl.Text = " LARANJA (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
-                    labelcl.ForeColor = Color.Orange;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Amarelo)
-                {
-                    labelcl.Text = " AMARELO (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
-                    labelcl.ForeColor = Color.Yellow;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde_Lima)
-                {
-                    labelcl.Text = " VERDE LIMA (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
-                    labelcl.ForeColor = Color.YellowGreen;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde)
-                {
-                    labelcl.Text = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral.ToString() + ")";
-                    labelcl.ForeColor = Color.Green;
-                }
-                #endregion
-
-                #region Profissional
-                Label labelpf = new Label();
-                labelpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                labelpf.TabIndex = 7;
-                labelpf.Location = new System.Drawing.Point(350, 230 + 55);
-                labelpf.Size = new System.Drawing.Size(150, 15);
-
-                //double x = relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral;
-                if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Vermelho)
-                {
-                    labelpf.Text = " VERMELHO (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
-                    labelpf.ForeColor = Color.Red;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Laranja)
-                {
-                    labelpf.Text = " LARANJA (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
-                    labelpf.ForeColor = Color.Orange;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Amarelo)
-                {
-                    labelpf.Text = " AMARELO (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
-                    labelpf.ForeColor = Color.Yellow;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde_Lima)
-                {
-                    labelpf.Text = " VERDE LIMA (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
-                    labelpf.ForeColor = Color.YellowGreen;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde)
-                {
-                    labelpf.Text = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral.ToString() + ")";
-                    labelpf.ForeColor = Color.Green;
-                }
-                #endregion
-
-                #region Analista
-                Label labelan = new Label();
-                labelan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
-                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                labelan.TabIndex = 7;
-                labelan.Location = new System.Drawing.Point(350, 230 + 87);
-                labelan.Size = new System.Drawing.Size(150, 15);
-
-                if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Vermelho)
-                {
-                    labelan.Text = " VERMELHO (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.Red;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Laranja)
-                {
-                    labelan.Text = " LARANJA (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.Orange;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Amarelo)
-                {
-                    labelan.Text = " AMARELO (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.Yellow;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde_Lima)
-                {
-                    labelan.Text = " VERDE LIMA (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.YellowGreen;
-                }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde)
-                {
-                    labelan.Text = " VERDE (" + relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral.ToString() + ")";
-                    labelan.ForeColor = Color.Green;
-                }
-                #endregion
-                #endregion
+                
 
                 #region [FALTA] desenhar label do titulo dos limites
                 /* Label labeltitlim = new Label();
@@ -380,16 +495,25 @@ namespace ETdA.Camada_de_Interface
                 panelrel.Controls.Clear();
                 panelrel.Controls.Add(Item);
                 panelrel.Controls.Add(Zona);
-                panelrel.Controls.Add(labelres);
-                panelrel.Controls.Add(labeltxtimg);
-                panelrel.Controls.Add(corItem);
+                //panelrel.Controls.Add(labelres);
+                //panelrel.Controls.Add(labeltxtimg);
+                //panelrel.Controls.Add(corItem);
                 panelrel.Controls.Add(labelresdet);
-                panelrel.Controls.Add(labeltxt);
-                panelrel.Controls.Add(labeldmn);
-                panelrel.Controls.Add(labelpnd);
-                panelrel.Controls.Add(labelcl);
-                panelrel.Controls.Add(labelpf);
-                panelrel.Controls.Add(labelan);
+                panelrel.Controls.Add(labeltxtdim);
+                panelrel.Controls.Add(labeltxtrespar);
+                panelrel.Controls.Add(labeltxtcor);
+                panelrel.Controls.Add(labeldmncliente);
+                panelrel.Controls.Add(labeldmnprofissional);
+                panelrel.Controls.Add(labeldmnanalista);
+                panelrel.Controls.Add(nudpndcliente);
+                panelrel.Controls.Add(nudpndprofissional);
+                panelrel.Controls.Add(nudpndanalista);
+                panelrel.Controls.Add(labelclrp);
+                panelrel.Controls.Add(labelclcor);
+                panelrel.Controls.Add(labelpfrp);
+                panelrel.Controls.Add(labelpfcor);
+                panelrel.Controls.Add(labelanrp);
+                panelrel.Controls.Add(labelancor);
                 panelrel.Controls.Add(obstb);
                 panelrel.Controls.Add(obslabel);
                 panelrel.Controls.Add(checkBoxInsDt);
