@@ -1642,15 +1642,6 @@ namespace ETdA.Camada_de_Interface
             this.Dispose();
         }
 
-        private void InserirManualClick(object sender, EventArgs e)
-        {
-            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
-            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
-
-            Interface_IntroduzirManualmente.main(codProjecto, codAnalise);
-
-        }
-
         private void PerguntasAction(object sender, EventArgs e)
         {
             long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);

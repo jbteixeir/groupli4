@@ -224,12 +224,6 @@
     <Compile Include="Camada de Interface\Interface_FichaAvaliacao.designer.cs">
       <DependentUpon>Interface_FichaAvaliacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_IntroduzirManualmente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Camada de Interface\Interface_IntroduzirManualmente.designer.cs">
-      <DependentUpon>Interface_IntroduzirManualmente.cs</DependentUpon>
-    </Compile>
     <Compile Include="Camada de Interface\Interface_Questionario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,9 +292,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_FichaAvaliacao.resx">
       <DependentUpon>Interface_FichaAvaliacao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_IntroduzirManualmente.resx">
-      <DependentUpon>Interface_IntroduzirManualmente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\Interface_Questionario.resx">
       <DependentUpon>Interface_Questionario.cs</DependentUpon>
