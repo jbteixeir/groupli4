@@ -812,7 +812,7 @@ namespace ETdA.Camada_de_Interface
 
                 
                 System.Windows.Forms.Label l7 = new System.Windows.Forms.Label();
-                l7.Width = 150;
+                l7.Width = 100;
                 l7.Text = "CheckList Online";
                 l7.Location = new Point(15, 70);
 
@@ -821,6 +821,8 @@ namespace ETdA.Camada_de_Interface
 
                 checkBox1.Location = new Point(175, 65);
                 checkBox1.BackColor = SystemColors.Control;
+                checkBox1.Anchor = AnchorStyles.Right | AnchorStyles.Top;
+
 
                 if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoCheckListOnline(codp, coda))
                 {
@@ -855,6 +857,7 @@ namespace ETdA.Camada_de_Interface
 
                 checkBox2.Location = new Point(175, 125);
                 checkBox2.BackColor = SystemColors.Control;
+                checkBox2.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
                 if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoFichaAvaliacaoOnline(codp, coda))
                 {
@@ -888,6 +891,7 @@ namespace ETdA.Camada_de_Interface
 
                 checkBox3.Location = new Point(175, 185);
                 checkBox3.BackColor = SystemColors.Control;
+                checkBox3.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
                 if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoQuestionariosOnline(codp, coda))
                 {
@@ -915,12 +919,12 @@ namespace ETdA.Camada_de_Interface
                 System.Windows.Forms.Label lrel = new System.Windows.Forms.Label();
                 lrel.Text = "Relatório";
                 lrel.ForeColor = SystemColors.ControlDark;
-                lrel.Location = new Point(7, 18);
+                lrel.Location = new Point(7, 0);
                 lrel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
                 System.Windows.Forms.Label l3 = new System.Windows.Forms.Label();
                 l3.Text = "Gerar Relatorio";
-                l3.Location = new Point(15, 48);
+                l3.Location = new Point(15, 30);
                 l3.ForeColor = Color.Blue;
                 l3.Cursor = System.Windows.Forms.Cursors.Hand;
                 l3.Click += new System.EventHandler(this.GerarRelatorio);
@@ -940,21 +944,53 @@ namespace ETdA.Camada_de_Interface
                 l5.Width = 200;
                 l5.Text = "Inserir Dados Manualmente";
                 l5.Location = new Point(15, 36);
-                l5.ForeColor = Color.Blue;
-                l5.Cursor = System.Windows.Forms.Cursors.Hand;
-                l5.Click += new System.EventHandler(this.InserirManualClick);
-                l5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
-                l5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                l5.ForeColor = Color.DarkGray;
+                l5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                //l5.Cursor = System.Windows.Forms.Cursors.Hand;
+                //l5.Click += new System.EventHandler(this.InserirManualClick);
+                //l5.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                //l5.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                System.Windows.Forms.Label lcl = new System.Windows.Forms.Label();
+                //lcl.Width = 200;
+                lcl.Text = "Checklist";
+                lcl.Location = new Point(15+5, l5.Location.Y+22);
+                lcl.ForeColor = Color.Blue;
+                lcl.Cursor = System.Windows.Forms.Cursors.Hand;
+                lcl.Click += new System.EventHandler(this.button3_Click);
+                lcl.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                lcl.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                System.Windows.Forms.Label lfa = new System.Windows.Forms.Label();
+                //lfa.Width = 200;
+                lfa.Text = "Ficha de Avaliação";
+                lfa.Location = new Point(15 + 5, l5.Location.Y + 44);
+                lfa.ForeColor = Color.Blue;
+                lfa.Cursor = System.Windows.Forms.Cursors.Hand;
+                lfa.Click += new System.EventHandler(this.button2_Click);
+                lfa.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                lfa.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+
+                System.Windows.Forms.Label lqt = new System.Windows.Forms.Label();
+                //lqt.Width = 10;
+                lqt.Text = "Questionário";
+                lqt.Location = new Point(15 + 5, l5.Location.Y + 66);
+                lqt.ForeColor = Color.Blue;
+                lqt.Cursor = System.Windows.Forms.Cursors.Hand;
+                lqt.Click += new System.EventHandler(this.button1_Click);
+                lqt.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                lqt.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
                 System.Windows.Forms.Label l4 = new System.Windows.Forms.Label();
-                l4.Width = 150;
+                l4.Width = 200;
                 l4.Text = "Importar Dados de Ficheiro";
-                l4.Location = new System.Drawing.Point(15, 66);
+                l4.Location = new System.Drawing.Point(15, 66 + 60);
                 l4.ForeColor = Color.Blue;
                 l4.Cursor = System.Windows.Forms.Cursors.Hand;
                 l4.Click += new System.EventHandler(importer);
                 l4.MouseEnter += new System.EventHandler(this.MouseEnterAction);
                 l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                l4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
                 #endregion
 
@@ -1076,18 +1112,17 @@ namespace ETdA.Camada_de_Interface
                 splitContainer3.Panel2.Controls.Add(l6);
                 splitContainer3.Panel2.Controls.Add(l7);
                 splitContainer3.Panel2.Controls.Add(checkBox1);
+                
                 splitContainer3.Panel2.Controls.Add(tb1);
-                tb1.Size = new Size((splitContainer3.Size.Width - 20),10);
+                tb1.Size = new Size((splitContainer3.Size.Height - 20),10);
                 splitContainer3.Panel2.Controls.Add(l8);
                 splitContainer3.Panel2.Controls.Add(checkBox2);
                 splitContainer3.Panel2.Controls.Add(tb2);
-                tb2.Size = new Size((splitContainer3.Size.Width - 20), 10);
+                tb2.Size = new Size((splitContainer3.Size.Height - 20), 10);
                 splitContainer3.Panel2.Controls.Add(l9);
                 splitContainer3.Panel2.Controls.Add(checkBox3);
                 splitContainer3.Panel2.Controls.Add(tb3);
-                tb3.Size = new Size((splitContainer3.Size.Width - 20), 10);
-                
-                
+                tb3.Size = new Size((splitContainer3.Size.Height - 20), 10);
                 
                 
                 // 
@@ -1207,17 +1242,21 @@ namespace ETdA.Camada_de_Interface
                 label9.Size = new System.Drawing.Size(131, 22);
                 label9.TabIndex = 0;
                 label9.Text = "Onde Começar";
+
                 // 
                 // panel3
                 // 
                 panel3.Dock = System.Windows.Forms.DockStyle.Top;
                 panel3.Location = new System.Drawing.Point(0, 0);
                 panel3.Name = "panel3";
-                panel3.Size = new System.Drawing.Size(343, 90);
+                panel3.Size = new System.Drawing.Size(343, 90 + 70);
                 panel3.TabIndex = 3;
                 panel3.Controls.Add(ldados);
                 panel3.Controls.Add(l5);
                 panel3.Controls.Add(l4);
+                panel3.Controls.Add(lcl);
+                panel3.Controls.Add(lfa);
+                panel3.Controls.Add(lqt);
 
                 // 
                 // panel4
@@ -2002,5 +2041,52 @@ namespace ETdA.Camada_de_Interface
             Interface_ConfigurarLigacaoBD.main();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            long cod_Projecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long cod_Analise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+
+            if (GestaodeRespostas.isQTcreated(cod_Analise))
+            {
+                Interface_Questionario newInterfaceQuestionario = new Interface_Questionario(cod_Projecto, cod_Analise);
+                newInterfaceQuestionario.ShowDialog();
+            }
+            else
+            {
+                List<Item> itens = GestaodeAnalises.getItensAnalise(cod_Projecto, cod_Analise);
+                List<Zona> zonas = GestaodeAnalises.getZonasAnalise(cod_Projecto, cod_Analise);
+                DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar o Questionário.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
+                if (resultado == DialogResult.Yes)
+                    Interface_GestaoFormulariosOnline.main(cod_Analise, itens, zonas);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            long cod_Projecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long cod_Analise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            if (GestaodeRespostas.isFAcreated(cod_Analise))
+            {
+                Interface_FichaAvaliacao newInterfaceFA = new Interface_FichaAvaliacao(cod_Projecto, cod_Analise);
+                newInterfaceFA.ShowDialog();
+            }
+            else
+            {
+                List<Item> itens = GestaodeAnalises.getItensAnalise(cod_Projecto, cod_Analise);
+                List<Zona> zonas = GestaodeAnalises.getZonasAnalise(cod_Projecto, cod_Analise);
+                DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar a Ficha de Avaliação.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
+                if (resultado == DialogResult.Yes)
+                    Interface_GestaoFormulariosOnline.main(cod_Analise, itens, zonas);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            long cod_Projecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long cod_Analise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+
+            Interface_CheckList newInterfaceChecklist = new Interface_CheckList(cod_Projecto, cod_Analise);
+            newInterfaceChecklist.ShowDialog();
+        }
     }
 }

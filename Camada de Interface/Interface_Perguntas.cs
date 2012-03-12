@@ -174,7 +174,7 @@ namespace ETdA.Camada_de_Interface
             Label l1 = new System.Windows.Forms.Label();
             l1.AutoSize = true;
             l1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            l1.Text = "Pergunta " + number;
+            l1.Text = "Pergunta " + (number +1);
             l1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             l1.Location = new Point(10, 0);
             p.Controls.Add(l1);
