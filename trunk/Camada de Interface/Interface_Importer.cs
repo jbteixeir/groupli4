@@ -39,24 +39,40 @@ namespace ETdA.Camada_de_Interface
         {
             if (verificaErros())
             {
+                Importer_Exporter ie = new Importer_Exporter(cod_analise, textBox1.Text);
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                        Importer_Exporter ie = new Importer_Exporter(cod_analise, textBox1.Text);
                         if (!ie.ler_ficheiro(checkBox1.Checked))
                             MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            List<PerguntaQuestionario> ps = GestaodeRespostas.getPerguntasQT(cod_analise);
-                            List<Pergunta> lst = new List<Pergunta>();
-                            foreach (PerguntaQuestionario p in ps)
-                                lst.Add(p);
-                            Interface_Importer_Matching.main(lst, ie, Enums.Tipo_Formulário.Questionario, cod_analise, zonas, itens);
+                            List<PerguntaQuestionario> pqs = GestaodeRespostas.getPerguntasQT(cod_analise);
+                            List<Pergunta> lst_pqs = new List<Pergunta>();
+                            foreach (PerguntaQuestionario p in pqs)
+                                lst_pqs.Add(p);
+                            Interface_Importer_Matching.main(lst_pqs, ie, Enums.Tipo_Formulário.Questionario, cod_analise, zonas, itens);
                         }
                         break;
                     case 1:
+                        if (!ie.ler_ficheiro(checkBox1.Checked))
+                            MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
+                        else
+                        {
+                            List<PerguntaFichaAvaliacao> pas = GestaodeRespostas.getPerguntasFA(cod_analise);
+                            List<Pergunta> lst_pas = new List<Pergunta>();
+                            foreach (PerguntaFichaAvaliacao p in pas)
+                                lst_pas.Add(p);
+                            Interface_Importer_Matching.main(lst_pas, ie, Enums.Tipo_Formulário.Ficha_Avaliacao, cod_analise, zonas, itens);
+                        }
                         break;
                     case 2:
+                        if (!ie.ler_ficheiro(checkBox1.Checked))
+                            MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
+                        else
+                        {
+                            Interface_Importer_Matching.main(null, ie, Enums.Tipo_Formulário.Ficha_Avaliacao, cod_analise, zonas, itens);
+                        }
                         break;
                 }
             }

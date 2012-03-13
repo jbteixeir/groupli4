@@ -553,7 +553,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         #region Ficha Avaliacao
         static public long insertFichaAvaliacao(FichaAvaliacao fa)
         {
-            string query = "INSERT INTO ficha_avaliacao VALUES (" + fa.CodAnalise + ");" +
+            string query = "INSERT INTO ficha_avaliacao VALUES (" + fa.CodAnalise + "," + fa.CodZona + ");" +
                 "SELECT SCOPE_IDENTITY();";
 
             SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
@@ -674,22 +674,31 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         #endregion
 
 		#region Inserir Respostas Ficha de Avaliacao
-		static public void insertRespostaFichaAvaliacao(Resposta r)
+		static public long insertRespostaFichaAvaliacao(Resposta r)
         {
+            string query;
             switch (r.Tipo_Resposta)
             {
                 case Resposta.TipoResposta.RespostaNum:
-                    DataBaseCommunicator.query("INSERT INTO resposta_ficha_avaliacao_numero VALUES (" +
-                        r.NumeroPergunta + ", " + r.Valor + ", " + r.Cod_fichaAvaliacao + ", " +
-                        r.Cod_analise + ");");
+                    query = "INSERT INTO resposta_ficha_avaliacao_numero VALUES (" +
+                        r.Cod_fichaAvaliacao + ", " + r.Cod_analise + ", " + r.NumeroPergunta + ", " +
+                         + r.Valor + ");" + 
+                        "SELECT SCOPE_IDENTITY();";
                     break;
-                case Resposta.TipoResposta.RespostaStr:
-                    DataBaseCommunicator.query("INSERT INTO resposta_ficha_avaliacao_string VALUES (" +
-                        r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_fichaAvaliacao + ", "
-                        + r.Cod_analise + ");");
+                default:
+                    query = "INSERT INTO resposta_ficha_avaliacao_string VALUES (" +
+                        r.Cod_fichaAvaliacao + ", " + r.Cod_analise + ", " + r.NumeroPergunta + ",'" +
+                         + r.Valor + "');" + 
+                        "SELECT SCOPE_IDENTITY();";
                     break;
             }
 
+            MessageBox.Show(query.ToString());
+
+            SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            reader.Read();
+            return long.Parse(reader[0].ToString());
         }
         #endregion
 
@@ -770,7 +779,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 
-        #region INserir Resposta Questionário
+        #region Inserir Resposta Questionário
         static public long insertRespostaQuestionario(Resposta r)
         {
             string query;
@@ -778,30 +787,28 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             {
                 case Resposta.TipoResposta.RespostaNum:
                     query = "INSERT INTO resposta_questionario_numero VALUES (" +
-                        r.NumeroPergunta + ", " + r.Valor + ", " + r.Cod_questionario + ", " +
-                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");" +
-                        "SELECT SCOPE_IDENTITY();";
+                        r.Cod_questionario + ", " + r.Cod_analise + ", " + r.CodigoZona + ", " +
+                        ((r.NumeroPergunta > (int)r.NumeroPergunta) ? (r.NumeroPergunta.ToString().Split(',')[0] + "." + r.NumeroPergunta.ToString().Split(',')[1]) : r.NumeroPergunta.ToString()) + ", " + 
+                        r.Valor + ", " + r.Cod_pergunta + ");" + "SELECT SCOPE_IDENTITY();";
                     break;
                 case Resposta.TipoResposta.RespostaStr:
                     query = "INSERT INTO resposta_questionario_string VALUES (" +
-                        r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
-                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");" +
+                        r.Cod_questionario + ", " + r.Cod_analise + ", " + r.CodigoZona + ", " +
+                        r.NumeroPergunta + ", '" + r.ValorString + "', " + r.Cod_pergunta + ");" +
                         "SELECT SCOPE_IDENTITY();";
                     break;
                 default:
                     query = "INSERT INTO resposta_questionario_memo VALUES (" +
-                        r.NumeroPergunta + ", " + r.ValorString + ", " + r.Cod_questionario + ", " +
-                        r.Cod_analise + ", " + r.CodigoZona + ", " + r.Cod_pergunta + ");"+
+                        r.Cod_questionario + ", " + r.Cod_analise + ", " + r.CodigoZona + ", " +
+                        r.NumeroPergunta + ", '" + r.ValorString + "', " + r.Cod_pergunta + ");" +
                         "SELECT SCOPE_IDENTITY();";
                     break;
             }
 
-            MessageBox.Show(query);
-            //SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            //reader.Read();
-            //return long.Parse(reader[0].ToString());
-            return 1;
+            reader.Read();
+            return long.Parse(reader[0].ToString());
         }
         #endregion
 

@@ -110,15 +110,46 @@ namespace ETdA.Camada_de_Negócio
             insert_PerguntasQT(pergs);
         }
 
-        public static long insere_questionario(Questionario q)
+        public static void insere_questionario(Questionario q)
         {
-            return FuncsToDataBase.insertQuestionario(q);
+            q.Cod_Questionario = FuncsToDataBase.insertQuestionario(q);
+
+            foreach (Resposta r in q.Respostas_Memo)
+            {
+                r.CodigoQuestionario = q.Cod_Questionario;
+                FuncsToDataBase.insertRespostaQuestionario(r);
+            }
+            foreach (Resposta r in q.Respostas_Numero)
+            {
+                r.CodigoQuestionario = q.Cod_Questionario;
+                FuncsToDataBase.insertRespostaQuestionario(r);
+            }
+            foreach (Resposta r in q.Respostas_String)
+            {
+                r.CodigoQuestionario = q.Cod_Questionario;
+                FuncsToDataBase.insertRespostaQuestionario(r);
+            }
         }
 
-        public static long insere_ficha_avaliacao(FichaAvaliacao fa)
+        public static void insere_ficha_avaliacao(FichaAvaliacao fa)
         {
-            return FuncsToDataBase.insertFichaAvaliacao(fa);
-        }
+            fa.CodFichaAvaliacao = FuncsToDataBase.insertFichaAvaliacao(fa);
 
+            foreach (Resposta r in fa.Respostas_Numero)
+            {
+                r.CodigoFichaAvaliacao = fa.CodFichaAvaliacao;
+                FuncsToDataBase.insertRespostaFichaAvaliacao(r);
+            }
+            foreach (Resposta r in fa.Respostas_Memo)
+            {
+                r.CodigoFichaAvaliacao = fa.CodFichaAvaliacao;
+                FuncsToDataBase.insertRespostaFichaAvaliacao(r);
+            }
+            foreach (Resposta r in fa.Respostas_String)
+            {
+                r.CodigoFichaAvaliacao = fa.CodFichaAvaliacao;
+                FuncsToDataBase.insertRespostaFichaAvaliacao(r);
+            }
+        }
     }
 }
