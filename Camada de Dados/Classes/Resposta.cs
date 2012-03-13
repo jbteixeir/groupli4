@@ -40,6 +40,7 @@ namespace ETdA.Camada_de_Dados.Classes
             this.cod_checklist = cod_checklist;
             this.cod_questionario = cod_questionario;
             this.cod_fichaAvaliacao = cod_fichaAvaliacao;
+            //this.cod_pergunta_questionario = cod_pergunta_questionario;
             this.numero_pergunta = numero_pergunta;
             this.cod_item = cod_item;
             this.cod_zona = cod_zona;
@@ -53,6 +54,7 @@ namespace ETdA.Camada_de_Dados.Classes
         {
 			this.cod_questionario = -1;
 			this.cod_fichaAvaliacao = -1;
+            this.cod_pergunta_questionario = -1;
 			this.numero_pergunta = -1;
 			this.cod_item = -1;
 			this.cod_zona = -1;

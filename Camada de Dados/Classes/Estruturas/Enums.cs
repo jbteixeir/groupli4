@@ -42,5 +42,14 @@ namespace ETdA.Camada_de_Dados.Classes.Estruturas
             Ficha_Avaliacao,
             CheckList
         };
+
+        public enum Tipo_Escala
+        {
+            Texto_Letras,
+            Texto_Numero,
+            Unica_Opcao,
+            Varias_Opcoes,
+            Classificacao
+        };
     }
 }

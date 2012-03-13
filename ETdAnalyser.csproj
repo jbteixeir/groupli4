@@ -93,6 +93,12 @@
     <Compile Include="Camada de Dados\Classes\Resposta.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
     <Compile Include="Camada de Dados\ETdA\ETdA_main.cs" />
+    <Compile Include="Camada de Interface\Associacao_Zona_Coluna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\Associacao_Zona_Coluna.Designer.cs">
+      <DependentUpon>Associacao_Zona_Coluna.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\InterfaceGuestaoProjectos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
       <DependentUpon>Interface_Questionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Camada de Interface\Associacao_Zona_Coluna.resx">
+      <DependentUpon>Associacao_Zona_Coluna.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\InterfaceGuestaoProjectos.resx">
       <DependentUpon>InterfaceGuestaoProjectos.cs</DependentUpon>
       <SubType>Designer</SubType>

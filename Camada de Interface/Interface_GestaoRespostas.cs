@@ -617,7 +617,6 @@ namespace ETdA.Camada_de_Interface
 
         private void IndexChanchedEvent(object sender, EventArgs e)
         {
-            
             ComboBox cb = (ComboBox)sender;
             string key = cb.Name.Split('.')[0];
             int indice1 = int.Parse(cb.Name.Split('.')[1]);
