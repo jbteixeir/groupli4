@@ -825,13 +825,211 @@ namespace ETdA.Camada_de_Dados.Classes
             List<Zona> _zonas,
             List<Item> _itens,
             // associacao do codigo do item à coluna do ficheiro
-            Dictionary<int, Item> _itens_colunas_ficheiro,
+            Dictionary<string, int> _itens_colunas_ficheiro,
             // mapeamento da zona/actividade para o codigo da zona
-            Dictionary<int,Zona> mapeamento_zona_coluna)
+            Dictionary<int, Zona> mapa_coluna_zona,
+            // coluna dos codigos da zona
+            int col_cods_zonas)
         {
-            return false;
+            formularios = new List<Formulario>();
+            bool continuar = true;
+            bool continuar_formulario = true;
+
+            // iniciar varável dos resultados
+            resultados_importacao = new Dictionary<int, Enums.Resultado_Importacao[]>();
+
+            // para cada linha do ficheiro ...
+            for (int i = 0; i < valores.Keys.Count && continuar; i++)
+            {
+                long cod_zona = mapa_coluna_zona[short.Parse(valores[i][col_cods_zonas])].Codigo;
+
+                continuar_formulario = true;
+                // retirar o numero da linha
+                int num_linha = valores.Keys.ElementAt(i);
+
+                // importar linha
+                List<Resposta> respostas = importar_linha_checklist(num_linha, _modo_respostas_vazias, _modo_valores_respostas, _zonas,_itens,_itens_colunas_ficheiro, cod_zona, ref continuar, ref continuar_formulario);
+
+                // se nao houveram erros e se foram importadas algumas respostas
+                if (continuar && continuar_formulario && respostas.Count != 0)
+                {
+                    // Criar um questionario com essas respostas
+                    CheckList cl = new CheckList();
+                    cl.CodAnalise = cod_analise;
+                    //q.Cod_Questionario = GestaodeRespostas.insere_questionario(q);
+
+                    foreach (Resposta r in respostas)
+                        cl.add_resposta_numero(r);
+                    formularios.Add(cl);
+                }
+            }
+            return continuar;
         }
+
+        private List<Resposta> importar_linha_checklist(
+            // numero da linha no ficheiro
+            int num_linha,
+            // como tratar respostas sem resposta
+            Enums.Respostas_Vazias _modo_respostas_vazias,
+            // como tratar respostas com valores absurdos
+            Enums.Valores_Respostas _modo_valores_respostas,
+            List<Zona> _zonas,
+            List<Item> _itens,
+            // associacao das perguntas com colunas
+            Dictionary<string, int> _itens_colunas_ficheiro,
+            long cod_zona,
+            // se cotinuar importacao
+            ref bool continuar,
+            // se continuar a importar este formulario
+            ref bool continuar_formulario)
+        {
+            List<Resposta> respostas = new List<Resposta>();
+            string[] valores_linha = valores[num_linha];
+            bool continuar_pergunta;
+
+            // Iniciar o array de resultados e inicializa-los como SR
+            Enums.Resultado_Importacao[] results = new Enums.Resultado_Importacao[valores_linha.Length];
+            for (int i = 0; i < valores_linha.Length; i++)
+                results[i] = Enums.Resultado_Importacao.SR;
+
+
+            for (int i = 0; i < _itens_colunas_ficheiro.Keys.Count && continuar && continuar_formulario; i++)
+            {
+                continuar_pergunta = true;
+                Item item_associado = getItembyNome(_itens_colunas_ficheiro.Keys.ElementAt(i), _itens);
+
+                // retirar o campo
+                string campo = valores[num_linha][_itens_colunas_ficheiro[item_associado.NomeItem]];
+
+                // verificar se estes campos estao correctos e de acordo com o esperado
+                results[_itens_colunas_ficheiro[item_associado.NomeItem]] =
+                verifica_campo(num_linha, campo, _modo_respostas_vazias, _modo_valores_respostas,
+                        ref continuar, ref continuar_formulario, ref continuar_pergunta);
+
+                if (continuar && continuar_formulario && continuar_pergunta)
+                {
+                    if (continuar && continuar_formulario && continuar_pergunta)
+                    {
+                        Resposta resp = get_resposta(campo, cod_zona, item_associado, _zonas);
+                        respostas.Add(resp);
+                    }
+                }
+            }
+
+            if (respostas.Count == 0 || !continuar_formulario)
+            {
+                results = new Enums.Resultado_Importacao[1];
+                results[0] = Enums.Resultado_Importacao.Insucesso;
+            }
+            resultados_importacao[num_linha] = results;
+            return respostas;
+        }
+
+        private Resposta get_resposta(
+            string campo,
+            long cod_zona,
+            Item item,
+            List<Zona> zonas)
+        {
+            Resposta resp = new Resposta(
+            cod_analise,
+            -1, -1, -1, -1,
+            item.CodigoItem,
+            cod_zona,
+            short.Parse(campo),
+            "",
+            -1, // Nao faço a mínima para que serve isto
+            Resposta.TipoResposta.RespostaNum);
+
+            return resp;
+        }
+
         #endregion 
+
+        #region verificar Erros
+        public Enums.Resultado_Importacao verifica_campo(
+            int num_linha,
+            string _campo,
+            Enums.Respostas_Vazias _modo_respostas_vazias,
+            Enums.Valores_Respostas _modo_valores_respostas,
+            ref bool continuar,
+            ref bool continuar_formulario,
+            ref bool continuar_pergunta)
+        {
+            Enums.Resultado_Importacao result = Enums.Resultado_Importacao.Sucesso;
+
+            #region Teste Respostas Vazias
+            /* Testar Repostas vazias */
+            if (Input_Verifier.soEspacos(_campo))
+            {
+                if (_modo_respostas_vazias == Enums.Respostas_Vazias.Sair_Vazias)
+                {
+                    erro = erro_repostastas_vazias;
+                    linha_erro = num_linha;
+                    result = Enums.Resultado_Importacao.Insucesso;
+                    continuar = false;
+                }
+                else if (_modo_respostas_vazias == Enums.Respostas_Vazias.Ignorar_Formulario)
+                {
+                    result = Enums.Resultado_Importacao.Insucesso;
+                    continuar_formulario = false;
+                }
+                else
+                {
+                    result = Enums.Resultado_Importacao.Insucesso;
+                    continuar_pergunta = false;
+                }
+            }
+            #endregion
+
+            #region Teste Valor Resposta
+
+            if ((!Input_Verifier.soEspacos(_campo) &&
+                ((short.Parse(_campo)) < 1 ||
+                  (short.Parse(_campo)) > 5)))
+            {
+                if (_modo_valores_respostas == Enums.Valores_Respostas.Sair_Valores)
+                {
+                    erro = erro_valores_respostas;
+                    linha_erro = num_linha;
+                    result = Enums.Resultado_Importacao.Insucesso;
+                    continuar = false;
+                }
+                else if (_modo_valores_respostas == Enums.Valores_Respostas.Ignorar_Formulario)
+                {
+                    result = Enums.Resultado_Importacao.Insucesso;
+                    continuar_formulario = false;
+                }
+                else
+                {
+                    result = Enums.Resultado_Importacao.Insucesso;
+                    continuar_pergunta = false;
+                }
+            }
+            #endregion
+
+            return result;
+        }
+        #endregion
+
+        #region Cenas
+
+        public Item getItembyNome(string nome, List<Item> itens)
+        {
+            for (int i = 0; i < itens.Count; i++)
+                if (itens[i].NomeItem == nome)
+                    return itens[i];
+            return null;
+        }
+
+        #endregion
+
+        public void submeteCheckList()
+        {
+            if (formularios.Count > 0)
+                foreach (CheckList c in formularios)
+                    GestaodeRespostas.insere_CheckList(c);
+        }
 
         #endregion
     }

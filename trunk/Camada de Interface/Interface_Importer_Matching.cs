@@ -40,8 +40,6 @@ namespace ETdA.Camada_de_Interface
 
             if (tipo == Enums.Tipo_Formulário.CheckList)
                 button3.Visible = false;
-            else
-                button5.Visible = false;
 
             radioButton2.Checked = true;
             radioButton5.Checked = true;
@@ -71,9 +69,15 @@ namespace ETdA.Camada_de_Interface
             int j = 1;
             if (tipo == Enums.Tipo_Formulário.Questionario)
                 pergs = new string[ps.Count + 1];
-            else
+            else if (tipo == Enums.Tipo_Formulário.Ficha_Avaliacao)
             {
                 pergs = new string[ps.Count + 2];
+                pergs[1] = "Zn/Ac";
+                j = 2;
+            }
+            else
+            {
+                pergs = new string[itens.Count + 2];
                 pergs[1] = "Zn/Ac";
                 j = 2;
             }
@@ -133,7 +137,7 @@ namespace ETdA.Camada_de_Interface
         private void ContinuarClick(object sender, EventArgs e)
         {
             Dictionary<float, List<int>> perguntas_colunas_ficheiro = new Dictionary<float, List<int>>();
-            Dictionary<long, int> itens_colunas_ficheiro = new Dictionary<long, int>();
+            Dictionary<string, int> itens_colunas_ficheiro = new Dictionary<string, int>();
 
             foreach (DataGridViewRow r in dataGridView2.Rows)
             {
@@ -287,16 +291,58 @@ namespace ETdA.Camada_de_Interface
             else if (tipo == Enums.Tipo_Formulário.CheckList && verifica_cabecalho_cl(ref itens_colunas_ficheiro))
             {
                 #region CL
-                //if (ie.importar_checklist(n_r, r_v, v_r, zonas, itens,itens_colunas_ficheiro))
-                //{
-                    //string result = "Resultados\nForam importados " + ie.Formularios.Count + " formulários com sucesso.\nForam ignorados " + ie.Formularios_Ignorados + " formulários.\nForam ignoradas " + ie.Perguntas_Ignoradas + " respostas.";
-                    //MessageBox.Show(result, "Resultados");
-                //}
-                //else
-                //{
-                    //MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.Linha_Erro);
-                    //dataGridView2.Rows[ie.Linha_Erro - 1].Selected = true;
-                //}
+
+                bool found = false;
+                int index = 0;
+                for (int i = 0; i < dataGridView1.Rows[0].Cells.Count && !found; i++)
+                    if (dataGridView1.Rows[0].Cells[i].Value != null && dataGridView1.Rows[0].Cells[i].ToString().Equals("Zn/Ac"))
+                    {
+                        index = i;
+                        found = true;
+                    }
+
+                if (ie.importar_checklist(n_r, r_v, v_r, zonas, itens,itens_colunas_ficheiro,mapa_zona_coluna,index))
+                {
+                    int num_ignorados = 0;
+                    int num_resp_ignoradas = 0;
+                    foreach (int linha in ie.Resultados.Keys)
+                    {
+                        if (ie.Resultados[linha].Length > 1)
+                        {
+                            for (int i = 0; i < ie.Resultados[linha].Length; i++)
+                            {
+                                if (ie.Resultados[linha][i] == Enums.Resultado_Importacao.Sucesso)
+                                {
+                                    dataGridView2.Rows[linha].Cells[i].Style.BackColor = Color.Green;
+                                }
+                                else if (ie.Resultados[linha][i] == Enums.Resultado_Importacao.Insucesso)
+                                {
+                                    dataGridView2.Rows[linha].Cells[i].Style.BackColor = Color.Red;
+                                    num_resp_ignoradas++;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < dataGridView2.Rows[linha].Cells.Count; i++)
+                                dataGridView2.Rows[linha].Cells[i].Style.BackColor = Color.Red;
+                            num_ignorados++;
+                        }
+                    }
+
+                    string result = "Resultados\nForam importados " + ie.Formularios.Count + " Zonas/Actividades com sucesso.\n" +
+                        "Foram ignoradas " + num_ignorados + " Zonas/Actividadas.\n" +
+                        "Foram ignoradas " + num_resp_ignoradas + " respostas.";
+                    MessageBox.Show(result, "Resultados");
+
+                    if (MessageBoxPortuguese.Show("Pergunta", "Deseja submeter a Checklist na base de dados?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
+                        ie.submeteCheckList();
+                    }
+                else
+                {
+                    MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.Linha_Erro);
+                    dataGridView2.Rows[ie.Linha_Erro].Selected = true;
+                }
                 #endregion
             }
         }
@@ -474,7 +520,7 @@ namespace ETdA.Camada_de_Interface
             return return_value;
         }
 
-        private bool verifica_cabecalho_cl(ref Dictionary<long, int> _itens_colunas_ficheiro)
+        private bool verifica_cabecalho_cl(ref Dictionary<string, int> _itens_colunas_ficheiro)
         {
             bool return_value = true;
             DataGridViewRow row = dataGridView1.Rows[0];
@@ -482,25 +528,31 @@ namespace ETdA.Camada_de_Interface
             {
                 if (row.Cells[i].Value != null)
                 {
-                    if (!row.Cells[i].Value.Equals(""))
+                    if (!row.Cells[i].Value.ToString().Equals("") && !row.Cells[i].Value.ToString().Equals("Zn/Ac"))
                     {
                         /* Perguntas nao pode ter 2 itens iguais */
-                        long cod_item = getItemByNume((string)row.Cells[i].Value).CodigoItem;
-                        if (_itens_colunas_ficheiro.ContainsKey(cod_item))
+                        if (_itens_colunas_ficheiro.ContainsKey((string)row.Cells[i].Value.ToString()))
                         {
                             if (!erros.ContainsKey(row.Cells[i]))
-                                erros.Add(row.Cells[i], "Pergunta já associada a uma coluna");
+                                erros.Add(row.Cells[i], "Item já associada a uma coluna");
                             setErroStateBar();
                             return_value = false;
                         }
                         else
-                            _itens_colunas_ficheiro.Add(cod_item, i);
+                            _itens_colunas_ficheiro.Add((string)row.Cells[i].Value.ToString(), i);
+                    }
+                    else if (mapa_zona_coluna == null)
+                    {
+                        if (!erros.ContainsKey(row.Cells[i]))
+                            erros.Add(row.Cells[i], "É necessário fazer o mapeamento das zonas.");
+                        setErroStateBar();
+                        return_value = false;
                     }
                     else
                     {
                         for (int j = 0; j < _itens_colunas_ficheiro.Keys.Count; j++)
                         {
-                            long key = _itens_colunas_ficheiro.Keys.ElementAt(j);
+                            string key = _itens_colunas_ficheiro.Keys.ElementAt(j);
                             if (_itens_colunas_ficheiro[key] == i)
                             {
                                 _itens_colunas_ficheiro.Remove(key);
@@ -508,6 +560,11 @@ namespace ETdA.Camada_de_Interface
                         }
                     }
                 }
+            }
+            if (_itens_colunas_ficheiro.Keys.Count == 0)
+            {
+                MessageBoxPortuguese.Show("Erro", "Não existem associacoes de itens/colunas.", MessageBoxPortuguese.Icon_Error);
+                return_value = false;
             }
             return return_value;
         }
@@ -555,7 +612,7 @@ namespace ETdA.Camada_de_Interface
             bool tem_associacao = false;
             for (int i = 0; i < row.Cells.Count; i++)
             {
-                if (((string)row.Cells[i].Value) != null && ((string)row.Cells[i].Value).Equals("Zn/Ac") && tipo == Enums.Tipo_Formulário.Ficha_Avaliacao)
+                if (((string)row.Cells[i].Value) != null && ((string)row.Cells[i].Value).Equals("Zn/Ac") && (tipo == Enums.Tipo_Formulário.Ficha_Avaliacao || tipo == Enums.Tipo_Formulário.CheckList))
                 {
                     for (int j = 0; j < dataGridView2.Rows.Count; j++)
                         if (Input_Verifier.soNumeros(dataGridView2.Rows[j].Cells[i].Value.ToString()) &&

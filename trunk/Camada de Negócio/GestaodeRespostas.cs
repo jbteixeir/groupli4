@@ -151,5 +151,11 @@ namespace ETdA.Camada_de_Negócio
                 FuncsToDataBase.insertRespostaFichaAvaliacao(r);
             }
         }
+
+        public static void insere_CheckList(CheckList c)
+        {
+            foreach (Resposta r in c.Respostas_Numero)
+                FuncsToDataBase.insertRespostaCheckList(r);
+        }
     }
 }

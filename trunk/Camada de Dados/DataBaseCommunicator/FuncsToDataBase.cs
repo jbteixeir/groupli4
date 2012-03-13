@@ -601,41 +601,21 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
         }
         #endregion
 
-        #region Respostas CheckList
-        static public void insertRespostaCheckList(Resposta r)
-        {
-            DataBaseCommunicator.query("INSERT INTO resposta_checkList VALUES (" +
-                    r.Valor + ", " + r.CodigoItem + ", " + r.CodigoZona + ", " + r.Cod_analise + ");");
-        }
-        #endregion
 
         #region Inserir Respostas CheckList
-        static public void insertRespostaCheckList(int codigoAnalise, List<Resposta> respostas)
+        static public long insertRespostaCheckList(Resposta resposta)
         {
-            foreach (Resposta resposta in respostas)
-            {
-                switch (resposta.Tipo_Resposta)
-                {
-                    case (Resposta.TipoResposta.RespostaNum):
-                        DataBaseCommunicator.query(
-                            "INSERT INTO resposta_questionario_numero VALUES (" +
-                            resposta.NumeroPergunta + ", " + resposta.Valor + ", " +
-                            resposta.CodigoQuestionario + ", " + resposta.Cod_analise + ", " +
-                            resposta.CodigoZona + ", " + resposta.Cod_pergunta + ");"
-                            );
-                        break;
-                    case (Resposta.TipoResposta.RespostaStr):
-                    case (Resposta.TipoResposta.RespostaMemo):
+            string query = "INSERT INTO resposta_checkList VALUES (" +
+                        resposta.Cod_analise + ", " + resposta.CodigoZona + ", " +
+                        resposta.CodigoItem + ", " + resposta.Valor +  ");" + 
+                        "SELECT SCOPE_IDENTITY();";
 
-                        DataBaseCommunicator.query(
-                            "INSERT INTO resposta_questionario_string VALUES (" +
-                            resposta.NumeroPergunta + ", " + resposta.ValorString + ", " +
-                            resposta.CodigoQuestionario + ", " + resposta.Cod_analise + ", " +
-                            resposta.CodigoZona + ", " + resposta.Cod_pergunta + ");"
-                            );
-                        break;
-                }
-            }
+            MessageBox.Show(query.ToString());
+
+            SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            reader.Read();
+            return long.Parse(reader[0].ToString());
         }
         #endregion
 
@@ -692,8 +672,6 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                         "SELECT SCOPE_IDENTITY();";
                     break;
             }
-
-            MessageBox.Show(query.ToString());
 
             SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 

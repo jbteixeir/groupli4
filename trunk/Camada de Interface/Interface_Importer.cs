@@ -71,7 +71,7 @@ namespace ETdA.Camada_de_Interface
                             MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            Interface_Importer_Matching.main(null, ie, Enums.Tipo_Formulário.Ficha_Avaliacao, cod_analise, zonas, itens);
+                            Interface_Importer_Matching.main(null, ie, Enums.Tipo_Formulário.CheckList, cod_analise, zonas, itens);
                         }
                         break;
                 }
