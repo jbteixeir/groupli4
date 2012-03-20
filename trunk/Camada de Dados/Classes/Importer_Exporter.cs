@@ -524,13 +524,20 @@ namespace ETdA.Camada_de_Dados.Classes
             bool continuar = true;
             bool continuar_formulario = true;
 
+            foreach (Zona z in _zonas)
+                MessageBox.Show("Zona Cod: " + z.Codigo);
+
             // iniciar varável dos resultados
             resultados_importacao = new Dictionary<int, Enums.Resultado_Importacao[]>();
 
             // para cada linha do ficheiro ...
             for (int i = 0; i < valores.Keys.Count && continuar; i++)
             {
-                long cod_zona = mapa_coluna_zona[short.Parse(valores[i][col_cods_zonas])].Codigo;
+                long cod_zona = 0;
+                if (Input_Verifier.soNumeros(valores[i][col_cods_zonas]))
+                    cod_zona = mapa_coluna_zona[short.Parse(valores[i][col_cods_zonas])].Codigo;
+
+                MessageBox.Show(cod_zona.ToString());
 
                 continuar_formulario = true;
                 // retirar o numero da linha

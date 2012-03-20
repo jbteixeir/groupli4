@@ -610,7 +610,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                         resposta.CodigoItem + ", " + resposta.Valor +  ");" + 
                         "SELECT SCOPE_IDENTITY();";
 
-            MessageBox.Show(query.ToString());
+            //MessageBox.Show(query.ToString());
 
             SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
@@ -736,17 +736,33 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 //numero
                 else
                 {
+                    string numperg = reader["numero_pergunta"].ToString();
+                    float num1 = (float.Parse(numperg));
+                    int num2 = (int)num1;
+
+                    string num_perg;
+                    if (num1 > num2)
+                        num_perg = numperg.Split(',')[0] + "." + numperg.Split(',')[1];
+                    else 
+                        num_perg = numperg;
+
                     readerResposta = DataBaseCommunicator.readData("SELECT resposta_questionario_numero.cod_questionario, resposta_questionario_numero.valor, resposta_questionario_numero.cod_zona, resposta_questionario_numero.numero_pergunta " +
                                                                        " FROM resposta_questionario_numero, pergunta_questionario " +
-                                                                       " WHERE resposta_questionario_numero.numero_pergunta=" + reader["numero_pergunta"].ToString() +
+                                                                       " WHERE resposta_questionario_numero.numero_pergunta=" + num_perg +
                                                                        " AND resposta_questionario_numero.numero_pergunta=pergunta_questionario.numero_pergunta" +
                                                                        " AND resposta_questionario_numero.cod_analise=" + codigoAnalise);
+
                     while (readerResposta.Read())
                     {
                         if (readerResposta["valor"].ToString() != "" && reader["numero_pergunta"].ToString() != "")
                         {
+                            String a = readerResposta["cod_questionario"].ToString();
+                            String b = numperg;
+                            String c = readerResposta["cod_zona"].ToString();
+                            String d = readerResposta["valor"].ToString();
+
                             //Console.WriteLine("QUESTIONARIO:" + codigoAnalise + -1 + long.Parse(readerResposta["cod_questionario"].ToString()) + -1 + long.Parse(reader["numero_pergunta"].ToString()) + cod_item + cod_zona + short.Parse(readerResposta["valor"].ToString()) + "" + 3 + Classes.Resposta.TipoResposta.RespostaNum);
-                            respostas.Add(new Resposta(codigoAnalise, -1, long.Parse(readerResposta["cod_questionario"].ToString()), -1, long.Parse(reader["numero_pergunta"].ToString()), cod_item, int.Parse(readerResposta["cod_zona"].ToString()), short.Parse(readerResposta["valor"].ToString()), "", 3, Classes.Resposta.TipoResposta.RespostaNum));
+                            respostas.Add(new Resposta(codigoAnalise, -1, long.Parse(readerResposta["cod_questionario"].ToString()), -1, float.Parse(numperg), cod_item, long.Parse(readerResposta["cod_zona"].ToString()), short.Parse(readerResposta["valor"].ToString()), "", 3, Classes.Resposta.TipoResposta.RespostaNum));
                         }
                     }
                     readerResposta.Close();
@@ -786,7 +802,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             reader.Read();
-            return long.Parse(reader[0].ToString());
+            long cod = long.Parse(reader[0].ToString());
+            reader.Close();
+            return cod;
         }
         #endregion
 
@@ -891,7 +909,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
 
                 resps.Add(e);
             }
-
+            r.Close();
             return resps;
         }
 
@@ -922,7 +940,7 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
                 e.Descricao + "'," + 
                 e.Valor + ");" +
                 "SELECT SCOPE_IDENTITY();";
-            MessageBox.Show(query);
+            //MessageBox.Show(query);
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             r.Read();
@@ -1086,7 +1104,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             r.Read();
-            return long.Parse(r[0].ToString());
+            long cod = long.Parse(r[0].ToString());
+            r.Close();
+            return cod;
         }
 
         public static long insertPerguntaQuestionario(PerguntaQuestionario p)
@@ -1107,7 +1127,9 @@ namespace ETdA.Camada_de_Dados.DataBaseCommunicator
             SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             r.Read();
-            return long.Parse(r[0].ToString());
+            long cod = long.Parse(r[0].ToString());
+            r.Close();
+            return cod;
         }
 
         public static bool isFAcreated(long codAnalise)

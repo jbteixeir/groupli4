@@ -118,6 +118,8 @@ namespace ETdA.Camada_de_Interface
                 Zona.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 Zona.TabIndex = 1;
+                Zona.Size = new System.Drawing.Size(0, 0);
+                Zona.AutoSize = true;
                 //nome da zona
                 Zona.Text = zonas[i].Nome;
                 #endregion
@@ -378,7 +380,7 @@ namespace ETdA.Camada_de_Interface
                 labelres.TabIndex = 3;
                 labelres.Location = new System.Drawing.Point(xmargin, 250);
                 labelres.Size = new System.Drawing.Size(300, 20);
-                labelres.ForeColor = Color.Gray;
+                //labelres.ForeColor = Color.Gray;
                 #endregion
             
                 #region desenhar label 'Ponderações'
