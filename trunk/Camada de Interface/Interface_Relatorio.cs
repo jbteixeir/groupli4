@@ -113,6 +113,8 @@ namespace ETdA.Camada_de_Interface
                 #region Titulo Zona
                 Label Zona = new Label();
                 Zona.Location = new System.Drawing.Point(xmargin, 6);
+                Zona.Size = new System.Drawing.Size(0, 0);
+                Zona.AutoSize = true;
                 Zona.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 Zona.TabIndex = 1;
@@ -126,6 +128,8 @@ namespace ETdA.Camada_de_Interface
                 Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 Item.TabIndex = 2;
+                Item.Size = new System.Drawing.Size(0, 0);
+                Item.AutoSize = true;
                 //nome do item
                 Item.Text = itens[j].NomeItem;
                 #endregion
@@ -359,7 +363,7 @@ namespace ETdA.Camada_de_Interface
                 checkBoxInsDt.Size = new System.Drawing.Size(300, 30);
                 checkBoxInsDt.TabIndex = 3;
                 checkBoxInsDt.TabStop = true;
-                checkBoxInsDt.Text = "Incluir resuldado parcial no relatório";
+                checkBoxInsDt.Text = "Incluir resultado parcial no relatório";
                 if (relatorio.ListaResultados[czona][citem].mostraResultadosParciais)
                     checkBoxInsDt.Checked = true;
                 else
@@ -481,6 +485,21 @@ namespace ETdA.Camada_de_Interface
                 buttonrr.Click += new System.EventHandler(this.buttonrr_Click);
                 #endregion
 
+                #region desenhar label 'Limite inferior do analista'
+                Double liminfanalista = 0;
+                for (int z = 0; z < itens.Count(); z++)
+                    if (itens[z].CodigoItem == citem)
+                        liminfanalista = itens[z].LimiteInferiorAnalista;
+
+                Label labeltxtliminfanl = new Label();
+                labeltxtliminfanl.Text = "Limite Inferior do Analista = " + String.Format("{0:0.##}", liminfanalista);
+                labeltxtliminfanl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labeltxtliminfanl.TabIndex = 5;
+                labeltxtliminfanl.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 140);
+                labeltxtliminfanl.Size = new System.Drawing.Size(300, 20);
+
+                #endregion
 
                 #region desenhar label 'Resultado Ponderado'
 
@@ -489,9 +508,9 @@ namespace ETdA.Camada_de_Interface
                 labeltxtrespnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
                 System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labeltxtrespnd.TabIndex = 5;
-                labeltxtrespnd.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 150);
+                labeltxtrespnd.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 165);
                 labeltxtrespnd.Size = new System.Drawing.Size(300, 20);
-                //labeltxtrespnd.ForeColor = Color.DarkSlateGray;
+                labeltxtrespnd.ForeColor = Color.Black;
                 #endregion
 
                 #region desenhar label 'Escala de Cores'
@@ -500,14 +519,14 @@ namespace ETdA.Camada_de_Interface
                 labeltxtec.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular,
                 System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labeltxtec.TabIndex = 5;
-                labeltxtec.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 180);
+                labeltxtec.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 200);
                 labeltxtec.Size = new System.Drawing.Size(300, 20);
-                labeltxtrespnd.ForeColor = Color.DarkSlateGray;
+                labeltxtec.ForeColor = Color.DarkSlateGray;
                 #endregion
                 
                 #region desenhar a imagem da cor
                 corItem = new System.Windows.Forms.PictureBox();
-                corItem.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 210);
+                corItem.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 230);
                 corItem.Name = "corItem";
                 corItem.Size = new System.Drawing.Size(160, 60);
                 corItem.TabIndex = 0;
@@ -516,7 +535,7 @@ namespace ETdA.Camada_de_Interface
                 #region desenhar o texto da imagem
                 labeltxtimg = new Label();
                 labeltxtimg.TabIndex = 4;
-                labeltxtimg.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 275);
+                labeltxtimg.Location = new System.Drawing.Point(xmargin + xcolunadim + 5, yrp + 295);
                 labeltxtimg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 labeltxtimg.Size = new System.Drawing.Size(400, 25);
@@ -560,22 +579,25 @@ namespace ETdA.Camada_de_Interface
 
                 #region desenhar "label" de observações
                 Label obslabel = new System.Windows.Forms.Label();
-                obslabel.AutoSize = true;
+                obslabel.Size = new System.Drawing.Size(0, 0);
                 obslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular,
                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                obslabel.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 325);
-                obslabel.Size = new System.Drawing.Size(50, 20);
+                obslabel.Location = new System.Drawing.Point(xmargin + xcolunadim, yrp + 345);
                 obslabel.ForeColor = Color.Gray;
                 obslabel.Name = "obslabel";
                 obslabel.Text = "Observações";
+                obslabel.AutoSize = true;
+                //obslabel.Dock = DockStyle.Bottom;
                 #endregion
 
                 #region desenhar caixa de observações
                 //verificar se já foi preenchido se foi, por o que já foi preenchido
-                obstb.Location = new System.Drawing.Point(xmargin + xcolunadim + 5, yrp + 365);
+                obstb.Location = new System.Drawing.Point(xmargin + xcolunadim + 5, yrp + 380);
+                obstb.BringToFront();
                 obstb.Name = "obstb";
-                //obstb.Size = new System.Drawing.Size(500, 100);
-                obstb.Margin = new System.Windows.Forms.Padding(0, 0, 0, 60);
+                //obstb.Dock = DockStyle.Bottom;
+                //obstb.Anchor =  AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
+                obstb.Size = new System.Drawing.Size(panelrel.Size.Width - 60, 50);
                 obstb.TabIndex = 4;
                 obstb.TabStop = true;
                 if(relatorio.ListaResultados[czona][citem].CheckObservacoes)
@@ -603,6 +625,7 @@ namespace ETdA.Camada_de_Interface
                 panelrel.Controls.Add(nudpndcliente);
                 panelrel.Controls.Add(nudpndprofissional);
                 panelrel.Controls.Add(nudpndanalista);
+                panelrel.Controls.Add(labeltxtliminfanl);
                 panelrel.Controls.Add(labeltxtpnd);
                 panelrel.Controls.Add(labeltxtpndcliente);
                 panelrel.Controls.Add(labeltxtpndprofissional);
@@ -620,6 +643,8 @@ namespace ETdA.Camada_de_Interface
                 panelrel.Controls.Add(obstb);
                 panelrel.Controls.Add(obslabel);
                 panelrel.Controls.Add(checkBoxInsDt);
+                
+                
                 #endregion
 
             }
@@ -663,7 +688,7 @@ namespace ETdA.Camada_de_Interface
             Word._Application oWord;
             Word._Document oDoc;
             oWord = new Word.Application();
-            oWord.Visible = false;
+            oWord.Visible = true;
             oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
                 ref oMissing, ref oMissing);
 
@@ -673,7 +698,7 @@ namespace ETdA.Camada_de_Interface
             #endregion
 
             #region Indice
-            
+            /*
             //SETTING THE FORMAT TYPE
             //SELECT THE CONTENST TO BE FORMATTED AND SET THE VALUE
 
@@ -700,6 +725,7 @@ namespace ETdA.Camada_de_Interface
                 ref oLowerHeadingLevel, ref oMissing, ref oTOCTableID, ref trueo,
                 ref trueo, ref oMissing, ref trueo, ref trueo, ref trueo);
             oWord.Selection.InsertNewPage();
+             */
             #endregion
 
             #region Numeração das Páginas
@@ -966,7 +992,8 @@ namespace ETdA.Camada_de_Interface
                         oWord.Selection.TypeParagraph();
 
                         
-                        Word.Table rdTabela = oWord.Selection.Tables.Add(oWord.Selection.Range, 4, 4, Microsoft.Office.Interop.Word.WdDefaultTableBehavior.wdWord8TableBehavior, Microsoft.Office.Interop.Word.WdAutoFitBehavior.wdAutoFitFixed);
+                        Word.Table rdTabela = oWord.Selection.Tables.Add(oWord.Selection.Range, 4, 4, 
+                            Microsoft.Office.Interop.Word.WdDefaultTableBehavior.wdWord8TableBehavior, Microsoft.Office.Interop.Word.WdAutoFitBehavior.wdAutoFitFixed);
                         rdTabela.Range.Font.Size = 12;
                         rdTabela.Rows[1].Range.Font.Bold = 1;
                         rdTabela.Rows.Alignment = Word.WdRowAlignment.wdAlignRowCenter;
@@ -1027,7 +1054,7 @@ namespace ETdA.Camada_de_Interface
                         else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde)
                     {
                         rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorGreen;
-                        rdTabela.Cell(2, 4).Range.Text = "Verdemelho";
+                        rdTabela.Cell(2, 4).Range.Text = "Verde";
                     }
                         #endregion
 
@@ -1055,7 +1082,7 @@ namespace ETdA.Camada_de_Interface
                         else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde)
                         {
                             rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorGreen;
-                            rdTabela.Cell(3, 4).Range.Text = "Verdemelho";
+                            rdTabela.Cell(3, 4).Range.Text = "Verde";
                         }
 
                         #endregion
@@ -1084,14 +1111,17 @@ namespace ETdA.Camada_de_Interface
                         else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Verde)
                         {
                             rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorGreen;
-                            rdTabela.Cell(4, 4).Range.Text = "Verdemelho";
+                            rdTabela.Cell(4, 4).Range.Text = "Verde";
                         }
 
                         #endregion
 
                         #endregion
-                        object count = 4;
-                        oWord.Selection.MoveDown(ref oMissing, ref count, oMissing);
+
+                        //object count = 4;
+                        //oWord.Selection.MoveDown(ref oMissing, ref count, oMissing);
+                        for (int w = 0; w < 21; w++)
+                            oWord.Selection.MoveDown();
                         oWord.Selection.ClearFormatting();
                         oWord.Selection.TypeParagraph();
                     }
@@ -1128,10 +1158,10 @@ namespace ETdA.Camada_de_Interface
 
             #region Actualizar Indice
             //UPDATING THE TABLE OF CONTENTS
-            oDoc.TablesOfContents[1].Update();
+            //oDoc.TablesOfContents[1].Update();
 
             //UPDATING THE TABLE OF CONTENTS
-            oDoc.TablesOfContents[1].UpdatePageNumbers();
+            //oDoc.TablesOfContents[1].UpdatePageNumbers();
 
             #endregion
 
@@ -1151,6 +1181,7 @@ namespace ETdA.Camada_de_Interface
             
         }
 
+        //quando carrega no botao de alterar ponderações
         private void buttonpnd_Click(object sender, EventArgs e)
         {
             if (altpnd == false)
@@ -1169,18 +1200,30 @@ namespace ETdA.Camada_de_Interface
             }
         }
 
+        //quando carrega em recalcular resultado ponderado
         private void buttonrr_Click(object sender, EventArgs e)
         {
             if ((float.Parse(nudpndcliente.Value.ToString()) + float.Parse(nudpndprofissional.Value.ToString()) + float.Parse(nudpndanalista.Value.ToString())) != 1)
                 //mostrar mensagem de erro;
-                ;
+                MessageBoxPortuguese.Show("Aviso", "A soma das ponderações é \"" + (float.Parse(nudpndcliente.Value.ToString()) +
+                    float.Parse(nudpndprofissional.Value.ToString()) + float.Parse(nudpndanalista.Value.ToString())) + "\" , quando deveria ser igual a 1.\n"
+                    +"Por favor verifique cada um dos valores e volte a recalcular o resultado.",MessageBoxPortuguese.Icon_Warning);
             else
             {
                 double resfinal = ((relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral * float.Parse(nudpndcliente.Value.ToString())) +
                             (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral * float.Parse(nudpndprofissional.Value.ToString()))
                              + (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral * float.Parse(nudpndanalista.Value.ToString())));
 
-                labeltxtrespnd.Text = "Resultado Ponderado = " + String.Format("{0:0.##}", resfinal);
+                double liminfanalista = -1;
+
+                for (int i = 0; i < itens.Count(); i++)
+                    if (itens[i].CodigoItem == citem)
+                        liminfanalista = itens[i].LimiteInferiorAnalista;
+
+                if (liminfanalista != -1 && liminfanalista >= relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral)
+                    labeltxtrespnd.Text = "Resultado Ponderado = " + String.Format("{0:0.##}", liminfanalista);
+                else
+                    labeltxtrespnd.Text = "Resultado Ponderado = " + String.Format("{0:0.##}", resfinal);
 
                 if (resfinal <= curitem.Inter_Vermelho)
                 {

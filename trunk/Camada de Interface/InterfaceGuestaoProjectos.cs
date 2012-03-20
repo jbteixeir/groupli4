@@ -1322,14 +1322,23 @@ namespace ETdA.Camada_de_Interface
             string nomeP = null;
             List<string> s = (List<string>)sender;
             bool found = false;
+            bool found2 = false;
             for (int i = 0; i < treeView_Projectos.Nodes.Count && !found; i++)
                 if (treeView_Projectos.Nodes[i].Name == s[0])
                 {
-                    nomeP = treeView_Projectos.Nodes[i].Text;
-                    TreeNode t = new TreeNode();
-                    t.Name = s[1];
-                    t.Text = s[2];
-                    treeView_Projectos.Nodes[i].Nodes.Add(t);
+                    for (int j = 0; j < treeView_Projectos.Nodes[i].GetNodeCount(false) && !found2; j++)
+                    {
+                        if (treeView_Projectos.Nodes[i].Nodes[j].Name == s[1])
+                            found2 = true;
+                    }
+                    if (!found2)
+                    {
+                        nomeP = treeView_Projectos.Nodes[i].Text;
+                        TreeNode t = new TreeNode();
+                        t.Name = s[1];
+                        t.Text = s[2];
+                        treeView_Projectos.Nodes[i].Nodes.Add(t);
+                    }
                     found = true;
                 }
             initPaginaProjecto(nomeP, s[0]);

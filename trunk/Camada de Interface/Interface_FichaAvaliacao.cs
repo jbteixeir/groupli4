@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ETdA.Camada_de_Negócio;
 
 namespace ETdA.Camada_de_Interface
 {
@@ -15,7 +16,7 @@ namespace ETdA.Camada_de_Interface
         {
             InitializeComponent();
             FichaAvaliacao.ScriptErrorsSuppressed = true;
-            FichaAvaliacao.Url = new System.Uri("http://rocket-pc:54749/ETdA/Default.aspx?form=FA&usr=" + 
+            FichaAvaliacao.Url = new System.Uri("http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdA/Default.aspx?form=FA&usr=" + 
                 Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codAnalise + "&prj" +
                     "=" + codProjecto + "&adminmode=true", System.UriKind.Absolute);
         }
