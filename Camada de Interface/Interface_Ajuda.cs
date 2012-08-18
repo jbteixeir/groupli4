@@ -39,6 +39,7 @@ namespace ETdA.Camada_de_Interface
         {
             if (panel2.Visible == false)
             {
+
                 panel2.Visible = true;
                 splitContainer2.Visible = true;
             }

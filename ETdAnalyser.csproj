@@ -217,7 +217,7 @@
     <Compile Include="Camada de Negócio\GestaodeRelatorios.cs" />
     <Compile Include="Camada de Negócio\GestaodeRespostas.cs" />
     <Compile Include="Camada de Negócio\ImporterExporter.cs" />
-    <Compile Include="ETdA_stater.cs" />
+    <Compile Include="ETdA_starter.cs" />
     <Compile Include="Camada de Interface\Interface_CheckList.cs">
       <SubType>Form</SubType>
     </Compile>
