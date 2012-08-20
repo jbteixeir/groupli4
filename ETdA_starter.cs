@@ -15,7 +15,7 @@ namespace ETdA_starter
         [STAThread]
         static void Main()
         {
-            Interface_Starter.main();
+            InterfaceStarter.main();
         }
     }
 }

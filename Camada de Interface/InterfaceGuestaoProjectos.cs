@@ -1451,7 +1451,7 @@ namespace ETdA.Camada_de_Interface
         // s_final
         private void CriarProjectoClick(object sender, EventArgs e)
         {
-            Interface_CriarProjecto.main();
+            InterfaceCriarProjecto.main();
             RefreshInterface();
         }
 
@@ -1460,7 +1460,7 @@ namespace ETdA.Camada_de_Interface
         {
             long cod = long.Parse(tabControl1.SelectedTab.Name);
             string nome = tabControl1.SelectedTab.Text;
-            Interface_CriarAnalise.main(cod, nome);
+            InterfaceCriarAnalise.main(cod, nome);
             RefreshInterface();
         }
 
@@ -1558,7 +1558,7 @@ namespace ETdA.Camada_de_Interface
             List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codProjecto, codAnalise);
             List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
 
-            Interface_Importer.main(codAnalise, zonas, itens);
+            InterfaceImporter.main(codAnalise, zonas, itens);
         }
 
         // rdone
@@ -1569,7 +1569,7 @@ namespace ETdA.Camada_de_Interface
             long codp = long.Parse(cods[0]);
             long coda = long.Parse(cods[1]);
             string nome = tabControl1.SelectedTab.Text;
-            Interface_Relatorio.main(codp, coda, nome, new ETdA.Camada_de_Dados.Classes.Relatorio());
+            InterfaceRelatorio.main(codp, coda, nome, new ETdA.Camada_de_Dados.Classes.Relatorio());
         }
 
         // rdone
@@ -1579,7 +1579,7 @@ namespace ETdA.Camada_de_Interface
             long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
             List<string> zonas = GestaodeAnalises.getNomeZonasAnalise(codProjecto, codAnalise);
             string tipo = GestaodeAnalises.getTipoAnalise(codProjecto, codAnalise);
-            Interface_CriarAnaliseZonas.main(zonas, tipo, false);
+            InterfaceCriarAnaliseZonas.main(zonas, tipo, false);
         }
 
         // rdone
@@ -1588,7 +1588,7 @@ namespace ETdA.Camada_de_Interface
             long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
             long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
             List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
-            Interface_CriarAnaliseItens.main(itens, false);
+            InterfaceCriarAnaliseItens.main(itens, false);
         }
 
         #endregion
@@ -1658,7 +1658,7 @@ namespace ETdA.Camada_de_Interface
             List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
             List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codProjecto, codAnalise);
 
-            Interface_GestaoFormulariosOnline.main(codAnalise, itens, zonas);
+            InterfaceGestaoFormulariosOnline.main(codAnalise, itens, zonas);
         }
 
         #region Menu de cima
@@ -1877,7 +1877,7 @@ namespace ETdA.Camada_de_Interface
         {
             ToolStripItem tsi = (ToolStripItem)sender;
 
-            Interface_CriarAnalise.main(long.Parse(tsi.Name), tsi.Text);
+            InterfaceCriarAnalise.main(long.Parse(tsi.Name), tsi.Text);
 
             RefreshInterface();
         }
@@ -2017,12 +2017,12 @@ namespace ETdA.Camada_de_Interface
 
         private void ajudaClick(object sender, EventArgs e)
         {
-            Interface_Ajuda.main();
+            InterfaceAjuda.main();
         }
 
         private void sobreETdAnalyserClick(object sender, EventArgs e)
         {
-            Interface_Creditos.main();
+            InterfaceCreditos.main();
         }
 
         private void terminarSessao(object sender, EventArgs e)
@@ -2038,7 +2038,7 @@ namespace ETdA.Camada_de_Interface
 
         private void iniciarInterfaceConfLigBD(object sender, EventArgs e)
         {
-            Interface_ConfigurarLigacaoBD.main();
+            InterfaceConfigurarLigacaoBD.main();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -2048,7 +2048,7 @@ namespace ETdA.Camada_de_Interface
 
             if (GestaodeRespostas.isQTcreated(cod_Analise))
             {
-                Interface_Questionario newInterfaceQuestionario = new Interface_Questionario(cod_Projecto, cod_Analise);
+                InterfaceQuestionario newInterfaceQuestionario = new InterfaceQuestionario(cod_Projecto, cod_Analise);
                 newInterfaceQuestionario.ShowDialog();
             }
             else
@@ -2057,7 +2057,7 @@ namespace ETdA.Camada_de_Interface
                 List<Zona> zonas = GestaodeAnalises.getZonasAnalise(cod_Projecto, cod_Analise);
                 DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar o Questionário.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
                 if (resultado == DialogResult.Yes)
-                    Interface_GestaoFormulariosOnline.main(cod_Analise, itens, zonas);
+                    InterfaceGestaoFormulariosOnline.main(cod_Analise, itens, zonas);
             }
         }
 
@@ -2067,7 +2067,7 @@ namespace ETdA.Camada_de_Interface
             long cod_Analise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
             if (GestaodeRespostas.isFAcreated(cod_Analise))
             {
-                Interface_FichaAvaliacao newInterfaceFA = new Interface_FichaAvaliacao(cod_Projecto, cod_Analise);
+                InterfaceFichaAvaliacao newInterfaceFA = new InterfaceFichaAvaliacao(cod_Projecto, cod_Analise);
                 newInterfaceFA.ShowDialog();
             }
             else
@@ -2076,7 +2076,7 @@ namespace ETdA.Camada_de_Interface
                 List<Zona> zonas = GestaodeAnalises.getZonasAnalise(cod_Projecto, cod_Analise);
                 DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar a Ficha de Avaliação.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
                 if (resultado == DialogResult.Yes)
-                    Interface_GestaoFormulariosOnline.main(cod_Analise, itens, zonas);
+                    InterfaceGestaoFormulariosOnline.main(cod_Analise, itens, zonas);
             }
         }
 
@@ -2085,7 +2085,7 @@ namespace ETdA.Camada_de_Interface
             long cod_Projecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
             long cod_Analise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
 
-            Interface_CheckList newInterfaceChecklist = new Interface_CheckList(cod_Projecto, cod_Analise);
+            InterfaceCheckList newInterfaceChecklist = new InterfaceCheckList(cod_Projecto, cod_Analise);
             newInterfaceChecklist.ShowDialog();
         }
     }
