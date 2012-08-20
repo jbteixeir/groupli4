@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdA.Camada_de_Negócio;
-using ETdA.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Dados.Classes;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceCriarAnaliseItens : Form
     {
@@ -323,7 +323,7 @@ namespace ETdA.Camada_de_Interface
                 if (!erros.ContainsKey(textBox1))
                 {
                     ErrorProvider err = new ErrorProvider();
-                    err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                     err.SetError(textBox1, "O nome do item não é válido.");
 
                     erros.Add(textBox1, err);
@@ -334,7 +334,7 @@ namespace ETdA.Camada_de_Interface
                 if (!erros.ContainsKey(textBox1))
                 {
                     ErrorProvider err = new ErrorProvider();
-                    err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                     err.SetError(textBox1, "Já existe um item com o nome " + s + ".");
 
                     erros.Add(textBox1, err);
@@ -562,7 +562,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.Keys.Contains(n1))
                     {
                         ErrorProvider err = new ErrorProvider();
-                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err.SetError(n1, "O total das ponderações é diferente de 1.");
                         err.SetError(n2, "O total das ponderações é diferente de 1.");
                         err.SetError(n3, "O total das ponderações é diferente de 1.");
@@ -579,7 +579,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.Keys.Contains(b1))
                     {
                         ErrorProvider err = new ErrorProvider();
-                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err.SetError(b1, "Campo da cor Vermelha vazio.");
 
                         erros.Add(b1, err);
@@ -591,7 +591,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.Keys.Contains(b2))
                     {
                         ErrorProvider err = new ErrorProvider();
-                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err.SetError(b2, "Campo da cor Laranja vazio.");
 
                         erros.Add(b2, err);
@@ -603,7 +603,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.Keys.Contains(b3))
                     {
                         ErrorProvider err = new ErrorProvider();
-                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err.SetError(b3, "Campo da cor Amarela vazio.");
 
                         erros.Add(b3, err);
@@ -615,7 +615,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.Keys.Contains(b4))
                     {
                         ErrorProvider err = new ErrorProvider();
-                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err.SetError(b4, "Campo da cor Verde Lima vazio.");
 
                         erros.Add(b4, err);
@@ -629,7 +629,7 @@ namespace ETdA.Camada_de_Interface
                         if (!erros.Keys.Contains(b1))
                         {
                             ErrorProvider err = new ErrorProvider();
-                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                             err.SetError(b1, "Máximo da cor Vermelha inválida.");
 
                             erros.Add(b1, err);
@@ -641,7 +641,7 @@ namespace ETdA.Camada_de_Interface
                         if (!erros.Keys.Contains(b2))
                         {
                             ErrorProvider err = new ErrorProvider();
-                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                             err.SetError(b2, "Máximo da cor Laranja inválida.");
 
                             erros.Add(b2, err);
@@ -653,7 +653,7 @@ namespace ETdA.Camada_de_Interface
                         if (!erros.Keys.Contains(b3))
                         {
                             ErrorProvider err = new ErrorProvider();
-                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                             err.SetError(b3, "Máximo da cor Amarela inválida.");
 
                             erros.Add(b3, err);
@@ -665,7 +665,7 @@ namespace ETdA.Camada_de_Interface
                         if (!erros.Keys.Contains(b4))
                         {
                             ErrorProvider err = new ErrorProvider();
-                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                             err.SetError(b4, "Máximo da cor Verde Lima inválida.");
 
                             erros.Add(b4, err);

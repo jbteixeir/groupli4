@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceCriarAnaliseZonas : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace ETdA.Camada_de_Interface
+﻿namespace ETdAnalyser.Camada_de_Interface
 {
     partial class InterfaceGuestaoProjectos
     {
@@ -270,7 +270,7 @@
             // 
             // novoProjectoToolStripMenuItem
             // 
-            this.novoProjectoToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271471_file_add;
+            this.novoProjectoToolStripMenuItem.Image = global::ETdAnalyser.Properties.Resources._1309271471_file_add;
             this.novoProjectoToolStripMenuItem.Name = "novoProjectoToolStripMenuItem";
             this.novoProjectoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.novoProjectoToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
@@ -280,7 +280,7 @@
             // novaAnaliseToolStripMenuItem
             // 
             this.novaAnaliseToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.novaAnaliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271576_folder_add;
+            this.novaAnaliseToolStripMenuItem.Image = global::ETdAnalyser.Properties.Resources._1309271576_folder_add;
             this.novaAnaliseToolStripMenuItem.Name = "novaAnaliseToolStripMenuItem";
             this.novaAnaliseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.novaAnaliseToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
@@ -322,7 +322,7 @@
             // 
             // abaAnteriorToolStripMenuItem
             // 
-            this.abaAnteriorToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309272771_direction_left;
+            this.abaAnteriorToolStripMenuItem.Image = global::ETdAnalyser.Properties.Resources._1309272771_direction_left;
             this.abaAnteriorToolStripMenuItem.Name = "abaAnteriorToolStripMenuItem";
             this.abaAnteriorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
             this.abaAnteriorToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
@@ -331,7 +331,7 @@
             // 
             // proximaAbaToolStripMenuItem1
             // 
-            this.proximaAbaToolStripMenuItem1.Image = global::ETdA.Properties.Resources._1309272765_direction_right;
+            this.proximaAbaToolStripMenuItem1.Image = global::ETdAnalyser.Properties.Resources._1309272765_direction_right;
             this.proximaAbaToolStripMenuItem1.Name = "proximaAbaToolStripMenuItem1";
             this.proximaAbaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
             this.proximaAbaToolStripMenuItem1.Size = new System.Drawing.Size(236, 22);
@@ -340,7 +340,7 @@
             // 
             // fecharAbaToolStripMenuItem1
             // 
-            this.fecharAbaToolStripMenuItem1.Image = global::ETdA.Properties.Resources.Error;
+            this.fecharAbaToolStripMenuItem1.Image = global::ETdAnalyser.Properties.Resources.Error;
             this.fecharAbaToolStripMenuItem1.Name = "fecharAbaToolStripMenuItem1";
             this.fecharAbaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
             this.fecharAbaToolStripMenuItem1.Size = new System.Drawing.Size(236, 22);
@@ -371,14 +371,14 @@
             // 
             // apagarProjectoToolStripMenuItem
             // 
-            this.apagarProjectoToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271476_file_delete;
+            this.apagarProjectoToolStripMenuItem.Image = global::ETdAnalyser.Properties.Resources._1309271476_file_delete;
             this.apagarProjectoToolStripMenuItem.Name = "apagarProjectoToolStripMenuItem";
             this.apagarProjectoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.apagarProjectoToolStripMenuItem.Text = "Apagar Projecto";
             // 
             // apagarAnáliseToolStripMenuItem
             // 
-            this.apagarAnáliseToolStripMenuItem.Image = global::ETdA.Properties.Resources._1309271588_folder_delete;
+            this.apagarAnáliseToolStripMenuItem.Image = global::ETdAnalyser.Properties.Resources._1309271588_folder_delete;
             this.apagarAnáliseToolStripMenuItem.Name = "apagarAnáliseToolStripMenuItem";
             this.apagarAnáliseToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.apagarAnáliseToolStripMenuItem.Text = "Apagar Análise";
@@ -426,7 +426,7 @@
             // 
             // ajudaToolStripMenuItem
             // 
-            this.ajudaToolStripMenuItem.Image = global::ETdA.Properties.Resources.Help;
+            this.ajudaToolStripMenuItem.Image = global::ETdAnalyser.Properties.Resources.Help;
             this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
             this.ajudaToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
@@ -483,7 +483,7 @@
             // toolStripButton5
             // 
             this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = global::ETdA.Properties.Resources._1309272771_direction_left;
+            this.toolStripButton5.Image = global::ETdAnalyser.Properties.Resources._1309272771_direction_left;
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
@@ -493,7 +493,7 @@
             // toolStripButton6
             // 
             this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = global::ETdA.Properties.Resources._1309272765_direction_right;
+            this.toolStripButton6.Image = global::ETdAnalyser.Properties.Resources._1309272765_direction_right;
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
@@ -503,7 +503,7 @@
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = global::ETdA.Properties.Resources._1309271459_notification_error1;
+            this.toolStripButton4.Image = global::ETdAnalyser.Properties.Resources._1309271459_notification_error1;
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
@@ -518,7 +518,7 @@
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::ETdA.Properties.Resources.Help;
+            this.toolStripButton1.Image = global::ETdAnalyser.Properties.Resources.Help;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
@@ -642,7 +642,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
 
-        private MyTabControl tabControl1 = new MyTabControl(global::ETdA.Properties.Resources.Tooltip_CloseButton_Active);
+        private MyTabControl tabControl1 = new MyTabControl(global::ETdAnalyser.Properties.Resources.Tooltip_CloseButton_Active);
 
         private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abaAnteriorToolStripMenuItem;

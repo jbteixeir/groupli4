@@ -1,4 +1,4 @@
-﻿namespace ETdA.Camada_de_Interface
+﻿namespace ETdAnalyser.Camada_de_Interface
 {
     partial class InterfaceStarter
     {
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::ETdA.Properties.Resources.intro;
+            this.BackgroundImage = global::ETdAnalyser.Properties.Resources.intro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(384, 190);
             this.ControlBox = false;

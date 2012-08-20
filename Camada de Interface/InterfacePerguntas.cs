@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdA.Camada_de_Dados.Classes;
-using ETdA.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Negócio;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfacePerguntas : Form
     {
@@ -391,7 +391,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.ContainsKey(perguntas[i]))
                     {
                         ErrorProvider err = new ErrorProvider();
-                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err.SetError(perguntas[i], "O texto desta pergunta não é válido.");
                         erros.Add(perguntas[i], err);
                     }
@@ -408,14 +408,14 @@ namespace ETdA.Camada_de_Interface
                         if (!objs.Contains(itens_pergunta[i]))
                         {
                             ErrorProvider err1 = new ErrorProvider();
-                            err1.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err1.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                             err1.SetError(itens_pergunta[i], "Existem duas perguntas com o mesmo item.");
                                 lst.Add(err1);
                                 objs.Add(itens_pergunta[i]);
                         }
 
                         ErrorProvider err2 = new ErrorProvider();
-                        err2.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err2.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err2.SetError(itens_pergunta[j], "Existem duas perguntas com o mesmo item.");
                         lst.Add(err2);
                         objs.Add(itens_pergunta[j]);

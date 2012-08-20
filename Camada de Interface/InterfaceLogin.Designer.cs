@@ -1,4 +1,4 @@
-﻿namespace ETdA.Camada_de_Interface
+﻿namespace ETdAnalyser.Camada_de_Interface
 {
     partial class InterfaceLogin
     {
@@ -141,7 +141,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::ETdA.Properties.Resources.Help;
+            this.pictureBox1.BackgroundImage = global::ETdAnalyser.Properties.Resources.Help;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(379, 146);
             this.pictureBox1.Name = "pictureBox1";
@@ -188,7 +188,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
+            this.BackgroundImage = global::ETdAnalyser.Properties.Resources.degrade1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.Sair;
             this.ClientSize = new System.Drawing.Size(501, 294);

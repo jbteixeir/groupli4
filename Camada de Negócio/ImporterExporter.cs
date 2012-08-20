@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using ETdA.Camada_de_Dados.DataBaseCommunicator;
-using ETdA.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Dados.DataBaseCommunicator;
+using ETdAnalyser.Camada_de_Dados.Classes;
 using System.Windows.Forms;
 
-namespace ETdA.Camada_de_Negócio
+namespace ETdAnalyser.Camada_de_Negócio
 {
     class ImporterExporter
     {

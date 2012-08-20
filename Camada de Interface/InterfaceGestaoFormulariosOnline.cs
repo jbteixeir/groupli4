@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdA.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Negócio;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceGestaoFormulariosOnline : Form
     {
@@ -30,13 +30,13 @@ namespace ETdA.Camada_de_Interface
             qt = GestaodeRespostas.isQTcreated(codAnalise);
 
             if (fa)
-                toolStripStatusLabel2.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
+                toolStripStatusLabel2.Image = global::ETdAnalyser.Properties.Resources._1309271487_notification_done;
             else
-                toolStripStatusLabel2.Image = global::ETdA.Properties.Resources.Error;
+                toolStripStatusLabel2.Image = global::ETdAnalyser.Properties.Resources.Error;
             if (qt)
-                toolStripStatusLabel4.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
+                toolStripStatusLabel4.Image = global::ETdAnalyser.Properties.Resources._1309271487_notification_done;
             else
-                toolStripStatusLabel4.Image = global::ETdA.Properties.Resources.Error;
+                toolStripStatusLabel4.Image = global::ETdAnalyser.Properties.Resources.Error;
         }
 
         public static void main(long codAnalise, object itens, object zonas)
@@ -113,7 +113,7 @@ namespace ETdA.Camada_de_Interface
 
         private void done_FA_event(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
+            toolStripStatusLabel2.Image = global::ETdAnalyser.Properties.Resources._1309271487_notification_done;
             fa = true;
         }
 
@@ -124,7 +124,7 @@ namespace ETdA.Camada_de_Interface
 
         private void done_QT_event(object sender, EventArgs e)
         {
-            toolStripStatusLabel4.Image = global::ETdA.Properties.Resources._1309271487_notification_done;
+            toolStripStatusLabel4.Image = global::ETdAnalyser.Properties.Resources._1309271487_notification_done;
             qt = true;
         }
     }

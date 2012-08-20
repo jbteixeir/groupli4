@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdA.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Dados.Classes;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceAssociacaoZonaColuna : Form
     {
@@ -96,7 +96,7 @@ namespace ETdA.Camada_de_Interface
                         if (!erros.Keys.Contains(combos[i]))
                         {
                             ErrorProvider err = new ErrorProvider();
-                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                             err.SetError(combos[i], "Vários códigos associado a " + combos[i].SelectedIndex + ".");
                             
                             erros.Add(combos[i], err);
@@ -104,7 +104,7 @@ namespace ETdA.Camada_de_Interface
                         if (!erros.Keys.Contains(combos[j]))
                         {
                             ErrorProvider err = new ErrorProvider();
-                            err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                            err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                             err.SetError(combos[j], "Vários códigos associado a " + combos[i].SelectedIndex + ".");
 
                             erros.Add(combos[j], err);

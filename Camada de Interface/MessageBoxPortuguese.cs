@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     class MessageBoxPortuguese
     {
@@ -58,16 +58,16 @@ namespace ETdA.Camada_de_Interface
             switch (_icon)
             {
                 case 1:
-                    b.Image = global::ETdA.Properties.Resources.Error;
+                    b.Image = global::ETdAnalyser.Properties.Resources.Error;
                     break;
                 case 2:
-                    b.Image = global::ETdA.Properties.Resources.Warning;
+                    b.Image = global::ETdAnalyser.Properties.Resources.Warning;
                     break;
                 case 3:
-                    b.Image = global::ETdA.Properties.Resources.Info;
+                    b.Image = global::ETdAnalyser.Properties.Resources.Info;
                     break;
                 case 4:
-                    b.Image = global::ETdA.Properties.Resources.Help;
+                    b.Image = global::ETdAnalyser.Properties.Resources.Help;
                     break;
             }
             return b;

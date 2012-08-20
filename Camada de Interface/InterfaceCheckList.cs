@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdA.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Negócio;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceCheckList : Form
     {
@@ -16,7 +16,7 @@ namespace ETdA.Camada_de_Interface
         {
             InitializeComponent();
             CheckList.ScriptErrorsSuppressed = true;
-            CheckList.Url = new System.Uri("http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdA/Default.aspx?form=CL&usr=" +
+            CheckList.Url = new System.Uri("http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=CL&usr=" +
                 Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codAnalise + "&prj" +
                     "=" + codProjecto + "&adminmode=true", System.UriKind.Absolute);
         }

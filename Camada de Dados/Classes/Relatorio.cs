@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System;
 
 
-namespace ETdA.Camada_de_Dados.Classes
+namespace ETdAnalyser.Camada_de_Dados.Classes
 {
     class Relatorio
     {

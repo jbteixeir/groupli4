@@ -1,4 +1,4 @@
-﻿namespace ETdA.Camada_de_Interface
+﻿namespace ETdAnalyser.Camada_de_Interface
 {
     partial class InterfaceConfigurarLigacaoBD
     {
@@ -67,7 +67,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
-            this.splitContainer1.Panel1.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
+            this.splitContainer1.Panel1.BackgroundImage = global::ETdAnalyser.Properties.Resources.degrade1;
             this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.splitContainer1.Panel1.Controls.Add(this.textBox5);
             this.splitContainer1.Panel1.Controls.Add(this.textBox6);
@@ -255,7 +255,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::ETdA.Properties.Resources.Help;
+            this.pictureBox1.BackgroundImage = global::ETdAnalyser.Properties.Resources.Help;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(11, 331);
             this.pictureBox1.Name = "pictureBox1";
@@ -281,7 +281,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
+            this.BackgroundImage = global::ETdAnalyser.Properties.Resources.degrade1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(435, 364);

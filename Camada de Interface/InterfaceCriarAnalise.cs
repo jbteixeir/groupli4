@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdA.Camada_de_Negócio;
-using ETdA.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Dados.Classes;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceCriarAnalise : Form
     {
@@ -90,12 +90,12 @@ namespace ETdA.Camada_de_Interface
                 nome = label3.Text;
                 if (itens.Count == 0)
                 {
-                    errorProvider2.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    errorProvider2.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                     errorProvider2.SetError(label4, "Itens têm de estar preenchido");
                 }
                 if (zonas.Count == 0 || !done)
                 {
-                    errorProvider1.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    errorProvider1.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                     errorProvider1.SetError(label3, nome + " têm de estar preenchido");
                 }
             }
@@ -178,7 +178,7 @@ namespace ETdA.Camada_de_Interface
                 done = true;
             }
             errorProvider1.Clear();
-            errorProvider1.Icon = global::ETdA.Properties.Resources.notification_done_ico;
+            errorProvider1.Icon = global::ETdAnalyser.Properties.Resources.notification_done_ico;
             string nome = label3.Text;
             errorProvider1.SetError(label3, nome + " OK");
         }
@@ -196,7 +196,7 @@ namespace ETdA.Camada_de_Interface
             itens_novos = (List<string>)l[1];
 
             errorProvider2.Clear();
-            errorProvider2.Icon = global::ETdA.Properties.Resources.notification_done_ico;
+            errorProvider2.Icon = global::ETdAnalyser.Properties.Resources.notification_done_ico;
             errorProvider2.SetError(label4, "Itens OK");
         }
 
@@ -215,7 +215,7 @@ namespace ETdA.Camada_de_Interface
                     label3.Enabled = true;
                     if (wh == 0 && done)
                     {
-                        errorProvider1.Icon = global::ETdA.Properties.Resources.notification_done_ico;
+                        errorProvider1.Icon = global::ETdAnalyser.Properties.Resources.notification_done_ico;
                         errorProvider1.SetError(label3, nome + " OK");
                     }
                     else
@@ -228,7 +228,7 @@ namespace ETdA.Camada_de_Interface
                     label3.Enabled = true;
                     if (wh == 1 && done)
                     {
-                        errorProvider1.Icon = global::ETdA.Properties.Resources.notification_done_ico;
+                        errorProvider1.Icon = global::ETdAnalyser.Properties.Resources.notification_done_ico;
                         errorProvider1.SetError(label3, nome + " OK");
                     }
                     else
