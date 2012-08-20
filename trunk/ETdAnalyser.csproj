@@ -81,7 +81,7 @@
     <Compile Include="Camada de Dados\Classes\Questionario.cs" />
     <Compile Include="Camada de Dados\Classes\ResultadoItem.cs" />
     <Compile Include="Camada de Dados\Classes\TipoEscala.cs" />
-    <Compile Include="Camada de Dados\Verificador\Input_Verifier.cs" />
+    <Compile Include="Camada de Dados\Verificador\InputVerifier.cs" />
     <Compile Include="Camada de Dados\Classes\Zona.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\ParserCreateAnalista.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\FuncsToDataBase.cs" />
@@ -92,12 +92,12 @@
     <Compile Include="Camada de Dados\Classes\Relatorio.cs" />
     <Compile Include="Camada de Dados\Classes\Resposta.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
-    <Compile Include="Camada de Dados\ETdA\ETdA_main.cs" />
-    <Compile Include="Camada de Interface\Associacao_Zona_Coluna.cs">
+    <Compile Include="Camada de Dados\ETdA\ETdAMain.cs" />
+    <Compile Include="Camada de Interface\InterfaceAssociacaoZonaColuna.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Associacao_Zona_Coluna.Designer.cs">
-      <DependentUpon>Associacao_Zona_Coluna.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceAssociacaoZonaColuna.Designer.cs">
+      <DependentUpon>InterfaceAssociacaoZonaColuna.cs</DependentUpon>
     </Compile>
     <Compile Include="Camada de Interface\InterfaceGuestaoProjectos.cs">
       <SubType>Form</SubType>
@@ -117,95 +117,95 @@
     <Compile Include="Camada de Interface\InterfaceRegisto.Designer.cs">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Ajuda.cs">
+    <Compile Include="Camada de Interface\InterfaceAjuda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Ajuda.designer.cs">
-      <DependentUpon>Interface_Ajuda.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceAjuda.designer.cs">
+      <DependentUpon>InterfaceAjuda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_ConfigurarLigacaoBD.cs">
+    <Compile Include="Camada de Interface\InterfaceConfigurarLigacaoBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_ConfigurarLigacaoBD.Designer.cs">
-      <DependentUpon>Interface_ConfigurarLigacaoBD.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceConfigurarLigacaoBD.Designer.cs">
+      <DependentUpon>InterfaceConfigurarLigacaoBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Creditos.cs">
+    <Compile Include="Camada de Interface\InterfaceCreditos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Creditos.Designer.cs">
-      <DependentUpon>Interface_Creditos.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceCreditos.Designer.cs">
+      <DependentUpon>InterfaceCreditos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CriarAnalise.cs">
+    <Compile Include="Camada de Interface\InterfaceCriarAnalise.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CriarAnalise.Designer.cs">
-      <DependentUpon>Interface_CriarAnalise.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceCriarAnalise.Designer.cs">
+      <DependentUpon>InterfaceCriarAnalise.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CriarAnaliseItens.cs">
+    <Compile Include="Camada de Interface\InterfaceCriarAnaliseItens.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CriarAnaliseItens.Designer.cs">
-      <DependentUpon>Interface_CriarAnaliseItens.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceCriarAnaliseItens.Designer.cs">
+      <DependentUpon>InterfaceCriarAnaliseItens.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CriarAnaliseZonas.cs">
+    <Compile Include="Camada de Interface\InterfaceCriarAnaliseZonas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CriarAnaliseZonas.Designer.cs">
-      <DependentUpon>Interface_CriarAnaliseZonas.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceCriarAnaliseZonas.Designer.cs">
+      <DependentUpon>InterfaceCriarAnaliseZonas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CriarProjecto.cs">
+    <Compile Include="Camada de Interface\InterfaceCriarProjecto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CriarProjecto.Designer.cs">
-      <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceCriarProjecto.Designer.cs">
+      <DependentUpon>InterfaceCriarProjecto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_GestaoFormulariosOnline.cs">
+    <Compile Include="Camada de Interface\InterfaceGestaoFormulariosOnline.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_GestaoFormulariosOnline.Designer.cs">
-      <DependentUpon>Interface_GestaoFormulariosOnline.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceGestaoFormulariosOnline.Designer.cs">
+      <DependentUpon>InterfaceGestaoFormulariosOnline.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_GestaoRespostas.cs">
+    <Compile Include="Camada de Interface\InterfaceGestaoRespostas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_GestaoRespostas.Designer.cs">
-      <DependentUpon>Interface_GestaoRespostas.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceGestaoRespostas.Designer.cs">
+      <DependentUpon>InterfaceGestaoRespostas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Importer.cs">
+    <Compile Include="Camada de Interface\InterfaceImporter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Importer.Designer.cs">
-      <DependentUpon>Interface_Importer.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceImporter.Designer.cs">
+      <DependentUpon>InterfaceImporter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Importer_Matching.cs">
+    <Compile Include="Camada de Interface\InterfaceImporterMatching.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Importer_Matching.Designer.cs">
-      <DependentUpon>Interface_Importer_Matching.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceImporterMatching.Designer.cs">
+      <DependentUpon>InterfaceImporterMatching.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Perguntas.cs">
+    <Compile Include="Camada de Interface\InterfacePerguntas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Perguntas.Designer.cs">
-      <DependentUpon>Interface_Perguntas.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfacePerguntas.Designer.cs">
+      <DependentUpon>InterfacePerguntas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_PerguntasQT.cs">
+    <Compile Include="Camada de Interface\InterfacePerguntasQT.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_PerguntasQT.Designer.cs">
-      <DependentUpon>Interface_PerguntasQT.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfacePerguntasQT.Designer.cs">
+      <DependentUpon>InterfacePerguntasQT.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Relatorio.cs">
+    <Compile Include="Camada de Interface\InterfaceRelatorio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Relatorio.Designer.cs">
-      <DependentUpon>Interface_Relatorio.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceRelatorio.Designer.cs">
+      <DependentUpon>InterfaceRelatorio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Starter.cs">
+    <Compile Include="Camada de Interface\InterfaceStarter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Starter.Designer.cs">
-      <DependentUpon>Interface_Starter.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceStarter.Designer.cs">
+      <DependentUpon>InterfaceStarter.cs</DependentUpon>
     </Compile>
     <Compile Include="Camada de Interface\MessageBoxPortuguese.cs" />
     <Compile Include="Camada de Interface\MyTabControl.cs">
@@ -218,27 +218,32 @@
     <Compile Include="Camada de Negócio\GestaodeRespostas.cs" />
     <Compile Include="Camada de Negócio\ImporterExporter.cs" />
     <Compile Include="ETdA_starter.cs" />
-    <Compile Include="Camada de Interface\Interface_CheckList.cs">
+    <Compile Include="Camada de Interface\InterfaceCheckList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_CheckList.designer.cs">
-      <DependentUpon>Interface_CheckList.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceCheckList.designer.cs">
+      <DependentUpon>InterfaceCheckList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_FichaAvaliacao.cs">
+    <Compile Include="Camada de Interface\InterfaceFichaAvaliacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_FichaAvaliacao.designer.cs">
-      <DependentUpon>Interface_FichaAvaliacao.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceFichaAvaliacao.designer.cs">
+      <DependentUpon>InterfaceFichaAvaliacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Questionario.cs">
+    <Compile Include="Camada de Interface\InterfaceQuestionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Camada de Interface\Interface_Questionario.designer.cs">
-      <DependentUpon>Interface_Questionario.cs</DependentUpon>
+    <Compile Include="Camada de Interface\InterfaceQuestionario.designer.cs">
+      <DependentUpon>InterfaceQuestionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Camada de Interface\Associacao_Zona_Coluna.resx">
-      <DependentUpon>Associacao_Zona_Coluna.cs</DependentUpon>
+    <Compile Include="Resources\InterfaceAjuda.pt_PT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InterfaceAjuda.pt_PT.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Camada de Interface\InterfaceAssociacaoZonaColuna.resx">
+      <DependentUpon>InterfaceAssociacaoZonaColuna.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\InterfaceGuestaoProjectos.resx">
       <DependentUpon>InterfaceGuestaoProjectos.cs</DependentUpon>
@@ -250,64 +255,64 @@
     <EmbeddedResource Include="Camada de Interface\InterfaceRegisto.resx">
       <DependentUpon>InterfaceRegisto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Ajuda.resx">
-      <DependentUpon>Interface_Ajuda.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceAjuda.resx">
+      <DependentUpon>InterfaceAjuda.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_ConfigurarLigacaoBD.resx">
-      <DependentUpon>Interface_ConfigurarLigacaoBD.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceConfigurarLigacaoBD.resx">
+      <DependentUpon>InterfaceConfigurarLigacaoBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Creditos.resx">
-      <DependentUpon>Interface_Creditos.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceCreditos.resx">
+      <DependentUpon>InterfaceCreditos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_CriarAnalise.resx">
-      <DependentUpon>Interface_CriarAnalise.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceCriarAnalise.resx">
+      <DependentUpon>InterfaceCriarAnalise.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_CriarAnaliseItens.resx">
-      <DependentUpon>Interface_CriarAnaliseItens.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceCriarAnaliseItens.resx">
+      <DependentUpon>InterfaceCriarAnaliseItens.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_CriarAnaliseZonas.resx">
-      <DependentUpon>Interface_CriarAnaliseZonas.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceCriarAnaliseZonas.resx">
+      <DependentUpon>InterfaceCriarAnaliseZonas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_CriarProjecto.resx">
-      <DependentUpon>Interface_CriarProjecto.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceCriarProjecto.resx">
+      <DependentUpon>InterfaceCriarProjecto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_GestaoFormulariosOnline.resx">
-      <DependentUpon>Interface_GestaoFormulariosOnline.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceGestaoFormulariosOnline.resx">
+      <DependentUpon>InterfaceGestaoFormulariosOnline.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_GestaoRespostas.resx">
-      <DependentUpon>Interface_GestaoRespostas.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceGestaoRespostas.resx">
+      <DependentUpon>InterfaceGestaoRespostas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Importer.resx">
-      <DependentUpon>Interface_Importer.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceImporter.resx">
+      <DependentUpon>InterfaceImporter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Importer_Matching.resx">
-      <DependentUpon>Interface_Importer_Matching.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceImporterMatching.resx">
+      <DependentUpon>InterfaceImporterMatching.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Perguntas.resx">
-      <DependentUpon>Interface_Perguntas.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfacePerguntas.resx">
+      <DependentUpon>InterfacePerguntas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_PerguntasQT.resx">
-      <DependentUpon>Interface_PerguntasQT.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfacePerguntasQT.resx">
+      <DependentUpon>InterfacePerguntasQT.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Relatorio.pt.resx">
-      <DependentUpon>Interface_Relatorio.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceRelatorio.pt.resx">
+      <DependentUpon>InterfaceRelatorio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Relatorio.resx">
-      <DependentUpon>Interface_Relatorio.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceRelatorio.resx">
+      <DependentUpon>InterfaceRelatorio.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_CheckList.resx">
-      <DependentUpon>Interface_CheckList.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceCheckList.resx">
+      <DependentUpon>InterfaceCheckList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_FichaAvaliacao.resx">
-      <DependentUpon>Interface_FichaAvaliacao.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceFichaAvaliacao.resx">
+      <DependentUpon>InterfaceFichaAvaliacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Questionario.resx">
-      <DependentUpon>Interface_Questionario.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceQuestionario.resx">
+      <DependentUpon>InterfaceQuestionario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Camada de Interface\Interface_Starter.resx">
-      <DependentUpon>Interface_Starter.cs</DependentUpon>
+    <EmbeddedResource Include="Camada de Interface\InterfaceStarter.resx">
+      <DependentUpon>InterfaceStarter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -319,6 +324,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Resources\InterfaceAjuda.pt_PT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InterfaceAjuda.pt_PT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Icons\close_icon" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

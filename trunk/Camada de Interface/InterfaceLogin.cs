@@ -74,7 +74,7 @@ namespace ETdA.Camada_de_Interface
                 if (MessageBoxPortuguese.Show("Configuração Servidor de Base de Dados", "Ainda não existe uma configuração de ligação ao servidor de base de dados.\n Sem esta o ETdAnalyser não pode ser utilizado. \nPretende configurar agora?",
                      MessageBoxPortuguese.Button_OKCancel, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.OK)
                 {
-                    Interface_ConfigurarLigacaoBD.main();
+                    InterfaceConfigurarLigacaoBD.main();
                 }
                 else
                     Application.Exit();
@@ -96,12 +96,12 @@ namespace ETdA.Camada_de_Interface
 
         private void alterarLigacaoBD(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Interface_ConfigurarLigacaoBD.main();
+            InterfaceConfigurarLigacaoBD.main();
         }
 
         private void clickAjuda(object sender, EventArgs e)
         {
-            Interface_Ajuda.main();
+            InterfaceAjuda.main();
         }
 
     }
