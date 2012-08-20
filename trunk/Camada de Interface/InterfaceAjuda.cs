@@ -6,23 +6,32 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Resources;
+using System.Reflection;
+using System.Threading;
+using System.Globalization;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceAjuda : Form
     {
         private static InterfaceAjuda ia;
+        public static ResourceManager resourceManager;
+        
 
         public InterfaceAjuda()
         {
             InitializeComponent();
             initInterface();
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("pt");
+            //resourceManager = new ResourceManager("ETdAnalyser.InterfaceAjuda", Assembly.GetExecutingAssembly());
         }
 
         public static void main()
         {
             ia = new InterfaceAjuda();
-            ia.Text = "ajuda?ahah";
+            //ia.Text = resourceManager.GetString("FormTitle");
+            //Resources.InterfaceAjuda_pt_PT.ResourceManager.GetString("FormTitle");
         }
 
         private void initInterface()
@@ -148,7 +157,7 @@ namespace ETdA.Camada_de_Interface
             switch (codAssunto)
             {
                 case "Glossário":
-                    desc = "ETdA\n" + "\t Ergonomic Tri-dimensional Analisys (Análise Ergonómica Tridimensional).\n\n" +
+                    desc = "ETdAnalyser\n" + "\t Ergonomic Tri-dimensional Analisys (Análise Ergonómica Tridimensional).\n\n" +
                             "Tri-dimensional \n" + "\t Referente a três dimensões (cliente, profissional e analista).\n\n" +
                             "Analista \n" + "\t Especialista em análises ergonómicas.\n\n" +
                             "Área Comum \n" + "\t Espaço total a ser analisado.\n\n" +

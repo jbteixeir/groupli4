@@ -1,4 +1,4 @@
-﻿namespace ETdA.Camada_de_Interface
+﻿namespace ETdAnalyser.Camada_de_Interface
 {
     partial class InterfaceGestaoFormulariosOnline
     {
@@ -125,7 +125,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panel1.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
+            this.panel1.BackgroundImage = global::ETdAnalyser.Properties.Resources.degrade1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.label1);

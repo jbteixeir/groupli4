@@ -8,8 +8,8 @@
     <ProjectGuid>{3069B5E0-74BC-4675-9BCB-D48E87DE7DF1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ETdA</RootNamespace>
-    <AssemblyName>ETdA</AssemblyName>
+    <RootNamespace>ETdAnalyser</RootNamespace>
+    <AssemblyName>ETdAnalyser</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -237,10 +237,10 @@
       <DependentUpon>InterfaceQuestionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\InterfaceAjuda.pt_PT.Designer.cs">
+    <Compile Include="Resources\InterfaceAjuda.pt.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InterfaceAjuda.pt_PT.resx</DependentUpon>
+      <DependentUpon>InterfaceAjuda.pt.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Camada de Interface\InterfaceAssociacaoZonaColuna.resx">
       <DependentUpon>InterfaceAssociacaoZonaColuna.cs</DependentUpon>
@@ -324,9 +324,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resources\InterfaceAjuda.pt_PT.resx">
+    <EmbeddedResource Include="Resources\InterfaceAjuda.pt.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>InterfaceAjuda.pt_PT.Designer.cs</LastGenOutput>
+      <LastGenOutput>InterfaceAjuda.pt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Icons\close_icon" />
     <None Include="Properties\Settings.settings">

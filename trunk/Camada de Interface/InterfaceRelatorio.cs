@@ -10,7 +10,7 @@ using Word = Microsoft.Office.Interop.Word;
 using System.Reflection;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     partial class InterfaceRelatorio : Form
     {
@@ -42,8 +42,8 @@ namespace ETdA.Camada_de_Interface
         public InterfaceRelatorio(long cod_projecto, long cod_analise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
 
-            this.zonas = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Zonas;
-            this.itens = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Itens;
+            this.zonas = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Zonas;
+            this.itens = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Itens;
             relatorio.gerarResultadosRelatorio(cod_analise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
             relatorio.gerarEstatisticasRelatorioSexo(cod_analise);
             relatorio.gerarEstatisticasIdade(cod_analise);
@@ -51,7 +51,7 @@ namespace ETdA.Camada_de_Interface
 
             this.cod_projecto = cod_projecto;
             this.cod_analise = cod_analise;
-            this.nome_analise = ETdA.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Nome;
+            this.nome_analise = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Nome;
             this.relatorio = relatorio;
 
             if (relatorio.NumeroRespostas == 0)
@@ -547,31 +547,31 @@ namespace ETdA.Camada_de_Interface
 
                 if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Vermelho)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.vermelho;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.vermelho;
                     //labeltxtimg.ForeColor = Color.Red;
                     labeltxtimg.Text = "Cor = Vermelho";
                 }
                 else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Laranja)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.laranja;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.laranja;
                     //labeltxtimg.ForeColor = Color.Orange;
                     labeltxtimg.Text = "Cor = Laranja";
                 }
                 else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Amarelo)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.amarelo;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.amarelo;
                     //labeltxtimg.ForeColor = Color.Yellow;
                     labeltxtimg.Text = "Cor = Amarelo";
                 }
                 else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.lima;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.lima;
                     //labeltxtimg.ForeColor = Color.YellowGreen;
                     labeltxtimg.Text = "Cor = Verde Lima";
                 }
                 else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.verde;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.verde;
                     //labeltxtimg.ForeColor = Color.Green;
                     labeltxtimg.Text = "Cor = Verde";
                 }
@@ -895,7 +895,7 @@ namespace ETdA.Camada_de_Interface
                     oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
                     if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Vermelho)
                     {
-                        Clipboard.SetImage(global::ETdA.Properties.Resources.vermelhoWord);
+                        Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.vermelhoWord);
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
@@ -912,7 +912,7 @@ namespace ETdA.Camada_de_Interface
                     }
                     else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Laranja)
                     {
-                        Clipboard.SetImage(global::ETdA.Properties.Resources.laranjaWord);
+                        Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.laranjaWord);
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
@@ -929,7 +929,7 @@ namespace ETdA.Camada_de_Interface
                     }
                     else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Amarelo)
                     {
-                        Clipboard.SetImage(global::ETdA.Properties.Resources.amareloWord);
+                        Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.amareloWord);
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
@@ -946,7 +946,7 @@ namespace ETdA.Camada_de_Interface
                     }
                     else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
                     {
-                        Clipboard.SetImage(global::ETdA.Properties.Resources.limaWord);
+                        Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.limaWord);
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
@@ -963,7 +963,7 @@ namespace ETdA.Camada_de_Interface
                     }
                     else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde)
                     {
-                        Clipboard.SetImage(global::ETdA.Properties.Resources.verdeWord);
+                        Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.verdeWord);
                         oWord.Selection.Paste();
                         oWord.Selection.TypeParagraph();
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
@@ -1229,31 +1229,31 @@ namespace ETdA.Camada_de_Interface
 
                 if (resfinal <= curitem.Inter_Vermelho)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.vermelho;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.vermelho;
                     //labeltxtimg.ForeColor = Color.Red;
                     labeltxtimg.Text = "Cor = Vermelho";
                 }
                 else if (resfinal <= curitem.Inter_Laranja)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.laranja;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.laranja;
                     //labeltxtimg.ForeColor = Color.Orange;
                     labeltxtimg.Text = "Cor = Laranja";
                 }
                 else if (resfinal <= curitem.Inter_Amarelo)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.amarelo;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.amarelo;
                     //labeltxtimg.ForeColor = Color.Yellow;
                     labeltxtimg.Text = "Cor = Amarelo";
                 }
                 else if (resfinal <= curitem.Inter_Verde_Lima)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.lima;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.lima;
                     //labeltxtimg.ForeColor = Color.YellowGreen;
                     labeltxtimg.Text = "Cor = Verde Lima";
                 }
                 else if (resfinal <= curitem.Inter_Verde)
                 {
-                    corItem.Image = global::ETdA.Properties.Resources.verde;
+                    corItem.Image = global::ETdAnalyser.Properties.Resources.verde;
                     //labeltxtimg.ForeColor = Color.Green;
                     labeltxtimg.Text = "Cor = Verde";
                 }

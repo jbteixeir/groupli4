@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using ETdA.Camada_de_Dados.Classes;
-using ETdA.Camada_de_Dados.Classes.Estruturas;
+using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
 using System.Windows;
 using System.Data.SqlTypes;
 
-namespace ETdA.Camada_de_Dados.DataBaseCommunicator
+namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
 {
     class FuncsToDataBase
     {

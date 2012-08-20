@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdA.Camada_de_Negócio;
-using ETdA.Camada_de_Dados.ETdA;
-using ETdA.Camada_de_Interface;
-using ETdA.Camada_de_Dados.DataBaseCommunicator;
+using ETdAnalyser.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Dados.ETdA;
+using ETdAnalyser.Camada_de_Interface;
+using ETdAnalyser.Camada_de_Dados.DataBaseCommunicator;
 
 namespace ETdA_starter
 {

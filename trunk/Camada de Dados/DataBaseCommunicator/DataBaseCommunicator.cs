@@ -5,7 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace ETdA.Camada_de_Dados.DataBaseCommunicator
+namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
 {
     class DataBaseCommunicator
     {

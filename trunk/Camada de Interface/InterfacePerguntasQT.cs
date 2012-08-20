@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdA.Camada_de_Dados.Classes;
-using ETdA.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Negócio;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfacePerguntasQT : Form
     {
@@ -246,7 +246,7 @@ namespace ETdA.Camada_de_Interface
             PictureBox pb = new PictureBox();
             pb.Name = number.ToString() + ".eliminar";
             pb.Size = new Size(17, 17);
-            pb.BackgroundImage = global::ETdA.Properties.Resources._4697;
+            pb.BackgroundImage = global::ETdAnalyser.Properties.Resources._4697;
             pb.BackgroundImageLayout = ImageLayout.Center;
             pb.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             pb.Location = new Point(5,5);
@@ -479,7 +479,7 @@ namespace ETdA.Camada_de_Interface
             PictureBox pb = new PictureBox();
             pb.Name = numero_pergunta.ToString();
             pb.Size = new Size(20, 20);
-            pb.BackgroundImage = global::ETdA.Properties.Resources.icon_add;
+            pb.BackgroundImage = global::ETdAnalyser.Properties.Resources.icon_add;
             pb.BackgroundImageLayout = ImageLayout.Center;
             pb.Location = new Point(0,0);
             pb.MouseEnter += new EventHandler(PictureMouseEnterAction);
@@ -527,7 +527,7 @@ namespace ETdA.Camada_de_Interface
             PictureBox pb1 = new PictureBox();
             pb1.Name = perg.Num_Pergunta.ToString();
             pb1.Size = new Size(18,18);
-            pb1.BackgroundImage = global::ETdA.Properties.Resources._116740_34218_16_delete_exit_remove_icon;
+            pb1.BackgroundImage = global::ETdAnalyser.Properties.Resources._116740_34218_16_delete_exit_remove_icon;
             pb1.BackgroundImageLayout = ImageLayout.Center;
             pb1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             pb1.Location = new Point((p2.Width - 18) / 2, (p2.Width - 18) / 2);
@@ -898,7 +898,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.ContainsKey(perguntas[i]))
                     {
                         ErrorProvider err = new ErrorProvider();
-                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err.SetError(perguntas[i], "O texto desta pergunta não é válido.");
 
                         erros.Add(perguntas[i], err);
@@ -912,7 +912,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.ContainsKey(tipos_resposta[i]))
                     {
                         ErrorProvider err = new ErrorProvider();
-                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err.SetError(tipos_resposta[i], "Tem de escolher as opções de resposta a esta pergunta.");
 
                         erros.Add(tipos_resposta[i], err);
@@ -927,7 +927,7 @@ namespace ETdA.Camada_de_Interface
                     if (!erros.ContainsKey(itens_pergunta[i]))
                     {
                         ErrorProvider err = new ErrorProvider();
-                        err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                        err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                         err.SetError(itens_pergunta[i], "Questões do tipo qe tem de se referir a um item.");
                         erros.Add(itens_pergunta[i], err);
                     }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using ETdA.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Negócio;
 using System.Windows;
-using ETdA.Camada_de_Dados.Classes.Verificador;
-using ETdA.Camada_de_Dados.Classes.Estruturas;
+using ETdAnalyser.Camada_de_Dados.Classes.Verificador;
+using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
 
-namespace ETdA.Camada_de_Dados.Classes
+namespace ETdAnalyser.Camada_de_Dados.Classes
 {
     class Importer_Exporter
     {

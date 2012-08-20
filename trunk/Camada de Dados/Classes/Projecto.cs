@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ETdA.Camada_de_Dados;
-using ETdA.Camada_de_Dados.Classes.Estruturas;
+using ETdAnalyser.Camada_de_Dados;
+using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
 using System.Windows;
 
-namespace ETdA.Camada_de_Dados.Classes
+namespace ETdAnalyser.Camada_de_Dados.Classes
 {
     class Projecto
     {

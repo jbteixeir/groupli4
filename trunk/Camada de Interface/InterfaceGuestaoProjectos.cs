@@ -6,11 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdA.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Negócio;
 using System.Drawing.Drawing2D;
-using ETdA.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Dados.Classes;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceGuestaoProjectos : Form
     {
@@ -314,7 +314,7 @@ namespace ETdA.Camada_de_Interface
                 // 
                 // pictureBox1
                 // 
-                pictureBox1.BackgroundImage = global::ETdA.Properties.Resources._1309271471_file_add;
+                pictureBox1.BackgroundImage = global::ETdAnalyser.Properties.Resources._1309271471_file_add;
                 pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 pictureBox1.Location = new System.Drawing.Point(13, 19);
                 pictureBox1.Name = "pictureBox1";
@@ -609,7 +609,7 @@ namespace ETdA.Camada_de_Interface
                 //
                 // pictureBox1
                 // 
-                pictureBox1.BackgroundImage = global::ETdA.Properties.Resources._1309271576_folder_add;
+                pictureBox1.BackgroundImage = global::ETdAnalyser.Properties.Resources._1309271576_folder_add;
                 pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 pictureBox1.Location = new System.Drawing.Point(13, 19);
                 pictureBox1.Name = "pictureBox1";
@@ -842,7 +842,7 @@ namespace ETdA.Camada_de_Interface
                 tb1.BorderStyle = BorderStyle.None;
                 tb1.ReadOnly = true;
                 tb1.ForeColor = SystemColors.ControlDark;
-                tb1.Text = "http://"+GestaodeAnalistas.nomeServidorWeb()+":"+GestaodeAnalistas.portaServidorWeb()+"/ETdA/Default.aspx?form=CL&usr=" +
+                tb1.Text = "http://"+GestaodeAnalistas.nomeServidorWeb()+":"+GestaodeAnalistas.portaServidorWeb()+"/ETdAnalyser/Default.aspx?form=CL&usr=" +
                              Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
                 
                 
@@ -877,7 +877,7 @@ namespace ETdA.Camada_de_Interface
                 tb2.BorderStyle = BorderStyle.None;
                 tb2.ReadOnly = true;
                 tb2.ForeColor = SystemColors.ControlDark;
-                tb2.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdA/Default.aspx?form=FA&usr=" +
+                tb2.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=FA&usr=" +
                              Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
 
                 System.Windows.Forms.Label l9 = new System.Windows.Forms.Label();
@@ -911,7 +911,7 @@ namespace ETdA.Camada_de_Interface
                 tb3.ForeColor = SystemColors.ControlDark;
                 tb3.BorderStyle = BorderStyle.None;
                 tb3.ReadOnly = true;
-                tb3.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdA/Default.aspx?form=QT&usr=" +
+                tb3.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=QT&usr=" +
                              Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
                 #endregion
 
@@ -1569,7 +1569,7 @@ namespace ETdA.Camada_de_Interface
             long codp = long.Parse(cods[0]);
             long coda = long.Parse(cods[1]);
             string nome = tabControl1.SelectedTab.Text;
-            InterfaceRelatorio.main(codp, coda, nome, new ETdA.Camada_de_Dados.Classes.Relatorio());
+            InterfaceRelatorio.main(codp, coda, nome, new ETdAnalyser.Camada_de_Dados.Classes.Relatorio());
         }
 
         // rdone
@@ -1894,7 +1894,7 @@ namespace ETdA.Camada_de_Interface
 
                 //Apagar da base de dados
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(coda);
-                //Apagar do ETdA
+                //Apagar do ETdAnalyser
                 GestaodeAnalises.removerAnalise(codp, coda);
 
                 //Apagar Analise do TreeView
@@ -1929,7 +1929,7 @@ namespace ETdA.Camada_de_Interface
             {
                 //Apagar da base de dados
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarProjecto(long.Parse(tsi.Name));
-                //Apagar do ETdA
+                //Apagar do ETdAnalyser
                 Camada_de_Dados.ETdA.ETdA.removeProjecto(long.Parse(tsi.Name));
                 
                 //Apagar Projecto do Treeview

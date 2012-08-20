@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using ETdA.Camada_de_Dados.Classes;
-using ETdA.Camada_de_Dados.Classes.Estruturas;
+using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
 using System.Windows;
 
-namespace ETdA.Camada_de_Dados.ETdA
+namespace ETdAnalyser.Camada_de_Dados.ETdA
 {
     class ETdA
     {

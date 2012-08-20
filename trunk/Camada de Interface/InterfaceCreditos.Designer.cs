@@ -1,4 +1,4 @@
-﻿namespace ETdA.Camada_de_Interface
+﻿namespace ETdAnalyser.Camada_de_Interface
 {
     partial class InterfaceCreditos
     {
@@ -76,14 +76,14 @@
             this.groupBox2.Size = new System.Drawing.Size(293, 85);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "ETdA Group";
+            this.groupBox2.Text = "ETdAnalyser Group";
             // 
             // Interface_Creditos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.BackgroundImage = global::ETdA.Properties.Resources.degrade1;
+            this.BackgroundImage = global::ETdAnalyser.Properties.Resources.degrade1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(317, 263);
             this.Controls.Add(this.groupBox2);

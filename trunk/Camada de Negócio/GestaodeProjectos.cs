@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ETdA.Camada_de_Dados.ETdA;
+using ETdAnalyser.Camada_de_Dados.ETdA;
 
-namespace ETdA.Camada_de_Negócio
+namespace ETdAnalyser.Camada_de_Negócio
 {
     class GestaodeProjectos
     {

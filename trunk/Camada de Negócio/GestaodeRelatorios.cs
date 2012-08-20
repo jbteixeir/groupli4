@@ -3,7 +3,7 @@
 //using System.Linq;
 //using System.Text;
 
-//namespace ETdA.Camada_de_Negócio
+//namespace ETdAnalyser.Camada_de_Negócio
 //{
 //    class GestaodeRelatorios
 //    {

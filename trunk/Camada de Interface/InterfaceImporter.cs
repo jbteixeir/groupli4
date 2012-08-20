@@ -4,11 +4,11 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Linq;
 using System.IO;
-using ETdA.Camada_de_Dados.Classes;
-using ETdA.Camada_de_Negócio;
-using ETdA.Camada_de_Dados.Classes.Estruturas;
+using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.Camada_de_Negócio;
+using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
 
-namespace ETdA.Camada_de_Interface
+namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceImporter : Form
     {
@@ -107,7 +107,7 @@ namespace ETdA.Camada_de_Interface
                 if (!erros.Keys.Contains(textBox1))
                 {
                     ErrorProvider err = new ErrorProvider();
-                    err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                     err.SetError(textBox1, "É necessário introduzir o ficheiro a importar.");
 
                     erros.Add(textBox1, err);
@@ -119,7 +119,7 @@ namespace ETdA.Camada_de_Interface
                 if (!erros.Keys.Contains(textBox1))
                 {
                     ErrorProvider err = new ErrorProvider();
-                    err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                     err.SetError(textBox1, "O ficheiro introduzido não existe.");
 
                     erros.Add(textBox1, err);
@@ -131,7 +131,7 @@ namespace ETdA.Camada_de_Interface
                 if (!erros.Keys.Contains(comboBox1))
                 {
                     ErrorProvider err = new ErrorProvider();
-                    err.Icon = global::ETdA.Properties.Resources.notification_warning_ico;
+                    err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
                     err.SetError(comboBox1, "É necessário escolher o formulário.");
 
                     erros.Add(comboBox1, err);
