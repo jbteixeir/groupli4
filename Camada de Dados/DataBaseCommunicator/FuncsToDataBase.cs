@@ -548,6 +548,134 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             return long.Parse(reader[0].ToString());
 
         }
+
+        static public List<long> getCodsQuestionrarios(long codAnalise)
+        {
+            List<long> cods = new List<long>();
+
+            string query = "Select cod_questionario from questionario where cod_analise = " + codAnalise.ToString();
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            while (r.Read())
+            {
+                long cod = (long)r["cod_questionario"];
+                cods.Add(cod);
+            }
+
+            return cods;
+        }
+
+        static public Questionario getQuestionario(long codQuestionario, long codAnalise)
+        {
+            Questionario q = new Questionario(codQuestionario, codAnalise);
+
+            #region Respostas numero
+
+            string query = "select resposta_questionario_numero.cod_zona, resposta_questionario_numero.numero_pergunta, " +
+            "resposta_questionario_numero.valor, resposta_questionario_numero.cod_pergunta_questionario, pergunta_questionario.cod_item, " +
+            "TipoEscala.numeroEscalaResposta " + 
+            "from resposta_questionario_numero, pergunta_questionario, tipoescala " +
+            "where resposta_questionario_numero.cod_questionario = " + codQuestionario.ToString() +
+            " and resposta_questionario_numero.cod_analise = " + codAnalise.ToString() +
+            " and pergunta_questionario.cod_pergunta_questionario = resposta_questionario_numero.cod_pergunta_questionario" +
+            " and pergunta_questionario.cod_tipoescala = tipoescala.cod_tipoescala";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            List<float> pergunta = new List<float>();
+            while (r.Read())
+            {
+                float numero_pergunta = (float)r["numero_pergunta"];
+                long cod_item = r["cod_item"].ToString() == "" ? -1 : (long)r["cod_item"];
+                long cod_zona = long.Parse(r["cod_zona"].ToString());
+                short valor = short.Parse(r["valor"].ToString());
+                long cod_pergunta = long.Parse(r["cod_pergunta_questionario"].ToString());
+
+                if (!pergunta.Contains((float)r["numero_pergunta"]) || 
+                    (pergunta.Contains((float)r["numero_pergunta"]) && (int)r["numeroEscalaResposta"]==-2)
+                    )
+                {
+                    if (!pergunta.Contains((float)r["numero_pergunta"]))
+                        pergunta.Add((float)r["numero_pergunta"]);
+
+                    Resposta resposta;
+                    if ((int)r["numeroEscalaResposta"] == -2)
+                    {
+                        resposta = new Resposta(codAnalise, -1, codQuestionario, -1, numero_pergunta,
+                       cod_item, cod_zona, valor, null, 3, Resposta.TipoResposta.RespostaNum);
+                    }
+                    else
+                    {
+                        resposta = new Resposta(codAnalise, -1, codQuestionario, -1, numero_pergunta,
+                        cod_item, 1, valor, null, 3, Resposta.TipoResposta.RespostaNum);
+                    }
+                    resposta.Cod_pergunta = cod_pergunta;
+                    q.add_resposta_numero(resposta);
+                }
+            }
+
+            #endregion
+
+            #region Respostas string
+
+            query = "select resposta_questionario_string.cod_zona, resposta_questionario_string.numero_pergunta, " +
+            "resposta_questionario_string.valor, resposta_questionario_string.cod_pergunta_questionario, pergunta_questionario.cod_item " +
+            "from resposta_questionario_string, pergunta_questionario " +
+            "where resposta_questionario_string.cod_questionario = " + codQuestionario.ToString() +
+            " and resposta_questionario_string.cod_analise = " + codAnalise.ToString() +
+            " and pergunta_questionario.cod_pergunta_questionario = resposta_questionario_string.cod_pergunta_questionario";
+
+            r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            while (r.Read())
+            {
+                float numero_pergunta = (float)r["numero_pergunta"];
+                long cod_item = r["cod_item"].ToString() == "" ? -1 : (long)r["cod_item"];
+                long cod_zona = long.Parse(r["cod_zona"].ToString());
+                string valor = r["valor"].ToString();
+                long cod_pergunta = long.Parse(r["cod_pergunta_questionario"].ToString());
+
+                Resposta resposta = new Resposta(codAnalise, -1, codQuestionario, -1, numero_pergunta,
+                    cod_item, cod_zona, 0, valor, 3, Resposta.TipoResposta.RespostaStr);
+
+                resposta.Cod_pergunta = cod_pergunta;
+                q.add_resposta_string(resposta);
+            }
+
+            #endregion
+
+            #region Respostas memo
+
+            query = "select resposta_questionario_memo.cod_zona, resposta_questionario_memo.numero_pergunta, " +
+            "resposta_questionario_memo.valor, resposta_questionario_memo.cod_pergunta_questionario, pergunta_questionario.cod_item " +
+            "from resposta_questionario_memo, pergunta_questionario " +
+            "where resposta_questionario_memo.cod_questionario = " + codQuestionario.ToString() +
+            " and resposta_questionario_memo.cod_analise = " + codAnalise.ToString() +
+            " and pergunta_questionario.cod_pergunta_questionario = resposta_questionario_memo.cod_pergunta_questionario";
+
+            r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            while (r.Read())
+            {
+                float numero_pergunta = (float)r["numero_pergunta"];
+                long cod_item = r["cod_item"].ToString() == "" ? -1 : (long)r["cod_item"];
+                long cod_zona = long.Parse(r["cod_zona"].ToString());
+                string valor = r["valor"].ToString();
+                long cod_pergunta = long.Parse(r["cod_pergunta_questionario"].ToString());
+
+                Resposta resposta = new Resposta(codAnalise, -1, codQuestionario, -1, numero_pergunta,
+                    cod_item, cod_zona, 0, valor, 3, Resposta.TipoResposta.RespostaMemo);
+
+                resposta.Cod_pergunta = cod_pergunta;
+                q.add_resposta_memo(resposta);
+            }
+
+            #endregion
+
+            return q;
+        }
+
         #endregion
 
         #region Ficha Avaliacao
@@ -560,6 +688,123 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
 
             reader.Read();
             return long.Parse(reader[0].ToString());
+        }
+
+        static public Dictionary<long, long> getCodsFichasAvaliacao(long codAnalise)
+        {
+            Dictionary<long,long> cods = new Dictionary<long,long>();
+
+            string query = "Select cod_fichaAvaliacao, cod_zona from ficha_avaliacao where cod_analise = " + codAnalise.ToString();
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            while (r.Read())
+            {
+                long codfa = (long)r["cod_fichaAvaliacao"];
+                long codz = (long)r["cod_zona"];
+                cods.Add(codfa,codz);
+            }
+
+            return cods;
+        }
+
+        static public FichaAvaliacao getFichaAvaliacao(long codFichaAvaliacao, long codAnalise, long codZona)
+        {
+            FichaAvaliacao fa = new FichaAvaliacao(codFichaAvaliacao, codAnalise, codZona);
+
+            #region Respostas numero
+
+            string query = "select resposta_ficha_avaliacao_numero.numero_pergunta, resposta_ficha_avaliacao_numero.valor, "+
+                "pergunta_ficha_avaliacao.cod_item " +
+                "from resposta_ficha_avaliacao_numero, pergunta_ficha_avaliacao "+
+                "where resposta_ficha_avaliacao_numero.cod_fichaAvaliacao = " + codFichaAvaliacao +
+                " and resposta_ficha_avaliacao_numero.cod_analise = " + codAnalise + 
+                " and pergunta_ficha_avaliacao.numero_pergunta = resposta_ficha_avaliacao_numero.numero_pergunta" +
+                " and pergunta_ficha_avaliacao.cod_analise = resposta_ficha_avaliacao_numero.cod_analise";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            while (r.Read())
+            {
+                long cod_item = (long)r["cod_item"];
+                short valor = short.Parse(r["valor"].ToString());
+                float numero_pergunta = float.Parse(r["numero_pergunta"].ToString());
+
+                Resposta resposta = new Resposta(codAnalise, -1, -1, codFichaAvaliacao, numero_pergunta,
+                    cod_item, 0, valor, null, 2, Resposta.TipoResposta.RespostaNum);
+
+                fa.add_resposta_numero(resposta);
+            }
+
+            #endregion
+
+            #region Respostas string
+
+            query = "select resposta_ficha_avaliacao_string.numero_pergunta, resposta_ficha_avaliacao_string.valor, " +
+                "pergunta_ficha_avaliacao.cod_item " +
+                "from resposta_ficha_avaliacao_string, pergunta_ficha_avaliacao " +
+                "where resposta_ficha_avaliacao_string.cod_fichaAvaliacao = " + codFichaAvaliacao +
+                " and resposta_ficha_avaliacao_string.cod_analise = " + codAnalise +
+                " and pergunta_ficha_avaliacao.numero_pergunta = resposta_ficha_avaliacao_string.numero_pergunta" +
+                " and pergunta_ficha_avaliacao.cod_analise = resposta_ficha_avaliacao_string.cod_analise";
+
+            r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            while (r.Read())
+            {
+                long cod_item = (long)r["cod_item"];
+                string valor = r["valor"].ToString();
+                float numero_pergunta = float.Parse(r["numero_pergunta"].ToString());
+
+                Resposta resposta = new Resposta(codAnalise, -1, -1, codFichaAvaliacao, numero_pergunta,
+                    cod_item, 0, 0, valor, 2, Resposta.TipoResposta.RespostaStr);
+
+                fa.add_resposta_string(resposta);
+            }
+
+            #endregion
+
+            return fa;
+        }
+        #endregion
+
+        #region CheckList
+        static public long insertRespostaCheckList(Resposta resposta)
+        {
+            string query = "INSERT INTO resposta_checkList VALUES (" +
+                        resposta.Cod_analise + ", " + resposta.CodigoZona + ", " +
+                        resposta.CodigoItem + ", " + resposta.Valor + ");" +
+                        "SELECT SCOPE_IDENTITY();";
+
+            //MessageBox.Show(query.ToString());
+
+            SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            reader.Read();
+            return long.Parse(reader[0].ToString());
+        }
+
+        static public CheckList getCheckList(long codAnalise)
+        {
+            CheckList cl = new CheckList(codAnalise);
+
+            string query = "select cod_zona, cod_item, valor from resposta_checkList";
+
+            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+
+            while (r.Read())
+            {
+                long cod_item = long.Parse(r["cod_item"].ToString());
+                long cod_zona = long.Parse(r["cod_zona"].ToString());
+                short valor = short.Parse(r["valor"].ToString());
+
+                Resposta resposta = new Resposta(codAnalise, -1, -1, -1, -1,cod_item, 
+                    cod_zona, valor, null, 1, Resposta.TipoResposta.RespostaNum);
+
+                cl.add_resposta_numero(resposta);
+            }
+
+            return cl;
         }
         #endregion
 
@@ -598,24 +843,6 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
                 readerItem.Close();
             }
             readerZona.Close();
-        }
-        #endregion
-
-
-        #region Inserir Respostas CheckList
-        static public long insertRespostaCheckList(Resposta resposta)
-        {
-            string query = "INSERT INTO resposta_checkList VALUES (" +
-                        resposta.Cod_analise + ", " + resposta.CodigoZona + ", " +
-                        resposta.CodigoItem + ", " + resposta.Valor +  ");" + 
-                        "SELECT SCOPE_IDENTITY();";
-
-            //MessageBox.Show(query.ToString());
-
-            SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
-
-            reader.Read();
-            return long.Parse(reader[0].ToString());
         }
         #endregion
 

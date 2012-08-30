@@ -157,5 +157,37 @@ namespace ETdAnalyser.Camada_de_Negócio
             foreach (Resposta r in c.Respostas_Numero)
                 FuncsToDataBase.insertRespostaCheckList(r);
         }
+
+        public static List<Questionario> getQuestionarios(long codAnalise)
+        {
+            List<Questionario> questionarios = new List<Questionario>();
+
+            List<long> cods_questionarios = FuncsToDataBase.getCodsQuestionrarios(codAnalise);
+
+            foreach (long codQuestionario in cods_questionarios)
+                questionarios.Add(FuncsToDataBase.getQuestionario(codQuestionario,codAnalise));
+
+            return questionarios;
+        }
+
+        public static List<FichaAvaliacao> getFichasAvaliacao(long codAnalise)
+        {
+            List<FichaAvaliacao> fichas_avaliacao = new List<FichaAvaliacao>();
+            
+            Dictionary<long,long> cods_fichas_avaliacao = FuncsToDataBase.getCodsFichasAvaliacao(codAnalise);
+
+            foreach (long codFichaAvaliacao in cods_fichas_avaliacao.Keys)
+                fichas_avaliacao.Add(FuncsToDataBase.getFichaAvaliacao(codFichaAvaliacao, 
+                    codAnalise, cods_fichas_avaliacao[codFichaAvaliacao]));
+            
+            return fichas_avaliacao;
+        }
+
+        public static CheckList getChecklist(long codAnalise)
+        {
+            CheckList checklist = FuncsToDataBase.getCheckList(codAnalise);
+
+            return checklist;
+        }
     }
 }

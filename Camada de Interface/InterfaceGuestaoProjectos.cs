@@ -992,6 +992,17 @@ namespace ETdAnalyser.Camada_de_Interface
                 l4.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
                 l4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
+                System.Windows.Forms.Label exp = new System.Windows.Forms.Label();
+                exp.Width = 200;
+                exp.Text = "Exportar Dados para Ficheiro";
+                exp.Location = new System.Drawing.Point(15, 66 + 60 + 24);
+                exp.ForeColor = Color.Blue;
+                exp.Cursor = System.Windows.Forms.Cursors.Hand;
+                exp.Click += new System.EventHandler(exporter);
+                exp.MouseEnter += new System.EventHandler(this.MouseEnterAction);
+                exp.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
+                exp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+
                 #endregion
 
                 #region declaraçoes
@@ -1248,12 +1259,13 @@ namespace ETdAnalyser.Camada_de_Interface
                 // 
                 panel3.Dock = System.Windows.Forms.DockStyle.Top;
                 panel3.Location = new System.Drawing.Point(0, 0);
-                panel3.Name = "panel3";
-                panel3.Size = new System.Drawing.Size(343, 90 + 70);
+                panel3.Name = "panel3"; 
+                panel3.Size = new System.Drawing.Size(343, 90 + 70 + 24);
                 panel3.TabIndex = 3;
                 panel3.Controls.Add(ldados);
                 panel3.Controls.Add(l5);
                 panel3.Controls.Add(l4);
+                panel3.Controls.Add(exp);
                 panel3.Controls.Add(lcl);
                 panel3.Controls.Add(lfa);
                 panel3.Controls.Add(lqt);
@@ -1262,7 +1274,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 // panel4
                 // 
                 panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-                panel4.Location = new System.Drawing.Point(0, 73);
+                panel4.Location = new System.Drawing.Point(0, 97);
                 panel4.Name = "panel4";
                 panel4.Size = new System.Drawing.Size(343, 231);
                 panel4.TabIndex = 4;
@@ -1559,6 +1571,17 @@ namespace ETdAnalyser.Camada_de_Interface
             List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
 
             InterfaceImporter.main(codAnalise, zonas, itens);
+        }
+
+        private void exporter(object sender, EventArgs e)
+        {
+            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+
+            List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codProjecto, codAnalise);
+            List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
+
+            InterfaceExporter.main(codAnalise, zonas, itens);
         }
 
         // rdone

@@ -72,9 +72,10 @@
     <Compile Include="Camada de Dados\Classes\CheckList.cs" />
     <Compile Include="Camada de Dados\Classes\Estruturas\Enums.cs" />
     <Compile Include="Camada de Dados\Classes\Estruturas\Tuplo.cs" />
+    <Compile Include="Camada de Dados\Classes\Exporter.cs" />
     <Compile Include="Camada de Dados\Classes\FichaAvaliacao.cs" />
     <Compile Include="Camada de Dados\Classes\Formulario.cs" />
-    <Compile Include="Camada de Dados\Classes\Importer_Exporter.cs" />
+    <Compile Include="Camada de Dados\Classes\Importer.cs" />
     <Compile Include="Camada de Dados\Classes\Pergunta.cs" />
     <Compile Include="Camada de Dados\Classes\PerguntaFichaAvaliacao.cs" />
     <Compile Include="Camada de Dados\Classes\PerguntaQuestionario.cs" />
@@ -93,6 +94,12 @@
     <Compile Include="Camada de Dados\Classes\Resposta.cs" />
     <Compile Include="Camada de Dados\DataBaseCommunicator\DataBaseCommunicator.cs" />
     <Compile Include="Camada de Dados\ETdA\ETdAMain.cs" />
+    <Compile Include="Camada de Interface\InterfaceExporter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camada de Interface\InterfaceExporter.Designer.cs">
+      <DependentUpon>InterfaceExporter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Camada de Interface\InterfaceAssociacaoZonaColuna.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +244,9 @@
       <DependentUpon>InterfaceQuestionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Camada de Interface\InterfaceExporter.resx">
+      <DependentUpon>InterfaceExporter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Camada de Interface\InterfaceAssociacaoZonaColuna.resx">
       <DependentUpon>InterfaceAssociacaoZonaColuna.cs</DependentUpon>
     </EmbeddedResource>
