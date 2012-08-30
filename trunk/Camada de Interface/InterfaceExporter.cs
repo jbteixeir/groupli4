@@ -10,14 +10,14 @@ using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
 
 namespace ETdAnalyser.Camada_de_Interface
 {
-    public partial class InterfaceImporter : Form
+    public partial class InterfaceExporter : Form
     {
         private long cod_analise;
         private Dictionary<object, ErrorProvider> erros;
         private List<Zona> zonas;
         private List<Item> itens;
 
-        public InterfaceImporter(long _cod_analise, object _zonas, object _itens)
+        public InterfaceExporter(long _cod_analise, object _zonas, object _itens)
         {
             cod_analise = _cod_analise;
             zonas = (List<Zona>)_zonas;
@@ -31,7 +31,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
         public static void main(long _cod_analise, object _zonas, object _itens)
         {
-            InterfaceImporter i = new InterfaceImporter(_cod_analise, _zonas, _itens);
+            InterfaceExporter i = new InterfaceExporter(_cod_analise, _zonas, _itens);
             i.ShowDialog();
         }
 
@@ -39,39 +39,48 @@ namespace ETdAnalyser.Camada_de_Interface
         {
             if (verificaErros())
             {
-                Importer ie = new Importer(cod_analise, textBox1.Text);
+                Exporter exporter = null;
+                string erro = "";
                 switch (comboBox1.SelectedIndex)
                 {
-                    case 0:
-                        if (!ie.ler_ficheiro(checkBox1.Checked))
-                            MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
+                    case 0: // Questionario
+                        List<Questionario> questionarios = GestaodeRespostas.getQuestionarios(cod_analise);
+                        List<PerguntaQuestionario> perguntas_questionario = GestaodeRespostas.getPerguntasQT(cod_analise);
+
+                        exporter = new Exporter(textBox1.Text, questionarios, perguntas_questionario, zonas);
+
+                        if (!exporter.verifica_criacao_ficheiro(ref erro))
+                            MessageBoxPortuguese.Show("Erro", erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            List<PerguntaQuestionario> pqs = GestaodeRespostas.getPerguntasQT(cod_analise);
-                            List<Pergunta> lst_pqs = new List<Pergunta>();
-                            foreach (PerguntaQuestionario p in pqs)
-                                lst_pqs.Add(p);
-                            InterfaceImporterMatching.main(lst_pqs, ie, Enums.Tipo_Formulário.Questionario, cod_analise, zonas, itens);
+                            exporter.grava_questionarios();
+                            MessageBoxPortuguese.Show("Info", "A exportação foi efectuada com sucesso", MessageBoxPortuguese.Icon_Info);
                         }
                         break;
-                    case 1:
-                        if (!ie.ler_ficheiro(checkBox1.Checked))
-                            MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
+                    case 1: // ficha avaliacao
+                        List<FichaAvaliacao> fichas_avaliacao = GestaodeRespostas.getFichasAvaliacao(cod_analise);
+
+                        exporter = new Exporter(textBox1.Text, fichas_avaliacao, itens, zonas);
+
+                        if (!exporter.verifica_criacao_ficheiro(ref erro))
+                            MessageBoxPortuguese.Show("Erro", erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            List<PerguntaFichaAvaliacao> pas = GestaodeRespostas.getPerguntasFA(cod_analise);
-                            List<Pergunta> lst_pas = new List<Pergunta>();
-                            foreach (PerguntaFichaAvaliacao p in pas)
-                                lst_pas.Add(p);
-                            InterfaceImporterMatching.main(lst_pas, ie, Enums.Tipo_Formulário.Ficha_Avaliacao, cod_analise, zonas, itens);
+                            exporter.grava_ficha_avaliacao();
+                            MessageBoxPortuguese.Show("Info", "A exportação foi efectuada com sucesso", MessageBoxPortuguese.Icon_Info);
                         }
                         break;
                     case 2:
-                        if (!ie.ler_ficheiro(checkBox1.Checked))
-                            MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
+                        CheckList cl = GestaodeRespostas.getChecklist(cod_analise);
+
+                        exporter = new Exporter(textBox1.Text, cl, itens, zonas);
+
+                        if (!exporter.verifica_criacao_ficheiro(ref erro))
+                            MessageBoxPortuguese.Show("Erro", erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            InterfaceImporterMatching.main(null, ie, Enums.Tipo_Formulário.CheckList, cod_analise, zonas, itens);
+                            exporter.grava_checklist();
+                            MessageBoxPortuguese.Show("Info", "A exportação foi efectuada com sucesso", MessageBoxPortuguese.Icon_Info);
                         }
                         break;
                 }
@@ -80,7 +89,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog fd = new OpenFileDialog();
+            SaveFileDialog fd = new SaveFileDialog();
             fd.Filter = "Ficheiros SPSS (*.csv)|*.csv";
 
             if (fd.ShowDialog() == DialogResult.OK)
@@ -108,19 +117,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 {
                     ErrorProvider err = new ErrorProvider();
                     err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
-                    err.SetError(textBox1, "É necessário introduzir o ficheiro a importar.");
-
-                    erros.Add(textBox1, err);
-                }
-                podeAdicionar = false;
-            }
-            else if (!File.Exists(textBox1.Text))
-            {
-                if (!erros.Keys.Contains(textBox1))
-                {
-                    ErrorProvider err = new ErrorProvider();
-                    err.Icon = global::ETdAnalyser.Properties.Resources.notification_warning_ico;
-                    err.SetError(textBox1, "O ficheiro introduzido não existe.");
+                    err.SetError(textBox1, "É necessário introduzir o nome do ficheiro a exportar.");
 
                     erros.Add(textBox1, err);
                 }

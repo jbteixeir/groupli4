@@ -10,7 +10,7 @@ using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
 
 namespace ETdAnalyser.Camada_de_Dados.Classes
 {
-    class Importer_Exporter
+    class Importer
     {
         #region Variáveis de intância
 
@@ -48,7 +48,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         #region Construtores
 
-        public Importer_Exporter(long _cod_analise, string _caminho)
+        public Importer(long _cod_analise, string _caminho)
         {
             cod_analise = _cod_analise;
             caminho = _caminho;

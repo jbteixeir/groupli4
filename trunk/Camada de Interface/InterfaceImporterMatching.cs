@@ -18,7 +18,7 @@ namespace ETdAnalyser.Camada_de_Interface
     {
         private static InterfaceImporterMatching iim;
         private List<Pergunta> ps;
-        private Importer_Exporter ie;
+        private Importer ie;
         private Enums.Tipo_Formulário tipo;
         private long cod_analise;
         private List<Zona> zonas;
@@ -31,7 +31,7 @@ namespace ETdAnalyser.Camada_de_Interface
             InitializeComponent();
 
             ps = (List<Pergunta>)_ps;
-            ie = (Importer_Exporter)_ie;
+            ie = (Importer)_ie;
             tipo = (Enums.Tipo_Formulário)_tipo;
             cod_analise = _cod_analise;
             zonas = (List<Zona>)_zonas;
