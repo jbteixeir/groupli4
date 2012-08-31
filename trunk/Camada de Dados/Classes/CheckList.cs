@@ -15,8 +15,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             respostas_numero = new List<Resposta>();
         }
 
-        public CheckList(long _cod_analise) :
-            base(_cod_analise)
+        public CheckList(long _codigoAnalise) :
+            base(_codigoAnalise)
         {
             respostas_numero = new List<Resposta>();
         }

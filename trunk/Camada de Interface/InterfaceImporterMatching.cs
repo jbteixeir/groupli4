@@ -20,20 +20,20 @@ namespace ETdAnalyser.Camada_de_Interface
         private List<Pergunta> ps;
         private Importer ie;
         private Enums.Tipo_Formulário tipo;
-        private long cod_analise;
+        private long codigoAnalise;
         private List<Zona> zonas;
         private List<Item> itens;
         private Dictionary<DataGridViewCell,string> erros;
         private Dictionary<int, Zona> mapa_zona_coluna;
 
-        public InterfaceImporterMatching(object _ps, object _ie, object _tipo, long _cod_analise, object _zonas, object _itens)
+        public InterfaceImporterMatching(object _ps, object _ie, object _tipo, long _codigoAnalise, object _zonas, object _itens)
         {
             InitializeComponent();
 
             ps = (List<Pergunta>)_ps;
             ie = (Importer)_ie;
             tipo = (Enums.Tipo_Formulário)_tipo;
-            cod_analise = _cod_analise;
+            codigoAnalise = _codigoAnalise;
             zonas = (List<Zona>)_zonas;
             itens = (List<Item>)_itens;
             erros = new Dictionary<DataGridViewCell, string>();
@@ -57,9 +57,9 @@ namespace ETdAnalyser.Camada_de_Interface
             toolStripStatusLabel5.Visible = false;
         }
 
-        public static void main(object _ps, object _ie, object _tipo, long _cod_analise, object _zonas, object _itens)
+        public static void main(object _ps, object _ie, object _tipo, long _codigoAnalise, object _zonas, object _itens)
         {
-            iim = new InterfaceImporterMatching(_ps, _ie, _tipo, _cod_analise, _zonas, _itens);
+            iim = new InterfaceImporterMatching(_ps, _ie, _tipo, _codigoAnalise, _zonas, _itens);
             iim.ShowDialog();
         }
 
@@ -131,7 +131,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
         private void MostrarPerguntasClick(object sender, EventArgs e)
         {
-            InterfacePerguntasQT.main(cod_analise, itens, zonas, true, false);
+            InterfacePerguntasQT.main(codigoAnalise, itens, zonas, true, false);
         }
 
         private void ContinuarClick(object sender, EventArgs e)

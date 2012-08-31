@@ -8,8 +8,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
     class Analise
     {
         //Variáveis de Instância
-        private long codAnalise;
-        private long codProjecto;
+        private long codigoAnalise;
+        private long codigoProjecto;
         private DateTime dataAnalise;
         private String nomeAnalise;
         private String tipoAnalise;
@@ -25,12 +25,12 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         //Constructores
 
-        public Analise(long cod, long codProj, DateTime data, String nome,
+        public Analise(long cod, long codigoProjectoroj, DateTime data, String nome,
             String tipo, List<Zona> zonas, List<Item> itens, 
             Boolean estadoWebCL, Boolean estadoWebFA, Boolean estadoWebQ)
         {
-            codAnalise = cod;
-            codProjecto = codProj;
+            codigoAnalise = cod;
+            codigoProjecto = codigoProjectoroj;
             dataAnalise = data;
             nomeAnalise = nome;
             tipoAnalise = tipo;
@@ -43,8 +43,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
           
         public Analise()
         {
-            codAnalise = -1;
-            codProjecto = -1;
+            codigoAnalise = -1;
+            codigoProjecto = -1;
             dataAnalise = new DateTime();
             dataAnalise = DateTime.Now;
             nomeAnalise = "";
@@ -61,8 +61,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         public Analise(Analise a)
         {
-            codAnalise = a.Codigo;
-            codProjecto = a.CodigoProj;
+            codigoAnalise = a.Codigo;
+            codigoProjecto = a.CodigoProj;
             dataAnalise = a.Data;
             nomeAnalise = a.Nome;
             tipoAnalise = a.Tipo;
@@ -79,13 +79,13 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         public long Codigo
         {
-            get { return codAnalise; }
-            set { codAnalise = value; }
+            get { return codigoAnalise; }
+            set { codigoAnalise = value; }
         }
         public long CodigoProj
         {
-            get { return codProjecto; }
-            set { codProjecto = value; }
+            get { return codigoProjecto; }
+            set { codigoProjecto = value; }
         }    
         public DateTime Data
 	    {

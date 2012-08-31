@@ -63,12 +63,13 @@
             // 
             // splitContainer1.Panel1
             // 
+            resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
             this.splitContainer1.Panel1.Controls.Add(this.treeViewAjuda);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.BackgroundImage = global::ETdAnalyser.Properties.Resources.degrade1;
             resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
+            this.splitContainer1.Panel2.BackgroundImage = global::ETdAnalyser.Properties.Resources.degrade1;
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             // 
@@ -87,28 +88,28 @@
             // 
             // splitContainer2
             // 
-            this.splitContainer2.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.splitContainer2, "splitContainer2");
+            this.splitContainer2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
+            resources.ApplyResources(this.splitContainer2.Panel1, "splitContainer2.Panel1");
             this.splitContainer2.Panel1.Controls.Add(this.richTextBox1);
             this.splitContainer2.Panel1.Controls.Add(this.label2);
-            resources.ApplyResources(this.splitContainer2.Panel1, "splitContainer2.Panel1");
             // 
             // splitContainer2.Panel2
             // 
+            resources.ApplyResources(this.splitContainer2.Panel2, "splitContainer2.Panel2");
             this.splitContainer2.Panel2.Controls.Add(this.richTextBox2);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
-            resources.ApplyResources(this.splitContainer2.Panel2, "splitContainer2.Panel2");
             // 
             // richTextBox1
             // 
+            resources.ApplyResources(this.richTextBox1, "richTextBox1");
             this.richTextBox1.BackColor = System.Drawing.Color.White;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.richTextBox1, "richTextBox1");
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.TabStop = false;
@@ -120,9 +121,9 @@
             // 
             // richTextBox2
             // 
+            resources.ApplyResources(this.richTextBox2, "richTextBox2");
             this.richTextBox2.BackColor = System.Drawing.Color.White;
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.richTextBox2, "richTextBox2");
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
             this.richTextBox2.TabStop = false;
@@ -134,9 +135,9 @@
             // 
             // panel2
             // 
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.labelTitulo);
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // labelTitulo
@@ -147,16 +148,16 @@
             // 
             // panelTitulo
             // 
+            resources.ApplyResources(this.panelTitulo, "panelTitulo");
             this.panelTitulo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panelTitulo.Controls.Add(this.pictureBox1);
             this.panelTitulo.Controls.Add(this.label1);
-            resources.ApplyResources(this.panelTitulo, "panelTitulo");
             this.panelTitulo.Name = "panelTitulo";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ETdAnalyser.Properties.Resources.Help;
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Image = global::ETdAnalyser.Properties.Resources.Help;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
@@ -167,8 +168,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.splitContainer1);
             resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Name = "panel1";
             // 
             // InterfaceAjuda

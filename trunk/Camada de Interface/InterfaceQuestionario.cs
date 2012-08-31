@@ -12,13 +12,13 @@ namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceQuestionario : Form
     {
-        public InterfaceQuestionario(long codProjecto, long codAnalise)
+        public InterfaceQuestionario(long codigoProjecto, long codigoAnalise)
         {
             InitializeComponent();
             Questionario.ScriptErrorsSuppressed = true;
             Questionario.Url = new System.Uri("http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=QT&usr=" + 
-                Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codAnalise + "&prj" +
-                    "=" + codProjecto + "&adminmode=true", System.UriKind.Absolute);
+                Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" +
+                    "=" + codigoProjecto + "&adminmode=true", System.UriKind.Absolute);
         }
     }
 }

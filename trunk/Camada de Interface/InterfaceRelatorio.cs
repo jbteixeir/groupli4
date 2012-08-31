@@ -14,8 +14,8 @@ namespace ETdAnalyser.Camada_de_Interface
 {
     partial class InterfaceRelatorio : Form
     {
-        private long cod_projecto;
-        private long cod_analise;
+        private long codigoProjecto;
+        private long codigoAnalise;
         private String nome_analise;
         private Camada_de_Dados.Classes.Relatorio relatorio;
         private List<Camada_de_Dados.Classes.Zona> zonas;
@@ -34,24 +34,17 @@ namespace ETdAnalyser.Camada_de_Interface
         private Camada_de_Dados.Classes.Item curitem;
 
 
-        public static void main(long cod_projecto, long cod_analise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
+        public static void main(long codigoProjecto, long codigoAnalise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
-            InterfaceRelatorio i = new InterfaceRelatorio(cod_projecto, cod_analise, nome_analise, relatorio);
+            InterfaceRelatorio i = new InterfaceRelatorio(codigoProjecto, codigoAnalise, nome_analise, relatorio);
         }
 
-        public InterfaceRelatorio(long cod_projecto, long cod_analise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
+        public InterfaceRelatorio(long codigoProjecto, long codigoAnalise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
         {
 
-            this.zonas = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Zonas;
-            this.itens = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Itens;
-            relatorio.gerarResultadosRelatorio(cod_analise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
-            relatorio.gerarEstatisticasRelatorioSexo(cod_analise);
-            relatorio.gerarEstatisticasIdade(cod_analise);
-            relatorio.gerarEstatisticasClienteHabitual(cod_analise);
-
-            this.cod_projecto = cod_projecto;
-            this.cod_analise = cod_analise;
-            this.nome_analise = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(cod_projecto).Analises[cod_analise].Nome;
+            this.codigoProjecto = codigoProjecto;
+            this.codigoAnalise = codigoAnalise;
+            this.nome_analise = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Nome;
             this.relatorio = relatorio;
 
             if (relatorio.NumeroRespostas == 0)

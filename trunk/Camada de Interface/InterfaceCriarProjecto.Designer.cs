@@ -83,7 +83,7 @@
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Name = "panel1";
             // 
-            // Interface_CriarProjecto
+            // InterfaceCriarProjecto
             // 
             this.AcceptButton = this.button1;
             resources.ApplyResources(this, "$this");
@@ -92,7 +92,7 @@
             this.CancelButton = this.button2;
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.Name = "Interface_CriarProjecto";
+            this.Name = "InterfaceCriarProjecto";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.panel1.ResumeLayout(false);

@@ -17,19 +17,19 @@ namespace ETdAnalyser.Camada_de_Interface
         private List<Item> itens;
         private List<string> itens_novos;
         private static InterfaceCriarAnalise ica;
-        private long codProjecto;
+        private long codigoProjecto;
         private bool done;
         private string tipo;
         private int wh;
 
         // rdone
-        public InterfaceCriarAnalise(long codProjecto, string nomeProjecto)
+        public InterfaceCriarAnalise(long codigoProjecto, string nomeProjecto)
         {
             InitializeComponent();
             zonas = new List<string>();
             itens = new List<Item>();
 
-            this.codProjecto = codProjecto;
+            this.codigoProjecto = codigoProjecto;
 
             label3.Visible = false;
             done = false;
@@ -38,9 +38,9 @@ namespace ETdAnalyser.Camada_de_Interface
         }
 
         // rdone
-        public static void main(long codProjecto, string nomeProjecto)
+        public static void main(long codigoProjecto, string nomeProjecto)
         {
-            ica = new InterfaceCriarAnalise(codProjecto,nomeProjecto);
+            ica = new InterfaceCriarAnalise(codigoProjecto,nomeProjecto);
             ica.ShowDialog();
         }
 
@@ -81,7 +81,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
             if (!valido)
                 MessageBox.Show("Nome da análise inválida\n(Apenas letras, números e \"_-/\")", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (!GestaodeAnalises.podeAdicionarAnalise(codProjecto, nome))
+            else if (!GestaodeAnalises.podeAdicionarAnalise(codigoProjecto, nome))
                 MessageBox.Show("Nome da análise já existente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (comboBox1.SelectedIndex < 0 || comboBox1.SelectedIndex >2 )
                 MessageBox.Show("Deve escolher o tipo de analise", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -120,13 +120,13 @@ namespace ETdAnalyser.Camada_de_Interface
                 string tipo = comboBox1.SelectedItem.ToString();
 
                 Analise a = new Analise();
-                a.CodigoProj = codProjecto;
+                a.CodigoProj = codigoProjecto;
                 a.Nome = nome;
                 a.Tipo = tipo;
                 a.Zonas = zs;
                 a.Itens = itens;
 
-                GestaodeAnalises.adicionaAnalise(a, codProjecto);
+                GestaodeAnalises.adicionaAnalise(a, codigoProjecto);
                 endFrame();
             }
         }

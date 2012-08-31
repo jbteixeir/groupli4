@@ -13,21 +13,21 @@ namespace ETdAnalyser.Camada_de_Interface
     public partial class InterfaceGestaoFormulariosOnline : Form
     {
         private static InterfaceGestaoFormulariosOnline i; 
-        private long codAnalise;
+        private long codigoAnalise;
         private object itens;
         private object zonas;
         private bool fa;
         private bool qt;
 
-        public InterfaceGestaoFormulariosOnline(long codAnalise, object itens, object zonas)
+        public InterfaceGestaoFormulariosOnline(long codigoAnalise, object itens, object zonas)
         {
-            this.codAnalise = codAnalise;
+            this.codigoAnalise = codigoAnalise;
             this.itens = itens;
             this.zonas = zonas;
             InitializeComponent();
 
-            fa = GestaodeRespostas.isFAcreated(codAnalise);
-            qt = GestaodeRespostas.isQTcreated(codAnalise);
+            fa = GestaodeRespostas.isFAcreated(codigoAnalise);
+            qt = GestaodeRespostas.isQTcreated(codigoAnalise);
 
             if (fa)
                 toolStripStatusLabel2.Image = global::ETdAnalyser.Properties.Resources._1309271487_notification_done;
@@ -39,9 +39,9 @@ namespace ETdAnalyser.Camada_de_Interface
                 toolStripStatusLabel4.Image = global::ETdAnalyser.Properties.Resources.Error;
         }
 
-        public static void main(long codAnalise, object itens, object zonas)
+        public static void main(long codigoAnalise, object itens, object zonas)
         {
-            i = new InterfaceGestaoFormulariosOnline(codAnalise,itens, zonas);
+            i = new InterfaceGestaoFormulariosOnline(codigoAnalise,itens, zonas);
             i.ShowDialog();
         }
 
@@ -77,15 +77,15 @@ namespace ETdAnalyser.Camada_de_Interface
                 if (MessageBox.Show("Já adicionou as perguntas para a ficha de avaliação.\nTem a certeza que pretende editar?",
                     "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    if (!GestaodeRespostas.canEditFA(codAnalise))
+                    if (!GestaodeRespostas.canEditFA(codigoAnalise))
                         MessageBox.Show("Não é possível editar, porque já foram adcionadas respostas ou porque o Website está online.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
-                        InterfacePerguntas.main(codAnalise, itens, fa,true);
+                        InterfacePerguntas.main(codigoAnalise, itens, fa,true);
                 }
             }
             else
             {
-                InterfacePerguntas.main(codAnalise, itens, fa,true);
+                InterfacePerguntas.main(codigoAnalise, itens, fa,true);
             }
         }
 
@@ -96,14 +96,14 @@ namespace ETdAnalyser.Camada_de_Interface
                 if (MessageBox.Show("Já adicionou as perguntas para o questionário.\nTem a certeza que pretende editar?", 
                     "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    if (!GestaodeRespostas.canEditQT(codAnalise))
+                    if (!GestaodeRespostas.canEditQT(codigoAnalise))
                         MessageBox.Show("Não é possível editar, porque já foram adcionadas respostas ou porque o Website está online.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
-                        InterfacePerguntasQT.main(codAnalise, itens, zonas, qt, true);
+                        InterfacePerguntasQT.main(codigoAnalise, itens, zonas, qt, true);
                 }
             }
             else
-                InterfacePerguntasQT.main(codAnalise, itens, zonas, qt, true);
+                InterfacePerguntasQT.main(codigoAnalise, itens, zonas, qt, true);
         }
 
         public static void done_FA_Reenc(object sender, EventArgs e)

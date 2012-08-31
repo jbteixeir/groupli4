@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfaceCriarAnaliseItens));
             this.label1 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -48,91 +49,57 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
+            resources.ApplyResources(this.label1, "label1");
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Itens";
             // 
             // checkedListBox1
             // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.checkedListBox1, "checkedListBox1");
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(16, 30);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(159, 304);
-            this.checkedListBox1.TabIndex = 2;
             this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ItemCheckActionPerformed);
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(35, 346);
+            resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Mostrar Todos";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.MostrarTodosActionPerformed);
             // 
             // button2
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(471, 28);
+            resources.ApplyResources(this.button2, "button2");
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Adicionar";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.AdicionarActionPerformed);
             // 
             // textBox1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(182, 30);
+            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(268, 20);
-            this.textBox1.TabIndex = 5;
             this.textBox1.Click += new System.EventHandler(this.MouseClickActionPerformed);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressActionPerformed);
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoScroll = true;
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(182, 57);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(364, 277);
-            this.panel1.TabIndex = 6;
             // 
             // button3
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(471, 346);
+            resources.ApplyResources(this.button3, "button3");
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Cancelar";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.CancelarActionPerformed);
             // 
             // button4
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(390, 346);
+            resources.ApplyResources(this.button4, "button4");
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "OK";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.OK_ActionPerformed);
             // 
@@ -145,55 +112,44 @@
             this.toolStripStatusLabel4,
             this.toolStripStatusLabel5,
             this.toolStripStatusLabel6});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 381);
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(558, 22);
-            this.statusStrip1.TabIndex = 9;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(68, 17);
-            this.toolStripStatusLabel1.Text = "Num. Itens:";
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(35, 17);
-            this.toolStripStatusLabel2.Text = "NUM";
+            resources.ApplyResources(this.toolStripStatusLabel2, "toolStripStatusLabel2");
             // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(130, 17);
-            this.toolStripStatusLabel3.Text = "                                         ";
+            resources.ApplyResources(this.toolStripStatusLabel3, "toolStripStatusLabel3");
             // 
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(31, 17);
-            this.toolStripStatusLabel4.Text = "Erro:";
+            resources.ApplyResources(this.toolStripStatusLabel4, "toolStripStatusLabel4");
             // 
             // toolStripStatusLabel5
             // 
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(40, 17);
-            this.toolStripStatusLabel5.Text = "Sitio X";
+            resources.ApplyResources(this.toolStripStatusLabel5, "toolStripStatusLabel5");
             // 
             // toolStripStatusLabel6
             // 
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(99, 17);
-            this.toolStripStatusLabel6.Text = "Descriçao do erro";
+            resources.ApplyResources(this.toolStripStatusLabel6, "toolStripStatusLabel6");
             // 
-            // Interface_CriarAnaliseItens
+            // InterfaceCriarAnaliseItens
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ETdAnalyser.Properties.Resources.degrade1;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(558, 403);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -203,9 +159,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label1);
-            this.Name = "Interface_CriarAnaliseItens";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Criar Análise - Itens";
+            this.Name = "InterfaceCriarAnaliseItens";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

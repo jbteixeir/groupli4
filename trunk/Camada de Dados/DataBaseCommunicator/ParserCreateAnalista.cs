@@ -33,7 +33,7 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
         private static string createProjecto()
         {
             string c1 = "create table projecto(\n" + 
-	                    "cod_projecto bigint identity primary key,\n" +
+	                    "codigoProjecto bigint identity primary key,\n" +
 	                    "estabelecimento varchar(200) not null,\n" +
 	                    "ultimaActualizacao datetime not null,\n" +
                         "activo tinyint not null\n" +
@@ -44,8 +44,8 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
         private static string createAnalise()
         {
             string c2 = "create table analise(\n" +
-	                    "cod_analise bigint identity primary key,\n" +
-	                    "cod_projecto bigint not null Foreign Key references Projecto(cod_projecto),\n" +
+	                    "codigoAnalise bigint identity primary key,\n" +
+	                    "codigoProjecto bigint not null Foreign Key references Projecto(codigoProjecto),\n" +
 	                    "dataCriacao datetime not null,\n" +
 	                    "nomeAnalise varchar(200) not null,\n" +
 	                    "tipoAnalise varchar(20) not null,\n" +
@@ -72,7 +72,7 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             string c4 = "create table item_analise(\n" +
 	                    "cod_item_analise bigint identity primary key,\n" +
 	                    "cod_item bigint foreign key references Item(cod_item) not null,\n" +
-	                    "cod_analise bigint not null foreign key references Analise(cod_analise),\n" +
+	                    "codigoAnalise bigint not null foreign key references Analise(codigoAnalise),\n" +
 	                    "ponderacao_analista float(23) not null,\n" +
 	                    "ponderacao_profissional float(23) not null,\n" +
 	                    "ponderacao_cliente float(23) not null,\n" +
@@ -100,7 +100,7 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             string c6 = "create table zona_analise(\n" +
 	                    "cod_zona_analise bigint identity primary key,\n" +
 	                    "cod_zona bigint not null Foreign Key references zona(cod_zona),\n" +
-	                    "cod_analise bigint Foreign Key references Analise(cod_analise)\n" +
+	                    "codigoAnalise bigint Foreign Key references Analise(codigoAnalise)\n" +
                         ");\n";
             return c6;
         }
@@ -109,7 +109,7 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
         {
             string c7 = "create table resposta_checkList(\n" +
 	                    "cod_resposta_checkList bigint identity primary key,\n" +
-	                    "cod_analise bigint not null Foreign Key references Analise(cod_analise),\n" +
+	                    "codigoAnalise bigint not null Foreign Key references Analise(codigoAnalise),\n" +
 	                    "cod_zona bigint not null Foreign Key references Zona(cod_zona),\n" +
 	                    "cod_item bigint not null Foreign Key references Item(cod_item),\n" +
 	                    "valor tinyint\n" +
@@ -121,7 +121,7 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
         {
             string c8 = "create table ficha_avaliacao(\n" +
 	                    "cod_fichaAvaliacao bigint identity primary key,\n" +
-	                    "cod_analise bigint not null foreign key references Analise(cod_analise),\n" +
+	                    "codigoAnalise bigint not null foreign key references Analise(codigoAnalise),\n" +
 	                    "cod_zona bigint not null Foreign Key references zona(cod_zona),\n" +
                         ");\n";
 
@@ -155,7 +155,7 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
         {
             string c11 = "create table pergunta_ficha_avaliacao(\n" +
 	                     "cod_pergunta_ficha_avaliacao bigint identity primary key,\n" +
-	                     "cod_analise bigint not null foreign key references Analise(cod_analise),\n" +
+	                     "codigoAnalise bigint not null foreign key references Analise(codigoAnalise),\n" +
 	                     "numero_pergunta int not null,\n" +
 	                     "cod_item bigint Foreign Key references Item(cod_item),\n" +
 	                     "texto varchar(500),\n" +
@@ -170,7 +170,7 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             string c12 = "create table resposta_ficha_avaliacao_numero(\n" +
 	                     "cod_resposta_ficha_avaliacao_numero bigint identity primary key,\n" +
 	                     "cod_fichaAvaliacao bigint not null,\n" +
-	                     "cod_analise bigint not null,\n" +
+	                     "codigoAnalise bigint not null,\n" +
 	                     "numero_pergunta tinyint,\n" +
 	                     "valor tinyint,\n" +
 	                     "Foreign Key (cod_fichaAvaliacao) references ficha_avaliacao(cod_fichaAvaliacao)\n" +
@@ -182,7 +182,7 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
         {
             string c13 = "create table questionario(\n" +
 	                     "cod_questionario bigint identity primary key,\n" +
-	                     "cod_analise bigint not null Foreign Key references Analise(cod_analise),\n" +
+	                     "codigoAnalise bigint not null Foreign Key references Analise(codigoAnalise),\n" +
                          ");\n";
             return c13;
         }
@@ -191,14 +191,14 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
         {
             string c14 = "create table pergunta_questionario(\n" +
 	                     "cod_pergunta_questionario bigint identity primary key,\n" +
-	                     "cod_analise bigint not null,\n" +
+	                     "codigoAnalise bigint not null,\n" +
 	                     "numero_pergunta float(23) not null,\n" +
 	                     "cod_zona bigint Foreign Key references Zona(cod_zona),\n" +
 	                     "cod_item  bigint Foreign Key references item(cod_item),\n" +
 	                     "cod_tipoEscala bigint,\n" +
 	                     "texto varchar(500) not null,\n" +
 	                     "tipo_questao varchar(2) not null,\n" +
-	                     "Foreign key (cod_analise) references Analise(cod_analise),\n" +
+	                     "Foreign key (codigoAnalise) references Analise(codigoAnalise),\n" +
 	                     "FOREIGN Key (cod_tipoEscala) references TipoEscala(cod_tipoEscala)\n" +
                          ");\n";
             return c14;
@@ -209,14 +209,14 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             string c15 = "create table resposta_questionario_numero(\n" + 
 	                     "cod_resposta_questionario_numero bigint identity primary key,\n" +
 	                     "cod_questionario bigint not null,\n" +
-	                     "cod_analise bigint not null,\n" +
+	                     "codigoAnalise bigint not null,\n" +
 	                     "cod_zona bigint foreign key references Zona(cod_zona),\n" +
 	                     "numero_pergunta float(23) not null,\n" +
 	                     "valor tinyint,\n" +
 	                     "cod_pergunta_questionario bigint,\n" +
 	                     "Foreign Key (cod_pergunta_questionario) references pergunta_questionario(cod_pergunta_questionario),\n" +
 	                     "Foreign Key (cod_questionario) references questionario(cod_questionario),\n" +
-	                     "foreign key (cod_analise) references analise(cod_analise)\n" +
+	                     "foreign key (codigoAnalise) references analise(codigoAnalise)\n" +
                          ");\n";
             return c15;
         }
@@ -226,14 +226,14 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             string c16 = "create table resposta_questionario_string(\n" +
 	                     "cod_resposta_questionario_string bigint identity primary key,\n" +
 	                     "cod_questionario bigint not null,\n" +
-	                     "cod_analise bigint not null,\n" +
+	                     "codigoAnalise bigint not null,\n" +
 	                     "cod_zona bigint foreign key references Zona(cod_zona),\n" +
 	                     "numero_pergunta float(23) not null,\n" +
 	                     "valor varchar(20),\n" +
 	                     "cod_pergunta_questionario bigint,\n" +
 	                     "Foreign Key (cod_pergunta_questionario) references pergunta_questionario(cod_pergunta_questionario),\n" +
 	                     "Foreign Key (cod_questionario) references questionario(cod_questionario),\n" +
-	                     "foreign key (cod_analise) references analise(cod_analise)\n" +
+	                     "foreign key (codigoAnalise) references analise(codigoAnalise)\n" +
                          ");\n";
             return c16;
         }
@@ -243,14 +243,14 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             string c17 = "create table resposta_questionario_memo(\n" +
 	                     "cod_resposta_questionario_memo bigint identity primary key,\n" +
 	                     "cod_questionario bigint not null,\n" +
-	                     "cod_analise bigint not null,\n" +
+	                     "codigoAnalise bigint not null,\n" +
 	                     "cod_zona bigint foreign key references Zona(cod_zona),\n" +
 	                     "numero_pergunta float(23) not null,\n" +
 	                     "valor varchar(3000),\n" +
 	                     "cod_pergunta_questionario bigint,\n" +
 	                     "Foreign Key (cod_pergunta_questionario) references pergunta_questionario(cod_pergunta_questionario),\n" +
 	                     "Foreign Key (cod_questionario) references questionario(cod_questionario),\n" +
-	                     "foreign key (cod_analise) references analise(cod_analise)\n" +
+	                     "foreign key (codigoAnalise) references analise(codigoAnalise)\n" +
                          ");\n";
             return c17;
         }
@@ -260,7 +260,7 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             string c18 = "create table resposta_ficha_avaliacao_string(\n" +
                          "cod_resposta_ficha_avaliacao_string bigint identity primary key,\n" +
                          "cod_fichaAvaliacao bigint not null,\n" +
-                         "cod_analise bigint not null,\n" +
+                         "codigoAnalise bigint not null,\n" +
                          "numero_pergunta tinyint,\n" +
                          "valor varchar(500),\n" +
                          "Foreign Key (cod_fichaAvaliacao) references ficha_avaliacao(cod_fichaAvaliacao)\n" +

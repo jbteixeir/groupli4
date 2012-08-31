@@ -7,22 +7,22 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 {
     class Formulario
     {
-        private long cod_analise;
+        private long codigoAnalise;
 
         public Formulario()
         {
-            cod_analise = -1;
+            codigoAnalise = -1;
         }
 
-        public Formulario(long _cod_analise)
+        public Formulario(long _codigoAnalise)
         {
-            cod_analise = _cod_analise;
+            codigoAnalise = _codigoAnalise;
         }
 
-        public long CodAnalise
+        public long CodigoAnalise
         {
-            get { return cod_analise; }
-            set { cod_analise = value; }
+            get { return codigoAnalise; }
+            set { codigoAnalise = value; }
         }
     }
 }

@@ -28,26 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfaceQuestionario));
             this.Questionario = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // Questionario
             // 
-            this.Questionario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Questionario.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.Questionario, "Questionario");
             this.Questionario.MinimumSize = new System.Drawing.Size(20, 20);
             this.Questionario.Name = "Questionario";
-            this.Questionario.Size = new System.Drawing.Size(601, 366);
-            this.Questionario.TabIndex = 0;
             // 
-            // Interface_Questionario
+            // InterfaceQuestionario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 366);
             this.Controls.Add(this.Questionario);
-            this.Name = "Interface_Questionario";
-            this.Text = "Ver Questionário";
+            this.Name = "InterfaceQuestionario";
             this.ResumeLayout(false);
 
         }

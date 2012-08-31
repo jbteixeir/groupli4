@@ -8,25 +8,25 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 	class Pergunta
 	{
 		private long cod_Pergunta;
-        private long cod_Analise;
+        private long codigoAnalise;
 		private float num_Pergunta;
         private long cod_Item;
 		private string texto;
 		private long cod_TipoEscala;
 
-        public Pergunta(long cod_Analise, float num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
+        public Pergunta(long codigoAnalise, float num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
         {
-            this.cod_Analise = cod_Analise;
+            this.codigoAnalise = codigoAnalise;
             this.num_Pergunta = num_Pergunta;
             this.cod_Item = cod_Item;
             this.texto = texto;
             this.cod_TipoEscala = cod_TipoEscala;
         }
 
-        public Pergunta(long cod_Pergunta,long cod_Analise, float num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
+        public Pergunta(long cod_Pergunta,long codigoAnalise, float num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
         {
             this.cod_Pergunta = cod_Pergunta;
-            this.cod_Analise = cod_Analise;
+            this.codigoAnalise = codigoAnalise;
             this.num_Pergunta = num_Pergunta;
             this.cod_Item = cod_Item;
             this.texto = texto;
@@ -36,7 +36,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         public Pergunta()
         {
             cod_Pergunta = -1;
-            cod_Analise = -1;
+            codigoAnalise = -1;
             num_Pergunta = -1;
             cod_Item = -1;
             texto = "";
@@ -46,7 +46,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         public Pergunta(Pergunta p)
         {
             cod_Pergunta = p.cod_Pergunta;
-            cod_Analise = p.cod_Analise;
+            codigoAnalise = p.codigoAnalise;
             num_Pergunta = p.num_Pergunta;
             cod_Item = p.cod_Item;
             texto = p.texto;
@@ -68,10 +68,10 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 			get { return texto; }
 			set { texto = value; }
 		}
-		public long Cod_Analise
+		public long CodigoAnalise
 		{
-			get { return cod_Analise; }
-			set { cod_Analise = value; }
+			get { return codigoAnalise; }
+			set { codigoAnalise = value; }
 		}
 		public long Cod_Item
 		{
@@ -89,7 +89,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             StringBuilder a = new StringBuilder();
             a.Append("Pergunta:\n");
             a.Append("Cod_Pergunta: " + cod_Pergunta.ToString() + "\n");
-            a.Append("Cod_Analise: " + cod_Analise.ToString() + "\n");
+            a.Append("codigoAnalise: " + codigoAnalise.ToString() + "\n");
             a.Append("Número Pergunta: " + num_Pergunta.ToString() + "\n");
             a.Append("Cod_Item: " + cod_Item.ToString() + "\n");
             a.Append("Texto: " + texto + "\n");

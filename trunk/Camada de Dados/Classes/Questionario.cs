@@ -21,8 +21,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             respostas_numero = new List<Resposta>();
         }
 
-        public Questionario(long _cod_questionario, long _cod_analise) :
-            base(_cod_analise)
+        public Questionario(long _cod_questionario, long _codigoAnalise) :
+            base(_codigoAnalise)
         {
             cod_questionario = _cod_questionario;
             respostas_memo = new List<Resposta>();

@@ -14,7 +14,7 @@ namespace ETdAnalyser.Camada_de_Interface
     public partial class InterfacePerguntas : Form
     {
         private static InterfacePerguntas ip;
-        private long codAnalise;
+        private long codigoAnalise;
         private List<TextBox> perguntas;
         private List<ComboBox> itens_pergunta;
         private Dictionary<object, object> erros;
@@ -26,7 +26,7 @@ namespace ETdAnalyser.Camada_de_Interface
         private delegate void eventoEventHandler(object sender, EventArgs e);
         private static event eventoEventHandler evento_FA_Done;
 
-        public InterfacePerguntas(long codAnalise, object itens, bool created, bool enabled)
+        public InterfacePerguntas(long codigoAnalise, object itens, bool created, bool enabled)
         {
             InitializeComponent();
             toolStripStatusLabel4.Visible = false;
@@ -35,7 +35,7 @@ namespace ETdAnalyser.Camada_de_Interface
             this.enabled = enabled;
 
             already_created = created;
-            this.codAnalise = codAnalise;
+            this.codigoAnalise = codigoAnalise;
             this.itens = (List<Item>)itens;
             evento_FA_Done += new eventoEventHandler(Camada_de_Interface.InterfaceGestaoFormulariosOnline.done_FA_Reenc);
 
@@ -47,9 +47,9 @@ namespace ETdAnalyser.Camada_de_Interface
             init();
         }
 
-        public static void main(long codAnalise, object itens, bool created, bool enabled)
+        public static void main(long codigoAnalise, object itens, bool created, bool enabled)
         {
-            ip = new InterfacePerguntas(codAnalise, itens, created, enabled);
+            ip = new InterfacePerguntas(codigoAnalise, itens, created, enabled);
             ip.ShowDialog();
         }
 
@@ -140,7 +140,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 for (int i = 0; i < itens.Count ; i++)
                 {
                     PerguntaFichaAvaliacao p = new PerguntaFichaAvaliacao(
-                        codAnalise,
+                        codigoAnalise,
                         i,
                         itens[i].CodigoItem,
                         fa_return_quest(itens[i]),
@@ -150,7 +150,7 @@ namespace ETdAnalyser.Camada_de_Interface
             }
             else
             {
-                ficha_avaliacao = GestaodeRespostas.getPerguntasFA(codAnalise);
+                ficha_avaliacao = GestaodeRespostas.getPerguntasFA(codigoAnalise);
             }
         }
 

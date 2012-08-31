@@ -13,9 +13,9 @@ namespace ETdAnalyser.Camada_de_Negócio
 {
     class ImporterExporter
     {
-		static public bool importarCheckList(String path,bool temCabecalho, long cod_analise, long[] items, long[] zonas)	{
+		static public bool importarCheckList(String path,bool temCabecalho, long codigoAnalise, long[] items, long[] zonas)	{
 			Resposta modelo = new Resposta();
-			modelo.Cod_analise = cod_analise;
+			modelo.CodigoAnalise = codigoAnalise;
 			return importaFicheiro(path,temCabecalho,null, modelo,items,zonas,null);
 		}
 
@@ -82,8 +82,8 @@ namespace ETdAnalyser.Camada_de_Negócio
 					{
                         i = 0;
 						Questionario q = new Questionario();
-						q.CodAnalise = modelo.Cod_analise;
-						//q.CodQuestionario = FuncsToDataBase.insertQuestionario(q);
+						q.CodigoAnalise = modelo.CodigoAnalise;
+						//questionario.CodQuestionario = FuncsToDataBase.insertQuestionario(questionario);
 
 						foreach (string campo in linhaD)
 						{
@@ -93,10 +93,10 @@ namespace ETdAnalyser.Camada_de_Negócio
 								PerguntaQuestionario perguntaReferente = perguntasQ.ElementAt(i);
 
 								Resposta resposta = new Resposta(modelo);
-								//resposta.CodigoQuestionario = q.CodQuestionario;
+								//resposta.CodigoQuestionario = questionario.CodQuestionario;
 								resposta.NumeroPergunta = (float)perguntaReferente.Num_Pergunta;
 								resposta.CodigoZona = perguntaReferente.Cod_zona;
-								// Aqui tem q se colocar a zona especial(reservada) que diz q a zona esta 
+								// Aqui tem questionario se colocar a zona especial(reservada) que diz questionario a zona esta 
 								// na resposta do cliente, e no caso do ficheiro, vem no campo seguinte
 								if (perguntaReferente.Cod_zona == -1)
 								{
@@ -122,7 +122,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 					{
 						FichaAvaliacao fa = new FichaAvaliacao();
 						fa.CodZona = zonas[j];
-						fa.CodAnalise = modelo.Cod_analise;
+						fa.CodigoAnalise = modelo.CodigoAnalise;
 						FuncsToDataBase.insertFichaAvaliacao(fa);
 
 						i = 0;
@@ -151,7 +151,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 						foreach (string campo in linhaD)
 						{
 							Resposta resposta = new Resposta();
-							resposta.Cod_analise = modelo.Cod_analise;
+							resposta.CodigoAnalise = modelo.CodigoAnalise;
 							resposta.CodigoZona = zonas[j];
 							resposta.CodigoItem = items[i];
 
@@ -180,12 +180,12 @@ namespace ETdAnalyser.Camada_de_Negócio
 			return r.Cod_questionario;
 		}
 
-		public static void exportaQuestionariosParaFicheiro(String datapathFile, long codAnalise)
+		public static void exportaQuestionariosParaFicheiro(String datapathFile, long codigoAnalise)
 		{
 			StreamWriter outputStream = new StreamWriter(datapathFile);
 
 			List<Resposta> respostas = new List<Resposta>();
-			FuncsToDataBase.selectRespostaQuestionario(codAnalise, respostas);
+			FuncsToDataBase.selectRespostaQuestionario(codigoAnalise, respostas);
 
 			respostas.OrderBy<Resposta, float>(extractNrPergunta);
 			respostas.OrderBy<Resposta, long>(extractCodQuestionario);
@@ -230,12 +230,12 @@ namespace ETdAnalyser.Camada_de_Negócio
 		{
 			return r.Cod_fichaAvaliacao;
 		}
-		public static void exportaFichasDeAvaliacaoParaFicheiro(String datapathFile, long codAnalise)
+		public static void exportaFichasDeAvaliacaoParaFicheiro(String datapathFile, long codigoAnalise)
 		{
 			StreamWriter outputStream = new StreamWriter(datapathFile);
 
 			List<Resposta> respostas = new List<Resposta>();
-			FuncsToDataBase.selectRespostaFichaAvaliacao(codAnalise, respostas);
+			FuncsToDataBase.selectRespostaFichaAvaliacao(codigoAnalise, respostas);
 
 			respostas.OrderBy<Resposta, float>(extractNrPergunta);
 			respostas.OrderBy<Resposta, long>(extractCodFA);
@@ -284,12 +284,12 @@ namespace ETdAnalyser.Camada_de_Negócio
 		{
 			return r.CodigoZona;
 		}
-		public static void exportaCheckListParaFicheiro(String datapathFile, long codAnalise)
+		public static void exportaCheckListParaFicheiro(String datapathFile, long codigoAnalise)
 		{
 			StreamWriter outputStream = new StreamWriter(datapathFile);
 
 			List<Resposta> respostas = new List<Resposta>();
-			FuncsToDataBase.selectRespostaCheckList(codAnalise, respostas);
+			FuncsToDataBase.selectRespostaCheckList(codigoAnalise, respostas);
 
 			respostas.OrderBy<Resposta, long>(extractItem);
 			respostas.OrderBy<Resposta, long>(extractZona);
