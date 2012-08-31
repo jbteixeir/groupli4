@@ -12,13 +12,13 @@ namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceFichaAvaliacao : Form
     {
-        public InterfaceFichaAvaliacao(long codProjecto, long codAnalise)
+        public InterfaceFichaAvaliacao(long codigoProjecto, long codigoAnalise)
         {
             InitializeComponent();
             FichaAvaliacao.ScriptErrorsSuppressed = true;
             FichaAvaliacao.Url = new System.Uri("http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=FA&usr=" + 
-                Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codAnalise + "&prj" +
-                    "=" + codProjecto + "&adminmode=true", System.UriKind.Absolute);
+                Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" +
+                    "=" + codigoProjecto + "&adminmode=true", System.UriKind.Absolute);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
     class Resposta
     {
         //Variaveis de Instancia
-		private long cod_analise;
+		private long codigoAnalise;
 		// ID do formulario correspondente
 		private long cod_questionario;
 		private long cod_fichaAvaliacao;
@@ -34,9 +34,9 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         //NOTA: na ficha de avaliacao no caso da sugestao, o item e o numero da pergunta são -1
         //Constructores
-        public Resposta(long cod_analise, long cod_checklist, long cod_questionario, long cod_fichaAvaliacao, float numero_pergunta, long cod_item, long cod_zona, short valor, string valor_string, int tipo, TipoResposta tipo_Resposta)
+        public Resposta(long codigoAnalise, long cod_checklist, long cod_questionario, long cod_fichaAvaliacao, float numero_pergunta, long cod_item, long cod_zona, short valor, string valor_string, int tipo, TipoResposta tipo_Resposta)
         {
-            this.cod_analise = cod_analise;
+            this.codigoAnalise = codigoAnalise;
             this.cod_checklist = cod_checklist;
             this.cod_questionario = cod_questionario;
             this.cod_fichaAvaliacao = cod_fichaAvaliacao;
@@ -67,7 +67,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 		public Resposta(Resposta modelo)
 		{
 			// TODO: Complete member initialization
-			this.Cod_analise = modelo.Cod_analise;
+			this.codigoAnalise = modelo.codigoAnalise;
 			this.Cod_checklist = modelo.Cod_checklist;
 			this.Cod_pergunta = modelo.Cod_pergunta;
 			this.CodigoFichaAvaliacao = modelo.CodigoFichaAvaliacao;
@@ -109,10 +109,10 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 			get { return cod_pergunta_questionario; }
 			set { cod_pergunta_questionario = value; }
 		}
-		public long Cod_analise
+		public long CodigoAnalise
 		{
-			get { return cod_analise; }
-			set { cod_analise = value; }
+			get { return codigoAnalise; }
+			set { codigoAnalise = value; }
 		}
         public long CodigoQuestionario
         {
@@ -171,7 +171,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         public string ToString()
         {
             StringBuilder sb = new StringBuilder("Resposta:\n");
-            sb.Append("Cod_analise: " + cod_analise + "\n");
+            sb.Append("codigoAnalise: " + codigoAnalise + "\n");
             sb.Append("Cod_QT: " + cod_questionario + "\n");
             sb.Append("Cod_FA: " + cod_fichaAvaliacao + "\n");
             sb.Append("Cod_CL: " + cod_checklist + "\n");

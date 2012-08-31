@@ -12,13 +12,13 @@ namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceCheckList : Form
     {
-        public InterfaceCheckList(long codProjecto, long codAnalise)
+        public InterfaceCheckList(long codigoProjecto, long codigoAnalise)
         {
             InitializeComponent();
             CheckList.ScriptErrorsSuppressed = true;
             CheckList.Url = new System.Uri("http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=CL&usr=" +
-                Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codAnalise + "&prj" +
-                    "=" + codProjecto + "&adminmode=true", System.UriKind.Absolute);
+                Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" +
+                    "=" + codigoProjecto + "&adminmode=true", System.UriKind.Absolute);
         }
 
         private void Interface_CheckList_Load(object sender, EventArgs e)

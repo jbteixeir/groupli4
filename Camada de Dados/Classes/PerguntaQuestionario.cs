@@ -10,17 +10,17 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 		private long cod_zona;
 		private string tipoQuestao;
 
-        public PerguntaQuestionario(long cod_Analise, float num_Pergunta, 
+        public PerguntaQuestionario(long codigoAnalise, float num_Pergunta, 
             long cod_zona, long cod_Item, string texto, long cod_TipoEscala, string tipoQuestao) :
-        base(cod_Analise, num_Pergunta, cod_Item, texto, cod_TipoEscala)
+        base(codigoAnalise, num_Pergunta, cod_Item, texto, cod_TipoEscala)
         {
             this.cod_zona = cod_zona;
             this.tipoQuestao = tipoQuestao;
         }
 
-        public PerguntaQuestionario(long cod_Pergunta,long cod_Analise,
+        public PerguntaQuestionario(long cod_Pergunta,long codigoAnalise,
             float num_Pergunta, long cod_zona, long cod_Item, string texto, long cod_TipoEscala, string tipoQuestao) :
-        base(cod_Pergunta, cod_Analise, num_Pergunta, cod_Item, texto, cod_TipoEscala)
+        base(cod_Pergunta, codigoAnalise, num_Pergunta, cod_Item, texto, cod_TipoEscala)
         {
             this.cod_zona = cod_zona;
             this.tipoQuestao = tipoQuestao;

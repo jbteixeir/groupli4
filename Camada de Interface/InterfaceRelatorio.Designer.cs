@@ -53,26 +53,27 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
+            resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.splitContainer1.Panel1.Controls.Add(this.treeViewZonaItem);
-            resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
             // 
             // splitContainer1.Panel2
             // 
+            resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.splitContainer1.Panel2.Controls.Add(this.panelZonaItem);
             this.splitContainer1.TabStop = false;
             // 
             // treeViewZonaItem
             // 
-            this.treeViewZonaItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.treeViewZonaItem, "treeViewZonaItem");
+            this.treeViewZonaItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.treeViewZonaItem.Name = "treeViewZonaItem";
             this.treeViewZonaItem.TabStop = false;
             this.treeViewZonaItem.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OpenAction);
@@ -124,6 +125,7 @@
             // 
             // statusStrip1
             // 
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.GerarDocumentoBar,
@@ -131,38 +133,37 @@
             this.ZonaActividadelabel,
             this.Itemtextlabel,
             this.Itemlabel});
-            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Name = "statusStrip1";
             // 
             // GerarDocumentoBar
             // 
-            this.GerarDocumentoBar.Name = "GerarDocumentoBar";
             resources.ApplyResources(this.GerarDocumentoBar, "GerarDocumentoBar");
+            this.GerarDocumentoBar.Name = "GerarDocumentoBar";
             this.GerarDocumentoBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // ZonaActividadetextlabel
             // 
+            resources.ApplyResources(this.ZonaActividadetextlabel, "ZonaActividadetextlabel");
             this.ZonaActividadetextlabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.ZonaActividadetextlabel.Margin = new System.Windows.Forms.Padding(10, 3, 0, 2);
             this.ZonaActividadetextlabel.Name = "ZonaActividadetextlabel";
-            resources.ApplyResources(this.ZonaActividadetextlabel, "ZonaActividadetextlabel");
             // 
             // ZonaActividadelabel
             // 
-            this.ZonaActividadelabel.Name = "ZonaActividadelabel";
             resources.ApplyResources(this.ZonaActividadelabel, "ZonaActividadelabel");
+            this.ZonaActividadelabel.Name = "ZonaActividadelabel";
             // 
             // Itemtextlabel
             // 
-            this.Itemtextlabel.Name = "Itemtextlabel";
             resources.ApplyResources(this.Itemtextlabel, "Itemtextlabel");
+            this.Itemtextlabel.Name = "Itemtextlabel";
             // 
             // Itemlabel
             // 
-            this.Itemlabel.Name = "Itemlabel";
             resources.ApplyResources(this.Itemlabel, "Itemlabel");
+            this.Itemlabel.Name = "Itemlabel";
             // 
-            // Interface_Relatorio
+            // InterfaceRelatorio
             // 
             this.AcceptButton = this.button1;
             resources.ApplyResources(this, "$this");
@@ -171,7 +172,7 @@
             this.CancelButton = this.BotaoCancelar;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
-            this.Name = "Interface_Relatorio";
+            this.Name = "InterfaceRelatorio";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

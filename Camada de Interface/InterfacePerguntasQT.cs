@@ -14,7 +14,7 @@ namespace ETdAnalyser.Camada_de_Interface
     public partial class InterfacePerguntasQT : Form
     {
         private static InterfacePerguntasQT ip;
-        private long codAnalise;
+        private long codigoAnalise;
         private List<TextBox> perguntas;
         private List<Label> tipos_resposta;
         private List<ComboBox> itens_pergunta;
@@ -32,7 +32,7 @@ namespace ETdAnalyser.Camada_de_Interface
         private delegate void eventoEventHandler(object sender, EventArgs e);
         private static event eventoEventHandler evento_QT_Done;
 
-        public InterfacePerguntasQT(long codAnalise, object itens, object zonas, bool created, bool enabled)
+        public InterfacePerguntasQT(long codigoAnalise, object itens, object zonas, bool created, bool enabled)
         {
             InitializeComponent();
             toolStripStatusLabel4.Visible = false;
@@ -40,7 +40,7 @@ namespace ETdAnalyser.Camada_de_Interface
             toolStripStatusLabel6.Visible = false;
 
             already_created = created;
-            this.codAnalise = codAnalise;
+            this.codigoAnalise = codigoAnalise;
 
             this.enabled = enabled;
             if (!enabled)
@@ -56,9 +56,9 @@ namespace ETdAnalyser.Camada_de_Interface
             init();
         }
 
-        public static void main(long codAnalise, object itens, object zonas, bool created, bool enabled)
+        public static void main(long codigoAnalise, object itens, object zonas, bool created, bool enabled)
         {
-            ip = new InterfacePerguntasQT(codAnalise, itens, zonas, created, enabled);
+            ip = new InterfacePerguntasQT(codigoAnalise, itens, zonas, created, enabled);
             ip.ShowDialog();
         }
 
@@ -114,7 +114,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 p_classificacao = new Dictionary<int, List<PerguntaQuestionario>>();
                 #region pergunta 1
                 PerguntaQuestionario p = new PerguntaQuestionario(
-                    codAnalise,
+                    codigoAnalise,
                     1,
                     1,
                     -1,
@@ -125,7 +125,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 #endregion
                 #region pergunta 2
                 p = new PerguntaQuestionario(
-                    codAnalise,
+                    codigoAnalise,
                     2,
                     1,
                     -1,
@@ -136,7 +136,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 #endregion
                 #region pergunta 3
                 p = new PerguntaQuestionario(
-                    codAnalise,
+                    codigoAnalise,
                     3,
                     1,
                     -1,
@@ -147,7 +147,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 #endregion
                 #region pergunta 4
                 p = new PerguntaQuestionario(
-                    codAnalise,
+                    codigoAnalise,
                     4,
                     1,
                     -1,
@@ -158,7 +158,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 #endregion
                 #region pergunta 5
                 p = new PerguntaQuestionario(
-                    codAnalise,
+                    codigoAnalise,
                     5,
                     1,
                     -1,
@@ -169,7 +169,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 #endregion
                 #region pergunta 6
                 p = new PerguntaQuestionario(
-                    codAnalise,
+                    codigoAnalise,
                     6,
                     1,
                     -1,
@@ -181,7 +181,7 @@ namespace ETdAnalyser.Camada_de_Interface
             }
             else
             {
-                questionario = GestaodeRespostas.getPerguntasQT(codAnalise);
+                questionario = GestaodeRespostas.getPerguntasQT(codigoAnalise);
                 cria_p_classificacao();
             }
             toolStripStatusLabel2.Text = questionario.Count.ToString();
@@ -638,7 +638,7 @@ namespace ETdAnalyser.Camada_de_Interface
         private void adcionarPerguntaClick(object sender, EventArgs e)
         {
             PerguntaQuestionario p = new PerguntaQuestionario(
-                codAnalise,
+                codigoAnalise,
                 questionario.Count + 1,
                 1,
                 -1,
@@ -658,7 +658,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
             PerguntaQuestionario parent = questionario[num_Parent - 1];
             PerguntaQuestionario p = new PerguntaQuestionario(
-                codAnalise,
+                codigoAnalise,
                 num_pergunta,
                 parent.Cod_zona,
                 parent.Cod_Item,
@@ -880,7 +880,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 if (!already_created)
                     GestaodeRespostas.insert_PerguntasQT(questionario);
                 else
-                    GestaodeRespostas.modificaPerguntasQT(questionario, codAnalise);
+                    GestaodeRespostas.modificaPerguntasQT(questionario, codigoAnalise);
 
                 evento_QT_Done(null, new EventArgs());
                 end_Frame();

@@ -444,13 +444,13 @@ namespace ETdAnalyser.Camada_de_Interface
         }
 
         // s_final
-        private void initPaginaProjecto(string nome_projecto, string codp)
+        private void initPaginaProjecto(string nome_projecto, string codigoProjecto)
         {
-            if (!tabControl1.Pages.Contains(codp))
+            if (!tabControl1.Pages.Contains(codigoProjecto))
             {
-                tabControl1.AddPage(codp);
+                tabControl1.AddPage(codigoProjecto);
                 System.Windows.Forms.TabPage p = new System.Windows.Forms.TabPage();
-                p.Name = codp;
+                p.Name = codigoProjecto;
                 p.AutoScroll = true;
                 p.Text = nome_projecto;
                 p.Size = new System.Drawing.Size(218, 385);
@@ -702,7 +702,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
                 p.Controls.Add(panelPaginaProjecto);
 
-                Dictionary<long, string> ans = GestaodeAnalises.getCodeNomeAnalises(long.Parse(codp));
+                Dictionary<long, string> ans = GestaodeAnalises.getCodeNomeAnalises(long.Parse(codigoProjecto));
 
                 if (ans.Count() == 0)
                 {
@@ -735,17 +735,17 @@ namespace ETdAnalyser.Camada_de_Interface
                 }
             }
 
-            tabControl1.SelectedIndex = getTabNumber(codp);
+            tabControl1.SelectedIndex = getTabNumber(codigoProjecto);
         }
 
         // s_final
-        private void initPaginaAnalise(long codp, long coda, string nome_analise)
+        private void initPaginaAnalise(long codigoProjecto, long codigoAnalise, string nome_analise)
         {
-            if (!tabControl1.Pages.Contains(codp.ToString() + "." + coda.ToString()))
+            if (!tabControl1.Pages.Contains(codigoProjecto.ToString() + "." + codigoAnalise.ToString()))
             {
-                tabControl1.AddPage(codp.ToString() + "." + coda.ToString());
+                tabControl1.AddPage(codigoProjecto.ToString() + "." + codigoAnalise.ToString());
                 System.Windows.Forms.TabPage p = new System.Windows.Forms.TabPage();
-                p.Name = codp.ToString() + "." + coda.ToString();
+                p.Name = codigoProjecto.ToString() + "." + codigoAnalise.ToString();
                 p.AutoScroll = true;
                 p.Text = nome_analise;
                 p.Size = new System.Drawing.Size(218, 385);
@@ -775,7 +775,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 l1.MouseLeave += new System.EventHandler(this.MouseLeaveAction);
 
                 System.Windows.Forms.Label l2 = new System.Windows.Forms.Label();
-                l2.Text = GestaodeAnalises.getTipoAnalise(codp, coda);
+                l2.Text = GestaodeAnalises.getTipoAnalise(codigoProjecto, codigoAnalise);
                 if (l2.Text == "Por Zonas")
                     l2.Text = "Zonas";
                 else if (l2.Text == "Por Actividades")
@@ -824,7 +824,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 checkBox1.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
 
-                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoCheckListOnline(codp, coda))
+                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoCheckListOnline(codigoProjecto, codigoAnalise))
                 {
                     checkBox1.Checked = true;
                     checkBox1.Text = "Desactivar";
@@ -843,7 +843,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 tb1.ReadOnly = true;
                 tb1.ForeColor = SystemColors.ControlDark;
                 tb1.Text = "http://"+GestaodeAnalistas.nomeServidorWeb()+":"+GestaodeAnalistas.portaServidorWeb()+"/ETdAnalyser/Default.aspx?form=CL&usr=" +
-                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
+                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" + "=" + codigoProjecto;
                 
                 
                 System.Windows.Forms.Label l8 = new System.Windows.Forms.Label();
@@ -859,7 +859,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 checkBox2.BackColor = SystemColors.Control;
                 checkBox2.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
-                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoFichaAvaliacaoOnline(codp, coda))
+                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise))
                 {
                     checkBox2.Checked = true;
                     checkBox2.Text = "Desactivar";
@@ -878,7 +878,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 tb2.ReadOnly = true;
                 tb2.ForeColor = SystemColors.ControlDark;
                 tb2.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=FA&usr=" +
-                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
+                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" + "=" + codigoProjecto;
 
                 System.Windows.Forms.Label l9 = new System.Windows.Forms.Label();
                 l9.Width = 150;
@@ -893,7 +893,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 checkBox3.BackColor = SystemColors.Control;
                 checkBox3.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
-                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoQuestionariosOnline(codp, coda))
+                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoQuestionariosOnline(codigoProjecto, codigoAnalise))
                 {
                     checkBox3.Checked = true;
                     checkBox3.Text = "Desactivar";
@@ -912,7 +912,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 tb3.BorderStyle = BorderStyle.None;
                 tb3.ReadOnly = true;
                 tb3.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=QT&usr=" +
-                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + coda + "&prj" + "=" + codp;
+                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" + "=" + codigoProjecto;
                 #endregion
 
                 #region Relatorio
@@ -1287,7 +1287,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 p.Controls.Add(panelPaginaAnalise);
 
             }
-            tabControl1.SelectedIndex = getTabNumber(codp.ToString() + "." + coda.ToString());
+            tabControl1.SelectedIndex = getTabNumber(codigoProjecto.ToString() + "." + codigoAnalise.ToString());
         }
 
         // s_final
@@ -1401,13 +1401,13 @@ namespace ETdAnalyser.Camada_de_Interface
                     index = i;
             }
 
-            long codProj = long.Parse(e.Node.Name);
-            GestaodeProjectos.abreProjecto(codProj);
+            long codigoProjectoroj = long.Parse(e.Node.Name);
+            GestaodeProjectos.abreProjecto(codigoProjectoroj);
 
             if (!indexes.Contains(index))
             {
                 treeView_Projectos.Nodes[index].Nodes.RemoveAt(0);
-                Dictionary<long, string> cod_names = GestaodeAnalises.getCodeNomeAnalises(codProj);
+                Dictionary<long, string> cod_names = GestaodeAnalises.getCodeNomeAnalises(codigoProjectoroj);
                 foreach (KeyValuePair<long, string> s in cod_names)
                 {
                     TreeNode tn = new TreeNode();
@@ -1424,11 +1424,11 @@ namespace ETdAnalyser.Camada_de_Interface
         {
             if (e.Node.Level == 1)
             {
-                long codp = long.Parse(e.Node.Parent.Name);
-                long coda = long.Parse(e.Node.Name);
-                GestaodeAnalises.abreAnalise(codp, coda);
+                long codigoProjecto = long.Parse(e.Node.Parent.Name);
+                long codigoAnalise = long.Parse(e.Node.Name);
+                GestaodeAnalises.abreAnalise(codigoProjecto, codigoAnalise);
 
-                initPaginaAnalise(codp, coda, e.Node.Text);
+                initPaginaAnalise(codigoProjecto, codigoAnalise, e.Node.Text);
             }
             else
             {
@@ -1449,11 +1449,11 @@ namespace ETdAnalyser.Camada_de_Interface
         private void OpenAnaliseClick(object sender, EventArgs e)
         {
             Label l = (Label)sender;
-            long codp = long.Parse(tabControl1.SelectedTab.Name);
-            long coda = long.Parse(l.Name);
-            GestaodeAnalises.abreAnalise(codp, coda);
+            long codigoProjecto = long.Parse(tabControl1.SelectedTab.Name);
+            long codigoAnalise = long.Parse(l.Name);
+            GestaodeAnalises.abreAnalise(codigoProjecto, codigoAnalise);
 
-            initPaginaAnalise(codp, coda, l.Text);
+            initPaginaAnalise(codigoProjecto, codigoAnalise, l.Text);
         }
 
         #endregion
@@ -1484,19 +1484,19 @@ namespace ETdAnalyser.Camada_de_Interface
         private void checkBox1checkChanged(object sender, EventArgs e)
         {
             string[] cods = tabControl1.SelectedTab.Name.Split('.');
-            long codp = long.Parse(cods[0]);
-            long coda = long.Parse(cods[1]);
+            long codigoProjecto = long.Parse(cods[0]);
+            long codigoAnalise = long.Parse(cods[1]);
 
             if (checkBox1.Checked == true)
             {
                 checkBox1.Text = "Desactivar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codp, coda, true);
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codigoProjecto, codigoAnalise, true);
             }
             else if (checkBox1.Checked == false)
             {
                 /* Não necessita de ter as perguntas já feitas para a colocar online */
                 checkBox1.Text = "Activar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codp, coda, false);
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codigoProjecto, codigoAnalise, false);
             }
 
         }
@@ -1504,16 +1504,16 @@ namespace ETdAnalyser.Camada_de_Interface
         private void checkBox2checkChanged(object sender, EventArgs e)
         {
             string[] cods = tabControl1.SelectedTab.Name.Split('.');
-            long codp = long.Parse(cods[0]);
-            long coda = long.Parse(cods[1]);
+            long codigoProjecto = long.Parse(cods[0]);
+            long codigoAnalise = long.Parse(cods[1]);
 
             if (checkBox2.Checked == true)
             {
                 /* Verificar se tem as perguntas FA feitas */
-                if (GestaodeRespostas.isFAcreated(coda))
+                if (GestaodeRespostas.isFAcreated(codigoAnalise))
                 {
                     checkBox2.Text = "Desactivar";
-                    Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codp, coda, true);
+                    Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, true);
                 }
                 else
                 {
@@ -1526,7 +1526,7 @@ namespace ETdAnalyser.Camada_de_Interface
             else if (checkBox2.Checked == false)
             {
                 checkBox2.Text = "Activar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codp, coda, false);
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, false);
             }
 
         }
@@ -1534,16 +1534,16 @@ namespace ETdAnalyser.Camada_de_Interface
         private void checkBox3checkChanged(object sender, EventArgs e)
         {
             string[] cods = tabControl1.SelectedTab.Name.Split('.');
-            long codp = long.Parse(cods[0]);
-            long coda = long.Parse(cods[1]);
+            long codigoProjecto = long.Parse(cods[0]);
+            long codigoAnalise = long.Parse(cods[1]);
 
             if (checkBox3.Checked == true)
             {
                 /* Verificar se tem as perguntas QT feitas */
-                if (GestaodeRespostas.isQTcreated(coda))
+                if (GestaodeRespostas.isQTcreated(codigoAnalise))
                 {
                     checkBox3.Text = "Desactivar";
-                    Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codp, coda, true);
+                    Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, true);
                 }
                 else
                 {
@@ -1556,7 +1556,7 @@ namespace ETdAnalyser.Camada_de_Interface
             else if (checkBox3.Checked == false)
             {
                 checkBox3.Text = "Activar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codp, coda, false);
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, false);
             }
 
         }
@@ -1564,13 +1564,13 @@ namespace ETdAnalyser.Camada_de_Interface
 
         private void importer(object sender, EventArgs e)
         {
-            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
-            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            long codigoProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codigoAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
 
-            List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codProjecto, codAnalise);
-            List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
+            List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codigoProjecto, codigoAnalise);
+            List<Item> itens = GestaodeAnalises.getItensAnalise(codigoProjecto, codigoAnalise);
 
-            InterfaceImporter.main(codAnalise, zonas, itens);
+            InterfaceImporter.main(codigoAnalise, zonas, itens);
         }
 
         private void exporter(object sender, EventArgs e)
@@ -1587,30 +1587,32 @@ namespace ETdAnalyser.Camada_de_Interface
         // rdone
         private void GerarRelatorio(object sender, EventArgs e)
         {
-            // Tab tem no nome "codP.codA"
+            // Tab tem no nome "codigoProjecto.codigoAnalise"
+            Cursor.Current = Cursors.AppStarting;
             string[] cods = tabControl1.SelectedTab.Name.Split('.');
-            long codp = long.Parse(cods[0]);
-            long coda = long.Parse(cods[1]);
+            long codigoProjecto = long.Parse(cods[0]);
+            long codigoAnalise = long.Parse(cods[1]);
             string nome = tabControl1.SelectedTab.Text;
-            InterfaceRelatorio.main(codp, coda, nome, new ETdAnalyser.Camada_de_Dados.Classes.Relatorio());
+            Camada_de_Negócio.GestaodeRelatorios.GerarRelatório(codigoProjecto, codigoAnalise, nome);
+            Cursor.Current = Cursors.Arrow;
         }
 
         // rdone
         private void OpenZonasClick(object sender, EventArgs e)
         {
-            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
-            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
-            List<string> zonas = GestaodeAnalises.getNomeZonasAnalise(codProjecto, codAnalise);
-            string tipo = GestaodeAnalises.getTipoAnalise(codProjecto, codAnalise);
+            long codigoProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codigoAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            List<string> zonas = GestaodeAnalises.getNomeZonasAnalise(codigoProjecto, codigoAnalise);
+            string tipo = GestaodeAnalises.getTipoAnalise(codigoProjecto, codigoAnalise);
             InterfaceCriarAnaliseZonas.main(zonas, tipo, false);
         }
 
         // rdone
         private void OpenItensClick(object sender, EventArgs e)
         {
-            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
-            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
-            List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
+            long codigoProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codigoAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            List<Item> itens = GestaodeAnalises.getItensAnalise(codigoProjecto, codigoAnalise);
             InterfaceCriarAnaliseItens.main(itens, false);
         }
 
@@ -1676,21 +1678,21 @@ namespace ETdAnalyser.Camada_de_Interface
 
         private void PerguntasAction(object sender, EventArgs e)
         {
-            long codProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
-            long codAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
-            List<Item> itens = GestaodeAnalises.getItensAnalise(codProjecto, codAnalise);
-            List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codProjecto, codAnalise);
+            long codigoProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codigoAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            List<Item> itens = GestaodeAnalises.getItensAnalise(codigoProjecto, codigoAnalise);
+            List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codigoProjecto, codigoAnalise);
 
-            InterfaceGestaoFormulariosOnline.main(codAnalise, itens, zonas);
+            InterfaceGestaoFormulariosOnline.main(codigoAnalise, itens, zonas);
         }
 
         #region Menu de cima
 
         #region Analises
 
-        private ToolStripItem[] GetToolStripItemListaAnalises(long codProjecto)
+        private ToolStripItem[] GetToolStripItemListaAnalises(long codigoProjecto)
         {
-            Dictionary<long, string> ans = GestaodeAnalises.getCodeNomeAnalises(codProjecto);
+            Dictionary<long, string> ans = GestaodeAnalises.getCodeNomeAnalises(codigoProjecto);
 
             ToolStripItem[] ListaAnalises = new ToolStripItem[ans.Count + 2];
             //cabeçalho - Lista Analises
@@ -1714,7 +1716,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 ToolStripMenuItem ListaAnaliseToolStrip = new System.Windows.Forms.ToolStripMenuItem();
                 ListaAnaliseToolStrip.Enabled = true;
                 ListaAnaliseToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
-                ListaAnaliseToolStrip.Name = codProjecto + "." + s.Key.ToString();
+                ListaAnaliseToolStrip.Name = codigoProjecto + "." + s.Key.ToString();
                 ListaAnaliseToolStrip.Size = new System.Drawing.Size(154, 22);
                 ListaAnaliseToolStrip.Text = s.Value;
                 ListaAnaliseToolStrip.Click += new EventHandler(ToolStripApagarAnalise);
@@ -1912,25 +1914,25 @@ namespace ETdAnalyser.Camada_de_Interface
                      MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 string[] cods = tsi.Name.Split('.');
-                long codp = long.Parse(cods[0]);
-                long coda = long.Parse(cods[1]);
+                long codigoProjecto = long.Parse(cods[0]);
+                long codigoAnalise = long.Parse(cods[1]);
 
                 //Apagar da base de dados
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(coda);
+                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(codigoAnalise);
                 //Apagar do ETdAnalyser
-                GestaodeAnalises.removerAnalise(codp, coda);
+                GestaodeAnalises.removerAnalise(codigoProjecto, codigoAnalise);
 
                 //Apagar Analise do TreeView
                 bool found = false;
                 for (int i = 0; i < treeView_Projectos.Nodes.Count && !found; i++)
                 {
                     String a = treeView_Projectos.Nodes[i].Text;
-                    String b = codp.ToString();
-                    if (treeView_Projectos.Nodes[i].Name == codp.ToString())
+                    String b = codigoProjecto.ToString();
+                    if (treeView_Projectos.Nodes[i].Name == codigoProjecto.ToString())
                     {
                         for (int j = 0; j < treeView_Projectos.Nodes[i].Nodes.Count && !found; j++)
                         {
-                            if (treeView_Projectos.Nodes[i].Nodes[j].Name == coda.ToString())
+                            if (treeView_Projectos.Nodes[i].Nodes[j].Name == codigoAnalise.ToString())
                             {
                                 treeView_Projectos.Nodes[i].Nodes[j].Remove();
                                 found = true;
@@ -1993,16 +1995,16 @@ namespace ETdAnalyser.Camada_de_Interface
                 if (tb.Name != "StartPage")
                 {
                     string[] cods = tb.Name.Split('.');
-                    long codp = long.Parse(cods[0]);
+                    long codigoProjecto = long.Parse(cods[0]);
 
                     if (cods.Count() == 2)
                     {
-                        long coda = long.Parse(cods[1]);
+                        long codigoAnalise = long.Parse(cods[1]);
                         if (tabControl1.Pages.Contains(tb.Name))
                         {
                             fecharPagina(tb.Name);
-                            if (GestaodeAnalises.getCodeNomeAnalises(codp).ContainsKey(coda))
-                                initPaginaAnalise(codp, coda, tb.Text);
+                            if (GestaodeAnalises.getCodeNomeAnalises(codigoProjecto).ContainsKey(codigoAnalise))
+                                initPaginaAnalise(codigoProjecto, codigoAnalise, tb.Text);
                         }
                     }
                     else if (cods.Count() == 1)
@@ -2010,7 +2012,7 @@ namespace ETdAnalyser.Camada_de_Interface
                         if (tabControl1.Pages.Contains(tb.Name))
                         {
                             fecharPagina(tb.Name);
-                            if (GestaodeProjectos.Cod_names_Projects().ContainsKey(codp))
+                            if (GestaodeProjectos.Cod_names_Projects().ContainsKey(codigoProjecto))
                                 initPaginaProjecto(tb.Text, tb.Name);
                         }
                     }
@@ -2066,49 +2068,49 @@ namespace ETdAnalyser.Camada_de_Interface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            long cod_Projecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
-            long cod_Analise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            long codigoProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codigoAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
 
-            if (GestaodeRespostas.isQTcreated(cod_Analise))
+            if (GestaodeRespostas.isQTcreated(codigoAnalise))
             {
-                InterfaceQuestionario newInterfaceQuestionario = new InterfaceQuestionario(cod_Projecto, cod_Analise);
+                InterfaceQuestionario newInterfaceQuestionario = new InterfaceQuestionario(codigoProjecto, codigoAnalise);
                 newInterfaceQuestionario.ShowDialog();
             }
             else
             {
-                List<Item> itens = GestaodeAnalises.getItensAnalise(cod_Projecto, cod_Analise);
-                List<Zona> zonas = GestaodeAnalises.getZonasAnalise(cod_Projecto, cod_Analise);
+                List<Item> itens = GestaodeAnalises.getItensAnalise(codigoProjecto, codigoAnalise);
+                List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codigoProjecto, codigoAnalise);
                 DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar o Questionário.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
                 if (resultado == DialogResult.Yes)
-                    InterfaceGestaoFormulariosOnline.main(cod_Analise, itens, zonas);
+                    InterfaceGestaoFormulariosOnline.main(codigoAnalise, itens, zonas);
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            long cod_Projecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
-            long cod_Analise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
-            if (GestaodeRespostas.isFAcreated(cod_Analise))
+            long codigoProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codigoAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            if (GestaodeRespostas.isFAcreated(codigoAnalise))
             {
-                InterfaceFichaAvaliacao newInterfaceFA = new InterfaceFichaAvaliacao(cod_Projecto, cod_Analise);
+                InterfaceFichaAvaliacao newInterfaceFA = new InterfaceFichaAvaliacao(codigoProjecto, codigoAnalise);
                 newInterfaceFA.ShowDialog();
             }
             else
             {
-                List<Item> itens = GestaodeAnalises.getItensAnalise(cod_Projecto, cod_Analise);
-                List<Zona> zonas = GestaodeAnalises.getZonasAnalise(cod_Projecto, cod_Analise);
+                List<Item> itens = GestaodeAnalises.getItensAnalise(codigoProjecto, codigoAnalise);
+                List<Zona> zonas = GestaodeAnalises.getZonasAnalise(codigoProjecto, codigoAnalise);
                 DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar a Ficha de Avaliação.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
                 if (resultado == DialogResult.Yes)
-                    InterfaceGestaoFormulariosOnline.main(cod_Analise, itens, zonas);
+                    InterfaceGestaoFormulariosOnline.main(codigoAnalise, itens, zonas);
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            long cod_Projecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
-            long cod_Analise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
+            long codigoProjecto = long.Parse(tabControl1.SelectedTab.Name.Split('.')[0]);
+            long codigoAnalise = long.Parse(tabControl1.SelectedTab.Name.Split('.')[1]);
 
-            InterfaceCheckList newInterfaceChecklist = new InterfaceCheckList(cod_Projecto, cod_Analise);
+            InterfaceCheckList newInterfaceChecklist = new InterfaceCheckList(codigoProjecto, codigoAnalise);
             newInterfaceChecklist.ShowDialog();
         }
     }

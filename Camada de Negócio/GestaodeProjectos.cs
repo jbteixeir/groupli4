@@ -27,9 +27,9 @@ namespace ETdAnalyser.Camada_de_Negócio
         }
 
         // s_final
-        public static void abreProjecto(long codProjecto)
+        public static void abreProjecto(long codigoProjecto)
         {
-            Camada_de_Dados.ETdA.ETdA.abreProjecto(codProjecto);
+            Camada_de_Dados.ETdA.ETdA.abreProjecto(codigoProjecto);
         }
 
         // s_final

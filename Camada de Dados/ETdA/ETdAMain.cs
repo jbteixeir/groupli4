@@ -60,12 +60,12 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
         }
 
         // s_final
-        public static Projecto getProjecto(long codProjecto)
+        public static Projecto getProjecto(long codigoProjecto)
         {
-            if (!projectos.Keys.Contains(codProjecto))
-                abreProjecto(codProjecto);
+            if (!projectos.Keys.Contains(codigoProjecto))
+                abreProjecto(codigoProjecto);
                 
-            return projectos[codProjecto];
+            return projectos[codigoProjecto];
         }
 
         /* ------------------------------------------------------ */
@@ -119,12 +119,12 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
          * Abre um projecto com o código de estabelecimento
          */
         // s_final
-        public static void abreProjecto(long codProjecto)
+        public static void abreProjecto(long codigoProjecto)
         {
-            if (!projectos.Keys.Contains(codProjecto))
+            if (!projectos.Keys.Contains(codigoProjecto))
             {
                 Projecto proj = Camada_de_Dados.DataBaseCommunicator.
-                    FuncsToDataBase.selectProjecto(codProjecto);
+                    FuncsToDataBase.selectProjecto(codigoProjecto);
                 projectos.Add(proj.Codigo, proj);
             }
         }
@@ -150,17 +150,17 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
                 deleteProjecto(cod);
         }
 
-        public static void removeProjecto(long codProjecto)
+        public static void removeProjecto(long codigoProjecto)
         {
-            cod_nome_projectos.Remove(codProjecto);
+            cod_nome_projectos.Remove(codigoProjecto);
 
-            foreach (Analise a in projectos[codProjecto].Analises.Values)
+            foreach (Analise a in projectos[codigoProjecto].Analises.Values)
             {
-                Camada_de_Negócio.GestaodeAnalises.removerAnalise(codProjecto, a.Codigo);
+                Camada_de_Negócio.GestaodeAnalises.removerAnalise(codigoProjecto, a.Codigo);
                 Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(a.Codigo);
             }
             
-            projectos.Remove(codProjecto);
+            projectos.Remove(codigoProjecto);
         }
         public static void modificaProjecto(Projecto p)
         {

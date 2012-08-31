@@ -28,26 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfaceFichaAvaliacao));
             this.FichaAvaliacao = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // FichaAvaliacao
             // 
-            this.FichaAvaliacao.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FichaAvaliacao.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.FichaAvaliacao, "FichaAvaliacao");
             this.FichaAvaliacao.MinimumSize = new System.Drawing.Size(20, 20);
             this.FichaAvaliacao.Name = "FichaAvaliacao";
-            this.FichaAvaliacao.Size = new System.Drawing.Size(620, 366);
-            this.FichaAvaliacao.TabIndex = 0;
             // 
-            // Interface_FichaAvaliacao
+            // InterfaceFichaAvaliacao
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 366);
             this.Controls.Add(this.FichaAvaliacao);
-            this.Name = "Interface_FichaAvaliacao";
-            this.Text = "Ver Ficha de Avaliação";
+            this.Name = "InterfaceFichaAvaliacao";
             this.ResumeLayout(false);
 
         }

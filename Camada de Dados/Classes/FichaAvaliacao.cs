@@ -24,8 +24,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             respostas_numero = new List<Resposta>();
         }
 
-        public FichaAvaliacao(long _cod_fa, long _cod_analise, long _cod_zona) :
-            base(_cod_analise)
+        public FichaAvaliacao(long _cod_fa, long _codigoAnalise, long _cod_zona) :
+            base(_codigoAnalise)
         {
             codFichaAvaliacao = _cod_fa;
             codZona = _cod_zona;

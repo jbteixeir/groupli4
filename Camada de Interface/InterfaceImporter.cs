@@ -12,14 +12,14 @@ namespace ETdAnalyser.Camada_de_Interface
 {
     public partial class InterfaceImporter : Form
     {
-        private long cod_analise;
+        private long codigoAnalise;
         private Dictionary<object, ErrorProvider> erros;
         private List<Zona> zonas;
         private List<Item> itens;
 
-        public InterfaceImporter(long _cod_analise, object _zonas, object _itens)
+        public InterfaceImporter(long _codigoAnalise, object _zonas, object _itens)
         {
-            cod_analise = _cod_analise;
+            codigoAnalise = _codigoAnalise;
             zonas = (List<Zona>)_zonas;
             itens = (List<Item>)_itens;
             InitializeComponent();
@@ -29,9 +29,9 @@ namespace ETdAnalyser.Camada_de_Interface
             toolStripStatusLabel2.Visible = false;
         }
 
-        public static void main(long _cod_analise, object _zonas, object _itens)
+        public static void main(long _codigoAnalise, object _zonas, object _itens)
         {
-            InterfaceImporter i = new InterfaceImporter(_cod_analise, _zonas, _itens);
+            InterfaceImporter i = new InterfaceImporter(_codigoAnalise, _zonas, _itens);
             i.ShowDialog();
         }
 

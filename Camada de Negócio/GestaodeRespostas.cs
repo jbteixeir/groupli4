@@ -58,44 +58,44 @@ namespace ETdAnalyser.Camada_de_Negócio
             return lst;
         }
 
-        public static bool isFAcreated(long codAnalise)
+        public static bool isFAcreated(long codigoAnalise)
         {
-            return FuncsToDataBase.isFAcreated(codAnalise);
+            return FuncsToDataBase.isFAcreated(codigoAnalise);
         }
 
-        public static bool isQTcreated(long codAnalise)
+        public static bool isQTcreated(long codigoAnalise)
         {
-            return FuncsToDataBase.isQTcreated(codAnalise);
+            return FuncsToDataBase.isQTcreated(codigoAnalise);
         }
 
-        public static bool canEditFA(long codAnalise)
+        public static bool canEditFA(long codigoAnalise)
         {
-            bool a = FuncsToDataBase.isFAOnline(codAnalise);
-            bool b = FuncsToDataBase.haveAnswerFA(codAnalise);
+            bool a = FuncsToDataBase.isFAOnline(codigoAnalise);
+            bool b = FuncsToDataBase.haveAnswerFA(codigoAnalise);
 
             if (b) return false;
             else if (a) return false;
             else return true;
         }
 
-        public static bool canEditQT(long codAnalise)
+        public static bool canEditQT(long codigoAnalise)
         {
-            bool a = FuncsToDataBase.isQTOnline(codAnalise);
-            bool b = FuncsToDataBase.haveAnswerQT(codAnalise);
+            bool a = FuncsToDataBase.isQTOnline(codigoAnalise);
+            bool b = FuncsToDataBase.haveAnswerQT(codigoAnalise);
 
             if (b) return false;
             else if (a) return false;
             else return true;
         }
 
-        public static List<PerguntaFichaAvaliacao> getPerguntasFA(long codAnalise)
+        public static List<PerguntaFichaAvaliacao> getPerguntasFA(long codigoAnalise)
         {
-            return FuncsToDataBase.selectPerguntasFA(codAnalise);
+            return FuncsToDataBase.selectPerguntasFA(codigoAnalise);
         }
 
-        public static List<PerguntaQuestionario> getPerguntasQT(long codAnalise)
+        public static List<PerguntaQuestionario> getPerguntasQT(long codigoAnalise)
         {
-            return FuncsToDataBase.selectPerguntasQT(codAnalise);
+            return FuncsToDataBase.selectPerguntasQT(codigoAnalise);
         }
 
         public static void modificaPerguntasFA(List<PerguntaFichaAvaliacao> pergs)
@@ -104,9 +104,9 @@ namespace ETdAnalyser.Camada_de_Negócio
                 FuncsToDataBase.updatePerguntasFA(p);
         }
 
-        public static void modificaPerguntasQT(List<PerguntaQuestionario> pergs, long codAnalise)
+        public static void modificaPerguntasQT(List<PerguntaQuestionario> pergs, long codigoAnalise)
         {
-            FuncsToDataBase.deletePerguntasQT(codAnalise);
+            FuncsToDataBase.deletePerguntasQT(codigoAnalise);
             insert_PerguntasQT(pergs);
         }
 

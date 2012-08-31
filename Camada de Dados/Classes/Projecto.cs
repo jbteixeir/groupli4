@@ -16,7 +16,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         //private static event eventoEventHandler evento_analise_removida;
         
         //Variaveis de instância
-        private long codProjecto;
+        private long codigoProjecto;
         private String nomeEstabelecimento;
         private DateTime ultimaActualizacao;
         private Dictionary<long,string> cod_name_analise;
@@ -30,10 +30,10 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         }
 
         #region Construtores
-        public Projecto(long codProj, String nomeEst, 
+        public Projecto(long codigoProjectoroj, String nomeEst, 
             DateTime ultimaAct, Dictionary<long,string> analises)
         {
-            codProjecto = codProj;
+            codigoProjecto = codigoProjectoroj;
             nomeEstabelecimento = nomeEst;
             ultimaActualizacao = ultimaAct;
             cod_name_analise = analises;
@@ -43,7 +43,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         public Projecto ()
         {
-            codProjecto = -1;
+            codigoProjecto = -1;
             nomeEstabelecimento = "";
             ultimaActualizacao = new DateTime();
             ultimaActualizacao = DateTime.Now;
@@ -54,7 +54,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         public Projecto(Projecto p)
         {
-            codProjecto = p.Codigo;
+            codigoProjecto = p.Codigo;
             nomeEstabelecimento = p.Nome;
             ultimaActualizacao = p.Data;
             cod_name_analise = p.Cod_Name_Analise;
@@ -66,8 +66,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         #region Gets/Sets
         public long Codigo
         {
-            get { return codProjecto; }
-            set { codProjecto = value; }
+            get { return codigoProjecto; }
+            set { codigoProjecto = value; }
         }
         public String Nome
         {
@@ -129,25 +129,25 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             a.Itens = itens;
             
             a.Codigo = Camada_de_Dados.DataBaseCommunicator.
-                FuncsToDataBase.insertAnalise(codProjecto,a);
+                FuncsToDataBase.insertAnalise(codigoProjecto,a);
             
             cod_name_analise.Add(a.Codigo,a.Nome);
             analises.Add(a.Codigo, a);
 
             List<string> s = new List<string>();
-            s.Add(codProjecto.ToString());
+            s.Add(codigoProjecto.ToString());
             s.Add(a.Codigo.ToString());
             s.Add(a.Nome);
             evento_analise_adicionada(s, new EventArgs());
         }
 
         // s_final
-        public void abreAnalise(long codAnalise)
+        public void abreAnalise(long codigoAnalise)
         {
-            if (!analises.Keys.Contains(codAnalise))
+            if (!analises.Keys.Contains(codigoAnalise))
             {
                 Analise a = Camada_de_Dados.DataBaseCommunicator.
-                    FuncsToDataBase.selectAnalise(codAnalise);
+                    FuncsToDataBase.selectAnalise(codigoAnalise);
                 analises.Add(a.Codigo, a);
             }
         }
@@ -173,10 +173,10 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 FuncsToDataBase.deleteAnalise(cod);
         }
 
-        public void removeAnalise(long codAnalise)
+        public void removeAnalise(long codigoAnalise)
         {
-            cod_name_analise.Remove(codAnalise);
-            analises.Remove(codAnalise);
+            cod_name_analise.Remove(codigoAnalise);
+            analises.Remove(codigoAnalise);
         }
 
         public void modificaAnalise(Analise a)

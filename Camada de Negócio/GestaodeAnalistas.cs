@@ -17,7 +17,7 @@ namespace ETdAnalyser.Camada_de_Negócio
             return Camada_de_Dados.ETdA.ETdA.adicionaAnalista(username,password);
         }
 
-		//void removeAnalisa(String codAnalista);
+		//void removeAnalisa(String codigoAnalisenalista);
 		//void logout();
 
         public static Boolean loadConnectionSuper()
