@@ -1955,7 +1955,7 @@ namespace ETdAnalyser.CamadaInterface
                 //Apagar da base de dados
                 CamadaDados.DataBaseCommunicator.FuncsToDataBase.DesactivarProjecto(long.Parse(tsi.Name));
                 //Apagar do ETdAnalyser
-                CamadaDados.ETdA.ETdA.removeProjecto(long.Parse(tsi.Name));
+                CamadaDados.ETdA.ETdA.RemoverProjecto(long.Parse(tsi.Name));
                 
                 //Apagar Projecto do Treeview
                 bool found = false;
