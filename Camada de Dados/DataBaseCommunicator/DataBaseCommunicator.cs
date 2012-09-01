@@ -53,7 +53,7 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
         /*
          * Abre uma ligação com a base de dados Para Registar Analista
          */
-        public static bool connectToSuper(String server, String username, String password, String database)
+        public static bool ConnectToSuper(String server, String username, String password, String database)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
         /*
          * Abre uma ligação com a base de dados
          */
-        public static bool connect(String server, String username, String password, String database)
+        public static bool Connect(String server, String username, String password, String database)
         {
 			try
 			{
@@ -126,11 +126,11 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
         /*
          * Fecha uma ligação com a base de dados
          */
-        public static void disconnect()
+        public static void Disconnect()
         {
             try
             {
-                refreshConnection();
+                RefreshConnection();
                 connection.Close();
             }
             catch (Exception e)
@@ -140,13 +140,13 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
         }
 
         /*
-         * Executa query's sem ser de leitura à base de dados
+         * Executa Query's sem ser de leitura à base de dados
          */
-        public static void query(string query) 
+        public static void Query(string query) 
         {
             try
             {
-                refreshConnection();
+                RefreshConnection();
                 SqlCommand command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
                 command.Dispose();
@@ -158,13 +158,13 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
         }
 
         /*
-         * Executa query's de leitura à base de dados
+         * Executa Query's de leitura à base de dados
          */
-        public static SqlDataReader readData(string query)
+        public static SqlDataReader ReadData(string query)
         {
             try
             {
-                refreshConnection();
+                RefreshConnection();
                 SqlDataReader reader = null;
                 SqlCommand command = new SqlCommand(query, connection);
                 reader = command.ExecuteReader();
@@ -177,7 +177,7 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
             }
         }
 
-        public static void refreshConnection()
+        public static void RefreshConnection()
         {
             if (connection.State == System.Data.ConnectionState.Broken || connection.State == System.Data.ConnectionState.Closed)
             {
@@ -202,7 +202,7 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
                 objects = objects + "," + values[i];
 
             String s_query = "insert into "+ table + " values (" + objects + ")";
-            query( s_query );
+            Query( s_query );
         }*/
 
         /*
@@ -220,7 +220,7 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
                 objects1 = objects1 + " " + operadores[i-1] + " " + colunasRestricoes[i] + " = " + itensRestricoes[i];
 
             String s_query = "delete from " + table + "where" + objects1;
-            query( s_query );
+            Query( s_query );
         }*/
 
         /*
@@ -248,7 +248,7 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
             }
 
             String s_query = "UPDATE " + table + " SET " + objects1 + objects2;
-            query(s_query);
+            Query(s_query);
         }*/
 
         /*
@@ -299,8 +299,8 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
             if (!objectos_orderBy.Equals(""))
                 objectos_orderBy = " order by " + objectos_orderBy + " " + order;
 
-            String query = "select " + objectosProcura + " FROM " + table + objectosResticoes + objectosGroupBy + objectos_orderBy;
-            return readData ( query );
+            String Query = "select " + objectosProcura + " FROM " + table + objectosResticoes + objectosGroupBy + objectos_orderBy;
+            return ReadData ( Query );
         }*/
     }
 }

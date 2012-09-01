@@ -8,7 +8,7 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
     class ParserCreateAnalista
     {
 
-        private static string queryCriarBD(string usr)
+        private static string QueryCriarBaseDados(string usr)
         {
             string s1 = "CREATE DATABASE ETdA_" + usr + ";\n" +
                         "";// "GO \n";
@@ -270,21 +270,21 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
 
 		#endregion
 
-		private static string query5()
+		private static string queryVazia()
         {
             string q5 = "";// "GO \n";
 
             return q5;
         }
 
-        private static string queryUseDBUser(string usr)
+        private static string queryUsarBaseDadosUtilizador(string usr)
         {
             string q6 = "USE ETdA_" + usr + ";\n" +
                         "";// "GO \n";
             return q6;
         }
 
-        private static string insertsPredefinidos()
+        private static string InsertsPredefinidos()
         {
             string query =   "INSERT INTO item VALUES ( 'Ruido', 1);" +
                              "INSERT INTO item VALUES ( 'Temperatura', 1);" +
@@ -358,19 +358,19 @@ namespace ETdAnalyser.CamadaDados.DataBaseCommunicator
            return query;
         }
 		#region
-		public static List<string> devolveQuery(string usr, string pw)
+		public static List<string> DevolveQuery(string usr, string pw)
         {
             List<string> strs = new List<string>();
-            strs.Add(queryCriarBD(usr));
+            strs.Add(QueryCriarBaseDados(usr));
             strs.Add(queryCriarUtilizador(usr, pw));
-            strs.Add(queryUseDBUser(usr));
+            strs.Add(queryUsarBaseDadosUtilizador(usr));
             strs.Add( 
                 createProjecto() + createAnalise() + createItem() + createItemAnalise() + createZona() + createZonaAnalise() 
                 + createRespostaChecklist() + createFichaAvaliacao() + createTipoEscala() + createEscalaResposta() +
                 createPerguntaFichaAvaliacao() + createRespostaFichaAvaliacaoNumero() + createQuestionario() 
                 + createPerguntaQuestionario() + createRespostaQuestionarioNumero() +
                 createRespostaQuestionarioString() + createRespostaQuestionarioMemo() + createRespostaFichaAvaliacaoString());
-            strs.Add(insertsPredefinidos());
+            strs.Add(InsertsPredefinidos());
 
             return strs;
         }

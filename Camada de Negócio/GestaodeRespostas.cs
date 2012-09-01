@@ -11,7 +11,7 @@ namespace ETdAnalyser.Camada_de_Negócio
     {
         public static Dictionary<string, List<TipoEscala>> getTipResposta()
         {
-            return FuncsToDataBase.getTiposResposta();
+            return FuncsToDataBase.GetTiposResposta();
         }
 
         public static TipoEscala getTipoEscala(long codTipoEscala)
@@ -42,7 +42,7 @@ namespace ETdAnalyser.Camada_de_Negócio
         {
             foreach (PerguntaFichaAvaliacao fa in lst)
             {
-                long cod = FuncsToDataBase.insertPerguntaFichaAvaliacao(fa);
+                long cod = FuncsToDataBase.InsertPerguntaFichaAvaliacao(fa);
                 fa.CodigoPergunta = cod;
             }
             return lst;
@@ -52,7 +52,7 @@ namespace ETdAnalyser.Camada_de_Negócio
         {
             foreach (PerguntaQuestionario qt in lst)
             {
-                long cod = FuncsToDataBase.insertPerguntaQuestionario(qt);
+                long cod = FuncsToDataBase.InsertPerguntaQuestionario(qt);
                 qt.CodigoPergunta = cod;
             }
             return lst;
@@ -60,18 +60,18 @@ namespace ETdAnalyser.Camada_de_Negócio
 
         public static bool isFAcreated(long codigoAnalise)
         {
-            return FuncsToDataBase.isFAcreated(codigoAnalise);
+            return FuncsToDataBase.ExisteFichaAvaliacao(codigoAnalise);
         }
 
         public static bool isQTcreated(long codigoAnalise)
         {
-            return FuncsToDataBase.isQTcreated(codigoAnalise);
+            return FuncsToDataBase.ExisteQuestionario(codigoAnalise);
         }
 
         public static bool canEditFA(long codigoAnalise)
         {
-            bool a = FuncsToDataBase.isFAOnline(codigoAnalise);
-            bool b = FuncsToDataBase.haveAnswerFA(codigoAnalise);
+            bool a = FuncsToDataBase.DisponivelFichaAvaliacaoOnline(codigoAnalise);
+            bool b = FuncsToDataBase.TemRespostasFichaAvaliacao(codigoAnalise);
 
             if (b) return false;
             else if (a) return false;
@@ -80,8 +80,8 @@ namespace ETdAnalyser.Camada_de_Negócio
 
         public static bool canEditQT(long codigoAnalise)
         {
-            bool a = FuncsToDataBase.isQTOnline(codigoAnalise);
-            bool b = FuncsToDataBase.haveAnswerQT(codigoAnalise);
+            bool a = FuncsToDataBase.DisponivelQuestionarioOnline(codigoAnalise);
+            bool b = FuncsToDataBase.TemRespostasQuestionario(codigoAnalise);
 
             if (b) return false;
             else if (a) return false;
@@ -90,72 +90,72 @@ namespace ETdAnalyser.Camada_de_Negócio
 
         public static List<PerguntaFichaAvaliacao> getPerguntasFA(long codigoAnalise)
         {
-            return FuncsToDataBase.selectPerguntasFA(codigoAnalise);
+            return FuncsToDataBase.SelectPerguntasFichaAvaliacao(codigoAnalise);
         }
 
         public static List<PerguntaQuestionario> getPerguntasQT(long codigoAnalise)
         {
-            return FuncsToDataBase.selectPerguntasQT(codigoAnalise);
+            return FuncsToDataBase.SelectPerguntasQuestionario(codigoAnalise);
         }
 
         public static void modificaPerguntasFA(List<PerguntaFichaAvaliacao> pergs)
         {
             foreach (PerguntaFichaAvaliacao p in pergs)
-                FuncsToDataBase.updatePerguntasFA(p);
+                FuncsToDataBase.UpdatePerguntasFichaAvaliacao(p);
         }
 
         public static void modificaPerguntasQT(List<PerguntaQuestionario> pergs, long codigoAnalise)
         {
-            FuncsToDataBase.deletePerguntasQT(codigoAnalise);
+            FuncsToDataBase.DeletePerguntasQuestionario(codigoAnalise);
             insert_PerguntasQT(pergs);
         }
 
         public static void insere_questionario(Questionario q)
         {
-            q.CodigoQuestionario = FuncsToDataBase.insertQuestionario(q);
+            q.CodigoQuestionario = FuncsToDataBase.InsertQuestionario(q);
 
             foreach (Resposta r in q.RespostasMemo)
             {
                 r.CodigoQuestionario = q.CodigoQuestionario;
-                FuncsToDataBase.insertRespostaQuestionario(r);
+                FuncsToDataBase.InsertRespostaQuestionario(r);
             }
             foreach (Resposta r in q.RespostasNumero)
             {
                 r.CodigoQuestionario = q.CodigoQuestionario;
-                FuncsToDataBase.insertRespostaQuestionario(r);
+                FuncsToDataBase.InsertRespostaQuestionario(r);
             }
             foreach (Resposta r in q.RespostasString)
             {
                 r.CodigoQuestionario = q.CodigoQuestionario;
-                FuncsToDataBase.insertRespostaQuestionario(r);
+                FuncsToDataBase.InsertRespostaQuestionario(r);
             }
         }
 
         public static void insere_ficha_avaliacao(FichaAvaliacao fa)
         {
-            fa.CodigoFichaAvaliacao = FuncsToDataBase.insertFichaAvaliacao(fa);
+            fa.CodigoFichaAvaliacao = FuncsToDataBase.InsertFichaAvaliacao(fa);
 
             foreach (Resposta r in fa.RespostasNumero)
             {
                 r.CodigoFichaAvaliacao = fa.CodigoFichaAvaliacao;
-                FuncsToDataBase.insertRespostaFichaAvaliacao(r);
+                FuncsToDataBase.InsertRespostaFichaAvaliacao(r);
             }
             foreach (Resposta r in fa.RespostasMemo)
             {
                 r.CodigoFichaAvaliacao = fa.CodigoFichaAvaliacao;
-                FuncsToDataBase.insertRespostaFichaAvaliacao(r);
+                FuncsToDataBase.InsertRespostaFichaAvaliacao(r);
             }
             foreach (Resposta r in fa.RespostasString)
             {
                 r.CodigoFichaAvaliacao = fa.CodigoFichaAvaliacao;
-                FuncsToDataBase.insertRespostaFichaAvaliacao(r);
+                FuncsToDataBase.InsertRespostaFichaAvaliacao(r);
             }
         }
 
         public static void insere_CheckList(CheckList c)
         {
             foreach (Resposta r in c.RespostasNumero)
-                FuncsToDataBase.insertRespostaCheckList(r);
+                FuncsToDataBase.InsertRespostaCheckList(r);
         }
 
         public static List<Questionario> getQuestionarios(long codAnalise)
@@ -165,7 +165,7 @@ namespace ETdAnalyser.Camada_de_Negócio
             List<long> cods_questionarios = FuncsToDataBase.getCodsQuestionrarios(codAnalise);
 
             foreach (long codQuestionario in cods_questionarios)
-                questionarios.Add(FuncsToDataBase.getQuestionario(codQuestionario,codAnalise));
+                questionarios.Add(FuncsToDataBase.GetQuestionario(codQuestionario,codAnalise));
 
             return questionarios;
         }
@@ -174,10 +174,10 @@ namespace ETdAnalyser.Camada_de_Negócio
         {
             List<FichaAvaliacao> fichas_avaliacao = new List<FichaAvaliacao>();
             
-            Dictionary<long,long> cods_fichas_avaliacao = FuncsToDataBase.getCodsFichasAvaliacao(codAnalise);
+            Dictionary<long,long> cods_fichas_avaliacao = FuncsToDataBase.GetCodigosFichaAvaliacao(codAnalise);
 
             foreach (long codFichaAvaliacao in cods_fichas_avaliacao.Keys)
-                fichas_avaliacao.Add(FuncsToDataBase.getFichaAvaliacao(codFichaAvaliacao, 
+                fichas_avaliacao.Add(FuncsToDataBase.GetFichaAvaliacao(codFichaAvaliacao, 
                     codAnalise, cods_fichas_avaliacao[codFichaAvaliacao]));
             
             return fichas_avaliacao;
@@ -185,7 +185,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 
         public static CheckList getChecklist(long codAnalise)
         {
-            CheckList checklist = FuncsToDataBase.getCheckList(codAnalise);
+            CheckList checklist = FuncsToDataBase.GetCheckList(codAnalise);
 
             return checklist;
         }

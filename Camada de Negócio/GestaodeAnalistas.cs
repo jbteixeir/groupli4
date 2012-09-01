@@ -38,7 +38,7 @@ namespace ETdAnalyser.Camada_de_Negócio
                 r.Close();
                 fs.Close();
 
-                return DataBaseCommunicator.connectToSuper(server, username, password, database);
+                return DataBaseCommunicator.ConnectToSuper(server, username, password, database);
             }
             catch
             {

@@ -824,7 +824,7 @@ namespace ETdAnalyser.CamadaInterface
                 checkBox1.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
 
-                if (CamadaDados.DataBaseCommunicator.FuncsToDataBase.getEstadoCheckListOnline(codigoProjecto, codigoAnalise))
+                if (CamadaDados.DataBaseCommunicator.FuncsToDataBase.GetEstadoCheckListOnline(codigoProjecto, codigoAnalise))
                 {
                     checkBox1.Checked = true;
                     checkBox1.Text = "Desactivar";
@@ -859,7 +859,7 @@ namespace ETdAnalyser.CamadaInterface
                 checkBox2.BackColor = SystemColors.Control;
                 checkBox2.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
-                if (CamadaDados.DataBaseCommunicator.FuncsToDataBase.getEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise))
+                if (CamadaDados.DataBaseCommunicator.FuncsToDataBase.GetEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise))
                 {
                     checkBox2.Checked = true;
                     checkBox2.Text = "Desactivar";
@@ -893,7 +893,7 @@ namespace ETdAnalyser.CamadaInterface
                 checkBox3.BackColor = SystemColors.Control;
                 checkBox3.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
-                if (CamadaDados.DataBaseCommunicator.FuncsToDataBase.getEstadoQuestionariosOnline(codigoProjecto, codigoAnalise))
+                if (CamadaDados.DataBaseCommunicator.FuncsToDataBase.GetEstadoQuestionariosOnline(codigoProjecto, codigoAnalise))
                 {
                     checkBox3.Checked = true;
                     checkBox3.Text = "Desactivar";
@@ -1490,13 +1490,13 @@ namespace ETdAnalyser.CamadaInterface
             if (checkBox1.Checked == true)
             {
                 checkBox1.Text = "Desactivar";
-                CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codigoProjecto, codigoAnalise, true);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.SetEstadoCheckListOnline(codigoProjecto, codigoAnalise, true);
             }
             else if (checkBox1.Checked == false)
             {
                 /* Não necessita de ter as perguntas já feitas para a colocar online */
                 checkBox1.Text = "Activar";
-                CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codigoProjecto, codigoAnalise, false);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.SetEstadoCheckListOnline(codigoProjecto, codigoAnalise, false);
             }
 
         }
@@ -1513,7 +1513,7 @@ namespace ETdAnalyser.CamadaInterface
                 if (GestaodeRespostas.isFAcreated(codigoAnalise))
                 {
                     checkBox2.Text = "Desactivar";
-                    CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, true);
+                    CamadaDados.DataBaseCommunicator.FuncsToDataBase.SetEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, true);
                 }
                 else
                 {
@@ -1526,7 +1526,7 @@ namespace ETdAnalyser.CamadaInterface
             else if (checkBox2.Checked == false)
             {
                 checkBox2.Text = "Activar";
-                CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, false);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.SetEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, false);
             }
 
         }
@@ -1543,7 +1543,7 @@ namespace ETdAnalyser.CamadaInterface
                 if (GestaodeRespostas.isQTcreated(codigoAnalise))
                 {
                     checkBox3.Text = "Desactivar";
-                    CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, true);
+                    CamadaDados.DataBaseCommunicator.FuncsToDataBase.SetEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, true);
                 }
                 else
                 {
@@ -1556,7 +1556,7 @@ namespace ETdAnalyser.CamadaInterface
             else if (checkBox3.Checked == false)
             {
                 checkBox3.Text = "Activar";
-                CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, false);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.SetEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, false);
             }
 
         }
@@ -1918,7 +1918,7 @@ namespace ETdAnalyser.CamadaInterface
                 long codigoAnalise = long.Parse(cods[1]);
 
                 //Apagar da base de dados
-                CamadaDados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(codigoAnalise);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.DesactivarAnalise(codigoAnalise);
                 //Apagar do ETdAnalyser
                 GestaodeAnalises.removerAnalise(codigoProjecto, codigoAnalise);
 
@@ -1953,7 +1953,7 @@ namespace ETdAnalyser.CamadaInterface
                      MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 //Apagar da base de dados
-                CamadaDados.DataBaseCommunicator.FuncsToDataBase.desactivarProjecto(long.Parse(tsi.Name));
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.DesactivarProjecto(long.Parse(tsi.Name));
                 //Apagar do ETdAnalyser
                 CamadaDados.ETdA.ETdA.removeProjecto(long.Parse(tsi.Name));
                 

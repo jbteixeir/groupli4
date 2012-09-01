@@ -40,7 +40,7 @@ namespace ETdAnalyser.CamadaDados.ETdA
             
             initEventos();
 
-            cod_nome_projectos = CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
+            cod_nome_projectos = CamadaDados.DataBaseCommunicator.FuncsToDataBase.SelectNomeProjectos();
             projectos = new Dictionary<long, Projecto>();
         }
 
@@ -103,7 +103,7 @@ namespace ETdAnalyser.CamadaDados.ETdA
             p.Nome = nomeEstabelecimento;
             p.Data = DateTime.Now;
 
-            p.Codigo = CamadaDados.DataBaseCommunicator.FuncsToDataBase.insertProjecto(p);
+            p.Codigo = CamadaDados.DataBaseCommunicator.FuncsToDataBase.InsertProjecto(p);
 
             cod_nome_projectos.Add(p.Codigo,p.Nome);
             projectos.Add(p.Codigo, p);
@@ -124,7 +124,7 @@ namespace ETdAnalyser.CamadaDados.ETdA
             if (!projectos.Keys.Contains(codigoProjecto))
             {
                 Projecto proj = CamadaDados.DataBaseCommunicator.
-                    FuncsToDataBase.selectProjecto(codigoProjecto);
+                    FuncsToDataBase.SelectProjecto(codigoProjecto);
                 projectos.Add(proj.Codigo, proj);
             }
         }
@@ -147,7 +147,7 @@ namespace ETdAnalyser.CamadaDados.ETdA
             }
 
             CamadaDados.DataBaseCommunicator.FuncsToDataBase.
-                deleteProjecto(cod);
+                DeleteProjecto(cod);
         }
 
         public static void removeProjecto(long codigoProjecto)
@@ -157,7 +157,7 @@ namespace ETdAnalyser.CamadaDados.ETdA
             foreach (Analise a in projectos[codigoProjecto].Analises.Values)
             {
                 Camada_de_Negócio.GestaodeAnalises.removerAnalise(codigoProjecto, a.Codigo);
-                CamadaDados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(a.Codigo);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.DesactivarAnalise(a.Codigo);
             }
             
             projectos.Remove(codigoProjecto);
@@ -165,13 +165,13 @@ namespace ETdAnalyser.CamadaDados.ETdA
         public static void modificaProjecto(Projecto p)
         {
             CamadaDados.DataBaseCommunicator.FuncsToDataBase.
-               updateProjecto(p);
+               UpdateProjecto(p);
         }
 
         public static void ultimaAlteracao(Projecto p)
         {
             CamadaDados.DataBaseCommunicator.FuncsToDataBase.
-               updateProjecto(p);
+               UpdateProjecto(p);
         }
 
         #endregion
@@ -180,14 +180,14 @@ namespace ETdAnalyser.CamadaDados.ETdA
         public static bool adicionaAnalista(String username, String password)
         {
             return CamadaDados.DataBaseCommunicator.
-                FuncsToDataBase.insertAnalista(username, password);
+                FuncsToDataBase.InsertAnalista(username, password);
         }
 
         public static bool loginAnalista(String server, String database, 
             String username, String password)
         {
             return CamadaDados.DataBaseCommunicator.
-                FuncsToDataBase.ligaAnalista(server, database, username, password);
+                FuncsToDataBase.LigaAnalista(server, database, username, password);
         }
         #endregion
     }
