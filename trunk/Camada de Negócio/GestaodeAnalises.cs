@@ -54,7 +54,7 @@ namespace ETdAnalyser.Camada_de_Negócio
         public static void modificaPonderacoes(List<Item> itens)
         {
             foreach (Item i in itens)
-                FuncsToDataBase.updateItemAnalise(i);
+                FuncsToDataBase.UpdateItemAnalise(i);
         }
 
         public static void adicionaAnalise(Analise a, long codigoProjecto){
@@ -63,12 +63,12 @@ namespace ETdAnalyser.Camada_de_Negócio
 
         public static Dictionary<long, string> getItensDefault()
         {
-            return CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectItensDefault();
+            return CamadaDados.DataBaseCommunicator.FuncsToDataBase.SelectItensDefault();
         }
 
         public static Dictionary<long, string> getTodosItens()
         {
-            return CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectAllItens();
+            return CamadaDados.DataBaseCommunicator.FuncsToDataBase.SelectAllItens();
         }
 
         public static Dictionary<long,string> adicionaItensNovos(List<string> it)
@@ -87,7 +87,7 @@ namespace ETdAnalyser.Camada_de_Negócio
             List<Zona> zonas = new List<Zona>();
             foreach (string s in zn)
             {
-                long cod = CamadaDados.DataBaseCommunicator.FuncsToDataBase.insertZona(s);
+                long cod = CamadaDados.DataBaseCommunicator.FuncsToDataBase.InsertZona(s);
                 Zona z = new Zona(cod, s);
                 zonas.Add(z);
             }

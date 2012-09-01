@@ -83,7 +83,7 @@ namespace ETdAnalyser.Camada_de_Negócio
                         i = 0;
 						Questionario questionario = new Questionario();
 						questionario.CodigoAnalise = modelo.CodigoAnalise;
-						//questionario.CodQuestionario = FuncsToDataBase.insertQuestionario(questionario);
+						//questionario.CodQuestionario = FuncsToDataBase.InsertQuestionario(questionario);
 
 						foreach (string campo in linhaD)
 						{
@@ -108,7 +108,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 								resposta.Valor = Convert.ToInt16(linhaD[i]);
 
                                 MessageBox.Show(resposta.ToString());
-								FuncsToDataBase.insertRespostaQuestionario(resposta);
+								FuncsToDataBase.InsertRespostaQuestionario(resposta);
 							}
 							else jump = false;
 							i++;
@@ -123,7 +123,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 						FichaAvaliacao fichaAvaliacao = new FichaAvaliacao();
 						fichaAvaliacao.CodigoZona = zonas[j];
 						fichaAvaliacao.CodigoAnalise = modelo.CodigoAnalise;
-						FuncsToDataBase.insertFichaAvaliacao(fichaAvaliacao);
+						FuncsToDataBase.InsertFichaAvaliacao(fichaAvaliacao);
 
 						i = 0;
 						foreach (string campo in linhaD)
@@ -136,7 +136,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 							resposta.CodigoPergunta = perguntaReferente.CodigoPergunta;
 							resposta.Valor = Convert.ToInt16(linhaD[i]);
 
-							FuncsToDataBase.insertRespostaFichaAvaliacao(resposta);
+							FuncsToDataBase.InsertRespostaFichaAvaliacao(resposta);
 							i++;
 						}
 						j++;
@@ -157,7 +157,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 
 							resposta.Valor = Convert.ToInt16(linhaD[i]);
 
-							FuncsToDataBase.insertRespostaCheckList(resposta);
+							FuncsToDataBase.InsertRespostaCheckList(resposta);
 
 							i++;
 						}
@@ -185,7 +185,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 			StreamWriter outputStream = new StreamWriter(datapathFile);
 
 			List<Resposta> respostas = new List<Resposta>();
-			FuncsToDataBase.selectRespostaQuestionario(codigoAnalise, respostas);
+			FuncsToDataBase.SelectRespostaQuestionario(codigoAnalise, respostas);
 
 			respostas.OrderBy<Resposta, float>(extrairNumeroPergunta);
 			respostas.OrderBy<Resposta, long>(extractCodQuestionario);
@@ -235,7 +235,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 			StreamWriter outputStream = new StreamWriter(datapathFile);
 
 			List<Resposta> respostas = new List<Resposta>();
-			FuncsToDataBase.selectRespostaFichaAvaliacao(codigoAnalise, respostas);
+			FuncsToDataBase.SelectRespostaFichaAvaliacao(codigoAnalise, respostas);
 
 			respostas.OrderBy<Resposta, float>(extrairNumeroPergunta);
 			respostas.OrderBy<Resposta, long>(extrairCodigoFichaAvaliacao);
@@ -289,7 +289,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 			StreamWriter streamWriter = new StreamWriter(datapathFile);
 
 			List<Resposta> respostas = new List<Resposta>();
-			FuncsToDataBase.selectRespostaCheckList(codigoAnalise, respostas);
+			FuncsToDataBase.SelectRespostaCheckList(codigoAnalise, respostas);
 
 			respostas.OrderBy<Resposta, long>(extractItem);
 			respostas.OrderBy<Resposta, long>(extractZona);

@@ -112,7 +112,7 @@ namespace ETdAnalyser.CamadaInterface
 
         private void testarLigacao(object sender, EventArgs e)
         {
-            if (CamadaDados.DataBaseCommunicator.DataBaseCommunicator.connectToSuper(textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text))
+            if (CamadaDados.DataBaseCommunicator.DataBaseCommunicator.ConnectToSuper(textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text))
                 MessageBox.Show("Configuração da ligação ao servidor SQL server efectuada com sucesso!");
         }
 

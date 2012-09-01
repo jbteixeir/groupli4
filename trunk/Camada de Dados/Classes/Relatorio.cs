@@ -57,11 +57,11 @@ namespace ETdAnalyser.CamadaDados.Classes
 
         public void GerarResultadosRelatorio(long codigoAnalise, List<Classes.Resposta> respostas, List<Classes.Zona> zonas, List<Classes.Item> itens)
         {
-            DataBaseCommunicator.FuncsToDataBase.selectRespostaCheckList(codigoAnalise, respostas);
+            DataBaseCommunicator.FuncsToDataBase.SelectRespostaCheckList(codigoAnalise, respostas);
             numeroRespostas += respostas.Count;
-            DataBaseCommunicator.FuncsToDataBase.selectRespostaFichaAvaliacao(codigoAnalise, respostas);
+            DataBaseCommunicator.FuncsToDataBase.SelectRespostaFichaAvaliacao(codigoAnalise, respostas);
             numeroRespostas += respostas.Count;
-            DataBaseCommunicator.FuncsToDataBase.selectRespostaQuestionario(codigoAnalise, respostas);
+            DataBaseCommunicator.FuncsToDataBase.SelectRespostaQuestionario(codigoAnalise, respostas);
             numeroRespostas += respostas.Count;
 
             Dictionary<int, double> resultado_questionario_parcial;
@@ -112,7 +112,7 @@ namespace ETdAnalyser.CamadaDados.Classes
                             if (resposta.CodigoFichaAvaliacao == -1 && resposta.CodigoCheckList ==-1)
                             {
                                 //numero total de respostas possiveis
-                                int total = CamadaDados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 3);
+                                int total = CamadaDados.DataBaseCommunicator.FuncsToDataBase.NumeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 3);
 
                                 //incremento do numero de resposta da cor respectiva
                                 if (resposta.Valor <= item.IntervaloVermelho)
@@ -136,7 +136,7 @@ namespace ETdAnalyser.CamadaDados.Classes
                             else if (resposta.CodigoCheckList == -1 && resposta.CodigoQuestionario ==-1)
                             {
                                 //numero total de respostas possiveis
-                                int total = CamadaDados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 2);
+                                int total = CamadaDados.DataBaseCommunicator.FuncsToDataBase.NumeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 2);
 
                                 //incremento do numero de resposta da cor respectiva
                                 if (resposta.Valor <= item.IntervaloVermelho)
@@ -206,7 +206,7 @@ namespace ETdAnalyser.CamadaDados.Classes
         {
             int respostasF = 0, respostasM = 0;
             double percentagemF = 0.0, percentagemM = 0.0;
-            List<int> respostas = CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectRespostasSexo(codigoAnalise);
+            List<int> respostas = CamadaDados.DataBaseCommunicator.FuncsToDataBase.SelectRespostasSexo(codigoAnalise);
             for (int i = 0; i < respostas.Count(); i++)
             {
                 if (respostas[i] == 1) respostasF++;
@@ -227,7 +227,7 @@ namespace ETdAnalyser.CamadaDados.Classes
         public void GerarEstatisticasIdade(long codigoAnalise)
         {
             int menores20 = 0; int entre20e30 = 0; int entre30e40 = 0; int entre40e50 = 0; int entre50e60 = 0; int maioresde60 = 0;
-            List<int> idades = CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectIdades(codigoAnalise);
+            List<int> idades = CamadaDados.DataBaseCommunicator.FuncsToDataBase.SelectIdades(codigoAnalise);
             for (int i = 0; i < idades.Count(); i++)
             {
                 if (idades[i] < 20) menores20++;
@@ -251,7 +251,7 @@ namespace ETdAnalyser.CamadaDados.Classes
         {
             int sim = 0; int nao = 0;
             double percentagemsim = 0.0; double percentagemnao = 0.0;
-            List<int> respostas = CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectRespostasHabitual(codigoAnalise);
+            List<int> respostas = CamadaDados.DataBaseCommunicator.FuncsToDataBase.SelectRespostasHabitual(codigoAnalise);
 
             for (int i = 0; i < respostas.Count(); i++)
             {

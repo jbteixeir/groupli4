@@ -129,7 +129,7 @@ namespace ETdAnalyser.CamadaDados.Classes
             a.Itens = itens;
             
             a.Codigo = CamadaDados.DataBaseCommunicator.
-                FuncsToDataBase.insertAnalise(codigoProjecto,a);
+                FuncsToDataBase.InsertAnalise(codigoProjecto,a);
             
             codigoNomeAnalise.Add(a.Codigo,a.Nome);
             analises.Add(a.Codigo, a);
@@ -147,7 +147,7 @@ namespace ETdAnalyser.CamadaDados.Classes
             if (!analises.Keys.Contains(codigoAnalise))
             {
                 Analise a = CamadaDados.DataBaseCommunicator.
-                    FuncsToDataBase.selectAnalise(codigoAnalise);
+                    FuncsToDataBase.SelectAnalise(codigoAnalise);
                 analises.Add(a.Codigo, a);
             }
         }
@@ -170,7 +170,7 @@ namespace ETdAnalyser.CamadaDados.Classes
             }
 
             CamadaDados.DataBaseCommunicator.
-                FuncsToDataBase.deleteAnalise(cod);
+                FuncsToDataBase.DeleteAnalise(cod);
         }
 
         public void RemoveAnalise(long codigoAnalise)
@@ -182,7 +182,7 @@ namespace ETdAnalyser.CamadaDados.Classes
         public void AlterarAnalise(Analise a)
         {
             CamadaDados.DataBaseCommunicator.
-                FuncsToDataBase.updateAnalise(a);
+                FuncsToDataBase.UpdateAnalise(a);
         }
 
     }
