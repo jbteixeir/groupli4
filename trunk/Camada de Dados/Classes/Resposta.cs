@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class Resposta
     {
         //Variaveis de Instancia
 		private long codigoAnalise;
 		// ID do formulario correspondente
-		private long cod_questionario;
-		private long cod_fichaAvaliacao;
-		private long cod_checklist;
+		private long codigoQuestionario;
+		private long codigoFichaAvaliacao;
+		private long codigoCheckList;
 		// ID da pergunta corresponde
-		private long cod_pergunta_questionario;
-        private float numero_pergunta;
+		private long codigoPerguntaQuestionario;
+        private float numeroPergunta;
 
-        private long cod_item;
-        private long cod_zona;
+        private long codigoItem;
+        private long codigoZona;
 		// Resposta à pergunta
         private short valor;
-        private string valor_string;
+        private string valorString;
         /* Variável tipo
          * 1 - checklist
          * 2 - ficha de avaliacao
@@ -32,34 +32,34 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
 		public enum TipoResposta {RespostaNum,RespostaStr, RespostaMemo};
 
-        //NOTA: na ficha de avaliacao no caso da sugestao, o item e o numero da pergunta são -1
+        //NOTA: na ficha de avaliacao no caso da sugestao, o item escalaResposta o numero da pergunta são -1
         //Constructores
         public Resposta(long codigoAnalise, long cod_checklist, long cod_questionario, long cod_fichaAvaliacao, float numero_pergunta, long cod_item, long cod_zona, short valor, string valor_string, int tipo, TipoResposta tipo_Resposta)
         {
             this.codigoAnalise = codigoAnalise;
-            this.cod_checklist = cod_checklist;
-            this.cod_questionario = cod_questionario;
-            this.cod_fichaAvaliacao = cod_fichaAvaliacao;
-            //this.cod_pergunta_questionario = cod_pergunta_questionario;
-            this.numero_pergunta = numero_pergunta;
-            this.cod_item = cod_item;
-            this.cod_zona = cod_zona;
+            this.codigoCheckList = cod_checklist;
+            this.codigoQuestionario = cod_questionario;
+            this.codigoFichaAvaliacao = cod_fichaAvaliacao;
+            //this.codigoPerguntaQuestionario = codigoPerguntaQuestionario;
+            this.numeroPergunta = numero_pergunta;
+            this.codigoItem = cod_item;
+            this.codigoZona = cod_zona;
             this.valor = valor;
-            this.valor_string = valor_string;
+            this.valorString = valor_string;
             this.tipo = tipo;
 			this.tipoResposta = tipo_Resposta;
         }
 
         public Resposta()
         {
-			this.cod_questionario = -1;
-			this.cod_fichaAvaliacao = -1;
-            this.cod_pergunta_questionario = -1;
-			this.numero_pergunta = -1;
-			this.cod_item = -1;
-			this.cod_zona = -1;
+			this.codigoQuestionario = -1;
+			this.codigoFichaAvaliacao = -1;
+            this.codigoPerguntaQuestionario = -1;
+			this.numeroPergunta = -1;
+			this.codigoItem = -1;
+			this.codigoZona = -1;
 			this.valor = -1;
-			this.valor_string = "";
+			this.valorString = "";
 			this.tipo = -1;
 			this.tipoResposta = TipoResposta.RespostaNum;
         }
@@ -68,8 +68,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 		{
 			// TODO: Complete member initialization
 			this.codigoAnalise = modelo.codigoAnalise;
-			this.Cod_checklist = modelo.Cod_checklist;
-			this.Cod_pergunta = modelo.Cod_pergunta;
+			this.CodigoChecklist = modelo.CodigoChecklist;
+			this.CodigoPergunta = modelo.CodigoPergunta;
 			this.CodigoFichaAvaliacao = modelo.CodigoFichaAvaliacao;
 			this.CodigoItem = CodigoItem;
 			this.CodigoQuestionario = modelo.CodigoQuestionario;
@@ -82,32 +82,25 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 		}
 
 		//Métodos
-		public long Cod_questionario
+		public long CodigoFichaAvaliacao
 		{
-			get { return cod_questionario; }
-			set { cod_questionario = value; }
+			get { return codigoFichaAvaliacao; }
+			set { codigoFichaAvaliacao = value; }
 		}
-
-
-		public long Cod_fichaAvaliacao
+		public long CodigoChecklist
 		{
-			get { return cod_fichaAvaliacao; }
-			set { cod_fichaAvaliacao = value; }
+			get { return codigoCheckList; }
+			set { codigoCheckList = value; }
 		}
-		public long Cod_checklist
-		{
-			get { return cod_checklist; }
-			set { cod_checklist = value; }
-		}
-		public TipoResposta Tipo_Resposta
+		public TipoResposta GetTipoResposta
 		{
 			get { return tipoResposta; }
 			set { tipoResposta = value; }
 		}
-		public long Cod_pergunta
+		public long CodigoPergunta
 		{
-			get { return cod_pergunta_questionario; }
-			set { cod_pergunta_questionario = value; }
+			get { return codigoPerguntaQuestionario; }
+			set { codigoPerguntaQuestionario = value; }
 		}
 		public long CodigoAnalise
 		{
@@ -116,38 +109,32 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 		}
         public long CodigoQuestionario
         {
-            get { return cod_questionario; }
-            set { cod_questionario = value; }
-        }
-
-        public long CodigoFichaAvaliacao
-        {
-            get { return cod_fichaAvaliacao; }
-            set { cod_fichaAvaliacao = value; }
+            get { return codigoQuestionario; }
+            set { codigoQuestionario = value; }
         }
 
         public long CodigoCheckList
         {
-            get { return cod_checklist; }
-            set { cod_checklist = value; }
+            get { return codigoCheckList; }
+            set { codigoCheckList = value; }
         }
 
         public float NumeroPergunta
         {
-            get { return numero_pergunta; }
-            set { numero_pergunta = value; }
+            get { return numeroPergunta; }
+            set { numeroPergunta = value; }
         }
 
         public long CodigoItem
         {
-            get { return cod_item; }
-            set { cod_item = value; }
+            get { return codigoItem; }
+            set { codigoItem = value; }
         }
 
         public long CodigoZona
         {
-            get { return cod_zona; }
-            set { cod_zona = value; }
+            get { return codigoZona; }
+            set { codigoZona = value; }
         }
 
         public short Valor
@@ -158,8 +145,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
          public String ValorString
         {
-            get { return valor_string; }
-            set { valor_string = value; }
+            get { return valorString; }
+            set { valorString = value; }
         }
 
         public int Tipo
@@ -172,14 +159,14 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         {
             StringBuilder sb = new StringBuilder("Resposta:\n");
             sb.Append("codigoAnalise: " + codigoAnalise + "\n");
-            sb.Append("Cod_QT: " + cod_questionario + "\n");
-            sb.Append("Cod_FA: " + cod_fichaAvaliacao + "\n");
-            sb.Append("Cod_CL: " + cod_checklist + "\n");
-            sb.Append("Numero Pergunta: " + numero_pergunta + "\n");
-            sb.Append("Cod_Item: " + cod_item + "\n");
-            sb.Append("Cod_Zona: " + cod_zona + "\n");
+            sb.Append("Cod_QT: " + codigoQuestionario + "\n");
+            sb.Append("Cod_FA: " + codigoFichaAvaliacao + "\n");
+            sb.Append("Cod_CL: " + codigoCheckList + "\n");
+            sb.Append("Numero Pergunta: " + numeroPergunta + "\n");
+            sb.Append("Cod_Item: " + codigoItem + "\n");
+            sb.Append("Cod_Zona: " + codigoZona + "\n");
             sb.Append("Valor: " + valor + "\n");
-            sb.Append("Valor string: " + valor_string + "\n");
+            sb.Append("Valor string: " + valorString + "\n");
             sb.Append("Tipo: " + tipo + "\n");
             sb.Append("Tipo Resposta: " + tipoResposta + "\n");
 

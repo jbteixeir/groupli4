@@ -8,9 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using ETdAnalyser.Camada_de_Negócio;
 using System.Drawing.Drawing2D;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.Classes;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceGuestaoProjectos : Form
     {
@@ -824,7 +824,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 checkBox1.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
 
-                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoCheckListOnline(codigoProjecto, codigoAnalise))
+                if (CamadaDados.DataBaseCommunicator.FuncsToDataBase.getEstadoCheckListOnline(codigoProjecto, codigoAnalise))
                 {
                     checkBox1.Checked = true;
                     checkBox1.Text = "Desactivar";
@@ -843,7 +843,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 tb1.ReadOnly = true;
                 tb1.ForeColor = SystemColors.ControlDark;
                 tb1.Text = "http://"+GestaodeAnalistas.nomeServidorWeb()+":"+GestaodeAnalistas.portaServidorWeb()+"/ETdAnalyser/Default.aspx?form=CL&usr=" +
-                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" + "=" + codigoProjecto;
+                             CamadaDados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" + "=" + codigoProjecto;
                 
                 
                 System.Windows.Forms.Label l8 = new System.Windows.Forms.Label();
@@ -859,7 +859,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 checkBox2.BackColor = SystemColors.Control;
                 checkBox2.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
-                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise))
+                if (CamadaDados.DataBaseCommunicator.FuncsToDataBase.getEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise))
                 {
                     checkBox2.Checked = true;
                     checkBox2.Text = "Desactivar";
@@ -878,7 +878,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 tb2.ReadOnly = true;
                 tb2.ForeColor = SystemColors.ControlDark;
                 tb2.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=FA&usr=" +
-                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" + "=" + codigoProjecto;
+                             CamadaDados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" + "=" + codigoProjecto;
 
                 System.Windows.Forms.Label l9 = new System.Windows.Forms.Label();
                 l9.Width = 150;
@@ -893,7 +893,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 checkBox3.BackColor = SystemColors.Control;
                 checkBox3.Anchor = AnchorStyles.Right | AnchorStyles.Top;
 
-                if (Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.getEstadoQuestionariosOnline(codigoProjecto, codigoAnalise))
+                if (CamadaDados.DataBaseCommunicator.FuncsToDataBase.getEstadoQuestionariosOnline(codigoProjecto, codigoAnalise))
                 {
                     checkBox3.Checked = true;
                     checkBox3.Text = "Desactivar";
@@ -912,7 +912,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 tb3.BorderStyle = BorderStyle.None;
                 tb3.ReadOnly = true;
                 tb3.Text = "http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=QT&usr=" +
-                             Camada_de_Dados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" + "=" + codigoProjecto;
+                             CamadaDados.ETdA.ETdA.Username + "&anl=" + codigoAnalise + "&prj" + "=" + codigoProjecto;
                 #endregion
 
                 #region Relatorio
@@ -1303,7 +1303,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
         #endregion
 
-        #region Projectos e Analises Adicionadas
+        #region Projectos escalaResposta Analises Adicionadas
 
         // s_final
         public static void addProjectoReenc(object sender, EventArgs e)
@@ -1359,32 +1359,32 @@ namespace ETdAnalyser.Camada_de_Interface
         #endregion
 
         /*
-        public static void remProjectoReenc(object sender, EventArgs e)
+        public static void remProjectoReenc(object sender, EventArgs escalaResposta)
         {
-            igp.remProjecto(sender, e);
+            igp.remProjecto(sender, escalaResposta);
         }
-        private void remProjecto(object sender, EventArgs e)
-        {
-        }
-
-        public static void addAnaliseReenc(object sender, EventArgs e)
-        {
-            igp.addAnalise(sender, e);
-        }
-        private void addAnalise(object sender, EventArgs e)
+        private void remProjecto(object sender, EventArgs escalaResposta)
         {
         }
 
-        public static void remAnaliseReenc(object sender, EventArgs e)
+        public static void addAnaliseReenc(object sender, EventArgs escalaResposta)
         {
-            igp.remAnalise(sender, e);
+            igp.addAnalise(sender, escalaResposta);
         }
-        private void remAnalise(object sender, EventArgs e)
+        private void addAnalise(object sender, EventArgs escalaResposta)
+        {
+        }
+
+        public static void remAnaliseReenc(object sender, EventArgs escalaResposta)
+        {
+            igp.remAnalise(sender, escalaResposta);
+        }
+        private void remAnalise(object sender, EventArgs escalaResposta)
         {
         }
         */
 
-        #region Abrir Projectos e Analises (Eventos)
+        #region Abrir Projectos escalaResposta Analises (Eventos)
 
         // s_final
         private void ExpandProjectAction(object sender, TreeViewEventArgs e)
@@ -1458,7 +1458,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
         #endregion
 
-        #region Criar Projectos e Analises (Eventos)
+        #region Criar Projectos escalaResposta Analises (Eventos)
 
         // s_final
         private void CriarProjectoClick(object sender, EventArgs e)
@@ -1490,13 +1490,13 @@ namespace ETdAnalyser.Camada_de_Interface
             if (checkBox1.Checked == true)
             {
                 checkBox1.Text = "Desactivar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codigoProjecto, codigoAnalise, true);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codigoProjecto, codigoAnalise, true);
             }
             else if (checkBox1.Checked == false)
             {
                 /* Não necessita de ter as perguntas já feitas para a colocar online */
                 checkBox1.Text = "Activar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codigoProjecto, codigoAnalise, false);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoCheckListOnline(codigoProjecto, codigoAnalise, false);
             }
 
         }
@@ -1513,7 +1513,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 if (GestaodeRespostas.isFAcreated(codigoAnalise))
                 {
                     checkBox2.Text = "Desactivar";
-                    Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, true);
+                    CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, true);
                 }
                 else
                 {
@@ -1526,7 +1526,7 @@ namespace ETdAnalyser.Camada_de_Interface
             else if (checkBox2.Checked == false)
             {
                 checkBox2.Text = "Activar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, false);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoFichaAvaliacaoOnline(codigoProjecto, codigoAnalise, false);
             }
 
         }
@@ -1543,7 +1543,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 if (GestaodeRespostas.isQTcreated(codigoAnalise))
                 {
                     checkBox3.Text = "Desactivar";
-                    Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, true);
+                    CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, true);
                 }
                 else
                 {
@@ -1556,7 +1556,7 @@ namespace ETdAnalyser.Camada_de_Interface
             else if (checkBox3.Checked == false)
             {
                 checkBox3.Text = "Activar";
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, false);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.setEstadoQuestionarioOnline(codigoProjecto, codigoAnalise, false);
             }
 
         }
@@ -1918,7 +1918,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 long codigoAnalise = long.Parse(cods[1]);
 
                 //Apagar da base de dados
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(codigoAnalise);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(codigoAnalise);
                 //Apagar do ETdAnalyser
                 GestaodeAnalises.removerAnalise(codigoProjecto, codigoAnalise);
 
@@ -1953,9 +1953,9 @@ namespace ETdAnalyser.Camada_de_Interface
                      MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 //Apagar da base de dados
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarProjecto(long.Parse(tsi.Name));
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.desactivarProjecto(long.Parse(tsi.Name));
                 //Apagar do ETdAnalyser
-                Camada_de_Dados.ETdA.ETdA.removeProjecto(long.Parse(tsi.Name));
+                CamadaDados.ETdA.ETdA.removeProjecto(long.Parse(tsi.Name));
                 
                 //Apagar Projecto do Treeview
                 bool found = false;

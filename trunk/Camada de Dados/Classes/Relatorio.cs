@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System;
 
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class Relatorio
     {
@@ -55,7 +55,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             set { numeroRespostas = value; }
         }
 
-        public void gerarResultadosRelatorio(long codigoAnalise, List<Classes.Resposta> respostas, List<Classes.Zona> zonas, List<Classes.Item> itens)
+        public void GerarResultadosRelatorio(long codigoAnalise, List<Classes.Resposta> respostas, List<Classes.Zona> zonas, List<Classes.Item> itens)
         {
             DataBaseCommunicator.FuncsToDataBase.selectRespostaCheckList(codigoAnalise, respostas);
             numeroRespostas += respostas.Count;
@@ -105,25 +105,25 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                     //para cada resposta
                     foreach (Classes.Resposta resposta in respostas)
                     {
-                        //se a resposta é relativa a esta zona e a este item e se é do tipo inteiro(os outros nao sao relevantes para o calculo das cores)
-                        if (zona.Codigo == resposta.CodigoZona && item.CodigoItem == resposta.CodigoItem && resposta.Tipo_Resposta == Camada_de_Dados.Classes.Resposta.TipoResposta.RespostaNum)
+                        //se a resposta é relativa a esta zona escalaResposta a este item escalaResposta se é do tipo inteiro(os outros nao sao relevantes para o calculo das cores)
+                        if (zona.Codigo == resposta.CodigoZona && item.CodigoItem == resposta.CodigoItem && resposta.GetTipoResposta == CamadaDados.Classes.Resposta.TipoResposta.RespostaNum)
                         {
                             //se a resposta é relativa a um questionário
                             if (resposta.CodigoFichaAvaliacao == -1 && resposta.CodigoCheckList ==-1)
                             {
                                 //numero total de respostas possiveis
-                                int total = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 3);
+                                int total = CamadaDados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 3);
 
                                 //incremento do numero de resposta da cor respectiva
-                                if (resposta.Valor <= item.Inter_Vermelho)
+                                if (resposta.Valor <= item.IntervaloVermelho)
                                     resultadoItem_questionario_parcial[1]++;
-                                else if (resposta.Valor <= item.Inter_Laranja)
+                                else if (resposta.Valor <= item.IntervaloLaranja)
                                     resultadoItem_questionario_parcial[2]++;
-                                else if (resposta.Valor <= item.Inter_Amarelo)
+                                else if (resposta.Valor <= item.IntervaloAmarelo)
                                     resultadoItem_questionario_parcial[3]++;
-                                else if (resposta.Valor <= item.Inter_Verde_Lima)
+                                else if (resposta.Valor <= item.IntervaloVerdeLima)
                                     resultadoItem_questionario_parcial[4]++;
-                                else if (resposta.Valor <= item.Inter_Verde)
+                                else if (resposta.Valor <= item.IntervaloVerde)
                                     resultadoItem_questionario_parcial[5]++;
                                 
                                 //incremento do valor da resposta
@@ -136,18 +136,18 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                             else if (resposta.CodigoCheckList == -1 && resposta.CodigoQuestionario ==-1)
                             {
                                 //numero total de respostas possiveis
-                                int total = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 2);
+                                int total = CamadaDados.DataBaseCommunicator.FuncsToDataBase.numeroEscalaResposta(codigoAnalise, resposta.NumeroPergunta, 2);
 
                                 //incremento do numero de resposta da cor respectiva
-                                if (resposta.Valor <= item.Inter_Vermelho)
+                                if (resposta.Valor <= item.IntervaloVermelho)
                                     resultadoItem_fichaAvaliacao_parcial[1]++;
-                                else if (resposta.Valor <= item.Inter_Laranja)
+                                else if (resposta.Valor <= item.IntervaloLaranja)
                                     resultadoItem_fichaAvaliacao_parcial[2]++;
-                                else if (resposta.Valor <= item.Inter_Amarelo)
+                                else if (resposta.Valor <= item.IntervaloAmarelo)
                                     resultadoItem_fichaAvaliacao_parcial[3]++;
-                                else if (resposta.Valor <= item.Inter_Verde_Lima)
+                                else if (resposta.Valor <= item.IntervaloVerdeLima)
                                     resultadoItem_fichaAvaliacao_parcial[4]++;
-                                else if (resposta.Valor <= item.Inter_Verde)
+                                else if (resposta.Valor <= item.IntervaloVerde)
                                     resultadoItem_fichaAvaliacao_parcial[5]++;
 
                                 //incremento do valor da resposta
@@ -198,15 +198,15 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 }
                 listaResultados.Add(zona.Codigo, listaItens);
 
-                //Console.WriteLine(zona.Nome + "codigo: " + zona.Codigo);
+                //Console.WriteLine(zona.Nome + "codigo: " + zona.CodigoTipo);
             }
         }
 
-        public void gerarEstatisticasRelatorioSexo(long codigoAnalise)
+        public void GerarEstatisticasRelatorioSexo(long codigoAnalise)
         {
             int respostasF = 0, respostasM = 0;
             double percentagemF = 0.0, percentagemM = 0.0;
-            List<int> respostas = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectRespostasSexo(codigoAnalise);
+            List<int> respostas = CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectRespostasSexo(codigoAnalise);
             for (int i = 0; i < respostas.Count(); i++)
             {
                 if (respostas[i] == 1) respostasF++;
@@ -224,10 +224,10 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         }
 
-        public void gerarEstatisticasIdade(long codigoAnalise)
+        public void GerarEstatisticasIdade(long codigoAnalise)
         {
             int menores20 = 0; int entre20e30 = 0; int entre30e40 = 0; int entre40e50 = 0; int entre50e60 = 0; int maioresde60 = 0;
-            List<int> idades = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectIdades(codigoAnalise);
+            List<int> idades = CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectIdades(codigoAnalise);
             for (int i = 0; i < idades.Count(); i++)
             {
                 if (idades[i] < 20) menores20++;
@@ -247,11 +247,11 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             
         }
 
-        public void gerarEstatisticasClienteHabitual(long codigoAnalise)
+        public void GerarEstatisticasClienteHabitual(long codigoAnalise)
         {
             int sim = 0; int nao = 0;
             double percentagemsim = 0.0; double percentagemnao = 0.0;
-            List<int> respostas = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectRespostasHabitual(codigoAnalise);
+            List<int> respostas = CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectRespostasHabitual(codigoAnalise);
 
             for (int i = 0; i < respostas.Count(); i++)
             {

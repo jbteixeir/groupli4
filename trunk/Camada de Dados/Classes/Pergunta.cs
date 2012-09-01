@@ -3,65 +3,65 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
 	class Pergunta
 	{
-		private long cod_Pergunta;
+		private long codigoPergunta;
         private long codigoAnalise;
-		private float num_Pergunta;
-        private long cod_Item;
+		private float numeroPergunta;
+        private long codigoItem;
 		private string texto;
-		private long cod_TipoEscala;
+		private long codigoTipoEscala;
 
         public Pergunta(long codigoAnalise, float num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
         {
             this.codigoAnalise = codigoAnalise;
-            this.num_Pergunta = num_Pergunta;
-            this.cod_Item = cod_Item;
+            this.numeroPergunta = num_Pergunta;
+            this.codigoItem = cod_Item;
             this.texto = texto;
-            this.cod_TipoEscala = cod_TipoEscala;
+            this.codigoTipoEscala = cod_TipoEscala;
         }
 
         public Pergunta(long cod_Pergunta,long codigoAnalise, float num_Pergunta, long cod_Item, string texto, long cod_TipoEscala)
         {
-            this.cod_Pergunta = cod_Pergunta;
+            this.codigoPergunta = cod_Pergunta;
             this.codigoAnalise = codigoAnalise;
-            this.num_Pergunta = num_Pergunta;
-            this.cod_Item = cod_Item;
+            this.numeroPergunta = num_Pergunta;
+            this.codigoItem = cod_Item;
             this.texto = texto;
-            this.cod_TipoEscala = cod_TipoEscala;
+            this.codigoTipoEscala = cod_TipoEscala;
         }
 
         public Pergunta()
         {
-            cod_Pergunta = -1;
+            codigoPergunta = -1;
             codigoAnalise = -1;
-            num_Pergunta = -1;
-            cod_Item = -1;
+            numeroPergunta = -1;
+            codigoItem = -1;
             texto = "";
-            cod_TipoEscala = -1;
+            codigoTipoEscala = -1;
         }
 
         public Pergunta(Pergunta p)
         {
-            cod_Pergunta = p.cod_Pergunta;
+            codigoPergunta = p.codigoPergunta;
             codigoAnalise = p.codigoAnalise;
-            num_Pergunta = p.num_Pergunta;
-            cod_Item = p.cod_Item;
+            numeroPergunta = p.numeroPergunta;
+            codigoItem = p.codigoItem;
             texto = p.texto;
-            cod_TipoEscala = p.cod_TipoEscala;
+            codigoTipoEscala = p.codigoTipoEscala;
         }
 
-		public long Cod_Pergunta
+		public long CodigoPergunta
 		{
-			get { return cod_Pergunta; }
-			set { cod_Pergunta = value; }
+			get { return codigoPergunta; }
+			set { codigoPergunta = value; }
 		}
-		public float Num_Pergunta
+		public float NumeroPergunta
 		{
-			get { return num_Pergunta; }
-			set { num_Pergunta = value; }
+			get { return numeroPergunta; }
+			set { numeroPergunta = value; }
 		}
 		public string Texto
 		{
@@ -73,27 +73,27 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 			get { return codigoAnalise; }
 			set { codigoAnalise = value; }
 		}
-		public long Cod_Item
+		public long CodigoItem
 		{
-			get { return cod_Item; }
-			set { cod_Item = value; }
+			get { return codigoItem; }
+			set { codigoItem = value; }
 		}
-		public long Cod_TipoEscala
+		public long CodigoTipoEscala
 		{
-			get { return cod_TipoEscala; }
-			set { cod_TipoEscala = value; }
+			get { return codigoTipoEscala; }
+			set { codigoTipoEscala = value; }
 		}
 
         public string ToString()
         {
             StringBuilder a = new StringBuilder();
             a.Append("Pergunta:\n");
-            a.Append("Cod_Pergunta: " + cod_Pergunta.ToString() + "\n");
+            a.Append("Cod_Pergunta: " + codigoPergunta.ToString() + "\n");
             a.Append("codigoAnalise: " + codigoAnalise.ToString() + "\n");
-            a.Append("Número Pergunta: " + num_Pergunta.ToString() + "\n");
-            a.Append("Cod_Item: " + cod_Item.ToString() + "\n");
+            a.Append("Número Pergunta: " + numeroPergunta.ToString() + "\n");
+            a.Append("Cod_Item: " + codigoItem.ToString() + "\n");
             a.Append("Texto: " + texto + "\n");
-            a.Append("Cod_TipoEscala: " + cod_TipoEscala.ToString() + "\n");
+            a.Append("Cod_TipoEscala: " + codigoTipoEscala.ToString() + "\n");
             return a.ToString();
         }
 

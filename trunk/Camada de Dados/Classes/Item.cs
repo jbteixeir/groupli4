@@ -3,68 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class Item
     {
         //Variaveis de Instancia
-        private long cod_item;
-        private String nome_item;
+        private long codigoItem;
+        private String nomeItem;
         private int defaultItem;
-        private double ponderacao_analista;
-        private double ponderacao_profissional;
-        private double ponderacao_cliente;
-        private double inter_vemelho;
-        private double inter_laranja;
-        private double inter_amarelo;
-        private double inter_verdelima;
-        private double inter_verde;
-        private double limite_inferior_analista;
+        private double ponderacaoAnalista;
+        private double ponderacaoProfissional;
+        private double ponderacaoCliente;
+        private double intervaloVemelho;
+        private double intervaloLaranja;
+        private double intervaloAmarelo;
+        private double intervaloVerdelima;
+        private double intervaloVerde;
+        private double limiteInferiorAnalista;
         
         //Constructores
 
         public Item(long cod, String nome, int def, double ponderacao_analista, double ponderacao_profissional, double ponderacao_cliente, double inter_vemelho, double inter_laranja, double inter_amarelo, double inter_verdelima, double inter_verde, double limite_inferior_analista)
         {
-            cod_item = cod;
-            nome_item = nome;
+            codigoItem = cod;
+            nomeItem = nome;
             defaultItem = def;
-            this.ponderacao_analista = ponderacao_analista;
-            this.ponderacao_profissional=ponderacao_profissional;
-            this.ponderacao_cliente = ponderacao_cliente;
-            this.inter_vemelho = inter_vemelho;
-            this.inter_laranja = inter_laranja;
-            this.inter_amarelo = inter_amarelo;
-            this.inter_verdelima = inter_verdelima;
-            this.inter_verde = inter_verde;
-            this.limite_inferior_analista = limite_inferior_analista;
+            this.ponderacaoAnalista = ponderacao_analista;
+            this.ponderacaoProfissional=ponderacao_profissional;
+            this.ponderacaoCliente = ponderacao_cliente;
+            this.intervaloVemelho = inter_vemelho;
+            this.intervaloLaranja = inter_laranja;
+            this.intervaloAmarelo = inter_amarelo;
+            this.intervaloVerdelima = inter_verdelima;
+            this.intervaloVerde = inter_verde;
+            this.limiteInferiorAnalista = limite_inferior_analista;
         }
 
         public Item()
         {
-            cod_item = -1;
-            nome_item = "";
+            codigoItem = -1;
+            nomeItem = "";
             defaultItem = 0;
-            ponderacao_analista = 0.33f;
-            ponderacao_profissional = 0.33f;
-            ponderacao_cliente = 0.33f;
-            inter_vemelho = 1;
-            inter_laranja = 2;
-            inter_amarelo = 3;
-            inter_verdelima = 4;
-            inter_verde = 5;
-            limite_inferior_analista = 0;
+            ponderacaoAnalista = 0.33f;
+            ponderacaoProfissional = 0.33f;
+            ponderacaoCliente = 0.33f;
+            intervaloVemelho = 1;
+            intervaloLaranja = 2;
+            intervaloAmarelo = 3;
+            intervaloVerdelima = 4;
+            intervaloVerde = 5;
+            limiteInferiorAnalista = 0;
         }
 
         //Métodos
         public long CodigoItem
         {
-            get { return cod_item; }
-            set { cod_item = value; }
+            get { return codigoItem; }
+            set { codigoItem = value; }
         }
         public String NomeItem
         {
-            get { return nome_item; }
-            set { nome_item = value; }
+            get { return nomeItem; }
+            set { nomeItem = value; }
         }
         public int Default
         {
@@ -74,48 +74,48 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         
         public double PonderacaoAnalista
         {
-            get { return ponderacao_analista; }
-            set { ponderacao_analista = value; }
+            get { return ponderacaoAnalista; }
+            set { ponderacaoAnalista = value; }
         }
         public double PonderacaoProfissional
         {
-            get { return ponderacao_profissional; }
-            set { ponderacao_profissional = value; }
+            get { return ponderacaoProfissional; }
+            set { ponderacaoProfissional = value; }
         }
         public double PonderacaoCliente
         {
-            get { return ponderacao_cliente; }
-            set { ponderacao_cliente = value; }
+            get { return ponderacaoCliente; }
+            set { ponderacaoCliente = value; }
         }
         public double LimiteInferiorAnalista
         {
-            get { return limite_inferior_analista; }
-            set { limite_inferior_analista = value; }
+            get { return limiteInferiorAnalista; }
+            set { limiteInferiorAnalista = value; }
         }
-        public double Inter_Vermelho
+        public double IntervaloVermelho
         {
-            get { return inter_vemelho; }
-            set { inter_vemelho = value; }
+            get { return intervaloVemelho; }
+            set { intervaloVemelho = value; }
         }
-        public double Inter_Laranja
+        public double IntervaloLaranja
         {
-            get { return inter_laranja; }
-            set { inter_laranja = value; }
+            get { return intervaloLaranja; }
+            set { intervaloLaranja = value; }
         }
-        public double Inter_Amarelo
+        public double IntervaloAmarelo
         {
-            get { return inter_amarelo; }
-            set { inter_amarelo = value; }
+            get { return intervaloAmarelo; }
+            set { intervaloAmarelo = value; }
         }
-        public double Inter_Verde_Lima
+        public double IntervaloVerdeLima
         {
-            get { return inter_verdelima; }
-            set { inter_verdelima = value; }
+            get { return intervaloVerdelima; }
+            set { intervaloVerdelima = value; }
         }
-        public double Inter_Verde
+        public double IntervaloVerde
         {
-            get { return inter_verde; }
-            set { inter_verde = value; }
+            get { return intervaloVerde; }
+            set { intervaloVerde = value; }
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class Analise
     {
@@ -62,15 +62,15 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         public Analise(Analise a)
         {
             codigoAnalise = a.Codigo;
-            codigoProjecto = a.CodigoProj;
+            codigoProjecto = a.CodigoProjecto;
             dataAnalise = a.Data;
             nomeAnalise = a.Nome;
             tipoAnalise = a.Tipo;
             zonas = a.Zonas;
             itens = a.Itens;
-            estadoWebsiteCheckList = a.EstadoWebCL;
-            estadoWebsiteFichaAvaliacao = a.EstadoWebFA;
-            estadoWebsiteQuestionario = a.EstadoWebQ;
+            estadoWebsiteCheckList = a.EstadoWebCheckList;
+            estadoWebsiteFichaAvaliacao = a.EstadoWebFichaAvaliacao;
+            estadoWebsiteQuestionario = a.EstadoWebQuestionario;
             fichasAvaliacao = a.FichasAvaliacao;
             questionarios = a.Questionarios;
         }
@@ -82,7 +82,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             get { return codigoAnalise; }
             set { codigoAnalise = value; }
         }
-        public long CodigoProj
+        public long CodigoProjecto
         {
             get { return codigoProjecto; }
             set { codigoProjecto = value; }
@@ -112,17 +112,17 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 		    get { return itens;}
 		    set { itens = value;}
 	    }
-        public Boolean EstadoWebCL
+        public Boolean EstadoWebCheckList
         {
             get { return estadoWebsiteCheckList; }
             set { estadoWebsiteCheckList = value; }
         }
-        public Boolean EstadoWebFA
+        public Boolean EstadoWebFichaAvaliacao
         {
             get { return estadoWebsiteFichaAvaliacao; }
             set { estadoWebsiteFichaAvaliacao = value; }
         }
-        public Boolean EstadoWebQ
+        public Boolean EstadoWebQuestionario
         {
             get { return estadoWebsiteQuestionario; }
             set { estadoWebsiteQuestionario = value; }

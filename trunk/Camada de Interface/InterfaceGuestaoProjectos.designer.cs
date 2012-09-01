@@ -1,4 +1,5 @@
-﻿namespace ETdAnalyser.Camada_de_Interface
+﻿using ETdAnalyser.CamadaInterface;
+namespace ETdAnalyser.CamadaInterface
 {
     partial class InterfaceGuestaoProjectos
     {

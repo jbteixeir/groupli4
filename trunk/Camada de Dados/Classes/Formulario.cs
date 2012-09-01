@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class Formulario
     {
@@ -14,9 +14,9 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             codigoAnalise = -1;
         }
 
-        public Formulario(long _codigoAnalise)
+        public Formulario(long codigoAnalise)
         {
-            codigoAnalise = _codigoAnalise;
+            codigoAnalise = codigoAnalise;
         }
 
         public long CodigoAnalise

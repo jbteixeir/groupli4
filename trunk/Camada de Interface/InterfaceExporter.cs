@@ -4,11 +4,11 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Linq;
 using System.IO;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.Classes;
 using ETdAnalyser.Camada_de_Negócio;
-using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
+using ETdAnalyser.CamadaDados.Classes.Estruturas;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceExporter : Form
     {
@@ -49,11 +49,11 @@ namespace ETdAnalyser.Camada_de_Interface
 
                         exporter = new Exporter(textBox1.Text, questionarios, perguntas_questionario, zonas);
 
-                        if (!exporter.verifica_criacao_ficheiro(ref erro))
+                        if (!exporter.VerificaCriacaoFicheiro(ref erro))
                             MessageBoxPortuguese.Show("Erro", erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            exporter.grava_questionarios();
+                            exporter.GravaQuestionarios();
                             MessageBoxPortuguese.Show("Info", "A exportação foi efectuada com sucesso", MessageBoxPortuguese.Icon_Info);
                         }
                         break;
@@ -62,11 +62,11 @@ namespace ETdAnalyser.Camada_de_Interface
 
                         exporter = new Exporter(textBox1.Text, fichas_avaliacao, itens, zonas);
 
-                        if (!exporter.verifica_criacao_ficheiro(ref erro))
+                        if (!exporter.VerificaCriacaoFicheiro(ref erro))
                             MessageBoxPortuguese.Show("Erro", erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            exporter.grava_ficha_avaliacao();
+                            exporter.GravaFichaAvaliacao();
                             MessageBoxPortuguese.Show("Info", "A exportação foi efectuada com sucesso", MessageBoxPortuguese.Icon_Info);
                         }
                         break;
@@ -75,11 +75,11 @@ namespace ETdAnalyser.Camada_de_Interface
 
                         exporter = new Exporter(textBox1.Text, cl, itens, zonas);
 
-                        if (!exporter.verifica_criacao_ficheiro(ref erro))
+                        if (!exporter.VerificaCriacaoFicheiro(ref erro))
                             MessageBoxPortuguese.Show("Erro", erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            exporter.grava_checklist();
+                            exporter.GravaChecklist();
                             MessageBoxPortuguese.Show("Info", "A exportação foi efectuada com sucesso", MessageBoxPortuguese.Icon_Info);
                         }
                         break;

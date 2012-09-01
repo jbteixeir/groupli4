@@ -3,116 +3,116 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
 	class FichaAvaliacao : Formulario
 	{
-		private long codFichaAvaliacao;
-		private long codZona;
-        private List<Resposta> respostas_numero;
-        private List<Resposta> respostas_string;
-        private List<Resposta> respostas_memo;
+		private long codigoFichaAvaliacao;
+		private long codigoZona;
+        private List<Resposta> respostasNumero;
+        private List<Resposta> respostasString;
+        private List<Resposta> respostasMemo;
 
         /* Construtores */
         public FichaAvaliacao() :
             base()
         {
-            codFichaAvaliacao = -1;
-            codZona = -1;
-            respostas_memo = new List<Resposta>();
-            respostas_string = new List<Resposta>();
-            respostas_numero = new List<Resposta>();
+            this.codigoFichaAvaliacao = -1;
+            this.codigoZona = -1;
+            this.respostasMemo = new List<Resposta>();
+            this.respostasString = new List<Resposta>();
+            this.respostasNumero = new List<Resposta>();
         }
 
-        public FichaAvaliacao(long _cod_fa, long _codigoAnalise, long _cod_zona) :
-            base(_codigoAnalise)
+        public FichaAvaliacao(long codigoFichaAvaliacao, long codigoAnalise, long codigoZona) :
+            base(codigoAnalise)
         {
-            codFichaAvaliacao = _cod_fa;
-            codZona = _cod_zona;
-            respostas_memo = new List<Resposta>();
-            respostas_string = new List<Resposta>();
-            respostas_numero = new List<Resposta>();
+            this.codigoFichaAvaliacao = codigoFichaAvaliacao;
+            this.codigoZona = codigoZona;
+            this.respostasMemo = new List<Resposta>();
+            this.respostasString = new List<Resposta>();
+            this.respostasNumero = new List<Resposta>();
         }
 
         /* Gets\Sets */
 
-		public long CodFichaAvaliacao
+		public long CodigoFichaAvaliacao
 		{
-			get { return codFichaAvaliacao; }
-			set { codFichaAvaliacao = value; }
+			get { return codigoFichaAvaliacao; }
+			set { codigoFichaAvaliacao = value; }
 		}
-		public long CodZona
+		public long CodigoZona
 		{
-			get { return codZona; }
-			set { codZona = value; }
+			get { return codigoZona; }
+			set { codigoZona = value; }
 		}
 
-        public List<Resposta> Respostas_Numero
+        public List<Resposta> RespostasNumero
         {
             get
             {
                 List<Resposta> novo = new List<Resposta>();
-                foreach (Resposta r in respostas_numero)
+                foreach (Resposta r in respostasNumero)
                     novo.Add(r);
                 return novo;
             }
             set
             {
-                respostas_numero = new List<Resposta>();
+                respostasNumero = new List<Resposta>();
                 foreach (Resposta r in value)
-                    respostas_numero.Add(r);
+                    respostasNumero.Add(r);
             }
         }
 
-        public List<Resposta> Respostas_String
+        public List<Resposta> RespostasString
         {
             get
             {
                 List<Resposta> novo = new List<Resposta>();
-                foreach (Resposta r in respostas_string)
+                foreach (Resposta r in respostasString)
                     novo.Add(r);
                 return novo;
             }
             set
             {
-                respostas_string = new List<Resposta>();
+                respostasString = new List<Resposta>();
                 foreach (Resposta r in value)
-                    respostas_string.Add(r);
+                    respostasString.Add(r);
             }
         }
 
-        public List<Resposta> Respostas_Memo
+        public List<Resposta> RespostasMemo
         {
             get
             {
                 List<Resposta> novo = new List<Resposta>();
-                foreach (Resposta r in respostas_memo)
+                foreach (Resposta r in respostasMemo)
                     novo.Add(r);
                 return novo;
             }
             set
             {
-                respostas_memo = new List<Resposta>();
+                respostasMemo = new List<Resposta>();
                 foreach (Resposta r in value)
-                    respostas_memo.Add(r);
+                    respostasMemo.Add(r);
             }
         }
 
         /* Metodos */
 
-        public void add_resposta_numero(Resposta r)
+        public void adicionarRespostaNumero(Resposta r)
         {
-            respostas_numero.Add(r);
+            respostasNumero.Add(r);
         }
 
-        public void add_resposta_string(Resposta r)
+        public void adicionarRespostaString(Resposta r)
         {
-            respostas_string.Add(r);
+            respostasString.Add(r);
         }
 
-        public void add_resposta_memo(Resposta r)
+        public void adicionarRespostaMemo(Resposta r)
         {
-            respostas_memo.Add(r);
+            respostasMemo.Add(r);
         }
 	}
 }

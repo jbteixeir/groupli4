@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class TipoEscala
     {
         //Variáveis de instância
-        long codTipo;
+        long codigoTipo;
         string descricao;
         int numero;
         // 0 - TextBox -> Letras
@@ -16,17 +16,17 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         // >1 - RadioButons 
         // -1 - Sugestao
         // -2 - CheckButons
-        int default_tipo;
+        int tipoPredefinido;
 
         List<EscalaResposta> respostas;
 
         //Constructores
         public TipoEscala(long cod, String desc, int num, int default_t,List<EscalaResposta> resps)
         {
-            codTipo = cod;
+            codigoTipo = cod;
             descricao = desc;
             numero = num;
-            default_tipo = default_t;
+            tipoPredefinido = default_t;
             respostas = resps;
         }
 
@@ -34,33 +34,33 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         {
             descricao = desc;
             numero = num;
-            default_tipo = 0;
+            tipoPredefinido = 0;
             respostas = new List<EscalaResposta>();
         }
 
         public TipoEscala()
         {
-            codTipo = -1;
+            codigoTipo = -1;
             descricao = "";
             numero = 0;
-            default_tipo = 0;
+            tipoPredefinido = 0;
             respostas = new List<EscalaResposta>();
         }
 
         public TipoEscala(TipoEscala t)
         {
-            codTipo = t.Codigo;
+            codigoTipo = t.CodigoTipo;
             descricao = t.Descricao;
             numero = t.Numero;
-            default_tipo = t.Default;
+            tipoPredefinido = t.TipoPredefinido;
             respostas = t.Respostas;
         }
 
         //Métodos
-        public long Codigo
+        public long CodigoTipo
         {
-            get { return codTipo; }
-            set { codTipo = value; }
+            get { return codigoTipo; }
+            set { codigoTipo = value; }
         }
 
         public String Descricao
@@ -73,10 +73,10 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             get { return numero; }
             set { numero = value; }
         }
-        public int Default
+        public int TipoPredefinido
         {
-            get { return default_tipo; }
-            set { default_tipo = value; }
+            get { return tipoPredefinido; }
+            set { tipoPredefinido = value; }
         }
         public List<EscalaResposta> Respostas
         {
@@ -94,10 +94,10 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         {
             StringBuilder a = new StringBuilder();
             a.Append("Tipo Resposta:\n");
-            a.Append("CodTipo: " + codTipo.ToString() + "\n");
+            a.Append("CodTipo: " + codigoTipo.ToString() + "\n");
             a.Append("Descrição: " + descricao + "\n");
             a.Append("Número: " + numero.ToString() + "\n");
-            a.Append("Default: " + default_tipo.ToString() + "\n");
+            a.Append("Default: " + tipoPredefinido.ToString() + "\n");
             return a.ToString();
         }
     }

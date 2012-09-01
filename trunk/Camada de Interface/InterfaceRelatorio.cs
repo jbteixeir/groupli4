@@ -10,16 +10,16 @@ using Word = Microsoft.Office.Interop.Word;
 using System.Reflection;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     partial class InterfaceRelatorio : Form
     {
         private long codigoProjecto;
         private long codigoAnalise;
         private String nome_analise;
-        private Camada_de_Dados.Classes.Relatorio relatorio;
-        private List<Camada_de_Dados.Classes.Zona> zonas;
-        private List<Camada_de_Dados.Classes.Item> itens;
+        private CamadaDados.Classes.Relatorio relatorio;
+        private List<CamadaDados.Classes.Zona> zonas;
+        private List<CamadaDados.Classes.Item> itens;
         private long czona = -1, citem = -1;
 
         private Dictionary<long, Dictionary<long, RichTextBox>> obs;
@@ -31,20 +31,20 @@ namespace ETdAnalyser.Camada_de_Interface
         private Label labeltxtrespnd;
         private PictureBox corItem;
         private Label labeltxtimg;
-        private Camada_de_Dados.Classes.Item curitem;
+        private CamadaDados.Classes.Item curitem;
 
 
-        public static void main(long codigoProjecto, long codigoAnalise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
+        public static void main(long codigoProjecto, long codigoAnalise, String nome_analise, CamadaDados.Classes.Relatorio relatorio)
         {
             InterfaceRelatorio i = new InterfaceRelatorio(codigoProjecto, codigoAnalise, nome_analise, relatorio);
         }
 
-        public InterfaceRelatorio(long codigoProjecto, long codigoAnalise, String nome_analise, Camada_de_Dados.Classes.Relatorio relatorio)
+        public InterfaceRelatorio(long codigoProjecto, long codigoAnalise, String nome_analise, CamadaDados.Classes.Relatorio relatorio)
         {
 
             this.codigoProjecto = codigoProjecto;
             this.codigoAnalise = codigoAnalise;
-            this.nome_analise = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Nome;
+            this.nome_analise = ETdAnalyser.CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Nome;
             this.relatorio = relatorio;
 
             if (relatorio.NumeroRespostas == 0)
@@ -95,7 +95,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 for (j = 0; j < itens.Count() && !itens[j].NomeItem.Equals(e.Node.Text); j++) ;
                 citem = itens[j].CodigoItem;
 
-                // Console.WriteLine("zona: " + e.Node.Parent.Text + " item: " + e.Node.Text);
+                // Console.WriteLine("zona: " + escalaResposta.Node.Parent.Text + " item: " + escalaResposta.Node.Text);
                 // Console.WriteLine("zona: " + zonas[i].Nome + " item: " + itens[j].NomeItem);
                 // Console.WriteLine("codzona: " + czona + "coditem: " + citem);
 
@@ -141,7 +141,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
                 #endregion
 
-                #region desenhar colunas e as tres labels uma para cada dimensão
+                #region desenhar colunas escalaResposta as tres labels uma para cada dimensão
 
                 int xcolunadim = 5;
                 int xcolunarespar = 155;
@@ -202,7 +202,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
                 #endregion
 
-                #region desenhar labels de resultados parciais e cores
+                #region desenhar labels de resultados parciais escalaResposta cores
                 #region Cliente
                 #region Resultado Parcial
                 Label labelclrp = new Label();
@@ -224,27 +224,27 @@ namespace ETdAnalyser.Camada_de_Interface
                 labelclcor.Location = new System.Drawing.Point(xmargin + xcolunacor - 5, ycoluna + 20);
                 labelclcor.Size = new System.Drawing.Size(150, 15);
 
-                if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Vermelho)
+                if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].IntervaloVermelho)
                 {
                     labelclcor.Text = "Vermelho";
                     //labelcl.ForeColor = Color.Red;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Laranja)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].IntervaloLaranja)
                 {
                     labelclcor.Text = "Laranja";
                     //labelcl.ForeColor = Color.Orange;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Amarelo)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].IntervaloAmarelo)
                 {
                     labelclcor.Text = " Amarelo";
                     //labelcl.ForeColor = Color.Yellow;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde_Lima)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].IntervaloVerdeLima)
                 {
                     labelclcor.Text = "Verde Lima";
                     //labelcl.ForeColor = Color.YellowGreen;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoQuestionarioGeral <= itens[j].IntervaloVerde)
                 {
                     labelclcor.Text = "Verde";
                     //labelcl.ForeColor = Color.Green;
@@ -275,27 +275,27 @@ namespace ETdAnalyser.Camada_de_Interface
                 labelpfcor.Size = new System.Drawing.Size(150, 15);
 
                 //double x = relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral;
-                if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Vermelho)
+                if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloVermelho)
                 {
                     labelpfcor.Text = "Vermelho";
                     //labelpfcor.ForeColor = Color.Red;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Laranja)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloLaranja)
                 {
                     labelpfcor.Text = "Laranja";
                     //labelpfcor.ForeColor = Color.Orange;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Amarelo)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloAmarelo)
                 {
                     labelpfcor.Text = "Amarelo";
                     //labelpfcor.ForeColor = Color.Yellow;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde_Lima)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloVerdeLima)
                 {
                     labelpfcor.Text = "Verde Lima";
                     //labelpfcor.ForeColor = Color.YellowGreen;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloVerde)
                 {
                     labelpfcor.Text = "Verde";
                     //labelpfcor.ForeColor = Color.Green;
@@ -323,27 +323,27 @@ namespace ETdAnalyser.Camada_de_Interface
                 labelancor.Location = new System.Drawing.Point(xmargin + xcolunacor - 5, ycoluna + 70);
                 labelancor.Size = new System.Drawing.Size(150, 15);
 
-                if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Vermelho)
+                if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].IntervaloVermelho)
                 {
                     labelancor.Text = "Vermelho";
                     //labelancor.ForeColor = Color.Red;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Laranja)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].IntervaloLaranja)
                 {
                     labelancor.Text = "Laranja";
                     //labelancor.ForeColor = Color.Orange;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Amarelo)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].IntervaloAmarelo)
                 {
                     labelancor.Text = "Amarelo";
                     //labelancor.ForeColor = Color.Yellow;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde_Lima)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].IntervaloVerdeLima)
                 {
                     labelancor.Text = "Verde Lima";
                     //labelancor.ForeColor = Color.YellowGreen;
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].Inter_Verde)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoCheckListGeral <= itens[j].IntervaloVerde)
                 {
                     labelancor.Text = "Verde";
                     //labelancor.ForeColor = Color.Green;
@@ -359,7 +359,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 checkBoxInsDt.TabIndex = 3;
                 checkBoxInsDt.TabStop = true;
                 checkBoxInsDt.Text = "Incluir resultado parcial no relatório";
-                if (relatorio.ListaResultados[czona][citem].mostraResultadosParciais)
+                if (relatorio.ListaResultados[czona][citem].MostrarResultadoParcial)
                     checkBoxInsDt.Checked = true;
                 else
                     checkBoxInsDt.Checked = false;
@@ -458,7 +458,7 @@ namespace ETdAnalyser.Camada_de_Interface
                     nudpndanalista.Enabled = true;
                 #endregion
 
-                #region Botões para alteração das ponderações e recálculo do resultado final
+                #region Botões para alteração das ponderações escalaResposta recálculo do resultado final
                 Button buttonpnd;
                 buttonpnd = new System.Windows.Forms.Button();
                 buttonpnd.BackColor = System.Drawing.SystemColors.Control;
@@ -538,31 +538,31 @@ namespace ETdAnalyser.Camada_de_Interface
 
                 curitem = itens[j];
 
-                if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Vermelho)
+                if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].IntervaloVermelho)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.vermelho;
                     //labeltxtimg.ForeColor = Color.Red;
                     labeltxtimg.Text = "Cor = Vermelho";
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Laranja)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].IntervaloLaranja)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.laranja;
                     //labeltxtimg.ForeColor = Color.Orange;
                     labeltxtimg.Text = "Cor = Laranja";
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Amarelo)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].IntervaloAmarelo)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.amarelo;
                     //labeltxtimg.ForeColor = Color.Yellow;
                     labeltxtimg.Text = "Cor = Amarelo";
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].IntervaloVerdeLima)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.lima;
                     //labeltxtimg.ForeColor = Color.YellowGreen;
                     labeltxtimg.Text = "Cor = Verde Lima";
                 }
-                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].Inter_Verde)
+                else if (relatorio.ListaResultados[czona][citem].ResultadoFinal <= itens[j].IntervaloVerde)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.verde;
                     //labeltxtimg.ForeColor = Color.Green;
@@ -595,7 +595,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 obstb.Size = new System.Drawing.Size(panelrel.Size.Width - 60, 50);
                 obstb.TabIndex = 4;
                 obstb.TabStop = true;
-                if(relatorio.ListaResultados[czona][citem].CheckObservacoes)
+                if(relatorio.ListaResultados[czona][citem].ObservacaoPreenchida)
                     obstb.Text = relatorio.ListaResultados[czona][citem].Observacao;
                 else
                     obstb.Text = "";
@@ -647,16 +647,16 @@ namespace ETdAnalyser.Camada_de_Interface
 
         private void checkBoxInsDt_CheckedChanged(object sender, EventArgs e)
         {
-            relatorio.ListaResultados[czona][citem].mostraResultadosParciais = checkBoxInsDt.Checked;
+            relatorio.ListaResultados[czona][citem].MostrarResultadoParcial = checkBoxInsDt.Checked;
         }
 
         private void obstb_TextChanged(object sender, EventArgs e)
         {
             relatorio.ListaResultados[czona][citem].Observacao = obstb.Text;
             if (obstb.Text == "")
-                relatorio.ListaResultados[czona][citem].CheckObservacoes = false;
+                relatorio.ListaResultados[czona][citem].ObservacaoPreenchida = false;
             else
-                relatorio.ListaResultados[czona][citem].CheckObservacoes = true;
+                relatorio.ListaResultados[czona][citem].ObservacaoPreenchida = true;
         }
 
         private void BotaoCancelar_Click(object sender, EventArgs e)
@@ -886,7 +886,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
                     #region Cor Resultado
                     oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Vermelho)
+                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].IntervaloVermelho)
                     {
                         Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.vermelhoWord);
                         oWord.Selection.Paste();
@@ -903,7 +903,7 @@ namespace ETdAnalyser.Camada_de_Interface
                         oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
                         oWord.Selection.TypeParagraph();
                     }
-                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Laranja)
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].IntervaloLaranja)
                     {
                         Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.laranjaWord);
                         oWord.Selection.Paste();
@@ -920,7 +920,7 @@ namespace ETdAnalyser.Camada_de_Interface
                         oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
                         oWord.Selection.TypeParagraph();
                     }
-                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Amarelo)
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].IntervaloAmarelo)
                     {
                         Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.amareloWord);
                         oWord.Selection.Paste();
@@ -937,7 +937,7 @@ namespace ETdAnalyser.Camada_de_Interface
                         oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
                         oWord.Selection.TypeParagraph();
                     }
-                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde_Lima)
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].IntervaloVerdeLima)
                     {
                         Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.limaWord);
                         oWord.Selection.Paste();
@@ -954,7 +954,7 @@ namespace ETdAnalyser.Camada_de_Interface
                         oWord.ActiveWindow.Selection.TypeText(relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal.ToString());
                         oWord.Selection.TypeParagraph();
                     }
-                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].Inter_Verde)
+                    else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFinal <= itens[j].IntervaloVerde)
                     {
                         Clipboard.SetImage(global::ETdAnalyser.Properties.Resources.verdeWord);
                         oWord.Selection.Paste();
@@ -979,7 +979,7 @@ namespace ETdAnalyser.Camada_de_Interface
                     #endregion
                     
                     #region Resultado Detalhado
-                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].mostraResultadosParciais)
+                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].MostrarResultadoParcial)
                     {
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
                         oWord.ActiveWindow.Selection.Font.Size = 14;
@@ -1026,27 +1026,27 @@ namespace ETdAnalyser.Camada_de_Interface
                         #region Cores
                         #region Cliente
 
-                        if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Vermelho)
+                        if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].IntervaloVermelho)
                     {
                         rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorRed;
                         rdTabela.Cell(2, 4).Range.Text = "Vermelho";
                     }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Laranja)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].IntervaloLaranja)
                     {
                         rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorOrange;
                         rdTabela.Cell(2, 4).Range.Text = "Laranja";
                     }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Amarelo)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].IntervaloAmarelo)
                     {
                         rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorYellow;
                         rdTabela.Cell(2, 4).Range.Text = "Amarelo";
                     }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde_Lima)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].IntervaloVerdeLima)
                     {
                         rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorLime;
                         rdTabela.Cell(2, 4).Range.Text = "Verde Lima";
                     }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].Inter_Verde)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoQuestionarioGeral <= itens[j].IntervaloVerde)
                     {
                         rdTabela.Cell(2, 4).Range.Font.Color = Word.WdColor.wdColorGreen;
                         rdTabela.Cell(2, 4).Range.Text = "Verde";
@@ -1054,27 +1054,27 @@ namespace ETdAnalyser.Camada_de_Interface
                         #endregion
 
                         #region Profissional
-                        if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Vermelho)
+                        if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloVermelho)
                         {
                             rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorRed;
                             rdTabela.Cell(3, 4).Range.Text = "Vermelho";
                         }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Laranja)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloLaranja)
                         {
                             rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorOrange;
                             rdTabela.Cell(3, 4).Range.Text = "Laranja";
                         }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Amarelo)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloAmarelo)
                         {
                             rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorYellow;
                             rdTabela.Cell(3, 4).Range.Text = "Amarelo";
                         }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde_Lima)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloVerdeLima)
                         {
                             rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorLime;
                             rdTabela.Cell(3, 4).Range.Text = "Verde Lima";
                         }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].Inter_Verde)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoFichaAvaliacaoGeral <= itens[j].IntervaloVerde)
                         {
                             rdTabela.Cell(3, 4).Range.Font.Color = Word.WdColor.wdColorGreen;
                             rdTabela.Cell(3, 4).Range.Text = "Verde";
@@ -1083,27 +1083,27 @@ namespace ETdAnalyser.Camada_de_Interface
                         #endregion
 
                         #region Analista
-                        if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Vermelho)
+                        if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].IntervaloVermelho)
                         {
                             rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorRed;
                             rdTabela.Cell(4, 4).Range.Text = "Vermelho";
                         }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Laranja)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].IntervaloLaranja)
                         {
                             rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorOrange;
                             rdTabela.Cell(4, 4).Range.Text = "Laranja";
                         }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Amarelo)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].IntervaloAmarelo)
                         {
                             rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorYellow;
                             rdTabela.Cell(4, 4).Range.Text = "Amarelo";
                         }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Verde_Lima)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].IntervaloVerdeLima)
                         {
                             rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorLime;
                             rdTabela.Cell(4, 4).Range.Text = "Verde Lima";
                         }
-                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].Inter_Verde)
+                        else if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ResultadoCheckListGeral <= itens[j].IntervaloVerde)
                         {
                             rdTabela.Cell(4, 4).Range.Font.Color = Word.WdColor.wdColorGreen;
                             rdTabela.Cell(4, 4).Range.Text = "Verde";
@@ -1124,7 +1124,7 @@ namespace ETdAnalyser.Camada_de_Interface
                     #endregion
 
                     #region Observações
-                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].CheckObservacoes)
+                    if (relatorio.ListaResultados[zonas[i].Codigo][itens[j].CodigoItem].ObservacaoPreenchida)
                     {
                         oWord.ActiveWindow.Selection.Font.Name = "Calibri (Body)";
                         oWord.ActiveWindow.Selection.Font.Size = 16;
@@ -1220,31 +1220,31 @@ namespace ETdAnalyser.Camada_de_Interface
                 else
                     labeltxtrespnd.Text = "Resultado Ponderado = " + String.Format("{0:0.##}", resfinal);
 
-                if (resfinal <= curitem.Inter_Vermelho)
+                if (resfinal <= curitem.IntervaloVermelho)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.vermelho;
                     //labeltxtimg.ForeColor = Color.Red;
                     labeltxtimg.Text = "Cor = Vermelho";
                 }
-                else if (resfinal <= curitem.Inter_Laranja)
+                else if (resfinal <= curitem.IntervaloLaranja)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.laranja;
                     //labeltxtimg.ForeColor = Color.Orange;
                     labeltxtimg.Text = "Cor = Laranja";
                 }
-                else if (resfinal <= curitem.Inter_Amarelo)
+                else if (resfinal <= curitem.IntervaloAmarelo)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.amarelo;
                     //labeltxtimg.ForeColor = Color.Yellow;
                     labeltxtimg.Text = "Cor = Amarelo";
                 }
-                else if (resfinal <= curitem.Inter_Verde_Lima)
+                else if (resfinal <= curitem.IntervaloVerdeLima)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.lima;
                     //labeltxtimg.ForeColor = Color.YellowGreen;
                     labeltxtimg.Text = "Cor = Verde Lima";
                 }
-                else if (resfinal <= curitem.Inter_Verde)
+                else if (resfinal <= curitem.IntervaloVerde)
                 {
                     corItem.Image = global::ETdAnalyser.Properties.Resources.verde;
                     //labeltxtimg.ForeColor = Color.Green;

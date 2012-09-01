@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceCriarAnaliseZonas : Form
     {
@@ -21,7 +21,7 @@ namespace ETdAnalyser.Camada_de_Interface
         public InterfaceCriarAnaliseZonas(List<string> zonas, string tipo, bool b)
         {
             done_action += new eventoEventHandler(
-                Camada_de_Interface.InterfaceCriarAnalise.ZonasOkReenc);
+                CamadaInterface.InterfaceCriarAnalise.ZonasOkReenc);
 
             InitializeComponent();
             this.tipo = tipo;

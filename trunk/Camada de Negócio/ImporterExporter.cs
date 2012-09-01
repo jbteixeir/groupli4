@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using ETdAnalyser.Camada_de_Dados.DataBaseCommunicator;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.DataBaseCommunicator;
+using ETdAnalyser.CamadaDados.Classes;
 using System.Windows.Forms;
 
 namespace ETdAnalyser.Camada_de_Negócio
@@ -35,7 +35,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 
 		#region importer!
 		/**
-		 * Le um ficheiro e coloca os dados na base de dados
+		 * Le um ficheiro escalaResposta coloca os dados na base de dados
 		 * Se nao conseguir retorna false, se conseguir retorna true
 		 * 
 		 * Na resosta modelo devem ser preenchidos TODOS os campos relativos à resposta,
@@ -94,17 +94,17 @@ namespace ETdAnalyser.Camada_de_Negócio
 
 								Resposta resposta = new Resposta(modelo);
 								//resposta.CodigoQuestionario = questionario.CodQuestionario;
-								resposta.NumeroPergunta = (float)perguntaReferente.Num_Pergunta;
-								resposta.CodigoZona = perguntaReferente.Cod_zona;
+								resposta.NumeroPergunta = (float)perguntaReferente.NumeroPergunta;
+								resposta.CodigoZona = perguntaReferente.CodigoZona;
 								// Aqui tem questionario se colocar a zona especial(reservada) que diz questionario a zona esta 
-								// na resposta do cliente, e no caso do ficheiro, vem no campo seguinte
-								if (perguntaReferente.Cod_zona == -1)
+								// na resposta do cliente, escalaResposta no caso do ficheiro, vem no campo seguinte
+								if (perguntaReferente.CodigoZona == -1)
 								{
 									resposta.CodigoZona = Convert.ToInt32(linhaD[i + 1]);
 									jump = true;
 								}
 
-								resposta.Cod_pergunta = perguntaReferente.Cod_Pergunta;
+								resposta.CodigoPergunta = perguntaReferente.CodigoPergunta;
 								resposta.Valor = Convert.ToInt16(linhaD[i]);
 
                                 MessageBox.Show(resposta.ToString());
@@ -121,7 +121,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 					foreach (string[] linhaD in dados)
 					{
 						FichaAvaliacao fichaAvaliacao = new FichaAvaliacao();
-						fichaAvaliacao.CodZona = zonas[j];
+						fichaAvaliacao.CodigoZona = zonas[j];
 						fichaAvaliacao.CodigoAnalise = modelo.CodigoAnalise;
 						FuncsToDataBase.insertFichaAvaliacao(fichaAvaliacao);
 
@@ -130,10 +130,10 @@ namespace ETdAnalyser.Camada_de_Negócio
 						{
 							PerguntaFichaAvaliacao perguntaReferente = perguntasFA.ElementAt<PerguntaFichaAvaliacao>(i);
 							Resposta resposta = new Resposta(modelo);
-							resposta.CodigoFichaAvaliacao = fichaAvaliacao.CodFichaAvaliacao;
-							resposta.NumeroPergunta = (float)perguntaReferente.Num_Pergunta;
+							resposta.CodigoFichaAvaliacao = fichaAvaliacao.CodigoFichaAvaliacao;
+							resposta.NumeroPergunta = (float)perguntaReferente.NumeroPergunta;
 
-							resposta.Cod_pergunta = perguntaReferente.Cod_Pergunta;
+							resposta.CodigoPergunta = perguntaReferente.CodigoPergunta;
 							resposta.Valor = Convert.ToInt16(linhaD[i]);
 
 							FuncsToDataBase.insertRespostaFichaAvaliacao(resposta);
@@ -177,7 +177,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 		}
 		protected static long extractCodQuestionario(Resposta resposta)
 		{
-			return resposta.Cod_questionario;
+			return resposta.CodigoQuestionario;
 		}
 
 		public static void exportaQuestionariosParaFicheiro(String datapathFile, long codigoAnalise)
@@ -195,12 +195,12 @@ namespace ETdAnalyser.Camada_de_Negócio
 			{
 				if (fst)
 				{
-					ultimoCodQuestionario = resposta.Cod_questionario;
+					ultimoCodQuestionario = resposta.CodigoQuestionario;
 					fst = false;
 				}
-				if (ultimoCodQuestionario == resposta.Cod_questionario) // se for um elemento intermedio
+				if (ultimoCodQuestionario == resposta.CodigoQuestionario) // se for um elemento intermedio
 				{
-					switch (resposta.Tipo_Resposta)
+					switch (resposta.GetTipoResposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
 							outputStream.Write(resposta.Valor + ";");
@@ -213,7 +213,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 				}
 				else
 				{
-					switch (resposta.Tipo_Resposta)
+					switch (resposta.GetTipoResposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
 							outputStream.WriteLine(resposta.Valor);
@@ -228,7 +228,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 		}
 		protected static long extrairCodigoFichaAvaliacao(Resposta resposta)
 		{
-			return resposta.Cod_fichaAvaliacao;
+			return resposta.CodigoFichaAvaliacao;
 		}
 		public static void exportaFichasDeAvaliacaoParaFicheiro(String datapathFile, long codigoAnalise)
 		{
@@ -245,12 +245,12 @@ namespace ETdAnalyser.Camada_de_Negócio
 			{
 				if (fst)
 				{
-					ultimoCodigoFichaAvaliacao = resposta.Cod_fichaAvaliacao;
+					ultimoCodigoFichaAvaliacao = resposta.CodigoFichaAvaliacao;
 					fst = false;
 				}
-				if (ultimoCodigoFichaAvaliacao == resposta.Cod_fichaAvaliacao) // se for um elemento intermedio
+				if (ultimoCodigoFichaAvaliacao == resposta.CodigoFichaAvaliacao) // se for um elemento intermedio
 				{
-					switch (resposta.Tipo_Resposta)
+					switch (resposta.GetTipoResposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
 							outputStream.Write(resposta.Valor + ";");
@@ -263,7 +263,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 				}
 				else
 				{
-					switch (resposta.Tipo_Resposta)
+					switch (resposta.GetTipoResposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
 							outputStream.WriteLine(resposta.Valor);
@@ -304,7 +304,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 				}
 				if (ultimoItem == resposta.CodigoItem) // se for um elemento intermedio
 				{
-					switch (resposta.Tipo_Resposta)
+					switch (resposta.GetTipoResposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
 							streamWriter.Write(resposta.Valor + ";");
@@ -315,7 +315,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 				}
 				else
 				{
-					switch (resposta.Tipo_Resposta)
+					switch (resposta.GetTipoResposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
 							streamWriter.WriteLine(resposta.Valor);

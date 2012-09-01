@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ETdAnalyser.Camada_de_Dados.ETdA;
+using ETdAnalyser.CamadaDados.ETdA;
 
 namespace ETdAnalyser.Camada_de_Negócio
 {
@@ -11,37 +11,37 @@ namespace ETdAnalyser.Camada_de_Negócio
         // s_final
         public static void init()
         {
-            Camada_de_Dados.ETdA.ETdA.init();
+            CamadaDados.ETdA.ETdA.init();
         }
 
         // s_final
         public static Dictionary<long, string> Cod_names_Projects()
         {
-            return Camada_de_Dados.ETdA.ETdA.Codes_Nomes_Projectos;
+            return CamadaDados.ETdA.ETdA.Codes_Nomes_Projectos;
         }
 
         // s_final
         public static Dictionary<long, string> projectosRecentes()
         {
-            return Camada_de_Dados.ETdA.ETdA.projectosRecentes();
+            return CamadaDados.ETdA.ETdA.projectosRecentes();
         }
 
         // s_final
         public static void abreProjecto(long codigoProjecto)
         {
-            Camada_de_Dados.ETdA.ETdA.abreProjecto(codigoProjecto);
+            CamadaDados.ETdA.ETdA.abreProjecto(codigoProjecto);
         }
 
         // s_final
         public static Boolean podeCriarProjecto(String nomeProjecto)
         {
-            return Camada_de_Dados.ETdA.ETdA.podeAdicionarProjecto(nomeProjecto);
+            return CamadaDados.ETdA.ETdA.podeAdicionarProjecto(nomeProjecto);
         }
 
         // s_final
         public static void criaProjecto(String nomeProjecto)
         {
-            Camada_de_Dados.ETdA.ETdA.adicionaNovoProjecto(nomeProjecto);
+            CamadaDados.ETdA.ETdA.adicionaNovoProjecto(nomeProjecto);
         }
     }
 }

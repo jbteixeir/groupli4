@@ -4,11 +4,11 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Linq;
 using System.IO;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.Classes;
 using ETdAnalyser.Camada_de_Negócio;
-using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
+using ETdAnalyser.CamadaDados.Classes.Estruturas;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceImporter : Form
     {
@@ -43,7 +43,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                        if (!ie.ler_ficheiro(checkBox1.Checked))
+                        if (!ie.LerFicheiro(checkBox1.Checked))
                             MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
@@ -55,7 +55,7 @@ namespace ETdAnalyser.Camada_de_Interface
                         }
                         break;
                     case 1:
-                        if (!ie.ler_ficheiro(checkBox1.Checked))
+                        if (!ie.LerFicheiro(checkBox1.Checked))
                             MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
@@ -67,7 +67,7 @@ namespace ETdAnalyser.Camada_de_Interface
                         }
                         break;
                     case 2:
-                        if (!ie.ler_ficheiro(checkBox1.Checked))
+                        if (!ie.LerFicheiro(checkBox1.Checked))
                             MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {

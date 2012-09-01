@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ETdAnalyser.Camada_de_Negócio;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.Classes;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceGestaoRespostas : Form
     {
@@ -29,10 +29,10 @@ namespace ETdAnalyser.Camada_de_Interface
 
             if (fa)
                 done_action += new eventoEventHandler(
-                   Camada_de_Interface.InterfacePerguntas.reenc_New_Anser);
+                   CamadaInterface.InterfacePerguntas.reenc_New_Anser);
             else
                 done_action += new eventoEventHandler(
-                   Camada_de_Interface.InterfacePerguntasQT.reenc_New_Anser);
+                   CamadaInterface.InterfacePerguntasQT.reenc_New_Anser);
 
             num_pergunta = num_perg;
             resps = GestaodeRespostas.getTipResposta();
@@ -106,7 +106,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 string key = panel1.Controls[0].Text;
                 int indice = int.Parse(panel1.Controls[1].Text.Split(' ')[1]);
 
-                long cod = resps[key][indice].Codigo;
+                long cod = resps[key][indice].CodigoTipo;
 
                 List<object> sender2 = new List<object>();
                 sender2.Add(num_pergunta);
@@ -225,7 +225,7 @@ namespace ETdAnalyser.Camada_de_Interface
                     cb.SelectedIndexChanged += new System.EventHandler(IndexChanchedEvent);
                     panel1.Controls.Add(cb);
 
-                    if (te.Default == 0)
+                    if (te.TipoPredefinido == 0)
                     {
                         cb.Enabled = true;
                         Label l3 = new System.Windows.Forms.Label();
@@ -242,7 +242,7 @@ namespace ETdAnalyser.Camada_de_Interface
                     i++;
                 }
 
-                if (te.Default == 0)
+                if (te.TipoPredefinido == 0)
                 {
                     Label l3 = new System.Windows.Forms.Label();
                     l3.Text = "Novo";
@@ -286,7 +286,7 @@ namespace ETdAnalyser.Camada_de_Interface
                     cb.SelectedIndexChanged += new System.EventHandler(IndexChanchedEvent);
                     panel1.Controls.Add(cb);
 
-                    if (te.Default == 0)
+                    if (te.TipoPredefinido == 0)
                     {
                         cb.Enabled = true;
 
@@ -303,7 +303,7 @@ namespace ETdAnalyser.Camada_de_Interface
                     y += 30;
                     i++;
                 }
-                if (te.Default == 0)
+                if (te.TipoPredefinido == 0)
                 {
                     Label l3 = new System.Windows.Forms.Label();
                     l3.Text = "Novo";
@@ -354,7 +354,7 @@ namespace ETdAnalyser.Camada_de_Interface
             {
                 if (!verificaExiste(te, value))
                 {
-                    EscalaResposta er = new EscalaResposta(te.Codigo, value, te.Respostas.Count + 1);
+                    EscalaResposta er = new EscalaResposta(te.CodigoTipo, value, te.Respostas.Count + 1);
                     List<EscalaResposta> lst = te.Respostas;
                     lst.Add(er);
                     te.Respostas = lst;
@@ -601,7 +601,7 @@ namespace ETdAnalyser.Camada_de_Interface
             string key = l.Name;
             string k = key.Split(' ')[0];
             int ind = int.Parse(key.Split(' ')[1]);
-            if (resps[k][ind].Default == 0)
+            if (resps[k][ind].TipoPredefinido == 0)
             {
                 resps[k].RemoveAt(ind);
                 if (resps[k].Count == 0)

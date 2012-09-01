@@ -5,64 +5,64 @@ using System.Text;
 using System.IO;
 using ETdAnalyser.Camada_de_Negócio;
 using System.Windows;
-using ETdAnalyser.Camada_de_Dados.Classes.Verificador;
-using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
+using ETdAnalyser.CamadaDados.Classes.Verificador;
+using ETdAnalyser.CamadaDados.Classes.Estruturas;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class Importer
     {
         #region Variáveis de intância
 
         /* Varáveis para criar Classe */
-        private long cod_analise;
+        private long codigoAnalise;
         private string caminho;
         private StreamReader ficheiro;
 
         /* Variáveis para retirar as colunas das respostas (tanto do cabeçalho como da 1ª linha de respostas)*/
-        private string[] colunas_respostas;
+        private string[] colunasRespostas;
         private Dictionary<int, string[]> valores;
 
         /* Variáveis dos resultados */
         private List<Formulario> formularios;
 
         /* Erros dos resultados */
-        private Dictionary<int,Enums.Resultado_Importacao[]> resultados_importacao;
+        private Dictionary<int,Enums.Resultado_Importacao[]> resultadosImportacao;
 
         /* Variáveis quando existe erro */
         private string erro;
-        private int linha_erro;
-        private float numero_pergunta_erro;
+        private int linhaErro;
+        private float numeroPerguntaErro;
 
         /* Variáveis estáticas dos erros */
-        private string erro_nomes_colunas = "Erro ao ler ficheiro.\nFicheiro vazio.";
+        private string erroNomesColunas = "Erro ao ler ficheiro.\nFicheiro vazio.";
 
-        private string erro_numero_respostas = "Formulário sem todas as respostas às perguntas.";
-        private string erro_repostastas_vazias = "Formulário sem resposta a uma ou mais perguntas.";
-        private string erro_valores_respostas = "Formulário com reposta cujo valor não está de acordo com a escala da pergunta.";
+        private string erroNumeroRespostas = "Formulário sem todas as respostas às perguntas.";
+        private string erroRespostasVazias = "Formulário sem resposta a uma ou mais perguntas.";
+        private string erroValoresRespostas = "Formulário com reposta cujo valor não está de acordo com a escala da pergunta.";
 
-        private string erro_perguntas = "Não foram encontradas as perguntas de respectivo formulário para esta analise.";
+        private string erroPerguntas = "Não foram encontradas as perguntas de respectivo formulário para esta analise.";
 
 
         #endregion
 
         #region Construtores
 
-        public Importer(long _cod_analise, string _caminho)
+        public Importer(long codigoAnalise, string caminho)
         {
-            cod_analise = _cod_analise;
-            caminho = _caminho;
-            ficheiro = new StreamReader(_caminho);
+            this.codigoAnalise = codigoAnalise;
+            this.caminho = caminho;
+            this.ficheiro = new StreamReader(caminho);
         }
 
         #endregion
 
-        #region Gets e Sets
+        #region Gets escalaResposta Sets
 
         // Colunas das respostas
         public string[] Colunas
         {
-            get { return colunas_respostas; }
+            get { return colunasRespostas; }
         }
         public Dictionary<int, string[]> Valores
         {
@@ -74,13 +74,13 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         {
             get { return erro; }
         }
-        public int Linha_Erro
+        public int LinhaErro
         {
-            get { return linha_erro; }
+            get { return linhaErro; }
         }
-        public float Numero_Pergunta_Erro
+        public float NumeroPerguntaErro
         {
-            get { return numero_pergunta_erro; }
+            get { return numeroPerguntaErro; }
         }
 
         // Resultados
@@ -90,7 +90,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         }
         public Dictionary<int, Enums.Resultado_Importacao[]> Resultados
         {
-            get { return resultados_importacao; }
+            get { return resultadosImportacao; }
         }
 
         #endregion
@@ -98,7 +98,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         #region Métodos
 
         #region Ler Ficheiro
-        public bool ler_ficheiro(bool tem_cabecalho)
+        public bool LerFicheiro(bool temCabecalho)
         {
             // inicializar a variável onde vai ficar guardada a info
             valores = new Dictionary<int, string[]>();
@@ -107,17 +107,17 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             string linha;
             if ((linha = ficheiro.ReadLine()) != null)
             {
-                if (tem_cabecalho)
+                if (temCabecalho)
                 {
-                    colunas_respostas = linha.Split(';');
+                    colunasRespostas = linha.Split(';');
                     num_linha = 0;
                 }
                 else
                 {
                     string[] vs = linha.Split(';');
-                    colunas_respostas = new string[vs.Length];
+                    colunasRespostas = new string[vs.Length];
                     for (int i = 0; i < vs.Length; i++)
-                        colunas_respostas[i] = vs[i];
+                        colunasRespostas[i] = vs[i];
                     valores.Add(1, vs);
                     num_linha = 1;
                 }
@@ -132,7 +132,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             }
             else
             {
-                erro = erro_nomes_colunas;
+                erro = erroNomesColunas;
                 return false;
             }
         }
@@ -140,59 +140,59 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         #region Questionario
 
-        public bool importar_questionario(
+        public bool ImportarQuestionario(
             // modo como vai ser tratado se o numero de respostas nao esta correcto
-            Enums.Numero_Respostas _modo_num_respostas,
+            Enums.Numero_Respostas modoNumRespostas,
             // modo como vai ser tratado se existirem respostas sem resposta
-            Enums.Respostas_Vazias _modo_respostas_vazias,
+            Enums.Respostas_Vazias modoRespostasVazias,
             // modo como vai ser tratado se os valores das respostas nao estarem de acordo com as respostas das perguntas
-            Enums.Valores_Respostas _modo_valores_respostas, 
-            List<Zona> _zonas,
-            List<PerguntaQuestionario> _pergs,
+            Enums.Valores_Respostas modoValoresRespostas, 
+            List<Zona> zonas,
+            List<PerguntaQuestionario> perguntas,
             // assiciacao da pergunta à coluna (nao esquecer perguntas checkbox, que podem ser mais de uma coluna)
-            Dictionary<float, List<int>> _perguntas_colunas_ficheiro,
+            Dictionary<float, List<int>> perguntasVolunasFicheiro,
             // Mapa dos codigos zonas
-            Dictionary<int,Zona> mapa_coluna_zona) 
+            Dictionary<int,Zona> mapaColunaZona) 
         {
             formularios = new List<Formulario>();
             bool continuar = true;
-            bool continuar_formulario = true;
+            bool continuarFormulario = true;
 
             // iniciar varável dos resultados
-            resultados_importacao = new Dictionary<int, Enums.Resultado_Importacao[]>();
+            resultadosImportacao = new Dictionary<int, Enums.Resultado_Importacao[]>();
 
             // para cada linha do ficheiro ...
             for (int i = 0; i < valores.Keys.Count && continuar; i++)
             {
-                continuar_formulario = true;
+                continuarFormulario = true;
                 // retirar o numero da linha
                 int num_linha = valores.Keys.ElementAt(i); 
                 // verificar se o número de colunas está correcto
-                verifica_numero_colunas(num_linha, _perguntas_colunas_ficheiro, _pergs, _modo_num_respostas, 
-                    ref continuar, ref continuar_formulario);
+                VerificaNumeroColunas(num_linha, perguntasVolunasFicheiro, perguntas, modoNumRespostas, 
+                    ref continuar, ref continuarFormulario);
 
-                // se continuar a importacao e a importacao do formulario ...
-                if (continuar && continuar_formulario)
+                // se continuar a importacao escalaResposta a importacao do formulario ...
+                if (continuar && continuarFormulario)
                 {
                     // importar linha
-                    List<Resposta> respostas = importar_linha_questionario(num_linha, _modo_respostas_vazias, _modo_valores_respostas, _zonas, _pergs, _perguntas_colunas_ficheiro, mapa_coluna_zona,ref continuar, ref continuar_formulario);
+                    List<Resposta> respostas = ImportarLinhaQuestionario(num_linha, modoRespostasVazias, modoValoresRespostas, zonas, perguntas, perguntasVolunasFicheiro, mapaColunaZona,ref continuar, ref continuarFormulario);
 
-                    // se nao houveram erros e se foram importadas algumas respostas
-                    if (continuar && continuar_formulario  && respostas.Count != 0)
+                    // se nao houveram erros escalaResposta se foram importadas algumas respostas
+                    if (continuar && continuarFormulario  && respostas.Count != 0)
                     {
                         // Criar um questionario com essas respostas
                         Questionario q = new Questionario();
-                        q.CodigoAnalise = cod_analise;
-                        //q.Cod_Questionario = GestaodeRespostas.insere_questionario(q);
+                        q.CodigoAnalise = codigoAnalise;
+                        //q.CodigoQuestionario = GestaodeRespostas.insere_questionario(q);
 
                         foreach (Resposta r in respostas)
                         {
-                            if (r.Tipo_Resposta == Resposta.TipoResposta.RespostaNum)
-                                q.add_resposta_numero(r);
-                            else if (r.Tipo_Resposta == Resposta.TipoResposta.RespostaStr)
-                                q.add_resposta_string(r);
+                            if (r.GetTipoResposta == Resposta.TipoResposta.RespostaNum)
+                                q.AdicionarRespostaNumero(r);
+                            else if (r.GetTipoResposta == Resposta.TipoResposta.RespostaStr)
+                                q.AdicionarRespostaString(r);
                             else
-                                q.add_resposta_memo(r);
+                                q.AdicionarRespostaMemo(r);
                         }
                         formularios.Add(q);
                     }
@@ -201,88 +201,88 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             return continuar;
         }
 
-        private List<Resposta> importar_linha_questionario(
+        private List<Resposta> ImportarLinhaQuestionario(
             // numero da linha no ficheiro
-            int num_linha,
+            int numeroLinha,
             // como tratar respostas sem resposta
-            Enums.Respostas_Vazias _modo_respostas_vazias,
+            Enums.Respostas_Vazias modoRespostasVazias,
             // como tratar respostas com valores absurdos
-            Enums.Valores_Respostas _modo_valores_respostas, 
-            List<Zona> _zonas,
-            List<PerguntaQuestionario> _pergs,
+            Enums.Valores_Respostas modoValoresRespostas, 
+            List<Zona> zonas,
+            List<PerguntaQuestionario> perguntas,
             // associacao das perguntas com colunas
-            Dictionary<float, List<int>> _perguntas_colunas_ficheiro,
+            Dictionary<float, List<int>> perguntasColunasFicheiro,
             // Mapa Coluna-Zona que corresponde 
-            Dictionary<int,Zona> mapa_coluna_zona,
+            Dictionary<int,Zona> mapaColunaZona,
             // se cotinuar importacao
             ref bool continuar,
             // se continuar a importar este formulario
-            ref bool continuar_formulario)
+            ref bool continuarFormulario)
         {
             List<Resposta> respostas = new List<Resposta>();
-            string[] valores_linha = valores[num_linha];
-            bool continuar_pergunta;
+            string[] valoresLinha = valores[numeroLinha];
+            bool continuarPergunta;
 
-            // Iniciar o array de resultados e inicializa-los como SR
-            Enums.Resultado_Importacao[] results = new Enums.Resultado_Importacao[valores_linha.Length];
-            for (int i=0;i<valores_linha.Length;i++)
+            // Iniciar o array de resultados escalaResposta inicializa-los como SR
+            Enums.Resultado_Importacao[] results = new Enums.Resultado_Importacao[valoresLinha.Length];
+            for (int i=0;i<valoresLinha.Length;i++)
                 results[i] = Enums.Resultado_Importacao.SR;
 
 
-            for (int i = 0; i < _perguntas_colunas_ficheiro.Keys.Count && continuar && continuar_formulario; i++)
+            for (int i = 0; i < perguntasColunasFicheiro.Keys.Count && continuar && continuarFormulario; i++)
             {
-                continuar_pergunta = true;
-                PerguntaQuestionario perg_associada = getPerguntaByNum( _perguntas_colunas_ficheiro.Keys.ElementAt(i),_pergs);
-                TipoEscala ti = GestaodeRespostas.getTipoEscala(perg_associada.Cod_TipoEscala);
+                continuarPergunta = true;
+                PerguntaQuestionario perg_associada = GetPerguntaPorNumero( perguntasColunasFicheiro.Keys.ElementAt(i),perguntas);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(perg_associada.CodigoTipoEscala);
 
                 List<string> campos = new List<string>();
 
-                foreach(int num_coluna in _perguntas_colunas_ficheiro[perg_associada.Num_Pergunta])
-                    campos.Add(valores[num_linha][num_coluna]); // retirar os varios campos da pergunta
+                foreach(int num_coluna in perguntasColunasFicheiro[perg_associada.NumeroPergunta])
+                    campos.Add(valores[numeroLinha][num_coluna]); // retirar os varios campos da pergunta
 
-                // verificar se estes campos estao correctos e de acordo com o esperado
-                for (int j = 0; j < campos.Count && continuar && continuar_formulario && continuar_pergunta; j++ )
-                   results[_perguntas_colunas_ficheiro[perg_associada.Num_Pergunta].ElementAt(j)] = 
-                       verifica_campo(num_linha, campos[j], _modo_respostas_vazias, _modo_valores_respostas, perg_associada, 
-                       ref continuar, ref continuar_formulario, ref continuar_pergunta);
+                // verificar se estes campos estao correctos escalaResposta de acordo com o esperado
+                for (int j = 0; j < campos.Count && continuar && continuarFormulario && continuarPergunta; j++ )
+                   results[perguntasColunasFicheiro[perg_associada.NumeroPergunta].ElementAt(j)] = 
+                       VerificaCampo(numeroLinha, campos[j], modoRespostasVazias, modoValoresRespostas, perg_associada, 
+                       ref continuar, ref continuarFormulario, ref continuarPergunta);
 
-                if (continuar && continuar_formulario && continuar_pergunta)
+                if (continuar && continuarFormulario && continuarPergunta)
                 {
                     long cod_zona = -1;
-                    if (perg_associada.Cod_zona == 0)
+                    if (perg_associada.CodigoZona == 0)
                     {
                         // se é preciso colocar a zona como resposta
-                        string campo2 = valores[num_linha][_perguntas_colunas_ficheiro[perg_associada.Num_Pergunta][0]+1];
+                        string campo2 = valores[numeroLinha][perguntasColunasFicheiro[perg_associada.NumeroPergunta][0]+1];
                         
                         if ( !campo2.Equals("") && short.Parse(campo2) <= 0)
-                            results[_perguntas_colunas_ficheiro[perg_associada.Num_Pergunta].ElementAt(0) + 1] = 
+                            results[perguntasColunasFicheiro[perg_associada.NumeroPergunta].ElementAt(0) + 1] = 
                                 Enums.Resultado_Importacao.Insucesso;
                         else
-                            results[_perguntas_colunas_ficheiro[perg_associada.Num_Pergunta].ElementAt(0) + 1] =
+                            results[perguntasColunasFicheiro[perg_associada.NumeroPergunta].ElementAt(0) + 1] =
                                 Enums.Resultado_Importacao.Sucesso;
 
                         if (campo2.Equals("")) cod_zona = 0;
-                        else cod_zona = mapa_coluna_zona[short.Parse(campo2)].Codigo;
+                        else cod_zona = mapaColunaZona[short.Parse(campo2)].Codigo;
                     }
-                    if (continuar && continuar_formulario && continuar_pergunta)
+                    if (continuar && continuarFormulario && continuarPergunta)
                     {
-                        List<Resposta> resps = get_resposta(campos,cod_zona,perg_associada,ti,_zonas);
+                        List<Resposta> resps = GetResposta(campos,cod_zona,perg_associada,ti,zonas);
                         foreach (Resposta resp in resps)
                             respostas.Add(resp);
                     }
                 }
             }
 
-            if (respostas.Count == 0 || !continuar_formulario)
+            if (respostas.Count == 0 || !continuarFormulario)
             {
                 results = new Enums.Resultado_Importacao[1];
                 results[0] = Enums.Resultado_Importacao.Insucesso;
             }
-            resultados_importacao[num_linha] = results;
+            resultadosImportacao[numeroLinha] = results;
             return respostas;
         }
 
-        private List<Resposta> get_resposta(
+        private List<Resposta> GetResposta(
             List<string> campos, 
             long cod_zona, 
             PerguntaQuestionario p, 
@@ -309,40 +309,40 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 }
 
                 if ( (!p.TipoQuestao.Equals("qe")) ||
-                     (p.Cod_zona != 0 && p.Cod_zona != 1) ||
-                     (p.Cod_zona == 0 && cod_zona != 0) )
+                     (p.CodigoZona != 0 && p.CodigoZona != 1) ||
+                     (p.CodigoZona == 0 && cod_zona != 0) )
                 {
                     Resposta resp = new Resposta(
-                    cod_analise,
+                    codigoAnalise,
                     -1, -1, -1,
-                    p.Num_Pergunta,
-                    p.Cod_Item,
-                    p.Cod_zona != 0 ? p.Cod_zona : cod_zona,
+                    p.NumeroPergunta,
+                    p.CodigoItem,
+                    p.CodigoZona != 0 ? p.CodigoZona : cod_zona,
                     i_valor,
                     s_valor,
                     -1, // Nao faço a mínima para que serve isto
                     ti.Numero != 0 ? Resposta.TipoResposta.RespostaNum : Resposta.TipoResposta.RespostaStr);
 
-                    resp.Cod_pergunta = p.Cod_Pergunta;
+                    resp.CodigoPergunta = p.CodigoPergunta;
 
                     resps.Add(resp);
                 }
-                else if ( p.TipoQuestao.Equals("qe") && (p.Cod_zona == 1 || (p.Cod_zona == 0 && cod_zona == 0)))
+                else if ( p.TipoQuestao.Equals("qe") && (p.CodigoZona == 1 || (p.CodigoZona == 0 && cod_zona == 0)))
                 {
                     foreach (Zona z in zonas)
                     {
                         Resposta resp = new Resposta(
-                            cod_analise,
+                            codigoAnalise,
                             -1, -1, -1,
-                            p.Num_Pergunta,
-                            p.Cod_Item,
+                            p.NumeroPergunta,
+                            p.CodigoItem,
                             z.Codigo,
                             i_valor,
                             s_valor,
                             -1, // Nao faço a mínima para que serve isto
                             ti.Numero != 0 ? Resposta.TipoResposta.RespostaNum : Resposta.TipoResposta.RespostaStr);
 
-                        resp.Cod_pergunta = p.Cod_Pergunta;
+                        resp.CodigoPergunta = p.CodigoPergunta;
 
                         resps.Add(resp);
                     }
@@ -352,7 +352,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         }
 
         #region verificar Erros
-        private void verifica_numero_colunas(
+        private void VerificaNumeroColunas(
             int num_linha,
             Dictionary<float, List<int>> _perguntas_colunas_ficheiro,
             List<PerguntaQuestionario> _pergs,
@@ -360,12 +360,12 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             ref bool continuar,
             ref bool continuar_formulario)
         {
-            if (!tem_colunas_necessarias(num_linha, _perguntas_colunas_ficheiro, _pergs))
+            if (!TemColunasNecessarias(num_linha, _perguntas_colunas_ficheiro, _pergs))
             {
                 if (_modo_num_respostas == Enums.Numero_Respostas.Sair_Numero)
                 {
-                    erro = erro_numero_respostas;
-                    linha_erro = num_linha;
+                    erro = erroNumeroRespostas;
+                    linhaErro = num_linha;
                     continuar = false;
                     continuar_formulario = false;
                 }
@@ -373,13 +373,13 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 {
                     Enums.Resultado_Importacao[] results = new Enums.Resultado_Importacao[1];
                     results[0] = Enums.Resultado_Importacao.Insucesso;
-                    resultados_importacao.Add(num_linha,results);
+                    resultadosImportacao.Add(num_linha,results);
                     continuar_formulario = false;
                 }
            }
         }
 
-        public Enums.Resultado_Importacao verifica_campo(
+        public Enums.Resultado_Importacao VerificaCampo(
             int num_linha,
             string _campo,
             Enums.Respostas_Vazias _modo_respostas_vazias,
@@ -397,9 +397,9 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             {
                 if (_modo_respostas_vazias == Enums.Respostas_Vazias.Sair_Vazias)
                 {
-                    erro = erro_repostastas_vazias;
-                    linha_erro = num_linha;
-                    numero_pergunta_erro = _perg.Num_Pergunta;
+                    erro = erroRespostasVazias;
+                    linhaErro = num_linha;
+                    numeroPerguntaErro = _perg.NumeroPergunta;
                     result = Enums.Resultado_Importacao.Insucesso;
                     continuar = false;
                 }
@@ -422,7 +422,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             }
             #endregion
 
-            TipoEscala ti = GestaodeRespostas.getTipoEscala(_perg.Cod_TipoEscala);
+            TipoEscala ti = GestaodeRespostas.getTipoEscala(_perg.CodigoTipoEscala);
 
             #region Teste Valor Resposta
 
@@ -434,9 +434,9 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             {
                 if (_modo_valores_respostas == Enums.Valores_Respostas.Sair_Valores)
                 {
-                    erro = erro_valores_respostas;
-                    linha_erro = num_linha;
-                    numero_pergunta_erro = _perg.Num_Pergunta;
+                    erro = erroValoresRespostas;
+                    linhaErro = num_linha;
+                    numeroPerguntaErro = _perg.NumeroPergunta;
                     result = Enums.Resultado_Importacao.Insucesso;
                     continuar = false;
                 }
@@ -464,36 +464,36 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         #endregion
 
         #region Cenas
-        private PerguntaQuestionario getPerguntaByNum(float num, List<PerguntaQuestionario> ps)
+        private PerguntaQuestionario GetPerguntaPorNumero(float num, List<PerguntaQuestionario> ps)
         {
             for (int i = 0; i < ps.Count; i++)
-                if (ps[i].Num_Pergunta == num)
+                if (ps[i].NumeroPergunta == num)
                     return ps[i];
             return null;
         }
 
-        private bool tem_colunas_necessarias(int linha, Dictionary<float, List<int>> _perguntas_colunas_ficheiro, List<PerguntaQuestionario> _pergs)
+        private bool TemColunasNecessarias(int linha, Dictionary<float, List<int>> _perguntas_colunas_ficheiro, List<PerguntaQuestionario> _pergs)
         {
             int num_colunas_necessarias = 0;
 
             for (int i = 0; i < _perguntas_colunas_ficheiro.Keys.Count; i++)
             {
-                PerguntaQuestionario p = getPerguntaByNum(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
-                TipoEscala ti = GestaodeRespostas.getTipoEscala(p.Cod_TipoEscala);
+                PerguntaQuestionario p = GetPerguntaPorNumero(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(p.CodigoTipoEscala);
 
                 if (ti.Numero == -2)
                     num_colunas_necessarias += ti.Respostas.Count;
                 else
                     num_colunas_necessarias++;
 
-                if (p.Cod_zona == 0)
+                if (p.CodigoZona == 0)
                     num_colunas_necessarias++;
             }
             return valores[linha].Length >= num_colunas_necessarias;
         }
         #endregion
 
-        public void submeteQuestionarios()
+        public void SubmeteQuestionarios()
         {
             if (formularios.Count > 0)
                 foreach (Questionario q in formularios)
@@ -504,7 +504,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         #region Ficha Avaliacao
 
-        public bool importar_ficha_avaliacao(
+        public bool ImportarFichaAvaliacao(
             // modo como vai ser tratado se o numero de respostas nao esta correcto
             Enums.Numero_Respostas _modo_num_respostas, 
             // modo como vai ser tratado se existirem respostas sem resposta
@@ -528,7 +528,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 MessageBox.Show("Zona Cod: " + z.Codigo);
 
             // iniciar varável dos resultados
-            resultados_importacao = new Dictionary<int, Enums.Resultado_Importacao[]>();
+            resultadosImportacao = new Dictionary<int, Enums.Resultado_Importacao[]>();
 
             // para cada linha do ficheiro ...
             for (int i = 0; i < valores.Keys.Count && continuar; i++)
@@ -543,32 +543,32 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 // retirar o numero da linha
                 int num_linha = valores.Keys.ElementAt(i);
                 // verificar se o número de colunas está correcto
-                verifica_numero_colunas_fa(num_linha, _perguntas_colunas_ficheiro, _pergs, _modo_num_respostas,
+                VerificaNumeroColunasFichaAvaliacao(num_linha, _perguntas_colunas_ficheiro, _pergs, _modo_num_respostas,
                     ref continuar, ref continuar_formulario);
 
-                // se continuar a importacao e a importacao do formulario ...
+                // se continuar a importacao escalaResposta a importacao do formulario ...
                 if (continuar && continuar_formulario)
                 {
                     // importar linha
-                    List<Resposta> respostas = importar_linha_ficha_avaliacao(num_linha, _modo_respostas_vazias, _modo_valores_respostas, _zonas, _pergs, _perguntas_colunas_ficheiro, cod_zona, ref continuar, ref continuar_formulario);
+                    List<Resposta> respostas = ImportarLinhaFichaAvaliacao(num_linha, _modo_respostas_vazias, _modo_valores_respostas, _zonas, _pergs, _perguntas_colunas_ficheiro, cod_zona, ref continuar, ref continuar_formulario);
 
-                    // se nao houveram erros e se foram importadas algumas respostas
+                    // se nao houveram erros escalaResposta se foram importadas algumas respostas
                     if (continuar && continuar_formulario && respostas.Count != 0)
                     {
                         // Criar um questionario com essas respostas
                         FichaAvaliacao fa = new FichaAvaliacao();
-                        fa.CodigoAnalise = cod_analise;
-                        fa.CodZona = cod_zona;
-                        //q.Cod_Questionario = GestaodeRespostas.insere_questionario(q);
+                        fa.CodigoAnalise = codigoAnalise;
+                        fa.CodigoZona = cod_zona;
+                        //q.CodigoQuestionario = GestaodeRespostas.insere_questionario(q);
 
                         foreach (Resposta r in respostas)
                         {
-                            if (r.Tipo_Resposta == Resposta.TipoResposta.RespostaNum)
-                                fa.add_resposta_numero(r);
-                            else if (r.Tipo_Resposta == Resposta.TipoResposta.RespostaStr)
-                                fa.add_resposta_string(r);
+                            if (r.GetTipoResposta == Resposta.TipoResposta.RespostaNum)
+                                fa.adicionarRespostaNumero(r);
+                            else if (r.GetTipoResposta == Resposta.TipoResposta.RespostaStr)
+                                fa.adicionarRespostaString(r);
                             else
-                                fa.add_resposta_memo(r);
+                                fa.adicionarRespostaMemo(r);
                         }
                         formularios.Add(fa);
                     }
@@ -577,7 +577,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             return continuar;
         }
 
-        private List<Resposta> importar_linha_ficha_avaliacao(
+        private List<Resposta> ImportarLinhaFichaAvaliacao(
             // numero da linha no ficheiro
             int num_linha,
             // como tratar respostas sem resposta
@@ -598,7 +598,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             string[] valores_linha = valores[num_linha];
             bool continuar_pergunta;
 
-            // Iniciar o array de resultados e inicializa-los como SR
+            // Iniciar o array de resultados escalaResposta inicializa-los como SR
             Enums.Resultado_Importacao[] results = new Enums.Resultado_Importacao[valores_linha.Length];
             for (int i = 0; i < valores_linha.Length; i++)
                 results[i] = Enums.Resultado_Importacao.SR;
@@ -607,25 +607,25 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             for (int i = 0; i < _perguntas_colunas_ficheiro.Keys.Count && continuar && continuar_formulario; i++)
             {
                 continuar_pergunta = true;
-                PerguntaFichaAvaliacao perg_associada = getPerguntaByNum_fa(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
-                TipoEscala ti = GestaodeRespostas.getTipoEscala(perg_associada.Cod_TipoEscala);
+                PerguntaFichaAvaliacao perg_associada = GetPerguntaPorNumeroFichaAvaliacao(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(perg_associada.CodigoTipoEscala);
 
                 List<string> campos = new List<string>();
 
-                foreach (int num_coluna in _perguntas_colunas_ficheiro[perg_associada.Num_Pergunta])
+                foreach (int num_coluna in _perguntas_colunas_ficheiro[perg_associada.NumeroPergunta])
                     campos.Add(valores[num_linha][num_coluna]); // retirar os varios campos da pergunta
 
-                // verificar se estes campos estao correctos e de acordo com o esperado
+                // verificar se estes campos estao correctos escalaResposta de acordo com o esperado
                 for (int j = 0; j < campos.Count && continuar && continuar_formulario && continuar_pergunta; j++)
-                    results[_perguntas_colunas_ficheiro[perg_associada.Num_Pergunta].ElementAt(j)] =
-                        verifica_campo(num_linha, campos[j], _modo_respostas_vazias, _modo_valores_respostas, perg_associada,
+                    results[_perguntas_colunas_ficheiro[perg_associada.NumeroPergunta].ElementAt(j)] =
+                        VerificaCampo(num_linha, campos[j], _modo_respostas_vazias, _modo_valores_respostas, perg_associada,
                         ref continuar, ref continuar_formulario, ref continuar_pergunta);
 
                 if (continuar && continuar_formulario && continuar_pergunta)
                 {
                     if (continuar && continuar_formulario && continuar_pergunta)
                     {
-                        List<Resposta> resps = get_resposta(campos, cod_zona, perg_associada, ti, _zonas);
+                        List<Resposta> resps = GetResposta(campos, cod_zona, perg_associada, ti, _zonas);
                         foreach (Resposta resp in resps)
                             respostas.Add(resp);
                     }
@@ -637,11 +637,11 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 results = new Enums.Resultado_Importacao[1];
                 results[0] = Enums.Resultado_Importacao.Insucesso;
             }
-            resultados_importacao[num_linha] = results;
+            resultadosImportacao[num_linha] = results;
             return respostas;
         }
 
-        private List<Resposta> get_resposta(
+        private List<Resposta> GetResposta(
             List<string> campos,
             long cod_zona,
             PerguntaFichaAvaliacao p,
@@ -668,17 +668,17 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 }
 
                 Resposta resp = new Resposta(
-                cod_analise,
+                codigoAnalise,
                 -1, -1, -1,
-                p.Num_Pergunta,
-                p.Cod_Item,
+                p.NumeroPergunta,
+                p.CodigoItem,
                 cod_zona,
                 i_valor,
                 s_valor,
                 -1, // Nao faço a mínima para que serve isto
                 ti.Numero != 0 ? Resposta.TipoResposta.RespostaNum : Resposta.TipoResposta.RespostaStr);
 
-                resp.Cod_pergunta = p.Cod_Pergunta;
+                resp.CodigoPergunta = p.CodigoPergunta;
 
                 resps.Add(resp);
             }
@@ -686,7 +686,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         }
 
         #region verificar Erros
-        private void verifica_numero_colunas_fa(
+        private void VerificaNumeroColunasFichaAvaliacao(
             int num_linha,
             Dictionary<float, List<int>> _perguntas_colunas_ficheiro,
             List<PerguntaFichaAvaliacao> _pergs,
@@ -694,12 +694,12 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             ref bool continuar,
             ref bool continuar_formulario)
         {
-            if (!tem_colunas_necessarias_fa(num_linha, _perguntas_colunas_ficheiro, _pergs))
+            if (!TemColunasNecessariasFichaAvaliacao(num_linha, _perguntas_colunas_ficheiro, _pergs))
             {
                 if (_modo_num_respostas == Enums.Numero_Respostas.Sair_Numero)
                 {
-                    erro = erro_numero_respostas;
-                    linha_erro = num_linha;
+                    erro = erroNumeroRespostas;
+                    linhaErro = num_linha;
                     continuar = false;
                     continuar_formulario = false;
                 }
@@ -707,13 +707,13 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 {
                     Enums.Resultado_Importacao[] results = new Enums.Resultado_Importacao[1];
                     results[0] = Enums.Resultado_Importacao.Insucesso;
-                    resultados_importacao.Add(num_linha, results);
+                    resultadosImportacao.Add(num_linha, results);
                     continuar_formulario = false;
                 }
             }
         }
 
-        public Enums.Resultado_Importacao verifica_campo(
+        public Enums.Resultado_Importacao VerificaCampo(
             int num_linha,
             string _campo,
             Enums.Respostas_Vazias _modo_respostas_vazias,
@@ -731,9 +731,9 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             {
                 if (_modo_respostas_vazias == Enums.Respostas_Vazias.Sair_Vazias)
                 {
-                    erro = erro_repostastas_vazias;
-                    linha_erro = num_linha;
-                    numero_pergunta_erro = _perg.Num_Pergunta;
+                    erro = erroRespostasVazias;
+                    linhaErro = num_linha;
+                    numeroPerguntaErro = _perg.NumeroPergunta;
                     result = Enums.Resultado_Importacao.Insucesso;
                     continuar = false;
                 }
@@ -750,7 +750,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             }
             #endregion
 
-            TipoEscala ti = GestaodeRespostas.getTipoEscala(_perg.Cod_TipoEscala);
+            TipoEscala ti = GestaodeRespostas.getTipoEscala(_perg.CodigoTipoEscala);
 
             #region Teste Valor Resposta
 
@@ -762,9 +762,9 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             {
                 if (_modo_valores_respostas == Enums.Valores_Respostas.Sair_Valores)
                 {
-                    erro = erro_valores_respostas;
-                    linha_erro = num_linha;
-                    numero_pergunta_erro = _perg.Num_Pergunta;
+                    erro = erroValoresRespostas;
+                    linhaErro = num_linha;
+                    numeroPerguntaErro = _perg.NumeroPergunta;
                     result = Enums.Resultado_Importacao.Insucesso;
                     continuar = false;
                 }
@@ -786,22 +786,22 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         #endregion
 
         #region Cenas
-        private PerguntaFichaAvaliacao getPerguntaByNum_fa(float num, List<PerguntaFichaAvaliacao> ps)
+        private PerguntaFichaAvaliacao GetPerguntaPorNumeroFichaAvaliacao(float num, List<PerguntaFichaAvaliacao> ps)
         {
             for (int i = 0; i < ps.Count; i++)
-                if (ps[i].Num_Pergunta == num)
+                if (ps[i].NumeroPergunta == num)
                     return ps[i];
             return null;
         }
 
-        private bool tem_colunas_necessarias_fa(int linha, Dictionary<float, List<int>> _perguntas_colunas_ficheiro, List<PerguntaFichaAvaliacao> _pergs)
+        private bool TemColunasNecessariasFichaAvaliacao(int linha, Dictionary<float, List<int>> _perguntas_colunas_ficheiro, List<PerguntaFichaAvaliacao> _pergs)
         {
             int num_colunas_necessarias = 0;
 
             for (int i = 0; i < _perguntas_colunas_ficheiro.Keys.Count; i++)
             {
-                PerguntaFichaAvaliacao p = getPerguntaByNum_fa(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
-                TipoEscala ti = GestaodeRespostas.getTipoEscala(p.Cod_TipoEscala);
+                PerguntaFichaAvaliacao p = GetPerguntaPorNumeroFichaAvaliacao(_perguntas_colunas_ficheiro.Keys.ElementAt(i), _pergs);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(p.CodigoTipoEscala);
 
                 if (ti.Numero == -2)
                     num_colunas_necessarias += ti.Respostas.Count;
@@ -812,7 +812,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         }
         #endregion
 
-        public void submeteFichasAvaliacao()
+        public void SubmeterFichasAvaliacao()
         {
             if (formularios.Count > 0)
                 foreach (FichaAvaliacao q in formularios)
@@ -822,7 +822,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         #endregion
 
         #region CheckList
-        public bool importar_checklist(
+        public bool ImportarChecklist(
             // modo como vai ser tratado se o numero de respostas nao esta correcto
             Enums.Numero_Respostas _modo_num_respostas,
             // modo como vai ser tratado se existirem respostas sem resposta
@@ -843,7 +843,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             bool continuar_formulario = true;
 
             // iniciar varável dos resultados
-            resultados_importacao = new Dictionary<int, Enums.Resultado_Importacao[]>();
+            resultadosImportacao = new Dictionary<int, Enums.Resultado_Importacao[]>();
 
             // para cada linha do ficheiro ...
             for (int i = 0; i < valores.Keys.Count && continuar; i++)
@@ -855,25 +855,25 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 int num_linha = valores.Keys.ElementAt(i);
 
                 // importar linha
-                List<Resposta> respostas = importar_linha_checklist(num_linha, _modo_respostas_vazias, _modo_valores_respostas, _zonas,_itens,_itens_colunas_ficheiro, cod_zona, ref continuar, ref continuar_formulario);
+                List<Resposta> respostas = ImportarLinhaChecklist(num_linha, _modo_respostas_vazias, _modo_valores_respostas, _zonas,_itens,_itens_colunas_ficheiro, cod_zona, ref continuar, ref continuar_formulario);
 
-                // se nao houveram erros e se foram importadas algumas respostas
+                // se nao houveram erros escalaResposta se foram importadas algumas respostas
                 if (continuar && continuar_formulario && respostas.Count != 0)
                 {
                     // Criar um questionario com essas respostas
                     CheckList cl = new CheckList();
-                    cl.CodigoAnalise = cod_analise;
-                    //q.Cod_Questionario = GestaodeRespostas.insere_questionario(q);
+                    cl.CodigoAnalise = codigoAnalise;
+                    //q.CodigoQuestionario = GestaodeRespostas.insere_questionario(q);
 
                     foreach (Resposta r in respostas)
-                        cl.add_resposta_numero(r);
+                        cl.adicionarRespostaNumero(r);
                     formularios.Add(cl);
                 }
             }
             return continuar;
         }
 
-        private List<Resposta> importar_linha_checklist(
+        private List<Resposta> ImportarLinhaChecklist(
             // numero da linha no ficheiro
             int num_linha,
             // como tratar respostas sem resposta
@@ -894,7 +894,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             string[] valores_linha = valores[num_linha];
             bool continuar_pergunta;
 
-            // Iniciar o array de resultados e inicializa-los como SR
+            // Iniciar o array de resultados escalaResposta inicializa-los como SR
             Enums.Resultado_Importacao[] results = new Enums.Resultado_Importacao[valores_linha.Length];
             for (int i = 0; i < valores_linha.Length; i++)
                 results[i] = Enums.Resultado_Importacao.SR;
@@ -903,21 +903,21 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             for (int i = 0; i < _itens_colunas_ficheiro.Keys.Count && continuar && continuar_formulario; i++)
             {
                 continuar_pergunta = true;
-                Item item_associado = getItembyNome(_itens_colunas_ficheiro.Keys.ElementAt(i), _itens);
+                Item item_associado = GetItemPorNome(_itens_colunas_ficheiro.Keys.ElementAt(i), _itens);
 
                 // retirar o campo
                 string campo = valores[num_linha][_itens_colunas_ficheiro[item_associado.NomeItem]];
 
-                // verificar se estes campos estao correctos e de acordo com o esperado
+                // verificar se estes campos estao correctos escalaResposta de acordo com o esperado
                 results[_itens_colunas_ficheiro[item_associado.NomeItem]] =
-                verifica_campo(num_linha, campo, _modo_respostas_vazias, _modo_valores_respostas,
+                VerificaCampo(num_linha, campo, _modo_respostas_vazias, _modo_valores_respostas,
                         ref continuar, ref continuar_formulario, ref continuar_pergunta);
 
                 if (continuar && continuar_formulario && continuar_pergunta)
                 {
                     if (continuar && continuar_formulario && continuar_pergunta)
                     {
-                        Resposta resp = get_resposta(campo, cod_zona, item_associado, _zonas);
+                        Resposta resp = GetResposta(campo, cod_zona, item_associado, _zonas);
                         respostas.Add(resp);
                     }
                 }
@@ -928,18 +928,18 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 results = new Enums.Resultado_Importacao[1];
                 results[0] = Enums.Resultado_Importacao.Insucesso;
             }
-            resultados_importacao[num_linha] = results;
+            resultadosImportacao[num_linha] = results;
             return respostas;
         }
 
-        private Resposta get_resposta(
+        private Resposta GetResposta(
             string campo,
             long cod_zona,
             Item item,
             List<Zona> zonas)
         {
             Resposta resp = new Resposta(
-            cod_analise,
+            codigoAnalise,
             -1, -1, -1, -1,
             item.CodigoItem,
             cod_zona,
@@ -954,7 +954,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         #endregion 
 
         #region verificar Erros
-        public Enums.Resultado_Importacao verifica_campo(
+        public Enums.Resultado_Importacao VerificaCampo(
             int num_linha,
             string _campo,
             Enums.Respostas_Vazias _modo_respostas_vazias,
@@ -971,8 +971,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             {
                 if (_modo_respostas_vazias == Enums.Respostas_Vazias.Sair_Vazias)
                 {
-                    erro = erro_repostastas_vazias;
-                    linha_erro = num_linha;
+                    erro = erroRespostasVazias;
+                    linhaErro = num_linha;
                     result = Enums.Resultado_Importacao.Insucesso;
                     continuar = false;
                 }
@@ -997,8 +997,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             {
                 if (_modo_valores_respostas == Enums.Valores_Respostas.Sair_Valores)
                 {
-                    erro = erro_valores_respostas;
-                    linha_erro = num_linha;
+                    erro = erroValoresRespostas;
+                    linhaErro = num_linha;
                     result = Enums.Resultado_Importacao.Insucesso;
                     continuar = false;
                 }
@@ -1021,7 +1021,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         #region Cenas
 
-        public Item getItembyNome(string nome, List<Item> itens)
+        public Item GetItemPorNome(string nome, List<Item> itens)
         {
             for (int i = 0; i < itens.Count; i++)
                 if (itens[i].NomeItem == nome)
@@ -1031,7 +1031,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         #endregion
 
-        public void submeteCheckList()
+        public void SubmeterCheckList()
         {
             if (formularios.Count > 0)
                 foreach (CheckList c in formularios)

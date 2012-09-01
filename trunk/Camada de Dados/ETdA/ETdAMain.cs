@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using ETdAnalyser.Camada_de_Dados.Classes;
-using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
+using ETdAnalyser.CamadaDados.Classes;
+using ETdAnalyser.CamadaDados.Classes.Estruturas;
 using System.Windows;
 
-namespace ETdAnalyser.Camada_de_Dados.ETdA
+namespace ETdAnalyser.CamadaDados.ETdA
 {
     class ETdA
     {
@@ -31,7 +31,7 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
         private static void initEventos()
         {
             evento_projecto_adicionado +=new eventoEventHandler(
-                Camada_de_Interface.InterfaceGuestaoProjectos.addProjectoReenc);
+                CamadaInterface.InterfaceGuestaoProjectos.addProjectoReenc);
         }
 
         // s_final
@@ -40,7 +40,7 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
             
             initEventos();
 
-            cod_nome_projectos = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
+            cod_nome_projectos = CamadaDados.DataBaseCommunicator.FuncsToDataBase.selectNomeProjectos();
             projectos = new Dictionary<long, Projecto>();
         }
 
@@ -103,7 +103,7 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
             p.Nome = nomeEstabelecimento;
             p.Data = DateTime.Now;
 
-            p.Codigo = Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.insertProjecto(p);
+            p.Codigo = CamadaDados.DataBaseCommunicator.FuncsToDataBase.insertProjecto(p);
 
             cod_nome_projectos.Add(p.Codigo,p.Nome);
             projectos.Add(p.Codigo, p);
@@ -123,7 +123,7 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
         {
             if (!projectos.Keys.Contains(codigoProjecto))
             {
-                Projecto proj = Camada_de_Dados.DataBaseCommunicator.
+                Projecto proj = CamadaDados.DataBaseCommunicator.
                     FuncsToDataBase.selectProjecto(codigoProjecto);
                 projectos.Add(proj.Codigo, proj);
             }
@@ -146,7 +146,7 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
                 }
             }
 
-            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+            CamadaDados.DataBaseCommunicator.FuncsToDataBase.
                 deleteProjecto(cod);
         }
 
@@ -157,20 +157,20 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
             foreach (Analise a in projectos[codigoProjecto].Analises.Values)
             {
                 Camada_de_Negócio.GestaodeAnalises.removerAnalise(codigoProjecto, a.Codigo);
-                Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(a.Codigo);
+                CamadaDados.DataBaseCommunicator.FuncsToDataBase.desactivarAnalise(a.Codigo);
             }
             
             projectos.Remove(codigoProjecto);
         }
         public static void modificaProjecto(Projecto p)
         {
-            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+            CamadaDados.DataBaseCommunicator.FuncsToDataBase.
                updateProjecto(p);
         }
 
         public static void ultimaAlteracao(Projecto p)
         {
-            Camada_de_Dados.DataBaseCommunicator.FuncsToDataBase.
+            CamadaDados.DataBaseCommunicator.FuncsToDataBase.
                updateProjecto(p);
         }
 
@@ -179,14 +179,14 @@ namespace ETdAnalyser.Camada_de_Dados.ETdA
         #region Gestao Analistas
         public static bool adicionaAnalista(String username, String password)
         {
-            return Camada_de_Dados.DataBaseCommunicator.
+            return CamadaDados.DataBaseCommunicator.
                 FuncsToDataBase.insertAnalista(username, password);
         }
 
         public static bool loginAnalista(String server, String database, 
             String username, String password)
         {
-            return Camada_de_Dados.DataBaseCommunicator.
+            return CamadaDados.DataBaseCommunicator.
                 FuncsToDataBase.ligaAnalista(server, database, username, password);
         }
         #endregion

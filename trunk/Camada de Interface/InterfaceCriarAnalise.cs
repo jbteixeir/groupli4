@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ETdAnalyser.Camada_de_Negócio;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.Classes;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceCriarAnalise : Form
     {
@@ -120,7 +120,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 string tipo = comboBox1.SelectedItem.ToString();
 
                 Analise a = new Analise();
-                a.CodigoProj = codigoProjecto;
+                a.CodigoProjecto = codigoProjecto;
                 a.Nome = nome;
                 a.Tipo = tipo;
                 a.Zonas = zs;
