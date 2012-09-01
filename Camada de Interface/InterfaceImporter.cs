@@ -39,7 +39,7 @@ namespace ETdAnalyser.Camada_de_Interface
         {
             if (verificaErros())
             {
-                Importer ie = new Importer(cod_analise, textBox1.Text);
+                Importer ie = new Importer(codigoAnalise, textBox1.Text);
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
@@ -47,11 +47,11 @@ namespace ETdAnalyser.Camada_de_Interface
                             MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            List<PerguntaQuestionario> pqs = GestaodeRespostas.getPerguntasQT(cod_analise);
+                            List<PerguntaQuestionario> pqs = GestaodeRespostas.getPerguntasQT(codigoAnalise);
                             List<Pergunta> lst_pqs = new List<Pergunta>();
                             foreach (PerguntaQuestionario p in pqs)
                                 lst_pqs.Add(p);
-                            InterfaceImporterMatching.main(lst_pqs, ie, Enums.Tipo_Formulário.Questionario, cod_analise, zonas, itens);
+                            InterfaceImporterMatching.main(lst_pqs, ie, Enums.Tipo_Formulário.Questionario, codigoAnalise, zonas, itens);
                         }
                         break;
                     case 1:
@@ -59,11 +59,11 @@ namespace ETdAnalyser.Camada_de_Interface
                             MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            List<PerguntaFichaAvaliacao> pas = GestaodeRespostas.getPerguntasFA(cod_analise);
+                            List<PerguntaFichaAvaliacao> pas = GestaodeRespostas.getPerguntasFA(codigoAnalise);
                             List<Pergunta> lst_pas = new List<Pergunta>();
                             foreach (PerguntaFichaAvaliacao p in pas)
                                 lst_pas.Add(p);
-                            InterfaceImporterMatching.main(lst_pas, ie, Enums.Tipo_Formulário.Ficha_Avaliacao, cod_analise, zonas, itens);
+                            InterfaceImporterMatching.main(lst_pas, ie, Enums.Tipo_Formulário.Ficha_Avaliacao, codigoAnalise, zonas, itens);
                         }
                         break;
                     case 2:
@@ -71,7 +71,7 @@ namespace ETdAnalyser.Camada_de_Interface
                             MessageBoxPortuguese.Show("Erro", ie.Erro, MessageBoxPortuguese.Icon_Error);
                         else
                         {
-                            InterfaceImporterMatching.main(null, ie, Enums.Tipo_Formulário.CheckList, cod_analise, zonas, itens);
+                            InterfaceImporterMatching.main(null, ie, Enums.Tipo_Formulário.CheckList, codigoAnalise, zonas, itens);
                         }
                         break;
                 }
@@ -138,19 +138,19 @@ namespace ETdAnalyser.Camada_de_Interface
                 }
                 podeAdicionar = false;
             }
-            else if (comboBox1.SelectedIndex == 0 && !GestaodeRespostas.isQTcreated(cod_analise))
+            else if (comboBox1.SelectedIndex == 0 && !GestaodeRespostas.isQTcreated(codigoAnalise))
             {
                 podeAdicionar = false;
                 DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar o Questionário.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
                 if (resultado == DialogResult.Yes)
-                    InterfaceGestaoFormulariosOnline.main(cod_analise, itens, zonas);
+                    InterfaceGestaoFormulariosOnline.main(codigoAnalise, itens, zonas);
             }
-            else if (comboBox1.SelectedIndex == 1 && !GestaodeRespostas.isFAcreated(cod_analise))
+            else if (comboBox1.SelectedIndex == 1 && !GestaodeRespostas.isFAcreated(codigoAnalise))
             {
                 podeAdicionar = false;
                 DialogResult resultado = MessageBoxPortuguese.Show("Erro", "É necessário criar a Ficha de Avaliação.\nPretende fazer isso agora?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question);
                 if (resultado == DialogResult.Yes)
-                    InterfaceGestaoFormulariosOnline.main(cod_analise, itens, zonas);
+                    InterfaceGestaoFormulariosOnline.main(codigoAnalise, itens, zonas);
             }
 
             setErroStatusBar();

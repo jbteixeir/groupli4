@@ -182,7 +182,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                     {
                         // Criar um questionario com essas respostas
                         Questionario q = new Questionario();
-                        q.CodAnalise = cod_analise;
+                        q.CodigoAnalise = cod_analise;
                         //q.Cod_Questionario = GestaodeRespostas.insere_questionario(q);
 
                         foreach (Resposta r in respostas)
@@ -557,7 +557,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                     {
                         // Criar um questionario com essas respostas
                         FichaAvaliacao fa = new FichaAvaliacao();
-                        fa.CodAnalise = cod_analise;
+                        fa.CodigoAnalise = cod_analise;
                         fa.CodZona = cod_zona;
                         //q.Cod_Questionario = GestaodeRespostas.insere_questionario(q);
 
@@ -862,7 +862,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 {
                     // Criar um questionario com essas respostas
                     CheckList cl = new CheckList();
-                    cl.CodAnalise = cod_analise;
+                    cl.CodigoAnalise = cod_analise;
                     //q.Cod_Questionario = GestaodeRespostas.insere_questionario(q);
 
                     foreach (Resposta r in respostas)

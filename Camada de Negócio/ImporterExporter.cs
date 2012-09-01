@@ -41,24 +41,24 @@ namespace ETdAnalyser.Camada_de_Negócio
 		 * Na resosta modelo devem ser preenchidos TODOS os campos relativos à resposta,
 		 * todos os outros devem ser -1 ou null
 		 */
-		private static bool importaFicheiro(String datapathFile, bool temCabecalho, List<PerguntaQuestionario> perguntasQ,
+		private static bool importaFicheiro(String datapathFile, bool temCabecalho, List<PerguntaQuestionario> perguntasQuestionario,
 			Resposta modelo, long[] items, long[] zonas, List<PerguntaFichaAvaliacao> perguntasFA)
         {
             #region normalAproach
 			
 			LinkedList<string[]> dados = new LinkedList<string[]>();
 			string linha;
-			StreamReader tr = new StreamReader(datapathFile);
+			StreamReader streamReader = new StreamReader(datapathFile);
 
 			char[] separator = { ';' };
 			if (temCabecalho)
 			{
 				// le a primeira linha
-				linha = tr.ReadLine();
+				linha = streamReader.ReadLine();
 			}
 
 			// le a primeira linha de dados
-			while((linha = tr.ReadLine()) != null)
+			while((linha = streamReader.ReadLine()) != null)
 			{
 				string[] terms = linha.Split(separator);
 				string[] aux = new string[terms.Length];
@@ -69,7 +69,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 			}
 
 			// close the stream
-			tr.Close();
+			streamReader.Close();
 
             #endregion
 			List<Resposta> respostas = new List<Resposta>();
@@ -81,8 +81,8 @@ namespace ETdAnalyser.Camada_de_Negócio
 					foreach (string[] linhaD in dados)
 					{
                         i = 0;
-						Questionario q = new Questionario();
-						q.CodigoAnalise = modelo.CodigoAnalise;
+						Questionario questionario = new Questionario();
+						questionario.CodigoAnalise = modelo.CodigoAnalise;
 						//questionario.CodQuestionario = FuncsToDataBase.insertQuestionario(questionario);
 
 						foreach (string campo in linhaD)
@@ -90,7 +90,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 							if (!jump)
 							{
 								
-								PerguntaQuestionario perguntaReferente = perguntasQ.ElementAt(i);
+								PerguntaQuestionario perguntaReferente = perguntasQuestionario.ElementAt(i);
 
 								Resposta resposta = new Resposta(modelo);
 								//resposta.CodigoQuestionario = questionario.CodQuestionario;
@@ -120,17 +120,17 @@ namespace ETdAnalyser.Camada_de_Negócio
 					jump = false; // para salta campos
 					foreach (string[] linhaD in dados)
 					{
-						FichaAvaliacao fa = new FichaAvaliacao();
-						fa.CodZona = zonas[j];
-						fa.CodigoAnalise = modelo.CodigoAnalise;
-						FuncsToDataBase.insertFichaAvaliacao(fa);
+						FichaAvaliacao fichaAvaliacao = new FichaAvaliacao();
+						fichaAvaliacao.CodZona = zonas[j];
+						fichaAvaliacao.CodigoAnalise = modelo.CodigoAnalise;
+						FuncsToDataBase.insertFichaAvaliacao(fichaAvaliacao);
 
 						i = 0;
 						foreach (string campo in linhaD)
 						{
 							PerguntaFichaAvaliacao perguntaReferente = perguntasFA.ElementAt<PerguntaFichaAvaliacao>(i);
 							Resposta resposta = new Resposta(modelo);
-							resposta.CodigoFichaAvaliacao = fa.CodFichaAvaliacao;
+							resposta.CodigoFichaAvaliacao = fichaAvaliacao.CodFichaAvaliacao;
 							resposta.NumeroPergunta = (float)perguntaReferente.Num_Pergunta;
 
 							resposta.Cod_pergunta = perguntaReferente.Cod_Pergunta;
@@ -172,12 +172,12 @@ namespace ETdAnalyser.Camada_de_Negócio
 		#endregion
 
 		#region exporter!!
-		protected static float extractNrPergunta(Resposta r)	{
-			return r.NumeroPergunta;
+		protected static float extrairNumeroPergunta(Resposta resposta)	{
+			return resposta.NumeroPergunta;
 		}
-		protected static long extractCodQuestionario(Resposta r)
+		protected static long extractCodQuestionario(Resposta resposta)
 		{
-			return r.Cod_questionario;
+			return resposta.Cod_questionario;
 		}
 
 		public static void exportaQuestionariosParaFicheiro(String datapathFile, long codigoAnalise)
@@ -187,48 +187,48 @@ namespace ETdAnalyser.Camada_de_Negócio
 			List<Resposta> respostas = new List<Resposta>();
 			FuncsToDataBase.selectRespostaQuestionario(codigoAnalise, respostas);
 
-			respostas.OrderBy<Resposta, float>(extractNrPergunta);
+			respostas.OrderBy<Resposta, float>(extrairNumeroPergunta);
 			respostas.OrderBy<Resposta, long>(extractCodQuestionario);
 			long ultimoCodQuestionario = 0;
 			bool fst = true;
-			foreach (Resposta r in respostas)
+			foreach (Resposta resposta in respostas)
 			{
 				if (fst)
 				{
-					ultimoCodQuestionario = r.Cod_questionario;
+					ultimoCodQuestionario = resposta.Cod_questionario;
 					fst = false;
 				}
-				if (ultimoCodQuestionario == r.Cod_questionario) // se for um elemento intermedio
+				if (ultimoCodQuestionario == resposta.Cod_questionario) // se for um elemento intermedio
 				{
-					switch (r.Tipo_Resposta)
+					switch (resposta.Tipo_Resposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
-							outputStream.Write(r.Valor + ";");
+							outputStream.Write(resposta.Valor + ";");
 							break;
 						case Resposta.TipoResposta.RespostaStr:
 						case Resposta.TipoResposta.RespostaMemo:
-							outputStream.Write(r.ValorString + ";");
+							outputStream.Write(resposta.ValorString + ";");
 							break;
 					}
 				}
 				else
 				{
-					switch (r.Tipo_Resposta)
+					switch (resposta.Tipo_Resposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
-							outputStream.WriteLine(r.Valor);
+							outputStream.WriteLine(resposta.Valor);
 							break;
 						case Resposta.TipoResposta.RespostaStr:
 						case Resposta.TipoResposta.RespostaMemo:
-							outputStream.WriteLine(r.ValorString);
+							outputStream.WriteLine(resposta.ValorString);
 							break;
 					}
 				}
 			}
 		}
-		protected static long extractCodFA(Resposta r)
+		protected static long extrairCodigoFichaAvaliacao(Resposta resposta)
 		{
-			return r.Cod_fichaAvaliacao;
+			return resposta.Cod_fichaAvaliacao;
 		}
 		public static void exportaFichasDeAvaliacaoParaFicheiro(String datapathFile, long codigoAnalise)
 		{
@@ -237,56 +237,56 @@ namespace ETdAnalyser.Camada_de_Negócio
 			List<Resposta> respostas = new List<Resposta>();
 			FuncsToDataBase.selectRespostaFichaAvaliacao(codigoAnalise, respostas);
 
-			respostas.OrderBy<Resposta, float>(extractNrPergunta);
-			respostas.OrderBy<Resposta, long>(extractCodFA);
-			long ultimoCodFichaAvaliacao = 0;
+			respostas.OrderBy<Resposta, float>(extrairNumeroPergunta);
+			respostas.OrderBy<Resposta, long>(extrairCodigoFichaAvaliacao);
+			long ultimoCodigoFichaAvaliacao = 0;
 			bool fst = true;
-			foreach (Resposta r in respostas)
+			foreach (Resposta resposta in respostas)
 			{
 				if (fst)
 				{
-					ultimoCodFichaAvaliacao = r.Cod_fichaAvaliacao;
+					ultimoCodigoFichaAvaliacao = resposta.Cod_fichaAvaliacao;
 					fst = false;
 				}
-				if (ultimoCodFichaAvaliacao == r.Cod_fichaAvaliacao) // se for um elemento intermedio
+				if (ultimoCodigoFichaAvaliacao == resposta.Cod_fichaAvaliacao) // se for um elemento intermedio
 				{
-					switch (r.Tipo_Resposta)
+					switch (resposta.Tipo_Resposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
-							outputStream.Write(r.Valor + ";");
+							outputStream.Write(resposta.Valor + ";");
 							break;
 						case Resposta.TipoResposta.RespostaStr:
 						case Resposta.TipoResposta.RespostaMemo:
-							outputStream.Write(r.ValorString + ";");
+							outputStream.Write(resposta.ValorString + ";");
 							break;
 					}
 				}
 				else
 				{
-					switch (r.Tipo_Resposta)
+					switch (resposta.Tipo_Resposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
-							outputStream.WriteLine(r.Valor);
+							outputStream.WriteLine(resposta.Valor);
 							break;
 						case Resposta.TipoResposta.RespostaStr:
 						case Resposta.TipoResposta.RespostaMemo:
-							outputStream.WriteLine(r.ValorString);
+							outputStream.WriteLine(resposta.ValorString);
 							break;
 					}
 				}
 			}
 		}
-		protected static long extractItem(Resposta r)
+		protected static long extractItem(Resposta resposta)
 		{
-			return r.CodigoItem;
+			return resposta.CodigoItem;
 		}
-		protected static long extractZona(Resposta r)
+		protected static long extractZona(Resposta resposta)
 		{
-			return r.CodigoZona;
+			return resposta.CodigoZona;
 		}
 		public static void exportaCheckListParaFicheiro(String datapathFile, long codigoAnalise)
 		{
-			StreamWriter outputStream = new StreamWriter(datapathFile);
+			StreamWriter streamWriter = new StreamWriter(datapathFile);
 
 			List<Resposta> respostas = new List<Resposta>();
 			FuncsToDataBase.selectRespostaCheckList(codigoAnalise, respostas);
@@ -295,19 +295,19 @@ namespace ETdAnalyser.Camada_de_Negócio
 			respostas.OrderBy<Resposta, long>(extractZona);
 			long ultimoItem = 0;
 			bool fst = true;
-			foreach (Resposta r in respostas)
+			foreach (Resposta resposta in respostas)
 			{
 				if (fst)
 				{
-					ultimoItem = r.CodigoItem;
+					ultimoItem = resposta.CodigoItem;
 					fst = false;
 				}
-				if (ultimoItem == r.CodigoItem) // se for um elemento intermedio
+				if (ultimoItem == resposta.CodigoItem) // se for um elemento intermedio
 				{
-					switch (r.Tipo_Resposta)
+					switch (resposta.Tipo_Resposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
-							outputStream.Write(r.Valor + ";");
+							streamWriter.Write(resposta.Valor + ";");
 							break;
 						default:
 							throw new Exception();
@@ -315,10 +315,10 @@ namespace ETdAnalyser.Camada_de_Negócio
 				}
 				else
 				{
-					switch (r.Tipo_Resposta)
+					switch (resposta.Tipo_Resposta)
 					{
 						case Resposta.TipoResposta.RespostaNum:
-							outputStream.WriteLine(r.Valor);
+							streamWriter.WriteLine(resposta.Valor);
 							break;
 					}
 				}
