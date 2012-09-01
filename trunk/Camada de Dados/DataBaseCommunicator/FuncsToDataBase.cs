@@ -555,11 +555,11 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
 
             string query = "Select cod_questionario from questionario where cod_analise = " + codAnalise.ToString();
 
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            SqlDataReader sqlDataReader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            while (r.Read())
+            while (sqlDataReader.Read())
             {
-                long cod = (long)r["cod_questionario"];
+                long cod = (long)sqlDataReader["cod_questionario"];
                 cods.Add(cod);
             }
 
@@ -581,26 +581,26 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             " and pergunta_questionario.cod_pergunta_questionario = resposta_questionario_numero.cod_pergunta_questionario" +
             " and pergunta_questionario.cod_tipoescala = tipoescala.cod_tipoescala";
 
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            SqlDataReader sqlDataReader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
             List<float> pergunta = new List<float>();
-            while (r.Read())
+            while (sqlDataReader.Read())
             {
-                float numero_pergunta = (float)r["numero_pergunta"];
-                long cod_item = r["cod_item"].ToString() == "" ? -1 : (long)r["cod_item"];
-                long cod_zona = long.Parse(r["cod_zona"].ToString());
-                short valor = short.Parse(r["valor"].ToString());
-                long cod_pergunta = long.Parse(r["cod_pergunta_questionario"].ToString());
+                float numero_pergunta = (float)sqlDataReader["numero_pergunta"];
+                long cod_item = sqlDataReader["cod_item"].ToString() == "" ? -1 : (long)sqlDataReader["cod_item"];
+                long cod_zona = long.Parse(sqlDataReader["cod_zona"].ToString());
+                short valor = short.Parse(sqlDataReader["valor"].ToString());
+                long cod_pergunta = long.Parse(sqlDataReader["cod_pergunta_questionario"].ToString());
 
-                if (!pergunta.Contains((float)r["numero_pergunta"]) || 
-                    (pergunta.Contains((float)r["numero_pergunta"]) && (int)r["numeroEscalaResposta"]==-2)
+                if (!pergunta.Contains((float)sqlDataReader["numero_pergunta"]) || 
+                    (pergunta.Contains((float)sqlDataReader["numero_pergunta"]) && (int)sqlDataReader["numeroEscalaResposta"]==-2)
                     )
                 {
-                    if (!pergunta.Contains((float)r["numero_pergunta"]))
-                        pergunta.Add((float)r["numero_pergunta"]);
+                    if (!pergunta.Contains((float)sqlDataReader["numero_pergunta"]))
+                        pergunta.Add((float)sqlDataReader["numero_pergunta"]);
 
                     Resposta resposta;
-                    if ((int)r["numeroEscalaResposta"] == -2)
+                    if ((int)sqlDataReader["numeroEscalaResposta"] == -2)
                     {
                         resposta = new Resposta(codAnalise, -1, codQuestionario, -1, numero_pergunta,
                        cod_item, cod_zona, valor, null, 3, Resposta.TipoResposta.RespostaNum);
@@ -626,15 +626,15 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             " and resposta_questionario_string.cod_analise = " + codAnalise.ToString() +
             " and pergunta_questionario.cod_pergunta_questionario = resposta_questionario_string.cod_pergunta_questionario";
 
-            r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            sqlDataReader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            while (r.Read())
+            while (sqlDataReader.Read())
             {
-                float numero_pergunta = (float)r["numero_pergunta"];
-                long cod_item = r["cod_item"].ToString() == "" ? -1 : (long)r["cod_item"];
-                long cod_zona = long.Parse(r["cod_zona"].ToString());
-                string valor = r["valor"].ToString();
-                long cod_pergunta = long.Parse(r["cod_pergunta_questionario"].ToString());
+                float numero_pergunta = (float)sqlDataReader["numero_pergunta"];
+                long cod_item = sqlDataReader["cod_item"].ToString() == "" ? -1 : (long)sqlDataReader["cod_item"];
+                long cod_zona = long.Parse(sqlDataReader["cod_zona"].ToString());
+                string valor = sqlDataReader["valor"].ToString();
+                long cod_pergunta = long.Parse(sqlDataReader["cod_pergunta_questionario"].ToString());
 
                 Resposta resposta = new Resposta(codAnalise, -1, codQuestionario, -1, numero_pergunta,
                     cod_item, cod_zona, 0, valor, 3, Resposta.TipoResposta.RespostaStr);
@@ -654,15 +654,15 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
             " and resposta_questionario_memo.cod_analise = " + codAnalise.ToString() +
             " and pergunta_questionario.cod_pergunta_questionario = resposta_questionario_memo.cod_pergunta_questionario";
 
-            r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            sqlDataReader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            while (r.Read())
+            while (sqlDataReader.Read())
             {
-                float numero_pergunta = (float)r["numero_pergunta"];
-                long cod_item = r["cod_item"].ToString() == "" ? -1 : (long)r["cod_item"];
-                long cod_zona = long.Parse(r["cod_zona"].ToString());
-                string valor = r["valor"].ToString();
-                long cod_pergunta = long.Parse(r["cod_pergunta_questionario"].ToString());
+                float numero_pergunta = (float)sqlDataReader["numero_pergunta"];
+                long cod_item = sqlDataReader["cod_item"].ToString() == "" ? -1 : (long)sqlDataReader["cod_item"];
+                long cod_zona = long.Parse(sqlDataReader["cod_zona"].ToString());
+                string valor = sqlDataReader["valor"].ToString();
+                long cod_pergunta = long.Parse(sqlDataReader["cod_pergunta_questionario"].ToString());
 
                 Resposta resposta = new Resposta(codAnalise, -1, codQuestionario, -1, numero_pergunta,
                     cod_item, cod_zona, 0, valor, 3, Resposta.TipoResposta.RespostaMemo);
@@ -696,12 +696,12 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
 
             string query = "Select cod_fichaAvaliacao, cod_zona from ficha_avaliacao where cod_analise = " + codAnalise.ToString();
 
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            SqlDataReader sqlDataReader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            while (r.Read())
+            while (sqlDataReader.Read())
             {
-                long codfa = (long)r["cod_fichaAvaliacao"];
-                long codz = (long)r["cod_zona"];
+                long codfa = (long)sqlDataReader["cod_fichaAvaliacao"];
+                long codz = (long)sqlDataReader["cod_zona"];
                 cods.Add(codfa,codz);
             }
 
@@ -722,13 +722,13 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
                 " and pergunta_ficha_avaliacao.numero_pergunta = resposta_ficha_avaliacao_numero.numero_pergunta" +
                 " and pergunta_ficha_avaliacao.cod_analise = resposta_ficha_avaliacao_numero.cod_analise";
 
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            SqlDataReader sqlDataReader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            while (r.Read())
+            while (sqlDataReader.Read())
             {
-                long cod_item = (long)r["cod_item"];
-                short valor = short.Parse(r["valor"].ToString());
-                float numero_pergunta = float.Parse(r["numero_pergunta"].ToString());
+                long cod_item = (long)sqlDataReader["cod_item"];
+                short valor = short.Parse(sqlDataReader["valor"].ToString());
+                float numero_pergunta = float.Parse(sqlDataReader["numero_pergunta"].ToString());
 
                 Resposta resposta = new Resposta(codAnalise, -1, -1, codFichaAvaliacao, numero_pergunta,
                     cod_item, 0, valor, null, 2, Resposta.TipoResposta.RespostaNum);
@@ -748,13 +748,13 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
                 " and pergunta_ficha_avaliacao.numero_pergunta = resposta_ficha_avaliacao_string.numero_pergunta" +
                 " and pergunta_ficha_avaliacao.cod_analise = resposta_ficha_avaliacao_string.cod_analise";
 
-            r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            sqlDataReader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            while (r.Read())
+            while (sqlDataReader.Read())
             {
-                long cod_item = (long)r["cod_item"];
-                string valor = r["valor"].ToString();
-                float numero_pergunta = float.Parse(r["numero_pergunta"].ToString());
+                long cod_item = (long)sqlDataReader["cod_item"];
+                string valor = sqlDataReader["valor"].ToString();
+                float numero_pergunta = float.Parse(sqlDataReader["numero_pergunta"].ToString());
 
                 Resposta resposta = new Resposta(codAnalise, -1, -1, codFichaAvaliacao, numero_pergunta,
                     cod_item, 0, 0, valor, 2, Resposta.TipoResposta.RespostaStr);
@@ -778,10 +778,10 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
 
             //MessageBox.Show(query.ToString());
 
-            SqlDataReader reader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            SqlDataReader sqlDataReader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            reader.Read();
-            return long.Parse(reader[0].ToString());
+            sqlDataReader.Read();
+            return long.Parse(sqlDataReader[0].ToString());
         }
 
         static public CheckList getCheckList(long codAnalise)
@@ -790,13 +790,13 @@ namespace ETdAnalyser.Camada_de_Dados.DataBaseCommunicator
 
             string query = "select cod_zona, cod_item, valor from resposta_checkList";
 
-            SqlDataReader r = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
+            SqlDataReader sqlDataReader = Camada_de_Dados.DataBaseCommunicator.DataBaseCommunicator.readData(query);
 
-            while (r.Read())
+            while (sqlDataReader.Read())
             {
-                long cod_item = long.Parse(r["cod_item"].ToString());
-                long cod_zona = long.Parse(r["cod_zona"].ToString());
-                short valor = short.Parse(r["valor"].ToString());
+                long cod_item = long.Parse(sqlDataReader["cod_item"].ToString());
+                long cod_zona = long.Parse(sqlDataReader["cod_zona"].ToString());
+                short valor = short.Parse(sqlDataReader["valor"].ToString());
 
                 Resposta resposta = new Resposta(codAnalise, -1, -1, -1, -1,cod_item, 
                     cod_zona, valor, null, 1, Resposta.TipoResposta.RespostaNum);
