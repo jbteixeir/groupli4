@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.Classes;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceAssociacaoZonaColuna : Form
     {
@@ -31,7 +31,7 @@ namespace ETdAnalyser.Camada_de_Interface
             combos = new Dictionary<int, ComboBox>();
 
             done_action += new eventoEventHandler(
-               Camada_de_Interface.InterfaceImporterMatching.reencMapeamento);
+               CamadaInterface.InterfaceImporterMatching.reencMapeamento);
 
             init();
         }

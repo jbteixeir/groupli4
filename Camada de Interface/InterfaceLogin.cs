@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using ETdAnalyser.Camada_de_Negócio;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceLogin : Form
     {

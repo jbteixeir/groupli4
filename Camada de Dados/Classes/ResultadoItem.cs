@@ -3,111 +3,111 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class ResultadoItem
     {
         //resultado do questionário
-        private double resultado_questionario_geral;
-        //contem o numero de pessoas cujo resultado da sua resposta corresponde a uma cor -> primeiro Int e a soma Segundo Int
-        private Dictionary<int, double> resultado_questionario_parcial;
+        private double resultadoQuestionarioGeral;
+        //contem o numero de pessoas cujo resultado da sua resposta corresponde a uma cor -> primeiro Int escalaResposta a soma Segundo Int
+        private Dictionary<int, double> resultadoQuestionarioParcial;
 
         //resultado da ficha de avaliação
-        private double resultado_fichaAvaliacao_geral;
-        //contem o numero de pessoas cujo resultado da sua resposta corresponde a uma cor -> primeiro Int e a soma Segundo Int
-        private Dictionary<int, double> resultado_fichaAvaliacao_parcial;
+        private double resultadoFichaAvaliacaoGeral;
+        //contem o numero de pessoas cujo resultado da sua resposta corresponde a uma cor -> primeiro Int escalaResposta a soma Segundo Int
+        private Dictionary<int, double> resultadoFichaAvaliacaoParcial;
 
         //resultado da checklist
-        private double resultado_checklist_geral;
-        //contem o numero de pessoas cujo resultado da sua resposta corresponde a uma cor -> primeiro Int e a soma Segundo Int
-        private Dictionary<int, double> resultado_checklist_parcial; 
+        private double resultadoCheckListGeral;
+        //contem o numero de pessoas cujo resultado da sua resposta corresponde a uma cor -> primeiro Int escalaResposta a soma Segundo Int
+        private Dictionary<int, double> resultadoCheckListParcial; 
 
         //observação do analista para um Item
         private string observacao;
 
         //resultado final
-        private double resultado_final;
+        private double resultadoFinal;
 
         //Se a observação já foi preenchida
-        private bool checkObs;
+        private bool observacaoPreenchida;
 
         //mostrar ou não os resultados parciais
-        private bool mostraResParc;
+        private bool mostrarResultadoParcial;
 
         public ResultadoItem(double resultado_questionario_geral, Dictionary<int, double> resultado_questionario_parcial, double resultado_fichaAvaliacao_geral, Dictionary<int, double> resultado_fichaAvaliacao_parcial, double resultado_checklist_geral, Dictionary<int, double> resultado_checklist_parcial, string observacao, double resultado_final)
         {
-            this.resultado_questionario_geral = resultado_questionario_geral;
-            this.resultado_questionario_parcial=resultado_questionario_parcial;
+            this.resultadoQuestionarioGeral = resultado_questionario_geral;
+            this.resultadoQuestionarioParcial=resultado_questionario_parcial;
 
-            this.resultado_fichaAvaliacao_geral=resultado_fichaAvaliacao_geral;
-            this.resultado_fichaAvaliacao_parcial=resultado_fichaAvaliacao_parcial;
+            this.resultadoFichaAvaliacaoGeral=resultado_fichaAvaliacao_geral;
+            this.resultadoFichaAvaliacaoParcial=resultado_fichaAvaliacao_parcial;
 
-            this.resultado_checklist_geral=resultado_checklist_geral;
-            this.resultado_checklist_parcial=resultado_checklist_parcial;
+            this.resultadoCheckListGeral=resultado_checklist_geral;
+            this.resultadoCheckListParcial=resultado_checklist_parcial;
 
-            this.resultado_final = resultado_final;
+            this.resultadoFinal = resultado_final;
 
             this.observacao = observacao;
-            this.checkObs = false;
+            this.observacaoPreenchida = false;
 
-            this.mostraResParc = false;
+            this.mostrarResultadoParcial = false;
 
         }
 
         public ResultadoItem()
         {
-            this.resultado_questionario_geral = -1;
-            this.resultado_questionario_parcial = new Dictionary<int, double>();
+            this.resultadoQuestionarioGeral = -1;
+            this.resultadoQuestionarioParcial = new Dictionary<int, double>();
 
-            this.resultado_fichaAvaliacao_geral = -1;
-            this.resultado_fichaAvaliacao_parcial = new Dictionary<int,double>();
+            this.resultadoFichaAvaliacaoGeral = -1;
+            this.resultadoFichaAvaliacaoParcial = new Dictionary<int,double>();
 
-            this.resultado_checklist_geral = -1;
-            this.resultado_checklist_parcial = new Dictionary<int,double>();
+            this.resultadoCheckListGeral = -1;
+            this.resultadoCheckListParcial = new Dictionary<int,double>();
 
-            resultado_final = -1;
+            resultadoFinal = -1;
 
             observacao = "";
-            checkObs = false;
+            observacaoPreenchida = false;
 
-            mostraResParc = false;
+            mostrarResultadoParcial = false;
         }
 
         //Métodos
         public double ResultadoQuestionarioGeral
         {
-            get { return resultado_questionario_geral; }
-            set { resultado_questionario_geral = value; }
+            get { return resultadoQuestionarioGeral; }
+            set { resultadoQuestionarioGeral = value; }
         }
 
         public Dictionary<int, double> ResultadoQuestionarioParcial
         {
-            get { return resultado_questionario_parcial; }
-            set { resultado_questionario_parcial = value; }
+            get { return resultadoQuestionarioParcial; }
+            set { resultadoQuestionarioParcial = value; }
         }
 
         public double ResultadoFichaAvaliacaoGeral
         {
-            get { return resultado_fichaAvaliacao_geral; }
-            set { resultado_fichaAvaliacao_geral = value; }
+            get { return resultadoFichaAvaliacaoGeral; }
+            set { resultadoFichaAvaliacaoGeral = value; }
         }
 
         public Dictionary<int, double> ResultadoFichaAvaliacaoParcial
         {
-            get { return resultado_fichaAvaliacao_parcial; }
-            set { resultado_fichaAvaliacao_parcial = value; }
+            get { return resultadoFichaAvaliacaoParcial; }
+            set { resultadoFichaAvaliacaoParcial = value; }
         }
 
         public double ResultadoCheckListGeral
         {
-            get { return resultado_checklist_geral; }
-            set { resultado_checklist_geral = value; }
+            get { return resultadoCheckListGeral; }
+            set { resultadoCheckListGeral = value; }
         }
 
         public Dictionary<int, double> ResultadoCheckListParcial
         {
-            get { return resultado_checklist_parcial; }
-            set { resultado_checklist_parcial = value; }
+            get { return resultadoCheckListParcial; }
+            set { resultadoCheckListParcial = value; }
         }
         public string Observacao
         {
@@ -117,20 +117,20 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         public double ResultadoFinal
         {
-            get { return resultado_final; }
-            set { resultado_final = value; }
+            get { return resultadoFinal; }
+            set { resultadoFinal = value; }
         }
 
-        public bool CheckObservacoes
+        public bool ObservacaoPreenchida
         {
-            get { return checkObs; }
-            set { checkObs = value; }
+            get { return observacaoPreenchida; }
+            set { observacaoPreenchida = value; }
         }
 
-        public bool mostraResultadosParciais
+        public bool MostrarResultadoParcial
         {
-            get { return mostraResParc; }
-            set { mostraResParc = value; }
+            get { return mostrarResultadoParcial; }
+            set { mostrarResultadoParcial = value; }
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ETdAnalyser.Camada_de_Negócio;
-using ETdAnalyser.Camada_de_Dados.ETdA;
-using ETdAnalyser.Camada_de_Interface;
-using ETdAnalyser.Camada_de_Dados.DataBaseCommunicator;
+using ETdAnalyser.CamadaDados.ETdA;
+using ETdAnalyser.CamadaInterface;
+using ETdAnalyser.CamadaDados.DataBaseCommunicator;
 
 namespace ETdA_starter
 {

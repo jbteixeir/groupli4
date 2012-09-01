@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceAjuda : Form
     {

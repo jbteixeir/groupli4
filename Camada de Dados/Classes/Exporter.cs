@@ -6,7 +6,7 @@ using System.IO;
 using ETdAnalyser.Camada_de_Negócio;
 using System.Windows;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class Exporter
     {
@@ -18,8 +18,8 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         StreamWriter ficheiro;
 
         /* Perguntas dos questionários para construir o cabeçalho nos questionários */
-        private List<PerguntaQuestionario> perguntas_questionarios;
-        /* Itens para construir o cabeçaho nas fichas de avaliação e checklist */
+        private List<PerguntaQuestionario> perguntasQuestionarios;
+        /* Itens para construir o cabeçaho nas fichas de avaliação escalaResposta checklist */
         private List<Item> items;
         /* Zonas para se forem necessários nos questionários */
         private List<Zona> zonas;
@@ -28,13 +28,13 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         private Dictionary<int, string[]> valores;
 
         // correspondência das perguntas ou itens para a coluna da matriz
-        private Dictionary<long, int> coluna_pergunta;
+        private Dictionary<long, int> colunaPergunta;
 
         /* Formulários a serem gravados */
         // Questionários
         private List<Questionario> questionarios;
         // Fichas de avaliação
-        private List<FichaAvaliacao> fichas_avaliacao;
+        private List<FichaAvaliacao> fichasAvaliacao;
         // CheckList
         private CheckList checklist;
 
@@ -43,42 +43,42 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         #region Construtores
 
         /* Construtor para questionários */
-        public Exporter(string _caminho, List<Questionario> _questionarios, List<PerguntaQuestionario> _perguntas_questionarios, List<Zona> _zonas)
+        public Exporter(string caminho, List<Questionario> questionarios, List<PerguntaQuestionario> perguntasQuestionarios, List<Zona> zonas)
         {
-            caminho = _caminho;
-            questionarios = _questionarios;
-            perguntas_questionarios = _perguntas_questionarios;
-            zonas = _zonas;
-            items = null;
-            valores = null;
-            fichas_avaliacao = null;
-            checklist = null;
+            this.caminho = caminho;
+            this.questionarios = questionarios;
+            this.perguntasQuestionarios = perguntasQuestionarios;
+            this.zonas = zonas;
+            this.items = null;
+            this.valores = null;
+            this.fichasAvaliacao = null;
+            this.checklist = null;
         }
 
         /* Construtor para fichas de avaliação */
-        public Exporter(string _caminho, List<FichaAvaliacao> _fichas_avaliacao, List<Item> _items, List<Zona> _zonas)
+        public Exporter(string caminho, List<FichaAvaliacao> fichasAvaliacao, List<Item> items, List<Zona> zonas)
         {
-            caminho = _caminho;
-            fichas_avaliacao = _fichas_avaliacao;
-            items = _items;
-            zonas = _zonas;
-            perguntas_questionarios = null;
-            valores = null;
-            questionarios = null;
-            checklist = null;
+            this.caminho = caminho;
+            this.fichasAvaliacao = fichasAvaliacao;
+            this.items = items;
+            this.zonas = zonas;
+            this.perguntasQuestionarios = null;
+            this.valores = null;
+            this.questionarios = null;
+            this.checklist = null;
         }
 
         /* Construtor para a checklist */
-        public Exporter(string _caminho, CheckList _checklist, List<Item> _items, List<Zona> _zonas)
+        public Exporter(string caminho, CheckList checklist, List<Item> items, List<Zona> zonas)
         {
-            caminho = _caminho;
-            checklist = _checklist;
-            items = _items;
-            zonas = _zonas;
-            perguntas_questionarios = null;
-            valores = null;
-            questionarios = null;
-            fichas_avaliacao = null;
+            this.caminho = caminho;
+            this.checklist = checklist;
+            this.items = items;
+            this.zonas = zonas;
+            this.perguntasQuestionarios = null;
+            this.valores = null;
+            this.questionarios = null;
+            this.fichasAvaliacao = null;
         }
 
         #endregion
@@ -88,7 +88,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         /* Verifica se é possível criar o ficheiro */
         //@param erro Mensagem do erro caso existente
         //@return Boolean Se o ficheiro foi criado ou não
-        public Boolean verifica_criacao_ficheiro(ref string erro)
+        public Boolean VerificaCriacaoFicheiro(ref string erro)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
          * terceiro preencher a matriz
          * por fim gravar o ficheiro
          */
-        public void grava_questionarios()
+        public void GravaQuestionarios()
         {
             valores = new Dictionary<int, string[]>();
 
@@ -120,7 +120,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             for (int i = 0; i < questionarios.Count; i++)
                 valores.Add(i + 1, getCamposQuestionario(questionarios[i],num_colunas));
 
-            gravaFicheiro();
+            GravaFicheiro();
         }
 
         /* Retorna o número de colunas/respostas que irá ter no ficheiro */
@@ -129,23 +129,23 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         {
             int conta = 0;
             List<int> grupos_perguntas_classificacao = new List<int>();
-            foreach (PerguntaQuestionario p in perguntas_questionarios)
+            foreach (PerguntaQuestionario p in perguntasQuestionarios)
             {
-                TipoEscala ti = GestaodeRespostas.getTipoEscala(p.Cod_TipoEscala);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(p.CodigoTipoEscala);
                 if (ti.Numero >= 0) // apenas 1 resposta
                     conta++;
                 else if (ti.Numero == -2) // várias opções de resposta
                     conta+=ti.Respostas.Count;
                 else // classificacao
                 {
-                    if (!grupos_perguntas_classificacao.Contains((int)p.Num_Pergunta))
-                        grupos_perguntas_classificacao.Add((int)p.Num_Pergunta);
+                    if (!grupos_perguntas_classificacao.Contains((int)p.NumeroPergunta))
+                        grupos_perguntas_classificacao.Add((int)p.NumeroPergunta);
                     else
                         conta++;
                 }
 
                 // Zona é colocada na pergunta
-                if (p.Cod_zona <= 0)
+                if (p.CodigoZona <= 0)
                     conta++;
             }
             return conta;
@@ -154,15 +154,15 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         /* Retorna a primeira linha do ficheiro - o cabecalho para questionarios
          * Também preenche o dictionary com a correspondencia da pergunta para a coluna 
          */
-        // @param num_colunas Numero de colunas que o ficheiro irá ter
+        // @param numeroColunas Numero de colunas que o ficheiro irá ter
         // @return string[] Os valores de cada coluna da primeira linha do ficheiro
         private string[] getCabecalhoQuestionario(int num_colunas)
         {
             string[] cabecalho = new string[num_colunas];
-            coluna_pergunta = new Dictionary<long, int>();
+            colunaPergunta = new Dictionary<long, int>();
 
             List<PerguntaQuestionario> pergs = new List<PerguntaQuestionario>();
-            foreach (PerguntaQuestionario p in perguntas_questionarios)
+            foreach (PerguntaQuestionario p in perguntasQuestionarios)
                 pergs.Add(p);
 
             for (int index = 0 ; index < num_colunas ; index++)
@@ -170,39 +170,39 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                 PerguntaQuestionario mais_pequena = pergs[0];
                 for (int i = 1 ; i < pergs.Count ; i++)
                 {
-                    if (pergs[i].Num_Pergunta < mais_pequena.Num_Pergunta)
+                    if (pergs[i].NumeroPergunta < mais_pequena.NumeroPergunta)
                         mais_pequena = pergs[i];
                 }
 
-                TipoEscala ti = GestaodeRespostas.getTipoEscala(mais_pequena.Cod_TipoEscala);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(mais_pequena.CodigoTipoEscala);
                 if (ti.Numero >= 0) // apenas 1 resposta
                 {
-                    cabecalho[index] = mais_pequena.TipoQuestao + mais_pequena.Num_Pergunta;
-                    coluna_pergunta.Add(mais_pequena.Cod_Pergunta, index);
+                    cabecalho[index] = mais_pequena.TipoQuestao + mais_pequena.NumeroPergunta;
+                    colunaPergunta.Add(mais_pequena.CodigoPergunta, index);
                 }
                 else if (ti.Numero == -2) // várias opções de resposta
                 {
-                    coluna_pergunta.Add(mais_pequena.Cod_Pergunta, index);
+                    colunaPergunta.Add(mais_pequena.CodigoPergunta, index);
                     for (int resp = 0; resp < ti.Respostas.Count; resp++, index++)
-                        cabecalho[index] = mais_pequena.TipoQuestao + (mais_pequena.Num_Pergunta + ((1 + resp) * 0.01)).ToString();
+                        cabecalho[index] = mais_pequena.TipoQuestao + (mais_pequena.NumeroPergunta + ((1 + resp) * 0.01)).ToString();
                     index--;
                 }
                 else // classificacao
                 {
-                    if (mais_pequena.Num_Pergunta > (int)mais_pequena.Num_Pergunta) // tem uma resposta
+                    if (mais_pequena.NumeroPergunta > (int)mais_pequena.NumeroPergunta) // tem uma resposta
                     {
-                        cabecalho[index] = mais_pequena.TipoQuestao + mais_pequena.Num_Pergunta;
-                        coluna_pergunta.Add(mais_pequena.Cod_Pergunta, index);
+                        cabecalho[index] = mais_pequena.TipoQuestao + mais_pequena.NumeroPergunta;
+                        colunaPergunta.Add(mais_pequena.CodigoPergunta, index);
                     }
                     else
                         index--;
                 }
 
                 // Zona é colocada na resposta
-                if (mais_pequena.Cod_zona <= 0)
+                if (mais_pequena.CodigoZona <= 0)
                 {
                     index++;
-                    cabecalho[index] = (mais_pequena.Num_Pergunta + 0.1).ToString() + "-Zona";
+                    cabecalho[index] = (mais_pequena.NumeroPergunta + 0.1).ToString() + "-Zona";
                 }
 
                 pergs.Remove(mais_pequena);
@@ -213,20 +213,20 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         /* Retorna as várias repostas do questionario */
         // @param q Questionário de onde se retiram as respostas
-        // @param num_colunas Numero de colunas que o ficheiro irá ter
+        // @param numeroColunas Numero de colunas que o ficheiro irá ter
         // @return string[] As várias respostas do questionário
         private string[] getCamposQuestionario(Questionario q, int num_colunas)
         {
             string[] campos = new string[num_colunas];
 
             #region Respostas Numero
-            foreach (Resposta r in q.Respostas_Numero)
+            foreach (Resposta r in q.RespostasNumero)
             {
-                if (coluna_pergunta.Keys.Contains(r.Cod_pergunta))
+                if (colunaPergunta.Keys.Contains(r.CodigoPergunta))
                 {
-                    int coluna_correspondente = coluna_pergunta[r.Cod_pergunta];
-                    PerguntaQuestionario pergunta_correspondente = getPerguntaByCod(r.Cod_pergunta);
-                    TipoEscala ti = GestaodeRespostas.getTipoEscala(pergunta_correspondente.Cod_TipoEscala);
+                    int coluna_correspondente = colunaPergunta[r.CodigoPergunta];
+                    PerguntaQuestionario pergunta_correspondente = getPerguntaPorCodigo(r.CodigoPergunta);
+                    TipoEscala ti = GestaodeRespostas.getTipoEscala(pergunta_correspondente.CodigoTipoEscala);
 
                     if (ti.Numero >= 0) // só uma resposta
                         campos[coluna_correspondente] = r.Valor.ToString();
@@ -239,7 +239,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
                         campos[coluna_correspondente] = r.Valor.ToString();
 
                     // Zona é colocada na resposta
-                    if (pergunta_correspondente.Cod_zona <= 0)
+                    if (pergunta_correspondente.CodigoZona <= 0)
                     {
                         string nome = "";
                         campos[coluna_correspondente + 1] = getIndexZona(r.CodigoZona, ref nome).ToString() + "-" + nome;
@@ -249,22 +249,22 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
             #endregion
 
             #region Respostas String
-            foreach (Resposta r in q.Respostas_String)
+            foreach (Resposta r in q.RespostasString)
             {
-                if (coluna_pergunta.Keys.Contains(r.Cod_pergunta))
+                if (colunaPergunta.Keys.Contains(r.CodigoPergunta))
                 {
-                    int coluna_correspondente = coluna_pergunta[r.Cod_pergunta];
+                    int coluna_correspondente = colunaPergunta[r.CodigoPergunta];
                     campos[coluna_correspondente] = r.ValorString;
                 }
             }
             #endregion
 
             #region Respostas Memo
-            foreach (Resposta r in q.Respostas_Memo)
+            foreach (Resposta r in q.RespostasMemo)
             {
-                if (coluna_pergunta.Keys.Contains(r.Cod_pergunta))
+                if (colunaPergunta.Keys.Contains(r.CodigoPergunta))
                 {
-                    int coluna_correspondente = coluna_pergunta[r.Cod_pergunta];
+                    int coluna_correspondente = colunaPergunta[r.CodigoPergunta];
                     campos[coluna_correspondente] = r.ValorString;
                 }
             }
@@ -283,79 +283,79 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
          * terceiro preencher a matriz
          * por fim gravar o ficheiro
          */
-        public void grava_ficha_avaliacao()
+        public void GravaFichaAvaliacao()
         {
             valores = new Dictionary<int, string[]>();
 
             int num_colunas = items.Count + 2;
-            valores[0] = getCabecalhoFA(num_colunas);
+            valores[0] = getCabecalhoFichaAvaliacao(num_colunas);
 
-            for (int i = 0; i < fichas_avaliacao.Count; i++)
-                valores[i + 1] = getCamposFA(fichas_avaliacao[i], num_colunas);
+            for (int i = 0; i < fichasAvaliacao.Count; i++)
+                valores[i + 1] = getCamposFichaAvaliacao(fichasAvaliacao[i], num_colunas);
 
-            gravaFicheiro();
+            GravaFicheiro();
         }
 
         /* Retorna a primeira linha do ficheiro - o cabecalho para fichas de avaliacao
          * Também preenche o dictionary com a correspondencia do item para a coluna 
          */
-        // @param num_colunas Numero de colunas que o ficheiro irá ter
+        // @param numeroColunas Numero de colunas que o ficheiro irá ter
         // @return string[] Os valores de cada coluna da primeira linha do ficheiro
-        private string[] getCabecalhoFA(int num_colunas)
+        private string[] getCabecalhoFichaAvaliacao(int numeroColunas)
         {
-            string[] cabecalho = new string[num_colunas];
-            coluna_pergunta = new Dictionary<long, int>();
+            string[] cabecalho = new string[numeroColunas];
+            colunaPergunta = new Dictionary<long, int>();
 
             cabecalho[0] = "Zonas";
             for (int i = 0; i < items.Count; i++)
             {
                 cabecalho[i + 1] = i.ToString() + "-" + items[i].NomeItem;
-                coluna_pergunta.Add(items[i].CodigoItem, i + 1);
+                colunaPergunta.Add(items[i].CodigoItem, i + 1);
             }
-            cabecalho[num_colunas - 1] = "Sugestões";
+            cabecalho[numeroColunas - 1] = "Sugestões";
 
             return cabecalho;
         }
 
         /* Retorna as várias repostas da ficha de avaliacao */
         // @param fa Ficha de avaliacao de onde se retiram as respostas
-        // @param num_colunas Numero de colunas que o ficheiro irá ter
+        // @param numeroColunas Numero de colunas que o ficheiro irá ter
         // @return string[] As várias respostas da ficha de avaliacao
-        private string[] getCamposFA(FichaAvaliacao fa, int num_colunas)
+        private string[] getCamposFichaAvaliacao(FichaAvaliacao fa, int num_colunas)
         {
             string[] campos = new string[num_colunas];
 
             string nome_zona = "";
-            campos[0] = getIndexZona(fa.CodZona, ref nome_zona).ToString() + "-" + nome_zona;
+            campos[0] = getIndexZona(fa.CodigoZona, ref nome_zona).ToString() + "-" + nome_zona;
 
             #region Respostas Numero
-            foreach (Resposta r in fa.Respostas_Numero)
+            foreach (Resposta r in fa.RespostasNumero)
             {
-                if (coluna_pergunta.Keys.Contains(r.CodigoItem))
+                if (colunaPergunta.Keys.Contains(r.CodigoItem))
                 {
-                    int coluna_correspondente = coluna_pergunta[r.CodigoItem];
+                    int coluna_correspondente = colunaPergunta[r.CodigoItem];
                     campos[coluna_correspondente] = r.Valor.ToString();
                 }
             }
             #endregion
 
             #region Respostas String
-            foreach (Resposta r in fa.Respostas_String)
+            foreach (Resposta r in fa.RespostasString)
             {
-                if (coluna_pergunta.Keys.Contains(r.CodigoItem))
+                if (colunaPergunta.Keys.Contains(r.CodigoItem))
                 {
-                    int coluna_correspondente = coluna_pergunta[r.Cod_pergunta];
+                    int coluna_correspondente = colunaPergunta[r.CodigoPergunta];
                     campos[coluna_correspondente] = r.ValorString;
                 }
             }
             #endregion
 
             #region Respostas Memo
-            foreach (Resposta r in fa.Respostas_Memo)
+            foreach (Resposta r in fa.RespostasMemo)
             {
-                if (coluna_pergunta.Keys.Contains(r.CodigoItem))
+                if (colunaPergunta.Keys.Contains(r.CodigoItem))
                 {
-                    int coluna_correspondente = coluna_pergunta[r.Cod_pergunta];
+                    int coluna_correspondente = colunaPergunta[r.CodigoPergunta];
                     campos[coluna_correspondente] = r.ValorString;
                 }
             }
@@ -374,34 +374,34 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
          * terceiro preencher a matriz
          * por fim gravar o ficheiro
          */
-        public void grava_checklist()
+        public void GravaChecklist()
         {
             valores = new Dictionary<int, string[]>();
 
-            valores[0] = getCabecalhoCL();
+            valores[0] = getCabecalhoCheckList();
 
-            string[][] matriz_checklist = getCamposCL();
+            string[][] matriz_checklist = getCamposCheckList();
 
             for (int i = 0; i < matriz_checklist.Length; i++)
                 valores[i + 1] = matriz_checklist[i];
 
-            gravaFicheiro();
+            GravaFicheiro();
         }
 
         /* Retorna a primeira linha do ficheiro - o cabecalho para fichas de avaliacao
          * Também preenche o dictionary com a correspondencia do item para a coluna 
          */
         // @return string[] Os valores de cada coluna da primeira linha do ficheiro
-        private string[] getCabecalhoCL()
+        private string[] getCabecalhoCheckList()
         {
             string[] cabecalho = new string[items.Count+1];
-            coluna_pergunta = new Dictionary<long, int>();
+            colunaPergunta = new Dictionary<long, int>();
 
             cabecalho[0] = "Zonas";
             for (int i = 0; i < items.Count; i++)
             {
                 cabecalho[i + 1] = i.ToString() + "-" + items[i].NomeItem;
-                coluna_pergunta.Add(items[i].CodigoItem, i + 1);
+                colunaPergunta.Add(items[i].CodigoItem, i + 1);
             }
 
             return cabecalho;
@@ -409,23 +409,23 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
     
         /* Retorna a matriz com todas as repostas de cada item para cada zona da checklist */
         // @return As várias respostas da checklist
-        private string[][] getCamposCL()
+        private string[][] getCamposCheckList()
         {
             /* Inicializar o array */
             string[][] campos = new string[zonas.Count][];
             for (int i = 0; i < campos.Length; i++)
                 campos[i] = new string[items.Count + 1];
 
-            /* Colocar na primeira coluna da matriz a zona e o seu nome */
+            /* Colocar na primeira coluna da matriz a zona escalaResposta o seu nome */
             string nome_zona = "";
             for (int i = 0 ; i < zonas.Count ; i++)
                 campos[i][0] = getIndexZona(zonas[i].Codigo, ref nome_zona).ToString() + "-" + nome_zona;
 
-            foreach (Resposta r in checklist.Respostas_Numero)
+            foreach (Resposta r in checklist.RespostasNumero)
             {
-                if (coluna_pergunta.Keys.Contains(r.CodigoItem))
+                if (colunaPergunta.Keys.Contains(r.CodigoItem))
                 {
-                    int coluna_correspondente = coluna_pergunta[r.CodigoItem];
+                    int coluna_correspondente = colunaPergunta[r.CodigoItem];
                     campos[getIndexZona(r.CodigoZona, ref nome_zona)-1][coluna_correspondente] = r.Valor.ToString();
                 }
             }
@@ -438,7 +438,7 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
         /* Funcao que grava o ficheiro 
          * A matriz já está toda preenchida é só necessário colocar ';' entre os campos
          */
-        private void gravaFicheiro()
+        private void GravaFicheiro()
         {
             for (int i = 0; i < valores.Keys.Count; i++)
             {
@@ -459,14 +459,14 @@ namespace ETdAnalyser.Camada_de_Dados.Classes
 
         #region Cenas
 
-        private PerguntaQuestionario getPerguntaByCod(long cod)
+        private PerguntaQuestionario getPerguntaPorCodigo(long codigo)
         {
             PerguntaQuestionario p = null;
             bool encontrado = false;
-            for (int i = 0; i < perguntas_questionarios.Count && !encontrado; i++)
-                if (perguntas_questionarios[i].Cod_Pergunta == cod)
+            for (int i = 0; i < perguntasQuestionarios.Count && !encontrado; i++)
+                if (perguntasQuestionarios[i].CodigoPergunta == codigo)
                 {
-                    p = perguntas_questionarios[i];
+                    p = perguntasQuestionarios[i];
                     encontrado = true;
                 }
             return p;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes.Verificador
+namespace ETdAnalyser.CamadaDados.Classes.Verificador
 {
     class Input_Verifier
     {

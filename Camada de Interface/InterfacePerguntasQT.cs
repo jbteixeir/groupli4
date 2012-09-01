@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.Classes;
 using ETdAnalyser.Camada_de_Negócio;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfacePerguntasQT : Form
     {
@@ -48,7 +48,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
             this.itens = (List<Item>)itens;
             this.zonas = (List<Zona>)zonas;
-            evento_QT_Done += new eventoEventHandler(Camada_de_Interface.InterfaceGestaoFormulariosOnline.done_QT_Reenc);
+            evento_QT_Done += new eventoEventHandler(CamadaInterface.InterfaceGestaoFormulariosOnline.done_QT_Reenc);
 
             erros = new Dictionary<object, ErrorProvider>();
             init_perg_q();
@@ -193,15 +193,15 @@ namespace ETdAnalyser.Camada_de_Interface
             List<PerguntaQuestionario> novo = new List<PerguntaQuestionario>();
             foreach (PerguntaQuestionario p in questionario)
             {
-                if ((int)p.Num_Pergunta - p.Num_Pergunta != 0)
+                if ((int)p.NumeroPergunta - p.NumeroPergunta != 0)
                 {
-                    if (p_classificacao.ContainsKey((int)p.Num_Pergunta))
-                        p_classificacao[(int)p.Num_Pergunta].Add(p.Clone());
+                    if (p_classificacao.ContainsKey((int)p.NumeroPergunta))
+                        p_classificacao[(int)p.NumeroPergunta].Add(p.Clone());
                     else
                     {
                         List<PerguntaQuestionario> lst = new List<PerguntaQuestionario>();
                         lst.Add(p.Clone());
-                        p_classificacao.Add((int)p.Num_Pergunta, lst);
+                        p_classificacao.Add((int)p.NumeroPergunta, lst);
                     }
                 }
                 else
@@ -263,7 +263,7 @@ namespace ETdAnalyser.Camada_de_Interface
         private void show_pergunta(PerguntaQuestionario perg)
         {
             Panel p = new System.Windows.Forms.Panel();
-            p.Name = perg.Num_Pergunta.ToString();
+            p.Name = perg.NumeroPergunta.ToString();
             p.AutoSize = true;
             p.BorderStyle = BorderStyle.FixedSingle;
             p.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
@@ -271,7 +271,7 @@ namespace ETdAnalyser.Camada_de_Interface
             panel.Controls.Add(p);
             panel.Controls.SetChildIndex(p, 1);
 
-            Panel barra = pergunta_barra_titulo(perg.Num_Pergunta);
+            Panel barra = pergunta_barra_titulo(perg.NumeroPergunta);
             p.Controls.Add(barra);
 
             TextBox t1 = new System.Windows.Forms.TextBox();
@@ -314,7 +314,7 @@ namespace ETdAnalyser.Camada_de_Interface
             c2.Width = 200;
             c2.DropDownStyle = ComboBoxStyle.DropDownList;
             c2.Items.AddRange(nomes_itens());
-            c2.SelectedIndex = numero_item(perg.Cod_Item);
+            c2.SelectedIndex = numero_item(perg.CodigoItem);
             c2.Location = new System.Drawing.Point(65, 100);
             c2.SelectedIndexChanged += new EventHandler(MouseClickActionPerformed);
             if (!enabled)
@@ -332,7 +332,7 @@ namespace ETdAnalyser.Camada_de_Interface
             c3.Width = 200;
             c3.DropDownStyle = ComboBoxStyle.DropDownList;
             c3.Items.AddRange(nomes_zonas());
-            c3.SelectedIndex = numero_zona(perg.Cod_zona);
+            c3.SelectedIndex = numero_zona(perg.CodigoZona);
             c3.Location = new System.Drawing.Point(65, 130);
             c3.SelectedIndexChanged += new EventHandler(MouseClickActionPerformed);
             if (!enabled)
@@ -349,7 +349,7 @@ namespace ETdAnalyser.Camada_de_Interface
             Label l6 = new System.Windows.Forms.Label();
             l6.AutoSize = true;
             l6.Text = "Mudar Tipo Resposta";
-            l6.Name = perg.Num_Pergunta.ToString();
+            l6.Name = perg.NumeroPergunta.ToString();
             l6.Location = new System.Drawing.Point(95, 170);
             l6.Cursor = System.Windows.Forms.Cursors.Hand;
             l6.Click += new System.EventHandler(mudarTipoRespostaClick);
@@ -360,7 +360,7 @@ namespace ETdAnalyser.Camada_de_Interface
             p.Controls.Add(l6);
             tipos_resposta.Add(l6);
 
-            Panel p2 = getRespostasPanel(GestaodeRespostas.getTipoEscala(perg.Cod_TipoEscala), (int)perg.Num_Pergunta);
+            Panel p2 = getRespostasPanel(GestaodeRespostas.getTipoEscala(perg.CodigoTipoEscala), (int)perg.NumeroPergunta);
             p.Controls.Add(p2);
         }
 
@@ -525,7 +525,7 @@ namespace ETdAnalyser.Camada_de_Interface
             panel.Controls.Add(p2);
 
             PictureBox pb1 = new PictureBox();
-            pb1.Name = perg.Num_Pergunta.ToString();
+            pb1.Name = perg.NumeroPergunta.ToString();
             pb1.Size = new Size(18,18);
             pb1.BackgroundImage = global::ETdAnalyser.Properties.Resources._116740_34218_16_delete_exit_remove_icon;
             pb1.BackgroundImageLayout = ImageLayout.Center;
@@ -589,7 +589,7 @@ namespace ETdAnalyser.Camada_de_Interface
         private void update_num_pergunta(int num_eliminado)
         {
             for (int i = num_eliminado; i < questionario.Count ; i++)
-                questionario[i].Num_Pergunta--;
+                questionario[i].NumeroPergunta--;
             for (int i = 1; i < panel.Controls.Count - num_eliminado; i++ )
             {
                 Panel perg = (Panel)panel.Controls[i];
@@ -616,7 +616,7 @@ namespace ETdAnalyser.Camada_de_Interface
                     List<PerguntaQuestionario> lst = new List<PerguntaQuestionario>();
                     foreach (PerguntaQuestionario q in p_classificacao[i])
                     {
-                        q.Num_Pergunta -= 1;
+                        q.NumeroPergunta -= 1;
                         lst.Add(q.Clone());
                     }
                     novo.Add(i - 1, lst);
@@ -660,10 +660,10 @@ namespace ETdAnalyser.Camada_de_Interface
             PerguntaQuestionario p = new PerguntaQuestionario(
                 codigoAnalise,
                 num_pergunta,
-                parent.Cod_zona,
-                parent.Cod_Item,
+                parent.CodigoZona,
+                parent.CodigoItem,
                 "",
-                parent.Cod_TipoEscala,
+                parent.CodigoTipoEscala,
                 parent.TipoQuestao);
 
             if (p_classificacao.ContainsKey(num_Parent))
@@ -698,7 +698,7 @@ namespace ETdAnalyser.Camada_de_Interface
 
             bool found = false;
             for (int i = 0; i < p_subs.Count && !found; i++)
-                if (p_subs[i].Num_Pergunta.Equals(num_pergunta))
+                if (p_subs[i].NumeroPergunta.Equals(num_pergunta))
                 {
                     p_subs.RemoveAt(i);
                     MessageBox.Show("Apagou.\nCount: " + p_subs.Count);
@@ -714,8 +714,8 @@ namespace ETdAnalyser.Camada_de_Interface
             List<PerguntaQuestionario> p_subs = p_classificacao[(int)num_pergunta_eliminado];
 
             foreach (PerguntaQuestionario q in p_subs)
-                if (q.Num_Pergunta > num_pergunta_eliminado)
-                    q.Num_Pergunta -= 0.01f;
+                if (q.NumeroPergunta > num_pergunta_eliminado)
+                    q.NumeroPergunta -= 0.01f;
 
             /* update dos numeros perguntas picturesBox */
             foreach (Panel p in subs.Controls)
@@ -829,7 +829,7 @@ namespace ETdAnalyser.Camada_de_Interface
             int num_pergunta = (int)lst[0];
             long cod_tipoResposta = (long)lst[1];
 
-            questionario[num_pergunta - 1].Cod_TipoEscala = cod_tipoResposta;
+            questionario[num_pergunta - 1].CodigoTipoEscala = cod_tipoResposta;
             Panel perg = (Panel)panel.Controls[panel.Controls.IndexOfKey(num_pergunta.ToString())];
             perg.Controls.RemoveByKey("Respostas");
             Panel novo = getRespostasPanel(GestaodeRespostas.getTipoEscala(cod_tipoResposta),num_pergunta);
@@ -859,8 +859,8 @@ namespace ETdAnalyser.Camada_de_Interface
                     int zona_index = zonas_pergunta[i].SelectedIndex;
 
                     questionario[i].Texto = perguntas[i].Text;
-                    questionario[i].Cod_Item = (item_index == 0) ? -1 : itens[item_index-1].CodigoItem;
-                    questionario[i].Cod_zona = (zona_index <= 1) ? zona_index : zonas[zona_index-2].Codigo;
+                    questionario[i].CodigoItem = (item_index == 0) ? -1 : itens[item_index-1].CodigoItem;
+                    questionario[i].CodigoZona = (zona_index <= 1) ? zona_index : zonas[zona_index-2].Codigo;
                     questionario[i].TipoQuestao = tipos_pergunta[i].SelectedItem.ToString();
                 }
 

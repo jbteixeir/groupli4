@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using ETdAnalyser.Camada_de_Dados.DataBaseCommunicator;
+using ETdAnalyser.CamadaDados.DataBaseCommunicator;
 using System.Windows.Forms;
 
 namespace ETdAnalyser.Camada_de_Negócio
@@ -14,7 +14,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 		//Métodos
         public static bool registaAnalista(String username, String password)
         {
-            return Camada_de_Dados.ETdA.ETdA.adicionaAnalista(username,password);
+            return CamadaDados.ETdA.ETdA.adicionaAnalista(username,password);
         }
 
 		//void removeAnalisa(String codigoAnalisenalista);
@@ -74,9 +74,9 @@ namespace ETdAnalyser.Camada_de_Negócio
 
                 fs.Close();
                 r.Close();
-                Camada_de_Dados.ETdA.ETdA.Username = username;
+                CamadaDados.ETdA.ETdA.Username = username;
 
-                return Camada_de_Dados.ETdA.ETdA.loginAnalista(server, database, username, password);
+                return CamadaDados.ETdA.ETdA.loginAnalista(server, database, username, password);
             }
             catch
             {
@@ -104,9 +104,9 @@ namespace ETdAnalyser.Camada_de_Negócio
                 r.Close();
                 fs.Close();
 
-                Camada_de_Dados.ETdA.ETdA.Username = username;
+                CamadaDados.ETdA.ETdA.Username = username;
 
-                return Camada_de_Dados.ETdA.ETdA.loginAnalista(server, database, username, password);
+                return CamadaDados.ETdA.ETdA.loginAnalista(server, database, username, password);
             }
             catch
             {

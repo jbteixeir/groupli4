@@ -1,4 +1,4 @@
-﻿namespace ETdAnalyser.Camada_de_Interface
+﻿namespace ETdAnalyser.CamadaInterface
 {
     partial class InterfaceQuestionario
     {

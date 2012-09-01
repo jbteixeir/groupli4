@@ -3,107 +3,107 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
 	class Questionario : Formulario
 	{
-        private long cod_questionario;
-        private List<Resposta> respostas_numero;
-        private List<Resposta> respostas_string;
-        private List<Resposta> respostas_memo;
+        private long codigoQuestionario;
+        private List<Resposta> respostasNumero;
+        private List<Resposta> respostasString;
+        private List<Resposta> respostasMemo;
 
         public Questionario() :
             base()
         {
-            cod_questionario = -1;
-            respostas_memo = new List<Resposta>();
-            respostas_string = new List<Resposta>();
-            respostas_numero = new List<Resposta>();
+            codigoQuestionario = -1;
+            respostasMemo = new List<Resposta>();
+            respostasString = new List<Resposta>();
+            respostasNumero = new List<Resposta>();
         }
 
         public Questionario(long _cod_questionario, long _codigoAnalise) :
             base(_codigoAnalise)
         {
-            cod_questionario = _cod_questionario;
-            respostas_memo = new List<Resposta>();
-            respostas_string = new List<Resposta>();
-            respostas_numero = new List<Resposta>();
+            codigoQuestionario = _cod_questionario;
+            respostasMemo = new List<Resposta>();
+            respostasString = new List<Resposta>();
+            respostasNumero = new List<Resposta>();
         }
 
         // Gets / Sets
 
-        public long Cod_Questionario
+        public long CodigoQuestionario
         {
-            get { return cod_questionario; }
-            set { cod_questionario = value; }
+            get { return codigoQuestionario; }
+            set { codigoQuestionario = value; }
         }
 
-        public List<Resposta> Respostas_Numero
+        public List<Resposta> RespostasNumero
         {
             get
             {
                 List<Resposta> novo = new List<Resposta>();
-                foreach (Resposta r in respostas_numero)
+                foreach (Resposta r in respostasNumero)
                     novo.Add(r);
                 return novo;
             }
             set
             {
-                respostas_numero = new List<Resposta>();
+                respostasNumero = new List<Resposta>();
                 foreach (Resposta r in value)
-                    respostas_numero.Add(r);
+                    respostasNumero.Add(r);
             }
         }
 
-        public List<Resposta> Respostas_String
+        public List<Resposta> RespostasString
         {
             get
             {
                 List<Resposta> novo = new List<Resposta>();
-                foreach (Resposta r in respostas_string)
+                foreach (Resposta r in respostasString)
                     novo.Add(r);
                 return novo;
             }
             set
             {
-                respostas_string = new List<Resposta>();
+                respostasString = new List<Resposta>();
                 foreach (Resposta r in value)
-                    respostas_string.Add(r);
+                    respostasString.Add(r);
             }
         }
 
-        public List<Resposta> Respostas_Memo
+        public List<Resposta> RespostasMemo
         {
             get
             {
                 List<Resposta> novo = new List<Resposta>();
-                foreach (Resposta r in respostas_memo)
+                foreach (Resposta r in respostasMemo)
                     novo.Add(r);
                 return novo;
             }
             set
             {
-                respostas_memo = new List<Resposta>();
+                respostasMemo = new List<Resposta>();
                 foreach (Resposta r in value)
-                    respostas_memo.Add(r);
+                    respostasMemo.Add(r);
             }
         }
 
         // Metodos 
 
-        public void add_resposta_numero(Resposta r)
+        public void AdicionarRespostaNumero(Resposta r)
         {
-            respostas_numero.Add(r);
+            respostasNumero.Add(r);
         }
 
-        public void add_resposta_string(Resposta r)
+        public void AdicionarRespostaString(Resposta r)
         {
-            respostas_string.Add(r);
+            respostasString.Add(r);
         }
 
-        public void add_resposta_memo(Resposta r)
+        public void AdicionarRespostaMemo(Resposta r)
         {
-            respostas_memo.Add(r);
+            respostasMemo.Add(r);
         }
 	}
 }

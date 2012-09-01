@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ETdAnalyser.Camada_de_Dados.Classes;
-using ETdAnalyser.Camada_de_Dados.DataBaseCommunicator;
+using ETdAnalyser.CamadaDados.Classes;
+using ETdAnalyser.CamadaDados.DataBaseCommunicator;
 
 namespace ETdAnalyser.Camada_de_Negócio
 {
@@ -24,14 +24,14 @@ namespace ETdAnalyser.Camada_de_Negócio
             foreach (List<TipoEscala> ll in lst.Values)
                 foreach (TipoEscala te in ll)
                 {
-                    if (te.Default == 0)
+                    if (te.TipoPredefinido == 0)
                     {
-                        te.Codigo = FuncsToDataBase.insertTipoEscala(te);
-                        te.Default = 1;
+                        te.CodigoTipo = FuncsToDataBase.insertTipoEscala(te);
+                        te.TipoPredefinido = 1;
                         foreach (EscalaResposta er in te.Respostas)
                         {
-                            er.CodTipo = te.Codigo;
-                            er.CodEscala = FuncsToDataBase.insertEscalaResposta(er);
+                            er.CodigoTipo = te.CodigoTipo;
+                            er.CodigoEscala = FuncsToDataBase.insertEscalaResposta(er);
                         }
                     }
                 }
@@ -43,7 +43,7 @@ namespace ETdAnalyser.Camada_de_Negócio
             foreach (PerguntaFichaAvaliacao fa in lst)
             {
                 long cod = FuncsToDataBase.insertPerguntaFichaAvaliacao(fa);
-                fa.Cod_Pergunta = cod;
+                fa.CodigoPergunta = cod;
             }
             return lst;
         }
@@ -53,7 +53,7 @@ namespace ETdAnalyser.Camada_de_Negócio
             foreach (PerguntaQuestionario qt in lst)
             {
                 long cod = FuncsToDataBase.insertPerguntaQuestionario(qt);
-                qt.Cod_Pergunta = cod;
+                qt.CodigoPergunta = cod;
             }
             return lst;
         }
@@ -112,49 +112,49 @@ namespace ETdAnalyser.Camada_de_Negócio
 
         public static void insere_questionario(Questionario q)
         {
-            q.Cod_Questionario = FuncsToDataBase.insertQuestionario(q);
+            q.CodigoQuestionario = FuncsToDataBase.insertQuestionario(q);
 
-            foreach (Resposta r in q.Respostas_Memo)
+            foreach (Resposta r in q.RespostasMemo)
             {
-                r.CodigoQuestionario = q.Cod_Questionario;
+                r.CodigoQuestionario = q.CodigoQuestionario;
                 FuncsToDataBase.insertRespostaQuestionario(r);
             }
-            foreach (Resposta r in q.Respostas_Numero)
+            foreach (Resposta r in q.RespostasNumero)
             {
-                r.CodigoQuestionario = q.Cod_Questionario;
+                r.CodigoQuestionario = q.CodigoQuestionario;
                 FuncsToDataBase.insertRespostaQuestionario(r);
             }
-            foreach (Resposta r in q.Respostas_String)
+            foreach (Resposta r in q.RespostasString)
             {
-                r.CodigoQuestionario = q.Cod_Questionario;
+                r.CodigoQuestionario = q.CodigoQuestionario;
                 FuncsToDataBase.insertRespostaQuestionario(r);
             }
         }
 
         public static void insere_ficha_avaliacao(FichaAvaliacao fa)
         {
-            fa.CodFichaAvaliacao = FuncsToDataBase.insertFichaAvaliacao(fa);
+            fa.CodigoFichaAvaliacao = FuncsToDataBase.insertFichaAvaliacao(fa);
 
-            foreach (Resposta r in fa.Respostas_Numero)
+            foreach (Resposta r in fa.RespostasNumero)
             {
-                r.CodigoFichaAvaliacao = fa.CodFichaAvaliacao;
+                r.CodigoFichaAvaliacao = fa.CodigoFichaAvaliacao;
                 FuncsToDataBase.insertRespostaFichaAvaliacao(r);
             }
-            foreach (Resposta r in fa.Respostas_Memo)
+            foreach (Resposta r in fa.RespostasMemo)
             {
-                r.CodigoFichaAvaliacao = fa.CodFichaAvaliacao;
+                r.CodigoFichaAvaliacao = fa.CodigoFichaAvaliacao;
                 FuncsToDataBase.insertRespostaFichaAvaliacao(r);
             }
-            foreach (Resposta r in fa.Respostas_String)
+            foreach (Resposta r in fa.RespostasString)
             {
-                r.CodigoFichaAvaliacao = fa.CodFichaAvaliacao;
+                r.CodigoFichaAvaliacao = fa.CodigoFichaAvaliacao;
                 FuncsToDataBase.insertRespostaFichaAvaliacao(r);
             }
         }
 
         public static void insere_CheckList(CheckList c)
         {
-            foreach (Resposta r in c.Respostas_Numero)
+            foreach (Resposta r in c.RespostasNumero)
                 FuncsToDataBase.insertRespostaCheckList(r);
         }
 

@@ -3,44 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class Zona
     {
         //Variaveis de Instancia
-        private long codZona;
-        private String nomeZona;
+        private long codigo;
+        private String nome;
 
         //Constructores
 
         public Zona(long cod, String nome)
         {
-            codZona = cod;
-            nomeZona = nome;
+            codigo = cod;
+            nome = nome;
         }
 
         public Zona()
         {
-            codZona = -1;
-            nomeZona = "";
+            codigo = -1;
+            nome = "";
         }
 
         public Zona(Zona i)
         {
-            codZona = i.Codigo;
-            nomeZona = i.Nome;
+            codigo = i.Codigo;
+            nome = i.Nome;
         }
 
         //Métodos
         public long Codigo
         {
-            get { return codZona; }
-            set { codZona = value; }
+            get { return codigo; }
+            set { codigo = value; }
         }
         public String Nome
         {
-            get { return nomeZona; }
-            set { nomeZona = value; }
+            get { return nome; }
+            set { nome = value; }
         }
     }
 }

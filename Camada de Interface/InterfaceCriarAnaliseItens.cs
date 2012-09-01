@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ETdAnalyser.Camada_de_Negócio;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.Classes;
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceCriarAnaliseItens : Form
     {
@@ -48,7 +48,7 @@ namespace ETdAnalyser.Camada_de_Interface
             editing = false;
 
             done_action += new eventoEventHandler(
-               Camada_de_Interface.InterfaceCriarAnalise.ItensOkReenc);
+               CamadaInterface.InterfaceCriarAnalise.ItensOkReenc);
 
             defaults = GestaodeAnalises.getItensDefault();
             alls = GestaodeAnalises.getTodosItens();
@@ -197,7 +197,7 @@ namespace ETdAnalyser.Camada_de_Interface
             TextBox b1 = new System.Windows.Forms.TextBox();
             b1.Height = 20;
             b1.Width = 40;
-            b1.Text = (item != null) ? "" + item.Inter_Vermelho : "1";
+            b1.Text = (item != null) ? "" + item.IntervaloVermelho : "1";
             b1.Location = new System.Drawing.Point(107, 162);
             b1.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
             b1.Click += new EventHandler(MouseClickActionPerformed);
@@ -214,7 +214,7 @@ namespace ETdAnalyser.Camada_de_Interface
             TextBox b3 = new System.Windows.Forms.TextBox();
             b3.Height = 20;
             b3.Width = 40;
-            b3.Text = (item != null) ? "" + item.Inter_Laranja : "2";
+            b3.Text = (item != null) ? "" + item.IntervaloLaranja : "2";
             b3.Location = new System.Drawing.Point(107, 187);
             b3.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
             b3.Click += new EventHandler(MouseClickActionPerformed);
@@ -231,7 +231,7 @@ namespace ETdAnalyser.Camada_de_Interface
             TextBox b5 = new System.Windows.Forms.TextBox();
             b5.Height = 20;
             b5.Width = 40;
-            b5.Text = (item != null) ? "" + item.Inter_Amarelo : "3";
+            b5.Text = (item != null) ? "" + item.IntervaloAmarelo : "3";
             b5.Location = new System.Drawing.Point(107, 212);
             b5.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
             b5.Click += new EventHandler(MouseClickActionPerformed);
@@ -248,7 +248,7 @@ namespace ETdAnalyser.Camada_de_Interface
             TextBox b7 = new System.Windows.Forms.TextBox();
             b7.Height = 20;
             b7.Width = 40;
-            b7.Text = (item != null) ? "" + item.Inter_Verde_Lima : "4";
+            b7.Text = (item != null) ? "" + item.IntervaloVerdeLima : "4";
             b7.Location = new System.Drawing.Point(107, 237);
             b7.KeyPress += new KeyPressEventHandler(KeyPressActionPerformed);
             b7.Click += new EventHandler(MouseClickActionPerformed);
@@ -438,11 +438,11 @@ namespace ETdAnalyser.Camada_de_Interface
                         i.PonderacaoAnalista = double.Parse(n1.Value.ToString());
                         i.PonderacaoProfissional = double.Parse(n2.Value.ToString());
                         i.PonderacaoCliente = double.Parse(n3.Value.ToString());
-                        i.Inter_Vermelho = double.Parse(b1.Text);
-                        i.Inter_Laranja = double.Parse(b2.Text);
-                        i.Inter_Amarelo = double.Parse(b3.Text);
-                        i.Inter_Verde_Lima = double.Parse(b4.Text);
-                        i.Inter_Verde = double.Parse(b5.Text);
+                        i.IntervaloVermelho = double.Parse(b1.Text);
+                        i.IntervaloLaranja = double.Parse(b2.Text);
+                        i.IntervaloAmarelo = double.Parse(b3.Text);
+                        i.IntervaloVerdeLima = double.Parse(b4.Text);
+                        i.IntervaloVerde = double.Parse(b5.Text);
                         i.LimiteInferiorAnalista = double.Parse(n4.Value.ToString());
 
                         itens.Add(i);
@@ -509,11 +509,11 @@ namespace ETdAnalyser.Camada_de_Interface
                         i.PonderacaoAnalista = double.Parse(n1.Value.ToString());
                         i.PonderacaoProfissional = double.Parse(n2.Value.ToString());
                         i.PonderacaoCliente = double.Parse(n3.Value.ToString());
-                        i.Inter_Vermelho = double.Parse(b1.Text);
-                        i.Inter_Laranja = double.Parse(b2.Text);
-                        i.Inter_Amarelo = double.Parse(b3.Text);
-                        i.Inter_Verde_Lima = double.Parse(b4.Text);
-                        i.Inter_Verde = double.Parse(b5.Text);
+                        i.IntervaloVermelho = double.Parse(b1.Text);
+                        i.IntervaloLaranja = double.Parse(b2.Text);
+                        i.IntervaloAmarelo = double.Parse(b3.Text);
+                        i.IntervaloVerdeLima = double.Parse(b4.Text);
+                        i.IntervaloVerde = double.Parse(b5.Text);
                         i.LimiteInferiorAnalista = double.Parse(n4.Value.ToString());
 
                         n1.Enabled = false;

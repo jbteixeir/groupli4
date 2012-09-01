@@ -3,48 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class CheckList : Formulario
     {
-        private List<Resposta> respostas_numero;
+        private List<Resposta> respostasNumero;
 
         public CheckList () : 
         base()
         {
-            respostas_numero = new List<Resposta>();
+            respostasNumero = new List<Resposta>();
         }
 
         public CheckList(long _codigoAnalise) :
             base(_codigoAnalise)
         {
-            respostas_numero = new List<Resposta>();
+            respostasNumero = new List<Resposta>();
         }
 
         /* Gets\Sets */
 
-        public List<Resposta> Respostas_Numero
+        public List<Resposta> RespostasNumero
         {
             get
             {
                 List<Resposta> novo = new List<Resposta>();
-                foreach (Resposta r in respostas_numero)
-                    novo.Add(r);
+                foreach (Resposta resposta in respostasNumero)
+                    novo.Add(resposta);
                 return novo;
             }
             set
             {
-                respostas_numero = new List<Resposta>();
-                foreach (Resposta r in value)
-                    respostas_numero.Add(r);
+                respostasNumero = new List<Resposta>();
+                foreach (Resposta resposta in value)
+                    respostasNumero.Add(resposta);
             }
         }
 
         /* Metodos */
 
-        public void add_resposta_numero(Resposta r)
+        public void adicionarRespostaNumero(Resposta resposta)
         {
-            respostas_numero.Add(r);
+            respostasNumero.Add(resposta);
         }
     }
 }

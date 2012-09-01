@@ -3,51 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes
+namespace ETdAnalyser.CamadaDados.Classes
 {
     class EscalaResposta
     {
         //Variáveis de Instância
-        private long cod_escala;
-        private long cod_tipo;
+        private long codigoEscala;
+        private long codigoTipo;
         private String descricao;
         private int valorResposta;
  
         //Constructores
-        public EscalaResposta(long cod, long tipoE, String desc, int valor)
+        public EscalaResposta(long codigo, long tipoEscala, String descricao, int valor)
         {
-            cod_escala = cod;
-            cod_tipo = tipoE;
-            descricao = desc;
-            valorResposta = valor;
+            this.codigoEscala = codigo;
+            this.codigoTipo = tipoEscala;
+            this.descricao = descricao;
+            this.valorResposta = valor;
         }
 
-        public EscalaResposta(long tipoE, string desc, int valor)
+        public EscalaResposta(long tipoEscala, string descricao, int valor)
         {
-            cod_tipo = tipoE;
-            descricao = desc;
-            valorResposta = valor;
+            this.codigoTipo = tipoEscala;
+            this.descricao = descricao;
+            this.valorResposta = valor;
         }
 
-        public EscalaResposta(EscalaResposta e)
+        public EscalaResposta(EscalaResposta escalaResposta)
         {
-            cod_escala = e.CodEscala;
-            cod_tipo = e.CodTipo;
-            descricao = e.Descricao;
-            valorResposta = e.Valor;
+            codigoEscala = escalaResposta.CodigoEscala;
+            codigoTipo = escalaResposta.CodigoTipo;
+            descricao = escalaResposta.Descricao;
+            valorResposta = escalaResposta.Valor;
         }
 
         //Métodos
-        public long CodEscala
+        public long CodigoEscala
         {
-            get { return cod_escala; }
-            set { cod_escala = value; }
+            get { return codigoEscala; }
+            set { codigoEscala = value; }
         }
 
-        public long CodTipo
+        public long CodigoTipo
         {
-            get { return cod_tipo; }
-            set { cod_tipo = value; }
+            get { return codigoTipo; }
+            set { codigoTipo = value; }
         }
 
         public String Descricao

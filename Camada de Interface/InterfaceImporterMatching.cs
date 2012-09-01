@@ -6,13 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ETdAnalyser.Camada_de_Dados.Classes.Estruturas;
-using ETdAnalyser.Camada_de_Dados.Classes;
+using ETdAnalyser.CamadaDados.Classes.Estruturas;
+using ETdAnalyser.CamadaDados.Classes;
 using ETdAnalyser.Camada_de_Negócio;
-using ETdAnalyser.Camada_de_Dados.Classes.Verificador;
+using ETdAnalyser.CamadaDados.Classes.Verificador;
 
 
-namespace ETdAnalyser.Camada_de_Interface
+namespace ETdAnalyser.CamadaInterface
 {
     public partial class InterfaceImporterMatching : Form
     {
@@ -84,7 +84,7 @@ namespace ETdAnalyser.Camada_de_Interface
             pergs[0] = "";
             if (tipo != Enums.Tipo_Formulário.CheckList)
                 for (int i = 0; i < ps.Count; i++)
-                    pergs[i + j] = "P:" + ps[i].Num_Pergunta.ToString();
+                    pergs[i + j] = "P:" + ps[i].NumeroPergunta.ToString();
             else
                 for (int i = 0; i < itens.Count; i++)
                     pergs[i + j] = itens[i].NomeItem;
@@ -183,7 +183,7 @@ namespace ETdAnalyser.Camada_de_Interface
                     foreach (Pergunta p in ps)
                         pergs.Add((PerguntaQuestionario)p);
                     
-                    if (ie.importar_questionario(n_r, r_v, v_r, zonas, pergs, perguntas_colunas_ficheiro,mapa_zona_coluna))
+                    if (ie.ImportarQuestionario(n_r, r_v, v_r, zonas, pergs, perguntas_colunas_ficheiro,mapa_zona_coluna))
                     {
                         int num_ignorados = 0;
                         int num_resp_ignoradas = 0;
@@ -218,12 +218,12 @@ namespace ETdAnalyser.Camada_de_Interface
                         MessageBox.Show(result, "Resultados");
 
                         if (MessageBoxPortuguese.Show("Pergunta", "Deseja submeter estes qustionários na base de dados?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
-                            ie.submeteQuestionarios();
+                            ie.SubmeteQuestionarios();
                     }
                     else
                     {
-                        MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.Linha_Erro);
-                        dataGridView2.Rows[ie.Linha_Erro].Selected = true;
+                        MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.LinhaErro);
+                        dataGridView2.Rows[ie.LinhaErro].Selected = true;
                     }
                     #endregion
                 }
@@ -243,7 +243,7 @@ namespace ETdAnalyser.Camada_de_Interface
                             found = true;
                         }
 
-                    if (ie.importar_ficha_avaliacao(n_r, r_v, v_r, zonas, pergs, perguntas_colunas_ficheiro, mapa_zona_coluna, index))
+                    if (ie.ImportarFichaAvaliacao(n_r, r_v, v_r, zonas, pergs, perguntas_colunas_ficheiro, mapa_zona_coluna, index))
                     {
                         int num_ignorados = 0;
                         int num_resp_ignoradas = 0;
@@ -278,12 +278,12 @@ namespace ETdAnalyser.Camada_de_Interface
                         MessageBox.Show(result, "Resultados");
 
                         if (MessageBoxPortuguese.Show("Pergunta", "Deseja submeter estas fichas de avaliação na base de dados?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
-                            ie.submeteFichasAvaliacao();
+                            ie.SubmeterFichasAvaliacao();
                     }
                     else
                     {
-                        MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.Linha_Erro);
-                        dataGridView2.Rows[ie.Linha_Erro].Selected = true;
+                        MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.LinhaErro);
+                        dataGridView2.Rows[ie.LinhaErro].Selected = true;
                     }
                     #endregion
                 }
@@ -301,7 +301,7 @@ namespace ETdAnalyser.Camada_de_Interface
                         found = true;
                     }
 
-                if (ie.importar_checklist(n_r, r_v, v_r, zonas, itens,itens_colunas_ficheiro,mapa_zona_coluna,index))
+                if (ie.ImportarChecklist(n_r, r_v, v_r, zonas, itens,itens_colunas_ficheiro,mapa_zona_coluna,index))
                 {
                     int num_ignorados = 0;
                     int num_resp_ignoradas = 0;
@@ -336,12 +336,12 @@ namespace ETdAnalyser.Camada_de_Interface
                     MessageBox.Show(result, "Resultados");
 
                     if (MessageBoxPortuguese.Show("Pergunta", "Deseja submeter a Checklist na base de dados?", MessageBoxPortuguese.Button_YesNo, MessageBoxPortuguese.Icon_Question) == System.Windows.Forms.DialogResult.Yes)
-                        ie.submeteCheckList();
+                        ie.SubmeterCheckList();
                     }
                 else
                 {
-                    MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.Linha_Erro);
-                    dataGridView2.Rows[ie.Linha_Erro].Selected = true;
+                    MessageBox.Show(ie.Erro + "\n" + "Número de linha de erro: " + ie.LinhaErro);
+                    dataGridView2.Rows[ie.LinhaErro].Selected = true;
                 }
                 #endregion
             }
@@ -419,10 +419,10 @@ namespace ETdAnalyser.Camada_de_Interface
                     {
                         // retirar a pergunta a que esta coluna esta associada
                         float num_pergunta = float.Parse(((string)row.Cells[i].Value).Split(':')[1]);
-                        TipoEscala ti = GestaodeRespostas.getTipoEscala(getPerguntaByNum(num_pergunta).Cod_TipoEscala);
+                        TipoEscala ti = GestaodeRespostas.getTipoEscala(getPerguntaByNum(num_pergunta).CodigoTipoEscala);
 
-                        /* Perguntas cuja resposta tem o valor e o cod_zona */
-                        if ( tipo == Enums.Tipo_Formulário.Questionario && ((PerguntaQuestionario)getPerguntaByNum(num_pergunta)).Cod_zona == 0 )
+                        /* Perguntas cuja resposta tem o valor escalaResposta o codigo */
+                        if ( tipo == Enums.Tipo_Formulário.Questionario && ((PerguntaQuestionario)getPerguntaByNum(num_pergunta)).CodigoZona == 0 )
                         {
                             if (mapa_zona_coluna == null)
                             {
@@ -496,7 +496,7 @@ namespace ETdAnalyser.Camada_de_Interface
             for (int j = 0; j < _perguntas_colunas_ficheiro.Keys.Count; j++)
             {
                 float num_pergunta = _perguntas_colunas_ficheiro.Keys.ElementAt(j);
-                TipoEscala ti = GestaodeRespostas.getTipoEscala(getPerguntaByNum(num_pergunta).Cod_TipoEscala);
+                TipoEscala ti = GestaodeRespostas.getTipoEscala(getPerguntaByNum(num_pergunta).CodigoTipoEscala);
                 
                 // Varias opcoes
                 if (ti.Numero == -2 && ti.Respostas.Count != _perguntas_colunas_ficheiro[num_pergunta].Count)
@@ -592,7 +592,7 @@ namespace ETdAnalyser.Camada_de_Interface
         private Pergunta getPerguntaByNum(float num)
         {
             for (int i = 0; i < ps.Count; i++)
-                if (ps[i].Num_Pergunta == num)
+                if (ps[i].NumeroPergunta == num)
                     return ps[i];
             return null;
         }
@@ -625,7 +625,7 @@ namespace ETdAnalyser.Camada_de_Interface
                 else if ((string)row.Cells[i].Value != null && tipo == Enums.Tipo_Formulário.Questionario)
                 {
                     float num_pergunta = float.Parse(((string)row.Cells[i].Value).Split(':')[1]);
-                    if (((PerguntaQuestionario)getPerguntaByNum(num_pergunta)).Cod_zona == 0)
+                    if (((PerguntaQuestionario)getPerguntaByNum(num_pergunta)).CodigoZona == 0)
                         for (int j = 0; j < dataGridView2.Rows.Count; j++)
                            if (Input_Verifier.soNumeros(dataGridView2.Rows[j].Cells[i + 1].Value.ToString()) &&
                                 !valores_zonas.Contains(int.Parse(dataGridView2.Rows[j].Cells[i + 1].Value.ToString())))

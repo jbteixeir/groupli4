@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ETdAnalyser.Camada_de_Dados.Classes.Estruturas
+namespace ETdAnalyser.CamadaDados.Classes.Estruturas
 {
     class Tuplo<Object1,Object2>
     {

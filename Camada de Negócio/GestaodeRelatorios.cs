@@ -1,4 +1,4 @@
-﻿using ETdAnalyser.Camada_de_Dados.Classes;
+﻿using ETdAnalyser.CamadaDados.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +10,16 @@ namespace ETdAnalyser.Camada_de_Negócio
     {
         public static void GerarRelatório(long codigoProjecto, long codigoAnalise, String nome_analise)
         {
-            Relatorio relatorio = new ETdAnalyser.Camada_de_Dados.Classes.Relatorio();
-            List<Camada_de_Dados.Classes.Zona> zonas = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Zonas;
-            List<Camada_de_Dados.Classes.Item> itens = ETdAnalyser.Camada_de_Dados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Itens;
+            Relatorio relatorio = new ETdAnalyser.CamadaDados.Classes.Relatorio();
+            List<CamadaDados.Classes.Zona> zonas = ETdAnalyser.CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Zonas;
+            List<CamadaDados.Classes.Item> itens = ETdAnalyser.CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Itens;
 
-            relatorio.gerarResultadosRelatorio(codigoAnalise, new List<Camada_de_Dados.Classes.Resposta>(), zonas, itens);
-            relatorio.gerarEstatisticasRelatorioSexo(codigoAnalise);
-            relatorio.gerarEstatisticasIdade(codigoAnalise);
-            relatorio.gerarEstatisticasClienteHabitual(codigoAnalise);
+            relatorio.GerarResultadosRelatorio(codigoAnalise, new List<CamadaDados.Classes.Resposta>(), zonas, itens);
+            relatorio.GerarEstatisticasRelatorioSexo(codigoAnalise);
+            relatorio.GerarEstatisticasIdade(codigoAnalise);
+            relatorio.GerarEstatisticasClienteHabitual(codigoAnalise);
 
-            Camada_de_Interface.InterfaceRelatorio.main(codigoProjecto, codigoAnalise, nome_analise, relatorio);
+            CamadaInterface.InterfaceRelatorio.main(codigoProjecto, codigoAnalise, nome_analise, relatorio);
         }
     }
 }
