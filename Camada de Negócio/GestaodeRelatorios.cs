@@ -11,8 +11,8 @@ namespace ETdAnalyser.Camada_de_Negócio
         public static void GerarRelatório(long codigoProjecto, long codigoAnalise, String nome_analise)
         {
             Relatorio relatorio = new ETdAnalyser.CamadaDados.Classes.Relatorio();
-            List<CamadaDados.Classes.Zona> zonas = ETdAnalyser.CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Zonas;
-            List<CamadaDados.Classes.Item> itens = ETdAnalyser.CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Itens;
+            List<CamadaDados.Classes.Zona> zonas = ETdAnalyser.CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).Analises[codigoAnalise].Zonas;
+            List<CamadaDados.Classes.Item> itens = ETdAnalyser.CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).Analises[codigoAnalise].Itens;
 
             relatorio.GerarResultadosRelatorio(codigoAnalise, new List<CamadaDados.Classes.Resposta>(), zonas, itens);
             relatorio.GerarEstatisticasRelatorioSexo(codigoAnalise);

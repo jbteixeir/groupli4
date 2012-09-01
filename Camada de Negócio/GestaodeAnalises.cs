@@ -17,16 +17,16 @@ namespace ETdAnalyser.Camada_de_Negócio
         // s_final
         public static Dictionary<long,string> getCodeNomeAnalises(long codigoProjectoroj)
         {
-            if (CamadaDados.ETdA.ETdA.getProjecto(codigoProjectoroj) == null)
+            if (CamadaDados.ETdA.ETdA.GetProjecto(codigoProjectoroj) == null)
                 GestaodeProjectos.abreProjecto(codigoProjectoroj);
 
-            return CamadaDados.ETdA.ETdA.getProjecto(codigoProjectoroj).CodigoNomeAnalise;
+            return CamadaDados.ETdA.ETdA.GetProjecto(codigoProjectoroj).CodigoNomeAnalise;
         }
 
         // s_final
         public static void abreAnalise(long cp, long ca)
         {
-            CamadaDados.ETdA.ETdA.getProjecto(cp).AbrirAnalise(ca);
+            CamadaDados.ETdA.ETdA.GetProjecto(cp).AbrirAnalise(ca);
         }
 
 
@@ -58,7 +58,7 @@ namespace ETdAnalyser.Camada_de_Negócio
         }
 
         public static void adicionaAnalise(Analise a, long codigoProjecto){
-            CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).AdicionarAnalise(a.Tipo, a.Nome, a.Zonas, a.Itens);
+            CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).AdicionarAnalise(a.Tipo, a.Nome, a.Zonas, a.Itens);
         }
 
         public static Dictionary<long, string> getItensDefault()
@@ -96,22 +96,22 @@ namespace ETdAnalyser.Camada_de_Negócio
 
         public static bool podeAdicionarAnalise(long codigoProjecto, string nomeAnalise)
         {
-            return CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).PodeAdicionarAnalise(nomeAnalise);
+            return CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).PodeAdicionarAnalise(nomeAnalise);
         }
 
         public static List<Item> getItensAnalise(long codigoProjecto, long codigoAnalise)
         {
-            return CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Itens;
+            return CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).Analises[codigoAnalise].Itens;
         }
 
         public static List<Zona> getZonasAnalise(long codigoProjecto, long codigoAnalise)
         {
-            return CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Zonas;
+            return CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).Analises[codigoAnalise].Zonas;
         }
 
         public static List<string> getNomeZonasAnalise(long codigoProjecto, long codigoAnalise)
         {
-            List<Zona> zs = CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Zonas;
+            List<Zona> zs = CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).Analises[codigoAnalise].Zonas;
             List<string> ss = new List<string>();
             foreach (Zona z in zs)
                 ss.Add(z.Nome);
@@ -120,12 +120,12 @@ namespace ETdAnalyser.Camada_de_Negócio
 
         public static string getTipoAnalise(long codigoProjecto, long codigoAnalise)
         {
-            return CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).Analises[codigoAnalise].Tipo;
+            return CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).Analises[codigoAnalise].Tipo;
         }
 
         public static void removerAnalise(long codigoProjecto, long codigoAnalise)
         {
-           CamadaDados.ETdA.ETdA.getProjecto(codigoProjecto).RemoveAnalise(codigoAnalise);
+           CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).RemoveAnalise(codigoAnalise);
         }
 
     }

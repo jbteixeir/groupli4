@@ -7,7 +7,7 @@ namespace ETdAnalyser.CamadaDados.Classes.Verificador
 {
     class Input_Verifier
     {
-        public static bool soNumeros(string s)
+        public static bool SoNumeros(string s)
         {
             string numeros = "0123456789";
             string limitadores = ".,";
@@ -18,7 +18,7 @@ namespace ETdAnalyser.CamadaDados.Classes.Verificador
             return found;
         }
 
-        public static bool soEspacos(string s)
+        public static bool SoEspacos(string s)
         {
             if (s == "") return true;
             string possiveis = " \t\n";

@@ -615,7 +615,7 @@ namespace ETdAnalyser.CamadaInterface
                 if (((string)row.Cells[i].Value) != null && ((string)row.Cells[i].Value).Equals("Zn/Ac") && (tipo == Enums.Tipo_Formulário.Ficha_Avaliacao || tipo == Enums.Tipo_Formulário.CheckList))
                 {
                     for (int j = 0; j < dataGridView2.Rows.Count; j++)
-                        if (Input_Verifier.soNumeros(dataGridView2.Rows[j].Cells[i].Value.ToString()) &&
+                        if (Input_Verifier.SoNumeros(dataGridView2.Rows[j].Cells[i].Value.ToString()) &&
                             !valores_zonas.Contains(int.Parse(dataGridView2.Rows[j].Cells[i].Value.ToString())))
                         {
                             valores_zonas.Add(int.Parse(dataGridView2.Rows[j].Cells[i].Value.ToString()));
@@ -627,7 +627,7 @@ namespace ETdAnalyser.CamadaInterface
                     float num_pergunta = float.Parse(((string)row.Cells[i].Value).Split(':')[1]);
                     if (((PerguntaQuestionario)getPerguntaByNum(num_pergunta)).CodigoZona == 0)
                         for (int j = 0; j < dataGridView2.Rows.Count; j++)
-                           if (Input_Verifier.soNumeros(dataGridView2.Rows[j].Cells[i + 1].Value.ToString()) &&
+                           if (Input_Verifier.SoNumeros(dataGridView2.Rows[j].Cells[i + 1].Value.ToString()) &&
                                 !valores_zonas.Contains(int.Parse(dataGridView2.Rows[j].Cells[i + 1].Value.ToString())))
                             {
                                 valores_zonas.Add(int.Parse(dataGridView2.Rows[j].Cells[i + 1].Value.ToString()));

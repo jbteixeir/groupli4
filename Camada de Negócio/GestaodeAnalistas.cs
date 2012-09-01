@@ -14,7 +14,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 		//Métodos
         public static bool registaAnalista(String username, String password)
         {
-            return CamadaDados.ETdA.ETdA.adicionaAnalista(username,password);
+            return CamadaDados.ETdA.ETdA.AdicionarAnalista(username,password);
         }
 
 		//void removeAnalisa(String codigoAnalisenalista);
@@ -76,7 +76,7 @@ namespace ETdAnalyser.Camada_de_Negócio
                 r.Close();
                 CamadaDados.ETdA.ETdA.Username = username;
 
-                return CamadaDados.ETdA.ETdA.loginAnalista(server, database, username, password);
+                return CamadaDados.ETdA.ETdA.LoginAnalista(server, database, username, password);
             }
             catch
             {
@@ -106,7 +106,7 @@ namespace ETdAnalyser.Camada_de_Negócio
 
                 CamadaDados.ETdA.ETdA.Username = username;
 
-                return CamadaDados.ETdA.ETdA.loginAnalista(server, database, username, password);
+                return CamadaDados.ETdA.ETdA.LoginAnalista(server, database, username, password);
             }
             catch
             {

@@ -14,10 +14,10 @@ namespace ETdAnalyser.CamadaDados.ETdA
         private delegate void eventoEventHandler(object sender, EventArgs e);
 
 		//private static event eventoEventHandler evento_analista_registado;
-        private static event eventoEventHandler evento_projecto_adicionado;
+        private static event eventoEventHandler eventoProjectoAdicionado;
 		//private static event eventoEventHandler evento_projecto_removido;
 
-        private static Dictionary<long, string> cod_nome_projectos;
+        private static Dictionary<long, string> codigosNomeProjectos;
         private static Dictionary<long, Projecto> projectos;
         private static string username;
 
@@ -28,19 +28,19 @@ namespace ETdAnalyser.CamadaDados.ETdA
         }
 
         // s_final
-        private static void initEventos()
+        private static void IniciarEventos()
         {
-            evento_projecto_adicionado +=new eventoEventHandler(
+            eventoProjectoAdicionado +=new eventoEventHandler(
                 CamadaInterface.InterfaceGuestaoProjectos.addProjectoReenc);
         }
 
         // s_final
-        public static void init()
+        public static void Iniciar()
         {
             
-            initEventos();
+            IniciarEventos();
 
-            cod_nome_projectos = CamadaDados.DataBaseCommunicator.FuncsToDataBase.SelectNomeProjectos();
+            codigosNomeProjectos = CamadaDados.DataBaseCommunicator.FuncsToDataBase.SelectNomeProjectos();
             projectos = new Dictionary<long, Projecto>();
         }
 
@@ -49,7 +49,7 @@ namespace ETdAnalyser.CamadaDados.ETdA
         {
             get 
             {
-                return new Dictionary<long,string>(cod_nome_projectos);
+                return new Dictionary<long,string>(codigosNomeProjectos);
             }
         }
 
@@ -60,10 +60,10 @@ namespace ETdAnalyser.CamadaDados.ETdA
         }
 
         // s_final
-        public static Projecto getProjecto(long codigoProjecto)
+        public static Projecto GetProjecto(long codigoProjecto)
         {
             if (!projectos.Keys.Contains(codigoProjecto))
-                abreProjecto(codigoProjecto);
+                AbrirProjecto(codigoProjecto);
                 
             return projectos[codigoProjecto];
         }
@@ -73,12 +73,12 @@ namespace ETdAnalyser.CamadaDados.ETdA
         /* ------------------------------------------------------ */
 
         // s_final
-        public static Dictionary<long, string> projectosRecentes()
+        public static Dictionary<long, string> ProjectosRecentes()
         {
             Dictionary<long, string> rs = new Dictionary<long, string>();
 
-            for (int i = 0; i < 5 && i < cod_nome_projectos.Count; i++)
-                rs.Add(cod_nome_projectos.ElementAt(i).Key, cod_nome_projectos.ElementAt(i).Value);
+            for (int i = 0; i < 5 && i < codigosNomeProjectos.Count; i++)
+                rs.Add(codigosNomeProjectos.ElementAt(i).Key, codigosNomeProjectos.ElementAt(i).Value);
 
             return rs;
         }
@@ -88,16 +88,16 @@ namespace ETdAnalyser.CamadaDados.ETdA
          * Verifica se Ja tem Projecto com esse nome na Base de dados
          */
         // s_final
-        public static Boolean podeAdicionarProjecto(String nomeEstabelecimento)
+        public static Boolean PodeAdicionarProjecto(String nomeEstabelecimento)
         {
-            return !cod_nome_projectos.Values.Contains(nomeEstabelecimento);
+            return !codigosNomeProjectos.Values.Contains(nomeEstabelecimento);
         }
 
         /*
          * Adiciona Novo Projecto na aplicação
          */
         // s_final
-        public static void adicionaNovoProjecto(String nomeEstabelecimento)
+        public static void AdicionarNovoProjecto(String nomeEstabelecimento)
         {
             Projecto p = new Projecto();
             p.Nome = nomeEstabelecimento;
@@ -105,21 +105,21 @@ namespace ETdAnalyser.CamadaDados.ETdA
 
             p.Codigo = CamadaDados.DataBaseCommunicator.FuncsToDataBase.InsertProjecto(p);
 
-            cod_nome_projectos.Add(p.Codigo,p.Nome);
+            codigosNomeProjectos.Add(p.Codigo,p.Nome);
             projectos.Add(p.Codigo, p);
 
             List<string> s = new List<string>();
             s.Add(p.Codigo.ToString());
             s.Add(p.Nome);
 
-            evento_projecto_adicionado(s, new EventArgs());
+            eventoProjectoAdicionado(s, new EventArgs());
         }
 
         /*
          * Abre um projecto com o código de estabelecimento
          */
         // s_final
-        public static void abreProjecto(long codigoProjecto)
+        public static void AbrirProjecto(long codigoProjecto)
         {
             if (!projectos.Keys.Contains(codigoProjecto))
             {
@@ -129,17 +129,17 @@ namespace ETdAnalyser.CamadaDados.ETdA
             }
         }
 
-        public static void removeProjecto(String nomeProjecto)
+        public static void RemoverProjecto(String nomeProjecto)
         {
             long cod = -1;
             Boolean found = false;
-            for (int i = 0; i < cod_nome_projectos.Count && !found; i++)
+            for (int i = 0; i < codigosNomeProjectos.Count && !found; i++)
             {
-                KeyValuePair<long, string> p = cod_nome_projectos.ElementAt(i);
+                KeyValuePair<long, string> p = codigosNomeProjectos.ElementAt(i);
                 if (p.Value == nomeProjecto)
                 {
                     cod = p.Key;
-                    cod_nome_projectos.Remove(cod);
+                    codigosNomeProjectos.Remove(cod);
                     if (projectos[cod] != null)
                         projectos.Remove(cod);
                     found = true;
@@ -150,9 +150,9 @@ namespace ETdAnalyser.CamadaDados.ETdA
                 DeleteProjecto(cod);
         }
 
-        public static void removeProjecto(long codigoProjecto)
+        public static void RemoverProjecto(long codigoProjecto)
         {
-            cod_nome_projectos.Remove(codigoProjecto);
+            codigosNomeProjectos.Remove(codigoProjecto);
 
             foreach (Analise a in projectos[codigoProjecto].Analises.Values)
             {
@@ -162,13 +162,13 @@ namespace ETdAnalyser.CamadaDados.ETdA
             
             projectos.Remove(codigoProjecto);
         }
-        public static void modificaProjecto(Projecto p)
+        public static void ModificarProjecto(Projecto p)
         {
             CamadaDados.DataBaseCommunicator.FuncsToDataBase.
                UpdateProjecto(p);
         }
 
-        public static void ultimaAlteracao(Projecto p)
+        public static void UltimaAlteracao(Projecto p)
         {
             CamadaDados.DataBaseCommunicator.FuncsToDataBase.
                UpdateProjecto(p);
@@ -177,13 +177,13 @@ namespace ETdAnalyser.CamadaDados.ETdA
         #endregion
 
         #region Gestao Analistas
-        public static bool adicionaAnalista(String username, String password)
+        public static bool AdicionarAnalista(String username, String password)
         {
             return CamadaDados.DataBaseCommunicator.
                 FuncsToDataBase.InsertAnalista(username, password);
         }
 
-        public static bool loginAnalista(String server, String database, 
+        public static bool LoginAnalista(String server, String database, 
             String username, String password)
         {
             return CamadaDados.DataBaseCommunicator.

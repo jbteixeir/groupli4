@@ -393,7 +393,7 @@ namespace ETdAnalyser.CamadaDados.Classes
 
             #region Teste Respostas Vazias
             /* Testar Repostas vazias */
-            if (Input_Verifier.soEspacos(_campo))
+            if (Input_Verifier.SoEspacos(_campo))
             {
                 if (_modo_respostas_vazias == Enums.Respostas_Vazias.Sair_Vazias)
                 {
@@ -428,7 +428,7 @@ namespace ETdAnalyser.CamadaDados.Classes
 
             if (ti.Numero != 0 &&
                 ti.Numero != 1 &&
-                (!Input_Verifier.soEspacos(_campo) &&
+                (!Input_Verifier.SoEspacos(_campo) &&
                 ( (short.Parse(_campo)) < 1 ||
                   (short.Parse(_campo)) > ti.Respostas.Count)))
             {
@@ -534,7 +534,7 @@ namespace ETdAnalyser.CamadaDados.Classes
             for (int i = 0; i < valores.Keys.Count && continuar; i++)
             {
                 long cod_zona = 0;
-                if (Input_Verifier.soNumeros(valores[i][col_cods_zonas]))
+                if (Input_Verifier.SoNumeros(valores[i][col_cods_zonas]))
                     cod_zona = mapa_coluna_zona[short.Parse(valores[i][col_cods_zonas])].Codigo;
 
                 MessageBox.Show(cod_zona.ToString());
@@ -727,7 +727,7 @@ namespace ETdAnalyser.CamadaDados.Classes
 
             #region Teste Respostas Vazias
             /* Testar Repostas vazias */
-            if (Input_Verifier.soEspacos(_campo))
+            if (Input_Verifier.SoEspacos(_campo))
             {
                 if (_modo_respostas_vazias == Enums.Respostas_Vazias.Sair_Vazias)
                 {
@@ -756,7 +756,7 @@ namespace ETdAnalyser.CamadaDados.Classes
 
             if (ti.Numero != 0 &&
                 ti.Numero != 1 &&
-                (!Input_Verifier.soEspacos(_campo) &&
+                (!Input_Verifier.SoEspacos(_campo) &&
                 ((short.Parse(_campo)) < 1 ||
                   (short.Parse(_campo)) > ti.Respostas.Count)))
             {
@@ -967,7 +967,7 @@ namespace ETdAnalyser.CamadaDados.Classes
 
             #region Teste Respostas Vazias
             /* Testar Repostas vazias */
-            if (Input_Verifier.soEspacos(_campo))
+            if (Input_Verifier.SoEspacos(_campo))
             {
                 if (_modo_respostas_vazias == Enums.Respostas_Vazias.Sair_Vazias)
                 {
@@ -991,7 +991,7 @@ namespace ETdAnalyser.CamadaDados.Classes
 
             #region Teste Valor Resposta
 
-            if ((!Input_Verifier.soEspacos(_campo) &&
+            if ((!Input_Verifier.SoEspacos(_campo) &&
                 ((short.Parse(_campo)) < 1 ||
                   (short.Parse(_campo)) > 5)))
             {
