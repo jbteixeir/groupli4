@@ -48,17 +48,29 @@
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.errorProvider1.SetError(this.label2, resources.GetString("label2.Error"));
+            this.errorProvider2.SetError(this.label2, resources.GetString("label2.Error1"));
+            this.errorProvider2.SetIconAlignment(this.label2, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label2.IconAlignment"))));
+            this.errorProvider1.SetIconAlignment(this.label2, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label2.IconAlignment1"))));
+            this.errorProvider2.SetIconPadding(this.label2, ((int)(resources.GetObject("label2.IconPadding"))));
+            this.errorProvider1.SetIconPadding(this.label2, ((int)(resources.GetObject("label2.IconPadding1"))));
             this.label2.Name = "label2";
             // 
             // comboBox1
             // 
+            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.errorProvider1.SetError(this.comboBox1, resources.GetString("comboBox1.Error"));
+            this.errorProvider2.SetError(this.comboBox1, resources.GetString("comboBox1.Error1"));
             this.comboBox1.FormattingEnabled = true;
+            this.errorProvider1.SetIconAlignment(this.comboBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBox1.IconAlignment"))));
+            this.errorProvider2.SetIconAlignment(this.comboBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBox1.IconAlignment1"))));
+            this.errorProvider2.SetIconPadding(this.comboBox1, ((int)(resources.GetObject("comboBox1.IconPadding"))));
+            this.errorProvider1.SetIconPadding(this.comboBox1, ((int)(resources.GetObject("comboBox1.IconPadding1"))));
             this.comboBox1.Items.AddRange(new object[] {
             resources.GetString("comboBox1.Items"),
             resources.GetString("comboBox1.Items1"),
             resources.GetString("comboBox1.Items2")});
-            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBoxClick);
             // 
@@ -66,24 +78,48 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.errorProvider1.SetError(this.label1, resources.GetString("label1.Error"));
+            this.errorProvider2.SetError(this.label1, resources.GetString("label1.Error1"));
+            this.errorProvider2.SetIconAlignment(this.label1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label1.IconAlignment"))));
+            this.errorProvider1.SetIconAlignment(this.label1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label1.IconAlignment1"))));
+            this.errorProvider2.SetIconPadding(this.label1, ((int)(resources.GetObject("label1.IconPadding"))));
+            this.errorProvider1.SetIconPadding(this.label1, ((int)(resources.GetObject("label1.IconPadding1"))));
             this.label1.Name = "label1";
             // 
             // textBox1
             // 
             resources.ApplyResources(this.textBox1, "textBox1");
+            this.errorProvider1.SetError(this.textBox1, resources.GetString("textBox1.Error"));
+            this.errorProvider2.SetError(this.textBox1, resources.GetString("textBox1.Error1"));
+            this.errorProvider2.SetIconAlignment(this.textBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("textBox1.IconAlignment"))));
+            this.errorProvider1.SetIconAlignment(this.textBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("textBox1.IconAlignment1"))));
+            this.errorProvider2.SetIconPadding(this.textBox1, ((int)(resources.GetObject("textBox1.IconPadding"))));
+            this.errorProvider1.SetIconPadding(this.textBox1, ((int)(resources.GetObject("textBox1.IconPadding1"))));
             this.textBox1.Name = "textBox1";
             // 
             // button1
             // 
             resources.ApplyResources(this.button1, "button1");
+            this.errorProvider1.SetError(this.button1, resources.GetString("button1.Error"));
+            this.errorProvider2.SetError(this.button1, resources.GetString("button1.Error1"));
+            this.errorProvider1.SetIconAlignment(this.button1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("button1.IconAlignment"))));
+            this.errorProvider2.SetIconAlignment(this.button1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("button1.IconAlignment1"))));
+            this.errorProvider2.SetIconPadding(this.button1, ((int)(resources.GetObject("button1.IconPadding"))));
+            this.errorProvider1.SetIconPadding(this.button1, ((int)(resources.GetObject("button1.IconPadding1"))));
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.AdicionarActionPerfermed);
             // 
             // button3
             // 
-            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.button3, "button3");
+            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.errorProvider1.SetError(this.button3, resources.GetString("button3.Error"));
+            this.errorProvider2.SetError(this.button3, resources.GetString("button3.Error1"));
+            this.errorProvider1.SetIconAlignment(this.button3, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("button3.IconAlignment"))));
+            this.errorProvider2.SetIconAlignment(this.button3, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("button3.IconAlignment1"))));
+            this.errorProvider2.SetIconPadding(this.button3, ((int)(resources.GetObject("button3.IconPadding"))));
+            this.errorProvider1.SetIconPadding(this.button3, ((int)(resources.GetObject("button3.IconPadding1"))));
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.CancelarActionPerformed);
@@ -93,6 +129,12 @@
             resources.ApplyResources(this.label3, "label3");
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.errorProvider1.SetError(this.label3, resources.GetString("label3.Error"));
+            this.errorProvider2.SetError(this.label3, resources.GetString("label3.Error1"));
+            this.errorProvider2.SetIconAlignment(this.label3, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label3.IconAlignment"))));
+            this.errorProvider1.SetIconAlignment(this.label3, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label3.IconAlignment1"))));
+            this.errorProvider2.SetIconPadding(this.label3, ((int)(resources.GetObject("label3.IconPadding"))));
+            this.errorProvider1.SetIconPadding(this.label3, ((int)(resources.GetObject("label3.IconPadding1"))));
             this.label3.Name = "label3";
             this.label3.Click += new System.EventHandler(this.ZonasActionPerformed);
             // 
@@ -101,16 +143,24 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.errorProvider1.SetError(this.label4, resources.GetString("label4.Error"));
+            this.errorProvider2.SetError(this.label4, resources.GetString("label4.Error1"));
+            this.errorProvider2.SetIconAlignment(this.label4, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label4.IconAlignment"))));
+            this.errorProvider1.SetIconAlignment(this.label4, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label4.IconAlignment1"))));
+            this.errorProvider2.SetIconPadding(this.label4, ((int)(resources.GetObject("label4.IconPadding"))));
+            this.errorProvider1.SetIconPadding(this.label4, ((int)(resources.GetObject("label4.IconPadding1"))));
             this.label4.Name = "label4";
             this.label4.Click += new System.EventHandler(this.ItensActionPerformed);
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            resources.ApplyResources(this.errorProvider1, "errorProvider1");
             // 
             // errorProvider2
             // 
             this.errorProvider2.ContainerControl = this;
+            resources.ApplyResources(this.errorProvider2, "errorProvider2");
             // 
             // InterfaceCriarAnalise
             // 
