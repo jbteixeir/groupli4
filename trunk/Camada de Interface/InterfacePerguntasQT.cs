@@ -331,7 +331,8 @@ namespace ETdAnalyser.CamadaInterface
             ComboBox c3 = new System.Windows.Forms.ComboBox();
             c3.Width = 200;
             c3.DropDownStyle = ComboBoxStyle.DropDownList;
-            c3.Items.AddRange(nomes_zonas());
+            String[] nzonas = nomes_zonas();
+            c3.Items.AddRange(nzonas);
             c3.SelectedIndex = numero_zona(perg.CodigoZona);
             c3.Location = new System.Drawing.Point(65, 130);
             c3.SelectedIndexChanged += new EventHandler(MouseClickActionPerformed);

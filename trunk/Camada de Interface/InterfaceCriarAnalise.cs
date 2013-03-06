@@ -170,7 +170,7 @@ namespace ETdAnalyser.CamadaInterface
             if (comboBox1.SelectedIndex == 2)
             {
                 zonas = new List<string>();
-                zonas.Add("Area Comum");
+                zonas.Add("Área Comum");
             }
             else
             {

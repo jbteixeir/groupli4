@@ -16,7 +16,7 @@ namespace ETdAnalyser.CamadaDados.Classes
         public Zona(long cod, String nome)
         {
             codigo = cod;
-            nome = nome;
+            this.nome = nome;
         }
 
         public Zona()
