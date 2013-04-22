@@ -16,7 +16,7 @@ namespace ETdAnalyser.CamadaDados.Classes
 
         public Formulario(long codigoAnalise)
         {
-            codigoAnalise = codigoAnalise;
+            this.codigoAnalise = codigoAnalise;
         }
 
         public long CodigoAnalise
