@@ -38,6 +38,9 @@ namespace ETdAnalyser.CamadaInterface
 
         public static void main(object zonas, object associacao)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             InterfaceAssociacaoZonaColuna azc = new InterfaceAssociacaoZonaColuna(zonas, associacao);
             azc.ShowDialog();
         }

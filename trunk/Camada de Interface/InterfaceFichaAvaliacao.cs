@@ -14,6 +14,9 @@ namespace ETdAnalyser.CamadaInterface
     {
         public InterfaceFichaAvaliacao(long codigoProjecto, long codigoAnalise)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             InitializeComponent();
             FichaAvaliacao.ScriptErrorsSuppressed = true;
             FichaAvaliacao.Url = new System.Uri("http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=FA&usr=" + 

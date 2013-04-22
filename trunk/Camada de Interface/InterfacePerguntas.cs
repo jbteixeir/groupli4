@@ -49,6 +49,9 @@ namespace ETdAnalyser.CamadaInterface
 
         public static void main(long codigoAnalise, object itens, bool created, bool enabled)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             ip = new InterfacePerguntas(codigoAnalise, itens, created, enabled);
             ip.ShowDialog();
         }
