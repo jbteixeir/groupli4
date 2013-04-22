@@ -46,6 +46,8 @@ namespace ETdAnalyser.CamadaInterface
             this.codigoAnalise = codigoAnalise;
             this.nome_analise = ETdAnalyser.CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).Analises[codigoAnalise].Nome;
             this.relatorio = relatorio;
+            this.zonas = ETdAnalyser.CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).Analises[codigoAnalise].Zonas;
+            this.itens = ETdAnalyser.CamadaDados.ETdA.ETdA.GetProjecto(codigoProjecto).Analises[codigoAnalise].Itens;
 
             if (relatorio.NumeroRespostas == 0)
             {
