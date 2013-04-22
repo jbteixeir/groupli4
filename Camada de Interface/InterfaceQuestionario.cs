@@ -14,6 +14,9 @@ namespace ETdAnalyser.CamadaInterface
     {
         public InterfaceQuestionario(long codigoProjecto, long codigoAnalise)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             InitializeComponent();
             Questionario.ScriptErrorsSuppressed = true;
             Questionario.Url = new System.Uri("http://" + GestaodeAnalistas.nomeServidorWeb() + ":" + GestaodeAnalistas.portaServidorWeb() + "/ETdAnalyser/Default.aspx?form=QT&usr=" + 

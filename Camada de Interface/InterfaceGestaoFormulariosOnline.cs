@@ -41,6 +41,9 @@ namespace ETdAnalyser.CamadaInterface
 
         public static void main(long codigoAnalise, object itens, object zonas)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             i = new InterfaceGestaoFormulariosOnline(codigoAnalise,itens, zonas);
             i.ShowDialog();
         }

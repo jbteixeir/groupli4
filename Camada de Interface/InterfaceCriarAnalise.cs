@@ -40,6 +40,9 @@ namespace ETdAnalyser.CamadaInterface
         // rdone
         public static void main(long codigoProjecto, string nomeProjecto)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             ica = new InterfaceCriarAnalise(codigoProjecto,nomeProjecto);
             ica.ShowDialog();
         }

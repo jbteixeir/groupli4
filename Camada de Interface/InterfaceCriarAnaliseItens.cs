@@ -62,6 +62,9 @@ namespace ETdAnalyser.CamadaInterface
 
         public static void main(object o, bool b)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             InterfaceCriarAnaliseItens icai = new InterfaceCriarAnaliseItens(o, b);
             icai.ShowDialog();
         }

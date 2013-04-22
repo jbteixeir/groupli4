@@ -97,6 +97,9 @@ namespace ETdAnalyser.CamadaInterface
         // rdone
         public static void main(List<string> zonas, string tipo, bool b)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             InterfaceCriarAnaliseZonas icaz = new InterfaceCriarAnaliseZonas(zonas,tipo,b);
             icaz.ShowDialog();
         }

@@ -42,6 +42,9 @@ namespace ETdAnalyser.CamadaInterface
 
         public static void main(int num_perg, bool fa)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             InterfaceGestaoRespostas igr = new InterfaceGestaoRespostas(num_perg, fa);
             igr.Visible = true;
         }

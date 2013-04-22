@@ -28,6 +28,9 @@ namespace ETdAnalyser.CamadaInterface
 
         public InterfaceStarter()
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             InitializeComponent();
         }
 

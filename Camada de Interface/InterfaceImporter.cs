@@ -31,6 +31,9 @@ namespace ETdAnalyser.CamadaInterface
 
         public static void main(long _codigoAnalise, object _zonas, object _itens)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             InterfaceImporter i = new InterfaceImporter(_codigoAnalise, _zonas, _itens);
             i.ShowDialog();
         }

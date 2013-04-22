@@ -36,6 +36,9 @@ namespace ETdAnalyser.CamadaInterface
 
         public static void main(long codigoProjecto, long codigoAnalise, String nome_analise, CamadaDados.Classes.Relatorio relatorio)
         {
+            var ci = System.Globalization.CultureInfo.InvariantCulture.Clone() as System.Globalization.CultureInfo;
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             InterfaceRelatorio i = new InterfaceRelatorio(codigoProjecto, codigoAnalise, nome_analise, relatorio);
         }
 
