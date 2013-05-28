@@ -27,13 +27,13 @@ namespace ETdAnalyser.Camada_de_Negócio
                 FileStream fs = new FileStream("Config.cfg", FileMode.Open, FileAccess.Read);
                 BinaryReader r = new BinaryReader(fs);
 
-                string server = r.ReadString();
-                string database = r.ReadString();
-                r.ReadString();
-                r.ReadString();
-                r.ReadString();
-                string username = r.ReadString();
-                string password = r.ReadString();
+                string server = r.ReadString(); // server
+                string database = r.ReadString(); // database name
+                r.ReadString(); // server
+                r.ReadString(); // port
+                r.ReadString(); // user db name
+                string username = r.ReadString(); // username
+                string password = r.ReadString(); // password
 
                 r.Close();
                 fs.Close();
@@ -148,7 +148,7 @@ namespace ETdAnalyser.Camada_de_Negócio
             w.Write(database);
             w.Write(webserver);
             w.Write(porta);
-            w.Write("ETdAnalyser");
+            w.Write("ETdA"); // nao devia estar estatico mas pronto!!!
             w.Write(superusername);
             w.Write(superpassword);
 
